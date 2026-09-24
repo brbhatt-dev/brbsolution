@@ -1,4 +1,3 @@
-import NepaliTithiClockBar from '@/components/NepaliTithiClockBar';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import LandSolutionSection from '@/components/LandSolutionSection';
@@ -12,7 +11,6 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <NepaliTithiClockBar />
       <Navbar />
       <main className="flex-grow">
         <Hero />

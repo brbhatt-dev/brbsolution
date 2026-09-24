@@ -1,25 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Play, Facebook, Instagram, Github, ChevronRight, Wallet, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, Play, Facebook, Instagram, Github, ChevronRight, Wallet } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileTime, setMobileTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const hours = now.getHours() % 12 || 12;
-      const minutes = now.getMinutes();
-      const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
-      const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`);
-      setMobileTime(`${pad(hours)}:${pad(minutes)} ${ampm}`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const navLinks = [
     { name: 'Home', href: '#' },
@@ -119,17 +104,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Right Controls: Live Clock Pill + Menu Toggle */}
-          <div className="flex lg:hidden items-center gap-2">
-            
-            {/* Live Clock Pill on Mobile */}
-            {mobileTime && (
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 text-emerald-400 font-mono text-[11px] font-bold shadow-xs border border-slate-800">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>{mobileTime}</span>
-              </div>
-            )}
-
+          {/* Mobile Right Controls: Menu Toggle */}
+          <div className="flex lg:hidden items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 flex items-center justify-center transition-colors border border-slate-200"
@@ -137,7 +113,6 @@ export default function Navbar() {
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-slate-900" /> : <Menu className="w-5 h-5 text-slate-900" />}
             </button>
-
           </div>
 
         </div>
