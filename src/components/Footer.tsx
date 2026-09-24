@@ -93,9 +93,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook Profile"
-                className="w-11 h-11 rounded-xl bg-slate-800 hover:bg-blue-600 active:bg-blue-700 text-slate-300 hover:text-white flex items-center justify-center transition-all border border-slate-700 hover:border-blue-500"
+                className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-md shadow-blue-500/25 hover:shadow-blue-500/50 hover:scale-105 active:scale-95 transition-all border border-blue-400/30"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-5 h-5 fill-white" />
               </a>
 
               <a
@@ -103,7 +103,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Profile"
-                className="w-11 h-11 rounded-xl bg-slate-800 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-600 hover:to-purple-600 active:opacity-90 text-slate-300 hover:text-white flex items-center justify-center transition-all border border-slate-700 hover:border-rose-500"
+                className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-rose-500/25 hover:shadow-rose-500/50 hover:scale-105 active:scale-95 transition-all border border-pink-400/30"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -113,7 +113,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="w-11 h-11 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-300 hover:text-white flex items-center justify-center transition-all border border-slate-700 hover:border-slate-500"
+                className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#0d1117] to-[#24292f] text-white flex items-center justify-center shadow-md shadow-slate-900/40 hover:shadow-slate-900/60 hover:scale-105 active:scale-95 transition-all border border-slate-700"
               >
                 <Github className="w-5 h-5" />
               </a>

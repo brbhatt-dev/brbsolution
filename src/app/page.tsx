@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import QuickTabNav from '@/components/QuickTabNav';
 import LandSolutionSection from '@/components/LandSolutionSection';
 import HamroKoshSection from '@/components/HamroKoshSection';
 import AutoCADLspSection from '@/components/AutoCADLspSection';
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <QuickTabNav />
         <LandSolutionSection />
         <HamroKoshSection />
         <AutoCADLspSection />

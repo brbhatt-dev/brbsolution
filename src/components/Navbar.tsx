@@ -64,27 +64,27 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook Profile"
-                className="p-2 rounded-lg text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition-colors"
+                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-3.5 h-3.5 fill-white" />
               </a>
               <a
                 href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Page"
-                className="p-2 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-slate-50 transition-colors"
+                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-3.5 h-3.5" />
               </a>
               <a
                 href="https://github.com/brbhatt-dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#0d1117] to-[#24292f] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all border border-slate-700"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3.5 h-3.5" />
               </a>
             </div>
 
@@ -156,22 +156,22 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Social Icons inside Mobile Menu */}
+          {/* Social Icons inside Mobile Menu (Digital Style) */}
           <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-4">
             <a
               href="https://www.facebook.com/aabiral.bhatt/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100"
+              className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-md shadow-blue-500/25 border border-blue-400/30 active:scale-95 transition-transform"
               aria-label="Facebook"
             >
-              <Facebook className="w-5 h-5" />
+              <Facebook className="w-5 h-5 fill-white" />
             </a>
             <a
               href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-100"
+              className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-pink-500/25 border border-pink-400/30 active:scale-95 transition-transform"
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5" />
@@ -180,7 +180,7 @@ export default function Navbar() {
               href="https://github.com/brbhatt-dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center border border-slate-200"
+              className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#0d1117] to-[#24292f] text-white flex items-center justify-center shadow-md shadow-slate-900/30 border border-slate-700 active:scale-95 transition-transform"
               aria-label="GitHub"
             >
               <Github className="w-5 h-5" />

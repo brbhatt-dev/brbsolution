@@ -63,24 +63,24 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Social Connect Icons in Hero */}
-            <div className="pt-1 flex items-center justify-center lg:justify-start gap-3">
-              <span className="text-xs font-semibold text-slate-500">सम्पर्क:</span>
+            {/* Social Connect Icons in Hero (Vibrant Digital Style) */}
+            <div className="pt-1 flex items-center justify-center lg:justify-start gap-2.5">
+              <span className="text-xs font-bold text-slate-700">जोडिनुहोस्:</span>
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook Profile"
-                className="p-2.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-600 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-md shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-110 active:scale-95 transition-all border border-blue-400/40"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-4 h-4 fill-white" />
               </a>
               <a
                 href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Profile"
-                className="p-2.5 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-rose-500/30 hover:shadow-rose-500/50 hover:scale-110 active:scale-95 transition-all border border-pink-400/40"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -89,14 +89,14 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0d1117] via-[#161b22] to-[#24292f] text-white flex items-center justify-center shadow-md shadow-slate-900/40 hover:shadow-slate-900/60 hover:scale-110 active:scale-95 transition-all border border-slate-700"
               >
                 <Github className="w-4 h-4" />
               </a>
               <a
                 href="mailto:aabiralbhatt@gmail.com"
                 aria-label="Email"
-                className="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:scale-110 active:scale-95 transition-all border border-emerald-400/40"
               >
                 <Mail className="w-4 h-4" />
               </a>
