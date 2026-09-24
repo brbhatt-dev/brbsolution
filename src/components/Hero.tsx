@@ -6,13 +6,18 @@ import TithiWidget from './TithiWidget';
 
 export default function Hero() {
   return (
-    <section className="relative py-6 sm:py-12 md:py-16 bg-gradient-to-b from-emerald-50/40 via-white to-white overflow-hidden notranslate" translate="no">
+    <section className="relative py-4 sm:py-12 md:py-16 bg-gradient-to-b from-emerald-50/40 via-white to-white overflow-hidden notranslate" translate="no">
       <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           
           {/* Left Column */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left">
             
+            {/* Mobile Only: Nepali Patro & Tithi Widget at the very top */}
+            <div className="lg:hidden pb-1 text-left">
+              <TithiWidget />
+            </div>
+
             {/* Friendly Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-semibold max-w-full">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0"></span>
@@ -111,11 +116,6 @@ export default function Hero() {
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>नेपाली पात्रो & तिथि</span>
               </div>
-            </div>
-
-            {/* Mobile Tithi Widget placed below Hero highlights */}
-            <div className="lg:hidden pt-4">
-              <TithiWidget />
             </div>
 
           </div>
