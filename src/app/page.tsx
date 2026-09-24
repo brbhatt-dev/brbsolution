@@ -1,26 +1,16 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import QuickTabNav from '@/components/QuickTabNav';
-import LandSolutionSection from '@/components/LandSolutionSection';
-import HamroKoshSection from '@/components/HamroKoshSection';
-import AutoCADLspSection from '@/components/AutoCADLspSection';
-import PostsSection from '@/components/PostsSection';
-import FAQSection from '@/components/FAQSection';
+import ProductHubTabs from '@/components/ProductHubTabs';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-slate-50/40">
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <QuickTabNav />
-        <LandSolutionSection />
-        <HamroKoshSection />
-        <AutoCADLspSection />
-        <PostsSection />
-        <FAQSection />
+        <ProductHubTabs />
         <Contact />
       </main>
       <Footer />
