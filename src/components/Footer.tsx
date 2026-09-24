@@ -21,10 +21,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8 sm:pb-10 relative z-10">
         
         {/* Main 4-Column Balanced Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 sm:pb-12 border-b border-slate-800/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6 xl:gap-8 pb-10 sm:pb-12 border-b border-slate-800/80 items-start">
           
-          {/* Column 1: Brand & Identity (4 Cols) */}
-          <div className="lg:col-span-4 space-y-4 text-center sm:text-left">
+          {/* Column 1: Brand & Identity */}
+          <div className="space-y-4 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-3">
               <div className="w-11 h-11 rounded-xl overflow-hidden bg-white p-1 flex items-center justify-center shadow-md shadow-emerald-500/10 shrink-0 border border-slate-700">
                 <img
@@ -53,8 +53,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Software & Demos (3 Cols) */}
-          <div className="lg:col-span-3 space-y-3.5 text-center sm:text-left">
+          {/* Column 2: Software & Demos */}
+          <div className="space-y-3.5 text-center sm:text-left">
             <p className="text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center sm:justify-start gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
               <span>सफ्टवेयर र डेमोहरू</span>
@@ -65,7 +65,7 @@ export default function Footer() {
                   href="#land-solution" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
                 >
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
                   <span>Land Solution (नापजाँच)</span>
                 </a>
               </li>
@@ -75,7 +75,7 @@ export default function Footer() {
                   target="_blank" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
                 >
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
                   <span>Land Solution Live Web Demo</span>
                 </a>
               </li>
@@ -84,7 +84,7 @@ export default function Footer() {
                   href="#hamro-kosh" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-indigo-300 transition-colors"
                 >
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all shrink-0" />
                   <span>हाम्रो कोष (Hamro Kosh Demo)</span>
                 </a>
               </li>
@@ -93,7 +93,7 @@ export default function Footer() {
                   href="#autocad-lsp" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-amber-300 transition-colors"
                 >
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all shrink-0" />
                   <span>AutoCAD LSP Scripts (.lsp)</span>
                 </a>
               </li>
@@ -102,15 +102,15 @@ export default function Footer() {
                   href="#faq" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-purple-300 transition-colors"
                 >
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-0.5 transition-all shrink-0" />
                   <span>बारम्बार सोधिने प्रश्नहरू (FAQ)</span>
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Contact & Support (3 Cols) */}
-          <div className="lg:col-span-3 space-y-3.5 text-center sm:text-left">
+          {/* Column 3: Contact & Support */}
+          <div className="space-y-3.5 text-center sm:text-left">
             <p className="text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center sm:justify-start gap-1.5">
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
               <span>सम्पर्क तथा सहयोग</span>
@@ -134,7 +134,7 @@ export default function Footer() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span>अनलाइन प्राविधिक सहायता उपलब्ध</span>
+                <span className="truncate">अनलाइन प्राविधिक सहायता उपलब्ध</span>
               </div>
 
               {/* Domain Pill */}
@@ -145,20 +145,20 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 4: Social Media Profiles (2 Cols) */}
-          <div className="lg:col-span-2 space-y-3.5 text-center sm:text-left">
+          {/* Column 4: Social Media Profiles (1 Line Row) */}
+          <div className="space-y-3.5 text-center sm:text-left">
             <p className="text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center sm:justify-start gap-1.5">
               <span className="w-2 h-2 rounded-full bg-rose-500"></span>
               <span>सामाजिक सञ्जाल</span>
             </p>
 
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 pt-1">
+            <div className="flex items-center justify-center sm:justify-start gap-2 xl:gap-2.5 pt-1 flex-nowrap">
               {/* Facebook */}
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-md shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-110 active:scale-95 transition-all border border-blue-400/30"
+                className="w-9 h-9 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-md shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-110 active:scale-95 transition-all border border-blue-400/30 shrink-0"
                 aria-label="Facebook Profile"
                 title="Facebook"
               >
@@ -170,11 +170,11 @@ export default function Footer() {
                 href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-rose-500/20 hover:shadow-rose-500/40 hover:scale-110 active:scale-95 transition-all border border-pink-400/30"
+                className="w-9 h-9 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-rose-500/20 hover:shadow-rose-500/40 hover:scale-110 active:scale-95 transition-all border border-pink-400/30 shrink-0"
                 aria-label="Instagram Profile"
                 title="Instagram"
               >
-                <Instagram className="w-4 h-4 shrink-0" />
+                <Instagram className="w-4 h-4 text-white shrink-0" />
               </a>
 
               {/* X / Twitter */}
@@ -182,7 +182,7 @@ export default function Footer() {
                 href="https://x.com/LandSolutionNpl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-black via-slate-900 to-slate-800 text-white flex items-center justify-center shadow-md shadow-slate-950/30 hover:shadow-slate-950/50 hover:scale-110 active:scale-95 transition-all border border-slate-700"
+                className="w-9 h-9 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-tr from-black via-slate-900 to-slate-800 text-white flex items-center justify-center shadow-md shadow-slate-950/30 hover:shadow-slate-950/50 hover:scale-110 active:scale-95 transition-all border border-slate-700 shrink-0"
                 aria-label="X (Twitter) Profile"
                 title="X (Twitter)"
               >
@@ -196,7 +196,7 @@ export default function Footer() {
                 href="https://www.threads.com/@landsolutionnepal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-black via-slate-900 to-zinc-800 text-white flex items-center justify-center shadow-md shadow-slate-950/30 hover:shadow-slate-950/50 hover:scale-110 active:scale-95 transition-all border border-slate-700"
+                className="w-9 h-9 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-tr from-black via-slate-900 to-zinc-800 text-white flex items-center justify-center shadow-md shadow-slate-950/30 hover:shadow-slate-950/50 hover:scale-110 active:scale-95 transition-all border border-slate-700 shrink-0"
                 aria-label="Threads Profile"
                 title="Threads"
               >
@@ -210,7 +210,7 @@ export default function Footer() {
                 href="https://github.com/brbhatt-dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0d1117] via-[#161b22] to-[#24292f] text-white flex items-center justify-center shadow-md shadow-slate-900/30 hover:shadow-slate-900/50 hover:scale-110 active:scale-95 transition-all border border-slate-700"
+                className="w-9 h-9 xl:w-10 xl:h-10 rounded-xl bg-gradient-to-tr from-[#0d1117] via-[#161b22] to-[#24292f] text-white flex items-center justify-center shadow-md shadow-slate-900/30 hover:shadow-slate-900/50 hover:scale-110 active:scale-95 transition-all border border-slate-700 shrink-0"
                 aria-label="GitHub Profile"
                 title="GitHub"
               >
