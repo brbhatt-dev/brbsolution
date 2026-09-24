@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'BR Bhatta | Land Solution, Hamro Kosh & Tech Innovations Nepal',
@@ -71,6 +72,7 @@ export default function RootLayout({
       'https://www.facebook.com/aabiral.bhatt/',
       'https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4',
       'https://x.com/LandSolutionNpl',
+      'https://www.threads.com/@landsolutionnepal',
       'https://github.com/brbhatt-dev',
     ],
   };
@@ -101,9 +103,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ne" className="notranslate" translate="no">
+    <html lang="ne" className="notranslate" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&d)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
@@ -117,8 +124,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}
         />
       </head>
-      <body className="min-h-screen bg-white text-slate-800 antialiased selection:bg-emerald-600 selection:text-white">
-        {children}
+      <body className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased selection:bg-emerald-600 selection:text-white transition-colors duration-200">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

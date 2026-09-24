@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MessageCircle, MapPin, Send, CheckCircle2, Facebook, Instagram, Github, Copy, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Facebook, Instagram, Github, Copy, ExternalLink } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,7 +24,6 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // Open default mail client with prefilled details
     const subject = encodeURIComponent(`Inquiry: ${formData.service} from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nContact: ${formData.contact}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
@@ -33,19 +32,19 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 border-t border-slate-100 bg-slate-50/50">
+    <section id="contact" className="py-16 md:py-24 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950 transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-semibold mb-3 border border-emerald-100">
-            <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold mb-3 border border-emerald-100 dark:border-emerald-800">
+            <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>सम्पर्क तथा ठेगाना (Contact & Location)</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             कुनै सोधपुछ वा सहकार्यका लागि सम्पर्क गर्नुहोस्
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-3">
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-3">
             ल्याण्ड सोलुसन, हाम्रो कोष एप, वा AutoCAD LSP फाइल्स सम्बन्धी कुनै पनि जिज्ञासाका लागि सिधै इमेल, सोसियल मिडिया वा तलको फर्ममार्फत सम्पर्क गर्न सक्नुहुन्छ।
           </p>
         </div>
@@ -56,17 +55,17 @@ export default function Contact() {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Primary Email Card */}
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-100">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center border border-emerald-100 dark:border-emerald-800">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">आधिकारिक इमेल</p>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">आधिकारिक इमेल</p>
                     <a
                       href={`mailto:${emailAddress}`}
-                      className="text-base font-bold text-slate-900 hover:text-emerald-600 transition-colors break-all"
+                      className="text-base font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors break-all"
                     >
                       {emailAddress}
                     </a>
@@ -75,26 +74,26 @@ export default function Contact() {
                 <button
                   onClick={copyEmail}
                   title="Copy Email"
-                  className="p-2 rounded-lg text-slate-500 hover:text-emerald-700 hover:bg-slate-100 transition-colors"
+                  className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
-                  {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
               {copied && (
-                <p className="text-xs text-emerald-600 font-medium">✓ इमेल क्लिपबोर्डमा कपी भयो!</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">✓ इमेल क्लिपबोर्डमा कपी भयो!</p>
               )}
             </div>
 
             {/* Location Card */}
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2">
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center border border-blue-100 dark:border-blue-800 shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">स्थान / Location</p>
-                  <p className="text-sm font-bold text-slate-900">काठमाडौँ, नेपाल (Kathmandu, Nepal)</p>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">स्थान / Location</p>
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">काठमाडौँ, नेपाल (Kathmandu, Nepal)</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
                     नेपालभर अनलाइन सफ्टवेयर सपोर्ट, ल्याण्ड क्यालकुलेसन परामर्श तथा प्राविधिक सहायता उपलब्ध छ।
                   </p>
                 </div>
@@ -102,22 +101,22 @@ export default function Contact() {
             </div>
 
             {/* Social Media Connect Links */}
-            <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-              <p className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 सामाजिक सञ्जालमा जोडिनुहोस् (Social Profiles)
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 pt-1">
                 {/* Facebook */}
                 <a
                   href="https://www.facebook.com/aabiral.bhatt/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0A66C2] text-white shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-blue-400/30"
+                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0A66C2] text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-blue-400/30"
                 >
-                  <Facebook className="w-4 h-4 fill-white shrink-0" />
-                  <span>Facebook</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-white/80 ml-auto" />
+                  <Facebook className="w-3.5 h-3.5 fill-white shrink-0" />
+                  <span className="truncate">Facebook</span>
+                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
                 </a>
 
                 {/* Instagram */}
@@ -125,11 +124,11 @@ export default function Contact() {
                   href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-md shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-pink-400/30"
+                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-pink-400/30"
                 >
-                  <Instagram className="w-4 h-4 shrink-0" />
-                  <span>Instagram</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-white/80 ml-auto" />
+                  <Instagram className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">Instagram</span>
+                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
                 </a>
 
                 {/* X / Twitter */}
@@ -137,13 +136,27 @@ export default function Contact() {
                   href="https://x.com/LandSolutionNpl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-black via-slate-900 to-slate-800 text-white shadow-md shadow-slate-950/25 hover:shadow-slate-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
+                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-black via-slate-900 to-slate-800 text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
                 >
-                  <svg className="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24">
+                  <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
-                  <span>Twitter (X)</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-white/80 ml-auto" />
+                  <span className="truncate">X/Twitter</span>
+                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
+                </a>
+
+                {/* Threads */}
+                <a
+                  href="https://www.threads.com/@landsolutionnepal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-black via-slate-900 to-zinc-800 text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
+                >
+                  <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 192 192">
+                    <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2109 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.0328C81.4045 63.6575 90.0153 60.4065 97.222 60.4065C108.618 60.4065 117.818 67.2415 119.827 82.0494C113.883 80.7061 107.566 80.0526 100.973 80.0526C74.6558 80.0526 56.6346 94.3826 56.6346 116.141C56.6346 136.216 71.9547 150.316 93.3644 150.316C109.845 150.316 122.253 141.975 128.539 126.68C133.565 136.657 141.921 142.336 153.864 142.336C168.04 142.336 179.351 133.407 182.261 116.635L166.425 113.863C164.717 123.699 158.647 128.125 152.016 128.125C141.777 128.125 137.073 118.89 137.073 103.072C137.073 99.8735 137.339 96.7909 137.844 93.856C139.117 94.4075 140.354 94.9922 141.537 95.6083C155.074 102.664 163.535 113.208 163.535 126.969H179.197C179.197 108.685 167.348 95.0345 141.537 88.9883ZM122.091 109.308C120.301 123.703 109.734 135.253 94.2796 135.253C80.3955 135.253 71.7486 126.241 71.7486 114.733C71.7486 100.865 83.2104 94.3917 101.442 94.3917C107.575 94.3917 113.242 94.9458 118.324 96.0125C121.218 100.17 122.476 104.708 122.091 109.308Z"/>
+                  </svg>
+                  <span className="truncate">Threads</span>
+                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
                 </a>
 
                 {/* GitHub */}
@@ -151,23 +164,23 @@ export default function Contact() {
                   href="https://github.com/brbhatt-dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#24292f] text-white shadow-md shadow-slate-900/30 hover:shadow-slate-900/50 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
+                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#24292f] text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
                 >
-                  <Github className="w-4 h-4 shrink-0" />
-                  <span>GitHub</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-white/80 ml-auto" />
+                  <Github className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">GitHub</span>
+                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
                 </a>
               </div>
             </div>
 
             {/* Embedded Google Map */}
-            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
-              <div className="px-4 py-2.5 bg-slate-100/70 border-b border-slate-200 flex items-center justify-between text-xs text-slate-700 font-semibold">
+            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+              <div className="px-4 py-2.5 bg-slate-100/70 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs text-slate-700 dark:text-slate-300 font-semibold">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                  <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                   काठमाडौँ, नेपाल (Interactive Map)
                 </span>
-                <span className="text-[10px] text-slate-500 font-normal">Kathmandu 44600</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-normal">Kathmandu 44600</span>
               </div>
               <div className="h-56 w-full">
                 <iframe
@@ -188,22 +201,22 @@ export default function Contact() {
 
           {/* Right: Interactive Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-xs">
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1">सिधै सन्देश पठाउनुहोस्</h3>
-              <p className="text-xs text-slate-500 mb-5 sm:mb-6">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-8 shadow-xs">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">सिधै सन्देश पठाउनुहोस्</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-5 sm:mb-6">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
 
               {submitted ? (
                 <div className="py-10 text-center space-y-3">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                  <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center border border-emerald-200 dark:border-emerald-800">
                     <CheckCircle2 className="w-7 h-7" />
                   </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-slate-900">धन्यवाद!</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto">
+                  <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">धन्यवाद!</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-sm mx-auto">
                     तपाईंको सन्देश तयार भयो र इमेल क्लाइन्ट खुल्यो। हामी चाँडै सम्पर्क गर्नेछौँ।
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-3 px-4 py-2 rounded-xl bg-slate-200 text-slate-800 text-xs font-semibold hover:bg-slate-300 min-h-[40px]"
+                    className="mt-3 px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 min-h-[40px]"
                   >
                     अर्को सन्देश पठाउनुहोस्
                   </button>
@@ -211,7 +224,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                       तपाईंको पूरा नाम *
                     </label>
                     <input
@@ -220,12 +233,12 @@ export default function Contact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="उदा. रमेश अधिकारी"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                       सम्पर्क नम्बर वा इमेल *
                     </label>
                     <input
@@ -234,18 +247,18 @@ export default function Contact() {
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                       placeholder="उदा. 98XXXXXXXX वा yourname@example.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                       कुन विषयमा सहयोग चाहिएको हो?
                     </label>
                     <select
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
                     >
                       <option value="Land Solution सम्बन्धी">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
                       <option value="हाम्रो कोष सम्बन्धी">हाम्रो कोष (Hamro Kosh App)</option>
@@ -256,7 +269,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                       तपाईंको सन्देश वा जिज्ञासा *
                     </label>
                     <textarea
@@ -265,7 +278,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="आफ्नो आवश्यकता, प्रश्न वा प्रतिक्रिया यहाँ लेख्नुहोस्..."
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none"
                     ></textarea>
                   </div>
 
@@ -277,8 +290,8 @@ export default function Contact() {
                     <span>इमेलमार्फत सन्देश पठाउनुहोस्</span>
                   </button>
 
-                  <p className="text-center text-[11px] text-slate-500 pt-1">
-                    तपाईं सिधै <a href={`mailto:${emailAddress}`} className="text-emerald-700 font-semibold underline">{emailAddress}</a> मा पनि इमेल गर्न सक्नुहुन्छ।
+                  <p className="text-center text-[11px] text-slate-500 dark:text-slate-400 pt-1">
+                    तपाईं सिधै <a href={`mailto:${emailAddress}`} className="text-emerald-700 dark:text-emerald-400 font-semibold underline">{emailAddress}</a> मा पनि इमेल गर्न सक्नुहुन्छ।
                   </p>
                 </form>
               )}
