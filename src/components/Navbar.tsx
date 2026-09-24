@@ -8,24 +8,35 @@ import ThemeToggle from './ThemeToggle';
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'हाम्रो बारेमा', href: '/about' },
-    { name: 'Land Solution', href: '/#land-solution' },
+  // Clean, focused desktop nav links
+  const desktopNavLinks = [
+    { name: 'सफ्टवेयरहरू', href: '/#land-solution' },
     { name: 'क्यालकुलेटर', href: '/#land-calculator' },
-    { name: 'हाम्रो कोष', href: '/#hamro-kosh' },
-    { name: 'AutoCAD LSP', href: '/#autocad-lsp' },
-    { name: 'गाइड/लेख', href: '/#guides' },
+    { name: 'गाइड तथा टिप्स', href: '/#guides' },
+    { name: 'हाम्रो बारेमा', href: '/about' },
     { name: 'सम्पर्क', href: '/contact' },
+  ];
+
+  // Comprehensive mobile drawer links
+  const mobileNavLinks = [
+    { name: 'गृहपृष्ठ (Home)', href: '/' },
+    { name: 'Land Solution (नापजाँच)', href: '/#land-solution' },
+    { name: 'अनलाइन जग्गा क्यालकुलेटर', href: '/#land-calculator' },
+    { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
+    { name: 'AutoCAD LSP Scripts', href: '/#autocad-lsp' },
+    { name: 'गाइड तथा जानकारीमूलक लेख', href: '/#guides' },
+    { name: 'प्रयोगकर्ताहरूको रिभ्यु', href: '/#testimonials' },
+    { name: 'हाम्रो बारेमा (About Us)', href: '/about' },
+    { name: 'सम्पर्क (Contact)', href: '/contact' },
   ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-xs transition-colors duration-200 notranslate" translate="no">
       <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
-        <div className="flex items-center justify-between h-14 sm:h-18 md:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-18 md:h-20 gap-4">
           
           {/* Logo with Land Solution Official Image */}
-          <Link href="/" className="flex items-center gap-2.5 group py-1">
+          <Link href="/" className="flex items-center gap-2.5 group py-1 shrink-0">
             <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
               <img
                 src="/logo.png"
@@ -47,13 +58,13 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
-            {navLinks.map((link) => (
+          {/* Desktop Navigation Links (Clean & well spaced) */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
+            {desktopNavLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-semibold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors"
+                className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
               >
                 {link.name}
               </Link>
@@ -61,9 +72,9 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Right Side: Social Media Profiles + Theme Toggle */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            {/* Social Media Profile Links (Top - Rangin / Colorful Brand Tiles) */}
-            <div className="flex items-center gap-1.5 pr-2.5 border-r border-slate-200 dark:border-slate-800">
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
+            {/* Social Media Profile Links (Separated by clean divider) */}
+            <div className="flex items-center gap-1.5 pl-3 border-l border-slate-200 dark:border-slate-800">
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
                 target="_blank"
@@ -146,7 +157,7 @@ export default function Navbar() {
           
           {/* Navigation Links */}
           <div className="space-y-1">
-            {navLinks.map((link) => (
+            {mobileNavLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
