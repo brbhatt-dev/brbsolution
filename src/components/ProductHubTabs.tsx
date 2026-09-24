@@ -184,7 +184,7 @@ export default function ProductHubTabs() {
   ];
 
   return (
-    <section id="product-hub" className="py-8 sm:py-12 bg-slate-50/70 border-t border-slate-200/80 notranslate" translate="no">
+    <section id="product-hub" className="py-8 sm:py-12 bg-slate-50/70 dark:bg-[#0b0f19] border-t border-slate-200/80 dark:border-slate-800 transition-colors notranslate" translate="no">
       <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
         
         {/* Hub Anchor Targets for deep linking */}
@@ -196,20 +196,20 @@ export default function ProductHubTabs() {
 
         {/* Section Title */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-bold mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>इन्टरएक्टिभ ट्याब हब (Interactive App Switcher)</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             ट्याब छान्नुहोस् र सिधै प्रयोग गर्नुहोस्
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
             तल-तल लामो स्क्रोल गर्न नपर्ने गरी सबै एप तथा टुल्सहरू एउटै बक्सभित्र उपलब्ध गराइएको छ।
           </p>
         </div>
 
         {/* 1. The Master Tab Bar (Sticky / Clean Floating Pills) */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 border border-slate-200 shadow-md shadow-slate-200/50 mb-6 sm:mb-8">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 border border-slate-200 dark:border-slate-800 shadow-md shadow-slate-200/50 dark:shadow-none mb-6 sm:mb-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1.5 sm:gap-2">
             {tabsConfig.map((tab) => {
               const Icon = tab.icon;
@@ -221,11 +221,11 @@ export default function ProductHubTabs() {
                   className={`flex items-center justify-center sm:justify-start gap-2 sm:gap-2.5 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all text-left min-h-[48px] ${
                     isActive
                       ? `bg-gradient-to-r ${tab.activeGradient} shadow-md scale-[1.02] font-black`
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-700 active:scale-98 font-bold'
+                      : 'bg-slate-50 hover:bg-slate-100 text-slate-700 dark:bg-slate-800/70 dark:hover:bg-slate-800 dark:text-slate-200 active:scale-98 font-bold'
                   }`}
                 >
                   <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-white text-slate-700 border border-slate-200'
+                    isActive ? 'bg-white/20 text-white' : 'bg-white text-slate-700 border border-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
@@ -234,7 +234,7 @@ export default function ProductHubTabs() {
                       {tab.label}
                     </span>
                     <span className={`text-[10px] block truncate hidden sm:block ${
-                      isActive ? 'text-white/80' : 'text-slate-400'
+                      isActive ? 'text-white/80' : 'text-slate-400 dark:text-slate-400'
                     }`}>
                       {tab.badge}
                     </span>
@@ -246,23 +246,23 @@ export default function ProductHubTabs() {
         </div>
 
         {/* 2. The Single Interactive Content Box */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/60 p-4 sm:p-8 lg:p-10 transition-all min-h-[450px]">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/60 dark:shadow-none p-4 sm:p-8 lg:p-10 transition-all min-h-[450px]">
           
           {/* TAB 1: LAND SOLUTION */}
           {activeTab === 'land-solution' && (
             <div className="space-y-8 animate-fadeIn">
               
               {/* Header inside tab */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 p-1 flex items-center justify-center shadow-xs shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center shadow-xs shrink-0">
                     <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                       Land Solution (ल्याण्ड सोलुसन)
                     </h3>
-                    <p className="text-xs sm:text-sm text-emerald-700 font-semibold">
+                    <p className="text-xs sm:text-sm text-emerald-700 dark:text-emerald-400 font-semibold">
                       नेपाल जग्गा नापजाँच, कित्ताकाट तथा नक्सा प्रणाली
                     </p>
                   </div>
@@ -276,7 +276,7 @@ export default function ProductHubTabs() {
                     <Play className="w-4 h-4 fill-white" />
                     <span>लाइभ Web Demo खोल्नुहोस्</span>
                   </button>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold min-h-[42px]">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold min-h-[42px]">
                     <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                     <span>APK: Coming Soon</span>
                   </div>
@@ -284,7 +284,7 @@ export default function ProductHubTabs() {
               </div>
 
               {/* Interactive Demo Banner Card */}
-              <div className="rounded-2xl bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white p-5 sm:p-8 relative overflow-hidden">
+              <div className="rounded-2xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 text-white p-5 sm:p-8 relative overflow-hidden border border-emerald-900/40">
                 <div className="relative z-10 max-w-xl space-y-3">
                   <span className="text-[11px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-400/30 inline-block">
                     Interactive Web Demo Available
@@ -308,23 +308,23 @@ export default function ProductHubTabs() {
               </div>
 
               {/* Interactive Land Unit Converter */}
-              <div className="bg-slate-50 rounded-2xl p-5 sm:p-7 border border-slate-200">
+              <div className="bg-slate-50 dark:bg-slate-950/60 rounded-2xl p-5 sm:p-7 border border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
                     <Calculator className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-extrabold text-slate-900 text-base">
+                    <h4 className="font-extrabold text-slate-900 dark:text-white text-base">
                       जग्गा क्षेत्रफल क्यालकुलेटर (Instant Unit Converter)
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       वर्ग फिट (Sq. Ft) लेख्नुहोस् र तत्काल पहाडी तथा तराई नाप हेर्नुहोस्
                     </p>
                   </div>
                 </div>
 
                 <div className="mb-6">
-                  <label className="block text-xs font-bold text-slate-700 mb-2">
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
                     क्षेत्रफल वर्ग फिटमा (Enter Area in Sq. Feet):
                   </label>
                   <div className="flex items-center gap-3">
@@ -332,36 +332,36 @@ export default function ProductHubTabs() {
                       type="number"
                       value={sqft}
                       onChange={(e) => setSqft(Math.max(0, Number(e.target.value)))}
-                      className="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-slate-300 bg-white font-mono font-bold text-base text-slate-900 focus:outline-emerald-600 focus:ring-2 focus:ring-emerald-500/20"
+                      className="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-base text-slate-900 dark:text-white focus:outline-emerald-600 focus:ring-2 focus:ring-emerald-500/20"
                     />
-                    <span className="text-xs font-bold text-slate-500">Sq. Ft = {sqm} Sq. M</span>
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Sq. Ft = {sqm} Sq. M</span>
                   </div>
                 </div>
 
                 {/* Conversion Results Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Pahadi System */}
-                  <div className="bg-white p-4 rounded-xl border border-emerald-200 shadow-2xs">
-                    <span className="text-[11px] font-bold text-emerald-700 uppercase block mb-1">
+                  <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/60 shadow-2xs">
+                    <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase block mb-1">
                       पहाडी प्रणाली (RAPD)
                     </span>
-                    <p className="text-base sm:text-lg font-black text-slate-900 font-mono">
+                    <p className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-mono">
                       {ropani} रोपनी - {aana} आना - {paisa} पैसा - {daam} दाम
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                       (१ रोपनी = १६ आना = ६४ पैसा = २५६ दाम = ५४७६ sq.ft)
                     </p>
                   </div>
 
                   {/* Terai System */}
-                  <div className="bg-white p-4 rounded-xl border border-teal-200 shadow-2xs">
-                    <span className="text-[11px] font-bold text-teal-700 uppercase block mb-1">
+                  <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-teal-200 dark:border-teal-800/60 shadow-2xs">
+                    <span className="text-[11px] font-bold text-teal-700 dark:text-teal-400 uppercase block mb-1">
                       तराई प्रणाली (BKD)
                     </span>
-                    <p className="text-base sm:text-lg font-black text-slate-900 font-mono">
+                    <p className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-mono">
                       {bigha} बिघा - {katha} कट्ठा - {dhur} धुर
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                       (१ बिघा = २० कट्ठा = ४०० धुर = ७२९०० sq.ft)
                     </p>
                   </div>
@@ -370,31 +370,31 @@ export default function ProductHubTabs() {
 
               {/* Core Features */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 shadow-2xs">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">कित्ताकाट & रेखांकन</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">कित्ताकाट & रेखांकन</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     जग्गालाई चाहिएको आकार र अनुपातमा कित्ताकाट गर्ने स्वचालित गणना।
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 shadow-2xs">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">रोपनी & बिघा रूपान्तरण</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">रोपनी & बिघा रूपान्तरण</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     नेपालको प्रचलित दुवै नाप प्रणाली र वर्ग मिटर बीच तत्काल हिसाब।
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 shadow-2xs">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">नक्सा कोअर्डिनेट समन्वय</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">नक्सा कोअर्डिनेट समन्वय</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     सर्भे नक्सा र GPS कोअर्डिनेटसँग तालमेल मिलाउने आधुनिक सुविधाहरू।
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 shadow-2xs">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">१००% अफलाइन प्रयोग</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">१००% अफलाइन प्रयोग</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     इन्टरनेट नहुँदा पनि फिल्डमै बसेर मोबाइलबाट सम्पूर्ण नापजाँच गर्न सकिने।
                   </p>
                 </div>
@@ -408,16 +408,16 @@ export default function ProductHubTabs() {
             <div className="space-y-8 animate-fadeIn">
               
               {/* Header inside tab */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-700 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-400 flex items-center justify-center shrink-0">
                     <Wallet className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                       हाम्रो कोष (Hamro Kosh)
                     </h3>
-                    <p className="text-xs sm:text-sm text-indigo-700 font-semibold">
+                    <p className="text-xs sm:text-sm text-indigo-700 dark:text-indigo-400 font-semibold">
                       समूह, समिति, गुठी र व्यक्तिगत बचत तथा कोष व्यवस्थापन
                     </p>
                   </div>
@@ -431,7 +431,7 @@ export default function ProductHubTabs() {
                     <Play className="w-4 h-4 fill-white" />
                     <span>लाइभ Demo चलाउनुहोस्</span>
                   </button>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold min-h-[42px]">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold min-h-[42px]">
                     <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                     <span>APK: Coming Soon</span>
                   </div>
@@ -440,38 +440,38 @@ export default function ProductHubTabs() {
 
               {/* Feature Highlights Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-800/60 border border-indigo-100 dark:border-slate-800 shadow-2xs">
                   <Users className="w-5 h-5 text-indigo-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">समूह बचत व्यवस्थापन</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">समूह बचत व्यवस्थापन</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     सदस्यहरूको नियमित बचत अभिलेख र पारदर्शी खाता।
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-800/60 border border-indigo-100 dark:border-slate-800 shadow-2xs">
                   <TrendingUp className="w-5 h-5 text-indigo-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">ऋण प्रवाह & ब्याज</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">ऋण प्रवाह & ब्याज</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     लगानी गरिएको ऋण र मासिक ब्याजको स्वचालित हिसाब।
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-800/60 border border-indigo-100 dark:border-slate-800 shadow-2xs">
                   <FileText className="w-5 h-5 text-indigo-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">सदस्य स्टेटमेन्ट</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">सदस्य स्टेटमेन्ट</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     प्रत्येक सदस्यको व्यक्तिगत हिसाब र समग्र आय-व्यय रिपोर्ट।
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100 shadow-2xs">
+                <div className="p-4 rounded-2xl bg-indigo-50/50 dark:bg-slate-800/60 border border-indigo-100 dark:border-slate-800 shadow-2xs">
                   <ShieldCheck className="w-5 h-5 text-indigo-600 mb-2" />
-                  <h5 className="font-bold text-sm text-slate-900">सुरक्षित & सरल</h5>
-                  <p className="text-xs text-slate-600 mt-1">
+                  <h5 className="font-bold text-sm text-slate-900 dark:text-white">सुरक्षित & सरल</h5>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     नेपाली भाषामा झन्झट बिना मोबाइलबाटै चलाउन सकिने इन्टरफेस।
                   </p>
                 </div>
               </div>
 
               {/* Full Interactive Demo Simulator Banner */}
-              <div className="rounded-2xl bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white p-5 sm:p-8 relative overflow-hidden">
+              <div className="rounded-2xl bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white p-5 sm:p-8 relative overflow-hidden border border-indigo-900/40">
                 <div className="relative z-10 max-w-xl space-y-3">
                   <span className="text-[11px] font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full border border-indigo-400/30 inline-block">
                     Interactive Fund & Loan Simulator
@@ -502,22 +502,22 @@ export default function ProductHubTabs() {
             <div className="space-y-8 animate-fadeIn">
               
               {/* Header inside tab */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 flex items-center justify-center shrink-0">
                     <FileCode className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                       AutoCAD LSP फाइल्स (AutoLISP Scripts)
                     </h3>
-                    <p className="text-xs sm:text-sm text-amber-700 font-semibold">
+                    <p className="text-xs sm:text-sm text-amber-700 dark:text-amber-400 font-semibold">
                       नेपालका नापी सर्भेक्षक, अमिन तथा इन्जिनियरहरूका लागि क्याड अटोमेसन
                     </p>
                   </div>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold self-start sm:self-auto">
+                <div className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold self-start sm:self-auto">
                   <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                   <span>Direct Download: Coming Soon</span>
                 </div>
@@ -528,39 +528,39 @@ export default function ProductHubTabs() {
                 {lspFiles.map((lsp, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 transition-all flex flex-col justify-between"
+                    className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500 transition-all flex flex-col justify-between"
                   >
                     <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-bold text-amber-700 bg-amber-100/60 px-2.5 py-1 rounded-lg">
+                        <span className="font-mono text-xs font-bold text-amber-700 dark:text-amber-300 bg-amber-100/60 dark:bg-amber-950/80 px-2.5 py-1 rounded-lg">
                           .{lsp.name.split('.').pop()}
                         </span>
-                        <div className="flex items-center gap-1 text-[11px] font-bold text-slate-500">
+                        <div className="flex items-center gap-1 text-[11px] font-bold text-slate-500 dark:text-slate-400">
                           <Terminal className="w-3 h-3 text-slate-400" />
                           <span>कमाण्ड:</span>
-                          <span className="font-mono text-slate-800 bg-white px-1.5 py-0.5 rounded border border-slate-200">
+                          <span className="font-mono text-slate-800 dark:text-amber-300 bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">
                             {lsp.command}
                           </span>
                         </div>
                       </div>
 
-                      <h4 className="font-extrabold text-slate-900 text-sm leading-snug">
+                      <h4 className="font-extrabold text-slate-900 dark:text-white text-sm leading-snug">
                         {lsp.title}
                       </h4>
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                         {lsp.desc}
                       </p>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200/80 mt-4 flex items-center justify-between gap-2">
+                    <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800 mt-4 flex items-center justify-between gap-2">
                       <button
                         onClick={() => copyCommand(lsp.command)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold border border-slate-200 shadow-2xs"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-700 shadow-2xs"
                       >
                         {copiedCmd === lsp.command ? (
                           <>
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                            <span className="text-emerald-700">कपी भयो!</span>
+                            <span className="text-emerald-700 dark:text-emerald-400">कपी भयो!</span>
                           </>
                         ) : (
                           <>
@@ -570,7 +570,7 @@ export default function ProductHubTabs() {
                         )}
                       </button>
 
-                      <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-1 rounded">
+                      <span className="text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-1 rounded">
                         छिट्टै आउँदैछ
                       </span>
                     </div>
@@ -607,73 +607,73 @@ export default function ProductHubTabs() {
           {activeTab === 'articles' && (
             <div className="space-y-6 animate-fadeIn">
               
-              <div className="pb-4 border-b border-slate-100">
-                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+              <div className="pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                   महत्वपूर्ण लेख तथा जानकारीहरू (Posts & Guides)
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
                   ल्याण्ड सोलुसन, हाम्रो कोष, र प्राविधिक टुल्स सम्बन्धी उपयोगी जानकारीहरू।
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300">
                       Land Survey
                     </span>
-                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
+                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">
                       ल्याण्ड सोलुसन: नेपालमा डिजिटल कित्ताकाट र नापजाँचको आधुनिक माध्यम
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                       परम्परागत रूपमा गरिने जग्गा नापजाँचमा हुने समय र त्रुटिलाई घटाउन ल्याण्ड सोलुसन कसरी उपयोगी छ?
                     </p>
                   </div>
                   <button
                     onClick={() => switchTab('land-solution')}
-                    className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+                    className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300"
                   >
                     <span>डेमो हेर्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800">
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-800 dark:text-indigo-300">
                       Finance App
                     </span>
-                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
+                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">
                       हाम्रो कोष: व्यक्तिगत तथा समूह बचत-ऋण व्यवस्थापन कसरी गर्ने?
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                       परिवार, समूह वा सहकारीको मासिक बचत संकलन, ऋण लगानी, र ब्याज हिसाब खातापाता बिना मोबाइलमै राख्ने तरिका।
                     </p>
                   </div>
                   <button
                     onClick={() => switchTab('hamro-kosh')}
-                    className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-indigo-700 hover:text-indigo-800"
+                    className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-indigo-700 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
                   >
                     <span>सिम्युलेटर खोल्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">
+                    <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300">
                       Technical / CAD
                     </span>
-                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
+                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">
                       AutoCAD मा जग्गाको रोपनी-आना एरिया छिटो निकाल्ने AutoLISP विधि
                     </h4>
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                       क्याड नक्सामा पोलिलाइनको एरियालाई एक क्लिकमै रोपनी-आना वा बिघा-कट्ठामा कन्भर्ट गर्ने एलएसपी प्रयोग विधि।
                     </p>
                   </div>
                   <button
                     onClick={() => switchTab('autocad-lsp')}
-                    className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-amber-700 hover:text-amber-800"
+                    className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300"
                   >
                     <span>स्क्रिप्ट हेर्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -688,11 +688,11 @@ export default function ProductHubTabs() {
           {activeTab === 'faq' && (
             <div className="space-y-6 animate-fadeIn">
               
-              <div className="pb-4 border-b border-slate-100">
-                <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+              <div className="pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                   बारम्बार सोधिने प्रश्नोत्तरहरू (FAQ)
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">
                   प्रयोगकर्ताहरूका साझा जिज्ञासा र तिनका समाधान।
                 </p>
               </div>
@@ -703,26 +703,26 @@ export default function ProductHubTabs() {
                   return (
                     <div
                       key={index}
-                      className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/50 transition-colors"
+                      className="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50/50 dark:bg-slate-800/40 transition-colors"
                     >
                       <button
                         onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                        className="w-full flex items-center justify-between p-4 sm:p-5 text-left transition-colors hover:bg-slate-100/70"
+                        className="w-full flex items-center justify-between p-4 sm:p-5 text-left transition-colors hover:bg-slate-100/70 dark:hover:bg-slate-800/70"
                       >
-                        <span className="font-bold text-sm sm:text-base text-slate-900 pr-4">
+                        <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-white pr-4">
                           {faq.question}
                         </span>
-                        <div className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0">
+                        <div className="w-7 h-7 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center shrink-0">
                           {isOpen ? (
-                            <ChevronUp className="w-4 h-4 text-emerald-600" />
+                            <ChevronUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                           ) : (
-                            <ChevronDown className="w-4 h-4 text-slate-500" />
+                            <ChevronDown className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                           )}
                         </div>
                       </button>
 
                       {isOpen && (
-                        <div className="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/50 bg-white whitespace-pre-line">
+                        <div className="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/50 dark:border-slate-800 bg-white dark:bg-slate-900/60 whitespace-pre-line">
                           {faq.answer}
                         </div>
                       )}
