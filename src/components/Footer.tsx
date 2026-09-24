@@ -175,6 +175,19 @@ export default function Footer() {
                 <span>Instagram</span>
               </a>
 
+              {/* X / Twitter */}
+              <a
+                href="https://x.com/LandSolutionNpl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-gradient-to-r from-black via-slate-900 to-slate-800 text-white text-xs font-bold shadow-md shadow-slate-950/30 hover:shadow-slate-950/50 hover:scale-[1.02] active:scale-[0.98] transition-all border border-slate-700"
+              >
+                <svg className="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span>X (Twitter)</span>
+              </a>
+
               {/* GitHub */}
               <a
                 href="https://github.com/brbhatt-dev"

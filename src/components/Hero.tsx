@@ -63,8 +63,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Social Connect Icons in Hero (Vibrant Digital Style) */}
-            <div className="pt-1 flex items-center justify-center lg:justify-start gap-2.5">
+            {/* Social Connect Icons in Hero (Hidden on Mobile View as requested) */}
+            <div className="pt-1 hidden sm:flex items-center justify-center lg:justify-start gap-2.5">
               <span className="text-xs font-bold text-slate-700">जोडिनुहोस्:</span>
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
@@ -83,6 +83,17 @@ export default function Hero() {
                 className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-md shadow-rose-500/30 hover:shadow-rose-500/50 hover:scale-110 active:scale-95 transition-all border border-pink-400/40"
               >
                 <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://x.com/LandSolutionNpl"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter) Profile"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-black via-slate-900 to-slate-800 text-white flex items-center justify-center shadow-md shadow-slate-900/40 hover:shadow-slate-900/60 hover:scale-110 active:scale-95 transition-all border border-slate-700"
+              >
+                <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
               </a>
               <a
                 href="https://github.com/brbhatt-dev"

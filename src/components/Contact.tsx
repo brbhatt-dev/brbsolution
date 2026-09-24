@@ -107,13 +107,13 @@ export default function Contact() {
                 सामाजिक सञ्जालमा जोडिनुहोस् (Social Profiles)
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
                 {/* Facebook */}
                 <a
                   href="https://www.facebook.com/aabiral.bhatt/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0A66C2] text-white shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-blue-400/30"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0A66C2] text-white shadow-md shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-blue-400/30"
                 >
                   <Facebook className="w-4 h-4 fill-white shrink-0" />
                   <span>Facebook</span>
@@ -125,10 +125,24 @@ export default function Contact() {
                   href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-md shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-pink-400/30"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-md shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-pink-400/30"
                 >
                   <Instagram className="w-4 h-4 shrink-0" />
                   <span>Instagram</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-white/80 ml-auto" />
+                </a>
+
+                {/* X / Twitter */}
+                <a
+                  href="https://x.com/LandSolutionNpl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-black via-slate-900 to-slate-800 text-white shadow-md shadow-slate-950/25 hover:shadow-slate-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
+                >
+                  <svg className="w-4 h-4 fill-white shrink-0" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  <span>Twitter (X)</span>
                   <ExternalLink className="w-3.5 h-3.5 text-white/80 ml-auto" />
                 </a>
 
@@ -137,7 +151,7 @@ export default function Contact() {
                   href="https://github.com/brbhatt-dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#24292f] text-white shadow-md shadow-slate-900/30 hover:shadow-slate-900/50 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#24292f] text-white shadow-md shadow-slate-900/30 hover:shadow-slate-900/50 hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
                 >
                   <Github className="w-4 h-4 shrink-0" />
                   <span>GitHub</span>
