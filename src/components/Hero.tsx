@@ -3,16 +3,11 @@
 import React from 'react';
 import { Play, Clock, CheckCircle2, Compass, Wallet, Facebook, Instagram, Github, Mail } from 'lucide-react';
 import TithiWidget from './TithiWidget';
-import NepaliTithiClockBar from './NepaliTithiClockBar';
 
 export default function Hero() {
   return (
-    <section className="relative py-4 sm:py-10 md:py-14 bg-gradient-to-b from-emerald-50/40 via-white to-white overflow-hidden notranslate" translate="no">
+    <section className="relative py-6 sm:py-12 md:py-16 bg-gradient-to-b from-emerald-50/40 via-white to-white overflow-hidden notranslate" translate="no">
       <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
-        
-        {/* Inside-Website Nepali Date, Tithi & Live Clock Bar */}
-        <NepaliTithiClockBar />
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column */}
