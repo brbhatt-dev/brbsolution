@@ -1,10 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Menu, X, MessageCircle, Play, Facebook, Instagram, Github, ChevronRight, Wallet } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Play, Facebook, Instagram, Github, ChevronRight, Wallet, Clock } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileTime, setMobileTime] = useState<string>('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours() % 12 || 12;
+      const minutes = now.getMinutes();
+      const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+      const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`);
+      setMobileTime(`${pad(hours)}:${pad(minutes)} ${ampm}`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const navLinks = [
     { name: 'Home', href: '#' },
@@ -16,13 +31,13 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs transition-all">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs transition-all notranslate" translate="no">
+      <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
+        <div className="flex items-center justify-between h-14 sm:h-18 md:h-20">
           
           {/* Logo with Land Solution Official Image */}
-          <a href="#" className="flex items-center gap-2.5 sm:gap-3 group py-1">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-1 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
+          <a href="#" className="flex items-center gap-2.5 group py-1">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-white border border-slate-200 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
               <img
                 src="/logo.png"
                 alt="Land Solution Logo"
@@ -37,7 +52,7 @@ export default function Navbar() {
               <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">
                 Land Solution
               </span>
-              <span className="text-[10px] sm:text-[11px] text-slate-500 font-semibold -mt-1 truncate max-w-[170px] sm:max-w-none">
+              <span className="text-[10px] sm:text-[11px] text-slate-500 font-semibold -mt-1">
                 BR Bhatta • brbhatta.com
               </span>
             </div>
@@ -104,31 +119,33 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu trigger */}
+          {/* Mobile Right Controls: Live Clock Pill + Menu Toggle */}
           <div className="flex lg:hidden items-center gap-2">
-            <a
-              href="#land-solution"
-              className="sm:hidden inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold shadow-2xs"
-            >
-              <Play className="w-3 h-3 fill-white" />
-              <span>Demo</span>
-            </a>
+            
+            {/* Live Clock Pill on Mobile */}
+            {mobileTime && (
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 text-emerald-400 font-mono text-[11px] font-bold shadow-xs border border-slate-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>{mobileTime}</span>
+              </div>
+            )}
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 active:bg-slate-200 min-w-[44px] min-h-[44px] flex items-center justify-center border border-slate-200"
-              aria-label="Toggle navigation menu"
+              className="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 flex items-center justify-center transition-colors border border-slate-200"
+              aria-label="Open menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-slate-900" /> : <Menu className="w-6 h-6 text-slate-900" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-slate-900" /> : <Menu className="w-5 h-5 text-slate-900" />}
             </button>
+
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer (Touch-optimized full overlay) */}
+      {/* Mobile Drawer (Clean, high-contrast, modern) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-200 bg-white/98 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3 shadow-xl max-h-[85vh] overflow-y-auto">
+        <div className="lg:hidden border-b border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-2xl max-h-[85vh] overflow-y-auto">
           
           <div className="space-y-1">
             {navLinks.map((link) => (
@@ -136,7 +153,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-emerald-50 active:bg-emerald-100 hover:text-emerald-800 transition-colors min-h-[48px]"
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 hover:bg-emerald-50 active:bg-emerald-100 hover:text-emerald-800 transition-colors min-h-[46px]"
               >
                 <span>{link.name}</span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -144,8 +161,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Quick Demo CTA Buttons on Mobile */}
-          <div className="pt-2 flex flex-col gap-2.5 border-t border-slate-100">
+          {/* Direct Mobile CTAs */}
+          <div className="pt-2 flex flex-col gap-2 border-t border-slate-100">
             <a
               href="#land-solution"
               onClick={() => setMobileMenuOpen(false)}
@@ -160,44 +177,39 @@ export default function Navbar() {
               className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-indigo-50 text-indigo-900 text-sm font-bold border border-indigo-200 active:bg-indigo-100 min-h-[48px]"
             >
               <Wallet className="w-4 h-4 text-indigo-600" />
-              <span>हाम्रो कोष Web Demo (Sample)</span>
+              <span>हाम्रो कोष Demo चलाउनुहोस्</span>
             </a>
           </div>
 
-          {/* Social Profiles Grid on Mobile */}
-          <div className="pt-3 border-t border-slate-100">
-            <p className="text-center text-[11px] text-slate-400 font-bold uppercase tracking-wider mb-2">
-              सामाजिक सञ्जालमा जोडिनुहोस्
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              <a
-                href="https://www.facebook.com/aabiral.bhatt/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 active:scale-95 transition-transform"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-100 active:scale-95 transition-transform"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://github.com/brbhatt-dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-900 flex items-center justify-center border border-slate-200 active:scale-95 transition-transform"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-            </div>
+          {/* Social Icons inside Mobile Menu */}
+          <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-4">
+            <a
+              href="https://www.facebook.com/aabiral.bhatt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100"
+              aria-label="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-100"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a
+              href="https://github.com/brbhatt-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-11 h-11 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center border border-slate-200"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </a>
           </div>
 
         </div>
