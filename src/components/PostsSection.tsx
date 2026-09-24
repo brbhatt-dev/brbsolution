@@ -39,29 +39,29 @@ export default function PostsSection() {
   ];
 
   return (
-    <section id="posts" className="py-16 md:py-24 border-t border-slate-100 bg-slate-50/60">
+    <section id="articles" className="py-12 sm:py-20 md:py-24 border-t border-slate-100 bg-slate-50/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-800 text-xs font-semibold mb-3 border border-blue-100">
             <Newspaper className="w-4 h-4 text-blue-600" />
             <span>ARTICLES & KNOWLEDGE BASE</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
             महत्वपूर्ण लेख तथा जानकारीहरू (Posts & Guides)
           </h2>
-          <p className="mt-3 text-slate-600 text-base sm:text-lg leading-relaxed">
+          <p className="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
             ल्याण्ड सोलुसन, हाम्रो कोष, र प्राविधिक टुल्स सम्बन्धी उपयोगी जानकारी तथा प्रयोग विधिहरू।
           </p>
         </div>
 
         {/* 3 Post Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
           {posts.map((post) => (
             <article
               key={post.id}
-              className="bg-white rounded-2xl border border-slate-200/90 hover:border-blue-400 hover:shadow-xl transition-all duration-200 flex flex-col justify-between p-6 sm:p-7"
+              className="bg-white rounded-2xl border border-slate-200/90 hover:border-blue-400 hover:shadow-xl transition-all duration-200 flex flex-col justify-between p-5 sm:p-7"
             >
               <div className="space-y-3.5">
                 <div className="flex items-center justify-between text-xs text-slate-500">

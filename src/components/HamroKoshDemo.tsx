@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { 
-  Wallet, Users, TrendingUp, DollarSign, PlusCircle, 
-  Calculator, FileText, CheckCircle2, Search, ArrowUpRight, 
-  ArrowDownLeft, Sparkles, X, ShieldAlert 
+  Wallet, Users, TrendingUp, PlusCircle, 
+  Calculator, FileText, CheckCircle2,
+  ArrowUpRight, ArrowDownLeft, X, ShieldAlert 
 } from 'lucide-react';
 
 interface Member {
@@ -72,7 +72,6 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
     const targetMember = members.find(m => m.id === Number(depositForm.memberId));
     if (!targetMember) return;
 
-    // Update member total
     setMembers(members.map(m => {
       if (m.id === targetMember.id) {
         return { ...m, totalSavings: m.totalSavings + Number(depositForm.amount) };
@@ -80,7 +79,6 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
       return m;
     }));
 
-    // Add transaction
     const newTx: Transaction = {
       id: Date.now(),
       memberName: targetMember.name,
@@ -106,210 +104,200 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-slate-50 w-full max-w-5xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 bg-slate-900/85 backdrop-blur-md flex items-center justify-center p-0 sm:p-4 overflow-y-auto">
+      <div className="bg-slate-50 w-full sm:max-w-5xl h-full sm:h-auto sm:max-h-[92vh] sm:rounded-3xl shadow-2xl border-0 sm:border sm:border-slate-200 overflow-hidden flex flex-col">
         
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white p-4 sm:p-6 flex items-center justify-between border-b border-indigo-700/50 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-indigo-500/30 border border-indigo-400/40 flex items-center justify-center text-white shadow-inner">
-              <Wallet className="w-6 h-6 text-indigo-300" />
+        <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white p-3.5 sm:p-5 flex items-center justify-between border-b border-indigo-700/50 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/30 border border-indigo-400/40 flex items-center justify-center text-white shrink-0">
+              <Wallet className="w-5 h-5 text-indigo-300" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-xl font-black tracking-tight text-white">हाम्रो कोष (Hamro Kosh)</h3>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                  Interactive Demo
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <h3 className="text-base sm:text-xl font-black tracking-tight text-white truncate">हाम्रो कोष</h3>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 shrink-0">
+                  Demo
                 </span>
               </div>
-              <p className="text-xs text-indigo-200 mt-0.5">
-                बचत तथा कोष व्यवस्थापन प्रणाली • डेमो संस्करण (No Real Data)
+              <p className="text-[11px] text-indigo-200 truncate">
+                बचत तथा कोष व्यवस्थापन • नमुना संस्करण
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 text-white flex items-center justify-center transition-colors shrink-0"
+            aria-label="Close demo"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Demo Notice Banner */}
-        <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 text-xs text-amber-900 flex items-center gap-2 shrink-0">
-          <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0" />
-          <span>
-            <strong>डेमो सूचना:</strong> यसमा कुनै पनि वास्तविक व्यक्तिगत हिसाब छैन। यो केवल एपको सुविधाहरू प्रत्यक्ष चलाएर हेर्नका लागि तयार गरिएको डेमो हो।
+        <div className="bg-amber-500/10 border-b border-amber-500/20 px-3 sm:px-4 py-2 text-[11px] sm:text-xs text-amber-900 flex items-center gap-2 shrink-0">
+          <ShieldAlert className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+          <span className="leading-tight">
+            <strong>डेमो:</strong> यसमा कुनै वास्तविक व्यक्तिगत विवरण छैन, केवल सुविधाहरू परीक्षणका लागि हो।
           </span>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center gap-2 sm:gap-4 overflow-x-auto shrink-0 py-2.5">
+        {/* Navigation Tabs (Smooth horizontal touch scroll) */}
+        <div className="bg-white border-b border-slate-200 px-3 sm:px-6 flex items-center gap-2 overflow-x-auto shrink-0 py-2.5 no-scrollbar">
           <button
             onClick={() => setActiveTab('dashboard')}
-            className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all whitespace-nowrap ${
+            className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all whitespace-nowrap min-h-[38px] ${
               activeTab === 'dashboard'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:bg-slate-100 active:bg-slate-200'
             }`}
           >
-            <TrendingUp className="w-4 h-4" />
-            <span>डैशबोर्ड (Overview)</span>
+            <TrendingUp className="w-3.5 h-3.5" />
+            <span>डैशबोर्ड</span>
           </button>
 
           <button
             onClick={() => setActiveTab('members')}
-            className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all whitespace-nowrap ${
+            className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all whitespace-nowrap min-h-[38px] ${
               activeTab === 'members'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:bg-slate-100 active:bg-slate-200'
             }`}
           >
-            <Users className="w-4 h-4" />
+            <Users className="w-3.5 h-3.5" />
             <span>सदस्यहरू ({members.length})</span>
           </button>
 
           <button
             onClick={() => setActiveTab('deposit')}
-            className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all whitespace-nowrap ${
+            className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all whitespace-nowrap min-h-[38px] ${
               activeTab === 'deposit'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:bg-slate-100 active:bg-slate-200'
             }`}
           >
-            <PlusCircle className="w-4 h-4" />
-            <span>बचत जम्मा सिमुलेटर</span>
+            <PlusCircle className="w-3.5 h-3.5" />
+            <span>बचत जम्मा</span>
           </button>
 
           <button
             onClick={() => setActiveTab('loanCalc')}
-            className={`px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all whitespace-nowrap ${
+            className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all whitespace-nowrap min-h-[38px] ${
               activeTab === 'loanCalc'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100'
+                ? 'bg-indigo-600 text-white shadow-xs'
+                : 'text-slate-600 hover:bg-slate-100 active:bg-slate-200'
             }`}
           >
-            <Calculator className="w-4 h-4" />
-            <span>ऋण & ब्याज क्यालकुलेटर</span>
+            <Calculator className="w-3.5 h-3.5" />
+            <span>ऋण क्यालकुलेटर</span>
           </button>
         </div>
 
         {/* Tab Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-grow space-y-6">
+        <div className="p-3 sm:p-6 overflow-y-auto flex-grow space-y-4 sm:space-y-6">
           
           {/* TAB 1: DASHBOARD */}
           {activeTab === 'dashboard' && (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               
               {/* Financial Metrics Cards */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
                 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase">कुल संकलित बचत</span>
-                  <p className="text-xl sm:text-2xl font-black text-slate-900 mt-1 font-mono">
+                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase block">कुल संकलित बचत</span>
+                  <p className="text-base sm:text-2xl font-black text-slate-900 mt-0.5 font-mono">
                     रु {totalSavings.toLocaleString()}
                   </p>
-                  <span className="text-[10px] text-emerald-600 font-semibold mt-1 block">
-                    ↑ नियमित संकलन भइरहेको
+                  <span className="text-[9px] sm:text-[10px] text-emerald-600 font-semibold block mt-0.5">
+                    ↑ नियमित संकलन
                   </span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase">लगानीमा रहेको ऋण</span>
-                  <p className="text-xl sm:text-2xl font-black text-indigo-700 mt-1 font-mono">
+                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase block">लगानीमा ऋण</span>
+                  <p className="text-base sm:text-2xl font-black text-indigo-700 mt-0.5 font-mono">
                     रु {totalLoanOut.toLocaleString()}
                   </p>
-                  <span className="text-[10px] text-indigo-600 font-semibold mt-1 block">
-                    २ जना सदस्यमा लगानी
+                  <span className="text-[9px] sm:text-[10px] text-indigo-600 font-semibold block mt-0.5">
+                    २ जना सदस्यमा
                   </span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase">ब्याज आम्दानी</span>
-                  <p className="text-xl sm:text-2xl font-black text-emerald-700 mt-1 font-mono">
+                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase block">ब्याज आम्दानी</span>
+                  <p className="text-base sm:text-2xl font-black text-emerald-700 mt-0.5 font-mono">
                     रु {totalInterest.toLocaleString()}
                   </p>
-                  <span className="text-[10px] text-emerald-600 font-semibold mt-1 block">
-                    मासिक १.५% दरमा
+                  <span className="text-[9px] sm:text-[10px] text-emerald-600 font-semibold block mt-0.5">
+                    १.५% दरमा
                   </span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase">हाल बचतमा बाँकी मौज्दात</span>
-                  <p className="text-xl sm:text-2xl font-black text-slate-900 mt-1 font-mono">
+                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-slate-200 shadow-2xs">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase block">कोष मौज्दात</span>
+                  <p className="text-base sm:text-2xl font-black text-slate-900 mt-0.5 font-mono">
                     रु {netFund.toLocaleString()}
                   </p>
-                  <span className="text-[10px] text-slate-500 font-semibold mt-1 block">
-                    कोषमा सुरक्षित नगद
+                  <span className="text-[9px] sm:text-[10px] text-slate-500 font-semibold block mt-0.5">
+                    सुरक्षित नगद
                   </span>
                 </div>
 
               </div>
 
-              {/* Transactions & Quick Actions */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                
-                {/* Recent Transactions List */}
-                <div className="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-indigo-600" />
-                      <span>पछिल्ला कारोबारहरू (Demo Transactions)</span>
-                    </h4>
-                    <span className="text-xs text-slate-400">स्वचालित अपडेट</span>
-                  </div>
+              {/* Transactions List */}
+              <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-2xs space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-indigo-600" />
+                    <span>पछिल्ला कारोबारहरू (Demo Feed)</span>
+                  </h4>
+                  <span className="text-[11px] text-slate-400">लाइभ</span>
+                </div>
 
-                  <div className="divide-y divide-slate-100">
-                    {transactions.map((tx) => (
-                      <div key={tx.id} className="py-3 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                            tx.type === 'बचत जम्मा' || tx.type === 'ब्याज आम्दानी'
-                              ? 'bg-emerald-50 text-emerald-700'
-                              : 'bg-indigo-50 text-indigo-700'
-                          }`}>
-                            {tx.type === 'बचत जम्मा' ? <ArrowDownLeft className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
-                          </div>
-                          <div>
-                            <p className="text-xs font-bold text-slate-900">{tx.memberName}</p>
-                            <span className="text-[10px] text-slate-500">{tx.type} • {tx.date}</span>
-                          </div>
-                        </div>
-                        <span className={`text-xs font-bold font-mono ${
-                          tx.type === 'बचत जम्मा' || tx.type === 'ब्याज आम्दानी' ? 'text-emerald-700' : 'text-indigo-700'
+                <div className="divide-y divide-slate-100">
+                  {transactions.map((tx) => (
+                    <div key={tx.id} className="py-2.5 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                          tx.type === 'बचत जम्मा' || tx.type === 'ब्याज आम्दानी'
+                            ? 'bg-emerald-50 text-emerald-700'
+                            : 'bg-indigo-50 text-indigo-700'
                         }`}>
-                          + रु {tx.amount.toLocaleString()}
-                        </span>
+                          {tx.type === 'बचत जम्मा' ? <ArrowDownLeft className="w-3.5 h-3.5" /> : <ArrowUpRight className="w-3.5 h-3.5" />}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold text-slate-900 truncate">{tx.memberName}</p>
+                          <span className="text-[10px] text-slate-500 block truncate">{tx.type} • {tx.date}</span>
+                        </div>
                       </div>
-                    ))}
-                  </div>
+                      <span className={`text-xs font-bold font-mono shrink-0 ${
+                        tx.type === 'बचत जम्मा' || tx.type === 'ब्याज आम्दानी' ? 'text-emerald-700' : 'text-indigo-700'
+                      }`}>
+                        + रु {tx.amount.toLocaleString()}
+                      </span>
+                    </div>
+                  ))}
                 </div>
+              </div>
 
-                {/* Quick Shortcuts */}
-                <div className="lg:col-span-4 space-y-4">
-                  <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-5 border border-indigo-100 space-y-3">
-                    <h5 className="font-bold text-indigo-950 text-sm">सिमुलेसन गर्नुहोस्</h5>
-                    <p className="text-xs text-indigo-800/80 leading-relaxed">
-                      तपाईं सिमुलेटर ट्याबमा गएर नयाँ बचत थप्न वा ऋण क्यालकुलेटर चलाएर किस्ता हिसाब गर्न सक्नुहुन्छ।
-                    </p>
-                    <button
-                      onClick={() => setActiveTab('deposit')}
-                      className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5"
-                    >
-                      <PlusCircle className="w-4 h-4" />
-                      <span>नयाँ बचत थप्नुहोस् (Test)</span>
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('loanCalc')}
-                      className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 text-indigo-900 text-xs font-bold transition-all border border-indigo-200 flex items-center justify-center gap-1.5"
-                    >
-                      <Calculator className="w-4 h-4" />
-                      <span>ऋण क्यालकुलेटर चलाउनुहोस्</span>
-                    </button>
-                  </div>
-                </div>
-
+              {/* Quick Actions buttons */}
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setActiveTab('deposit')}
+                  className="py-3 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 min-h-[44px]"
+                >
+                  <PlusCircle className="w-4 h-4" />
+                  <span>बचत थप्नुहोस् (Test)</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('loanCalc')}
+                  className="py-3 px-3 rounded-xl bg-white hover:bg-slate-50 active:bg-slate-100 text-indigo-950 text-xs font-bold transition-all border border-indigo-200 flex items-center justify-center gap-1.5 min-h-[44px]"
+                >
+                  <Calculator className="w-4 h-4 text-indigo-600" />
+                  <span>ऋण क्यालकुलेटर</span>
+                </button>
               </div>
 
             </div>
@@ -317,45 +305,46 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
 
           {/* TAB 2: MEMBERS */}
           {activeTab === 'members' && (
-            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-              <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                <h4 className="font-bold text-slate-900 text-sm">सदस्यहरूको बचत तथा ऋण स्थिति (Sample Members)</h4>
-                <span className="text-xs text-slate-500 font-medium">{members.length} सदस्य दर्ता</span>
+            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs">
+              <div className="p-3 sm:p-4 border-b border-slate-100 flex items-center justify-between">
+                <h4 className="font-bold text-slate-900 text-xs sm:text-sm">सदस्यहरूको बचत तथा ऋण स्थिति</h4>
+                <span className="text-[11px] text-slate-500 font-medium">{members.length} सदस्य</span>
               </div>
 
+              {/* Responsive table */}
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase tracking-wider">
+                <table className="w-full text-left text-xs whitespace-nowrap">
+                  <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200 uppercase tracking-wider text-[10px]">
                     <tr>
-                      <th className="py-3 px-4">नाम</th>
-                      <th className="py-3 px-4">पद / भूमिका</th>
-                      <th className="py-3 px-4">मासिक बचत</th>
-                      <th className="py-3 px-4">कुल बचत रकम</th>
-                      <th className="py-3 px-4">लिएको ऋण</th>
-                      <th className="py-3 px-4">स्थिति</th>
+                      <th className="py-2.5 px-3">नाम</th>
+                      <th className="py-2.5 px-3">पद</th>
+                      <th className="py-2.5 px-3">मासिक</th>
+                      <th className="py-2.5 px-3">कुल बचत</th>
+                      <th className="py-2.5 px-3">ऋण</th>
+                      <th className="py-2.5 px-3">स्थिति</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {members.map((m) => (
-                      <tr key={m.id} className="hover:bg-slate-50/80 transition-colors">
-                        <td className="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-[10px]">
+                      <tr key={m.id} className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900 flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-[10px] shrink-0">
                             {m.name.charAt(0)}
                           </div>
                           <span>{m.name}</span>
                         </td>
-                        <td className="py-3 px-4 text-slate-600">{m.role}</td>
-                        <td className="py-3 px-4 font-mono">रु {m.monthlyDeposit.toLocaleString()}</td>
-                        <td className="py-3 px-4 font-bold text-emerald-700 font-mono">रु {m.totalSavings.toLocaleString()}</td>
-                        <td className="py-3 px-4 font-mono text-slate-700">
+                        <td className="py-2.5 px-3 text-slate-600">{m.role}</td>
+                        <td className="py-2.5 px-3 font-mono">रु {m.monthlyDeposit.toLocaleString()}</td>
+                        <td className="py-2.5 px-3 font-bold text-emerald-700 font-mono">रु {m.totalSavings.toLocaleString()}</td>
+                        <td className="py-2.5 px-3 font-mono">
                           {m.loanTaken > 0 ? (
                             <span className="text-indigo-700 font-bold">रु {m.loanTaken.toLocaleString()}</span>
                           ) : (
                             <span className="text-slate-400">-</span>
                           )}
                         </td>
-                        <td className="py-3 px-4">
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                        <td className="py-2.5 px-3">
+                          <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-100 text-emerald-800">
                             {m.status}
                           </span>
                         </td>
@@ -369,10 +358,10 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
 
           {/* TAB 3: DEPOSIT SIMULATOR */}
           {activeTab === 'deposit' && (
-            <div className="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <div className="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-2xs space-y-4">
               <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
-                <PlusCircle className="w-5 h-5 text-indigo-600" />
-                <h4 className="font-bold text-slate-900 text-base">बचत जम्मा प्रविष्टि (Demo Deposit Simulator)</h4>
+                <PlusCircle className="w-5 h-5 text-indigo-600 shrink-0" />
+                <h4 className="font-bold text-slate-900 text-sm sm:text-base">बचत जम्मा प्रविष्टि (Simulator)</h4>
               </div>
 
               {depositSuccess ? (
@@ -381,7 +370,7 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
                     <CheckCircle2 className="w-7 h-7" />
                   </div>
                   <h5 className="font-bold text-slate-900 text-base">बचत सफलतापूर्वक थपियो!</h5>
-                  <p className="text-xs text-slate-500">डैशबोर्ड तथा सदस्यको कुल खाता अपडेट भइसकेको छ।</p>
+                  <p className="text-xs text-slate-500">डैशबोर्ड तथा सदस्यको कुल रकम अपडेट भयो।</p>
                 </div>
               ) : (
                 <form onSubmit={handleAddDeposit} className="space-y-4">
@@ -392,11 +381,11 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
                     <select
                       value={depositForm.memberId}
                       onChange={(e) => setDepositForm({ ...depositForm, memberId: Number(e.target.value) })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                      className="w-full px-3.5 py-3 rounded-xl border border-slate-300 text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 min-h-[48px]"
                     >
                       {members.map((m) => (
                         <option key={m.id} value={m.id}>
-                          {m.name} ({m.role}) - हालको बचत: रु {m.totalSavings.toLocaleString()}
+                          {m.name} ({m.role}) - रु {m.totalSavings.toLocaleString()}
                         </option>
                       ))}
                     </select>
@@ -404,24 +393,25 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1">
-                      जम्मा गर्ने रकम (रुपैयाँमा)
+                      जम्मा गर्ने रकम (रुपैयाँ)
                     </label>
                     <input
                       type="number"
+                      inputMode="numeric"
                       required
                       min={100}
                       step={100}
                       value={depositForm.amount}
                       onChange={(e) => setDepositForm({ ...depositForm, amount: Number(e.target.value) })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+                      className="w-full px-3.5 py-3 rounded-xl border border-slate-300 font-mono text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 min-h-[48px]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-sm transition-all"
+                    className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold text-sm shadow-sm transition-all min-h-[48px]"
                   >
-                    डेमो बचत रेकर्ड गर्नुहोस् (Save Demo Deposit)
+                    बचत रेकर्ड गर्नुहोस् (Save Deposit)
                   </button>
                 </form>
               )}
@@ -430,19 +420,19 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
 
           {/* TAB 4: LOAN CALCULATOR */}
           {activeTab === 'loanCalc' && (
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-start">
               
-              {/* Calculator Inputs */}
-              <div className="md:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
-                <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <div className="md:col-span-6 bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-2xs space-y-4">
+                <h4 className="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-600" />
-                  <span>ऋण तथा किस्ता क्यालकुलेटर (EMI & Interest)</span>
+                  <span>ऋण तथा किस्ता क्यालकुलेटर (EMI)</span>
                 </h4>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    ऋण रकम (Loan Amount): रु {loanCalc.principal.toLocaleString()}
-                  </label>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-xs font-bold text-slate-700">
+                    <span>ऋण रकम:</span>
+                    <span className="font-mono text-indigo-700">रु {loanCalc.principal.toLocaleString()}</span>
+                  </div>
                   <input
                     type="range"
                     min={5000}
@@ -450,14 +440,15 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
                     step={5000}
                     value={loanCalc.principal}
                     onChange={(e) => setLoanCalc({ ...loanCalc, principal: Number(e.target.value) })}
-                    className="w-full accent-indigo-600 cursor-pointer"
+                    className="w-full accent-indigo-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    मासिक ब्याजदर (% प्रति महिना): {loanCalc.rateMonthlyPercent}%
-                  </label>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-xs font-bold text-slate-700">
+                    <span>मासिक ब्याजदर (%):</span>
+                    <span className="font-mono text-indigo-700">{loanCalc.rateMonthlyPercent}%</span>
+                  </div>
                   <input
                     type="range"
                     min={0.5}
@@ -465,14 +456,15 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
                     step={0.1}
                     value={loanCalc.rateMonthlyPercent}
                     onChange={(e) => setLoanCalc({ ...loanCalc, rateMonthlyPercent: Number(e.target.value) })}
-                    className="w-full accent-indigo-600 cursor-pointer"
+                    className="w-full accent-indigo-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    भुक्तानी अवधि (महिनामा): {loanCalc.months} महिना
-                  </label>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-xs font-bold text-slate-700">
+                    <span>अवधि (महिनामा):</span>
+                    <span className="font-mono text-indigo-700">{loanCalc.months} महिना</span>
+                  </div>
                   <input
                     type="range"
                     min={1}
@@ -480,43 +472,43 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
                     step={1}
                     value={loanCalc.months}
                     onChange={(e) => setLoanCalc({ ...loanCalc, months: Number(e.target.value) })}
-                    className="w-full accent-indigo-600 cursor-pointer"
+                    className="w-full accent-indigo-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
                   />
                 </div>
               </div>
 
               {/* Calculator Output Card */}
-              <div className="md:col-span-6 bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-6 shadow-md space-y-4">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-indigo-300">
-                  हिसाब प्रतिवेदन (Calculation Summary)
+              <div className="md:col-span-6 bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-4 sm:p-6 shadow-md space-y-3">
+                <h5 className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-indigo-300">
+                  हिसाब प्रतिवेदन (Summary)
                 </h5>
 
-                <div className="space-y-3">
-                  <div className="p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
-                    <span className="text-xs text-indigo-200">मासिक अनुमानित किस्ता (Monthly Installment)</span>
-                    <p className="text-2xl font-black text-white font-mono mt-0.5">
-                      रु {monthlyEmi.toLocaleString()} / महिना
+                <div className="space-y-2.5">
+                  <div className="p-3 sm:p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+                    <span className="text-[11px] text-indigo-200 block">मासिक अनुमानित किस्ता</span>
+                    <p className="text-xl sm:text-2xl font-black text-white font-mono mt-0.5">
+                      रु {monthlyEmi.toLocaleString()} <span className="text-xs font-normal text-slate-300">/ महिना</span>
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                      <span className="text-slate-300">मासिक ब्याज</span>
-                      <p className="text-base font-bold text-emerald-400 font-mono mt-0.5">
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                      <span className="text-slate-300 text-[10px] block">मासिक ब्याज</span>
+                      <p className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
                         रु {Math.round(monthlyInterest).toLocaleString()}
                       </p>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                      <span className="text-slate-300">कुल ब्याज</span>
-                      <p className="text-base font-bold text-emerald-400 font-mono mt-0.5">
+                    <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                      <span className="text-slate-300 text-[10px] block">कुल ब्याज</span>
+                      <p className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
                         रु {Math.round(totalLoanInterest).toLocaleString()}
                       </p>
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-slate-300">कुल फिर्ता गर्नुपर्ने रकम:</span>
+                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-slate-300 text-[11px]">कुल फिर्ता रकम:</span>
                     <span className="font-bold text-white font-mono text-sm">
                       रु {Math.round(totalPayable).toLocaleString()}
                     </span>
@@ -530,13 +522,13 @@ export default function HamroKoshDemo({ isOpen, onClose }: { isOpen: boolean; on
         </div>
 
         {/* Modal Footer */}
-        <div className="bg-slate-100 p-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 shrink-0">
-          <p>हाम्रो कोष - बचत, समिति तथा गुठीका लागि भरपर्दो समाधान।</p>
+        <div className="bg-slate-100 p-3 sm:p-4 border-t border-slate-200 flex items-center justify-between gap-3 text-xs text-slate-500 shrink-0">
+          <p className="text-[11px] truncate">हाम्रो कोष - बचत, समिति तथा गुठी समाधान।</p>
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold transition-colors"
+            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 active:bg-slate-950 text-white font-bold transition-colors min-h-[38px] shrink-0"
           >
-            बन्द गर्नुहोस् (Close Demo)
+            बन्द गर्नुहोस्
           </button>
         </div>
 

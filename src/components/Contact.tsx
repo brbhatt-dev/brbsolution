@@ -174,22 +174,22 @@ export default function Contact() {
 
           {/* Right: Interactive Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900 mb-1">सिधै सन्देश पठाउनुहोस्</h3>
-              <p className="text-xs text-slate-500 mb-6">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-xs">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1">सिधै सन्देश पठाउनुहोस्</h3>
+              <p className="text-xs text-slate-500 mb-5 sm:mb-6">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
 
               {submitted ? (
-                <div className="py-12 text-center space-y-3">
+                <div className="py-10 text-center space-y-3">
                   <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
                     <CheckCircle2 className="w-7 h-7" />
                   </div>
-                  <h4 className="text-xl font-bold text-slate-900">धन्यवाद!</h4>
-                  <p className="text-sm text-slate-600 max-w-sm mx-auto">
+                  <h4 className="text-lg sm:text-xl font-bold text-slate-900">धन्यवाद!</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto">
                     तपाईंको सन्देश तयार भयो र इमेल क्लाइन्ट खुल्यो। हामी चाँडै सम्पर्क गर्नेछौँ।
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-4 px-4 py-2 rounded-xl bg-slate-200 text-slate-800 text-xs font-semibold hover:bg-slate-300"
+                    className="mt-3 px-4 py-2 rounded-xl bg-slate-200 text-slate-800 text-xs font-semibold hover:bg-slate-300 min-h-[40px]"
                   >
                     अर्को सन्देश पठाउनुहोस्
                   </button>
@@ -206,7 +206,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="उदा. रमेश अधिकारी"
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
                     />
                   </div>
 
@@ -220,7 +220,7 @@ export default function Contact() {
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                       placeholder="उदा. 98XXXXXXXX वा yourname@example.com"
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
                     />
                   </div>
 
@@ -231,7 +231,7 @@ export default function Contact() {
                     <select
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
                     >
                       <option value="Land Solution सम्बन्धी">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
                       <option value="हाम्रो कोष सम्बन्धी">हाम्रो कोष (Hamro Kosh App)</option>
@@ -247,17 +247,17 @@ export default function Contact() {
                     </label>
                     <textarea
                       required
-                      rows={5}
+                      rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="आफ्नो आवश्यकता, प्रश्न वा प्रतिक्रिया यहाँ लेख्नुहोस्..."
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm shadow-sm transition-all min-h-[48px]"
                   >
                     <Send className="w-4 h-4" />
                     <span>इमेलमार्फत सन्देश पठाउनुहोस्</span>

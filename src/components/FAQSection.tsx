@@ -80,16 +80,16 @@ export default function FAQSection() {
               >
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full flex items-center justify-between p-5 text-left gap-4 cursor-pointer"
+                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left gap-3 sm:gap-4 cursor-pointer min-h-[48px]"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold ${
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 text-xs font-bold ${
                       isOpen ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-700'
                     }`}>
                       Q{index + 1}
                     </div>
-                    <span className="text-base font-bold text-slate-900">
+                    <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
                       {faq.question}
                     </span>
                   </div>
@@ -99,7 +99,7 @@ export default function FAQSection() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-slate-700 text-sm leading-relaxed border-t border-emerald-100/60 pl-16">
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-1 text-slate-700 text-xs sm:text-sm leading-relaxed border-t border-emerald-100/60 pl-4 sm:pl-16">
                     <p className="whitespace-pre-line">{faq.answer}</p>
                   </div>
                 )}

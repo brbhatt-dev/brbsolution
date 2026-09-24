@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X, MessageCircle, Play, Facebook, Instagram, Github } from 'lucide-react';
+import { Menu, X, MessageCircle, Play, Facebook, Instagram, Github, ChevronRight, Wallet } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,29 +16,28 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-[38px] z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs transition-all">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Logo with Land Solution Official Image */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-1 flex items-center justify-center shrink-0 shadow-sm group-hover:border-emerald-500 transition-colors">
+          <a href="#" className="flex items-center gap-2.5 sm:gap-3 group py-1">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-1 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
               <img
                 src="/logo.png"
                 alt="Land Solution Logo"
                 className="w-full h-full object-contain"
                 onError={(e) => {
-                  // Fallback if image fails
                   const target = e.target as HTMLElement;
                   target.style.display = 'none';
                 }}
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-black tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+              <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">
                 Land Solution
               </span>
-              <span className="text-[11px] text-slate-500 font-semibold -mt-1">
+              <span className="text-[10px] sm:text-[11px] text-slate-500 font-semibold -mt-1 truncate max-w-[170px] sm:max-w-none">
                 BR Bhatta • brbhatta.com
               </span>
             </div>
@@ -57,9 +56,8 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Social Links & CTA Buttons */}
+          {/* Desktop Social Links & CTA Buttons */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* Social Icons */}
             <div className="flex items-center gap-1.5 border-r border-slate-200 pr-3">
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
@@ -108,79 +106,100 @@ export default function Navbar() {
 
           {/* Mobile menu trigger */}
           <div className="flex lg:hidden items-center gap-2">
+            <a
+              href="#land-solution"
+              className="sm:hidden inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold shadow-2xs"
+            >
+              <Play className="w-3 h-3 fill-white" />
+              <span>Demo</span>
+            </a>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:bg-slate-100"
-              aria-label="Toggle menu"
+              className="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 active:bg-slate-200 min-w-[44px] min-h-[44px] flex items-center justify-center border border-slate-200"
+              aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-slate-900" /> : <Menu className="w-6 h-6 text-slate-900" />}
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Touch-optimized full overlay) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-100 bg-white px-4 pt-2 pb-6 space-y-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-emerald-700"
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="lg:hidden border-b border-slate-200 bg-white/98 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3 shadow-xl max-h-[85vh] overflow-y-auto">
           
-          <div className="flex items-center justify-center gap-4 py-3 border-t border-slate-100">
-            <a
-              href="https://www.facebook.com/aabiral.bhatt/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-blue-50 text-blue-600"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-rose-50 text-rose-600"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a
-              href="https://github.com/brbhatt-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-slate-100 text-slate-900"
-              aria-label="GitHub"
-            >
-              <Github className="w-5 h-5" />
-            </a>
+          <div className="space-y-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold text-slate-800 hover:bg-emerald-50 active:bg-emerald-100 hover:text-emerald-800 transition-colors min-h-[48px]"
+              >
+                <span>{link.name}</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </a>
+            ))}
           </div>
 
-          <div className="pt-1 flex flex-col gap-2">
+          {/* Quick Demo CTA Buttons on Mobile */}
+          <div className="pt-2 flex flex-col gap-2.5 border-t border-slate-100">
             <a
               href="#land-solution"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-bold"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-emerald-600 text-white text-sm font-bold shadow-sm active:bg-emerald-700 min-h-[48px]"
             >
               <Play className="w-4 h-4 fill-white" />
-              <span>ल्याण्ड सोलुसन Demo</span>
+              <span>ल्याण्ड सोलुसन Web Demo</span>
             </a>
             <a
               href="#hamro-kosh"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-50 text-indigo-800 text-sm font-semibold border border-indigo-200"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-indigo-50 text-indigo-900 text-sm font-bold border border-indigo-200 active:bg-indigo-100 min-h-[48px]"
             >
-              <span>हाम्रो कोष Demo</span>
+              <Wallet className="w-4 h-4 text-indigo-600" />
+              <span>हाम्रो कोष Web Demo (Sample)</span>
             </a>
           </div>
+
+          {/* Social Profiles Grid on Mobile */}
+          <div className="pt-3 border-t border-slate-100">
+            <p className="text-center text-[11px] text-slate-400 font-bold uppercase tracking-wider mb-2">
+              सामाजिक सञ्जालमा जोडिनुहोस्
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <a
+                href="https://www.facebook.com/aabiral.bhatt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 active:scale-95 transition-transform"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-100 active:scale-95 transition-transform"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://github.com/brbhatt-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-900 flex items-center justify-center border border-slate-200 active:scale-95 transition-transform"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
         </div>
       )}
     </header>
