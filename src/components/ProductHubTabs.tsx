@@ -10,7 +10,6 @@ import {
   Play, 
   Clock, 
   CheckCircle2, 
-  Calculator, 
   Copy, 
   ChevronDown, 
   ChevronUp, 
@@ -41,9 +40,6 @@ export default function ProductHubTabs() {
   // Hamro Kosh Demo Modal
   const [showHamroKoshDemo, setShowHamroKoshDemo] = useState(false);
 
-  // Land converter state
-  const [sqft, setSqft] = useState<number>(5476);
-
   // AutoCAD copy command state
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
 
@@ -73,23 +69,6 @@ export default function ProductHubTabs() {
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
-
-  // Land calculations
-  const ropani = Math.floor(sqft / 5476);
-  const remAfterRopani = sqft % 5476;
-  const aana = Math.floor(remAfterRopani / 342.25);
-  const remAfterAana = remAfterRopani % 342.25;
-  const paisa = Math.floor(remAfterAana / 85.5625);
-  const remAfterPaisa = remAfterAana % 85.5625;
-  const daam = (remAfterPaisa / 21.390625).toFixed(2);
-
-  const bigha = Math.floor(sqft / 72900);
-  const remAfterBigha = sqft % 72900;
-  const katha = Math.floor(remAfterBigha / 3645);
-  const remAfterKatha = remAfterBigha % 3645;
-  const dhur = (remAfterKatha / 182.25).toFixed(2);
-
-  const sqm = (sqft / 10.7639).toFixed(2);
 
   const copyCommand = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -303,67 +282,6 @@ export default function ProductHubTabs() {
                       <Play className="w-4 h-4 fill-emerald-800" />
                       <span>वेब डेमो चलाउनुहोस् (Click to Launch)</span>
                     </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Interactive Land Unit Converter */}
-              <div className="bg-slate-50 dark:bg-slate-950/60 rounded-2xl p-5 sm:p-7 border border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                    <Calculator className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 dark:text-white text-base">
-                      जग्गा क्षेत्रफल क्यालकुलेटर (Instant Unit Converter)
-                    </h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      वर्ग फिट (Sq. Ft) लेख्नुहोस् र तत्काल पहाडी तथा तराई नाप हेर्नुहोस्
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                    क्षेत्रफल वर्ग फिटमा (Enter Area in Sq. Feet):
-                  </label>
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="number"
-                      value={sqft}
-                      onChange={(e) => setSqft(Math.max(0, Number(e.target.value)))}
-                      className="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-base text-slate-900 dark:text-white focus:outline-emerald-600 focus:ring-2 focus:ring-emerald-500/20"
-                    />
-                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Sq. Ft = {sqm} Sq. M</span>
-                  </div>
-                </div>
-
-                {/* Conversion Results Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Pahadi System */}
-                  <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/60 shadow-2xs">
-                    <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase block mb-1">
-                      पहाडी प्रणाली (RAPD)
-                    </span>
-                    <p className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-mono">
-                      {ropani} रोपनी - {aana} आना - {paisa} पैसा - {daam} दाम
-                    </p>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                      (१ रोपनी = १६ आना = ६४ पैसा = २५६ दाम = ५४७६ sq.ft)
-                    </p>
-                  </div>
-
-                  {/* Terai System */}
-                  <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-teal-200 dark:border-teal-800/60 shadow-2xs">
-                    <span className="text-[11px] font-bold text-teal-700 dark:text-teal-400 uppercase block mb-1">
-                      तराई प्रणाली (BKD)
-                    </span>
-                    <p className="text-base sm:text-lg font-black text-slate-900 dark:text-white font-mono">
-                      {bigha} बिघा - {katha} कट्ठा - {dhur} धुर
-                    </p>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                      (१ बिघा = २० कट्ठा = ४०० धुर = ७२९०० sq.ft)
-                    </p>
                   </div>
                 </div>
               </div>
