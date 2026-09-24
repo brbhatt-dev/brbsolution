@@ -211,10 +211,6 @@ export default function Footer() {
           <Link href="/disclaimer" className="hover:text-emerald-400 transition-colors font-medium">
             अस्वीकरण (Disclaimer)
           </Link>
-          <span className="text-slate-800 hidden sm:inline">&bull;</span>
-          <a href="/sitemap.xml" target="_blank" className="hover:text-emerald-400 transition-colors font-mono">
-            Sitemap.xml
-          </a>
         </div>
 
         {/* Bottom Bar: Copyright & Scroll to Top */}
