@@ -8,8 +8,8 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '#' },
-    { name: 'Land Solution (डेमो)', href: '#land-solution' },
-    { name: 'हाम्रो कोष (डेमो)', href: '#hamro-kosh' },
+    { name: 'Land Solution', href: '#land-solution' },
+    { name: 'हाम्रो कोष', href: '#hamro-kosh' },
     { name: 'AutoCAD LSP', href: '#autocad-lsp' },
     { name: 'FAQ', href: '#faq' },
     { name: 'सम्पर्क & Location', href: '#contact' },
@@ -56,51 +56,34 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop Social Links & CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            <div className="flex items-center gap-1.5 border-r border-slate-200 pr-3">
-              <a
-                href="https://www.facebook.com/aabiral.bhatt/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook Profile"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all"
-              >
-                <Facebook className="w-3.5 h-3.5 fill-white" />
-              </a>
-              <a
-                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram Page"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all"
-              >
-                <Instagram className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://github.com/brbhatt-dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Profile"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#0d1117] to-[#24292f] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all border border-slate-700"
-              >
-                <Github className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
+          {/* Desktop Social Links */}
+          <div className="hidden sm:flex items-center gap-2">
             <a
-              href="#land-solution"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all"
+              href="https://www.facebook.com/aabiral.bhatt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook Profile"
+              className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all"
             >
-              <Play className="w-3.5 h-3.5 fill-white" />
-              <span>Demo</span>
+              <Facebook className="w-3.5 h-3.5 fill-white" />
             </a>
-
             <a
-              href="mailto:aabiralbhatt@gmail.com"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs font-bold border border-slate-200 transition-colors"
+              href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Page"
+              className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all"
             >
-              <span>सम्पर्क</span>
+              <Instagram className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://github.com/brbhatt-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#0d1117] to-[#24292f] text-white flex items-center justify-center shadow-xs hover:scale-105 transition-all border border-slate-700"
+            >
+              <Github className="w-3.5 h-3.5" />
             </a>
           </div>
 
@@ -134,26 +117,6 @@ export default function Navbar() {
                 <ChevronRight className="w-4 h-4 text-slate-400" />
               </a>
             ))}
-          </div>
-
-          {/* Direct Mobile CTAs */}
-          <div className="pt-2 flex flex-col gap-2 border-t border-slate-100">
-            <a
-              href="#land-solution"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-emerald-600 text-white text-sm font-bold shadow-sm active:bg-emerald-700 min-h-[48px]"
-            >
-              <Play className="w-4 h-4 fill-white" />
-              <span>ल्याण्ड सोलुसन Web Demo</span>
-            </a>
-            <a
-              href="#hamro-kosh"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-indigo-50 text-indigo-900 text-sm font-bold border border-indigo-200 active:bg-indigo-100 min-h-[48px]"
-            >
-              <Wallet className="w-4 h-4 text-indigo-600" />
-              <span>हाम्रो कोष Demo चलाउनुहोस्</span>
-            </a>
           </div>
 
           {/* Social Icons inside Mobile Menu (Digital Style) */}
