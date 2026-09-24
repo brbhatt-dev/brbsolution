@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X, MessageCircle, Play, Download } from 'lucide-react';
+import { Menu, X, MessageCircle, Play, Facebook, Instagram, Github } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,8 +11,8 @@ export default function Navbar() {
     { name: 'Land Solution (डेमो)', href: '#land-solution' },
     { name: 'हाम्रो कोष', href: '#hamro-kosh' },
     { name: 'AutoCAD LSP', href: '#autocad-lsp' },
-    { name: 'लेखहरू (Posts)', href: '#posts' },
-    { name: 'सम्पर्क', href: '#contact' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'सम्पर्क & Location', href: '#contact' },
   ];
 
   return (
@@ -48,21 +48,52 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Direct CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          {/* Social Links & CTA Buttons */}
+          <div className="hidden sm:flex items-center gap-3">
+            {/* Social Icons */}
+            <div className="flex items-center gap-1.5 border-r border-slate-200 pr-3">
+              <a
+                href="https://www.facebook.com/aabiral.bhatt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook Profile"
+                className="p-2 rounded-lg text-slate-500 hover:text-blue-600 hover:bg-slate-50 transition-colors"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram Page"
+                className="p-2 rounded-lg text-slate-500 hover:text-rose-600 hover:bg-slate-50 transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/brbhatt-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+            </div>
+
             <a
               href="#land-solution"
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all"
             >
               <Play className="w-3.5 h-3.5 fill-white" />
-              <span>ल्याण्ड सोलुसन Demo</span>
+              <span>Demo</span>
             </a>
 
             <a
               href="https://wa.me/9779800000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs font-bold border border-slate-200 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs font-bold border border-slate-200 transition-colors"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
               <span>WhatsApp</span>
@@ -96,7 +127,38 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <div className="pt-3 flex flex-col gap-2">
+          
+          <div className="flex items-center justify-center gap-4 py-3 border-t border-slate-100">
+            <a
+              href="https://www.facebook.com/aabiral.bhatt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-blue-50 text-blue-600"
+              aria-label="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-rose-50 text-rose-600"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a
+              href="https://github.com/brbhatt-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-slate-100 text-slate-900"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+
+          <div className="pt-1 flex flex-col gap-2">
             <a
               href="#land-solution"
               onClick={() => setMobileMenuOpen(false)}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Download, MessageCircle, FileCode, CheckCircle2, Compass, Wallet, Sparkles } from 'lucide-react';
+import { Play, Download, MessageCircle, FileCode, CheckCircle2, Compass, Wallet, Facebook, Instagram, Github, Mail } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -67,8 +67,47 @@ export default function Hero() {
               </a>
             </div>
 
+            {/* Social Connect Icons in Hero */}
+            <div className="pt-2 flex items-center justify-center lg:justify-start gap-3">
+              <span className="text-xs font-semibold text-slate-500">Connect:</span>
+              <a
+                href="https://www.facebook.com/aabiral.bhatt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook Profile"
+                className="p-2 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-600 transition-colors"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram Profile"
+                className="p-2 rounded-lg bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/brbhatt-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:aabiralbhatt@gmail.com"
+                aria-label="Email"
+                className="p-2 rounded-lg bg-slate-100 hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </div>
+
             {/* Quick Feature Badges */}
-            <div className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-5 text-xs sm:text-sm text-slate-600 border-t border-slate-100">
+            <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-5 text-xs sm:text-sm text-slate-600 border-t border-slate-100">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>कित्ताकाट तथा नक्सा गणना</span>
@@ -167,7 +206,7 @@ export default function Hero() {
               </div>
 
               <div className="pt-2 text-center text-xs text-slate-500">
-                <p>सहयोग वा सोधपुछको लागि: <strong className="text-slate-800 font-semibold">contact@brbhatta.com</strong></p>
+                <p>सहयोग वा सोधपुछको लागि: <a href="mailto:aabiralbhatt@gmail.com" className="text-slate-800 font-semibold hover:underline">aabiralbhatt@gmail.com</a></p>
               </div>
 
             </div>
