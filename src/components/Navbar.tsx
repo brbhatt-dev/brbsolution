@@ -9,28 +9,37 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', href: '#' },
     { name: 'Land Solution (डेमो)', href: '#land-solution' },
-    { name: 'हाम्रो कोष', href: '#hamro-kosh' },
+    { name: 'हाम्रो कोष (डेमो)', href: '#hamro-kosh' },
     { name: 'AutoCAD LSP', href: '#autocad-lsp' },
     { name: 'FAQ', href: '#faq' },
     { name: 'सम्पर्क & Location', href: '#contact' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+    <header className="sticky top-[38px] z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-700 text-white font-black flex items-center justify-center text-lg shadow-sm">
-              BR
+          {/* Logo with Land Solution Official Image */}
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-11 h-11 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-1 flex items-center justify-center shrink-0 shadow-sm group-hover:border-emerald-500 transition-colors">
+              <img
+                src="/logo.png"
+                alt="Land Solution Logo"
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  // Fallback if image fails
+                  const target = e.target as HTMLElement;
+                  target.style.display = 'none';
+                }}
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-black tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">
-                BR Bhatta
+              <span className="text-lg font-black tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+                Land Solution
               </span>
               <span className="text-[11px] text-slate-500 font-semibold -mt-1">
-                Land & Tech Solutions
+                BR Bhatta • brbhatta.com
               </span>
             </div>
           </a>
@@ -90,13 +99,10 @@ export default function Navbar() {
             </a>
 
             <a
-              href="https://wa.me/9779800000000"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:aabiralbhatt@gmail.com"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 text-xs font-bold border border-slate-200 transition-colors"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-              <span>WhatsApp</span>
+              <span>सम्पर्क</span>
             </a>
           </div>
 
@@ -168,13 +174,11 @@ export default function Navbar() {
               <span>ल्याण्ड सोलुसन Demo</span>
             </a>
             <a
-              href="https://wa.me/9779800000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-50 text-emerald-800 text-sm font-semibold border border-emerald-200"
+              href="#hamro-kosh"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-50 text-indigo-800 text-sm font-semibold border border-indigo-200"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-600" />
-              <span>Chat on WhatsApp</span>
+              <span>हाम्रो कोष Demo</span>
             </a>
           </div>
         </div>

@@ -1,9 +1,12 @@
+'use client';
+
 import React from 'react';
-import { Play, Download, MessageCircle, FileCode, CheckCircle2, Compass, Wallet, Facebook, Instagram, Github, Mail } from 'lucide-react';
+import { Play, Clock, MessageCircle, FileCode, CheckCircle2, Compass, Wallet, Facebook, Instagram, Github, Mail } from 'lucide-react';
+import TithiWidget from './TithiWidget';
 
 export default function Hero() {
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-b from-emerald-50/50 via-white to-white overflow-hidden">
+    <section className="relative py-12 md:py-20 bg-gradient-to-b from-emerald-50/50 via-white to-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -13,7 +16,7 @@ export default function Hero() {
             {/* Friendly Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-              <span>ल्याण्ड सोलुसन &bullet; हाम्रो कोष &bullet; AutoCAD LSP टूल्स</span>
+              <span>ल्याण्ड सोलुसन &bull; हाम्रो कोष &bull; AutoCAD LSP टूल्स</span>
             </div>
 
             {/* Headline */}
@@ -25,9 +28,9 @@ export default function Hero() {
             {/* Description */}
             <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               स्वागत छ <span className="font-bold text-slate-900">www.brbhatta.com</span> मा। यहाँ तपाईंले 
-              <strong className="text-slate-800"> ल्याण्ड सोलुसन (Land Solution)</strong> को लाइभ डेमो, 
-              <strong className="text-slate-800"> हाम्रो कोष (Hamro Kosh)</strong> एप, र 
-              नापी तथा इन्जिनियरिङका लागि आवश्यक <strong className="text-slate-800">AutoCAD LSP</strong> फाइल्स सहजै प्राप्त गर्न सक्नुहुन्छ।
+              <strong className="text-slate-800"> ल्याण्ड सोलुसन (Land Solution)</strong> को लाइभ वेब डेमो, 
+              <strong className="text-slate-800"> हाम्रो कोष (Hamro Kosh)</strong> डेमो एप, र 
+              नापी तथा इन्जिनियरिङका लागि आवश्यक <strong className="text-slate-800">AutoCAD LSP</strong> टूल्स सहजै परीक्षण गर्न सक्नुहुन्छ।
             </p>
 
             {/* Action Buttons */}
@@ -37,7 +40,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition-all scale-100 hover:scale-[1.02]"
               >
                 <Play className="w-4 h-4 fill-white" />
-                <span>ल्याण्ड सोलुसन Demo चलाउनुहोस्</span>
+                <span>ल्याण्ड सोलुसन Web Demo</span>
               </a>
 
               <a
@@ -45,26 +48,14 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all"
               >
                 <Wallet className="w-4 h-4" />
-                <span>हाम्रो कोष App</span>
+                <span>हाम्रो कोष Demo चलाउनुहोस्</span>
               </a>
 
-              <a
-                href="#autocad-lsp"
-                className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 font-bold text-sm transition-colors"
-              >
-                <FileCode className="w-4 h-4 text-amber-700" />
-                <span>AutoCAD LSP फाइल्स</span>
-              </a>
-
-              <a
-                href="https://wa.me/9779800000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-sm transition-colors"
-              >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp</span>
-              </a>
+              {/* Coming Soon Notice */}
+              <div className="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold">
+                <Clock className="w-4 h-4 text-amber-600 shrink-0" />
+                <span>APK Downloads: Coming Soon</span>
+              </div>
             </div>
 
             {/* Social Connect Icons in Hero */}
@@ -106,7 +97,7 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Quick Feature Badges */}
+            {/* Micro Highlights */}
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-5 text-xs sm:text-sm text-slate-600 border-t border-slate-100">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
@@ -118,23 +109,32 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>निःशुल्क टूल्स र डाउनलोडहरू</span>
+                <span>नेपाली पात्रो तथा तिथि विजेट</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Portal Overview Card */}
-          <div className="lg:col-span-5">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 p-6 sm:p-8 space-y-5">
+          {/* Right Column: Land Solution Official Widget & Portal Card */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            {/* Dedicated Tithi Widget from Land Solution */}
+            <TithiWidget />
+
+            {/* Portal Overview Card with Land Solution Logo */}
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-lg shadow-slate-200/50 p-6 space-y-4">
               
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-700 text-white font-black flex items-center justify-center text-xl shadow-sm">
-                    BR
+                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 p-1 flex items-center justify-center shadow-xs">
+                    <img
+                      src="/logo.png"
+                      alt="Land Solution Logo"
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-slate-900 text-base">BR Bhatta Portal</h3>
+                    <h3 className="font-extrabold text-slate-900 text-base">Land Solution Portal</h3>
                     <p className="text-xs text-emerald-700 font-semibold">www.brbhatta.com</p>
                   </div>
                 </div>
@@ -143,73 +143,47 @@ export default function Hero() {
                 </span>
               </div>
 
-              {/* 3 Main Offerings Quick Box */}
-              <div className="space-y-3 text-sm">
-                
-                {/* Land Solution */}
+              {/* Quick links to demos */}
+              <div className="space-y-2.5 text-sm">
                 <a
                   href="#land-solution"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-100 hover:bg-emerald-100/70 transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl bg-emerald-50/70 border border-emerald-100 hover:bg-emerald-100/70 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                      <Compass className="w-5 h-5" />
+                    <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                      <Compass className="w-4 h-4" />
                     </div>
                     <div>
-                      <p className="font-bold text-slate-900 group-hover:text-emerald-800">Land Solution</p>
-                      <p className="text-xs text-slate-500">Web Demo & Android App</p>
+                      <p className="font-bold text-slate-900 group-hover:text-emerald-800 text-xs">Land Solution</p>
+                      <p className="text-[10px] text-slate-500">Live Web Demo (नापजाँच)</p>
                     </div>
                   </div>
-                  <span className="text-xs font-bold text-emerald-700 bg-white px-2 py-1 rounded shadow-2xs">
+                  <span className="text-[11px] font-bold text-emerald-700 bg-white px-2 py-0.5 rounded shadow-2xs">
                     चलाउनुहोस् →
                   </span>
                 </a>
 
-                {/* Hamro Kosh */}
                 <a
                   href="#hamro-kosh"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-indigo-50/70 border border-indigo-100 hover:bg-indigo-100/70 transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl bg-indigo-50/70 border border-indigo-100 hover:bg-indigo-100/70 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
-                      <Wallet className="w-5 h-5" />
+                    <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
+                      <Wallet className="w-4 h-4" />
                     </div>
                     <div>
-                      <p className="font-bold text-slate-900 group-hover:text-indigo-800">हाम्रो कोष (Hamro Kosh)</p>
-                      <p className="text-xs text-slate-500">बचत तथा ऋण व्यवस्थापन</p>
+                      <p className="font-bold text-slate-900 group-hover:text-indigo-800 text-xs">हाम्रो कोष (Hamro Kosh)</p>
+                      <p className="text-[10px] text-slate-500">बचत तथा ऋण सिमुलेटर</p>
                     </div>
                   </div>
-                  <span className="text-xs font-bold text-indigo-700 bg-white px-2 py-1 rounded shadow-2xs">
-                    APK डाउनलोड →
+                  <span className="text-[11px] font-bold text-indigo-700 bg-white px-2 py-0.5 rounded shadow-2xs">
+                    डेमो खोल्नुहोस् →
                   </span>
                 </a>
-
-                {/* AutoCAD LSP */}
-                <a
-                  href="#autocad-lsp"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 hover:bg-amber-100/70 transition-colors group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-amber-600 text-white flex items-center justify-center shrink-0">
-                      <FileCode className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900 group-hover:text-amber-800">AutoCAD LSP Scripts</p>
-                      <p className="text-xs text-slate-500">रोपनी/बिघा क्षेत्रफल & कोअर्डिनेट</p>
-                    </div>
-                  </div>
-                  <span className="text-xs font-bold text-amber-800 bg-white px-2 py-1 rounded shadow-2xs">
-                    LSP हेर्नुहोस् →
-                  </span>
-                </a>
-
-              </div>
-
-              <div className="pt-2 text-center text-xs text-slate-500">
-                <p>सहयोग वा सोधपुछको लागि: <a href="mailto:aabiralbhatt@gmail.com" className="text-slate-800 font-semibold hover:underline">aabiralbhatt@gmail.com</a></p>
               </div>
 
             </div>
+
           </div>
 
         </div>

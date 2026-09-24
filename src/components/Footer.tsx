@@ -11,16 +11,20 @@ export default function Footer() {
           
           {/* Brand & Bio */}
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white font-black flex items-center justify-center text-lg shadow-sm">
-                BR
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl overflow-hidden bg-slate-800 border border-slate-700 p-1 flex items-center justify-center shadow-sm shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="Land Solution Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
-                <span className="text-xl font-black tracking-tight text-white">
-                  BR Bhatta
+                <span className="text-xl font-black tracking-tight text-white block">
+                  Land Solution
                 </span>
-                <span className="block text-xs text-slate-400 font-medium">
-                  Land & Tech Solutions Nepal
+                <span className="text-xs text-slate-400 font-medium">
+                  BR Bhatta • Land & Tech Solutions Nepal
                 </span>
               </div>
             </div>
@@ -38,7 +42,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="md:col-span-3 space-y-3">
             <p className="text-xs font-bold text-white uppercase tracking-wider">
-              सफ्टवेयर र स्रोतहरू
+              सफ्टवेयर र डेमोहरू
             </p>
             <ul className="space-y-2 text-sm">
               <li>
@@ -48,12 +52,12 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/land-solution-demo/index.html" target="_blank" className="hover:text-emerald-400 transition-colors">
-                  Live Web Demo (लाइभ डेमो)
+                  Land Solution Live Web Demo
                 </a>
               </li>
               <li>
                 <a href="#hamro-kosh" className="hover:text-emerald-400 transition-colors">
-                  हाम्रो कोष (Hamro Kosh App)
+                  हाम्रो कोष (Hamro Kosh Demo)
                 </a>
               </li>
               <li>
@@ -130,7 +134,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>
-            &copy; {new Date().getFullYear()} BR Bhatta (brbhatta.com). All rights reserved.
+            &copy; {new Date().getFullYear()} Land Solution • BR Bhatta (brbhatta.com). All rights reserved.
           </p>
 
           <div className="flex items-center gap-6">

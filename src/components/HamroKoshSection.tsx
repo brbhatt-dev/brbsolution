@@ -1,7 +1,12 @@
-import React from 'react';
-import { Wallet, Download, CheckCircle2, ShieldCheck, Users, TrendingUp, FileText } from 'lucide-react';
+'use client';
+
+import React, { useState } from 'react';
+import { Wallet, Clock, Play, CheckCircle2, ShieldCheck, Users, TrendingUp, FileText, Sparkles } from 'lucide-react';
+import HamroKoshDemo from './HamroKoshDemo';
 
 export default function HamroKoshSection() {
+  const [showDemo, setShowDemo] = useState(false);
+
   const features = [
     {
       icon: Users,
@@ -48,7 +53,8 @@ export default function HamroKoshSection() {
           
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold">
-              <span>Android Mobile Application</span>
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Interactive Web Demo Available</span>
             </div>
 
             <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">
@@ -56,25 +62,24 @@ export default function HamroKoshSection() {
             </h3>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              &lsquo;हाम्रो कोष&rsquo; एपको मद्दतले तपाईंले आफ्नो मासिक बचत संकलन, ऋण लगानी, ब्याज हिसाब तथा खर्च विवरणहरू एकै ठाउँबाट व्यवस्थापन गर्न सक्नुहुन्छ। हिसाबमा कुनै गोलमाल नहुने गरी सम्पूर्ण अभिलेख सुरक्षित रहन्छ।
+              &lsquo;हाम्रो कोष&rsquo; एपको मद्दतले तपाईंले आफ्नो मासिक बचत संकलन, ऋण लगानी, ब्याज हिसाब तथा खर्च विवरणहरू एकै ठाउँबाट व्यवस्थापन गर्न सक्नुहुन्छ। तपाईंको सुविधाका लागि वास्तविक डेटा बिनाको नमुना डेमो (Sample Demo) तल उपलब्ध गराइएको छ।
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href="/downloads/HamroKosh.apk"
-                download
+              {/* Interactive Demo Trigger */}
+              <button
+                onClick={() => setShowDemo(true)}
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all scale-100 hover:scale-[1.02]"
               >
-                <Download className="w-4 h-4" />
-                <span>हाम्रो कोष Android APK डाउनलोड गर्नुहोस्</span>
-              </a>
+                <Play className="w-4 h-4 fill-white" />
+                <span>हाम्रो कोष Web Demo चलाउनुहोस् (Sample)</span>
+              </button>
 
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm transition-colors"
-              >
-                <span>थप जानकारी लिनुहोस्</span>
-              </a>
+              {/* Coming Soon Notice instead of APK download */}
+              <div className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 font-semibold text-xs">
+                <Clock className="w-4 h-4 text-indigo-600" />
+                <span>Android APK: <strong className="text-indigo-900">Coming Soon (छिट्टै आउँदैछ)</strong></span>
+              </div>
             </div>
           </div>
 
@@ -82,7 +87,7 @@ export default function HamroKoshSection() {
           <div className="lg:col-span-5 bg-gradient-to-tr from-indigo-50 to-blue-50 rounded-2xl p-6 sm:p-8 border border-indigo-100 text-slate-800 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-indigo-100">
               <span className="text-xs font-bold text-indigo-900 uppercase">Hamro Kosh Features</span>
-              <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">V1.0 Ready</span>
+              <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Demo Ready</span>
             </div>
 
             <div className="space-y-3 text-xs sm:text-sm">
@@ -110,27 +115,26 @@ export default function HamroKoshSection() {
         {/* 4 Feature Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feat, idx) => {
-            const IconComponent = feat.icon;
+            const Icon = feat.icon;
             return (
               <div
                 key={idx}
                 className="p-6 rounded-2xl bg-white border border-slate-200/80 hover:border-indigo-300 transition-all space-y-3"
               >
                 <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                  <IconComponent className="w-5 h-5" />
+                  <Icon className="w-5 h-5" />
                 </div>
-                <h4 className="text-base font-bold text-slate-900">
-                  {feat.title}
-                </h4>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  {feat.desc}
-                </p>
+                <h4 className="text-base font-bold text-slate-900">{feat.title}</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
               </div>
             );
           })}
         </div>
 
       </div>
+
+      {/* Interactive Demo Modal */}
+      <HamroKoshDemo isOpen={showDemo} onClose={() => setShowDemo(false)} />
     </section>
   );
 }
