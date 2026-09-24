@@ -48,10 +48,18 @@ export function getNepaliCalendarDetails(date = new Date()): NepaliCalendarDetai
 
   const dayIndex = date.getDay();
 
-  // Lunar Tithi calculation (synodic month = 29.53058867 days)
+  // Lunar Tithi calculation based on Udaya Tithi (sunrise tithi in Nepal, synodic month = 29.53058867 days)
   const synodicMonth = 29.53058867;
   const refDate = new Date('2000-01-06T18:14:00Z').getTime();
-  const diffDays = (date.getTime() - refDate) / (1000 * 60 * 60 * 24);
+  // Anchor to Nepal Standard Time (UTC+5:45) sunrise (~06:00 AM NPT = 00:15 UTC)
+  const nptDate = new Date(date.getTime() + (5.75 * 60 * 60 * 1000));
+  const sunriseUtc = new Date(Date.UTC(
+    nptDate.getUTCFullYear(),
+    nptDate.getUTCMonth(),
+    nptDate.getUTCDate(),
+    0, 15, 0
+  ));
+  const diffDays = (sunriseUtc.getTime() - refDate) / (1000 * 60 * 60 * 24);
   const lunarAge = ((diffDays % synodicMonth) + synodicMonth) % synodicMonth;
   const tithiIndex = Math.floor((lunarAge / synodicMonth) * 30); // 0 to 29
   

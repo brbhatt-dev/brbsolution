@@ -1,6 +1,6 @@
 'use client';
 
-import { Play, Clock, CheckCircle2, Compass, Wallet, ExternalLink } from 'lucide-react';
+import { Play, Clock, CheckCircle2, Compass, Wallet, ExternalLink, Calculator, FileCode } from 'lucide-react';
 import TithiWidget from './TithiWidget';
 
 export default function Hero() {
@@ -84,17 +84,15 @@ export default function Hero() {
           </div>
 
           {/* Right Column (Desktop) */}
-          <div className="hidden lg:block lg:col-span-5 space-y-4">
+          <div className="hidden lg:block lg:col-span-5">
             
-            {/* Dedicated Tithi Widget from Land Solution */}
-            <TithiWidget />
-
-            {/* Portal Overview Card with Land Solution Logo */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg shadow-slate-200/50 dark:shadow-none p-6 space-y-4 transition-colors">
+            {/* Unified Land Solution Smart Hub Card */}
+            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none p-5 sm:p-6 space-y-4 transition-colors">
               
+              {/* Header: Portal Identity */}
               <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center shadow-xs shrink-0">
+                  <div className="w-11 h-11 rounded-xl overflow-hidden bg-emerald-50 dark:bg-slate-800 border border-emerald-100 dark:border-slate-700 p-1 flex items-center justify-center shadow-xs shrink-0">
                     <img
                       src="/logo.png"
                       alt="Land Solution Logo"
@@ -102,53 +100,34 @@ export default function Hero() {
                     />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-slate-900 dark:text-white text-base">Land Solution Portal</h3>
+                    <h3 className="font-extrabold text-slate-900 dark:text-white text-base leading-tight">Land Solution Portal</h3>
                     <p className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">www.brbhatta.com</p>
                   </div>
                 </div>
-                <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                  Active
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[11px] font-bold border border-emerald-200 dark:border-emerald-800">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  Active Online
                 </span>
               </div>
 
-              {/* Quick links to demos */}
-              <div className="space-y-2.5 text-sm">
-                <a
-                  href="/land-solution-demo/index.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800/50 hover:bg-emerald-100/70 dark:hover:bg-emerald-900/40 active:bg-emerald-100 transition-colors group min-h-[48px]"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                      <Compass className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900 dark:text-slate-200 group-hover:text-emerald-800 dark:group-hover:text-emerald-300 text-xs">Land Solution</p>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Live Web Demo (नापजाँच)</p>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-white dark:bg-slate-800 px-2 py-0.5 rounded shadow-2xs border border-emerald-100 dark:border-emerald-800/40 inline-flex items-center gap-1">
-                    चलाउनुहोस् <ExternalLink className="w-3 h-3" />
-                  </span>
-                </a>
+              {/* Embedded Live Nepali Patro & Tithi Widget */}
+              <TithiWidget />
 
+              {/* Quick Navigation Shortcuts */}
+              <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
                 <a
-                  href="#hamro-kosh"
-                  className="flex items-center justify-between p-3 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-800/50 hover:bg-indigo-100/70 dark:hover:bg-indigo-900/40 active:bg-indigo-100 transition-colors group min-h-[48px]"
+                  href="#land-calculator"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-colors font-semibold text-slate-700 dark:text-slate-200 group"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0">
-                      <Wallet className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900 dark:text-slate-200 group-hover:text-indigo-800 dark:group-hover:text-indigo-300 text-xs">हाम्रो कोष (Hamro Kosh)</p>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400">बचत तथा ऋण सिमुलेटर</p>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-800 px-2 py-0.5 rounded shadow-2xs border border-indigo-100 dark:border-indigo-800/40">
-                    डेमो खोल्नुहोस् →
-                  </span>
+                  <Calculator className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform shrink-0" />
+                  <span className="truncate">क्षेत्रफल क्यालकुलेटर</span>
+                </a>
+                <a
+                  href="#autocad-lsp"
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-colors font-semibold text-slate-700 dark:text-slate-200 group"
+                >
+                  <FileCode className="w-4 h-4 text-indigo-600 group-hover:scale-110 transition-transform shrink-0" />
+                  <span className="truncate">AutoCAD LSP फाइल्स</span>
                 </a>
               </div>
 
