@@ -138,6 +138,15 @@ export default function Footer() {
               </li>
               <li>
                 <a 
+                  href="#land-calculator" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>अनलाइन जग्गा क्यालकुलेटर (RAPD & BKD)</span>
+                </a>
+              </li>
+              <li>
+                <a 
                   href="/land-solution-demo/index.html" 
                   target="_blank" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
@@ -166,11 +175,11 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="#faq" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-purple-300 transition-colors"
+                  href="#guides" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-cyan-300 transition-colors"
                 >
-                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>बारम्बार सोधिने प्रश्नहरू (FAQ)</span>
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>प्राविधिक गाइड तथा टिप्स (Articles)</span>
                 </a>
               </li>
             </ul>

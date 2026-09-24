@@ -12,9 +12,10 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'हाम्रो बारेमा', href: '/about' },
     { name: 'Land Solution', href: '/#land-solution' },
+    { name: 'क्यालकुलेटर', href: '/#land-calculator' },
     { name: 'हाम्रो कोष', href: '/#hamro-kosh' },
     { name: 'AutoCAD LSP', href: '/#autocad-lsp' },
-    { name: 'FAQ', href: '/#faq' },
+    { name: 'गाइड/लेख', href: '/#guides' },
     { name: 'सम्पर्क', href: '/contact' },
   ];
 
