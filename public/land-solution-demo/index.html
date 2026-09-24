@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Land Solution - Real Estate, Land Area Calculation, Civil Engineering & 2D/3D Architectural Blueprints">
+  <meta name="theme-color" content="#0F172A">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Land Solution">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Land Solution | जग्गा नापी तथा थ्रीडी घर नक्सा</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0F172A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+    }
+    #loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #1E293B 0%, #0F172A 100%);
+      color: #F8FAFC;
+      z-index: 9999;
+      transition: opacity 0.4s ease-out;
+    }
+    .loading-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+      animation: pulse 2s infinite ease-in-out;
+    }
+    .loading-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+    .loading-sub {
+      font-size: 13px;
+      color: #94A3B8;
+      margin-bottom: 28px;
+    }
+    .loading-bar-bg {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .loading-bar-fill {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #6366F1, #38BDF8);
+      border-radius: 4px;
+      animation: indeterminate 1.6s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes indeterminate {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-container">
+    <img class="loading-logo" src="icons/Icon-192.png" alt="Land Solution Logo" onerror="this.style.display='none'">
+    <div class="loading-title">Land Solution</div>
+    <div class="loading-sub">जग्गा नापी, थ्रीडी घर नक्सा तथा आर्किटेक्चरल सिस्टम</div>
+    <div class="loading-bar-bg">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var loader = document.getElementById('loading-container');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() { loader.remove(); }, 400);
+      }
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

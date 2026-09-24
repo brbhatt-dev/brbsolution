@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "DISTRICT": "Kanchanpur",
+        "DISTRICT_NEP": "कञ्चनपुर",
+        "PALIKA": "Bhimdatta Municipality",
+        "PALIKA_NEP": "भीमदत्त नगरपालिका",
+        "WARD": 15
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.210, 28.910],
+            [80.240, 28.910],
+            [80.240, 28.928],
+            [80.210, 28.928],
+            [80.210, 28.910]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DISTRICT": "Kanchanpur",
+        "DISTRICT_NEP": "कञ्चनपुर",
+        "PALIKA": "Bhimdatta Municipality",
+        "PALIKA_NEP": "भीमदत्त नगरपालिका",
+        "WARD": 12
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.150, 28.920],
+            [80.178, 28.920],
+            [80.178, 28.938],
+            [80.150, 28.938],
+            [80.150, 28.920]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DISTRICT": "Kanchanpur",
+        "DISTRICT_NEP": "कञ्चनपुर",
+        "PALIKA": "Bhimdatta Municipality",
+        "PALIKA_NEP": "भीमदत्त नगरपालिका",
+        "WARD": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.170, 28.955],
+            [80.190, 28.955],
+            [80.190, 28.972],
+            [80.170, 28.972],
+            [80.170, 28.955]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DISTRICT": "Kathmandu",
+        "DISTRICT_NEP": "काठमाडौँ",
+        "PALIKA": "Kathmandu Metropolitan City",
+        "PALIKA_NEP": "काठमाडौँ महानगरपालिका",
+        "WARD": 22
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [85.305, 27.698],
+            [85.318, 27.698],
+            [85.318, 27.708],
+            [85.305, 27.708],
+            [85.305, 27.698]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "DISTRICT": "Kathmandu",
+        "DISTRICT_NEP": "काठमाडौँ",
+        "PALIKA": "Kathmandu Metropolitan City",
+        "PALIKA_NEP": "काठमाडौँ महानगरपालिका",
+        "WARD": 32
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [85.340, 27.675],
+            [85.358, 27.675],
+            [85.358, 27.692],
+            [85.340, 27.692],
+            [85.340, 27.675]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+[
+  {
+    "id": "kanchanpur-bhimdatta",
+    "name": "भीमदत्त नगरपालिका (Bhimdatta)",
+    "district": "कञ्चनपुर",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 19,
+    "center": [28.9640, 80.1800],
+    "keywords": [
+      "bhimdatta", "bhimdatt", "mahendranagar", "mngr", "भीमदत्त", "महेन्द्रनगर", "कञ्चनपुर",
+      "nimbukheda", "nimbhukheda", "nimbukhada", "nimbuwaphanta", "gobariya", "निम्बुखेडा", "निम्बुवाफाँटा", "गोबरिया"
+    ],
+    "wardCenters": {
+      "1": [29.0350, 80.1750], "2": [28.9850, 80.1780], "3": [28.9720, 80.1650],
+      "4": [28.9640, 80.1800], "5": [28.9580, 80.1880], "6": [28.9610, 80.1980],
+      "7": [28.9880, 80.2050], "8": [28.9950, 80.2250], "9": [29.0120, 80.1450],
+      "10": [28.9820, 80.1120], "11": [28.9450, 80.1380], "12": [28.9280, 80.1650],
+      "13": [28.9050, 80.1480], "14": [28.9320, 80.2050], "15": [28.9180, 80.2240],
+      "16": [28.9480, 80.2150], "17": [28.9120, 80.1850], "18": [28.9750, 80.2100],
+      "19": [28.9250, 80.2450]
+    }
+  },
+  {
+    "id": "kanchanpur-shuklaphanta",
+    "name": "शुक्लाफाँटा नगरपालिका (Shuklaphanta)",
+    "district": "कञ्चनपुर",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 12,
+    "center": [28.8970, 80.3640],
+    "keywords": ["shuklaphanta", "jhalari", "kaluvapur", "pipladi", "शुक्लाफाँटा", "झलारी"],
+    "wardCenters": {
+      "1": [28.9120, 80.3450], "2": [28.9050, 80.3550], "3": [28.8920, 80.3600],
+      "4": [28.8970, 80.3640], "10": [28.8650, 80.3850], "11": [28.8780, 80.3950]
+    }
+  },
+  {
+    "id": "kanchanpur-bedkot",
+    "name": "वेदकोट नगरपालिका (Bedkot)",
+    "district": "कञ्चनपुर",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 10,
+    "center": [28.9820, 80.3120],
+    "keywords": ["bedkot", "sisaiya", "daijee", "वेदकोट", "दैजी", "कञ्चनपुर"]
+  },
+  {
+    "id": "kanchanpur-krishnapur",
+    "name": "कृष्णपुर नगरपालिका (Krishnapur)",
+    "district": "कञ्चनपुर",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 9,
+    "center": [28.8450, 80.4850],
+    "keywords": ["krishnapur", "gulariya", "bani", "कृष्णपुर", "गुलरिया"]
+  },
+  {
+    "id": "kanchanpur-dodhara-chandani",
+    "name": "दोधारा चाँदनी नगरपालिका (Dodhara Chandani)",
+    "district": "कञ्चनपुर",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 10,
+    "center": [28.9150, 80.0850],
+    "keywords": ["dodhara", "chandani", "दोधारा", "चाँदनी", "झोलुङ्गे पुल"]
+  },
+  {
+    "id": "kailali-dhangadhi",
+    "name": "धनगढी उपमहानगरपालिका (Dhangadhi)",
+    "district": "कैलाली",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 19,
+    "center": [28.6940, 80.5900],
+    "keywords": ["dhangadhi", "attariya", "धनगढी", "कैलाली"]
+  },
+  {
+    "id": "kailali-godawari",
+    "name": "गोदावरी नगरपालिका (Godawari)",
+    "district": "कैलाली",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 12,
+    "center": [28.8780, 80.5750],
+    "keywords": ["godawari", "attariya", "गोदावरी", "अत्तरिया"]
+  },
+  {
+    "id": "kailali-tikapur",
+    "name": "टीकापुर नगरपालिका (Tikapur)",
+    "district": "कैलाली",
+    "province": "सुदूरपश्चिम",
+    "totalWards": 9,
+    "center": [28.5120, 81.1280],
+    "keywords": ["tikapur", "टीकापुर", "कैलाली"]
+  },
+  {
+    "id": "ktm-metro",
+    "name": "काठमाडौँ महानगरपालिका (Kathmandu Metro)",
+    "district": "काठमाडौँ",
+    "province": "बागमती",
+    "totalWards": 32,
+    "center": [27.7172, 85.3240],
+    "keywords": ["kathmandu", "ktm", "काठमाडौँ", "newroad", "koteshwor", "baneshwor", "thamel", "kalanki"],
+    "wardCenters": {
+      "1": [27.7125, 85.3210], "2": [27.7220, 85.3280], "3": [27.7350, 85.3340],
+      "10": [27.6920, 85.3350], "14": [27.6920, 85.2810], "15": [27.7150, 85.2910],
+      "22": [27.7030, 85.3120], "32": [27.6850, 85.3480]
+    }
+  },
+  {
+    "id": "ktm-budhanilkantha",
+    "name": "बुढानीलकण्ठ नगरपालिका (Budhanilkantha)",
+    "district": "काठमाडौँ",
+    "province": "बागमती",
+    "totalWards": 13,
+    "center": [27.7710, 85.3580],
+    "keywords": ["budhanilkantha", "बुढानीलकण्ठ", "golfutar", "hattigauda", "mandikhatar"],
+    "wardCenters": {
+      "1": [27.7850, 85.3620], "3": [27.7710, 85.3580], "8": [27.7550, 85.3720]
+    }
+  },
+  {
+    "id": "ktm-lalitpur-metro",
+    "name": "ललितपुर महानगरपालिका (Lalitpur Metro)",
+    "district": "ललितपुर",
+    "province": "बागमती",
+    "totalWards": 29,
+    "center": [27.6680, 85.3200],
+    "keywords": ["lalitpur", "patan", "ललितपुर", "पाटन", "jawalakhel", "kumaripati"]
+  },
+  {
+    "id": "ktm-bhaktapur",
+    "name": "भक्तपुर नगरपालिका (Bhaktapur)",
+    "district": "भक्तपुर",
+    "province": "बागमती",
+    "totalWards": 10,
+    "center": [27.6710, 85.4280],
+    "keywords": ["bhaktapur", "भक्तपुर", "suryabinayak", "kamalbinayak"]
+  },
+  {
+    "id": "kaski-pokhara",
+    "name": "पोखरा महानगरपालिका (Pokhara Metro)",
+    "district": "कास्की",
+    "province": "गण्डकी",
+    "totalWards": 33,
+    "center": [28.2096, 83.9856],
+    "keywords": ["pokhara", "पोखरा", "lakeside", "mahendrapool", "kaski"]
+  },
+  {
+    "id": "rupandehi-butwal",
+    "name": "बुटवल उपमहानगरपालिका (Butwal)",
+    "district": "रुपन्देही",
+    "province": "लुम्बिनी",
+    "totalWards": 19,
+    "center": [27.7000, 83.4500],
+    "keywords": ["butwal", "बुटवल", "traffic chowk", "rupandehi"]
+  },
+  {
+    "id": "banke-nepalgunj",
+    "name": "नेपालगञ्ज उपमहानगरपालिका (Nepalgunj)",
+    "district": "बाँके",
+    "province": "लुम्बिनी",
+    "totalWards": 23,
+    "center": [28.0500, 81.6167],
+    "keywords": ["nepalgunj", "नेपालगञ्ज", "dhamboji", "banke"]
+  },
+  {
+    "id": "chitwan-bharatpur",
+    "name": "भरतपुर महानगरपालिका (Bharatpur Metro)",
+    "district": "चितवन",
+    "province": "बागमती",
+    "totalWards": 29,
+    "center": [27.6850, 84.4390],
+    "keywords": ["bharatpur", "narayangarh", "chaubiskothi", "भरतपुर", "नारायणगढ", "chitwan"]
+  },
+  {
+    "id": "jhapa-birtamode",
+    "name": "विर्तामोड नगरपालिका (Birtamode)",
+    "district": "झापा",
+    "province": "कोशी",
+    "totalWards": 10,
+    "center": [26.6430, 87.9890],
+    "keywords": ["birtamode", "birtamod", "विर्तामोड", "charpane", "jhapa"]
+  },
+  {
+    "id": "morang-biratnagar",
+    "name": "विराटनगर महानगरपालिका (Biratnagar Metro)",
+    "district": "मोरङ",
+    "province": "कोशी",
+    "totalWards": 19,
+    "center": [26.4520, 87.2710],
+    "keywords": ["biratnagar", "विराटनगर", "morang", "मोरङ"]
+  }
+]
