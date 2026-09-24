@@ -34,7 +34,8 @@ export function getNepaliCalendarDetails(date = new Date()): NepaliCalendarDetai
   let bsDate = 8;
   
   try {
-    const nd = new (NepaliDate as any)(date);
+    const NepaliDateConstructor = (NepaliDate as any).default || NepaliDate;
+    const nd = new NepaliDateConstructor(date);
     bsYear = nd.getYear();
     bsMonth = nd.getMonth();
     bsDate = nd.getDate();
@@ -66,7 +67,13 @@ export function getNepaliCalendarDetails(date = new Date()): NepaliCalendarDetai
   }
 
   // Nepali Ritu calculation (6 seasons: 2 months each)
-  const rituNames = ['वसन्त', 'ग्रीष्म', 'वर्षा', 'शरद', 'हेमन्त', 'शिशिर'];
+  // Baisakh & Jestha (0, 1): ग्रीष्म
+  // Asar & Shrawan (2, 3): वर्षा
+  // Bhadau & Asoj (4, 5): शरद
+  // Kartik & Mangsir (6, 7): हेमन्त
+  // Poush & Magh (8, 9): शिशिर
+  // Falgun & Chaitra (10, 11): वसन्त
+  const rituNames = ['ग्रीष्म', 'वर्षा', 'शरद', 'हेमन्त', 'शिशिर', 'वसन्त'];
   const ritu = rituNames[Math.floor(bsMonth / 2)] || 'शरद';
 
   const formattedDate = bsDate < 10 ? `०${toNepaliDigits(bsDate)}` : toNepaliDigits(bsDate);

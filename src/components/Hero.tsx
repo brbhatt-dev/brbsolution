@@ -1,6 +1,6 @@
 'use client';
 
-import { Play, Clock, CheckCircle2, Compass, Wallet } from 'lucide-react';
+import { Play, Clock, CheckCircle2, Compass, Wallet, ExternalLink } from 'lucide-react';
 import TithiWidget from './TithiWidget';
 
 export default function Hero() {
@@ -40,11 +40,14 @@ export default function Hero() {
             {/* Action Buttons (Stacked on mobile for easy thumb reach) */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-2.5 sm:gap-3 pt-1">
               <a
-                href="#land-solution"
+                href="/land-solution-demo/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition-all min-h-[48px]"
               >
                 <Play className="w-4 h-4 fill-white" />
                 <span>ल्याण्ड सोलुसन Web Demo</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-90" />
               </a>
 
               <a
@@ -111,7 +114,9 @@ export default function Hero() {
               {/* Quick links to demos */}
               <div className="space-y-2.5 text-sm">
                 <a
-                  href="#land-solution"
+                  href="/land-solution-demo/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800/50 hover:bg-emerald-100/70 dark:hover:bg-emerald-900/40 active:bg-emerald-100 transition-colors group min-h-[48px]"
                 >
                   <div className="flex items-center gap-3">
@@ -123,8 +128,8 @@ export default function Hero() {
                       <p className="text-[10px] text-slate-500 dark:text-slate-400">Live Web Demo (नापजाँच)</p>
                     </div>
                   </div>
-                  <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-white dark:bg-slate-800 px-2 py-0.5 rounded shadow-2xs border border-emerald-100 dark:border-emerald-800/40">
-                    चलाउनुहोस् →
+                  <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-300 bg-white dark:bg-slate-800 px-2 py-0.5 rounded shadow-2xs border border-emerald-100 dark:border-emerald-800/40 inline-flex items-center gap-1">
+                    चलाउनुहोस् <ExternalLink className="w-3 h-3" />
                   </span>
                 </a>
 
