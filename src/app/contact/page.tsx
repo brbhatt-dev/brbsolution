@@ -1,19 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { 
-  ArrowLeft, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  Facebook, 
-  Instagram, 
-  Github, 
-  Send, 
-  MessageSquare,
-  CheckCircle2,
-  ExternalLink
-} from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Contact from '@/components/Contact';
 
 export const metadata: Metadata = {

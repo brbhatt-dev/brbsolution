@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Facebook, Instagram, Github, Copy, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Copy } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -97,79 +97,6 @@ export default function Contact() {
                     नेपालभर अनलाइन सफ्टवेयर सपोर्ट, ल्याण्ड क्यालकुलेसन परामर्श तथा प्राविधिक सहायता उपलब्ध छ।
                   </p>
                 </div>
-              </div>
-            </div>
-
-            {/* Social Media Connect Links */}
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
-                सामाजिक सञ्जालमा जोडिनुहोस् (Social Profiles)
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 pt-1">
-                {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/aabiral.bhatt/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-[#1877F2] to-[#0A66C2] text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-blue-400/30"
-                >
-                  <Facebook className="w-3.5 h-3.5 fill-white shrink-0" />
-                  <span className="truncate">Facebook</span>
-                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
-                </a>
-
-                {/* Instagram */}
-                <a
-                  href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-pink-400/30"
-                >
-                  <Instagram className="w-3.5 h-3.5 shrink-0" />
-                  <span className="truncate">Instagram</span>
-                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
-                </a>
-
-                {/* X / Twitter */}
-                <a
-                  href="https://x.com/LandSolutionNpl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-black via-slate-900 to-slate-800 text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
-                >
-                  <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                  <span className="truncate">X/Twitter</span>
-                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
-                </a>
-
-                {/* Threads */}
-                <a
-                  href="https://www.threads.com/@landsolutionnepal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-black via-slate-900 to-zinc-800 text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
-                >
-                  <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 192 192">
-                    <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2109 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.0328C81.4045 63.6575 90.0153 60.4065 97.222 60.4065C108.618 60.4065 117.818 67.2415 119.827 82.0494C113.883 80.7061 107.566 80.0526 100.973 80.0526C74.6558 80.0526 56.6346 94.3826 56.6346 116.141C56.6346 136.216 71.9547 150.316 93.3644 150.316C109.845 150.316 122.253 141.975 128.539 126.68C133.565 136.657 141.921 142.336 153.864 142.336C168.04 142.336 179.351 133.407 182.261 116.635L166.425 113.863C164.717 123.699 158.647 128.125 152.016 128.125C141.777 128.125 137.073 118.89 137.073 103.072C137.073 99.8735 137.339 96.7909 137.844 93.856C139.117 94.4075 140.354 94.9922 141.537 95.6083C155.074 102.664 163.535 113.208 163.535 126.969H179.197C179.197 108.685 167.348 95.0345 141.537 88.9883ZM122.091 109.308C120.301 123.703 109.734 135.253 94.2796 135.253C80.3955 135.253 71.7486 126.241 71.7486 114.733C71.7486 100.865 83.2104 94.3917 101.442 94.3917C107.575 94.3917 113.242 94.9458 118.324 96.0125C121.218 100.17 122.476 104.708 122.091 109.308Z"/>
-                  </svg>
-                  <span className="truncate">Threads</span>
-                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
-                </a>
-
-                {/* GitHub */}
-                <a
-                  href="https://github.com/brbhatt-dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 p-2 rounded-xl bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#24292f] text-white shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all text-xs font-bold border border-slate-700"
-                >
-                  <Github className="w-3.5 h-3.5 shrink-0" />
-                  <span className="truncate">GitHub</span>
-                  <ExternalLink className="w-3 h-3 text-white/80 ml-auto shrink-0" />
-                </a>
               </div>
             </div>
 
