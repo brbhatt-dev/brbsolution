@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { ArrowUp, Mail, Facebook, Instagram, Github, MapPin, Heart, Globe, Compass, Wallet, FileCode, CheckCircle2, ChevronRight } from 'lucide-react';
 
 export default function Footer() {
@@ -187,6 +188,33 @@ export default function Footer() {
             </div>
           </div>
 
+        </div>
+
+        {/* Legal & Policy Links (AdSense & Regulatory Compliance) */}
+        <div className="py-5 border-b border-slate-900 flex flex-wrap items-center justify-center gap-y-2 gap-x-4 sm:gap-x-6 text-[11px] sm:text-xs text-slate-400">
+          <Link href="/about" className="hover:text-emerald-400 transition-colors">
+            हाम्रो बारेमा (About Us)
+          </Link>
+          <span className="text-slate-800 hidden sm:inline">&bull;</span>
+          <Link href="/contact" className="hover:text-emerald-400 transition-colors">
+            सम्पर्क (Contact Us)
+          </Link>
+          <span className="text-slate-800 hidden sm:inline">&bull;</span>
+          <Link href="/privacy-policy" className="hover:text-emerald-400 transition-colors font-medium">
+            गोपनीयता नीति (Privacy Policy)
+          </Link>
+          <span className="text-slate-800 hidden sm:inline">&bull;</span>
+          <Link href="/terms" className="hover:text-emerald-400 transition-colors font-medium">
+            प्रयोगका सर्तहरू (Terms of Service)
+          </Link>
+          <span className="text-slate-800 hidden sm:inline">&bull;</span>
+          <Link href="/disclaimer" className="hover:text-emerald-400 transition-colors font-medium">
+            अस्वीकरण (Disclaimer)
+          </Link>
+          <span className="text-slate-800 hidden sm:inline">&bull;</span>
+          <a href="/sitemap.xml" target="_blank" className="hover:text-emerald-400 transition-colors font-mono">
+            Sitemap.xml
+          </a>
         </div>
 
         {/* Bottom Bar: Copyright & Scroll to Top */}

@@ -1,18 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Menu, X, Play, Facebook, Instagram, Github, ChevronRight, Wallet } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Land Solution', href: '#land-solution' },
-    { name: 'हाम्रो कोष', href: '#hamro-kosh' },
-    { name: 'AutoCAD LSP', href: '#autocad-lsp' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'सम्पर्क & Location', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'हाम्रो बारेमा', href: '/about' },
+    { name: 'Land Solution', href: '/#land-solution' },
+    { name: 'हाम्रो कोष', href: '/#hamro-kosh' },
+    { name: 'AutoCAD LSP', href: '/#autocad-lsp' },
+    { name: 'FAQ', href: '/#faq' },
+    { name: 'सम्पर्क', href: '/contact' },
   ];
 
   return (
@@ -21,7 +23,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14 sm:h-18 md:h-20">
           
           {/* Logo with Land Solution Official Image */}
-          <a href="#" className="flex items-center gap-2.5 group py-1">
+          <Link href="/" className="flex items-center gap-2.5 group py-1">
             <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-white border border-slate-200 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
               <img
                 src="/logo.png"
@@ -41,18 +43,18 @@ export default function Navbar() {
                 BR Bhatta • brbhatta.com
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="text-sm font-semibold text-slate-600 hover:text-emerald-700 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -107,7 +109,7 @@ export default function Navbar() {
           
           <div className="space-y-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
@@ -115,7 +117,7 @@ export default function Navbar() {
               >
                 <span>{link.name}</span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
-              </a>
+              </Link>
             ))}
           </div>
 
