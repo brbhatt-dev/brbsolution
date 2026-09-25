@@ -175,6 +175,15 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
+                  href="/laws" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>मौजूदा कानुनहरू (नापी ऐन, नियमावली र कार्यविधि)</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
                   href="/articles" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-cyan-300 transition-colors"
                 >

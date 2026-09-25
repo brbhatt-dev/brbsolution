@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Facebook, Instagram, Github, ChevronRight } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [lawsDropdownOpen, setLawsDropdownOpen] = useState(false);
 
   // Clean, focused desktop nav links
   const desktopNavLinks = [
@@ -20,6 +21,7 @@ export default function Navbar() {
   // Comprehensive mobile drawer links
   const mobileNavLinks = [
     { name: 'गृहपृष्ठ (Home)', href: '/' },
+    { name: 'मौजूदा कानुनहरू (Laws & Directives)', href: '/laws' },
     { name: 'Land Solution (नापजाँच)', href: '/#land-solution' },
     { name: 'अनलाइन जग्गा क्यालकुलेटर', href: '/#land-calculator' },
     { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
@@ -58,17 +60,88 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (Clean & well spaced) */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
-            {desktopNavLinks.map((link) => (
+          {/* Desktop Navigation Links with 'मौजूदा कानुनहरू' Dropdown */}
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+            <Link
+              href="/#land-solution"
+              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+            >
+              सफ्टवेयरहरू
+            </Link>
+
+            <Link
+              href="/#land-calculator"
+              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+            >
+              क्यालकुलेटर
+            </Link>
+
+            {/* मौजूदा कानुनहरू Dropdown */}
+            <div 
+              className="relative group py-2"
+              onMouseEnter={() => setLawsDropdownOpen(true)}
+              onMouseLeave={() => setLawsDropdownOpen(false)}
+            >
               <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+                href="/laws"
+                className="inline-flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
               >
-                {link.name}
+                <span>मौजूदा कानुनहरू</span>
+                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
               </Link>
-            ))}
+
+              {/* Dropdown Menu matching dos.gov.np structure */}
+              <div 
+                className={`absolute top-full left-0 w-60 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 ${
+                  lawsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
+                }`}
+              >
+                <Link
+                  href="/laws"
+                  onClick={() => setLawsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/60 text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-xs font-bold"
+                >
+                  <Scale className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <div>
+                    <div>ऐन तथा नियमावलीहरू</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Acts & Regulations</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/laws"
+                  onClick={() => setLawsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-950/60 text-slate-800 dark:text-slate-200 hover:text-sky-800 dark:hover:text-sky-300 transition-colors text-xs font-bold"
+                >
+                  <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <div>
+                    <div>निर्देशिका तथा कार्यविधि</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Directives & Procedures</div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            <Link
+              href="/articles"
+              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+            >
+              गाइड तथा लेखहरू
+            </Link>
+
+            <Link
+              href="/about"
+              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+            >
+              हाम्रो बारेमा
+            </Link>
+
+            <Link
+              href="/contact"
+              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+            >
+              सम्पर्क
+            </Link>
           </nav>
 
           {/* Desktop Right Side: Social Media Profiles + Theme Toggle */}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { BookOpen, Clock, ArrowRight, Sparkles, Newspaper } from 'lucide-react';
+import { BookOpen, Clock, ArrowRight, Sparkles, Newspaper, Scale } from 'lucide-react';
 import { ARTICLES_DATA } from '@/data/articles';
 
 export default function KnowledgeBaseSection() {
@@ -72,14 +72,22 @@ export default function KnowledgeBaseSection() {
           ))}
         </div>
 
-        {/* View All Guides Button */}
-        <div className="mt-8 sm:mt-10 text-center">
+        {/* View All Guides & Laws Buttons */}
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <Link
+            href="/laws"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+          >
+            <Scale className="w-4 h-4" />
+            <span>मौजूदा कानुनहरू हेर्नुहोस् (नापी ऐन तथा कार्यविधि) →</span>
+          </Link>
+
           <Link
             href="/articles"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
           >
             <Newspaper className="w-4 h-4" />
-            <span>सबै १०+ वटा विस्तृत गाइड तथा लेखहरू हेर्नुहोस् (View All Articles) →</span>
+            <span>सबै प्राविधिक लेखहरू (Articles Hub) →</span>
           </Link>
         </div>
 
