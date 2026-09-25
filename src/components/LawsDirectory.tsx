@@ -21,7 +21,7 @@ import {
   ExternalLink,
   Landmark,
   FileCheck2,
-  FileCode
+  Maximize2
 } from 'lucide-react';
 import { LAW_DOCUMENTS, LAW_CATEGORIES, LawDocument } from '@/data/laws';
 
@@ -30,9 +30,9 @@ export default function LawsDirectory() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  // Active Reader Modal State
+  // Active Reader Modal State: 'pdf' (Default direct PDF viewer) or 'text' (Digital text)
   const [readingDoc, setReadingDoc] = useState<LawDocument | null>(null);
-  const [modalMode, setModalMode] = useState<'text' | 'original'>('text');
+  const [modalMode, setModalMode] = useState<'pdf' | 'text'>('pdf');
   const [readerFontSize, setReaderFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
   const [readerSearchQuery, setReaderSearchQuery] = useState<string>('');
   const [copiedDocId, setCopiedDocId] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export default function LawsDirectory() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [readingDoc]);
 
-  // Lock body scroll when reader modal is open
+  // Lock body scroll when modal is open
   useEffect(() => {
     if (readingDoc) {
       document.body.style.overflow = 'hidden';
@@ -94,7 +94,8 @@ export default function LawsDirectory() {
     return LAW_DOCUMENTS.filter(d => d.category === catId).length;
   };
 
-  const openReader = (doc: LawDocument, mode: 'text' | 'original' = 'text') => {
+  // Open Direct Original PDF or Text
+  const openReader = (doc: LawDocument, mode: 'pdf' | 'text' = 'pdf') => {
     setReadingDoc(doc);
     setModalMode(mode);
     setReaderSearchQuery('');
@@ -155,10 +156,10 @@ export default function LawsDirectory() {
             )}
           </div>
 
-          {/* Dual Badge: Digital Text + Original Documents */}
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900/60 text-emerald-900 dark:text-emerald-300 text-xs font-semibold shrink-0">
-            <FileCheck2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            <span>डिजिटल दफावार विश्लेषण + मूल सरकारी दस्तावेज (Original Doc) उपलब्ध</span>
+          {/* Direct Local PDF Badge */}
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-900/60 text-indigo-900 dark:text-indigo-300 text-xs font-semibold shrink-0">
+            <Landmark className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+            <span>सबै १२ वटा मूल सरकारी PDF हाम्रै वेबसाइटमा सिधै उपलब्ध</span>
           </div>
         </div>
 
@@ -313,38 +314,39 @@ export default function LawsDirectory() {
                       {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
 
-                    {/* All Actions: Read Online, Original Doc & Print/PDF */}
+                    {/* All Actions: DIRECT ORIGINAL PDF (No External Redirect!) + Text Reader + Download */}
                     <div className="flex flex-wrap items-center gap-2">
                       
-                      {/* Read Formatted Text Inside Website */}
+                      {/* Direct Original PDF Viewer (Opens inside website!) */}
                       <button
-                        onClick={() => openReader(doc, 'text')}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs active:scale-95 transition-all"
-                        title="वेबसाइटभित्रै दफावार पूर्ण दस्तावेज पढ्नुहोस्"
+                        onClick={() => openReader(doc, 'pdf')}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-sm active:scale-95 transition-all"
+                        title="मूल सरकारी PDF दस्तावेज सिधै हाम्रै वेबसाइटमा हेर्नुहोस्"
                       >
-                        <BookOpen className="w-3.5 h-3.5" />
-                        <span>दस्तावेज पढ्नुहोस्</span>
-                      </button>
-
-                      {/* Original Official Document (Original Doc & Gazette Source) */}
-                      <button
-                        onClick={() => openReader(doc, 'original')}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 text-indigo-900 dark:text-indigo-200 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-xs font-bold transition-all shadow-2xs active:scale-95"
-                        title="मूल सरकारी राजपत्र तथा आधिकारिक दस्तावेज विवरण हेर्नुहोस्"
-                      >
-                        <Landmark className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                        <Landmark className="w-4 h-4" />
                         <span>मूल दस्तावेज (Original Doc)</span>
                       </button>
 
-                      {/* Print / Save as PDF */}
+                      {/* Read Formatted Text Inside Website */}
                       <button
-                        onClick={() => handlePrint(doc)}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-all shadow-2xs"
-                        title="प्रिन्ट गर्नुहोस् वा PDF सेभ गर्नुहोस्"
+                        onClick={() => openReader(doc, 'text')}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all shadow-2xs"
+                        title="वेबसाइटभित्रै दफावार डिजिटल पाठ पढ्नुहोस्"
                       >
-                        <Printer className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
-                        <span>प्रिन्ट / PDF</span>
+                        <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>डिजिटल पाठ</span>
                       </button>
+
+                      {/* Direct Download Button */}
+                      <a
+                        href={`/docs/laws/${doc.id}.pdf`}
+                        download
+                        className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-all shadow-2xs"
+                        title="PDF सिधै डाउनलोड गर्नुहोस्"
+                      >
+                        <Download className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                        <span>डाउनलोड</span>
+                      </a>
 
                       {/* Copy Link */}
                       <button
@@ -384,7 +386,7 @@ export default function LawsDirectory() {
                     <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 text-[12px] text-amber-900 dark:text-amber-300 flex items-start gap-2 leading-relaxed">
                       <Info className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
                       <span>
-                        <strong>प्राविधिक जानकारी:</strong> सम्पूर्ण दफावार व्यवस्था पढ्न <strong>&ldquo;दस्तावेज पढ्नुहोस्&rdquo;</strong> वा राजपत्र तथा सरकारी स्रोत हेर्न <strong>&ldquo;मूल दस्तावेज (Original Doc)&rdquo;</strong> बटन थिच्नुहोस्।
+                        <strong>प्राविधिक जानकारी:</strong> मूल सरकारी PDF सिधै हेर्न <strong>&ldquo;मूल दस्तावेज (Original Doc)&rdquo;</strong> वा दफावार पाठ पढ्न <strong>&ldquo;डिजिटल पाठ&rdquo;</strong> बटन थिच्नुहोस्।
                       </span>
                     </div>
                   </div>
@@ -396,20 +398,20 @@ export default function LawsDirectory() {
       )}
 
       {/* ============================================================== */}
-      {/* IN-WEBSITE FULL DOCUMENT & ORIGINAL DOC MODAL */}
+      {/* IN-WEBSITE DIRECT ORIGINAL PDF & DIGITAL READER MODAL */}
       {/* ============================================================== */}
       {readingDoc && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto animate-in fade-in duration-150">
-          <div className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col max-h-[92vh] overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto animate-in fade-in duration-150">
+          <div className="relative w-full max-w-5xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col h-[94vh] max-h-[94vh] overflow-hidden">
             
             {/* Modal Top Bar */}
-            <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 flex items-center justify-between gap-3 shrink-0">
+            <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/90 flex items-center justify-between gap-3 shrink-0">
               <div className="flex items-center gap-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center shrink-0">
-                  <Scale className="w-4 h-4 text-emerald-700 dark:text-emerald-300" />
+                <div className="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center shrink-0">
+                  <Landmark className="w-4 h-4 text-indigo-700 dark:text-indigo-300" />
                 </div>
                 <div className="min-w-0">
-                  <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide block truncate">
+                  <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide block truncate">
                     {readingDoc.categoryTitleNp} • वि.सं. {readingDoc.yearBs}
                   </span>
                   <h3 className="text-sm sm:text-base font-black text-slate-900 dark:text-white truncate">
@@ -419,50 +421,30 @@ export default function LawsDirectory() {
               </div>
 
               {/* Reader Controls */}
-              <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex items-center gap-2 shrink-0">
                 
-                {/* Font Size Toggles (Only in text mode) */}
-                {modalMode === 'text' && (
-                  <div className="hidden sm:flex items-center bg-slate-200 dark:bg-slate-800 rounded-lg p-0.5 text-xs font-bold">
-                    <button
-                      onClick={() => setReaderFontSize('normal')}
-                      className={`px-2 py-1 rounded-md transition-colors ${
-                        readerFontSize === 'normal' ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-xs' : 'text-slate-500'
-                      }`}
-                      title="सामान्य फन्ट"
-                    >
-                      A
-                    </button>
-                    <button
-                      onClick={() => setReaderFontSize('large')}
-                      className={`px-2 py-1 rounded-md transition-colors ${
-                        readerFontSize === 'large' ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-xs' : 'text-slate-500'
-                      }`}
-                      title="ठूलो फन्ट"
-                    >
-                      A+
-                    </button>
-                    <button
-                      onClick={() => setReaderFontSize('xlarge')}
-                      className={`px-2 py-1 rounded-md transition-colors ${
-                        readerFontSize === 'xlarge' ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-xs' : 'text-slate-500'
-                      }`}
-                      title="अझ ठूलो फन्ट"
-                    >
-                      A++
-                    </button>
-                  </div>
-                )}
-
-                {/* Print Button */}
-                <button
-                  onClick={() => window.print()}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold transition-colors"
-                  title="प्रिन्ट गर्नुहोस् वा PDF सेभ गर्नुहोस्"
+                {/* Download PDF button */}
+                <a
+                  href={`/docs/laws/${readingDoc.id}.pdf`}
+                  download
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs"
+                  title="PDF डाउनलोड गर्नुहोस्"
                 >
-                  <Printer className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">प्रिन्ट / PDF</span>
-                </button>
+                  <Download className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">डाउनलोड (PDF)</span>
+                </a>
+
+                {/* Open in full tab */}
+                <a
+                  href={`/docs/laws/${readingDoc.id}.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold transition-colors"
+                  title="नयाँ ट्याबमा पूरै खोल्नुहोस्"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">पूर्ण विन्डो</span>
+                </a>
 
                 {/* Close Button */}
                 <button
@@ -475,9 +457,24 @@ export default function LawsDirectory() {
               </div>
             </div>
 
-            {/* Mode Switcher Tabs (Digital Text vs Original Document) */}
-            <div className="px-5 py-2 bg-slate-100 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 flex-wrap">
+            {/* Mode Switcher Bar */}
+            <div className="px-5 py-2 bg-slate-100 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 shrink-0">
               <div className="flex items-center gap-2">
+                
+                {/* Mode 1: DIRECT ORIGINAL PDF */}
+                <button
+                  onClick={() => setModalMode('pdf')}
+                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition-all ${
+                    modalMode === 'pdf'
+                      ? 'bg-indigo-600 text-white shadow-xs'
+                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-50'
+                  }`}
+                >
+                  <Landmark className="w-3.5 h-3.5" />
+                  <span>मूल सरकारी PDF (Direct In-Site PDF Viewer)</span>
+                </button>
+
+                {/* Mode 2: DIGITAL TEXT */}
                 <button
                   onClick={() => setModalMode('text')}
                   className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
@@ -487,50 +484,33 @@ export default function LawsDirectory() {
                   }`}
                 >
                   <BookOpen className="w-3.5 h-3.5" />
-                  <span>दफावार डिजिटल पाठ (Digital Text)</span>
-                </button>
-
-                <button
-                  onClick={() => setModalMode('original')}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                    modalMode === 'original'
-                      ? 'bg-indigo-600 text-white shadow-xs'
-                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-50'
-                  }`}
-                >
-                  <Landmark className="w-3.5 h-3.5" />
-                  <span>मूल सरकारी दस्तावेज (Original Doc & Gazette)</span>
+                  <span>दफावार डिजिटल पाठ (Text)</span>
                 </button>
               </div>
 
-              {modalMode === 'text' && (
-                <div className="relative flex-1 max-w-xs">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    value={readerSearchQuery}
-                    onChange={(e) => setReaderSearchQuery(e.target.value)}
-                    placeholder="दफा वा शब्द खोज्नुहोस्..."
-                    className="w-full pl-8 pr-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                  />
-                </div>
-              )}
+              {/* Status */}
+              <span className="text-[11px] text-slate-500 hidden sm:inline">
+                {modalMode === 'pdf' ? 'सिधै हाम्रै सर्भरबाट लोड भएको मूल PDF' : 'दफावार विस्तृत पाठ'}
+              </span>
             </div>
 
-            {/* Content Area */}
-            <div 
-              id="printable-law-document"
-              className={`p-6 sm:p-10 overflow-y-auto space-y-8 print:p-0 print:space-y-6 ${
-                readerFontSize === 'xlarge'
-                  ? 'text-lg leading-loose'
-                  : readerFontSize === 'large'
-                  ? 'text-base leading-relaxed'
-                  : 'text-sm leading-relaxed'
-              }`}
-            >
-              {modalMode === 'text' ? (
+            {/* Content Display: Embedded PDF OR Digital Text */}
+            <div className="flex-1 overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+              {modalMode === 'pdf' ? (
+                /* ================= DIRECT ORIGINAL PDF VIEWER ================= */
+                <div className="w-full h-full flex flex-col">
+                  <iframe
+                    src={`/docs/laws/${readingDoc.id}.pdf#toolbar=1&navpanes=1`}
+                    className="w-full h-full border-0"
+                    title={readingDoc.titleNp}
+                  />
+                </div>
+              ) : (
                 /* ================= DIGITAL TEXT VIEW ================= */
-                <>
+                <div 
+                  id="printable-law-document"
+                  className="h-full overflow-y-auto p-6 sm:p-10 space-y-6 text-sm leading-relaxed"
+                >
                   {/* Document Official Header */}
                   <div className="text-center space-y-2 border-b border-slate-200 dark:border-slate-800 pb-6 print:border-b-2 print:border-black">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-bold text-slate-600 dark:text-slate-300">
@@ -568,132 +548,37 @@ export default function LawsDirectory() {
                       </h4>
                     </div>
 
-                    {readerSections.length === 0 ? (
-                      <div className="text-center py-8 text-slate-400 text-xs">
-                        खोजिएको शब्द यस दस्तावेजका दफाहरूमा फेला परेन।
-                      </div>
-                    ) : (
-                      <div className="space-y-6">
-                        {readerSections.map((sec, idx) => (
-                          <div
-                            key={idx}
-                            className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2.5 print:border-none print:p-2"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="px-2.5 py-0.5 rounded-md bg-emerald-600 text-white text-xs font-bold font-mono">
-                                {sec.sectionNo}
-                              </span>
-                              <h5 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                                {sec.title}
-                              </h5>
-                            </div>
-                            <p className="text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
-                              {sec.content}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </>
-              ) : (
-                /* ================= ORIGINAL DOC & GAZETTE VIEW ================= */
-                <div className="space-y-6 animate-in fade-in duration-150">
-                  <div className="text-center space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
-                    <div className="w-14 h-14 mx-auto rounded-2xl bg-indigo-100 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-indigo-700 dark:text-indigo-300">
-                      <Landmark className="w-7 h-7" />
-                    </div>
-                    <div>
-                      <span className="text-xs uppercase font-extrabold tracking-wider text-indigo-600 dark:text-indigo-400">
-                        आधिकारिक मूल सरकारी दस्तावेज (Official Gazette Document)
-                      </span>
-                      <h2 className="text-2xl font-black text-slate-900 dark:text-white mt-1">
-                        {readingDoc.originalDocTitle}
-                      </h2>
-                      <p className="text-xs text-slate-500 mt-1">
-                        आधिकारिक प्रमाणीकरण: {readingDoc.sourcePortal}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Gazette Metadata Box */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase">जारी गर्ने निकाय (Issuing Authority)</span>
-                      <p className="text-sm font-bold text-slate-900 dark:text-white">{readingDoc.authority}</p>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase">राजपत्र प्रकाशन / सूचना विवरण</span>
-                      <p className="text-sm font-bold text-slate-900 dark:text-white">
-                        {readingDoc.gazetteNumber || 'नेपाल राजपत्र / नापी विभाग आधिकारिक अभिलेख'}
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase">प्रमाणीकरण वर्ष (Publication Year)</span>
-                      <p className="text-sm font-bold text-slate-900 dark:text-white">वि.सं. {readingDoc.yearBs}</p>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase">कानुनी हैसियत (Legal Status)</span>
-                      <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">हाल नेपालभर पूर्ण रूपमा बहाल तथा कार्यान्वयनमा</p>
-                    </div>
-                  </div>
-
-                  {/* Direct Action Hub for Original Document */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-slate-50 dark:from-indigo-950/40 dark:via-slate-900 dark:to-slate-950 border border-indigo-200 dark:border-indigo-800/80 space-y-4">
-                    <div className="space-y-1">
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                        <FileCheck2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-                        <span>मूल सरकारी राजपत्र तथा आधिकारिक दस्तावेजमा पहुँच</span>
-                      </h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                        यस दस्तावेजको प्रमाणीकरण नेपाल कानून आयोग तथा नापी विभागको केन्द्रीय डिजिटल सङ्ग्रहसँग आबद्ध छ। तपाईंले यसलाई सिधै आधिकारिक पोर्टलबाट हेर्न वा हाम्रो डिजिटल प्रणालीबाट प्रिन्ट गर्न सक्नुहुन्छ:
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-3 pt-2">
-                      <a
-                        href={readingDoc.officialDocUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md transition-all active:scale-95"
+                    {readingDoc.fullSections.map((sec, idx) => (
+                      <div
+                        key={idx}
+                        className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-2.5 print:border-none print:p-2"
                       >
-                        <Landmark className="w-4 h-4" />
-                        <span>सरकारी पोर्टलमा मूल दस्तावेज खोल्नुहोस्</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-
-                      <button
-                        onClick={() => window.print()}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-bold transition-all shadow-xs"
-                      >
-                        <Printer className="w-4 h-4 text-emerald-600" />
-                        <span>सफा ढाँचामा प्रिन्ट / PDF सेभ गर्नुहोस्</span>
-                      </button>
-                    </div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-0.5 rounded-md bg-emerald-600 text-white text-xs font-bold font-mono">
+                            {sec.sectionNo}
+                          </span>
+                          <h5 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                            {sec.title}
+                          </h5>
+                        </div>
+                        <p className="text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                          {sec.content}
+                        </p>
+                      </div>
+                    ))}
                   </div>
 
-                  {/* Verification Guarantee */}
-                  <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2.5 leading-relaxed">
-                    <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span>
-                      <strong>आधिकारिकता ग्यारेन्टी:</strong> Land Solution (brbhatta.com) मा राखिएका सबै दफा र विवरणहरू नेपाल कानून आयोग (lawcommission.gov.np) र नापी विभाग (dos.gov.np) द्वारा प्रकाशित राजपत्र सूचनाहरूसँग शतप्रतिशत मेल खान्छन्।
-                    </span>
+                  {/* Document Footer Notice */}
+                  <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center space-y-2 text-xs text-slate-500 dark:text-slate-400">
+                    <p>
+                      प्रमाणीकरण: यो दस्तावेज नेपाल सरकार नापी विभाग तथा कानून मन्त्रालयको राजपत्र मापदण्ड अनुसार तयार पारिएको आधिकारिक डिजिटल सङ्ग्रह हो।
+                    </p>
+                    <p className="font-mono text-[11px] text-slate-400">
+                      Land Solution • www.brbhatta.com/laws
+                    </p>
                   </div>
                 </div>
               )}
-
-              {/* Document Footer Notice */}
-              <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center space-y-2 text-xs text-slate-500 dark:text-slate-400">
-                <p>
-                  प्रमाणीकरण: यो दस्तावेज नेपाल सरकार नापी विभाग तथा कानून मन्त्रालयको आधिकारिक राजपत्र तथा निर्देशिका मापदण्ड अनुरूप तयार पारिएको डिजिटल सङ्ग्रह हो।
-                </p>
-                <p className="font-mono text-[11px] text-slate-400">
-                  Land Solution • www.brbhatta.com/laws
-                </p>
-              </div>
             </div>
 
             {/* Modal Bottom Bar */}
@@ -702,6 +587,14 @@ export default function LawsDirectory() {
                 {readingDoc.titleNp}
               </span>
               <div className="flex items-center gap-2">
+                <a
+                  href={`/docs/laws/${readingDoc.id}.pdf`}
+                  download
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-xs"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>PDF सेभ गर्नुहोस्</span>
+                </a>
                 <button
                   onClick={() => handleCopyLink(readingDoc)}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
@@ -711,7 +604,7 @@ export default function LawsDirectory() {
                 </button>
                 <button
                   onClick={() => setReadingDoc(null)}
-                  className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors shadow-2xs"
+                  className="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors"
                 >
                   बन्द गर्नुहोस्
                 </button>
