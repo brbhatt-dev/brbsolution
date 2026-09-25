@@ -27,7 +27,6 @@ export default function Navbar() {
     { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
     { name: 'AutoCAD LSP Scripts', href: '/#autocad-lsp' },
     { name: 'गाइड तथा जानकारीमूलक लेखहरू', href: '/articles' },
-    { name: 'प्रयोगकर्ताहरूको रिभ्यु', href: '/#testimonials' },
     { name: 'हाम्रो बारेमा (About Us)', href: '/about' },
     { name: 'सम्पर्क (Contact)', href: '/contact' },
   ];
