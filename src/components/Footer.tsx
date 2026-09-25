@@ -174,13 +174,13 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#guides" 
+                <Link 
+                  href="/articles" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-cyan-300 transition-colors"
                 >
                   <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>प्राविधिक गाइड तथा टिप्स (Articles)</span>
-                </a>
+                  <span>प्राविधिक गाइड तथा लेखहरू (Articles Hub)</span>
+                </Link>
               </li>
             </ul>
           </div>

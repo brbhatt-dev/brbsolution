@@ -12,7 +12,7 @@ export default function Navbar() {
   const desktopNavLinks = [
     { name: 'सफ्टवेयरहरू', href: '/#land-solution' },
     { name: 'क्यालकुलेटर', href: '/#land-calculator' },
-    { name: 'गाइड तथा टिप्स', href: '/#guides' },
+    { name: 'गाइड तथा लेखहरू', href: '/articles' },
     { name: 'हाम्रो बारेमा', href: '/about' },
     { name: 'सम्पर्क', href: '/contact' },
   ];
@@ -24,7 +24,7 @@ export default function Navbar() {
     { name: 'अनलाइन जग्गा क्यालकुलेटर', href: '/#land-calculator' },
     { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
     { name: 'AutoCAD LSP Scripts', href: '/#autocad-lsp' },
-    { name: 'गाइड तथा जानकारीमूलक लेख', href: '/#guides' },
+    { name: 'गाइड तथा जानकारीमूलक लेखहरू', href: '/articles' },
     { name: 'प्रयोगकर्ताहरूको रिभ्यु', href: '/#testimonials' },
     { name: 'हाम्रो बारेमा (About Us)', href: '/about' },
     { name: 'सम्पर्क (Contact)', href: '/contact' },

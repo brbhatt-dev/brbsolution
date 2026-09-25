@@ -1,15 +1,29 @@
 import { MetadataRoute } from 'next';
+import { ARTICLES_DATA } from '@/data/articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.brbhatta.com';
   const currentDate = new Date();
 
-  return [
+  const articleEntries: MetadataRoute.Sitemap = ARTICLES_DATA.map((article) => ({
+    url: `${baseUrl}/articles/${article.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }));
+
+  const corePages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/articles`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/about`,
@@ -48,4 +62,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  return [...corePages, ...articleEntries];
 }
