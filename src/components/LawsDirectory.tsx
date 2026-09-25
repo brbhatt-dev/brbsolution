@@ -499,11 +499,44 @@ export default function LawsDirectory() {
               {modalMode === 'pdf' ? (
                 /* ================= DIRECT ORIGINAL PDF VIEWER ================= */
                 <div className="w-full h-full flex flex-col">
-                  <iframe
-                    src={`/docs/laws/${readingDoc.id}.pdf#toolbar=1&navpanes=1`}
-                    className="w-full h-full border-0"
-                    title={readingDoc.titleNp}
-                  />
+                  <div className="flex-1 w-full h-full relative">
+                    <object
+                      data={`/docs/laws/${readingDoc.id}.pdf#toolbar=1&navpanes=1`}
+                      type="application/pdf"
+                      className="w-full h-full border-0"
+                    >
+                      <iframe
+                        src={`/docs/laws/${readingDoc.id}.pdf#toolbar=1&navpanes=1`}
+                        className="w-full h-full border-0"
+                        title={readingDoc.titleNp}
+                      >
+                        <div className="p-8 text-center space-y-4">
+                          <p className="text-sm text-slate-700 dark:text-slate-300">
+                            तपाईंको ब्राउजरले सिधै भित्र PDF प्रिभ्यु लोड गरेन। कृपया तलको बटन थिचेर मूल दस्तावेज खोल्नुहोस् वा डाउनलोड गर्नुहोस्:
+                          </p>
+                          <a
+                            href={`/docs/laws/${readingDoc.id}.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow-md"
+                          >
+                            मूल सरकारी PDF खोल्नुहोस्
+                          </a>
+                        </div>
+                      </iframe>
+                    </object>
+                  </div>
+                  <div className="px-4 py-2 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 shrink-0">
+                    <span className="truncate">🏛️ नापी विभाग / नेपाल सरकारको आधिकारिक मूल राजपत्र/दस्तावेज (Unedited Official Doc)</span>
+                    <a
+                      href={`/docs/laws/${readingDoc.id}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline shrink-0 ml-2 inline-flex items-center gap-1"
+                    >
+                      पूर्ण स्क्रिनमा हेर्नुहोस् &rarr;
+                    </a>
+                  </div>
                 </div>
               ) : (
                 /* ================= DIGITAL TEXT VIEW ================= */
