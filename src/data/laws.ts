@@ -14,6 +14,10 @@ export interface LawDocument {
   yearBs: string;
   authority: string;
   gazetteDate?: string;
+  gazetteNumber?: string;
+  originalDocTitle: string;
+  officialDocUrl: string;
+  sourcePortal: string;
   preamble: string;
   summaryNp: string;
   keyPoints: string[];
@@ -42,6 +46,10 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     yearBs: '२०१९ (हालसम्मका संशोधनसहित)',
     authority: 'नेपाल सरकार / नापी विभाग',
     gazetteDate: '२०१९/११/३०',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड १२, संख्या ४३',
+    originalDocTitle: 'जग्गा (नाप जाँच) ऐन, २०१९ (आठौं संशोधनसहित)',
+    officialDocUrl: 'https://lawcommission.gov.np/np/archives/21798',
+    sourcePortal: 'नेपाल कानून आयोग (lawcommission.gov.np) र नापी विभाग',
     preamble: 'नेपाल अधिराज्यभरका जग्गाको नापजाँच गरी वर्गीकरण गर्न, सिमाना निर्धारण गर्न, नक्सा तयार गर्न तथा जग्गाधनी दर्ता प्रमाणपुर्जा वितरण गरी वैज्ञानिक भू-अभिलेख कायम गर्न बनेको ऐन।',
     summaryNp: 'नेपालभर जग्गाको वैज्ञानिक नापजाँच, सिमाना निर्धारण, नक्सांकन र दर्ता गरी श्रेस्ता खडा गर्ने मुख्य ऐन। यसै ऐनको आधारमा नापी टोली खटिने, जग्गा दर्ता तथा विवाद निरुपण हुन्छ।',
     keyPoints: [
@@ -110,6 +118,10 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     yearBs: '२०५८ (आठौं संशोधनसहित)',
     authority: 'भूमि व्यवस्था, सहकारी तथा गरिबी निवारण मन्त्रालय / नापी विभाग',
     gazetteDate: '२०५८/०३/२५',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड ५१, संख्या १३',
+    originalDocTitle: 'जग्गा (नाप जाँच) नियमावली, २०५८ (आठौं संशोधन राजपत्र)',
+    officialDocUrl: 'https://dos.gov.np/content/34/land--measure-check--rules--2058/',
+    sourcePortal: 'नापी विभाग (dos.gov.np)',
     preamble: 'जग्गा (नाप जाँच) ऐन, २०१९ को दफा १३ ले दिएको अधिकार प्रयोग गरी नेपाल सरकारले जग्गाको विस्तृत नापजाँच, कित्ताकाट, नक्सा संशोधन र श्रेस्ता अद्यावधिक कार्यविधि व्यवस्थित गर्न बनाएको नियमावली।',
     summaryNp: 'जग्गा (नाप जाँच) ऐन, २०१९ लाई कार्यान्वयन गर्न जारी गरिएको विस्तृत कार्यविधि। यसमा कित्ताकाट, नक्सा संशोधन, स्रेस्ता अद्यावधिक र फिल्ड कार्यको सम्पूर्ण नियम समावेश छ।',
     keyPoints: [
@@ -163,6 +175,10 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     yearBs: '२०७६',
     authority: 'नेपाल सरकार, सङ्घीय संसद्',
     gazetteDate: '२०७६/०५/०६',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड ६९, संख्या २१',
+    originalDocTitle: 'नेपाल राजपत्र - भूउपयोग ऐन, २०७६ (प्रमाणीकरण मिति २०७६/०५/०६)',
+    officialDocUrl: 'https://www.lawcommission.gov.np/np/archives/28994',
+    sourcePortal: 'नेपाल कानून आयोग (lawcommission.gov.np)',
     preamble: 'नेपालको भूमिलाई भू-उपयोगको आधारमा वैज्ञानिक वर्गीकरण गरी दिगो उपयोग गर्न, कृषियोग्य भूमिको संरक्षण गर्न, अव्यवस्थित सहरीकरण र अनियन्त्रित खण्डीकरण नियन्त्रण गर्न बनेको ऐन।',
     summaryNp: 'नेपालको सम्पूर्ण भूमिलाई कृषि, आवासीय, व्यावसायिक, औद्योगिक, वन, खानी, नदीनाला लगायत १० वटा क्षेत्रमा अनिवार्य वर्गीकरण गरी दिगो उपयोग सुनिश्चित गर्ने ऐतिहासिक ऐन।',
     keyPoints: [
@@ -211,6 +227,10 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     yearBs: '२०७९ (संशोधनसहित)',
     authority: 'भूमि व्यवस्था, सहकारी तथा गरिबी निवारण मन्त्रालय',
     gazetteDate: '२०७९/०२/२७',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड ७२, संख्या १०',
+    originalDocTitle: 'नेपाल राजपत्र - भूउपयोग नियमावली, २०७९ (कित्ताकाट मापदण्डसहित)',
+    officialDocUrl: 'https://dos.gov.np/content/36/release-regulations--2079/',
+    sourcePortal: 'नापी विभाग र भूमि मन्त्रालय',
     preamble: 'भूउपयोग ऐन, २०७६ को प्रभावकारी कार्यान्वयनका लागि कित्ताकाटको न्यूनतम मापदण्ड, जग्गा वर्गीकरणको प्राविधिक विधि र स्थानीय तहको अधिकार स्पष्ट गर्न जारी गरिएको नियमावली।',
     summaryNp: 'भूउपयोग ऐन २०७६ लाई कार्यान्वयन गर्न जारी गरिएको नियमावली। यसले आवासीय क्षेत्रमा न्यूनतम १३० वर्गमिटर (४ आना) र कृषि क्षेत्रमा न्यूनतम कित्ताकाटको सीमा निर्धारण गरेको छ।',
     keyPoints: [
@@ -254,6 +274,10 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     yearBs: '२०२१ (आठौं संशोधनसहित)',
     authority: 'नेपाल सरकार',
     gazetteDate: '२०२१/०८/०१',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड १४, संख्या ३६',
+    originalDocTitle: 'भूमिसम्बन्धी ऐन, २०२१ (आठौं संशोधनसहित मूल दस्तावेज)',
+    officialDocUrl: 'https://www.lawcommission.gov.np/np/archives/21790',
+    sourcePortal: 'नेपाल कानून आयोग (lawcommission.gov.np)',
     preamble: 'कृषकहरूलाई जग्गामा न्यायोचित अधिकार दिलाउन, जग्गाको अधिकतम हदबन्दी तोक्न, मोही हकको संरक्षण गर्न र भूमि व्यवस्थामा क्रान्तिकारी सुधार गर्न जारी भएको ऐन।',
     summaryNp: 'भूमि सुधार, जग्गाको हदबन्दी, मोहीयानी हक, र भूमिहीन सुकुम्बासी तथा अव्यवस्थित बसोबासीको व्यवस्थापन गर्ने नेपालको आधारभूत भूमिसम्बन्धी ऐन।',
     keyPoints: [
@@ -289,6 +313,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Land Rules, 2021 (B.S.)',
     yearBs: '२०२१',
     authority: 'भूमि व्यवस्था मन्त्रालय / नेपाल सरकार',
+    gazetteDate: '२०२१/०८/२४',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड १४, संख्या ४५',
+    originalDocTitle: 'भूमिसम्बन्धी नियमहरू, २०२१ (मोही प्रमाण, लगत तथा कुत व्यवस्थापन)',
+    officialDocUrl: 'https://dos.gov.np/content/37/land-rules--2021/',
+    sourcePortal: 'नापी विभाग तथा भूमिसुधार मन्त्रालय',
     preamble: 'भूमिसम्बन्धी ऐन २०२१ अन्तर्गत मोही प्रमाण पत्र, जग्गाको लगत, हदबन्दी छानबिन र क्षतिपूर्ति व्यवस्थापन गर्न बनेको नियमावली।',
     summaryNp: 'भूमिसम्बन्धी ऐन २०२१ अन्तर्गत मोही प्रमाण पत्र, जग्गाको लगत, हदबन्दी छानबिन र क्षतिपूर्ति व्यवस्थापन गर्न बनेको नियमावली।',
     keyPoints: [
@@ -323,6 +352,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Compendium of Land Survey and Measurement Laws',
     yearBs: '२०८२ सङ्ग्रह',
     authority: 'नापी विभाग (Department of Survey)',
+    gazetteDate: '२०८२',
+    gazetteNumber: 'नापी विभाग केन्द्रीय प्रकाशन',
+    originalDocTitle: 'नापी विभाग आधिकारिक कानुन सङ्गालो (एकीकृत दस्तावेज)',
+    officialDocUrl: 'https://dos.gov.np/content/9/prajali-of-land-measurement-of-laws/',
+    sourcePortal: 'नापी विभाग (dos.gov.np)',
     preamble: 'नापी विभागद्वारा प्रकाशित नापी, नक्सा, कित्ताकाट, जग्गा दर्ता तथा सिमाना सम्बन्धी सम्पूर्ण ऐन, नियम तथा राजपत्र सूचनाहरूको एकीकृत आधिकारिक सङ्गालो।',
     summaryNp: 'नापी विभागद्वारा प्रकाशित नापी, नक्सा, कित्ताकाट, जग्गा दर्ता तथा सिमाना सम्बन्धी सम्पूर्ण ऐन, नियम तथा राजपत्र सूचनाहरूको एकीकृत आधिकारिक सङ्गालो।',
     keyPoints: [
@@ -357,6 +391,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Right to Information Act, 2064 (B.S.)',
     yearBs: '२०६४',
     authority: 'नेपाल सरकार',
+    gazetteDate: '२०६४/०४/०५',
+    gazetteNumber: 'नेपाल राजपत्र खण्ड ५७, संख्या १५',
+    originalDocTitle: 'नेपाल राजपत्र - सूचनाको हक सम्बन्धी ऐन, २०६४',
+    officialDocUrl: 'https://www.lawcommission.gov.np/np/archives/21574',
+    sourcePortal: 'नेपाल कानून आयोग (lawcommission.gov.np)',
     preamble: 'राज्यका काम कारबाही लोकतान्त्रिक पद्धति अनुरूप खुला र पारदर्शी बनाई नागरिकलाई सार्वजनिक निकायमा रहेको सूचना माग्ने र पाउने अधिकार सुनिश्चित गर्न बनेको ऐन।',
     summaryNp: 'सार्वजनिक निकायहरूमा रहेका नापी नक्सा, फिल्डबुक, श्रेस्ता र निर्णयहरूको सूचना सर्वसाधारण नागरिकले माग गर्ने र प्राप्त गर्ने कानुनी अधिकार।',
     keyPoints: [
@@ -391,6 +430,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Directives for Survey and Measurement of Government, Public and Community Land, 2083',
     yearBs: '२०८३',
     authority: 'नापी विभाग (Department of Survey)',
+    gazetteDate: '२०८३/०५/१८',
+    gazetteNumber: 'नापी विभाग निर्देशिका २०८३',
+    originalDocTitle: 'नापी विभाग - सरकारी, सार्वजनिक र सामुदायिक जग्गा नाप जाँच सम्बन्धी निर्देशिका, २०८३',
+    officialDocUrl: 'https://dos.gov.np/content/117/guidelines-for-government--public-and-community-land/',
+    sourcePortal: 'नापी विभाग (dos.gov.np)',
     preamble: 'सरकारी, सार्वजनिक तथा सामुदायिक जग्गाको पहिचान, वैज्ञानिक नापजाँच, सिमाना निर्धारण, डिजिटल नक्सांकन र अतिक्रमण रोकथाम गरी राज्यको सम्पत्ति संरक्षण गर्न जारी गरिएको निर्देशिका।',
     summaryNp: 'सरकारी, सार्वजनिक र सामुदायिक जग्गाको अतिक्रमण रोक्न, यकिन सिमाना छुट्याउन, डिजिटल नक्सा तयार गरी संरक्षण र अभिलेखीकरण गर्न जारी गरिएको नवीनतम निर्देशिका।',
     keyPoints: [
@@ -432,6 +476,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Directives for Land Measurement and Cadastral Map/Record Updating, 2081',
     yearBs: '२०८१',
     authority: 'नापी विभाग',
+    gazetteDate: '२०८१/०२/०९',
+    gazetteNumber: 'नापी विभाग निर्देशिका २०८१',
+    originalDocTitle: 'नापी विभाग - जग्गा नाप जाँच तथा नक्सा स्रेस्ता अद्यावधिक सम्बन्धी निर्देशिका, २०८१',
+    officialDocUrl: 'https://dos.gov.np/content/10/land-measurement-and-opiper-spest-directory--2081/',
+    sourcePortal: 'नापी विभाग (dos.gov.np)',
     preamble: 'पुरानो नक्सा र फिल्डबुकमा देखिएका प्राविधिक विसंगति, सिमाना फरक, दोहोरो दर्ता तथा नक्सा सच्याउने कामलाई व्यवस्थित र पारदर्शी बनाउन जारी गरिएको निर्देशिका।',
     summaryNp: 'पुरानो नक्सा र फिल्डबुकमा देखिएका प्राविधिक विसंगति, सिमाना फरक, दोहोरो दर्ता तथा नक्सा सच्याउने कामलाई व्यवस्थित बनाउन जारी गरिएको निर्देशिका।',
     keyPoints: [
@@ -468,6 +517,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Procedure for Aerial Survey and Drone/UAV Flight Permission, 2079',
     yearBs: '२०७९',
     authority: 'नापी विभाग / रक्षा तथा गृह मन्त्रालय समन्वय',
+    gazetteDate: '२०७९/०२/०९',
+    gazetteNumber: 'नापी विभाग कार्यविधि २०७९',
+    originalDocTitle: 'नापी विभाग - हवाई सर्वेक्षण (ड्रोन/UAV उडान) अनुमति कार्यविधि, २०७९',
+    officialDocUrl: 'https://dos.gov.np/content/7/air-survey-procedure-procedure--2079/',
+    sourcePortal: 'नापी विभाग (dos.gov.np)',
     preamble: 'नेपालमा ड्रोन (UAV), विमान वा हेलिकप्टरबाट हवाई सर्वेक्षण, म्यापिङ, फोटोग्रामेट्री र भौगोलिक तथ्याङ्क संकलन गर्न अनुमति लिने आधिकारिक कानुनी कार्यविधि।',
     summaryNp: 'नेपालमा ड्रोन (UAV), विमान वा हेलिकप्टरबाट हवाई सर्वेक्षण, म्यापिङ, फोटोग्रामेट्री र भौगोलिक तथ्याङ्क संकलन गर्न अनुमति लिने आधिकारिक कानुनी कार्यविधि।',
     keyPoints: [
@@ -504,6 +558,11 @@ export const LAW_DOCUMENTS: LawDocument[] = [
     titleEn: 'Directives for Distribution, Use and Regulation of Digital Geographic Data, 2069',
     yearBs: '२०६९',
     authority: 'नापी विभाग',
+    gazetteDate: '२०६९/०२/०८',
+    gazetteNumber: 'नापी विभाग निर्देशिका २०६९',
+    originalDocTitle: 'नापी विभाग - डिजिटल डाटाको वितरण, प्रयोग र नियमन निर्देशिका, २०६९',
+    officialDocUrl: 'https://dos.gov.np/content/5/distritor--use-and-regulation-directory-2069/',
+    sourcePortal: 'नापी विभाग (dos.gov.np)',
     preamble: 'नापी विभाग अन्तर्गत उत्पादन हुने डिजिटल भौगोलिक तथ्याङ्क (GIS Data, Topographic Base Maps, Orthophoto) को बिक्री, वितरण, प्रतिलिपि अधिकार र प्रयोग सम्बन्धी निर्देशिका।',
     summaryNp: 'नापी विभाग अन्तर्गत उत्पादन हुने डिजिटल भौगोलिक तथ्याङ्क (GIS Data, Topographic Base Maps, Orthophoto) को बिक्री, वितरण, प्रतिलिपि अधिकार र प्रयोग सम्बन्धी निर्देशिका।',
     keyPoints: [
