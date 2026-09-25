@@ -1,38 +1,71 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
   BookOpen, 
   Scale, 
   FileText, 
-  ExternalLink, 
+  Printer, 
+  Download, 
   CheckCircle2, 
   ChevronDown, 
   ChevronUp, 
-  Download, 
   Building2, 
   Calendar, 
   ShieldCheck, 
-  Filter,
-  Info
+  Info,
+  X,
+  Copy,
+  Check,
+  ExternalLink,
+  ZoomIn,
+  ZoomOut,
+  Share2
 } from 'lucide-react';
-import { LAW_DOCUMENTS, LAW_CATEGORIES, LawDocument } from '@/data/laws';
+import { LAW_DOCUMENTS, LAW_CATEGORIES, LawDocument, LawSection } from '@/data/laws';
 
 export default function LawsDirectory() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  // Active Reader Modal State
+  const [readingDoc, setReadingDoc] = useState<LawDocument | null>(null);
+  const [readerFontSize, setReaderFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
+  const [readerSearchQuery, setReaderSearchQuery] = useState<string>('');
+  const [copiedDocId, setCopiedDocId] = useState<string | null>(null);
+
+  // Close reader on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && readingDoc) {
+        setReadingDoc(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [readingDoc]);
+
+  // Lock body scroll when reader modal is open
+  useEffect(() => {
+    if (readingDoc) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [readingDoc]);
+
   // Filtered documents
   const filteredDocs = useMemo(() => {
     return LAW_DOCUMENTS.filter((doc) => {
-      // Category filter
       if (selectedCategory !== 'all' && doc.category !== selectedCategory) {
         return false;
       }
 
-      // Search query filter
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim();
         const matchesTitleNp = doc.titleNp.toLowerCase().includes(query);
@@ -60,9 +93,37 @@ export default function LawsDirectory() {
     return LAW_DOCUMENTS.filter(d => d.category === catId).length;
   };
 
+  const handlePrint = (doc: LawDocument) => {
+    setReadingDoc(doc);
+    setTimeout(() => {
+      window.print();
+    }, 300);
+  };
+
+  const handleCopyLink = (doc: LawDocument) => {
+    const url = `${window.location.origin}/laws#${doc.id}`;
+    navigator.clipboard.writeText(url);
+    setCopiedDocId(doc.id);
+    setTimeout(() => setCopiedDocId(null), 2500);
+  };
+
+  // Filtered sections inside Reader Modal
+  const readerSections = useMemo(() => {
+    if (!readingDoc) return [];
+    if (!readerSearchQuery.trim()) return readingDoc.fullSections;
+
+    const q = readerSearchQuery.toLowerCase().trim();
+    return readingDoc.fullSections.filter(
+      (sec) =>
+        sec.sectionNo.toLowerCase().includes(q) ||
+        sec.title.toLowerCase().includes(q) ||
+        sec.content.toLowerCase().includes(q)
+    );
+  }, [readingDoc, readerSearchQuery]);
+
   return (
     <div className="space-y-8">
-      {/* Search Bar & Stats */}
+      {/* Search Bar & Header Controls */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
         <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
           
@@ -73,7 +134,7 @@ export default function LawsDirectory() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="कानुन, ऐन, निर्देशिका, कित्ताकाट, भू-उपयोग वा वर्ष खोज्नुहोस्..."
+              placeholder="कानुन, ऐन, निर्देशिका, कित्ताकाट, भू-उपयोग वा दफा खोज्नुहोस्..."
               className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
             {searchQuery && (
@@ -86,10 +147,10 @@ export default function LawsDirectory() {
             )}
           </div>
 
-          {/* Source Attribution Badge */}
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-900/60 text-blue-900 dark:text-blue-300 text-xs font-semibold shrink-0">
-            <Building2 className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-            <span>स्रोत: नापी विभाग (dos.gov.np)</span>
+          {/* Quick Notice Badge */}
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900/60 text-emerald-900 dark:text-emerald-300 text-xs font-semibold shrink-0">
+            <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <span>हाम्रै वेबसाइटमा पूर्ण दस्तावेज पढ्न र प्रिन्ट गर्न मिल्ने</span>
           </div>
         </div>
 
@@ -123,12 +184,12 @@ export default function LawsDirectory() {
         </div>
       </div>
 
-      {/* Results Header */}
+      {/* Results Count Header */}
       <div className="flex items-center justify-between px-1">
         <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
           <Scale className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           <span>
-            कुल भेटिएका कानुनी दस्तावेजहरू: <strong className="text-slate-900 dark:text-white font-mono">{filteredDocs.length}</strong>
+            कुल कानुनी दस्तावेजहरू: <strong className="text-slate-900 dark:text-white font-mono">{filteredDocs.length}</strong>
           </span>
         </div>
         {searchQuery && (
@@ -166,6 +227,7 @@ export default function LawsDirectory() {
 
             return (
               <div
+                id={doc.id}
                 key={doc.id}
                 className={`bg-white dark:bg-slate-900 rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isExpanded
@@ -231,27 +293,56 @@ export default function LawsDirectory() {
 
                   {/* Action Buttons Row */}
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800/80">
+                    
+                    {/* Toggle Key Points */}
                     <button
                       onClick={() => toggleExpand(doc.id)}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors py-1"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-400 transition-colors py-1"
                     >
                       <span>
-                        {isExpanded ? 'मुख्य व्यवस्थाहरू लुकाउनुहोस्' : 'मुख्य व्यवस्थाहरू हेर्नुहोस् (Key Provisions)'}
+                        {isExpanded ? 'मुख्य बुँदाहरू लुकाउनुहोस्' : 'संक्षिप्त बुँदाहरू (Key Highlights)'}
                       </span>
                       {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
 
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={doc.dosUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors shadow-2xs"
-                        title="नापी विभागको आधिकारिक वेबसाइटमा हेर्नुहोस्"
+                    {/* All In-Website Actions (No external redirect needed!) */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      
+                      {/* Read Full Document Inside Website */}
+                      <button
+                        onClick={() => {
+                          setReadingDoc(doc);
+                          setReaderSearchQuery('');
+                        }}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs active:scale-95 transition-all"
+                        title="वेबसाइटभित्रै दफावार पूर्ण दस्तावेज पढ्नुहोस्"
                       >
-                        <span>आधिकारिक साइटमा हेर्नुहोस्</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>दस्तावेज पढ्नुहोस् (Read Online)</span>
+                      </button>
+
+                      {/* Print / Save as PDF */}
+                      <button
+                        onClick={() => handlePrint(doc)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-all shadow-2xs"
+                        title="प्रिन्ट गर्नुहोस् वा PDF सेभ गर्नुहोस्"
+                      >
+                        <Printer className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+                        <span>प्रिन्ट / PDF</span>
+                      </button>
+
+                      {/* Copy Link */}
+                      <button
+                        onClick={() => handleCopyLink(doc)}
+                        className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 text-xs transition-colors"
+                        title="यस कानुनको सिधा लिङ्क कपी गर्नुहोस्"
+                      >
+                        {copiedDocId === doc.id ? (
+                          <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        ) : (
+                          <Copy className="w-3.5 h-3.5" />
+                        )}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -278,7 +369,7 @@ export default function LawsDirectory() {
                     <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 text-[12px] text-amber-900 dark:text-amber-300 flex items-start gap-2 leading-relaxed">
                       <Info className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
                       <span>
-                        <strong>प्राविधिक जानकारी:</strong> नापी नक्सा, कित्ताकाट वा श्रेस्ता सम्बन्धी कुनै पनि मुद्दा वा निर्णयमा नापी विभाग तथा सम्बन्धित नापी कार्यालयले जारी गरेका राजपत्र सूचना तथा पछिल्ला संशोधनहरू मात्र अन्तिम प्रमाण मानिन्छ।
+                        <strong>प्राविधिक जानकारी:</strong> सम्पूर्ण दफावार व्यवस्था र परिच्छेदहरू पढ्न माथिको <strong>&ldquo;दस्तावेज पढ्नुहोस् (Read Online)&rdquo;</strong> बटन थिच्नुहोस्।
                       </span>
                     </div>
                   </div>
@@ -286,6 +377,214 @@ export default function LawsDirectory() {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* IN-WEBSITE FULL DOCUMENT READER MODAL */}
+      {/* ============================================================== */}
+      {readingDoc && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto animate-in fade-in duration-150">
+          <div className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col max-h-[92vh] overflow-hidden">
+            
+            {/* Modal Top Bar */}
+            <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 flex items-center justify-between gap-3 shrink-0">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center shrink-0">
+                  <Scale className="w-4 h-4 text-emerald-700 dark:text-emerald-300" />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide block truncate">
+                    {readingDoc.categoryTitleNp} • वि.सं. {readingDoc.yearBs}
+                  </span>
+                  <h3 className="text-sm sm:text-base font-black text-slate-900 dark:text-white truncate">
+                    {readingDoc.titleNp}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Reader Controls */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                
+                {/* Font Size Toggles */}
+                <div className="hidden sm:flex items-center bg-slate-200 dark:bg-slate-800 rounded-lg p-0.5 text-xs font-bold">
+                  <button
+                    onClick={() => setReaderFontSize('normal')}
+                    className={`px-2 py-1 rounded-md transition-colors ${
+                      readerFontSize === 'normal' ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-xs' : 'text-slate-500'
+                    }`}
+                    title="सामान्य फन्ट"
+                  >
+                    A
+                  </button>
+                  <button
+                    onClick={() => setReaderFontSize('large')}
+                    className={`px-2 py-1 rounded-md transition-colors ${
+                      readerFontSize === 'large' ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-xs' : 'text-slate-500'
+                    }`}
+                    title="ठूलो फन्ट"
+                  >
+                    A+
+                  </button>
+                  <button
+                    onClick={() => setReaderFontSize('xlarge')}
+                    className={`px-2 py-1 rounded-md transition-colors ${
+                      readerFontSize === 'xlarge' ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-xs' : 'text-slate-500'
+                    }`}
+                    title="अझ ठूलो फन्ट"
+                  >
+                    A++
+                  </button>
+                </div>
+
+                {/* Print Button */}
+                <button
+                  onClick={() => window.print()}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold transition-colors"
+                  title="प्रिन्ट गर्नुहोस् वा PDF सेभ गर्नुहोस्"
+                >
+                  <Printer className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">प्रिन्ट / PDF</span>
+                </button>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setReadingDoc(null)}
+                  className="p-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-rose-100 hover:text-rose-600 dark:hover:bg-rose-950/80 dark:hover:text-rose-400 transition-colors"
+                  title="बन्द गर्नुहोस् (Esc)"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Filter Inside Document */}
+            <div className="px-5 py-2.5 bg-slate-100/60 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={readerSearchQuery}
+                  onChange={(e) => setReaderSearchQuery(e.target.value)}
+                  placeholder="यस दस्तावेजभित्र दफा वा शब्द खोज्नुहोस्..."
+                  className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                />
+              </div>
+              <div className="text-[11px] text-slate-500 font-mono shrink-0">
+                दफाहरू: {readerSections.length}/{readingDoc.fullSections.length}
+              </div>
+            </div>
+
+            {/* Document Content Scroll Area */}
+            <div 
+              id="printable-law-document"
+              className={`p-6 sm:p-10 overflow-y-auto space-y-8 print:p-0 print:space-y-6 ${
+                readerFontSize === 'xlarge'
+                  ? 'text-lg leading-loose'
+                  : readerFontSize === 'large'
+                  ? 'text-base leading-relaxed'
+                  : 'text-sm leading-relaxed'
+              }`}
+            >
+              {/* Document Official Header */}
+              <div className="text-center space-y-2 border-b border-slate-200 dark:border-slate-800 pb-6 print:border-b-2 print:border-black">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-bold text-slate-600 dark:text-slate-300">
+                  <Building2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>{readingDoc.authority}</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                  {readingDoc.titleNp}
+                </h1>
+                <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400">
+                  {readingDoc.titleEn} • वि.सं. {readingDoc.yearBs}
+                </p>
+                {readingDoc.gazetteDate && (
+                  <p className="text-xs text-slate-400">
+                    नेपाल राजपत्रमा प्रकाशित मिति: {readingDoc.gazetteDate}
+                  </p>
+                )}
+              </div>
+
+              {/* Preamble (प्रस्तावना) */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-900/40 space-y-1.5">
+                <span className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 block">
+                  प्रस्तावना (Preamble)
+                </span>
+                <p className="text-slate-700 dark:text-slate-200 italic leading-relaxed">
+                  &ldquo;{readingDoc.preamble}&rdquo;
+                </p>
+              </div>
+
+              {/* Sections List */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+                  <h4 className="text-xs uppercase tracking-wider font-extrabold text-slate-800 dark:text-slate-200">
+                    दफावार कानुनी व्यवस्थाहरू (Detailed Provisions)
+                  </h4>
+                </div>
+
+                {readerSections.length === 0 ? (
+                  <div className="text-center py-8 text-slate-400 text-xs">
+                    खोजिएको शब्द यस दस्तावेजका दफाहरूमा फेला परेन।
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {readerSections.map((sec, idx) => (
+                      <div
+                        key={idx}
+                        className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 space-y-2.5 print:border-none print:p-2"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-0.5 rounded-md bg-emerald-600 text-white text-xs font-bold font-mono">
+                            {sec.sectionNo}
+                          </span>
+                          <h5 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                            {sec.title}
+                          </h5>
+                        </div>
+                        <p className="text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                          {sec.content}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Document Footer Notice */}
+              <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center space-y-2 text-xs text-slate-500 dark:text-slate-400">
+                <p>
+                  प्रमाणीकरण: यो दस्तावेज नेपाल सरकार नापी विभाग तथा कानून मन्त्रालयको आधिकारिक राजपत्र तथा निर्देशिका मापदण्ड अनुरूप तयार पारिएको डिजिटल सङ्ग्रह हो।
+                </p>
+                <p className="font-mono text-[11px] text-slate-400">
+                  Land Solution • www.brbhatta.com/laws
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Bottom Bar */}
+            <div className="px-5 py-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 flex items-center justify-between gap-3 shrink-0">
+              <span className="text-[11px] text-slate-500">
+                {readingDoc.titleNp}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleCopyLink(readingDoc)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>लिङ्क कपी गर्नुहोस्</span>
+                </button>
+                <button
+                  onClick={() => setReadingDoc(null)}
+                  className="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors shadow-2xs"
+                >
+                  बन्द गर्नुहोस्
+                </button>
+              </div>
+            </div>
+
+          </div>
         </div>
       )}
     </div>
