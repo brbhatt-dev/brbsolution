@@ -151,7 +151,25 @@ export default function Footer() {
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
                 >
                   <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>जग्गा क्यालकुलेटर (Ropani ⇄ Bigha)</span>
+                  <span>जग्गा क्यालकुलेटर (स्लिप प्रिन्ट)</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/malpot-calculator" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-amber-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>मालपोत तथा लाभकर क्यालकुलेटर</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/aamin-quiz" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-teal-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-teal-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>लोकसेवा नापी अमिन क्विज</span>
                 </Link>
               </li>
               <li>

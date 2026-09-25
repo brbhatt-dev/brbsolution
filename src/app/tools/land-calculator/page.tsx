@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LandCalculator from '@/components/LandCalculator';
+import SocialShareBar from '@/components/SocialShareBar';
 import { Calculator, ArrowLeft, BookOpen, Sparkles, Scale, Info } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -58,6 +59,12 @@ export default function StandaloneLandCalculatorPage() {
 
         {/* Embedded Full Land Calculator */}
         <LandCalculator />
+
+        {/* Social Share Bar */}
+        <SocialShareBar 
+          title="नेपाल अनलाइन जग्गा क्यालकुलेटर (रोपनी ⇄ बिघा ⇄ वर्गफिट)" 
+          url="/tools/land-calculator" 
+        />
 
         {/* Informative Formula Table */}
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">

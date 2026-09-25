@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText, Calculator, Split, Wrench } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText, Calculator, Split, Wrench, Receipt, GraduationCap } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
@@ -23,6 +23,8 @@ export default function Navbar() {
     { name: 'गृहपृष्ठ (Home)', href: '/' },
     { name: 'उपकरणहरू (Tools Hub)', href: '/tools' },
     { name: 'जग्गा क्यालकुलेटर (Land Calculator)', href: '/tools/land-calculator' },
+    { name: 'मालपोत तथा लाभकर (Malpot Tax Calculator)', href: '/tools/malpot-calculator' },
+    { name: 'लोकसेवा नापी अमिन क्विज (Aamin Exam Quiz)', href: '/tools/aamin-quiz' },
     { name: 'कित्ताकाट परीक्षक (Kitta-Kat Checker)', href: '/tools/kitta-kat-checker' },
     { name: 'मौजूदा कानुनहरू (Laws & Directives)', href: '/laws' },
     { name: 'Land Solution (नापजाँच)', href: '/#land-solution' },
@@ -98,7 +100,31 @@ export default function Navbar() {
                   <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <div>
                     <div>जग्गा क्यालकुलेटर</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Ropani ⇄ Bigha Converter</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Ropani ⇄ Bigha Converter (स्लिप प्रिन्ट)</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools/malpot-calculator"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-800 dark:text-slate-200 hover:text-amber-800 dark:hover:text-amber-300 transition-colors text-xs font-bold"
+                >
+                  <Receipt className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                  <div>
+                    <div>मालपोत तथा लाभकर क्यालकुलेटर</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Registration Fee & CGT Tax</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools/aamin-quiz"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-950/60 text-slate-800 dark:text-slate-200 hover:text-teal-800 dark:hover:text-teal-300 transition-colors text-xs font-bold"
+                >
+                  <GraduationCap className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
+                  <div>
+                    <div>लोकसेवा नापी अमिन क्विज</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Surveyor & Aamin Mock Exam</div>
                   </div>
                 </Link>
 
@@ -117,7 +143,7 @@ export default function Navbar() {
                 <Link
                   href="/tools"
                   onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 text-xs font-bold"
+                  className="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-bold"
                 >
                   <span>सबै उपकरणहरू हेर्नुहोस्</span>
                   <span>&rarr;</span>

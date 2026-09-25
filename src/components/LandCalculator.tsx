@@ -12,9 +12,11 @@ import {
   RotateCcw,
   Receipt,
   Building2,
-  Percent
+  Percent,
+  Printer
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import PrintSlipModal from '@/components/PrintSlipModal';
 
 type Mode = 'pahadi' | 'terai' | 'sqft' | 'tax';
 
@@ -40,6 +42,7 @@ export default function LandCalculator() {
   // Land price estimation
   const [pricePerUnit, setPricePerUnit] = useState<number>(0);
   const [copied, setCopied] = useState(false);
+  const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
 
   // Tax / Malpot registration inputs
   const [propertyValue, setPropertyValue] = useState<number>(2500000);
@@ -601,24 +604,34 @@ export default function LandCalculator() {
             </div>
           )}
 
-          {/* Action Footer: Copy Results & Land Solution CTA */}
+          {/* Action Footer: Print, Copy Results & Land Solution CTA */}
           <div className="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-            <button
-              onClick={copyResult}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold transition-all active:scale-95 shadow-xs"
-            >
-              {copied ? (
-                <>
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>नतिजा कपी भयो!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 text-slate-300" />
-                  <span>{mode === 'tax' ? 'कर हिसाब कपी गर्नुहोस्' : 'हिसाब कपी गर्नुहोस् (Copy Summary)'}</span>
-                </>
-              )}
-            </button>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                onClick={() => setIsPrintModalOpen(true)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all active:scale-95 shadow-xs cursor-pointer"
+              >
+                <Printer className="w-4 h-4" />
+                <span>स्लिप प्रिन्ट गर्नुहोस् (Print Slip)</span>
+              </button>
+
+              <button
+                onClick={copyResult}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold transition-all active:scale-95 shadow-xs"
+              >
+                {copied ? (
+                  <>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <span>नतिजा कपी भयो!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-slate-300" />
+                    <span>{mode === 'tax' ? 'कर हिसाब कपी गर्नुहोस्' : 'हिसाब कपी गर्नुहोस् (Copy Summary)'}</span>
+                  </>
+                )}
+              </button>
+            </div>
 
             <a
               href="/land-solution-demo/index.html"
@@ -632,6 +645,27 @@ export default function LandCalculator() {
           </div>
 
         </div>
+
+        {/* Printable Land Slip Modal */}
+        <PrintSlipModal
+          isOpen={isPrintModalOpen}
+          onClose={() => setIsPrintModalOpen(false)}
+          data={{
+            totalSqft,
+            outSqm,
+            outRopani,
+            outAana,
+            outPaisa,
+            outDaam,
+            outBigha,
+            outKatha,
+            outDhur,
+            outKanwa,
+            pricePerUnit,
+            estimatedPrice,
+            priceUnitLabel: mode === 'terai' ? 'प्रति धुर' : 'प्रति आना'
+          }}
+        />
 
         {/* AdSense Slot below calculator */}
         <AdSenseSlot userFacingLabel="विज्ञापन (AdSense In-Feed)" />

@@ -15,7 +15,9 @@ import {
   FileCode,
   ShieldCheck,
   Building2,
-  Scale
+  Scale,
+  GraduationCap,
+  Printer
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -26,6 +28,7 @@ export const metadata: Metadata = {
     'Ropani Bigha Converter',
     'Kitta Kat Checker Nepal',
     'Malpot Tax Calculator Nepal',
+    'Aamin Quiz Nepal',
     'AutoCAD LISP Nepal',
     'जग्गा क्यालकुलेटर',
     'कित्ताकाट मापदण्ड',
@@ -41,7 +44,7 @@ const TOOLS = [
     id: 'land-calculator',
     titleNp: 'जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर',
     titleEn: 'Land Measurement & Unit Converter',
-    description: 'रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुरबीच सटीक रूपान्तरण, वर्गफिट/वर्गमिटर हिसाब र जग्गाको कुल मूल्य निर्धारण।',
+    description: 'रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुरबीच सटीक रूपान्तरण, वर्गफिट/वर्गमिटर हिसाब, जग्गाको कुल मूल्य र आधिकारिक स्लिप प्रिन्ट।',
     badge: 'सर्वाधिक लोकप्रिय (Most Popular)',
     icon: Calculator,
     color: 'emerald',
@@ -49,8 +52,40 @@ const TOOLS = [
     features: [
       'रोपनी ⇄ बिघा ⇄ वर्गफिट ⇄ वर्गमिटर रूपान्तरण',
       'प्रति आना वा प्रति कट्ठा अनुसार कुल मूल्य हिसाब',
-      'मालपोत रजिष्ट्रेसन दस्तुर र पुँजीगत लाभकर अनुमान',
+      '🖨️ आधिकारिक हिसाब स्लिप सिधै प्रिन्ट वा PDF सेभ',
       'फिल्डमा अमिन र जग्गाधनी दुवैका लागि उपयोगी'
+    ]
+  },
+  {
+    id: 'malpot-calculator',
+    titleNp: 'मालपोत रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर क्यालकुलेटर',
+    titleEn: 'Malpot Registration Fee & Capital Gains Tax (CGT)',
+    description: 'घरजग्गा खरिदबिक्रीमा लाग्ने स्थानीय तह रजिस्ट्रेसन दस्तुर, महिला छुट, संयुक्त दर्ता र बिक्रेताको पुँजीगत लाभकरको आधिकारिक हिसाब।',
+    badge: 'नयाँ बजेट २०८१/८२ (New)',
+    icon: Receipt,
+    color: 'amber',
+    href: '/tools/malpot-calculator',
+    features: [
+      'महानगर, उपमहानगर, नगर र गाउँपालिकाको छुट्टाछुट्टै दर',
+      'महिला स्वामित्वमा २५% देखि ५०% सम्म राजस्व छुट',
+      'पुँजीगत लाभकर (CGT ५% र ७.५%) को सटीक हिसाब',
+      '🖨️ आधिकारिक मालपोत राजस्व स्लिप प्रिन्ट'
+    ]
+  },
+  {
+    id: 'aamin-quiz',
+    titleNp: 'लोकसेवा नापी अमिन तथा सर्भेक्षक परीक्षा अभ्यास क्विज',
+    titleEn: 'Lok Sewa Aamin & Surveyor Mock Exam Quiz',
+    description: 'लोक सेवा आयोगको नापी अमिन तथा सर्भेक्षक पदको पाठ्यक्रम अनुसार चेनिङ, कम्पास, लेभलिङ, क्षेत्रफल र जग्गा ऐनको वस्तुगत परीक्षा अभ्यास।',
+    badge: 'लोकसेवा तयारी (Free Quiz)',
+    icon: GraduationCap,
+    color: 'teal',
+    href: '/tools/aamin-quiz',
+    features: [
+      '१६+ आधिकारिक पाठ्यक्रममा आधारित बहुवैकल्पिक प्रश्नहरू (MCQs)',
+      'तत्काल सही उत्तर र विस्तृत कानुनी/प्राविधिक व्याख्या',
+      'अङ्क प्रतिशत र तयारी मूल्याङ्कन ब्याज',
+      'साथीभाइसँग नतिजा सेयर गर्ने सुविधा'
     ]
   },
   {
@@ -76,7 +111,7 @@ const TOOLS = [
     description: 'नापी विभाग र नेपाल कानुन आयोगका सबै १२ वटा आधिकारिक मूल राजपत्र तथा निर्देशिकाहरूको पूर्ण डिजिटल संगालो।',
     badge: '१२ आधिकारिक ऐनहरू',
     icon: Scale,
-    color: 'amber',
+    color: 'purple',
     href: '/laws',
     features: [
       'जग्गा (नाप जाँच) ऐन २०१९ र नियमावली २०५८',

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import KittaKatChecker from '@/components/KittaKatChecker';
+import SocialShareBar from '@/components/SocialShareBar';
 import { ArrowLeft, BookOpen, ShieldCheck, Info, Scale } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -57,6 +58,12 @@ export default function StandaloneKittaKatCheckerPage() {
 
         {/* Embedded Kitta Kat Checker Component */}
         <KittaKatChecker />
+
+        {/* Social Share Bar */}
+        <SocialShareBar 
+          title="कित्ताकाट योग्यता तथा सडक मापदण्ड परीक्षक (भू-उपयोग नियमावली २०८१)" 
+          url="/tools/kitta-kat-checker" 
+        />
 
         {/* Detailed Guidelines & Table */}
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">

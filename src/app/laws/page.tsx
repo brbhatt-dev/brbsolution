@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Scale, ArrowLeft, Building2, ShieldCheck, Sparkles, BookOpen, ExternalLink, HelpCircle } from 'lucide-react';
 import LawsDirectory from '@/components/LawsDirectory';
+import SocialShareBar from '@/components/SocialShareBar';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import { LAW_DOCUMENTS } from '@/data/laws';
 
@@ -140,6 +141,12 @@ export default function LawsPage() {
 
         {/* Interactive Directory (Search, Filter Tabs, Expandable Provisions) */}
         <LawsDirectory />
+
+        {/* Social Share Bar */}
+        <SocialShareBar 
+          title="नेपालका मौजूदा नापी तथा भूमिसम्बन्धी कानुनहरू (Acts, Regulations & Directives)" 
+          url="/laws" 
+        />
 
         {/* Bottom Educational Callout */}
         <div className="bg-gradient-to-r from-emerald-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg space-y-4">
