@@ -2,17 +2,17 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText, Calculator, Split, Wrench } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lawsDropdownOpen, setLawsDropdownOpen] = useState(false);
+  const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
 
   // Clean, focused desktop nav links
   const desktopNavLinks = [
     { name: 'सफ्टवेयरहरू', href: '/#land-solution' },
-    { name: 'क्यालकुलेटर', href: '/#land-calculator' },
     { name: 'गाइड तथा लेखहरू', href: '/articles' },
     { name: 'हाम्रो बारेमा', href: '/about' },
     { name: 'सम्पर्क', href: '/contact' },
@@ -21,9 +21,11 @@ export default function Navbar() {
   // Comprehensive mobile drawer links
   const mobileNavLinks = [
     { name: 'गृहपृष्ठ (Home)', href: '/' },
+    { name: 'उपकरणहरू (Tools Hub)', href: '/tools' },
+    { name: 'जग्गा क्यालकुलेटर (Land Calculator)', href: '/tools/land-calculator' },
+    { name: 'कित्ताकाट परीक्षक (Kitta-Kat Checker)', href: '/tools/kitta-kat-checker' },
     { name: 'मौजूदा कानुनहरू (Laws & Directives)', href: '/laws' },
     { name: 'Land Solution (नापजाँच)', href: '/#land-solution' },
-    { name: 'अनलाइन जग्गा क्यालकुलेटर', href: '/#land-calculator' },
     { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
     { name: 'AutoCAD LSP Scripts', href: '/#autocad-lsp' },
     { name: 'गाइड तथा जानकारीमूलक लेखहरू', href: '/articles' },
@@ -68,12 +70,60 @@ export default function Navbar() {
               सफ्टवेयरहरू
             </Link>
 
-            <Link
-              href="/#land-calculator"
-              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+            {/* उपकरणहरू (Tools) Dropdown */}
+            <div 
+              className="relative group py-2"
+              onMouseEnter={() => setToolsDropdownOpen(true)}
+              onMouseLeave={() => setToolsDropdownOpen(false)}
             >
-              क्यालकुलेटर
-            </Link>
+              <Link
+                href="/tools"
+                className="inline-flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+              >
+                <span>उपकरणहरू (Tools)</span>
+                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+              </Link>
+
+              {/* Tools Dropdown Menu */}
+              <div 
+                className={`absolute top-full left-0 w-64 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 ${
+                  toolsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
+                }`}
+              >
+                <Link
+                  href="/tools/land-calculator"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/60 text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-xs font-bold"
+                >
+                  <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <div>
+                    <div>जग्गा क्यालकुलेटर</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Ropani ⇄ Bigha Converter</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools/kitta-kat-checker"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-800 dark:text-slate-200 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors text-xs font-bold"
+                >
+                  <Split className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <div>
+                    <div>कित्ताकाट परीक्षक</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Eligibility & Setback Checker</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 text-xs font-bold"
+                >
+                  <span>सबै उपकरणहरू हेर्नुहोस्</span>
+                  <span>&rarr;</span>
+                </Link>
+              </div>
+            </div>
 
             {/* मौजूदा कानुनहरू Dropdown */}
             <div 

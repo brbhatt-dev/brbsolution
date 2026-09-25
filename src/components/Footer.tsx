@@ -137,13 +137,31 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#land-calculator" 
+                <Link 
+                  href="/tools" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
                 >
                   <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>अनलाइन जग्गा क्यालकुलेटर (RAPD & BKD)</span>
-                </a>
+                  <span>डिजिटल उपकरणहरू (Tools Hub)</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/land-calculator" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>जग्गा क्यालकुलेटर (Ropani ⇄ Bigha)</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/kitta-kat-checker" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-indigo-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>कित्ताकाट योग्यता परीक्षक (Kitta-Kat)</span>
+                </Link>
               </li>
               <li>
                 <a 
