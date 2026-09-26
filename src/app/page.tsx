@@ -3,11 +3,40 @@ import ToolsAppDashboard from '@/components/ToolsAppDashboard';
 import KnowledgeBaseSection from '@/components/KnowledgeBaseSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import { Sparkles, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { Sparkles, Eye, ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 transition-colors duration-200">
+      
+      {/* Interactive 4-Style Demo Showcase Alert Banner */}
+      <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-indigo-950 text-white px-4 py-2.5 text-xs border-b border-emerald-500/30 shadow-xs notranslate" translate="no">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+          <div className="flex items-center gap-2">
+            <span className="flex h-2 w-2 relative shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="font-bold">
+              🎨 ४ वटा नयाँ डिजाइन डेमोहरू तयार छन् (4 Website Designs Ready):
+            </span>
+            <span className="text-emerald-200 hidden md:inline">
+              आफ्नो रोजाइको डिजाइन हेर्नुहोस् र छान्नुहोस्
+            </span>
+          </div>
+
+          <Link
+            href="/demo"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-[11px] shadow-xs transition-transform active:scale-95 shrink-0"
+          >
+            <Eye className="w-3.5 h-3.5" />
+            <span>४ वटै डिजाइन डेमो हेर्नुहोस्</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </div>
+
       <Navbar />
       
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-10 w-full">
