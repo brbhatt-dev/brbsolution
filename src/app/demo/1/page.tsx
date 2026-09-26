@@ -18,7 +18,7 @@ export default function Demo1Page() {
         </div>
         <Link href="/demo" className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1">
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>सबै ४ वटा डेमो हेर्नुहोस्</span>
+          <span>सबै ८ वटा डेमो हेर्नुहोस्</span>
         </Link>
       </div>
 
