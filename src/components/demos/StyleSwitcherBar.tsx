@@ -1,9 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Eye, Check, Search, Sparkles, Building2 } from 'lucide-react';
+import { Eye, Check, Search, Sparkles, Building2, Crown } from 'lucide-react';
 
 export type DemoStyleId = 
+  | 'style23'
+  | 'style24'
+  | 'style25'
+  | 'style26'
+  | 'style27'
   | 'style18'
   | 'style19'
   | 'style20'
@@ -35,6 +40,41 @@ interface StyleSwitcherBarProps {
 export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleSwitcherBarProps) {
   const styles = [
     {
+      id: 'style23' as DemoStyleId,
+      name: 'Style २३: Spatial Glass (Vision Pro)',
+      vibe: 'भविष्यको पारदर्शी लिक्विड ग्लास',
+      badge: '👑 AI TOP 1',
+      masterpiece: true
+    },
+    {
+      id: 'style27' as DemoStyleId,
+      name: 'Style २७: GovTech AI Co-Pilot',
+      vibe: 'च्याटबक्स र प्रत्यक्ष एआई भू-सहायक',
+      badge: '👑 AI TOP 2',
+      masterpiece: true
+    },
+    {
+      id: 'style24' as DemoStyleId,
+      name: 'Style २४: Leica / Trimble Studio',
+      vibe: 'स्विस इन्जिनियरिङ र गनमेटल टाइटेनियम',
+      badge: '👑 AI TOP 3',
+      masterpiece: true
+    },
+    {
+      id: 'style25' as DemoStyleId,
+      name: 'Style २५: Notion / Craft Workspace',
+      vibe: 'शान्त ज्ञान र डकुमेन्ट कार्यथलो',
+      badge: '👑 AI TOP 4',
+      masterpiece: true
+    },
+    {
+      id: 'style26' as DemoStyleId,
+      name: 'Style २६: Architectural Atlas',
+      vibe: 'Stripe Press लक्जरी मोनोग्राफ',
+      badge: '👑 AI TOP 5',
+      masterpiece: true
+    },
+    {
       id: 'style18' as DemoStyleId,
       name: 'Style १८: नापी विभाग (dos.gov.np)',
       vibe: 'नागरिक बडापत्र र सूचना अधिकारी',
@@ -43,7 +83,7 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
     },
     {
       id: 'style19' as DemoStyleId,
-      name: 'Style १९: भूमिसुधार तथा मालपोत (dolrm.gov.np)',
+      name: 'Style १९: मालपोत विभाग (dolrm.gov.np)',
       vibe: 'LRIMS मालपोत राजस्व र अभिलेख',
       badge: '🇳🇵 मालपोत विभाग',
       highlight: true
@@ -74,7 +114,7 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
       name: 'Style १३: Perplexity Deep Search',
       vibe: 'स्मार्ट एआई सर्च इन्जिन',
       badge: '🔥 BEST SEARCH',
-      highlight: true
+      highlight: false
     },
     {
       id: 'style14' as DemoStyleId,
@@ -191,34 +231,34 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
   ];
 
   return (
-    <div className="sticky top-16 sm:top-20 z-40 bg-slate-900/95 dark:bg-black/95 backdrop-blur-md text-white border-y border-emerald-500/40 p-3 sm:p-4 shadow-xl">
+    <div className="sticky top-16 sm:top-20 z-40 bg-slate-900/95 dark:bg-black/95 backdrop-blur-md text-white border-y border-amber-500/40 p-3 sm:p-4 shadow-xl">
       <div className="max-w-7xl mx-auto flex flex-col gap-3">
         
         {/* Top Info Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-red-600/30 border border-red-500/50 text-red-400 flex items-center justify-center shrink-0">
-              <Building2 className="w-4 h-4 animate-pulse" />
+            <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-400 flex items-center justify-center shrink-0">
+              <Crown className="w-4 h-4 animate-bounce" />
             </div>
             <div>
               <h3 className="text-xs sm:text-sm font-black text-white flex items-center gap-2">
-                <span>नेपाल सरकारी पोर्टल तथा लाइभ डिजाइन छनोट</span>
-                <span className="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded font-black">
-                  २२ वटा शैलीहरू (22 Total Styles)
+                <span>लाइभ डिजाइन छनोट (Master Showroom)</span>
+                <span className="text-[10px] bg-gradient-to-r from-amber-400 to-amber-600 text-black px-2 py-0.5 rounded font-black">
+                  २७ वटा शैलीहरू (27 Total Designs)
                 </span>
               </h3>
               <p className="text-[11px] text-slate-400 hidden sm:block">
-                विशेष गरी नेपालका सरकारी वेबसाइटहरू: <strong>Style १८ (नापी विभाग)</strong>, <strong>Style १९ (मालपोत विभाग)</strong>, <strong>Style २० (नागरिक एप)</strong>, र <strong>Style २१ (मन्त्रालय)</strong> हेर्नुहोस्:
+                विशेष गरी <strong>👑 AI TOP 5 (Style २३ देखि २७)</strong> र नेपालका सरकारी मोडलहरू हेर्नुहोस्:
               </p>
             </div>
           </div>
 
-          <div className="text-[11px] font-mono text-emerald-400 hidden md:block">
+          <div className="text-[11px] font-mono text-amber-400 hidden md:block">
             सक्रिय: <strong>{styles.find(s => s.id === currentStyle)?.name}</strong>
           </div>
         </div>
 
-        {/* 22 Horizontal Scrollable Selector Buttons */}
+        {/* 27 Horizontal Scrollable Selector Buttons */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-none no-scrollbar">
           {styles.map((s) => {
             const isSelected = currentStyle === s.id;
@@ -228,23 +268,27 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
                 onClick={() => onChangeStyle(s.id)}
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all shrink-0 flex items-center gap-2 cursor-pointer ${
                   isSelected
-                    ? 'bg-red-600 text-white font-black shadow-lg scale-102 ring-2 ring-red-400'
-                    : s.highlight
-                      ? 'bg-slate-800 text-red-300 border border-red-500/60 hover:bg-slate-700'
-                      : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 hover:border-slate-600'
+                    ? s.masterpiece
+                      ? 'bg-amber-400 text-slate-950 font-black shadow-lg scale-102 ring-2 ring-amber-300'
+                      : 'bg-emerald-500 text-slate-950 font-black shadow-lg scale-102 ring-2 ring-emerald-300'
+                    : s.masterpiece
+                      ? 'bg-slate-850 text-amber-300 border border-amber-500/60 hover:bg-slate-800'
+                      : s.highlight
+                        ? 'bg-slate-850 text-red-300 border border-red-500/50 hover:bg-slate-800'
+                        : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 hover:border-slate-600'
                 }`}
               >
                 {isSelected && <Check className="w-3.5 h-3.5 stroke-[3] shrink-0" />}
                 <div className="text-left">
                   <div className="leading-tight whitespace-nowrap flex items-center gap-1.5">
                     <span>{s.name}</span>
-                    {s.highlight && !isSelected && (
-                      <span className="text-[9px] bg-red-500/20 text-red-300 px-1 rounded font-black">
-                        GOV
+                    {s.masterpiece && !isSelected && (
+                      <span className="text-[9px] bg-amber-400 text-slate-950 px-1 rounded font-black">
+                        TOP
                       </span>
                     )}
                   </div>
-                  <div className={`text-[10px] whitespace-nowrap ${isSelected ? 'text-red-100 font-semibold' : 'text-slate-400 font-normal'}`}>
+                  <div className={`text-[10px] whitespace-nowrap ${isSelected ? 'text-slate-900 font-semibold' : 'text-slate-400 font-normal'}`}>
                     {s.vibe}
                   </div>
                 </div>

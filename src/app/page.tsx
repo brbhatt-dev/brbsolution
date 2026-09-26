@@ -4,7 +4,7 @@ import KnowledgeBaseSection from '@/components/KnowledgeBaseSection';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { Sparkles, Eye, ArrowRight } from 'lucide-react';
+import { Sparkles, Eye, ArrowRight, Crown } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -19,19 +19,19 @@ export default function Home() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="font-bold">
-              🏛️ २२ वटा डिजाइनहरू (नेपालका सरकारी पोर्टलहरू सहित):
+              👑 २७ वटा विशिष्ट डिजाइनहरू (AI TOP 5 र सरकारी मोडलहरू):
             </span>
             <span className="text-emerald-200 hidden md:inline">
-              नापी विभाग (dos.gov.np), मालपोत (dolrm.gov.np) र नागरिक एप ढाँचा
+              Spatial Glass, Leica, AI Co-Pilot, र नापी विभाग ढाँचा
             </span>
           </div>
 
           <Link
             href="/demo"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-[11px] shadow-xs transition-transform active:scale-95 shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-[11px] shadow-xs transition-transform active:scale-95 shrink-0"
           >
-            <Eye className="w-3.5 h-3.5" />
-            <span>२२ वटै डिजाइन डेमो हेर्नुहोस्</span>
+            <Crown className="w-3.5 h-3.5" />
+            <span>२७ वटै डिजाइन डेमो हेर्नुहोस्</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
