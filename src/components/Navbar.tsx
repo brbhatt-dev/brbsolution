@@ -2,51 +2,49 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText, Calculator, Split, Wrench, Receipt, GraduationCap, Layers, Building2, QrCode, FileCode, BookOpen } from 'lucide-react';
+import { 
+  Menu, 
+  X, 
+  Facebook, 
+  Instagram, 
+  Github, 
+  ChevronRight, 
+  ChevronDown, 
+  Scale, 
+  FileText, 
+  Calculator, 
+  Split, 
+  Receipt, 
+  GraduationCap, 
+  Layers, 
+  Building2, 
+  QrCode, 
+  FileCode, 
+  ArrowRightLeft,
+  ImageIcon,
+  FileStack,
+  Coins,
+  ScrollText,
+  Compass,
+  Wallet,
+  Sparkles,
+  ArrowRight
+} from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lawsDropdownOpen, setLawsDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
-
-  // Clean, focused desktop nav links
-  const desktopNavLinks = [
-    { name: 'सफ्टवेयरहरू', href: '/#land-solution' },
-    { name: 'गाइड तथा लेखहरू', href: '/articles' },
-    { name: 'हाम्रो बारेमा', href: '/about' },
-    { name: 'सम्पर्क', href: '/contact' },
-  ];
-
-  // Comprehensive mobile drawer links
-  const mobileNavLinks = [
-    { name: 'गृहपृष्ठ (Home)', href: '/' },
-    { name: 'उपकरणहरू (Tools Hub)', href: '/tools' },
-    { name: 'जग्गा क्यालकुलेटर (Land Calculator)', href: '/tools/land-calculator' },
-    { name: 'बहु-कित्ता क्यालकुलेटर (Multi-Kitta)', href: '/tools/multi-kitta-calculator' },
-    { name: 'मालपोत तथा लाभकर (Malpot Tax)', href: '/tools/malpot-calculator' },
-    { name: 'कित्ता स्मार्ट QR कोड (Kitta QR)', href: '/tools/kitta-qr' },
-    { name: 'नापी/मालपोत निर्देशिका (Offices Directory)', href: '/tools/survey-offices' },
-    { name: 'लोकसेवा अमिन क्विज (Exam Quiz)', href: '/tools/aamin-quiz' },
-    { name: 'नापी अमिन पाठ्यक्रम (Syllabus & Past Papers)', href: '/tools/aamin-syllabus' },
-    { name: 'AutoCAD LSP स्क्रिप्ट्स हब', href: '/tools/autocad-scripts' },
-    { name: 'कित्ताकाट परीक्षक (Kitta-Kat)', href: '/tools/kitta-kat-checker' },
-    { name: 'मौजूदा कानुनहरू (Laws & Directives)', href: '/laws' },
-    { name: 'Land Solution (नापजाँच)', href: '/#land-solution' },
-    { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
-    { name: 'गाइड तथा जानकारीमूलक लेखहरू', href: '/articles' },
-    { name: 'हाम्रो बारेमा (About Us)', href: '/about' },
-    { name: 'सम्पर्क (Contact)', href: '/contact' },
-  ];
+  const [lawsDropdownOpen, setLawsDropdownOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-xs transition-colors duration-200 notranslate" translate="no">
-      <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
-        <div className="flex items-center justify-between h-14 sm:h-18 md:h-20 gap-4">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200 notranslate" translate="no">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-18 gap-4">
           
-          {/* Logo with Land Solution Official Image */}
+          {/* Logo with Brand Identity */}
           <Link href="/" className="flex items-center gap-2.5 group py-1 shrink-0">
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
+            <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-0.5 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-emerald-500 transition-colors">
               <img
                 src="/logo.png"
                 alt="Land Solution Logo"
@@ -58,248 +56,200 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+              <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
                 Land Solution
               </span>
-              <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-semibold -mt-1">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">
                 BR Bhatta • brbhatta.com
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links with 'मौजूदा कानुनहरू' Dropdown */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
-            <Link
-              href="/#land-solution"
-              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
-            >
-              सफ्टवेयरहरू
-            </Link>
-
-            {/* उपकरणहरू (Tools) Dropdown */}
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-6">
+            
+            {/* All Tools Hub Dropdown */}
             <div 
-              className="relative group py-2"
+              className="relative py-2 group"
               onMouseEnter={() => setToolsDropdownOpen(true)}
               onMouseLeave={() => setToolsDropdownOpen(false)}
             >
               <Link
                 href="/tools"
-                className="inline-flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
               >
-                <span>उपकरणहरू (Tools)</span>
+                <span>उपकरणहरू (Tools Hub)</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
               </Link>
 
-              {/* Tools Dropdown Menu */}
+              {/* Mega Dropdown Menu */}
               <div 
-                className={`absolute top-full left-0 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 max-h-[85vh] overflow-y-auto ${
+                className={`absolute top-full left-0 w-[420px] bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-3 space-y-2 transition-all duration-150 z-50 ${
                   toolsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
                 }`}
               >
-                <Link
-                  href="/tools/land-calculator"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/60 text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-xs font-bold"
-                >
-                  <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <div>
-                    <div>जग्गा क्यालकुलेटर</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Ropani ⇄ Bigha Converter (स्लिप प्रिन्ट)</div>
-                  </div>
-                </Link>
+                <div className="grid grid-cols-2 gap-1 text-xs">
+                  <Link
+                    href="/tools/land-calculator"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Calculator className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span className="truncate">जग्गा क्यालकुलेटर</span>
+                  </Link>
 
-                <Link
-                  href="/tools/multi-kitta-calculator"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/60 text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-xs font-bold"
-                >
-                  <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <div>
-                    <div>बहु-कित्ता क्यालकुलेटर</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Multi-Parcel Sum & Print Slip</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/preeti-to-unicode"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <ArrowRightLeft className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span className="truncate">Preeti ⇄ Unicode</span>
+                  </Link>
 
-                <Link
-                  href="/tools/malpot-calculator"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-800 dark:text-slate-200 hover:text-amber-800 dark:hover:text-amber-300 transition-colors text-xs font-bold"
-                >
-                  <Receipt className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
-                  <div>
-                    <div>मालपोत तथा लाभकर क्यालकुलेटर</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Registration Fee & CGT Tax</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/image-compressor"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <ImageIcon className="w-4 h-4 text-rose-500 shrink-0" />
+                    <span className="truncate">फोटो कम्प्रेसर (२००KB)</span>
+                  </Link>
 
-                <Link
-                  href="/tools/kitta-qr"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-800 dark:text-slate-200 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors text-xs font-bold"
-                >
-                  <QrCode className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
-                  <div>
-                    <div>कित्ता स्मार्ट QR जेनेरेटर</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Real Estate Signboard & Flyer</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/images-to-pdf"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <FileText className="w-4 h-4 text-indigo-500 shrink-0" />
+                    <span className="truncate">तस्विरबाट A4 PDF</span>
+                  </Link>
 
-                <Link
-                  href="/tools/survey-offices"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-950/60 text-slate-800 dark:text-slate-200 hover:text-sky-800 dark:hover:text-sky-300 transition-colors text-xs font-bold"
-                >
-                  <Building2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
-                  <div>
-                    <div>नापी तथा मालपोत निर्देशिका</div>
-                    <div className="text-[10px] text-slate-400 font-normal">77 Districts Offices & Contacts</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/malpot-calculator"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Receipt className="w-4 h-4 text-amber-500 shrink-0" />
+                    <span className="truncate">मालपोत तथा कर</span>
+                  </Link>
 
-                <Link
-                  href="/tools/aamin-quiz"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-teal-50 dark:hover:bg-teal-950/60 text-slate-800 dark:text-slate-200 hover:text-teal-800 dark:hover:text-teal-300 transition-colors text-xs font-bold"
-                >
-                  <GraduationCap className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
-                  <div>
-                    <div>लोकसेवा नापी अमिन क्विज</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Surveyor & Aamin Mock Exam</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/pdf-tools"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <FileStack className="w-4 h-4 text-teal-500 shrink-0" />
+                    <span className="truncate">PDF Merge & Split</span>
+                  </Link>
 
-                <Link
-                  href="/tools/autocad-scripts"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-800 dark:text-slate-200 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-xs font-bold"
-                >
-                  <FileCode className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-                  <div>
-                    <div>AutoCAD LSP स्क्रिप्ट्स हब</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Free AutoLISP Scripts Download</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/kitta-kat-checker"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Split className="w-4 h-4 text-indigo-500 shrink-0" />
+                    <span className="truncate">कित्ताकाट योग्यता</span>
+                  </Link>
 
-                <Link
-                  href="/tools/kitta-kat-checker"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-950/60 text-slate-800 dark:text-slate-200 hover:text-purple-800 dark:hover:text-purple-300 transition-colors text-xs font-bold"
-                >
-                  <Split className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
-                  <div>
-                    <div>कित्ताकाट परीक्षक</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Eligibility & Setback Checker</div>
-                  </div>
-                </Link>
+                  <Link
+                    href="/tools/number-to-words"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Coins className="w-4 h-4 text-amber-500 shrink-0" />
+                    <span className="truncate">अक्षरेपी क्यालकुलेटर</span>
+                  </Link>
+                </div>
 
-                <Link
-                  href="/tools"
-                  onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center justify-between p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold mt-1"
-                >
-                  <span>सबै १० वटा उपकरणहरू हेर्नुहोस्</span>
-                  <span>&rarr;</span>
-                </Link>
+                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <Link
+                    href="/tools"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs font-bold transition-colors"
+                  >
+                    <span>सम्पूर्ण १७+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
 
-            {/* मौजूदा कानुनहरू Dropdown */}
+            {/* Laws Dropdown */}
             <div 
-              className="relative group py-2"
+              className="relative py-2 group"
               onMouseEnter={() => setLawsDropdownOpen(true)}
               onMouseLeave={() => setLawsDropdownOpen(false)}
             >
               <Link
                 href="/laws"
-                className="inline-flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
               >
-                <span>मौजूदा कानुनहरू</span>
+                <span>नापी कानुन (Laws)</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
               </Link>
 
-              {/* Dropdown Menu matching dos.gov.np structure */}
               <div 
-                className={`absolute top-full left-0 w-60 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 ${
+                className={`absolute top-full left-0 w-64 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 ${
                   lawsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
                 }`}
               >
                 <Link
                   href="/laws"
                   onClick={() => setLawsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/60 text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-xs font-bold"
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-bold transition-colors"
                 >
-                  <Scale className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <div>
-                    <div>ऐन तथा नियमावलीहरू</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Acts & Regulations</div>
-                  </div>
+                  <Scale className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>ऐन तथा नियमावलीहरू</span>
                 </Link>
-
                 <Link
-                  href="/laws"
+                  href="/tools/survey-offices"
                   onClick={() => setLawsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-950/60 text-slate-800 dark:text-slate-200 hover:text-sky-800 dark:hover:text-sky-300 transition-colors text-xs font-bold"
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-bold transition-colors"
                 >
-                  <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
-                  <div>
-                    <div>निर्देशिका तथा कार्यविधि</div>
-                    <div className="text-[10px] text-slate-400 font-normal">Directives & Procedures</div>
-                  </div>
+                  <Building2 className="w-4 h-4 text-sky-600 shrink-0" />
+                  <span>७७ जिल्ला नापी निर्देशिका</span>
                 </Link>
               </div>
             </div>
 
             <Link
+              href="/#land-solution"
+              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+            >
+              सफ्टवेयर
+            </Link>
+
+            <Link
               href="/articles"
-              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
             >
               गाइड तथा लेखहरू
             </Link>
 
             <Link
               href="/about"
-              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
             >
               हाम्रो बारेमा
             </Link>
 
             <Link
               href="/contact"
-              className="text-sm font-bold text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors whitespace-nowrap"
+              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
             >
               सम्पर्क
             </Link>
           </nav>
 
-          {/* Desktop Right Side: Social Media Profiles + Theme Toggle */}
-          <div className="hidden sm:flex items-center gap-3 shrink-0">
-            {/* Social Media Profile Links (Separated by clean divider) */}
+          {/* Desktop Right Side: Social Media Icons + Theme Toggle */}
+          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
             <div className="flex items-center gap-1.5 pl-3 border-l border-slate-200 dark:border-slate-800">
-              <a
-                href="https://www.facebook.com/aabiral.bhatt/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xs border border-blue-400/30"
-                aria-label="Facebook Profile"
-                title="Facebook"
-              >
-                <Facebook className="w-4 h-4 fill-white shrink-0" />
-              </a>
-              <a
-                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xs border border-pink-400/30"
-                aria-label="Instagram Profile"
-                title="Instagram"
-              >
-                <Instagram className="w-4 h-4 text-white shrink-0" />
-              </a>
               <a
                 href="https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xs border border-slate-700/60 hover:border-pink-500/50"
+                className="w-8 h-8 rounded-lg bg-black text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-2xs border border-slate-800 hover:border-pink-500/50"
                 aria-label="TikTok Profile"
                 title="TikTok (@br_bhatta)"
               >
@@ -307,79 +257,214 @@ export default function Navbar() {
                   <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
                 </svg>
               </a>
+
               <a
-                href="https://x.com/LandSolutionNpl"
+                href="https://www.facebook.com/aabiral.bhatt/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-black via-slate-900 to-slate-800 text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xs border border-slate-700/60"
-                aria-label="X (Twitter) Profile"
-                title="X (Twitter)"
+                className="w-8 h-8 rounded-lg bg-[#1877F2] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-2xs"
+                aria-label="Facebook Profile"
+                title="Facebook"
               >
-                <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
+                <Facebook className="w-3.5 h-3.5 fill-white shrink-0" />
               </a>
+
               <a
-                href="https://www.threads.com/@landsolutionnepal"
+                href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-black via-slate-900 to-zinc-800 text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xs border border-slate-700/60"
-                aria-label="Threads Profile"
-                title="Threads"
+                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-2xs"
+                aria-label="Instagram Profile"
+                title="Instagram"
               >
-                <svg className="w-3.5 h-3.5 fill-white shrink-0" viewBox="0 0 192 192">
-                  <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2109 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.0328C81.4045 63.6575 90.0153 60.4065 97.222 60.4065C108.618 60.4065 117.818 67.2415 119.827 82.0494C113.883 80.7061 107.566 80.0526 100.973 80.0526C74.6558 80.0526 56.6346 94.3826 56.6346 116.141C56.6346 136.216 71.9547 150.316 93.3644 150.316C109.845 150.316 122.253 141.975 128.539 126.68C133.565 136.657 141.921 142.336 153.864 142.336C168.04 142.336 179.351 133.407 182.261 116.635L166.425 113.863C164.717 123.699 158.647 128.125 152.016 128.125C141.777 128.125 137.073 118.89 137.073 103.072C137.073 99.8735 137.339 96.7909 137.844 93.856C139.117 94.4075 140.354 94.9922 141.537 95.6083C155.074 102.664 163.535 113.208 163.535 126.969H179.197C179.197 108.685 167.348 95.0345 141.537 88.9883ZM122.091 109.308C120.301 123.703 109.734 135.253 94.2796 135.253C80.3955 135.253 71.7486 126.241 71.7486 114.733C71.7486 100.865 83.2104 94.3917 101.442 94.3917C107.575 94.3917 113.242 94.9458 118.324 96.0125C121.218 100.17 122.476 104.708 122.091 109.308Z"/>
-                </svg>
-              </a>
-              <a
-                href="https://github.com/brbhatt-dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#0d1117] via-[#161b22] to-[#24292f] text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xs border border-slate-700/60"
-                aria-label="GitHub Profile"
-                title="GitHub"
-              >
-                <Github className="w-4 h-4 text-white shrink-0" />
+                <Instagram className="w-3.5 h-3.5 text-white shrink-0" />
               </a>
             </div>
 
             <ThemeToggle variant="icon" />
           </div>
 
-          {/* Mobile Right Controls: Theme Toggle & Menu Toggle */}
+          {/* Mobile Right Controls */}
           <div className="flex lg:hidden items-center gap-2">
-            {/* Mobile Direct Theme Toggle (1 Tap on header!) */}
             <ThemeToggle variant="icon" />
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 active:scale-95 text-slate-800 dark:text-slate-200 flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700"
+              className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700"
               aria-label="Open menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-slate-900 dark:text-white" /> : <Menu className="w-5 h-5 text-slate-900 dark:text-white" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Mobile Drawer (Clean, high-contrast, modern) */}
+      {/* MODERN CATEGORIZED MOBILE DRAWER */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-3 pb-6 space-y-4 shadow-2xl max-h-[85vh] overflow-y-auto">
+        <div className="lg:hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 pt-3 pb-8 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
           
-          {/* Navigation Links */}
-          <div className="space-y-1">
-            {mobileNavLinks.map((link) => (
+          {/* Top Quick Action to All Tools */}
+          <Link
+            href="/tools"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold text-xs shadow-xs"
+          >
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              <span>सम्पूर्ण १७+ डिजिटल उपकरण हब (Open Tools Hub)</span>
+            </div>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+
+          {/* Category 1: नापी तथा जग्गा टूल्स */}
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block px-1">
+              📐 नापी तथा जग्गा क्यालकुलेटर
+            </span>
+            <div className="grid grid-cols-2 gap-1.5 text-xs font-bold">
               <Link
-                key={link.name}
-                href={link.href}
+                href="/tools/land-calculator"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 active:bg-emerald-100 hover:text-emerald-800 dark:hover:text-emerald-400 transition-colors min-h-[46px]"
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               >
-                <span>{link.name}</span>
-                <ChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                <Calculator className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="truncate">जग्गा क्यालकुलेटर</span>
               </Link>
-            ))}
+              <Link
+                href="/tools/malpot-calculator"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Receipt className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                <span className="truncate">मालपोत तथा कर</span>
+              </Link>
+              <Link
+                href="/tools/kitta-kat-checker"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Split className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <span className="truncate">कित्ताकाट योग्यता</span>
+              </Link>
+              <Link
+                href="/tools/multi-kitta-calculator"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Layers className="w-3.5 h-3.5 text-teal-500 shrink-0" />
+                <span className="truncate">बहु-कित्ता जोड</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Category 2: डकुमेन्ट तथा PDF स्टुडियो */}
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block px-1">
+              📑 डकुमेन्ट तथा PDF स्टुडियो
+            </span>
+            <div className="grid grid-cols-2 gap-1.5 text-xs font-bold">
+              <Link
+                href="/tools/preeti-to-unicode"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <ArrowRightLeft className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="truncate">Preeti ⇄ Unicode</span>
+              </Link>
+              <Link
+                href="/tools/image-compressor"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <ImageIcon className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                <span className="truncate">फोटो कम्प्रेसर</span>
+              </Link>
+              <Link
+                href="/tools/images-to-pdf"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <FileText className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <span className="truncate">तस्विरबाट PDF</span>
+              </Link>
+              <Link
+                href="/tools/pdf-tools"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <FileStack className="w-3.5 h-3.5 text-teal-500 shrink-0" />
+                <span className="truncate">PDF Merge/Split</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Category 3: कानुनी निर्देशिका तथा अध्ययन */}
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block px-1">
+              📚 कानुन, निर्देशिका तथा अध्ययन
+            </span>
+            <div className="grid grid-cols-2 gap-1.5 text-xs font-bold">
+              <Link
+                href="/tools/survey-offices"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Building2 className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                <span className="truncate">७७ जिल्ला नापी</span>
+              </Link>
+              <Link
+                href="/laws"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Scale className="w-3.5 h-3.5 text-purple-500 shrink-0" />
+                <span className="truncate">मौजूदा कानुनहरू</span>
+              </Link>
+              <Link
+                href="/tools/aamin-quiz"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <GraduationCap className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                <span className="truncate">नापी अमिन क्विज</span>
+              </Link>
+              <Link
+                href="/articles"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <FileText className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <span className="truncate">गाइड तथा लेखहरू</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Category 4: मुख्य सफ्टवेयर र सम्पर्क */}
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold">
+            <Link
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
+            >
+              हाम्रो बारेमा
+            </Link>
+            <span>•</span>
+            <Link
+              href="/#land-solution"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
+            >
+              Land Solution App
+            </Link>
+            <span>•</span>
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-emerald-600 dark:text-emerald-400 font-extrabold"
+            >
+              सम्पर्क फारम
+            </Link>
           </div>
 
         </div>

@@ -11,8 +11,8 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-slate-950 text-slate-300 border-t border-slate-800/80 overflow-hidden notranslate" translate="no">
-      {/* Top Colorful Accent Line */}
-      <div className="h-1 w-full bg-gradient-to-r from-emerald-500 via-teal-400 via-indigo-500 to-rose-500"></div>
+      {/* Top Refined Accent Line */}
+      <div className="h-0.5 w-full bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600"></div>
 
       {/* Subtle Background Glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
