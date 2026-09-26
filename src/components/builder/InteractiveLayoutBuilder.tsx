@@ -3,25 +3,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { 
-  ArrowUp, 
-  ArrowDown, 
+  Move, 
   Trash2, 
   RotateCcw, 
   Sparkles, 
   Copy, 
   Check, 
-  Eye, 
-  EyeOff, 
-  Columns, 
   Plus, 
   Minus, 
   Maximize2, 
-  Minimize2, 
-  GripVertical, 
-  Move, 
-  Type, 
-  MapPin, 
-  Mail, 
+  X,
+  Sliders,
   Calendar, 
   Calculator, 
   ImageIcon, 
@@ -45,47 +37,77 @@ import {
   Facebook, 
   Instagram, 
   Github, 
-  Globe,
-  Sliders,
-  ChevronRight
+  Globe, 
+  Mail, 
+  MapPin,
+  ChevronRight,
+  Eye,
+  Grid
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
-import KnowledgeBaseSection from '../KnowledgeBaseSection';
+
+export interface FreeWidget {
+  id: string;
+  nameNp: string;
+  x: number;
+  y: number;
+  width: number;
+  height?: number;
+  zIndex: number;
+  deleted: boolean;
+}
+
+// Initial 2D Positions & Sizes for every independent component on the canvas
+const INITIAL_WIDGETS: FreeWidget[] = [
+  // 1. Citizen Greeting Headline
+  { id: 'w-greeting-text', nameNp: 'नागरिक सेवा शीर्षक & सन्देश', x: 20, y: 30, width: 720, zIndex: 10, deleted: false },
+  
+  // 2. Nepali Tithi Widget (Independently movable!)
+  { id: 'w-tithi-widget', nameNp: 'नेपाली पात्रो & पञ्चाङ्ग (Tithi Widget)', x: 760, y: 30, width: 380, zIndex: 11, deleted: false },
+
+  // 3. Quick Access Tiles (Independently movable & resizable!)
+  { id: 'w-tile-calc', nameNp: 'टाइल १: जग्गा क्यालकुलेटर', x: 20, y: 250, width: 260, zIndex: 12, deleted: false },
+  { id: 'w-tile-photo', nameNp: 'टाइल २: फोटो कम्प्रेसर', x: 300, y: 250, width: 260, zIndex: 13, deleted: false },
+  { id: 'w-tile-unicode', nameNp: 'टाइल ३: Preeti ⇄ Unicode', x: 580, y: 250, width: 260, zIndex: 14, deleted: false },
+  { id: 'w-tile-pdf', nameNp: 'टाइल ४: तस्विरबाट A4 PDF', x: 860, y: 250, width: 260, zIndex: 15, deleted: false },
+  { id: 'w-tile-malpot', nameNp: 'टाइल ५: मालपोत तथा कर', x: 20, y: 390, width: 260, zIndex: 16, deleted: false },
+  { id: 'w-tile-offices', nameNp: 'टाइल ६: ७७ जिल्ला नापी', x: 300, y: 390, width: 260, zIndex: 17, deleted: false },
+  { id: 'w-tile-legal', nameNp: 'टाइल ७: जग्गा बैना कागज', x: 580, y: 390, width: 260, zIndex: 18, deleted: false },
+  { id: 'w-tile-kitta', nameNp: 'टाइल ८: कित्ताकाट मापदण्ड', x: 860, y: 390, width: 260, zIndex: 19, deleted: false },
+
+  // 4. Secondary Chips Strip
+  { id: 'w-chips-strip', nameNp: 'थप टूल्स चिप्स पट्टी (AutoCAD, KML, Quiz)', x: 20, y: 530, width: 1100, zIndex: 20, deleted: false },
+
+  // 5. Precision Land Calculator
+  { id: 'w-land-calculator', nameNp: 'जग्गा क्यालकुलेटर मुख्य इन्जिन', x: 20, y: 610, width: 1120, zIndex: 21, deleted: false },
+
+  // 6. Mobile Apps Showcase
+  { id: 'w-app-land-solution', nameNp: 'एप कार्ड १: Land Solution नापी एप', x: 20, y: 1180, width: 540, zIndex: 22, deleted: false },
+  { id: 'w-app-hamro-kosh', nameNp: 'एप कार्ड २: हाम्रो कोष बचत सफ्टवेयर', x: 580, y: 1180, width: 540, zIndex: 23, deleted: false },
+
+  // 7. Contact Info & Map (Separate movable boxes!)
+  { id: 'w-contact-info', nameNp: 'सम्पर्क विवरण (इमेल र ठेगाना)', x: 20, y: 1380, width: 440, zIndex: 24, deleted: false },
+  { id: 'w-contact-map', nameNp: 'काठमाडौँ गुगल नक्सा (Interactive Map)', x: 20, y: 1600, width: 440, zIndex: 25, deleted: false },
+  { id: 'w-contact-form', nameNp: 'सिधै सन्देश पठाउने फारम (Message Form)', x: 480, y: 1380, width: 660, zIndex: 26, deleted: false },
+
+  // 8. Footer Columns (Separate movable boxes!)
+  { id: 'w-footer-brand', nameNp: 'फुटर १: ब्रान्ड, विवरण & सोसियल', x: 20, y: 1920, width: 340, zIndex: 27, deleted: false },
+  { id: 'w-footer-tools', nameNp: 'फुटर २: डिजिटल उपकरण तथा PDF लिङ्कहरू', x: 380, y: 1920, width: 240, zIndex: 28, deleted: false },
+  { id: 'w-footer-study', nameNp: 'फुटर ३: स्रोत तथा अध्ययन लिङ्कहरू', x: 640, y: 1920, width: 240, zIndex: 29, deleted: false },
+  { id: 'w-footer-contact', nameNp: 'फुटर ४: सम्पर्क तथा सहयोग बक्स', x: 900, y: 1920, width: 240, zIndex: 30, deleted: false },
+  { id: 'w-footer-bottom', nameNp: 'फुटर तल्लो पट्टी (कपीराइट & AI बटन)', x: 20, y: 2200, width: 1120, zIndex: 31, deleted: false }
+];
 
 export default function InteractiveLayoutBuilder() {
+  const [widgets, setWidgets] = useState<FreeWidget[]>(INITIAL_WIDGETS);
+  const [maxZ, setMaxZ] = useState<number>(40);
   const [copied, setCopied] = useState<boolean>(false);
-  const [showControls, setShowControls] = useState<boolean>(true);
-  
-  // Section Ordering (Top to Bottom)
-  const [sections, setSections] = useState<string[]>([
-    'sec-greeting',
-    'sec-tiles',
-    'sec-chips',
-    'sec-calc',
-    'sec-apps',
-    'sec-articles',
-    'sec-contact',
-    'sec-footer'
-  ]);
+  const [activeWidgetId, setActiveWidgetId] = useState<string | null>(null);
+  const [canvasHeight, setCanvasHeight] = useState<number>(2400);
+  const canvasRef = useRef<HTMLDivElement>(null);
 
-  // Section Widths (% or custom)
-  const [widths, setWidths] = useState<Record<string, number>>({
-    'sec-greeting': 100,
-    'sec-tiles': 100,
-    'sec-chips': 100,
-    'sec-calc': 100,
-    'sec-apps': 100,
-    'sec-articles': 100,
-    'sec-contact': 100,
-    'sec-footer': 100,
-  });
-
-  const [deletedSections, setDeletedSections] = useState<string[]>([]);
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Activate Browser designMode for 100% UNRESTRICTED TYPING & EDITING ON EVERY WORD
+  // Activate Browser designMode for UNRESTRICTED TYPING OF EVERY WORD
   useEffect(() => {
     if (typeof document !== 'undefined') {
       try {
@@ -94,80 +116,45 @@ export default function InteractiveLayoutBuilder() {
     }
   }, []);
 
-  // Drag and drop handlers for section reordering
-  const handleDragStart = (e: React.DragEvent, index: number) => {
-    setDraggedIndex(index);
-    e.dataTransfer.effectAllowed = 'move';
-  };
+  // Free Dragging (Mouse Move anywhere in 2D Space)
+  const handleDragStart = (e: React.MouseEvent, widgetId: string) => {
+    // Don't drag if clicking inside an input or button
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.classList.contains('resize-corner-handle') || target.classList.contains('no-drag')) {
+      return;
+    }
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
-    e.preventDefault();
-    if (draggedIndex === null || draggedIndex === index) return;
-    const newSections = [...sections];
-    const draggedItem = newSections[draggedIndex];
-    newSections.splice(draggedIndex, 1);
-    newSections.splice(index, 0, draggedItem);
-    setDraggedIndex(index);
-    setSections(newSections);
-  };
-
-  const handleDragEnd = () => {
-    setDraggedIndex(null);
-  };
-
-  // Move Section Up/Down
-  const moveUp = (index: number) => {
-    if (index === 0) return;
-    const newSections = [...sections];
-    const temp = newSections[index - 1];
-    newSections[index - 1] = newSections[index];
-    newSections[index] = temp;
-    setSections(newSections);
-  };
-
-  const moveDown = (index: number) => {
-    if (index === sections.length - 1) return;
-    const newSections = [...sections];
-    const temp = newSections[index + 1];
-    newSections[index + 1] = newSections[index];
-    newSections[index] = temp;
-    setSections(newSections);
-  };
-
-  // Custom Resize (सानो / ठूलो बनाउने)
-  const changeWidth = (id: string, delta: number) => {
-    const current = widths[id] || 100;
-    const next = Math.max(30, Math.min(100, current + delta));
-    setWidths(prev => ({ ...prev, [id]: next }));
-  };
-
-  const setExactWidth = (id: string, pct: number) => {
-    setWidths(prev => ({ ...prev, [id]: pct }));
-  };
-
-  // Delete Section
-  const deleteSection = (id: string) => {
-    setDeletedSections(prev => [...prev, id]);
-  };
-
-  // Restore Section
-  const restoreSection = (id: string) => {
-    setDeletedSections(prev => prev.filter(x => x !== id));
-  };
-
-  // Mouse drag-resize corner handle
-  const handleCornerResizeMouseDown = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     e.stopPropagation();
+
+    setActiveWidgetId(widgetId);
+    const newZ = maxZ + 1;
+    setMaxZ(newZ);
+
     const startX = e.clientX;
-    const startWidthPct = widths[id] || 100;
-    const containerWidth = containerRef.current?.offsetWidth || window.innerWidth;
+    const startY = e.clientY;
+    const widget = widgets.find(w => w.id === widgetId);
+    if (!widget) return;
+    const initialX = widget.x;
+    const initialY = widget.y;
 
     const onMouseMove = (moveEvent: MouseEvent) => {
-      const deltaX = moveEvent.clientX - startX;
-      const deltaPct = Math.round((deltaX / containerWidth) * 100);
-      const newWidth = Math.max(30, Math.min(100, startWidthPct + deltaPct));
-      setWidths(prev => ({ ...prev, [id]: newWidth }));
+      const dx = moveEvent.clientX - startX;
+      const dy = moveEvent.clientY - startY;
+      const newX = Math.max(0, initialX + dx);
+      const newY = Math.max(0, initialY + dy);
+
+      setWidgets(prev => prev.map(w => {
+        if (w.id === widgetId) {
+          return { ...w, x: newX, y: newY, zIndex: newZ };
+        }
+        return w;
+      }));
+
+      // Adjust canvas height if moved past bottom
+      if (newY + 400 > canvasHeight) {
+        setCanvasHeight(newY + 600);
+      }
     };
 
     const onMouseUp = () => {
@@ -179,27 +166,90 @@ export default function InteractiveLayoutBuilder() {
     window.addEventListener('mouseup', onMouseUp);
   };
 
-  // Copy Full Design for Agent
-  const copyLayoutResult = () => {
-    const visibleOrder = sections
-      .filter(id => !deletedSections.includes(id))
-      .map((id, i) => `${i + 1}. [${id}] - चौडाइ: ${widths[id] || 100}%`)
-      .join('\n');
+  // Custom Corner Drag Resizing (Stretches width and height like a picture!)
+  const handleCornerResize = (e: React.MouseEvent, widgetId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    const deletedList = deletedSections.join(', ');
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const widget = widgets.find(w => w.id === widgetId);
+    if (!widget) return;
+    const initialWidth = widget.width;
+    const initialHeight = widget.height || 150;
 
-    const text = `नमस्ते! मैले वेबसाइटको सम्पूर्ण भागहरू (Drag & Drop, साइज सानो/ठूलो, अक्षर सम्पादन, र डिलिट) यसरी तयार पारें। कृपया यही डिजाइन मुख्य होमपेजमा सेट गरिदिनुहोस्:\n\n【क्रम र चौडाइ (Order & Size)】:\n${visibleOrder}\n\n【हटाइएका खण्डहरू】: ${deletedList || 'कुनै छैन'}\n\n[ब्राउजरमा टाइप गरिएका सबै अक्षरहरू सुरक्षित छन्]`;
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      const dx = moveEvent.clientX - startX;
+      const dy = moveEvent.clientY - startY;
+      const newWidth = Math.max(160, initialWidth + dx);
+      const newHeight = Math.max(60, initialHeight + dy);
+
+      setWidgets(prev => prev.map(w => {
+        if (w.id === widgetId) {
+          return { ...w, width: newWidth, height: newHeight };
+        }
+        return w;
+      }));
+    };
+
+    const onMouseUp = () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  };
+
+  // Delete Widget
+  const deleteWidget = (widgetId: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setWidgets(prev => prev.map(w => w.id === widgetId ? { ...w, deleted: true } : w));
+  };
+
+  // Restore Widget
+  const restoreWidget = (widgetId: string) => {
+    setWidgets(prev => prev.map(w => w.id === widgetId ? { ...w, deleted: false } : w));
+  };
+
+  // Reset Everything
+  const resetCanvas = () => {
+    if (window.confirm('सुरुको सामान्य अवस्थामा फर्काउन चाहनुहुन्छ?')) {
+      setWidgets(INITIAL_WIDGETS);
+    }
+  };
+
+  // Quick resize buttons (+ / -)
+  const adjustWidth = (widgetId: string, delta: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setWidgets(prev => prev.map(w => {
+      if (w.id === widgetId) {
+        return { ...w, width: Math.max(180, w.width + delta) };
+      }
+      return w;
+    }));
+  };
+
+  // Copy Full Coordinates & Design Code for Agent
+  const copyLayoutPlan = () => {
+    const active = widgets.filter(w => !w.deleted);
+    const summary = active.map(w => `• [${w.nameNp}]: X=${w.x}px, Y=${w.y}px, चौडाइ=${w.width}px`).join('\n');
+    const deletedList = widgets.filter(w => w.deleted).map(w => w.nameNp).join(', ');
+
+    const text = `नमस्ते! मैले वेबसाइटलाई क्यानभासमा तस्विर जस्तै फ्री-ड्र्याग गरेर आफ्नो इच्छा अनुसार मिलाएँ। कृपया यसै अनुसार मुख्य होमपेज सेट गरिदिनुहोस्:\n\n【प्रत्येक बक्सको स्थान र साइज】:\n${summary}\n\n【हटाइएका बक्सहरू】: ${deletedList || 'कुनै छैन'}\n\n[Code]: ${JSON.stringify(active.map(w => ({ id: w.id, x: w.x, y: w.y, width: w.width })))}`;
 
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   };
 
+  const deletedList = widgets.filter(w => w.deleted);
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       
       {/* ========================================================= */}
-      {/* 1. MASTER FLOATING STUDIO BAR (DRAG, RESIZE, EDIT ACCESS) */}
+      {/* TOP FLOATING CANVAS STUDIO HEADER                         */}
       {/* ========================================================= */}
       <div 
         contentEditable={false}
@@ -208,71 +258,58 @@ export default function InteractiveLayoutBuilder() {
       >
         <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
           
-          <div className="flex items-center gap-2.5 w-full lg:w-auto">
+          <div className="flex items-center gap-2.5">
             <span className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-sm font-black text-white">
-                  ड्र्याग-ड्रप & साइज स्टुडियो (Drag-Drop, Move & Custom Resize Studio)
+                  🎨 क्यानभास फ्री-मुभ स्टुडियो (Canva-Style Free Move & Drag Studio)
                 </span>
                 <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950">
-                  Full Access
+                  २D Free Canvas
                 </span>
               </div>
               <p className="text-[11px] text-emerald-200">
-                प्रत्येक सेक्सनलाई <strong>माउसले समातेर माथि/तल सार्नुहोस् (Drag & Drop)</strong>, <strong>दायाँ कुना तानेर साइज सानो/ठूलो (Resize)</strong> बनाउनुहोस्, र <strong>कुनै पनि अक्षरमा क्लिक गरेर सीधै टाइप गर्नुहोस्</strong>।
+                वेबसाइटको <strong>हरेक भाग (पात्रो, क्यालकुलेटर, टाइल, नक्सा, फारम, फुटर) लाई माउसले समातेर जहाँ मन लाग्छ त्यहाँ तान्नुहोस्</strong>। दायाँ कुना तानेर <strong>साइज जत्रो पनि बनाउनुहोस्</strong>, र <strong>अक्षर सिधै टाइप गर्नुहोस्</strong>।
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap w-full lg:w-auto justify-end">
-            
-            {/* Toggle Controls */}
+          <div className="flex items-center gap-2 flex-wrap">
             <button
-              onClick={() => setShowControls(!showControls)}
-              className="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1.5 cursor-pointer"
-            >
-              {showControls ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-              <span>{showControls ? 'कन्ट्रोल बार लुकाउनुहोस्' : 'कन्ट्रोल देखाउनुहोस्'}</span>
-            </button>
-
-            {/* Reset */}
-            <button
-              onClick={() => window.location.reload()}
+              onClick={resetCanvas}
               title="सुरुको अवस्थामा फर्काउनुहोस्"
-              className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
 
-            {/* Copy Button */}
             <button
-              onClick={copyLayoutResult}
-              className={`px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer ${
+              onClick={copyLayoutPlan}
+              className={`px-4 py-2 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer ${
                 copied ? 'bg-emerald-400 text-slate-950' : 'bg-emerald-600 hover:bg-emerald-500 text-white'
               }`}
             >
-              {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'कपी गरियो!' : '💾 यो लेआउट सेभ & कपी गर्नुहोस्'}</span>
+              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              <span>{copied ? 'कपी गरियो!' : '💾 यो फाइनल तस्विर/लेआउट सेभ & कपी गर्नुहोस्'}</span>
             </button>
-
           </div>
 
         </div>
 
-        {/* Deleted Items Bar */}
-        {deletedSections.length > 0 && (
+        {/* Deleted Restoration Strip */}
+        {deletedList.length > 0 && (
           <div className="bg-amber-950/80 border border-amber-500/40 p-2 rounded-xl text-xs text-amber-200 flex items-center justify-between flex-wrap gap-2">
-            <span>हटाइएका सेक्सनहरू ({deletedSections.length}):</span>
+            <span>हटाइएका बक्सहरू ({deletedList.length}):</span>
             <div className="flex items-center gap-1.5 flex-wrap">
-              {deletedSections.map(id => (
+              {deletedList.map(w => (
                 <button
-                  key={id}
-                  onClick={() => restoreSection(id)}
+                  key={w.id}
+                  onClick={() => restoreWidget(w.id)}
                   className="px-2 py-0.5 rounded-md bg-amber-500 text-slate-950 font-bold text-[10px] flex items-center gap-1 cursor-pointer"
                 >
                   <Plus className="w-3 h-3" />
-                  <span>{id} फिर्ता ल्याउनुहोस्</span>
+                  <span>{w.nameNp} फिर्ता</span>
                 </button>
               ))}
             </div>
@@ -281,635 +318,412 @@ export default function InteractiveLayoutBuilder() {
       </div>
 
       {/* ========================================================= */}
-      {/* 2. THE DRAGGABLE, RESIZABLE, AND EDITABLE CANVAS          */}
+      {/* THE 2D FREE-FLOATING CANVAS WORKSPACE                      */}
       {/* ========================================================= */}
       <div 
-        ref={containerRef} 
-        className="space-y-8 flex flex-col items-center w-full"
+        ref={canvasRef}
+        style={{ height: `${canvasHeight}px` }}
+        className="relative w-full rounded-3xl border-2 border-dashed border-emerald-500/40 bg-slate-900/20 backdrop-blur-xs overflow-hidden select-text p-4"
       >
-        {sections.map((sectionId, idx) => {
-          if (deletedSections.includes(sectionId)) return null;
+        
+        {/* Background Dot Grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none"></div>
 
-          const currentWidth = widths[sectionId] || 100;
+        {/* RENDER EVERY INDEPENDENT FREE-FLOATING WIDGET */}
+        {widgets.map((widget) => {
+          if (widget.deleted) return null;
 
           return (
             <div
-              key={sectionId}
-              draggable={showControls}
-              onDragStart={(e) => handleDragStart(e, idx)}
-              onDragOver={(e) => handleDragOver(e, idx)}
-              onDragEnd={handleDragEnd}
-              style={{ width: `${currentWidth}%` }}
-              className={`transition-all duration-150 relative group/section ${
-                showControls ? 'ring-1 ring-slate-300 dark:ring-slate-800 hover:ring-2 hover:ring-emerald-500 rounded-3xl p-1' : ''
-              }`}
+              key={widget.id}
+              style={{
+                position: 'absolute',
+                left: `${widget.x}px`,
+                top: `${widget.y}px`,
+                width: `${widget.width}px`,
+                height: widget.height ? `${widget.height}px` : 'auto',
+                zIndex: widget.zIndex,
+              }}
+              onMouseDown={(e) => handleDragStart(e, widget.id)}
+              className="group/widget absolute transition-shadow duration-75 cursor-grab active:cursor-grabbing hover:ring-2 hover:ring-emerald-400 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md select-text"
             >
               
-              {/* Floating Element Top Bar (Drag, Move, Custom Size, Delete) */}
-              {showControls && (
-                <div 
-                  contentEditable={false}
-                  suppressContentEditableWarning={true}
-                  className="mb-2 p-2 rounded-2xl bg-slate-900/95 text-white backdrop-blur-md border border-slate-700 shadow-md flex items-center justify-between gap-2 select-none"
-                >
-                  
-                  {/* Left: Drag Handle, Order, Title */}
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div 
-                      title="यसलाई समातेर माथि/तल जहाँ पनि सार्नुहोस् (Drag & Drop)"
-                      className="cursor-grab active:cursor-grabbing p-1.5 rounded-lg bg-emerald-600 text-white flex items-center gap-1 text-[11px] font-bold"
-                    >
-                      <GripVertical className="w-4 h-4" />
-                      <span className="hidden sm:inline">ड्र्याग (Drag)</span>
-                    </div>
-
-                    <span className="w-5 h-5 rounded-md bg-slate-800 text-slate-200 text-xs font-black flex items-center justify-center shrink-0">
-                      {idx + 1}
-                    </span>
-
-                    <span className="text-xs font-bold text-slate-200 truncate">
-                      {sectionId}
-                    </span>
-                  </div>
-
-                  {/* Right: Quick Resize, Move Up/Down, Delete */}
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    
-                    {/* Size Selector Buttons: 100%, 75%, 50%, 33% */}
-                    <div className="flex items-center bg-slate-800 rounded-lg p-0.5 text-[10px] font-bold">
-                      <button 
-                        onClick={() => setExactWidth(sectionId, 100)} 
-                        className={`px-1.5 py-0.5 rounded cursor-pointer ${currentWidth === 100 ? 'bg-emerald-500 text-black' : 'text-slate-400'}`}
-                      >
-                        100%
-                      </button>
-                      <button 
-                        onClick={() => setExactWidth(sectionId, 75)} 
-                        className={`px-1.5 py-0.5 rounded cursor-pointer ${currentWidth === 75 ? 'bg-emerald-500 text-black' : 'text-slate-400'}`}
-                      >
-                        75%
-                      </button>
-                      <button 
-                        onClick={() => setExactWidth(sectionId, 50)} 
-                        className={`px-1.5 py-0.5 rounded cursor-pointer ${currentWidth === 50 ? 'bg-emerald-500 text-black' : 'text-slate-400'}`}
-                      >
-                        50%
-                      </button>
-                    </div>
-
-                    {/* Finer Size: Sano / Thulo Buttons */}
-                    <button
-                      onClick={() => changeWidth(sectionId, -10)}
-                      title="सानो बनाउनुहोस् (Narrow)"
-                      className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white cursor-pointer"
-                    >
-                      <Minus className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => changeWidth(sectionId, 10)}
-                      title="ठूलो बनाउनुहोस् (Widen)"
-                      className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white cursor-pointer"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                    </button>
-
-                    {/* Move Up / Down */}
-                    <button
-                      onClick={() => moveUp(idx)}
-                      disabled={idx === 0}
-                      title="माथि सार्नुहोस्"
-                      className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white disabled:opacity-30 cursor-pointer"
-                    >
-                      <ArrowUp className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => moveDown(idx)}
-                      disabled={idx === sections.length - 1}
-                      title="तल सार्नुहोस्"
-                      className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white disabled:opacity-30 cursor-pointer"
-                    >
-                      <ArrowDown className="w-3.5 h-3.5" />
-                    </button>
-
-                    {/* Delete Button */}
-                    <button
-                      onClick={() => deleteSection(sectionId)}
-                      title="यो सेक्सन हटाउनुहोस्"
-                      className="p-1 rounded-lg bg-rose-950 hover:bg-rose-900 text-rose-300 border border-rose-700 cursor-pointer"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-
-                  </div>
-
+              {/* Widget Top Controller Pill (Always Visible on Hover) */}
+              <div 
+                contentEditable={false}
+                suppressContentEditableWarning={true}
+                className="no-drag absolute -top-8 left-0 right-0 h-7 px-2 bg-slate-950/90 text-white rounded-t-xl border border-slate-700 flex items-center justify-between text-[11px] font-bold select-none opacity-90 group-hover/widget:opacity-100 transition-opacity z-30"
+              >
+                <div className="flex items-center gap-1.5 truncate">
+                  <Move className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span className="truncate">{widget.nameNp}</span>
                 </div>
-              )}
 
-              {/* RENDER THE ACTUAL SECTION */}
-              <div className="relative">
+                <div className="flex items-center gap-1 shrink-0">
+                  <button 
+                    onClick={(e) => adjustWidth(widget.id, -40, e)}
+                    title="चौडाइ सानो बनाउनुहोस्"
+                    className="p-1 hover:bg-slate-800 rounded text-slate-300 hover:text-white"
+                  >
+                    <Minus className="w-3 h-3" />
+                  </button>
+                  <button 
+                    onClick={(e) => adjustWidth(widget.id, 40, e)}
+                    title="चौडाइ ठूलो बनाउनुहोस्"
+                    className="p-1 hover:bg-slate-800 rounded text-slate-300 hover:text-white"
+                  >
+                    <Plus className="w-3 h-3" />
+                  </button>
+                  <button 
+                    onClick={(e) => deleteWidget(widget.id, e)}
+                    title="यो बक्स हटाउनुहोस्"
+                    className="p-1 hover:bg-rose-900 rounded text-rose-400"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* WIDGET CONTENT */}
+              <div className="p-3 w-full h-full overflow-hidden">
                 
-                {/* SECTION: GREETING & TITHI */}
-                {sectionId === 'sec-greeting' && (
-                  <section className="p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-700 via-teal-700 to-indigo-800 text-white shadow-lg space-y-4">
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                      <div className="space-y-2 max-w-2xl">
-                        <span className="text-xs font-bold text-emerald-200 tracking-wider uppercase flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5" />
-                          <span>नेपाल डिजिटल नागरिक सेवा (Citizen Services Portal)</span>
-                        </span>
-                        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
-                          तपाईंलाई आज कुन सेवा वा टूल आवश्यक छ?
-                        </h1>
-                        <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-xl">
-                          जग्गा नापजाँच, सरकारी फारमका लागि फोटो साइज घटाउने, प्रिती युनिकोड, मालपोत कर वा PDF बनाउने सम्पूर्ण काम एकै स्थानबाट गर्नुहोस्।
-                        </p>
-                      </div>
-                      <div className="shrink-0 w-full sm:w-auto" contentEditable={false}>
-                        <TithiWidget />
-                      </div>
-                    </div>
-                  </section>
-                )}
-
-                {/* SECTION: 8 QUICK ACCESS TILES */}
-                {sectionId === 'sec-tiles' && (
-                  <section className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-emerald-600" />
-                        <span>प्रमुख अनलाइन सेवाहरू (Quick Access Tiles)</span>
-                      </h2>
-                      <Link href="/tools" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
-                        सबै १५+ टूल्स हेर्नुहोस् →
-                      </Link>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4">
-                      
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <Calculator className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">जग्गा क्यालकुलेटर</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">रोपनी-बिघा-वर्गमिटर हिसाब</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-rose-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <ImageIcon className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">फोटो कम्प्रेसर</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">सरकारी फारमका लागि २००KB</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-teal-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <ArrowRightLeft className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">Preeti ⇄ Unicode</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">नेपाली टाइपिङ कन्भर्टर</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-indigo-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <FileText className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">तस्विरबाट A4 PDF</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">लालपुर्जा / नक्सा डकुमेन्ट</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <Coins className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">मालपोत तथा कर</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">रजिस्ट्रेसन & CGT दस्तुर</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-sky-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <Building2 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">७७ जिल्ला नापी</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">कार्यालय फोन, इमेल र ठेगाना</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <ScrollText className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">जग्गा बैना कागज</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">A4 कानुनी लिखत तमसुक</p>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
-                        <div className="w-11 h-11 rounded-xl bg-purple-500 text-white flex items-center justify-center shadow-xs shrink-0">
-                          <Split className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">कित्ताकाट मापदण्ड</h3>
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">१३० वर्गमिटर नियम चेकर</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </section>
-                )}
-
-                {/* SECTION: SECONDARY CHIPS STRIP */}
-                {sectionId === 'sec-chips' && (
-                  <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none no-scrollbar pt-1">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
-                      थप टूल्स:
+                {/* 1. Greeting Headline */}
+                {widget.id === 'w-greeting-text' && (
+                  <div className="p-5 rounded-2xl bg-gradient-to-r from-emerald-700 via-teal-700 to-indigo-800 text-white space-y-2 h-full flex flex-col justify-center">
+                    <span className="text-xs font-bold text-emerald-200 tracking-wider uppercase flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span>नेपाल डिजिटल नागरिक सेवा (Citizen Services Portal)</span>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+                    <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+                      तपाईंलाई आज कुन सेवा वा टूल आवश्यक छ?
+                    </h1>
+                    <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed">
+                      जग्गा नापजाँच, सरकारी फारमका लागि फोटो साइज घटाउने, प्रिती युनिकोड, मालपोत कर वा PDF बनाउने सम्पूर्ण काम एकै स्थानबाट गर्नुहोस्।
+                    </p>
+                  </div>
+                )}
+
+                {/* 2. Tithi Widget (Image 2 - Standalone movable object!) */}
+                {widget.id === 'w-tithi-widget' && (
+                  <div className="h-full flex items-center justify-center" contentEditable={false}>
+                    <TithiWidget />
+                  </div>
+                )}
+
+                {/* 3. Individual Tiles */}
+                {widget.id === 'w-tile-calc' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                      <Calculator className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">जग्गा क्यालकुलेटर</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">रोपनी-बिघा-वर्गमिटर हिसाब</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-photo' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-rose-500 text-white flex items-center justify-center shrink-0">
+                      <ImageIcon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">फोटो कम्प्रेसर</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">सरकारी फारमका लागि २००KB</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-unicode' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-teal-500 text-white flex items-center justify-center shrink-0">
+                      <ArrowRightLeft className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">Preeti ⇄ Unicode</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">नेपाली टाइपिङ कन्भर्टर</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-pdf' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-indigo-500 text-white flex items-center justify-center shrink-0">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">तस्विरबाट A4 PDF</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">लालपुर्जा / नक्सा डकुमेन्ट</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-malpot' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+                      <Coins className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">मालपोत तथा कर</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">रजिस्ट्रेसन & CGT दस्तुर</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-offices' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-sky-500 text-white flex items-center justify-center shrink-0">
+                      <Building2 className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">७७ जिल्ला नापी</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">कार्यालय फोन, इमेल र ठेगाना</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-legal' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center shrink-0">
+                      <ScrollText className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">जग्गा बैना कागज</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">A4 कानुनी लिखत तमसुक</p>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-tile-kitta' && (
+                  <div className="flex items-center gap-3 h-full">
+                    <div className="w-11 h-11 rounded-xl bg-purple-500 text-white flex items-center justify-center shrink-0">
+                      <Split className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">कित्ताकाट मापदण्ड</h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">१३० वर्गमिटर नियम चेकर</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. Chips Strip */}
+                {widget.id === 'w-chips-strip' && (
+                  <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">थप टूल्स:</span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold shrink-0">
                       <Layers className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>बहु-कित्ता क्यालकुलेटर</span>
+                      <span>बहु-कित्ता</span>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold shrink-0">
                       <Compass className="w-3.5 h-3.5 text-emerald-600" />
                       <span>AutoCAD Scripts</span>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold shrink-0">
                       <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
                       <span>Excel to KML</span>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold shrink-0">
                       <FileStack className="w-3.5 h-3.5 text-emerald-600" />
                       <span>PDF सुइट</span>
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold shrink-0">
                       <ScrollText className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>अक्षरेपी (Number to Words)</span>
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
-                      <QrCode className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>कित्ता QR कोड</span>
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
-                      <GraduationCap className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>अमिन लोकसेवा क्विज</span>
+                      <span>अक्षरेपी</span>
                     </span>
                   </div>
                 )}
 
-                {/* SECTION: LAND CALCULATOR */}
-                {sectionId === 'sec-calc' && (
-                  <section id="land-calc-section" className="scroll-mt-24 space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <div className="space-y-0.5">
-                        <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-                          <Calculator className="w-5 h-5 text-emerald-600" />
-                          <span>जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर</span>
-                        </h2>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">
-                          रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर-कनुवा हिसाब र आधिकारिक स्लिप प्रिन्ट
-                        </p>
-                      </div>
-                      <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800 shrink-0 hidden sm:inline-block">
+                {/* 5. Precision Land Calculator */}
+                {widget.id === 'w-land-calculator' && (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between pb-1 border-b border-slate-200 dark:border-slate-800">
+                      <h2 className="text-base font-black text-slate-900 dark:text-white flex items-center gap-2">
+                        <Calculator className="w-5 h-5 text-emerald-600" />
+                        <span>जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर</span>
+                      </h2>
+                      <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-0.5 rounded-full border border-emerald-300">
                         स्लिप प्रिन्ट उपलब्ध
                       </span>
                     </div>
-
-                    <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs p-1" contentEditable={false}>
+                    <div contentEditable={false}>
                       <LandCalculator />
                     </div>
-                  </section>
+                  </div>
                 )}
 
-                {/* SECTION: MOBILE APPS */}
-                {sectionId === 'sec-apps' && (
-                  <section className="space-y-3 pt-2">
-                    <div className="flex items-center justify-between">
-                      <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-                        <Smartphone className="w-4 h-4 text-emerald-600" />
-                        <span>हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू</span>
-                      </h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      
-                      <div className="p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3.5 min-w-0">
-                          <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0">
-                            <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2">
-                              <h3 className="text-base font-black truncate">Land Solution</h3>
-                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">
-                                नापी एप
-                              </span>
-                            </div>
-                            <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                              फिल्ड नापजाँच, कित्ताकाट, चारकिल्ला र नक्सा रेखांकन
-                            </p>
-                          </div>
-                        </div>
-
-                        <span className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs">
-                          <Play className="w-3.5 h-3.5 fill-white" />
-                          <span className="hidden sm:inline">Web Demo</span>
-                        </span>
+                {/* 6. Mobile Apps */}
+                {widget.id === 'w-app-land-solution' && (
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white flex items-center justify-between gap-3 h-full">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-400/30 p-1 flex items-center justify-center shrink-0">
+                        <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
                       </div>
-
-                      <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3.5 min-w-0">
-                          <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
-                            <Wallet className="w-5 h-5" />
-                          </div>
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2">
-                              <h3 className="text-base font-black truncate">हाम्रो कोष (Hamro Kosh)</h3>
-                              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 shrink-0">
-                                बचत सफ्टवेयर
-                              </span>
-                            </div>
-                            <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                              सहकारी, समूह तथा व्यक्तिगत बचत, ऋण र ब्याज हिसाब
-                            </p>
-                          </div>
-                        </div>
-
-                        <span className="px-3.5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs">
-                          <span>विवरण</span>
-                          <ChevronRight className="w-3.5 h-3.5" />
-                        </span>
+                      <div>
+                        <h3 className="text-sm font-black">Land Solution (नापी एप)</h3>
+                        <p className="text-[11px] text-slate-300">फिल्ड नापजाँच, कित्ताकाट र नक्सा</p>
                       </div>
-
                     </div>
-                  </section>
+                    <span className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold shrink-0">Web Demo</span>
+                  </div>
                 )}
 
-                {/* SECTION: ARTICLES */}
-                {sectionId === 'sec-articles' && (
-                  <section className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800">
-                    <KnowledgeBaseSection />
-                  </section>
+                {widget.id === 'w-app-hamro-kosh' && (
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white flex items-center justify-between gap-3 h-full">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
+                        <Wallet className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-black">हाम्रो कोष (बचत सफ्टवेयर)</h3>
+                        <p className="text-[11px] text-slate-300">सहकारी, समूह तथा बचत हिसाब</p>
+                      </div>
+                    </div>
+                    <span className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-bold shrink-0">विवरण</span>
+                  </div>
                 )}
 
-                {/* SECTION: CONTACT */}
-                {sectionId === 'sec-contact' && (
-                  <section id="contact" className="rounded-3xl p-6 sm:p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-8">
-                    
-                    <div className="text-center max-w-2xl mx-auto space-y-2">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
-                        <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>सम्पर्क तथा ठेगाना (Contact & Location)</span>
-                      </span>
-                      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-                        कुनै सोधपुछ वा सहकार्यका लागि सम्पर्क गर्नुहोस्
-                      </h2>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                        ल्याण्ड सोलुसन, हाम्रो कोष एप, वा AutoCAD LSP फाइल्स सम्बन्धी कुनै पनि जिज्ञासाका लागि सिधै इमेल, सोसियल मिडिया वा तलको फर्ममार्फत सम्पर्क गर्न सक्नुहुन्छ।
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                      
-                      {/* Left: Contact Info & Map */}
-                      <div className="lg:col-span-5 space-y-4">
-                        
-                        <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex items-center gap-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-                            <Mail className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <span className="text-[11px] font-bold text-slate-500 uppercase block">आधिकारिक इमेल</span>
-                            <span className="text-sm font-mono font-bold text-slate-900 dark:text-white">aabiralbhatt@gmail.com</span>
-                          </div>
-                        </div>
-
-                        <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex items-center gap-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
-                            <MapPin className="w-5 h-5" />
-                          </div>
-                          <div>
-                            <span className="text-[11px] font-bold text-slate-500 uppercase block">स्थान / LOCATION</span>
-                            <span className="text-sm font-bold text-slate-900 dark:text-white block">काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
-                            <p className="text-[11px] text-slate-500 mt-0.5">नेपालभर अनलाइन सफ्टवेयर सपोर्ट, ल्याण्ड क्याल्कुलेसन परामर्श तथा प्राविधिक सहायता उपलब्ध छ।</p>
-                          </div>
-                        </div>
-
-                        <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-2">
-                          <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
-                            <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-emerald-600" />काठमाडौँ, नेपाल (Interactive Map)</span>
-                            <span className="text-[10px] text-slate-400">Kathmandu 44600</span>
-                          </div>
-                          <div className="h-44 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 relative bg-slate-200 dark:bg-slate-950" contentEditable={false}>
-                            <iframe 
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113032.64621422784!2d85.25607519967727!3d27.708942727142404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2C%20Nepal!5e0!3m2!1sen!2snp!4v1710000000000!5m2!1sen!2snp" 
-                              width="100%" 
-                              height="100%" 
-                              style={{ border: 0 }} 
-                              loading="lazy" 
-                              title="Kathmandu Location"
-                            ></iframe>
-                          </div>
-                        </div>
-
+                {/* 7. Contact Details, Map & Form */}
+                {widget.id === 'w-contact-info' && (
+                  <div className="space-y-3 h-full">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center gap-3">
+                      <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <div>
+                        <span className="text-[10px] font-bold text-slate-500 uppercase block">इमेल</span>
+                        <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">aabiralbhatt@gmail.com</span>
                       </div>
-
-                      {/* Right: Message Form */}
-                      <div className="lg:col-span-7 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 space-y-4">
-                        <div>
-                          <h3 className="text-lg font-black text-slate-900 dark:text-white">सिधै सन्देश पठाउनुहोस्</h3>
-                          <p className="text-xs text-slate-500 dark:text-slate-400">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
-                        </div>
-
-                        <div className="space-y-3.5">
-                          <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">तपाईंको पूरा नाम *</label>
-                            <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-400">
-                              उदा. रमेश अधिकारी
-                            </div>
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">सम्पर्क मोबाइल / फोन नम्बर *</label>
-                            <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-400">
-                              उदा. 98XXXXXXXX
-                            </div>
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">कुन विषयमा सहयोग चाहिएको हो?</label>
-                            <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-700 dark:text-slate-300">
-                              Land Solution (नापजाँच तथा कित्ताकाट एप)
-                            </div>
-                          </div>
-
-                          <div className="space-y-1">
-                            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">तपाईंको सन्देश वा प्रश्न *</label>
-                            <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-400 h-20">
-                              आफ्नो जिज्ञासा यहाँ लेख्नुहोस्...
-                            </div>
-                          </div>
-
-                          <div>
-                            <span className="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
-                              <Send className="w-3.5 h-3.5" />
-                              <span>सन्देश पठाउनुहोस् (Send Message)</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
                     </div>
-                  </section>
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center gap-3">
+                      <MapPin className="w-4 h-4 text-blue-600 shrink-0" />
+                      <div>
+                        <span className="text-[10px] font-bold text-slate-500 uppercase block">स्थान</span>
+                        <span className="text-xs font-bold text-slate-900 dark:text-white block">काठमाडौँ, नेपाल (Kathmandu)</span>
+                      </div>
+                    </div>
+                  </div>
                 )}
 
-                {/* SECTION: FOOTER */}
-                {sectionId === 'sec-footer' && (
-                  <footer className="relative bg-slate-950 text-slate-300 rounded-3xl p-6 sm:p-10 border border-slate-800 space-y-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                      
-                      {/* Col 1 */}
-                      <div className="space-y-3.5">
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-10 h-10 rounded-xl overflow-hidden bg-white p-1 flex items-center justify-center shrink-0" contentEditable={false}>
-                            <img src="/logo.png" alt="BR Bhatta" className="w-full h-full object-contain" />
-                          </div>
-                          <div>
-                            <h4 className="text-base font-black text-white leading-tight">BR Bhatta</h4>
-                            <span className="text-[11px] text-emerald-400 font-semibold block">Nepal Land Tech & Surveying</span>
-                          </div>
-                        </div>
-
-                        <p className="text-xs text-slate-400 leading-relaxed">
-                          नेपालको नापी, नक्सा, जग्गा व्यवस्थापन, कित्ताकाट तथा डिजिटल इन्जिनियरिङको आधिकारिक पोर्टल।
-                        </p>
-
-                        <div className="inline-flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg">
-                          <MapPin className="w-3 h-3 text-emerald-400" />
-                          <span>काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
-                        </div>
-
-                        <div className="flex items-center gap-2 pt-1">
-                          <span className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center"><Facebook className="w-4 h-4" /></span>
-                          <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center"><Instagram className="w-4 h-4" /></span>
-                          <span className="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center"><Github className="w-4 h-4" /></span>
-                          <span className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 text-white flex items-center justify-center text-xs font-bold">TikTok</span>
-                        </div>
-                      </div>
-
-                      {/* Col 2 */}
-                      <div className="space-y-2.5">
-                        <h5 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                          <span>डिजिटल उपकरण तथा PDF</span>
-                        </h5>
-                        <div className="space-y-1.5 text-xs text-slate-400">
-                          <div className="hover:text-emerald-400">› Preeti ⇄ Unicode कन्भर्टर</div>
-                          <div className="hover:text-emerald-400">› कागजात फोटो कम्प्रेसर (२००KB)</div>
-                          <div className="hover:text-emerald-400">› तस्विरबाट A4 PDF जेनेरेटर</div>
-                          <div className="hover:text-emerald-400">› PDF Merge & Split (जोड्ने/छुटाउने)</div>
-                          <div className="hover:text-emerald-400">› नेपाली संख्या अक्षरेपी (Number to Words)</div>
-                          <div className="hover:text-emerald-400">› जग्गा क्यालकुलेटर (रोपनी/बिघा)</div>
-                          <div className="text-emerald-400 font-bold pt-1">सबै १६+ उपकरणहरू हेर्नुहोस् ›</div>
-                        </div>
-                      </div>
-
-                      {/* Col 3 */}
-                      <div className="space-y-2.5">
-                        <h5 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-blue-400"></span>
-                          <span>स्रोत तथा अध्ययन</span>
-                        </h5>
-                        <div className="space-y-1.5 text-xs text-slate-400">
-                          <div className="hover:text-emerald-400">› ७७ जिल्ला नापी र मालपोत निर्देशिका</div>
-                          <div className="hover:text-emerald-400">› AutoCAD LSP Scripts हब (.lsp)</div>
-                          <div className="hover:text-emerald-400">› लोकसेवा नापी अमिन पाठ्यक्रम र प्रश्न</div>
-                          <div className="hover:text-emerald-400">› लोकसेवा नापी अमिन अनलाइन क्विज</div>
-                          <div className="hover:text-emerald-400">› मौजुदा नापी तथा भूमि कानुन संग्रह</div>
-                          <div className="text-cyan-400 font-bold pt-1">प्राविधिक गाइड तथा लेखहरू ›</div>
-                        </div>
-                      </div>
-
-                      {/* Col 4 */}
-                      <div className="space-y-2.5">
-                        <h5 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                          <span>सम्पर्क तथा सहयोग</span>
-                        </h5>
-                        <div className="space-y-2 text-xs text-slate-400">
-                          <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2 text-emerald-400 font-mono">
-                            <Mail className="w-3.5 h-3.5 shrink-0" />
-                            <span className="truncate">aabiralbhatt@gmail.com</span>
-                          </div>
-                          <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px]">
-                            🟢 अनलाइन प्राविधिक सहायता उपलब्ध
-                          </div>
-                          <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono flex items-center gap-1.5">
-                            <Globe className="w-3.5 h-3.5 text-slate-400" />
-                            <span>www.brbhatta.com</span>
-                          </div>
-                          <div>
-                            <span className="w-full py-2 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold text-xs flex items-center justify-center gap-1">
-                              <span>सम्पर्क फारम पठाउनुहोस् ›</span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
+                {widget.id === 'w-contact-map' && (
+                  <div className="h-full flex flex-col space-y-1">
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>काठमाडौँ, नेपाल नक्सा</span>
+                    </span>
+                    <div className="flex-1 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 min-h-[140px]" contentEditable={false}>
+                      <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113032.64621422784!2d85.25607519967727!3d27.708942727142404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2C%20Nepal!5e0!3m2!1sen!2snp!4v1710000000000!5m2!1sen!2snp" 
+                        width="100%" 
+                        height="100%" 
+                        style={{ border: 0 }} 
+                        loading="lazy" 
+                        title="Map"
+                      ></iframe>
                     </div>
-
-                    <div className="pt-6 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                      <div className="flex items-center gap-4 flex-wrap justify-center">
-                        <span className="hover:text-white">हाम्रो बारेमा (About Us)</span>
-                        <span className="hover:text-white">सम्पर्क (Contact Us)</span>
-                        <span className="hover:text-white">गोपनीयता नीति (Privacy Policy)</span>
-                        <span className="hover:text-white">प्रयोगका सर्तहरू (Terms of Service)</span>
-                        <span className="hover:text-white">अस्वीकरण (Disclaimer)</span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1.5 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm">
-                          <Bot className="w-3.5 h-3.5" />
-                          <span>नेपाल जग्गा AI सहायक</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="text-center pt-2 text-[11px] text-slate-600 border-t border-slate-900">
-                      <span>© 2026 BR Bhatta (brbhatta.com). सर्वाधिकार सुरक्षित।</span>
-                    </div>
-
-                  </footer>
+                  </div>
                 )}
 
-                {/* Corner Drag-Resize Handle (Custom Sizing by Dragging Corner) */}
-                {showControls && (
-                  <div 
-                    contentEditable={false}
-                    suppressContentEditableWarning={true}
-                    onMouseDown={(e) => handleCornerResizeMouseDown(e, sectionId)}
-                    title="यो कुना तानेर साइज सानो वा ठूलो बनाउनुहोस् (Drag to Resize)"
-                    className="absolute -bottom-2 -right-2 w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center cursor-se-resize shadow-md z-30 select-none hover:scale-110 active:scale-125 transition-transform"
-                  >
-                    <Sliders className="w-3 h-3 rotate-90" />
+                {widget.id === 'w-contact-form' && (
+                  <div className="space-y-3 h-full">
+                    <div>
+                      <h3 className="text-sm font-black text-slate-900 dark:text-white">सिधै सन्देश पठाउनुहोस्</h3>
+                      <p className="text-[11px] text-slate-500">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="p-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-400">नाम: उदा. रमेश अधिकारी</div>
+                      <div className="p-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-400">फोन: उदा. 98XXXXXXXX</div>
+                    </div>
+                    <div className="p-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs text-slate-400 h-14">
+                      सन्देश यहाँ लेख्नुहोस्...
+                    </div>
+                    <div className="py-2 rounded-lg bg-emerald-600 text-white font-bold text-xs text-center">
+                      सन्देश पठाउनुहोस्
+                    </div>
+                  </div>
+                )}
+
+                {/* 8. Footer Columns (Image 1) */}
+                {widget.id === 'w-footer-brand' && (
+                  <div className="space-y-2 h-full">
+                    <div className="flex items-center gap-2">
+                      <img src="/logo.png" alt="BR Bhatta" className="w-8 h-8 object-contain" />
+                      <div>
+                        <h4 className="text-sm font-black text-slate-900 dark:text-white leading-tight">BR Bhatta</h4>
+                        <span className="text-[10px] text-emerald-600 font-semibold block">Nepal Land Tech & Surveying</span>
+                      </div>
+                    </div>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      नेपालको नापी, नक्सा, जग्गा व्यवस्थापन, कित्ताकाट तथा डिजिटल इन्जिनियरिङको आधिकारिक पोर्टल।
+                    </p>
+                    <div className="flex items-center gap-1.5 pt-1">
+                      <span className="w-6 h-6 rounded bg-blue-600 text-white flex items-center justify-center text-xs"><Facebook className="w-3.5 h-3.5" /></span>
+                      <span className="w-6 h-6 rounded bg-rose-500 text-white flex items-center justify-center text-xs"><Instagram className="w-3.5 h-3.5" /></span>
+                      <span className="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center text-xs"><Github className="w-3.5 h-3.5" /></span>
+                    </div>
+                  </div>
+                )}
+
+                {widget.id === 'w-footer-tools' && (
+                  <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 h-full">
+                    <h5 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">डिजिटल उपकरण तथा PDF</h5>
+                    <div>› Preeti ⇄ Unicode कन्भर्टर</div>
+                    <div>› कागजात फोटो कम्प्रेसर (२००KB)</div>
+                    <div>› तस्विरबाट A4 PDF जेनेरेटर</div>
+                    <div>› जग्गा क्यालकुलेटर (रोपनी/बिघा)</div>
+                  </div>
+                )}
+
+                {widget.id === 'w-footer-study' && (
+                  <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 h-full">
+                    <h5 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">स्रोत तथा अध्ययन</h5>
+                    <div>› ७७ जिल्ला नापी निर्देशिका</div>
+                    <div>› AutoCAD LSP Scripts हब</div>
+                    <div>› लोकसेवा नापी अमिन अनलाइन क्विज</div>
+                    <div>› मौजुदा नापी तथा भूमि कानुन</div>
+                  </div>
+                )}
+
+                {widget.id === 'w-footer-contact' && (
+                  <div className="space-y-2 text-xs text-slate-600 dark:text-slate-400 h-full">
+                    <h5 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">सम्पर्क तथा सहयोग</h5>
+                    <div className="p-2 rounded bg-slate-100 dark:bg-slate-800 font-mono text-emerald-600 text-[11px]">
+                      aabiralbhatt@gmail.com
+                    </div>
+                    <div className="text-[11px]">🟢 अनलाइन सहायता उपलब्ध</div>
+                  </div>
+                )}
+
+                {widget.id === 'w-footer-bottom' && (
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 py-2">
+                    <div>© 2026 BR Bhatta (brbhatta.com). सर्वाधिकार सुरक्षित।</div>
+                    <div className="flex items-center gap-3">
+                      <span>हाम्रो बारेमा</span>
+                      <span>गोपनीयता नीति</span>
+                      <span>सर्तहरू</span>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center gap-1">
+                      <Bot className="w-3.5 h-3.5" />
+                      <span>नेपाल जग्गा AI सहायक</span>
+                    </span>
                   </div>
                 )}
 
               </div>
 
+              {/* Bottom-Right Corner Drag-Resize Handle (Custom Resize Handle) */}
+              <div
+                contentEditable={false}
+                suppressContentEditableWarning={true}
+                onMouseDown={(e) => handleCornerResize(e, widget.id)}
+                title="यो कुना तानेर साइज जत्रो पनि (सानो वा ठूलो) बनाउनुहोस् (Drag to Resize)"
+                className="resize-corner-handle absolute -bottom-1 -right-1 w-5 h-5 rounded-md bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center cursor-se-resize shadow-sm z-30 select-none"
+              >
+                <Sliders className="w-2.5 h-2.5 rotate-90" />
+              </div>
+
             </div>
           );
         })}
+
       </div>
 
     </div>
