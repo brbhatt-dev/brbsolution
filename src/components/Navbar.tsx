@@ -240,6 +240,14 @@ export default function Navbar() {
             >
               सम्पर्क
             </Link>
+
+            <Link
+              href="/builder"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-xs transition-transform active:scale-95"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Live Builder</span>
+            </Link>
           </nav>
 
           {/* Desktop Right Side: Social Media Icons + Theme Toggle */}
@@ -441,29 +449,40 @@ export default function Navbar() {
           </div>
 
           {/* Category 4: मुख्य सफ्टवेयर र सम्पर्क */}
-          <div className="flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold">
+          <div className="flex flex-col gap-2 p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold">
+            <div className="flex items-center justify-between">
+              <Link
+                href="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
+              >
+                हाम्रो बारेमा
+              </Link>
+              <span>•</span>
+              <Link
+                href="/#land-solution"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
+              >
+                Land Solution
+              </Link>
+              <span>•</span>
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-emerald-600 dark:text-emerald-400 font-extrabold"
+              >
+                सम्पर्क
+              </Link>
+            </div>
+            
             <Link
-              href="/about"
+              href="/builder"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
+              className="w-full py-2.5 rounded-xl bg-emerald-600 text-white font-black text-center flex items-center justify-center gap-1.5 shadow-xs"
             >
-              हाम्रो बारेमा
-            </Link>
-            <span>•</span>
-            <Link
-              href="/#land-solution"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
-            >
-              Land Solution App
-            </Link>
-            <span>•</span>
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-emerald-600 dark:text-emerald-400 font-extrabold"
-            >
-              सम्पर्क फारम
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Live Visual Builder (सम्पादक खोल्नुहोस्)</span>
             </Link>
           </div>
 
