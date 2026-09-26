@@ -213,15 +213,16 @@ export default function Contact() {
 
                   <div>
                     <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      सम्पर्क नम्बर वा इमेल *
+                      सम्पर्क मोबाइल / फोन नम्बर *
                     </label>
                     <input
-                      type="text"
+                      type="tel"
                       required
+                      inputMode="numeric"
                       disabled={status === 'sending'}
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                      placeholder="उदा. 98XXXXXXXX वा yourname@example.com"
+                      placeholder="उदा. 98XXXXXXXX"
                       className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
                     />
                   </div>
