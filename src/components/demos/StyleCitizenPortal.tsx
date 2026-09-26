@@ -144,7 +144,7 @@ export default function StyleCitizenPortal() {
         </div>
       </section>
 
-      {/* 4. MAIN PRECISION LAND CALCULATOR (Primary Feature Centerpiece) */}
+      {/* 4. MAIN PRECISION LAND CALCULATOR (Sleek Compact Mode) */}
       <section id="land-calc-section" className="scroll-mt-24 space-y-2.5">
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
@@ -153,16 +153,20 @@ export default function StyleCitizenPortal() {
               <span>जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर</span>
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर-कनुवा हिसाब र आधिकारिक स्लिप प्रिन्ट
+              रोपनी-आना, बिघा-कट्ठा, वर्गफिट, वर्गमिटर तथा आधिकारिक स्लिप प्रिन्ट
             </p>
           </div>
-          <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800 shrink-0 hidden sm:inline-block">
-            स्लिप प्रिन्ट उपलब्ध
-          </span>
+          <Link
+            href="/tools/land-calculator"
+            className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 shrink-0"
+          >
+            <span>पूरा पेज खोल्नुहोस्</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs p-1">
-          <LandCalculator />
+          <LandCalculator compact={true} />
         </div>
       </section>
 

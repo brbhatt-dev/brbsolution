@@ -20,7 +20,11 @@ import PrintSlipModal from '@/components/PrintSlipModal';
 
 type Mode = 'pahadi' | 'terai' | 'sqft' | 'tax';
 
-export default function LandCalculator() {
+interface LandCalculatorProps {
+  compact?: boolean;
+}
+
+export default function LandCalculator({ compact = false }: LandCalculatorProps) {
   const [mode, setMode] = useState<Mode>('pahadi');
 
   // Pahadi inputs
@@ -156,48 +160,11 @@ export default function LandCalculator() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  return (
-    <section id="land-calculator" className="py-12 sm:py-16 bg-white dark:bg-[#070b14] border-t border-slate-200 dark:border-slate-800 transition-colors notranslate" translate="no">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2">
-            <Calculator className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>अनलाइन जग्गा क्यालकुलेटर (Online Land & Tax Converter)</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-            नेपाल जग्गा नाप तथा मालपोत कर क्यालकुलेटर
-          </h2>
-          <p className="mt-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-            रोपनी-आना, बिघा-कट्ठा, वर्गफिट, वर्गमिटर तथा घर-जग्गा रजिस्ट्रेसन दस्तुर र पुँजीगत लाभकरको आधिकारिक हिसाब।
-          </p>
-
-          {/* Quick Presets */}
-          {mode !== 'tax' && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">द्रुत छनोट (Presets):</span>
-              <button onClick={() => applyPreset(1369)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
-                ४ आना (घडेरी)
-              </button>
-              <button onClick={() => applyPreset(5476)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
-                १ रोपनी
-              </button>
-              <button onClick={() => applyPreset(3645)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-teal-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
-                १ कट्ठा (तराई)
-              </button>
-              <button onClick={() => applyPreset(72900)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-teal-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
-                १ बिघा
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Calculator Main Box */}
-        <div className="bg-slate-50 dark:bg-slate-900/80 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-8 shadow-sm">
-          
-          {/* Mode Switcher Tabs (4 Modes) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 p-1.5 bg-slate-200/80 dark:bg-slate-800/80 rounded-xl mb-6">
+  const calculatorBox = (
+    <div className={`bg-slate-50 dark:bg-slate-900/80 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 ${compact ? 'p-3.5 sm:p-5 shadow-xs' : 'p-5 sm:p-8 shadow-sm'}`}>
+      
+      {/* Mode Switcher Tabs (4 Modes) */}
+      <div className={`grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-xl ${compact ? 'mb-4' : 'mb-6'}`}>
             <button
               onClick={() => setMode('pahadi')}
               className={`py-2 sm:py-2.5 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all ${
@@ -645,6 +612,75 @@ export default function LandCalculator() {
           </div>
 
         </div>
+  );
+
+  if (compact) {
+    return (
+      <div className="w-full">
+        {calculatorBox}
+
+        {/* Printable Land Slip Modal */}
+        <PrintSlipModal
+          isOpen={isPrintModalOpen}
+          onClose={() => setIsPrintModalOpen(false)}
+          data={{
+            totalSqft,
+            outSqm,
+            outRopani,
+            outAana,
+            outPaisa,
+            outDaam,
+            outBigha,
+            outKatha,
+            outDhur,
+            outKanwa,
+            pricePerUnit,
+            estimatedPrice,
+            priceUnitLabel: mode === 'terai' ? 'प्रति धुर' : 'प्रति आना'
+          }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <section id="land-calculator" className="py-12 sm:py-16 bg-white dark:bg-[#070b14] border-t border-slate-200 dark:border-slate-800 transition-colors notranslate" translate="no">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-2">
+            <Calculator className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <span>अनलाइन जग्गा क्यालकुलेटर (Online Land & Tax Converter)</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            नेपाल जग्गा नाप तथा मालपोत कर क्यालकुलेटर
+          </h2>
+          <p className="mt-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            रोपनी-आना, बिघा-कट्ठा, वर्गफिट, वर्गमिटर तथा घर-जग्गा रजिस्ट्रेसन दस्तुर र पुँजीगत लाभकरको आधिकारिक हिसाब।
+          </p>
+
+          {/* Quick Presets */}
+          {mode !== 'tax' && (
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">द्रुत छनोट (Presets):</span>
+              <button onClick={() => applyPreset(1369)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
+                ४ आना (घडेरी)
+              </button>
+              <button onClick={() => applyPreset(5476)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
+                १ रोपनी
+              </button>
+              <button onClick={() => applyPreset(3645)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-teal-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
+                १ कट्ठा (तराई)
+              </button>
+              <button onClick={() => applyPreset(72900)} className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-teal-950/40 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all active:scale-95">
+                १ बिघा
+              </button>
+            </div>
+          )}
+        </div>
+
+        {calculatorBox}
 
         {/* Printable Land Slip Modal */}
         <PrintSlipModal
