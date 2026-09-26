@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Eye, Check } from 'lucide-react';
+import { Eye, Check, Sparkles } from 'lucide-react';
 
 export type DemoStyleId = 
   | 'style1' 
@@ -11,7 +11,11 @@ export type DemoStyleId =
   | 'style5'
   | 'style6'
   | 'style7'
-  | 'style8';
+  | 'style8'
+  | 'style9'
+  | 'style10'
+  | 'style11'
+  | 'style12';
 
 interface StyleSwitcherBarProps {
   currentStyle: DemoStyleId;
@@ -20,6 +24,34 @@ interface StyleSwitcherBarProps {
 
 export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleSwitcherBarProps) {
   const styles = [
+    {
+      id: 'style9' as DemoStyleId,
+      name: 'Style ९: Visual Parcel Map',
+      vibe: 'नक्सामा प्लट छुने इन्जिन',
+      badge: '🌟 नयाँ र युनिक!',
+      highlight: true
+    },
+    {
+      id: 'style10' as DemoStyleId,
+      name: 'Style १०: Raycast OS',
+      vibe: 'Spotlight & Floating Dock',
+      badge: '🌟 कमान्ड सेन्टर',
+      highlight: true
+    },
+    {
+      id: 'style11' as DemoStyleId,
+      name: 'Style ११: Neo-Brutalist Pop',
+      vibe: 'Bold Gumroad / Retrowave',
+      badge: '🌟 उच्च कन्ट्रास्ट',
+      highlight: true
+    },
+    {
+      id: 'style12' as DemoStyleId,
+      name: 'Style १२: Cyber Spatial HUD',
+      vibe: 'लाइभ स्लाइडर + होलोग्राफिक',
+      badge: '🌟 फ्युचरिस्टिक',
+      highlight: true
+    },
     {
       id: 'style1' as DemoStyleId,
       name: 'Style १: Modern Tech SaaS',
@@ -83,8 +115,8 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
             <div>
               <h3 className="text-xs sm:text-sm font-black text-white flex items-center gap-2">
                 <span>लाइभ डिजाइन छनोट (Live Design Switcher)</span>
-                <span className="text-[10px] bg-emerald-500 text-black px-2 py-0.5 rounded font-black">
-                  ८ वटा शैलीहरू (8 Styles Available)
+                <span className="text-[10px] bg-gradient-to-r from-emerald-500 to-teal-400 text-black px-2 py-0.5 rounded font-black">
+                  १२ वटा युनिक शैलीहरू (12 Total Styles)
                 </span>
               </h3>
               <p className="text-[11px] text-slate-400 hidden sm:block">
@@ -98,7 +130,7 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
           </div>
         </div>
 
-        {/* 8 Horizontal Scrollable Selector Buttons */}
+        {/* 12 Horizontal Scrollable Selector Buttons */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-none no-scrollbar">
           {styles.map((s) => {
             const isSelected = currentStyle === s.id;
@@ -109,12 +141,21 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all shrink-0 flex items-center gap-2 cursor-pointer ${
                   isSelected
                     ? 'bg-emerald-500 text-slate-950 font-black shadow-lg scale-102 ring-2 ring-emerald-300'
-                    : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 hover:border-slate-600'
+                    : s.highlight
+                      ? 'bg-slate-800 text-emerald-300 border border-emerald-500/50 hover:bg-slate-700'
+                      : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 hover:border-slate-600'
                 }`}
               >
                 {isSelected && <Check className="w-3.5 h-3.5 stroke-[3] shrink-0" />}
                 <div className="text-left">
-                  <div className="leading-tight whitespace-nowrap">{s.name}</div>
+                  <div className="leading-tight whitespace-nowrap flex items-center gap-1.5">
+                    <span>{s.name}</span>
+                    {s.highlight && !isSelected && (
+                      <span className="text-[9px] bg-emerald-500/20 text-emerald-400 px-1 rounded font-black">
+                        NEW
+                      </span>
+                    )}
+                  </div>
                   <div className={`text-[10px] whitespace-nowrap ${isSelected ? 'text-slate-900 font-semibold' : 'text-slate-400 font-normal'}`}>
                     {s.vibe}
                   </div>

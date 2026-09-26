@@ -19,10 +19,10 @@ export default function Home() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="font-bold">
-              🎨 ८ वटा नयाँ डिजाइन डेमोहरू तयार छन् (8 Website Designs Ready):
+              🌟 १२ वटा युनिक डिजाइन डेमोहरू (12 Unique Designs Live):
             </span>
             <span className="text-emerald-200 hidden md:inline">
-              आफ्नो रोजाइको डिजाइन हेर्नुहोस् र छान्नुहोस्
+              नक्सा इन्जिन, Raycast OS र Neo-Brutalist सहित
             </span>
           </div>
 
@@ -31,7 +31,7 @@ export default function Home() {
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-[11px] shadow-xs transition-transform active:scale-95 shrink-0"
           >
             <Eye className="w-3.5 h-3.5" />
-            <span>८ वटै डिजाइन डेमो हेर्नुहोस्</span>
+            <span>१२ वटै डिजाइन डेमो हेर्नुहोस्</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
