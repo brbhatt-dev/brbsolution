@@ -25,6 +25,7 @@ interface ChatMessage {
     label: string;
     href: string;
   };
+  isAiGenerated?: boolean;
 }
 
 const PRESET_QUESTIONS = [
@@ -458,7 +459,7 @@ export default function AiLandAssistant() {
     };
   };
 
-  const handleSend = (textToSend?: string) => {
+  const handleSend = async (textToSend?: string) => {
     const query = textToSend || inputValue;
     if (!query.trim()) return;
 
@@ -472,17 +473,78 @@ export default function AiLandAssistant() {
     if (!textToSend) setInputValue('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      const response = generateAnswer(query);
-      const botMsg: ChatMessage = {
-        id: `bot-${Date.now()}`,
-        sender: 'bot',
-        text: response.text,
-        link: response.link
-      };
-      setMessages((prev) => [...prev, botMsg]);
-      setIsTyping(false);
-    }, 450);
+    // Try calling Cloudflare serverless Gemini 3.1 Flash endpoint
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: query.trim() })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.answer && data.answer.trim().length > 0) {
+          const botMsg: ChatMessage = {
+            id: `bot-${Date.now()}`,
+            sender: 'bot',
+            text: data.answer.trim(),
+            isAiGenerated: true
+          };
+          setMessages((prev) => [...prev, botMsg]);
+          setIsTyping(false);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('Serverless endpoint fetch error, trying direct Gemini API...', err);
+    }
+
+    // 2. Direct client-side Gemini fallback using NEXT_PUBLIC_GEMINI_KEY
+    const clientKey = process.env.NEXT_PUBLIC_GEMINI_KEY;
+    if (clientKey) {
+      try {
+        const sysPrompt = "You are BR Bhatta Land AI (नेपाल जग्गा तथा कानुनी एआई सहायक), authoritative expert on Nepal cadastral surveying, land laws, land revenue (आर्थिक ऐन २०८१/८२, महानगर ५%, उपत्यका वाग्मती कर ०.५%, महिला छुट २५%-५०%, एकल महिला ३५%, पुँजीगत लाभकर ५%/७.५%), Land Use Act 2079/2081 (आवासीय १३० वर्गमिटर, ८ मिटर बाटो), and land measurements (Ropani/Bigha). Respond in clear, polite, structured Nepali with markdown bold points and reference tools on brbhatta.com.";
+        const gResp = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${clientKey}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: sysPrompt }] },
+              contents: [{ parts: [{ text: query.trim() }] }]
+            })
+          }
+        );
+        if (gResp.ok) {
+          const gData = await gResp.json();
+          const ans = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (ans && ans.trim().length > 0) {
+            const botMsg: ChatMessage = {
+              id: `bot-${Date.now()}`,
+              sender: 'bot',
+              text: ans.trim(),
+              isAiGenerated: true
+            };
+            setMessages((prev) => [...prev, botMsg]);
+            setIsTyping(false);
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Direct Gemini API error:', e);
+      }
+    }
+
+    // Fallback: Local instant math & knowledge base
+    const localResponse = generateAnswer(query);
+    const botMsg: ChatMessage = {
+      id: `bot-${Date.now()}`,
+      sender: 'bot',
+      text: localResponse.text,
+      link: localResponse.link
+    };
+    setMessages((prev) => [...prev, botMsg]);
+    setIsTyping(false);
   };
 
   return (
@@ -519,8 +581,9 @@ export default function AiLandAssistant() {
                   <span>BR Bhatta • Land AI</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 </h3>
-                <p className="text-[10px] text-emerald-200">
-                  नेपाल जग्गा, मालपोत कर तथा कानुनी एआई (आर्थिक ऐन २०८१/८२)
+                <p className="text-[10px] text-emerald-200 flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-amber-300 animate-pulse" />
+                  <span>Google Gemini 3.1 Flash • २४/७ कानुनी सहायक</span>
                 </p>
               </div>
             </div>
@@ -561,6 +624,13 @@ export default function AiLandAssistant() {
                       : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-bl-xs border border-slate-200 dark:border-slate-700 shadow-2xs'
                   }`}
                 >
+                  {msg.isAiGenerated && (
+                    <div className="mb-2 flex items-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-bold border-b border-emerald-100 dark:border-emerald-900/50 pb-1">
+                      <Sparkles className="w-3 h-3 text-emerald-500 animate-pulse" />
+                      <span>Gemini 3.1 Flash AI</span>
+                    </div>
+                  )}
+
                   {msg.text}
 
                   {/* Optional Suggestion Link */}
