@@ -138,56 +138,65 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Digital Tools */}
+          {/* Column 2: Digital Tools & PDF Studio */}
           <div className="space-y-3 text-center sm:text-left">
             <p className="text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center sm:justify-start gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <span>डिजिटल उपकरणहरू</span>
+              <span>डिजिटल उपकरण तथा PDF</span>
             </p>
             <ul className="space-y-2 text-xs">
+              <li>
+                <Link 
+                  href="/tools/preeti-to-unicode" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>Preeti ⇄ Unicode कन्भर्टर</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/image-compressor" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-rose-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-rose-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>कागजात फोटो कम्प्रेसर (२००KB)</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/images-to-pdf" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-indigo-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>तस्विरबाट A4 PDF जेनेरेटर</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/pdf-tools" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-teal-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-teal-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>PDF Merge & Split (जोड्ने/छुट्टाउने)</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/number-to-words" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-amber-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>नेपाली संख्या अक्षरेपी (Number to Words)</span>
+                </Link>
+              </li>
               <li>
                 <Link 
                   href="/tools/land-calculator" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
                 >
                   <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>जग्गा क्यालकुलेटर (स्लिप प्रिन्ट)</span>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/tools/malpot-calculator" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-amber-300 transition-colors"
-                >
-                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>मालपोत तथा लाभकर क्यालकुलेटर</span>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/tools/kitta-kat-checker" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-indigo-300 transition-colors"
-                >
-                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>कित्ताकाट योग्यता परीक्षक (Kitta-Kat)</span>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/tools/multi-kitta-calculator" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
-                >
-                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>बहु-कित्ता क्षेत्रफल योग क्यालकुलेटर</span>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/tools/kitta-qr" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
-                >
-                  <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>कित्ता स्मार्ट QR कोड जेनेरेटर</span>
+                  <span>जग्गा क्यालकुलेटर (रोपनी/बिघा)</span>
                 </Link>
               </li>
               <li className="pt-1">
@@ -195,7 +204,7 @@ export default function Footer() {
                   href="/tools" 
                   className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
-                  <span>सबै उपकरणहरू हेर्नुहोस्</span>
+                  <span>सबै १७+ उपकरणहरू हेर्नुहोस्</span>
                   <ChevronRight className="w-3 h-3" />
                 </Link>
               </li>
