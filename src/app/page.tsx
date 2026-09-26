@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ProductHubTabs from '@/components/ProductHubTabs';
+import FeaturedToolsSection from '@/components/FeaturedToolsSection';
 import LandCalculator from '@/components/LandCalculator';
 import KnowledgeBaseSection from '@/components/KnowledgeBaseSection';
 import Contact from '@/components/Contact';
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         <ProductHubTabs />
+        <FeaturedToolsSection />
         <LandCalculator />
         <KnowledgeBaseSection />
         <Contact />
