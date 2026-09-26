@@ -41,6 +41,7 @@ import {
   Type,
   MousePointer,
   Maximize2,
+  Minimize2,
   Undo2,
   MapPin,
   Facebook,
@@ -48,377 +49,170 @@ import {
   Github,
   Globe,
   Heart,
-  QrCode
+  QrCode,
+  Send,
+  HelpCircle,
+  PhoneCall,
+  Search,
+  Bot
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
 import KnowledgeBaseSection from '../KnowledgeBaseSection';
-import Contact from '../Contact';
-
-type ActiveTool = 'type' | 'delete' | 'move' | 'preview';
 
 export default function InteractiveLayoutBuilder() {
-  const [activeTool, setActiveTool] = useState<ActiveTool>('type');
+  const [designMode, setDesignMode] = useState<boolean>(true);
+  const [clickToDelete, setClickToDelete] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
-  const [deletedIds, setDeletedIds] = useState<string[]>([]);
-  const [deletedStack, setDeletedStack] = useState<{ id: string; name: string }[]>([]);
-  
-  // Section Ordering and Sizes
-  const [sectionOrder, setSectionOrder] = useState<string[]>([
-    'sec-greeting',
-    'sec-tiles',
-    'sec-chips',
-    'sec-calc',
-    'sec-apps',
-    'sec-articles',
-    'sec-contact',
-    'sec-footer'
-  ]);
+  const [deletedCount, setDeletedCount] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const [sectionSizes, setSectionSizes] = useState<Record<string, '100%' | '50%' | '75%'>>({
-    'sec-greeting': '100%',
-    'sec-tiles': '100%',
-    'sec-chips': '100%',
-    'sec-calc': '100%',
-    'sec-apps': '100%',
-    'sec-articles': '100%',
-    'sec-contact': '100%',
-    'sec-footer': '100%',
-  });
-
-  const canvasRef = useRef<HTMLDivElement>(null);
-
-  // Load saved modifications from localStorage
+  // Activate Browser designMode for 100% UNRESTRICTED TYPING & EDITING OF EVERY SINGLE CHARACTER
   useEffect(() => {
-    try {
-      const savedHtml = localStorage.getItem('brbhatta_custom_dom_html');
-      if (savedHtml && canvasRef.current) {
-        canvasRef.current.innerHTML = savedHtml;
+    if (typeof document !== 'undefined') {
+      try {
+        document.designMode = designMode ? 'on' : 'off';
+      } catch (e) {
+        console.error(e);
       }
-      const savedDeleted = localStorage.getItem('brbhatta_deleted_ids');
-      if (savedDeleted) {
-        setDeletedIds(JSON.parse(savedDeleted));
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        try {
+          document.designMode = 'off';
+        } catch (e) {}
       }
-    } catch (e) {
-      console.error(e);
-    }
-  }, []);
+    };
+  }, [designMode]);
 
-  // Save changes to localStorage
-  const saveCanvasHtml = () => {
-    try {
-      if (canvasRef.current) {
-        localStorage.setItem('brbhatta_custom_dom_html', canvasRef.current.innerHTML);
+  // Click to delete element handler when delete tool is active
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (!clickToDelete) return;
+      
+      const target = e.target as HTMLElement;
+      // Don't delete the top studio bar or its children
+      if (target.closest('#master-studio-bar')) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Find closest editable card or element and remove
+      const toRemove = target.closest('.user-deletable') || target;
+      if (toRemove && toRemove !== document.body && toRemove !== containerRef.current) {
+        (toRemove as HTMLElement).style.display = 'none';
+        setDeletedCount(prev => prev + 1);
       }
-      localStorage.setItem('brbhatta_deleted_ids', JSON.stringify(deletedIds));
-    } catch (e) {}
-  };
+    };
 
-  // Move Section Up
-  const moveSectionUp = (id: string) => {
-    const idx = sectionOrder.indexOf(id);
-    if (idx <= 0) return;
-    const newOrder = [...sectionOrder];
-    const temp = newOrder[idx - 1];
-    newOrder[idx - 1] = newOrder[idx];
-    newOrder[idx] = temp;
-    setSectionOrder(newOrder);
-  };
+    document.addEventListener('click', handleDocumentClick, true);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick, true);
+    };
+  }, [clickToDelete]);
 
-  // Move Section Down
-  const moveSectionDown = (id: string) => {
-    const idx = sectionOrder.indexOf(id);
-    if (idx === -1 || idx >= sectionOrder.length - 1) return;
-    const newOrder = [...sectionOrder];
-    const temp = newOrder[idx + 1];
-    newOrder[idx + 1] = newOrder[idx];
-    newOrder[idx] = temp;
-    setSectionOrder(newOrder);
-  };
-
-  // Cycle Section Size
-  const cycleSectionSize = (id: string) => {
-    const current = sectionSizes[id] || '100%';
-    const nextSize: '100%' | '50%' | '75%' = current === '100%' ? '50%' : current === '50%' ? '75%' : '100%';
-    setSectionSizes(prev => ({ ...prev, [id]: nextSize }));
-  };
-
-  // Delete an Element or Section
-  const handleDeleteElement = (id: string, name: string, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (!deletedIds.includes(id)) {
-      const nextDeleted = [...deletedIds, id];
-      setDeletedIds(nextDeleted);
-      setDeletedStack(prev => [...prev, { id, name }]);
+  // Copy Full Edited HTML & Message for Agent
+  const copyCompleteDesign = () => {
+    let htmlContent = '';
+    if (containerRef.current) {
+      htmlContent = containerRef.current.innerText || containerRef.current.innerHTML;
     }
-  };
 
-  // Undo Last Deletion
-  const undoLastDelete = () => {
-    if (deletedStack.length === 0) return;
-    const last = deletedStack[deletedStack.length - 1];
-    setDeletedIds(prev => prev.filter(x => x !== last.id));
-    setDeletedStack(prev => prev.slice(0, prev.length - 1));
-  };
-
-  // Reset Everything to Default
-  const resetAll = () => {
-    if (window.confirm('के तपाईं सबै सम्पादन र डिलिटहरू रिसेट गरेर सुरुको अवस्थामा फर्काउन चाहनुहुन्छ?')) {
-      localStorage.removeItem('brbhatta_custom_dom_html');
-      localStorage.removeItem('brbhatta_deleted_ids');
-      window.location.reload();
-    }
-  };
-
-  // Copy Full Custom Design Code for Agent
-  const copyFullDesign = () => {
-    saveCanvasHtml();
-    const visibleOrder = sectionOrder
-      .filter(id => !deletedIds.includes(id))
-      .map((id, idx) => `${idx + 1}. [${id}] - चौडाइ: ${sectionSizes[id] || '100%'}`)
-      .join('\n');
-
-    const deletedList = deletedIds.join(', ');
-
-    const text = `नमस्ते! मैले वेबसाइटको सम्पूर्ण भागहरू (हरेक अक्षर, साइज, र डिलिट) यसरी तयार पारें, कृपया मुख्य साइटमा स्थायी रूपमा सेट गरिदिनुहोस्:\n\n【सेक्सनहरूको क्रम र साइज】:\n${visibleOrder}\n\n【हटाइएका खण्ड/एलिमेन्टहरू】: ${deletedList || 'कुनै छैन'}\n\n[सबै नयाँ अक्षर र संरचना ब्राउजरमा सुरक्षित छ]।`;
+    const text = `नमस्ते! मैले वेबसाइटको सम्पूर्ण भागहरू (हरेक अक्षर, बक्स, फारम, फुटर) आफ्नो इच्छा अनुसार १००% एडिट र मिलाएँ। कृपया यसैलाई मुख्य होमपेजमा सेट गरिदिनुहोस्:\n\n[ब्राउजरमा सम्पादन गरिएको विवरण]:\n${htmlContent.slice(0, 3000)}...`;
 
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   };
 
-  const isEditable = activeTool === 'type';
-  const isDeleteMode = activeTool === 'delete';
-  const isMoveMode = activeTool === 'move';
-
-  // Helper for inline editable text
-  const Editable = ({ 
-    children, 
-    className = "", 
-    id,
-    name
-  }: { 
-    children: React.ReactNode; 
-    className?: string; 
-    id: string;
-    name: string;
-  }) => {
-    if (deletedIds.includes(id)) return null;
-
-    return (
-      <div 
-        className={`relative group/elem transition-all ${className} ${
-          isEditable ? 'hover:outline-1 hover:outline-dashed hover:outline-emerald-500 cursor-text rounded-xs' : ''
-        } ${
-          isDeleteMode ? 'hover:outline-2 hover:outline-rose-500 hover:bg-rose-50/20 cursor-pointer' : ''
-        }`}
-        onClick={isDeleteMode ? (e) => handleDeleteElement(id, name, e) : undefined}
-      >
-        {/* Delete Tooltip in Delete Mode */}
-        {isDeleteMode && (
-          <span className="hidden group-hover/elem:flex absolute -top-3 -right-2 bg-rose-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded-md shadow-xs z-30 items-center gap-1 pointer-events-none">
-            <Trash2 className="w-2.5 h-2.5" />
-            <span>डिलिट</span>
-          </span>
-        )}
-
-        {/* Contenteditable wrapper */}
-        <div 
-          contentEditable={isEditable} 
-          suppressContentEditableWarning={true}
-          onBlur={saveCanvasHtml}
-          className="outline-none"
-        >
-          {children}
-        </div>
-      </div>
-    );
-  };
-
-  // Section Wrapper with Move, Resize, Delete Controls
-  const SectionWrapper = ({
-    id,
-    titleNp,
-    children
-  }: {
-    id: string;
-    titleNp: string;
-    children: React.ReactNode;
-  }) => {
-    if (deletedIds.includes(id)) return null;
-
-    const size = sectionSizes[id] || '100%';
-    const isHalf = size === '50%';
-    const isCompact = size === '75%';
-
-    return (
-      <div 
-        id={id}
-        className={`relative transition-all ${
-          isHalf 
-            ? 'col-span-1' 
-            : isCompact 
-              ? 'col-span-1 md:col-span-2 max-w-4xl mx-auto w-full' 
-              : 'col-span-1 md:col-span-2 w-full'
-        } ${
-          isDeleteMode ? 'hover:ring-2 hover:ring-rose-500/50 rounded-2xl' : ''
-        }`}
-      >
-        {/* Floating Section Toolbar in Move/Resize Mode */}
-        {isMoveMode && (
-          <div className="mb-2 p-2 rounded-xl bg-slate-900/95 text-white backdrop-blur-md border border-slate-700 shadow-lg flex items-center justify-between gap-2 z-20">
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <span className="text-xs font-bold text-slate-200 truncate">{titleNp}</span>
-            </div>
-            <div className="flex items-center gap-1.5 shrink-0">
-              <button
-                onClick={() => moveSectionUp(id)}
-                title="माथि सार्नुहोस्"
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer"
-              >
-                <ArrowUp className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => moveSectionDown(id)}
-                title="तल सार्नुहोस्"
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer"
-              >
-                <ArrowDown className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => cycleSectionSize(id)}
-                title="साइज बदल्नुहोस् (१००%, ५०%, ७५%)"
-                className="px-2 py-0.5 rounded-lg text-[10px] font-bold text-indigo-300 bg-indigo-950/70 border border-indigo-700 hover:bg-indigo-900 flex items-center gap-1 cursor-pointer"
-              >
-                <Columns className="w-3 h-3" />
-                <span>{size}</span>
-              </button>
-              <button
-                onClick={(e) => handleDeleteElement(id, titleNp, e)}
-                title="यो पूरा सेक्सन हटाउनुहोस्"
-                className="p-1 rounded-lg text-rose-300 bg-rose-950/60 hover:bg-rose-900 border border-rose-700 cursor-pointer"
-              >
-                <Trash2 className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {children}
-      </div>
-    );
+  // Reset Everything to Original
+  const resetEverything = () => {
+    if (window.confirm('के तपाईं सबै अक्षर, डिलिट र परिवर्तनहरू रिसेट गरेर सुरुको अवस्थामा फर्काउन चाहनुहुन्छ?')) {
+      window.location.reload();
+    }
   };
 
   return (
     <div className="space-y-6">
       
       {/* ========================================================= */}
-      {/* 1. MASTER FLOATING STUDIO BAR (FULL ACCESS CONTROL)        */}
+      {/* 1. MASTER ULTRA-CONTROL BAR (FULL ACCESS TO EVERYTHING)   */}
       {/* ========================================================= */}
-      <div className="sticky top-14 z-50 bg-slate-950/95 text-white backdrop-blur-md px-4 py-3 rounded-2xl border border-emerald-500/40 shadow-2xl space-y-2">
+      <div 
+        id="master-studio-bar" 
+        contentEditable={false}
+        suppressContentEditableWarning={true}
+        className="sticky top-14 z-50 bg-slate-950/95 text-white backdrop-blur-md px-4 py-3 rounded-2xl border-2 border-emerald-500 shadow-2xl space-y-2 select-none"
+      >
         <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
           
-          {/* Status Indicator */}
+          {/* Status & Help */}
           <div className="flex items-center gap-2.5 w-full lg:w-auto">
-            <span className="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+            <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs sm:text-sm font-black text-white">
-                  पूर्ण नियन्त्रण सम्पादक (Full Access Visual Designer)
+                <span className="text-sm font-black text-white">
+                  १००% पूर्ण पहुँच सम्पादक (Full Access Live Designer)
                 </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                  {activeTool === 'type' ? '✏️ हरेक अक्षर सम्पादन मोड' : activeTool === 'delete' ? '🗑️ डिलिट मोड' : activeTool === 'move' ? '↔ साइज & सार्ने मोड' : '👁️ प्रिभ्यु'}
+                <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                  designMode ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-300'
+                }`}>
+                  {designMode ? '✏️ हरेक अक्षर सम्पादन खुल्ला' : '👁️ प्रिभ्यु मोड'}
                 </span>
               </div>
-              <p className="text-[11px] text-slate-300 hidden sm:block">
-                {activeTool === 'type' && 'वेबसाइटको कुनै पनि अक्षर, हेडिङ वा वाक्यमा क्लिक गरेर सीधै किबोर्डले बदल्नुहोस्।'}
-                {activeTool === 'delete' && 'हटाउन मन लागेको कुनै पनि कार्ड, बटन, लेख वा खण्डमा क्लिक गर्नुहोस (सीधै हट्छ)।'}
-                {activeTool === 'move' && 'प्रत्येक सेक्सनको माथिल्लो पट्टीबाट माथि/तल सार्नुहोस् वा १००%, ५०%, ७५% साइज बदल्नुहोस्।'}
-                {activeTool === 'preview' && 'सबै टुलबार बन्द छ। तपाईंको फाइनल वेबसाइट यस्तो देखिनेछ।'}
+              <p className="text-[11px] text-emerald-200">
+                वेबसाइटको <strong>जुनसुकै अक्षरमा क्लिक गर्नुहोस् र किबोर्डले सिधै मेटाउनुहोस् वा लेख्नुहोस्</strong>। केही हटाउन मन लागे <strong>'हटाउने मोड'</strong> थिचेर सिधै क्लिक गर्नुहोस्।
               </p>
             </div>
           </div>
 
-          {/* 4 Main Action Tool Buttons */}
-          <div className="flex items-center gap-1.5 flex-wrap w-full lg:w-auto justify-end">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-2 flex-wrap w-full lg:w-auto justify-end">
             
-            {/* Tool 1: Direct Character Typing */}
+            {/* Toggle Direct Typing (designMode) */}
             <button
-              onClick={() => setActiveTool('type')}
+              onClick={() => {
+                setDesignMode(!designMode);
+                setClickToDelete(false);
+              }}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                activeTool === 'type' 
-                  ? 'bg-emerald-500 text-slate-950 font-black shadow-md' 
+                designMode && !clickToDelete
+                  ? 'bg-emerald-500 text-slate-950 font-black shadow-md'
                   : 'bg-slate-800 hover:bg-slate-700 text-slate-200'
               }`}
             >
               <Type className="w-3.5 h-3.5" />
-              <span>१. अक्षर बदल्नुहोस् (Type Text)</span>
+              <span>{designMode ? '✏️ टाइप मोड: अन (चालु)' : 'टाइप मोड खोल्नुहोस्'}</span>
             </button>
 
-            {/* Tool 2: Click to Delete */}
+            {/* Click to Delete Tool */}
             <button
-              onClick={() => setActiveTool('delete')}
+              onClick={() => {
+                setClickToDelete(!clickToDelete);
+                if (!clickToDelete) setDesignMode(false);
+              }}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                activeTool === 'delete' 
-                  ? 'bg-rose-500 text-white font-black shadow-md' 
+                clickToDelete
+                  ? 'bg-rose-600 text-white font-black shadow-md ring-2 ring-rose-400'
                   : 'bg-slate-800 hover:bg-slate-700 text-rose-300'
               }`}
             >
               <Trash2 className="w-3.5 h-3.5" />
-              <span>२. हटाउने मोड (Delete)</span>
+              <span>{clickToDelete ? '🗑️ डिलिट मोड: अन (क्लिक गरेर हटाउनुहोस्)' : '🗑️ जे पनि हटाउने मोड'}</span>
             </button>
-
-            {/* Tool 3: Size & Move */}
-            <button
-              onClick={() => setActiveTool('move')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                activeTool === 'move' 
-                  ? 'bg-indigo-500 text-white font-black shadow-md' 
-                  : 'bg-slate-800 hover:bg-slate-700 text-indigo-300'
-              }`}
-            >
-              <Columns className="w-3.5 h-3.5" />
-              <span>३. साइज & सार्ने (Size/Move)</span>
-            </button>
-
-            {/* Tool 4: Clean Preview */}
-            <button
-              onClick={() => setActiveTool('preview')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                activeTool === 'preview' 
-                  ? 'bg-teal-500 text-slate-950 font-black shadow-md' 
-                  : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
-              }`}
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>४. फाइनल प्रिभ्यु</span>
-            </button>
-
-            {/* Undo Deletion */}
-            {deletedStack.length > 0 && (
-              <button
-                onClick={undoLastDelete}
-                title="अन्तिम डिलिट फिर्ता ल्याउनुहोस्"
-                className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 flex items-center gap-1 cursor-pointer"
-              >
-                <Undo2 className="w-3.5 h-3.5" />
-                <span>फिर्ता ({deletedStack.length})</span>
-              </button>
-            )}
 
             {/* Reset */}
             <button
-              onClick={resetAll}
-              title="सबै परिवर्तनहरू रिसेट गर्नुहोस्"
+              onClick={resetEverything}
+              title="सुरुको अवस्थामा फर्काउनुहोस्"
               className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
 
-            {/* Copy Layout for Agent */}
+            {/* Save & Copy Everything for Agent */}
             <button
-              onClick={copyFullDesign}
+              onClick={copyCompleteDesign}
               className={`px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer ${
                 copied 
                   ? 'bg-emerald-400 text-slate-950' 
@@ -426,395 +220,535 @@ export default function InteractiveLayoutBuilder() {
               }`}
             >
               {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'कपी गरियो!' : 'सबै सेभ & कपी गर्नुहोस्'}</span>
+              <span>{copied ? 'कपी भयो!' : '💾 यो फाइनल डिजाइन सेभ & कपी गर्नुहोस्'}</span>
             </button>
 
           </div>
 
         </div>
 
-        {/* Tip Banner */}
-        {activeTool === 'type' && (
-          <div className="bg-emerald-950/70 border border-emerald-500/30 px-3 py-1.5 rounded-xl text-[11px] text-emerald-200 flex items-center justify-between">
-            <span>💡 <strong>कसरी अक्षर बदल्ने:</strong> तल देखिने कुनै पनि हेडिङ, हरफ, बटन वा फुटरको अक्षरमा माउसले क्लिक गर्नुहोस् र सीधै किबोर्डले जे मन लाग्छ त्यही लेख्नुहोस्!</span>
-            <span className="text-[10px] text-emerald-400 font-bold hidden md:inline">सीधै टाइप गर्नुहोस्</span>
-          </div>
-        )}
-
-        {activeTool === 'delete' && (
-          <div className="bg-rose-950/70 border border-rose-500/30 px-3 py-1.5 rounded-xl text-[11px] text-rose-200 flex items-center justify-between">
-            <span>⚠️ <strong>डिलिट मोड सक्रिय छ:</strong> तपाईंले जे कुरा हटाउन चाहनुहुन्छ (कार्ड, बटन, नक्सा वा सेक्सन), त्यसमा सिधै क्लिक गर्नुहोस्, त्यो तुरुन्तै हट्नेछ। (गल्ती भए माथिको 'फिर्ता' थिच्नुहोस्)।</span>
+        {/* Warning / Active Banner */}
+        {clickToDelete && (
+          <div className="bg-rose-950/80 border border-rose-500/50 p-2 rounded-xl text-xs text-rose-200 flex items-center justify-between">
+            <span>🔥 <strong>डिलिट मोड सक्रिय छ:</strong> तलको कुनै पनि अक्षर, फोटो, बक्स, फारम, नक्सा वा फुटरमा क्लिक गर्नुहोस, त्यो तुरुन्तै हट्छ!</span>
+            <button 
+              onClick={() => setClickToDelete(false)}
+              className="px-2 py-0.5 rounded bg-rose-800 text-white font-bold text-[10px]"
+            >
+              डिलिट मोड बन्द गर्नुहोस्
+            </button>
           </div>
         )}
       </div>
 
       {/* ========================================================= */}
-      {/* 2. THE COMPLETE AUTHENTIC LIVE WEBSITE (FULLY EDITABLE)    */}
+      {/* 2. THE 100% UNRESTRICTED RAW EDITABLE WEBSITE CANVAS      */}
       {/* ========================================================= */}
-      <div ref={canvasRef} className="space-y-8 sm:space-y-10">
+      <div 
+        ref={containerRef} 
+        className={`space-y-10 transition-colors ${
+          clickToDelete ? 'cursor-crosshair' : ''
+        }`}
+      >
+        
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 1: CITIZEN GREETING HERO & TITHI                 */}
+        {/* --------------------------------------------------------- */}
+        <section className="user-deletable p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-700 via-teal-700 to-indigo-800 text-white shadow-lg space-y-4 relative group">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <span className="text-xs font-bold text-emerald-200 tracking-wider uppercase flex items-center gap-1.5 user-deletable">
+                <Calendar className="w-3.5 h-3.5" />
+                <span>नेपाल डिजिटल नागरिक सेवा (Citizen Services Portal)</span>
+              </span>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight user-deletable">
+                तपाईंलाई आज कुन सेवा वा टूल आवश्यक छ?
+              </h1>
+              <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-xl user-deletable">
+                जग्गा नापजाँच, सरकारी फारमका लागि फोटो साइज घटाउने, प्रिती युनिकोड, मालपोत कर वा PDF बनाउने सम्पूर्ण काम एकै स्थानबाट गर्नुहोस्।
+              </p>
+            </div>
 
-        {/* Grid Container for Ordered Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {sectionOrder.map((sectionId) => {
+            <div className="shrink-0 w-full sm:w-auto user-deletable">
+              <TithiWidget />
+            </div>
+          </div>
+        </section>
+
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 2: 8 MAIN QUICK ACCESS APP TILES                  */}
+        {/* --------------------------------------------------------- */}
+        <section className="user-deletable space-y-4">
+          <div className="flex items-center justify-between user-deletable">
+            <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-emerald-600" />
+              <span>प्रमुख अनलाइन सेवाहरू (Quick Access Tiles)</span>
+            </h2>
+            <Link href="/tools" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+              सबै १५+ टूल्स हेर्नुहोस् →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             
-            // SECTION 1: CITIZEN GREETING BANNER & TITHI
-            if (sectionId === 'sec-greeting') {
-              return (
-                <SectionWrapper key="sec-greeting" id="sec-greeting" titleNp="१. नागरिक सेवा ब्यानर & पञ्चाङ्ग">
-                  <section className="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-emerald-700 via-teal-700 to-indigo-800 text-white shadow-md space-y-4">
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-                      <div className="space-y-1.5 max-w-2xl">
-                        
-                        <Editable id="greeting-badge" name="ब्यानर उप-शीर्षक">
-                          <span className="text-xs font-bold text-emerald-200 tracking-wider uppercase flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5" />
-                            <span>नेपाल डिजिटल नागरिक सेवा (CITIZEN SERVICES PORTAL)</span>
-                          </span>
-                        </Editable>
+            {/* Tile 1 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <Calculator className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">जग्गा क्यालकुलेटर</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">रोपनी-बिघा-वर्गमिटर हिसाब</p>
+              </div>
+            </div>
 
-                        <Editable id="greeting-title" name="ब्यानर मुख्य शीर्षक">
-                          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
-                            तपाईंलाई आज कुन सेवा वा टूल आवश्यक छ?
-                          </h1>
-                        </Editable>
+            {/* Tile 2 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-rose-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <ImageIcon className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">फोटो कम्प्रेसर</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">सरकारी फारमका लागि २००KB</p>
+              </div>
+            </div>
 
-                        <Editable id="greeting-desc" name="ब्यानर विवरण">
-                          <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-xl">
-                            जग्गा नापजाँच, सरकारी फारमका लागि फोटो साइज घटाउने, प्रिती युनिकोड, मालपोत कर वा PDF बनाउने सम्पूर्ण काम एकै स्थानबाट गर्नुहोस्।
-                          </p>
-                        </Editable>
+            {/* Tile 3 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-teal-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <ArrowRightLeft className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">Preeti ⇄ Unicode</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">नेपाली टाइपिङ कन्भर्टर</p>
+              </div>
+            </div>
 
-                      </div>
+            {/* Tile 4 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-indigo-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <FileText className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">तस्विरबाट A4 PDF</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">लालपुर्जा / नक्सा डकुमेन्ट</p>
+              </div>
+            </div>
 
-                      <div className="shrink-0 w-full sm:w-auto">
-                        <Editable id="greeting-tithi" name="नेपाली पञ्चाङ्ग पात्रो">
-                          <TithiWidget />
-                        </Editable>
-                      </div>
-                    </div>
-                  </section>
-                </SectionWrapper>
-              );
-            }
+            {/* Tile 5 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <Coins className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">मालपोत तथा कर</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">रजिस्ट्रेसन & CGT दस्तुर</p>
+              </div>
+            </div>
 
-            // SECTION 2: 8 QUICK ACCESS TILES
-            if (sectionId === 'sec-tiles') {
-              const tiles = [
-                { id: 'tile-1', title: 'जग्गा क्यालकुलेटर', sub: 'रोपनी-बिघा-वर्गमिटर हिसाब', icon: Calculator, color: 'bg-emerald-500 text-white', href: '#land-calc-section' },
-                { id: 'tile-2', title: 'फोटो कम्प्रेसर', sub: 'सरकारी फारमका लागि २००KB', icon: ImageIcon, color: 'bg-rose-500 text-white', href: '/tools/image-compressor' },
-                { id: 'tile-3', title: 'Preeti ⇄ Unicode', sub: 'नेपाली टाइपिङ कन्भर्टर', icon: ArrowRightLeft, color: 'bg-teal-500 text-white', href: '/tools/preeti-to-unicode' },
-                { id: 'tile-4', title: 'तस्विरबाट A4 PDF', sub: 'लालपुर्जा / नक्सा डकुमेन्ट', icon: FileText, color: 'bg-indigo-500 text-white', href: '/tools/images-to-pdf' },
-                { id: 'tile-5', title: 'मालपोत तथा कर', sub: 'रजिस्ट्रेसन & CGT दस्तुर', icon: Coins, color: 'bg-amber-500 text-white', href: '/tools/malpot-calculator' },
-                { id: 'tile-6', title: '७७ जिल्ला नापी', sub: 'कार्यालय फोन, इमेल र ठेगाना', icon: Building2, color: 'bg-sky-500 text-white', href: '/tools/survey-offices' },
-                { id: 'tile-7', title: 'जग्गा बैना कागज', sub: 'A4 कानुनी लिखत तमसुक', icon: ScrollText, color: 'bg-orange-500 text-white', href: '/tools/legal-templates' },
-                { id: 'tile-8', title: 'कित्ताकाट मापदण्ड', sub: '१३० वर्गमिटर नियम चेकर', icon: Split, color: 'bg-purple-500 text-white', href: '/tools/kitta-kat-checker' },
-              ];
+            {/* Tile 6 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-sky-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <Building2 className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">७७ जिल्ला नापी</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">कार्यालय फोन, इमेल र ठेगाना</p>
+              </div>
+            </div>
 
-              return (
-                <SectionWrapper key="sec-tiles" id="sec-tiles" titleNp="२. मुख्य ८ वटा अनलाइन सेवा टाइल्स">
-                  <section className="space-y-3.5">
-                    <div className="flex items-center justify-between">
-                      <Editable id="tiles-header" name="टाइल्स शीर्षक">
-                        <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-emerald-600" />
-                          <span>प्रमुख अनलाइन सेवाहरू (Quick Access Tiles)</span>
-                        </h2>
-                      </Editable>
-                      
-                      <Editable id="tiles-link" name="सबै टूल्स लिङ्क">
-                        <Link href="/tools" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
-                          सबै १५+ टूल्स हेर्नुहोस् →
-                        </Link>
-                      </Editable>
-                    </div>
+            {/* Tile 7 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-orange-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <ScrollText className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">जग्गा बैना कागज</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">A4 कानुनी लिखत तमसुक</p>
+              </div>
+            </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                      {tiles.map((tile) => {
-                        const Icon = tile.icon;
-                        return (
-                          <Editable key={tile.id} id={tile.id} name={tile.title}>
-                            <div className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between space-y-2.5 h-full">
-                              <div className={`w-11 h-11 rounded-xl ${tile.color} flex items-center justify-center shadow-xs shrink-0`}>
-                                <Icon className="w-5 h-5" />
-                              </div>
-                              <div>
-                                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
-                                  {tile.title}
-                                </h3>
-                                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">
-                                  {tile.sub}
-                                </p>
-                              </div>
-                            </div>
-                          </Editable>
-                        );
-                      })}
-                    </div>
-                  </section>
-                </SectionWrapper>
-              );
-            }
+            {/* Tile 8 */}
+            <div className="user-deletable p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500 transition-all flex flex-col justify-between space-y-3">
+              <div className="w-11 h-11 rounded-xl bg-purple-500 text-white flex items-center justify-center shadow-xs shrink-0">
+                <Split className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">कित्ताकाट मापदण्ड</h3>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">१३० वर्गमिटर नियम चेकर</p>
+              </div>
+            </div>
 
-            // SECTION 3: COMPACT SECONDARY CHIPS STRIP
-            if (sectionId === 'sec-chips') {
-              const secondaryChips = [
-                { id: 'chip-1', label: 'बहु-कित्ता क्यालकुलेटर', href: '/tools/multi-kitta-calculator', icon: Layers },
-                { id: 'chip-2', label: 'AutoCAD Scripts', href: '/tools/autocad-scripts', icon: Compass },
-                { id: 'chip-3', label: 'Excel to KML', href: '/tools/excel-to-kml', icon: FileSpreadsheet },
-                { id: 'chip-4', label: 'PDF सुइट', href: '/tools/pdf-tools', icon: FileStack },
-                { id: 'chip-5', label: 'अक्षरेपी (Number to Words)', href: '/tools/number-to-words', icon: ScrollText },
-                { id: 'chip-6', label: 'कित्ता QR कोड', href: '/tools/kitta-qr', icon: QrCode },
-                { id: 'chip-7', label: 'अमिन लोकसेवा क्विज', href: '/tools/aamin-quiz', icon: GraduationCap },
-              ];
+          </div>
 
-              return (
-                <SectionWrapper key="sec-chips" id="sec-chips" titleNp="३. थप टूलहरूको छरितो चिप्स पट्टी">
-                  <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
-                    <Editable id="chips-label" name="थप टूल्स लेबल">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
-                        थप टूल्स:
-                      </span>
-                    </Editable>
+          {/* Secondary Quick Chips */}
+          <div className="user-deletable flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none no-scrollbar pt-1">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0 user-deletable">
+              थप टूल्स:
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <Layers className="w-3.5 h-3.5 text-emerald-600" />
+              <span>बहु-कित्ता क्यालकुलेटर</span>
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <Compass className="w-3.5 h-3.5 text-emerald-600" />
+              <span>AutoCAD Scripts</span>
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Excel to KML</span>
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <FileStack className="w-3.5 h-3.5 text-emerald-600" />
+              <span>PDF सुइट</span>
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <ScrollText className="w-3.5 h-3.5 text-emerald-600" />
+              <span>अक्षरेपी (Number to Words)</span>
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <QrCode className="w-3.5 h-3.5 text-emerald-600" />
+              <span>कित्ता QR कोड</span>
+            </span>
+            <span className="user-deletable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+              <GraduationCap className="w-3.5 h-3.5 text-emerald-600" />
+              <span>अमिन लोकसेवा क्विज</span>
+            </span>
+          </div>
+        </section>
 
-                    {secondaryChips.map((chip) => {
-                      const Icon = chip.icon;
-                      return (
-                        <Editable key={chip.id} id={chip.id} name={chip.label}>
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
-                            <Icon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                            <span>{chip.label}</span>
-                          </span>
-                        </Editable>
-                      );
-                    })}
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 3: PRECISION LAND CALCULATOR                      */}
+        {/* --------------------------------------------------------- */}
+        <section id="land-calc-section" className="user-deletable scroll-mt-24 space-y-2.5">
+          <div className="flex items-center justify-between user-deletable">
+            <div className="space-y-0.5">
+              <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2 user-deletable">
+                <Calculator className="w-5 h-5 text-emerald-600" />
+                <span>जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर</span>
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400 user-deletable">
+                रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर-कनुवा हिसाब र आधिकारिक स्लिप प्रिन्ट
+              </p>
+            </div>
+            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800 shrink-0 hidden sm:inline-block user-deletable">
+              स्लिप प्रिन्ट उपलब्ध
+            </span>
+          </div>
+
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs p-1">
+            <LandCalculator />
+          </div>
+        </section>
+
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 4: MOBILE APPS & SOFTWARE SHOWCASE                */}
+        {/* --------------------------------------------------------- */}
+        <section className="user-deletable space-y-3 pt-2">
+          <div className="flex items-center justify-between user-deletable">
+            <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <Smartphone className="w-4 h-4 text-emerald-600" />
+              <span>हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            {/* App 1 */}
+            <div className="user-deletable p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5 min-w-0">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0">
+                  <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-black truncate">Land Solution</h3>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">
+                      नापी एप
+                    </span>
                   </div>
-                </SectionWrapper>
-              );
-            }
+                  <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
+                    फिल्ड नापजाँच, कित्ताकाट, चारकिल्ला र नक्सा रेखांकन
+                  </p>
+                </div>
+              </div>
 
-            // SECTION 4: PRECISION LAND CALCULATOR
-            if (sectionId === 'sec-calc') {
-              return (
-                <SectionWrapper key="sec-calc" id="sec-calc" titleNp="४. जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर">
-                  <section id="land-calc-section" className="scroll-mt-24 space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <div className="space-y-0.5">
-                        <Editable id="calc-title" name="क्यालकुलेटर शीर्षक">
-                          <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-                            <Calculator className="w-5 h-5 text-emerald-600" />
-                            <span>जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर</span>
-                          </h2>
-                        </Editable>
-                        
-                        <Editable id="calc-desc" name="क्यालकुलेटर विवरण">
-                          <p className="text-xs text-slate-500 dark:text-slate-400">
-                            रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर-कनुवा हिसाब र आधिकारिक स्लिप प्रिन्ट
-                          </p>
-                        </Editable>
-                      </div>
+              <span className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs">
+                <Play className="w-3.5 h-3.5 fill-white" />
+                <span className="hidden sm:inline">Web Demo</span>
+              </span>
+            </div>
 
-                      <Editable id="calc-badge" name="स्लिप प्रिन्ट ब्याज">
-                        <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800 shrink-0 hidden sm:inline-block">
-                          स्लिप प्रिन्ट उपलब्ध
-                        </span>
-                      </Editable>
-                    </div>
-
-                    <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs p-1">
-                      <LandCalculator />
-                    </div>
-                  </section>
-                </SectionWrapper>
-              );
-            }
-
-            // SECTION 5: MOBILE APPS & FLAGSHIP SOFTWARE
-            if (sectionId === 'sec-apps') {
-              return (
-                <SectionWrapper key="sec-apps" id="sec-apps" titleNp="५. हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू">
-                  <section className="space-y-3 pt-2">
-                    <Editable id="apps-header" name="एप्स सेक्सन शीर्षक">
-                      <div className="flex items-center justify-between">
-                        <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-                          <Smartphone className="w-4 h-4 text-emerald-600" />
-                          <span>हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू</span>
-                        </h2>
-                      </div>
-                    </Editable>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-                      
-                      {/* App 1: Land Solution */}
-                      <Editable id="app-land-solution" name="Land Solution एप कार्ड">
-                        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4 h-full">
-                          <div className="flex items-center gap-3.5 min-w-0">
-                            <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0">
-                              <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
-                            </div>
-                            <div className="min-w-0">
-                              <div className="flex items-center gap-2">
-                                <h3 className="text-base font-black truncate">Land Solution</h3>
-                                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">
-                                  नापी एप
-                                </span>
-                              </div>
-                              <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                                फिल्ड नापजाँच, कित्ताकाट, चारकिल्ला र नक्सा रेखांकन
-                              </p>
-                            </div>
-                          </div>
-
-                          <span className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs">
-                            <Play className="w-3.5 h-3.5 fill-white" />
-                            <span className="hidden sm:inline">Web Demo</span>
-                          </span>
-                        </div>
-                      </Editable>
-
-                      {/* App 2: Hamro Kosh */}
-                      <Editable id="app-hamro-kosh" name="हाम्रो कोष एप कार्ड">
-                        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4 h-full">
-                          <div className="flex items-center gap-3.5 min-w-0">
-                            <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
-                              <Wallet className="w-5 h-5" />
-                            </div>
-                            <div className="min-w-0">
-                              <div className="flex items-center gap-2">
-                                <h3 className="text-base font-black truncate">हाम्रो कोष (Hamro Kosh)</h3>
-                                <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 shrink-0">
-                                  बचत सफ्टवेयर
-                                </span>
-                              </div>
-                              <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                                सहकारी, समूह तथा व्यक्तिगत बचत, ऋण र ब्याज हिसाब
-                              </p>
-                            </div>
-                          </div>
-
-                          <span className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs">
-                            <span>विवरण</span>
-                            <ChevronRight className="w-3.5 h-3.5" />
-                          </span>
-                        </div>
-                      </Editable>
-
-                    </div>
-                  </section>
-                </SectionWrapper>
-              );
-            }
-
-            // SECTION 6: KNOWLEDGE BASE ARTICLES
-            if (sectionId === 'sec-articles') {
-              return (
-                <SectionWrapper key="sec-articles" id="sec-articles" titleNp="६. नापी ज्ञान तथा प्राविधिक गाइडहरू">
-                  <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800">
-                    <KnowledgeBaseSection />
+            {/* App 2 */}
+            <div className="user-deletable p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5 min-w-0">
+                <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
+                  <Wallet className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-black truncate">हाम्रो कोष (Hamro Kosh)</h3>
+                    <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 shrink-0">
+                      बचत सफ्टवेयर
+                    </span>
                   </div>
-                </SectionWrapper>
-              );
-            }
+                  <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
+                    सहकारी, समूह तथा व्यक्तिगत बचत, ऋण र ब्याज हिसाब
+                  </p>
+                </div>
+              </div>
 
-            // SECTION 7: CONTACT FORM & LOCATION
-            if (sectionId === 'sec-contact') {
-              return (
-                <SectionWrapper key="sec-contact" id="sec-contact" titleNp="७. सम्पर्क तथा प्रतिक्रिया फारम">
-                  <Contact />
-                </SectionWrapper>
-              );
-            }
+              <span className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs">
+                <span>विवरण</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </span>
+            </div>
 
-            // SECTION 8: FULL EDITABLE FOOTER
-            if (sectionId === 'sec-footer') {
-              return (
-                <SectionWrapper key="sec-footer" id="sec-footer" titleNp="८. फुटर (Footer Links & Info)">
-                  <footer className="relative bg-slate-950 text-slate-300 rounded-3xl p-6 sm:p-10 border border-slate-800 space-y-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                      
-                      {/* Col 1 */}
-                      <div className="space-y-3">
-                        <Editable id="footer-brand-title" name="फुटर ब्रान्ड नाम">
-                          <h4 className="text-lg font-black text-white">BR Bhatta</h4>
-                          <span className="text-xs text-emerald-400 font-semibold block">Nepal Land Tech & Surveying</span>
-                        </Editable>
-                        
-                        <Editable id="footer-brand-desc" name="फुटर ब्रान्ड विवरण">
-                          <p className="text-xs text-slate-400 leading-relaxed">
-                            नेपालको नापी, नक्सा, जग्गा व्यवस्थापन, कित्ताकाट तथा डिजिटल इन्जिनियरिङको आधिकारिक पोर्टल।
-                          </p>
-                        </Editable>
+          </div>
+        </section>
 
-                        <Editable id="footer-location" name="फुटर स्थान">
-                          <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg">
-                            <MapPin className="w-3 h-3 text-emerald-400" />
-                            <span>काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
-                          </span>
-                        </Editable>
-                      </div>
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 5: KNOWLEDGE BASE ARTICLES                        */}
+        {/* --------------------------------------------------------- */}
+        <section className="user-deletable rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800">
+          <KnowledgeBaseSection />
+        </section>
 
-                      {/* Col 2 */}
-                      <div className="space-y-2.5">
-                        <Editable id="footer-col2-title" name="फुटर कलम २ शीर्षक">
-                          <h5 className="text-xs font-bold text-white uppercase tracking-wider">डिजिटल उपकरण तथा PDF</h5>
-                        </Editable>
-                        <div className="space-y-1.5 text-xs text-slate-400">
-                          <Editable id="f-link-1" name="फुटर लिङ्क १"><div>› Preeti ⇄ Unicode कन्भर्टर</div></Editable>
-                          <Editable id="f-link-2" name="फुटर लिङ्क २"><div>› कागजात फोटो कम्प्रेसर (२००KB)</div></Editable>
-                          <Editable id="f-link-3" name="फुटर लिङ्क ३"><div>› तस्विरबाट A4 PDF जेनेरेटर</div></Editable>
-                          <Editable id="f-link-4" name="फुटर लिङ्क ४"><div>› जग्गा क्यालकुलेटर (रोपनी/बिघा)</div></Editable>
-                        </div>
-                      </div>
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 6: CONTACT & LOCATION (UNPACKED & 100% EDITABLE) */}
+        {/* --------------------------------------------------------- */}
+        <section id="contact" className="user-deletable rounded-3xl p-6 sm:p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-md space-y-8">
+          
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto space-y-2 user-deletable">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold user-deletable">
+              <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+              <span>सम्पर्क तथा ठेगाना (Contact & Location)</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white user-deletable">
+              कुनै सोधपुछ वा सहकार्यका लागि सम्पर्क गर्नुहोस्
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 user-deletable">
+              ल्याण्ड सोलुसन, हाम्रो कोष एप, वा AutoCAD LSP फाइल्स सम्बन्धी कुनै पनि जिज्ञासाका लागि सिधै इमेल, सोसियल मिडिया वा तलको फर्ममार्फत सम्पर्क गर्न सक्नुहुन्छ।
+            </p>
+          </div>
 
-                      {/* Col 3 */}
-                      <div className="space-y-2.5">
-                        <Editable id="footer-col3-title" name="फुटर कलम ३ शीर्षक">
-                          <h5 className="text-xs font-bold text-white uppercase tracking-wider">स्रोत तथा अध्ययन</h5>
-                        </Editable>
-                        <div className="space-y-1.5 text-xs text-slate-400">
-                          <Editable id="f-link-5" name="फुटर लिङ्क ५"><div>› ७७ जिल्ला नापी र मालपोत निर्देशिका</div></Editable>
-                          <Editable id="f-link-6" name="फुटर लिङ्क ६"><div>› AutoCAD LSP Scripts हब (.lsp)</div></Editable>
-                          <Editable id="f-link-7" name="फुटर लिङ्क ७"><div>› लोकसेवा नापी अमिन अनलाइन क्विज</div></Editable>
-                          <Editable id="f-link-8" name="फुटर लिङ्क ८"><div>› मौजुदा नापी तथा भूमि कानुन संग्रह</div></Editable>
-                        </div>
-                      </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left Column: Direct Info & Map */}
+            <div className="lg:col-span-5 space-y-4">
+              
+              {/* Email Card */}
+              <div className="user-deletable p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-500 uppercase block">आधिकारिक इमेल</span>
+                  <span className="text-sm font-mono font-bold text-slate-900 dark:text-white">aabiralbhatt@gmail.com</span>
+                </div>
+              </div>
 
-                      {/* Col 4 */}
-                      <div className="space-y-2.5">
-                        <Editable id="footer-col4-title" name="फुटर कलम ४ शीर्षक">
-                          <h5 className="text-xs font-bold text-white uppercase tracking-wider">सम्पर्क तथा सहयोग</h5>
-                        </Editable>
-                        <div className="space-y-2 text-xs text-slate-400">
-                          <Editable id="footer-email" name="फुटर आधिकारिक इमेल">
-                            <div className="p-2 rounded-lg bg-slate-900 border border-slate-800 flex items-center gap-2 text-emerald-400 font-mono">
-                              <Mail className="w-3.5 h-3.5" />
-                              <span>aabiralbhatt@gmail.com</span>
-                            </div>
-                          </Editable>
-                          <Editable id="footer-help-badge" name="सहयोग उपलब्धता">
-                            <span className="block text-[11px] text-slate-400">🟢 अनलाइन प्राविधिक सहायता उपलब्ध</span>
-                          </Editable>
-                        </div>
-                      </div>
+              {/* Location Card */}
+              <div className="user-deletable p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-500 uppercase block">स्थान / LOCATION</span>
+                  <span className="text-sm font-bold text-slate-900 dark:text-white block">काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
+                  <p className="text-[11px] text-slate-500 mt-0.5">नेपालभर अनलाइन सफ्टवेयर सपोर्ट, ल्याण्ड क्याल्कुलेसन परामर्श तथा प्राविधिक सहायता उपलब्ध छ।</p>
+                </div>
+              </div>
 
-                    </div>
+              {/* Map Container */}
+              <div className="user-deletable p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-2">
+                <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+                  <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-emerald-600" />काठमाडौँ, नेपाल (Interactive Map)</span>
+                  <span className="text-[10px] text-slate-400">Kathmandu 44600</span>
+                </div>
+                <div className="h-44 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 relative bg-slate-200 dark:bg-slate-950">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113032.64621422784!2d85.25607519967727!3d27.708942727142404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2C%20Nepal!5e0!3m2!1sen!2snp!4v1710000000000!5m2!1sen!2snp" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    loading="lazy" 
+                    title="Kathmandu Location"
+                  ></iframe>
+                </div>
+              </div>
 
-                    <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                      <Editable id="footer-copyright" name="फुटर कपीराइट टेक्स्ट">
-                        <div>© 2026 BR Bhatta (brbhatta.com). सर्वाधिकार सुरक्षित।</div>
-                      </Editable>
-                      <div className="flex items-center gap-4">
-                        <Editable id="f-policy" name="नीति लिङ्क"><span>गोपनीयता नीति (Privacy Policy)</span></Editable>
-                        <Editable id="f-terms" name="सर्त लिङ्क"><span>प्रयोगका सर्तहरू (Terms)</span></Editable>
-                      </div>
-                    </div>
-                  </footer>
-                </SectionWrapper>
-              );
-            }
+            </div>
 
-            return null;
-          })}
-        </div>
+            {/* Right Column: Direct Message Form */}
+            <div className="user-deletable lg:col-span-7 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/80 space-y-4">
+              <div className="user-deletable">
+                <h3 className="text-lg font-black text-slate-900 dark:text-white">सिधै सन्देश पठाउनुहोस्</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
+              </div>
+
+              <div className="space-y-3.5">
+                <div className="user-deletable space-y-1">
+                  <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">तपाईंको पूरा नाम *</label>
+                  <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-400">
+                    उदा. रमेश अधिकारी
+                  </div>
+                </div>
+
+                <div className="user-deletable space-y-1">
+                  <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">सम्पर्क मोबाइल / फोन नम्बर *</label>
+                  <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-400">
+                    उदा. 98XXXXXXXX
+                  </div>
+                </div>
+
+                <div className="user-deletable space-y-1">
+                  <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">कुन विषयमा सहयोग चाहिएको हो?</label>
+                  <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-700 dark:text-slate-300">
+                    Land Solution (नापजाँच तथा कित्ताकाट एप)
+                  </div>
+                </div>
+
+                <div className="user-deletable space-y-1">
+                  <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">तपाईंको सन्देश वा प्रश्न *</label>
+                  <div className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs text-slate-400 h-20">
+                    आफ्नो जिज्ञासा यहाँ लेख्नुहोस्...
+                  </div>
+                </div>
+
+                <div className="user-deletable">
+                  <span className="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
+                    <Send className="w-3.5 h-3.5" />
+                    <span>सन्देश पठाउनुहोस् (Send Message)</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* --------------------------------------------------------- */}
+        {/* SECTION 7: FULL RAW FOOTER (EVERY SINGLE WORD EDITABLE)   */}
+        {/* --------------------------------------------------------- */}
+        <footer className="user-deletable relative bg-slate-950 text-slate-300 rounded-3xl p-6 sm:p-10 border border-slate-800 space-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            {/* Col 1: Brand */}
+            <div className="user-deletable space-y-3.5">
+              <div className="user-deletable flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white p-1 flex items-center justify-center shrink-0">
+                  <img src="/logo.png" alt="BR Bhatta" className="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-base font-black text-white leading-tight">BR Bhatta</h4>
+                  <span className="text-[11px] text-emerald-400 font-semibold block">Nepal Land Tech & Surveying</span>
+                </div>
+              </div>
+
+              <p className="user-deletable text-xs text-slate-400 leading-relaxed">
+                नेपालको नापी, नक्सा, जग्गा व्यवस्थापन, कित्ताकाट तथा डिजिटल इन्जिनियरिङको आधिकारिक पोर्टल।
+              </p>
+
+              <div className="user-deletable inline-flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg">
+                <MapPin className="w-3 h-3 text-emerald-400" />
+                <span>काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
+              </div>
+
+              {/* Social Icons */}
+              <div className="user-deletable flex items-center gap-2 pt-1">
+                <span className="user-deletable w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center"><Facebook className="w-4 h-4" /></span>
+                <span className="user-deletable w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center"><Instagram className="w-4 h-4" /></span>
+                <span className="user-deletable w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center"><Github className="w-4 h-4" /></span>
+                <span className="user-deletable w-8 h-8 rounded-lg bg-slate-900 border border-slate-700 text-white flex items-center justify-center text-xs font-bold">TikTok</span>
+              </div>
+            </div>
+
+            {/* Col 2: Digital Tools */}
+            <div className="user-deletable space-y-2.5">
+              <h5 className="user-deletable text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>डिजिटल उपकरण तथा PDF</span>
+              </h5>
+              <div className="space-y-1.5 text-xs text-slate-400">
+                <div className="user-deletable hover:text-emerald-400">› Preeti ⇄ Unicode कन्भर्टर</div>
+                <div className="user-deletable hover:text-emerald-400">› कागजात फोटो कम्प्रेसर (२००KB)</div>
+                <div className="user-deletable hover:text-emerald-400">› तस्विरबाट A4 PDF जेनेरेटर</div>
+                <div className="user-deletable hover:text-emerald-400">› PDF Merge & Split (जोड्ने/छुटाउने)</div>
+                <div className="user-deletable hover:text-emerald-400">› नेपाली संख्या अक्षरेपी (Number to Words)</div>
+                <div className="user-deletable hover:text-emerald-400">› जग्गा क्यालकुलेटर (रोपनी/बिघा)</div>
+                <div className="user-deletable text-emerald-400 font-bold pt-1">सबै १६+ उपकरणहरू हेर्नुहोस् ›</div>
+              </div>
+            </div>
+
+            {/* Col 3: Resources & Study */}
+            <div className="user-deletable space-y-2.5">
+              <h5 className="user-deletable text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                <span>स्रोत तथा अध्ययन</span>
+              </h5>
+              <div className="space-y-1.5 text-xs text-slate-400">
+                <div className="user-deletable hover:text-emerald-400">› ७७ जिल्ला नापी र मालपोत निर्देशिका</div>
+                <div className="user-deletable hover:text-emerald-400">› AutoCAD LSP Scripts हब (.lsp)</div>
+                <div className="user-deletable hover:text-emerald-400">› लोकसेवा नापी अमिन पाठ्यक्रम र प्रश्न</div>
+                <div className="user-deletable hover:text-emerald-400">› लोकसेवा नापी अमिन अनलाइन क्विज</div>
+                <div className="user-deletable hover:text-emerald-400">› मौजुदा नापी तथा भूमि कानुन संग्रह</div>
+                <div className="user-deletable text-cyan-400 font-bold pt-1">प्राविधिक गाइड तथा लेखहरू ›</div>
+              </div>
+            </div>
+
+            {/* Col 4: Contact & Help */}
+            <div className="user-deletable space-y-2.5">
+              <h5 className="user-deletable text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span>सम्पर्क तथा सहयोग</span>
+              </h5>
+              <div className="space-y-2 text-xs text-slate-400">
+                <div className="user-deletable p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2 text-emerald-400 font-mono">
+                  <Mail className="w-3.5 h-3.5 shrink-0" />
+                  <span className="truncate">aabiralbhatt@gmail.com</span>
+                </div>
+                <div className="user-deletable p-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px]">
+                  🟢 अनलाइन प्राविधिक सहायता उपलब्ध
+                </div>
+                <div className="user-deletable p-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-slate-400" />
+                  <span>www.brbhatta.com</span>
+                </div>
+                <div className="user-deletable">
+                  <span className="w-full py-2 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold text-xs flex items-center justify-center gap-1">
+                    <span>सम्पर्क फारम पठाउनुहोस् ›</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Footer Bottom Links & Disclaimer */}
+          <div className="user-deletable pt-6 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <div className="user-deletable flex items-center gap-4 flex-wrap justify-center">
+              <span className="user-deletable hover:text-white">हाम्रो बारेमा (About Us)</span>
+              <span className="user-deletable hover:text-white">सम्पर्क (Contact Us)</span>
+              <span className="user-deletable hover:text-white">गोपनीयता नीति (Privacy Policy)</span>
+              <span className="user-deletable hover:text-white">प्रयोगका सर्तहरू (Terms of Service)</span>
+              <span className="user-deletable hover:text-white">अस्वीकरण (Disclaimer)</span>
+            </div>
+
+            <div className="user-deletable flex items-center gap-2">
+              <span className="user-deletable px-3 py-1.5 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm">
+                <Bot className="w-3.5 h-3.5" />
+                <span>नेपाल जग्गा AI सहायक</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="user-deletable text-center pt-2 text-[11px] text-slate-600 border-t border-slate-900">
+            <span className="user-deletable">© 2026 BR Bhatta (brbhatta.com). सर्वाधिकार सुरक्षित।</span>
+          </div>
+
+        </footer>
 
       </div>
 
