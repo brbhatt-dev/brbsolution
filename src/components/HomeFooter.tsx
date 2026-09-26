@@ -173,13 +173,19 @@ export default function HomeFooter() {
           </Link>
         </div>
 
-        {/* Bottom Section: Disclaimer & Copyright */}
-        <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400 text-center sm:text-left sm:pr-48 lg:pr-56">
-          <div className="space-y-1">
+        {/* Bottom Section: Mission Statement + Copyright & Badges */}
+        <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left sm:pr-48 lg:pr-56">
+          <div className="space-y-1.5">
+            {/* Proud Mission Tagline */}
+            <p className="text-xs sm:text-[13px] text-emerald-300 font-medium flex items-center justify-center sm:justify-start gap-1.5">
+              <span>🇳🇵</span>
+              <span>नेपाली माटो, आफ्नै प्रविधि — इन्जिनियर, अमिन र आम नागरिकका लागि निःशुल्क डिजिटल सहयोगी।</span>
+            </p>
+
             <p className="text-[12px] text-slate-400">
               &copy; {new Date().getFullYear()} <strong className="text-white font-bold">BR Bhatta</strong> (brbhatta.com). सर्वाधिकार सुरक्षित।
             </p>
-            <p className="text-[11px] text-slate-400/90 leading-relaxed max-w-2xl">
+            <p className="text-[11px] text-slate-500 leading-relaxed max-w-2xl">
               सूचना तथा प्राविधिक गणनाका लागि निर्मित। आधिकारिक निर्णयका लागि सम्बन्धित नापी तथा मालपोत कार्यालयको अभिलेख मान्य हुनेछ।
             </p>
           </div>
