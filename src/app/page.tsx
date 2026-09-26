@@ -19,10 +19,10 @@ export default function Home() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="font-bold">
-              🌟 १७ वटा नयाँ डिजाइनहरू (17 Unique & Pro Designs Live):
+              🏛️ २२ वटा डिजाइनहरू (नेपालका सरकारी पोर्टलहरू सहित):
             </span>
             <span className="text-emerald-200 hidden md:inline">
-              Perplexity Search, Bloomberg Terminal र Gov.uk सहित
+              नापी विभाग (dos.gov.np), मालपोत (dolrm.gov.np) र नागरिक एप ढाँचा
             </span>
           </div>
 
@@ -31,7 +31,7 @@ export default function Home() {
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-[11px] shadow-xs transition-transform active:scale-95 shrink-0"
           >
             <Eye className="w-3.5 h-3.5" />
-            <span>१७ वटै डिजाइन डेमो हेर्नुहोस्</span>
+            <span>२२ वटै डिजाइन डेमो हेर्नुहोस्</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
