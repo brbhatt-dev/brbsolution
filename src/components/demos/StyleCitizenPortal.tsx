@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Calculator, 
@@ -8,29 +8,61 @@ import {
   ArrowRightLeft, 
   ImageIcon, 
   FileText, 
-  FileStack, 
   Building2, 
   Coins, 
   Play, 
-  ExternalLink,
-  ChevronRight,
-  Calendar,
-  Layers,
-  Split,
-  QrCode,
-  ScrollText,
-  GraduationCap,
-  CheckCircle2,
-  Wallet,
-  Smartphone,
-  Compass,
+  ChevronRight, 
+  Calendar, 
+  Split, 
+  ScrollText, 
+  Wallet, 
+  Smartphone, 
   ArrowRight,
-  FileSpreadsheet
+  Sun,
+  Moon
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
 
 export default function StyleCitizenPortal() {
+  // Dynamic Time-Aware Greeting (Option 4: Smart Auto-Dynamic Greeting)
+  const [greeting, setGreeting] = useState({
+    badge: 'नेपाल डिजिटल नागरिक सेवा',
+    title: 'नमस्ते तथा स्वागत छ!',
+    sub: 'जग्गाको क्षेत्रफल हिसाब (रोपनी/बिघा), मालपोत दस्तुर, कित्ताकाट नियम वा सरकारी फारमका टूल्स तुरुन्तै प्रयोग गर्नुहोस्।',
+    icon: Sun,
+    gradient: 'from-emerald-700 via-teal-700 to-indigo-800'
+  });
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      setGreeting({
+        badge: '☀️ शुभ प्रभात (Good Morning)',
+        title: 'शुभ प्रभात! आजको दिन सुखद रहोस्',
+        sub: 'जग्गाको क्षेत्रफल हिसाब (रोपनी/बिघा), मालपोत दस्तुर, कित्ताकाट नियम वा सरकारी फारमका टूल्स तुरुन्तै प्रयोग गर्नुहोस्।',
+        icon: Sun,
+        gradient: 'from-amber-600 via-teal-700 to-emerald-800'
+      });
+    } else if (hour >= 12 && hour < 17) {
+      setGreeting({
+        badge: '🌤️ शुभ दिन (Good Afternoon)',
+        title: 'नमस्ते तथा शुभ दिन! आज कुन सेवा वा टूल आवश्यक छ?',
+        sub: 'जग्गाको नापजाँच, कित्ताकाट मापदण्ड, Preeti Unicode टाइपिङ वा PDF बनाउने काम सजिलै गर्नुहोस्।',
+        icon: Sun,
+        gradient: 'from-emerald-700 via-teal-700 to-indigo-800'
+      });
+    } else {
+      setGreeting({
+        badge: '🌙 शुभ सन्ध्या (Good Evening)',
+        title: 'शुभ सन्ध्या! BR Bhatta डिजिटल नागरिक सेवामा स्वागत छ',
+        sub: 'जग्गाको हिसाब, लिखत तमसुक, ७७ जिल्ला नापी निर्देशिका र प्राविधिक टूल्स एकै ठाउँबाट निःशुल्क प्रयोग गर्नुहोस्।',
+        icon: Moon,
+        gradient: 'from-indigo-900 via-slate-900 to-teal-950'
+      });
+    }
+  }, []);
+
   // Primary 8 Big Vibrant Quick Tiles (HamroPatro / Nagarik App style)
   const quickTiles = [
     { title: 'जग्गा क्यालकुलेटर', sub: 'रोपनी-बिघा-वर्गमिटर हिसाब', icon: Calculator, color: 'bg-emerald-500 text-white', href: '#land-calc-section' },
@@ -43,43 +75,33 @@ export default function StyleCitizenPortal() {
     { title: 'कित्ताकाट मापदण्ड', sub: '१३० वर्गमिटर नियम चेकर', icon: Split, color: 'bg-purple-500 text-white', href: '/tools/kitta-kat-checker' },
   ];
 
-  // Compact Quick Links for Secondary Tools (Single Sleek Row)
-  const secondaryQuickChips = [
-    { label: 'बहु-कित्ता क्यालकुलेटर', href: '/tools/multi-kitta-calculator', icon: Layers },
-    { label: 'AutoCAD Scripts', href: '/tools/autocad-scripts', icon: Compass },
-    { label: 'Excel to KML', href: '/tools/excel-to-kml', icon: FileSpreadsheet },
-    { label: 'PDF सुइट', href: '/tools/pdf-tools', icon: FileStack },
-    { label: 'अक्षरेपी (Number to Words)', href: '/tools/number-to-words', icon: ScrollText },
-    { label: 'कित्ता QR कोड', href: '/tools/kitta-qr', icon: QrCode },
-    { label: 'अमिन लोकसेवा क्विज', href: '/tools/aamin-quiz', icon: GraduationCap },
-  ];
+  const GIcon = greeting.icon;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       
-      {/* 1. Citizen Portal Top Greeting Card (Vibrant HamroPatro / Nagarik App Style) */}
-      <section className="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-emerald-700 via-teal-700 to-indigo-800 text-white shadow-md space-y-4">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-          <div className="space-y-1.5 max-w-2xl">
-            <span className="text-xs font-bold text-emerald-200 tracking-wider uppercase flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>नेपाल डिजिटल नागरिक सेवा (Citizen Services Portal)</span>
-            </span>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
-              तपाईंलाई आज कुन सेवा वा टूल आवश्यक छ?
-            </h1>
-            <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-xl">
-              जग्गा नापजाँच, सरकारी फारमका लागि फोटो साइज घटाउने, प्रिती युनिकोड, मालपोत कर वा PDF बनाउने सम्पूर्ण काम एकै स्थानबाट गर्नुहोस्।
-            </p>
-          </div>
+      {/* 1. TOP WIDE PANORAMIC NEPALI PATRO BAR (लामो र फराकिलो पात्रो & पञ्चाङ्ग) */}
+      <section className="w-full">
+        <TithiWidget variant="panoramic" />
+      </section>
 
-          <div className="shrink-0 w-full sm:w-auto">
-            <TithiWidget />
+      {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD (अटो-डायनामिक अभिवादन & सन्देश) */}
+      <section className={`p-5 sm:p-7 rounded-3xl bg-gradient-to-r ${greeting.gradient} text-white shadow-md space-y-3 transition-all duration-500 border border-white/10`}>
+        <div className="space-y-2 max-w-3xl">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-bold text-emerald-200">
+            <GIcon className="w-3.5 h-3.5" />
+            <span>{greeting.badge}</span>
           </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
+            {greeting.title}
+          </h1>
+          <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+            {greeting.sub}
+          </p>
         </div>
       </section>
 
-      {/* 2. Big Vibrant App Touch-Tiles Grid (8 Main Highlights) */}
+      {/* 3. BIG VIBRANT APP TOUCH-TILES GRID (8 Main Highlights in 4x2 Grid) */}
       <section className="space-y-3.5">
         <div className="flex items-center justify-between">
           <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -95,7 +117,7 @@ export default function StyleCitizenPortal() {
           </Link>
         </div>
 
-        {/* 8 Primary Cards */}
+        {/* 8 Primary Cards Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {quickTiles.map((tile, idx) => {
             const Icon = tile.icon;
@@ -120,35 +142,9 @@ export default function StyleCitizenPortal() {
             );
           })}
         </div>
-
-        {/* Compact Single-Row Quick Chips for other tools (Prevents long scrolling!) */}
-        <div className="pt-1 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
-            थप टूल्स:
-          </span>
-          {secondaryQuickChips.map((chip, idx) => {
-            const Icon = chip.icon;
-            return (
-              <Link
-                key={idx}
-                href={chip.href}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-emerald-600 hover:border-emerald-500 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs transition-colors shrink-0"
-              >
-                <Icon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>{chip.label}</span>
-              </Link>
-            );
-          })}
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 text-xs font-bold border border-emerald-200 dark:border-emerald-800 shrink-0 transition-colors"
-          >
-            <span>सबै टूल्स →</span>
-          </Link>
-        </div>
       </section>
 
-      {/* 3. Main Precision Land Calculator (Primary Feature Centerpiece) */}
+      {/* 4. MAIN PRECISION LAND CALCULATOR (Primary Feature Centerpiece) */}
       <section id="land-calc-section" className="scroll-mt-24 space-y-2.5">
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
@@ -170,7 +166,7 @@ export default function StyleCitizenPortal() {
         </div>
       </section>
 
-      {/* 4. Compact Mobile Applications & Flagship Products (Land Solution & Hamro Kosh) */}
+      {/* 5. COMPACT MOBILE APPLICATIONS (Land Solution & Hamro Kosh) */}
       <section className="space-y-3 pt-2">
         <div className="flex items-center justify-between">
           <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
