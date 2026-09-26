@@ -72,6 +72,7 @@ export default function RootLayout({
     sameAs: [
       'https://www.facebook.com/aabiral.bhatt/',
       'https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4',
+      'https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd',
       'https://x.com/LandSolutionNpl',
       'https://www.threads.com/@landsolutionnepal',
       'https://github.com/brbhatt-dev',
