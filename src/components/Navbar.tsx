@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText, Calculator, Split, Wrench, Receipt, GraduationCap } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Github, ChevronRight, ChevronDown, Scale, FileText, Calculator, Split, Wrench, Receipt, GraduationCap, Layers, Building2, QrCode, FileCode, BookOpen } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
@@ -23,13 +23,17 @@ export default function Navbar() {
     { name: 'गृहपृष्ठ (Home)', href: '/' },
     { name: 'उपकरणहरू (Tools Hub)', href: '/tools' },
     { name: 'जग्गा क्यालकुलेटर (Land Calculator)', href: '/tools/land-calculator' },
-    { name: 'मालपोत तथा लाभकर (Malpot Tax Calculator)', href: '/tools/malpot-calculator' },
-    { name: 'लोकसेवा नापी अमिन क्विज (Aamin Exam Quiz)', href: '/tools/aamin-quiz' },
-    { name: 'कित्ताकाट परीक्षक (Kitta-Kat Checker)', href: '/tools/kitta-kat-checker' },
+    { name: 'बहु-कित्ता क्यालकुलेटर (Multi-Kitta)', href: '/tools/multi-kitta-calculator' },
+    { name: 'मालपोत तथा लाभकर (Malpot Tax)', href: '/tools/malpot-calculator' },
+    { name: 'कित्ता स्मार्ट QR कोड (Kitta QR)', href: '/tools/kitta-qr' },
+    { name: 'नापी/मालपोत निर्देशिका (Offices Directory)', href: '/tools/survey-offices' },
+    { name: 'लोकसेवा अमिन क्विज (Exam Quiz)', href: '/tools/aamin-quiz' },
+    { name: 'नापी अमिन पाठ्यक्रम (Syllabus & Past Papers)', href: '/tools/aamin-syllabus' },
+    { name: 'AutoCAD LSP स्क्रिप्ट्स हब', href: '/tools/autocad-scripts' },
+    { name: 'कित्ताकाट परीक्षक (Kitta-Kat)', href: '/tools/kitta-kat-checker' },
     { name: 'मौजूदा कानुनहरू (Laws & Directives)', href: '/laws' },
     { name: 'Land Solution (नापजाँच)', href: '/#land-solution' },
     { name: 'हाम्रो कोष (Hamro Kosh)', href: '/#hamro-kosh' },
-    { name: 'AutoCAD LSP Scripts', href: '/#autocad-lsp' },
     { name: 'गाइड तथा जानकारीमूलक लेखहरू', href: '/articles' },
     { name: 'हाम्रो बारेमा (About Us)', href: '/about' },
     { name: 'सम्पर्क (Contact)', href: '/contact' },
@@ -88,7 +92,7 @@ export default function Navbar() {
 
               {/* Tools Dropdown Menu */}
               <div 
-                className={`absolute top-full left-0 w-64 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 ${
+                className={`absolute top-full left-0 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-2 space-y-1 transition-all duration-150 z-50 max-h-[85vh] overflow-y-auto ${
                   toolsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
                 }`}
               >
@@ -105,6 +109,18 @@ export default function Navbar() {
                 </Link>
 
                 <Link
+                  href="/tools/multi-kitta-calculator"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/60 text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors text-xs font-bold"
+                >
+                  <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <div>
+                    <div>बहु-कित्ता क्यालकुलेटर</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Multi-Parcel Sum & Print Slip</div>
+                  </div>
+                </Link>
+
+                <Link
                   href="/tools/malpot-calculator"
                   onClick={() => setToolsDropdownOpen(false)}
                   className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-950/60 text-slate-800 dark:text-slate-200 hover:text-amber-800 dark:hover:text-amber-300 transition-colors text-xs font-bold"
@@ -113,6 +129,30 @@ export default function Navbar() {
                   <div>
                     <div>मालपोत तथा लाभकर क्यालकुलेटर</div>
                     <div className="text-[10px] text-slate-400 font-normal">Registration Fee & CGT Tax</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools/kitta-qr"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-800 dark:text-slate-200 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors text-xs font-bold"
+                >
+                  <QrCode className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <div>
+                    <div>कित्ता स्मार्ट QR जेनेरेटर</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Real Estate Signboard & Flyer</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/tools/survey-offices"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-sky-50 dark:hover:bg-sky-950/60 text-slate-800 dark:text-slate-200 hover:text-sky-800 dark:hover:text-sky-300 transition-colors text-xs font-bold"
+                >
+                  <Building2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <div>
+                    <div>नापी तथा मालपोत निर्देशिका</div>
+                    <div className="text-[10px] text-slate-400 font-normal">77 Districts Offices & Contacts</div>
                   </div>
                 </Link>
 
@@ -129,11 +169,23 @@ export default function Navbar() {
                 </Link>
 
                 <Link
+                  href="/tools/autocad-scripts"
+                  onClick={() => setToolsDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-950/60 text-slate-800 dark:text-slate-200 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-xs font-bold"
+                >
+                  <FileCode className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <div>
+                    <div>AutoCAD LSP स्क्रिप्ट्स हब</div>
+                    <div className="text-[10px] text-slate-400 font-normal">Free AutoLISP Scripts Download</div>
+                  </div>
+                </Link>
+
+                <Link
                   href="/tools/kitta-kat-checker"
                   onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-950/60 text-slate-800 dark:text-slate-200 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors text-xs font-bold"
+                  className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-950/60 text-slate-800 dark:text-slate-200 hover:text-purple-800 dark:hover:text-purple-300 transition-colors text-xs font-bold"
                 >
-                  <Split className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                  <Split className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
                   <div>
                     <div>कित्ताकाट परीक्षक</div>
                     <div className="text-[10px] text-slate-400 font-normal">Eligibility & Setback Checker</div>
@@ -143,9 +195,9 @@ export default function Navbar() {
                 <Link
                   href="/tools"
                   onClick={() => setToolsDropdownOpen(false)}
-                  className="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-bold"
+                  className="flex items-center justify-between p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold mt-1"
                 >
-                  <span>सबै उपकरणहरू हेर्नुहोस्</span>
+                  <span>सबै १० वटा उपकरणहरू हेर्नुहोस्</span>
                   <span>&rarr;</span>
                 </Link>
               </div>

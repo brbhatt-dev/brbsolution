@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import AiLandAssistant from '@/components/AiLandAssistant';
 
 export const metadata: Metadata = {
   title: 'BR Bhatta | Land Solution, Hamro Kosh & Tech Innovations Nepal',
@@ -163,6 +164,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased selection:bg-emerald-600 selection:text-white transition-colors duration-200">
         <ThemeProvider>
           {children}
+          <AiLandAssistant />
         </ThemeProvider>
       </body>
     </html>

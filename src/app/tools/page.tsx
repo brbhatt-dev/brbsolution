@@ -17,7 +17,10 @@ import {
   Building2,
   Scale,
   GraduationCap,
-  Printer
+  Printer,
+  QrCode,
+  MapPin,
+  BookOpen
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -57,11 +60,27 @@ const TOOLS = [
     ]
   },
   {
+    id: 'multi-kitta-calculator',
+    titleNp: 'बहु-कित्ता (Multi-Kitta) क्षेत्रफल योग क्यालकुलेटर',
+    titleEn: 'Multi-Parcel Area Accumulator',
+    description: 'धेरै कित्ताहरूको क्षेत्रफललाई १६ आना र २० कट्ठाको शुद्ध क्यारी गणित सहित जोडेर कुल क्षेत्रफल, कुल मूल्य र संयुक्त स्लिप निकाल्ने टुल।',
+    badge: 'नयाँ टुल (New)',
+    icon: Layers,
+    color: 'emerald',
+    href: '/tools/multi-kitta-calculator',
+    features: [
+      'असीमित कित्ताहरू थप्न र हटाउन सकिने',
+      'पहाडी र तराई दुवै नापको शुद्ध क्यारी जोड',
+      'कुल अनुमानित मूल्य (Total Valuation) हिसाब',
+      '🖨️ बहु-कित्ता संयुक्त आधिकारिक स्लिप प्रिन्ट'
+    ]
+  },
+  {
     id: 'malpot-calculator',
     titleNp: 'मालपोत रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर क्यालकुलेटर',
     titleEn: 'Malpot Registration Fee & Capital Gains Tax (CGT)',
     description: 'घरजग्गा खरिदबिक्रीमा लाग्ने स्थानीय तह रजिस्ट्रेसन दस्तुर, महिला छुट, संयुक्त दर्ता र बिक्रेताको पुँजीगत लाभकरको आधिकारिक हिसाब।',
-    badge: 'नयाँ बजेट २०८१/८२ (New)',
+    badge: 'नयाँ बजेट २०८१/८२ (Updated)',
     icon: Receipt,
     color: 'amber',
     href: '/tools/malpot-calculator',
@@ -70,6 +89,38 @@ const TOOLS = [
       'महिला स्वामित्वमा २५% देखि ५०% सम्म राजस्व छुट',
       'पुँजीगत लाभकर (CGT ५% र ७.५%) को सटीक हिसाब',
       '🖨️ आधिकारिक मालपोत राजस्व स्लिप प्रिन्ट'
+    ]
+  },
+  {
+    id: 'kitta-qr',
+    titleNp: 'कित्ता स्मार्ट QR कोड तथा जग्गा बिक्री फ्लायर जेनेरेटर',
+    titleEn: 'Smart Kitta QR Code & Sale Flyer Generator',
+    description: 'जग्गाको कित्ता नम्बर, क्षेत्रफल, गुगल म्याप लोकेशन र सम्पर्क नम्बर समेटिएको स्मार्ट QR कोड र प्रिन्ट गर्न मिल्ने आकर्षक बिक्री साइनबोर्ड।',
+    badge: 'घरजग्गा विज्ञापन टुल',
+    icon: QrCode,
+    color: 'indigo',
+    href: '/tools/kitta-qr',
+    features: [
+      'गुगल म्याप पिन सिधै मोबाइलबाट स्क्यान हुने QR कोड',
+      'A4 वा बोर्ड साइजको आकर्षक "जग्गा बिक्रीमा" फ्लायर',
+      'कित्ता नं, क्षेत्रफल, बाटो चौडाइ र मूल्य विवरण',
+      '🖨️ १-क्लिकमा आधिकारिक साइनबोर्ड प्रिन्ट'
+    ]
+  },
+  {
+    id: 'survey-offices',
+    titleNp: 'नेपालका नापी तथा मालपोत कार्यालयहरूको निर्देशिका',
+    titleEn: 'Survey & Land Revenue Offices Directory',
+    description: 'नेपालका ७७ वटै जिल्लाका नापी कार्यालय र मालपोत कार्यालयहरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल र वडा कार्यक्षेत्र खोज्ने हब।',
+    badge: '७७ जिल्ला डाइरेक्टरी',
+    icon: Building2,
+    color: 'sky',
+    href: '/tools/survey-offices',
+    features: [
+      'जिल्ला, कार्यालयको नाम र स्थान अनुसार तत्काल सर्च',
+      '७ वटै प्रदेश अनुसार कार्यालयहरूको वर्गीकरण',
+      'नापी र मालपोत कार्यालयको १-क्लिक मोबाइल कल (tel:)',
+      'प्रत्येक कार्यालयको वडा तथा कार्यक्षेत्र विवरण'
     ]
   },
   {
@@ -86,6 +137,38 @@ const TOOLS = [
       'तत्काल सही उत्तर र विस्तृत कानुनी/प्राविधिक व्याख्या',
       'अङ्क प्रतिशत र तयारी मूल्याङ्कन ब्याज',
       'साथीभाइसँग नतिजा सेयर गर्ने सुविधा'
+    ]
+  },
+  {
+    id: 'aamin-syllabus',
+    titleNp: 'नापी अमिन तथा सर्भेक्षक पाठ्यक्रम र पुराना प्रश्नोत्तर',
+    titleEn: 'Aamin Syllabus, Exam Scheme & Past Papers',
+    description: 'लोक सेवा आयोग इन्जिनियरिङ सेवा सर्भे समूहको अमिन र सर्भेक्षक पदको विस्तृत परीक्षा योजना, अंक विभाजन र पुराना प्रश्नोत्तरहरू।',
+    badge: 'अध्ययन गाइड (Syllabus)',
+    icon: BookOpen,
+    color: 'teal',
+    href: '/tools/aamin-syllabus',
+    features: [
+      'प्रथम र द्वितीय पत्रको विस्तृत पाठ्यक्रम विषय सूची',
+      'चेन, कम्पास, लेभलिङ र ऐन नियमको अंक विभाजन',
+      'विगतका परीक्षामा दोहोरिएका महत्वपूर्ण प्रश्नोत्तर',
+      'लोकसेवा परीक्षा उत्तीर्ण गर्ने तयारी रणनीति'
+    ]
+  },
+  {
+    id: 'autocad-scripts',
+    titleNp: 'AutoCAD LSP स्क्रिप्ट्स डाउनलोड तथा कोड हब',
+    titleEn: 'AutoCAD LISP Survey Scripts Hub',
+    description: 'क्याड नक्सामा पोलिलाइनको क्षेत्रफल सिधै नेपाली रोपनी र बिघा प्रणालीमा रूपान्तरण गर्ने निःशुल्क अटोक्याड स्क्रिप्टहरू।',
+    badge: 'इन्जिनियरिङ टुल',
+    icon: FileCode,
+    color: 'blue',
+    href: '/tools/autocad-scripts',
+    features: [
+      'area_ropani.lsp (रोपनी-आना-पैसा-दाम मापन)',
+      'area_bigha.lsp (बिघा-कट्ठा-धुर मापन)',
+      'coord_export.lsp (कोअर्डिनेट CSV एक्सपोर्ट)',
+      'Complete ZIP प्याक डाउनलोड र लोड गर्ने सचित्र गाइड'
     ]
   },
   {
@@ -118,22 +201,6 @@ const TOOLS = [
       'भूउपयोग ऐन २०७६ र नियमावली २०७९',
       'सरकारी तथा सामुदायिक जग्गा निर्देशिका २०८३',
       'वेबसाइटभित्रै मूल सरकारी PDF पढ्न र डाउनलोड गर्न मिल्ने'
-    ]
-  },
-  {
-    id: 'autocad-scripts',
-    titleNp: 'AutoCAD LSP सर्भे अटोमेसन स्क्रिप्ट्स',
-    titleEn: 'AutoCAD LISP Survey Scripts',
-    description: 'क्याड नक्सामा पोलिलाइनको क्षेत्रफल सिधै नेपाली रोपनी र बिघा प्रणालीमा रूपान्तरण गर्ने निःशुल्क अटोक्याड स्क्रिप्टहरू।',
-    badge: 'इन्जिनियरिङ टुल',
-    icon: FileCode,
-    color: 'blue',
-    href: '/#autocad-lsp',
-    features: [
-      'Polyline Area to Ropani/Bigha Annotator',
-      'Parcel Numbering & Centroid Coordinate Exporter',
-      'Grid & Boundary Tick Generator',
-      'AutoCAD 2018 देखि २०२६ सम्म पूर्ण सपोर्ट'
     ]
   }
 ];

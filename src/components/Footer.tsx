@@ -156,11 +156,47 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
+                  href="/tools/multi-kitta-calculator" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>बहु-कित्ता क्षेत्रफल योग क्यालकुलेटर</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
                   href="/tools/malpot-calculator" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-amber-300 transition-colors"
                 >
                   <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all shrink-0" />
                   <span>मालपोत तथा लाभकर क्यालकुलेटर</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/survey-offices" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>७७ जिल्ला नापी र मालपोत निर्देशिका</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/kitta-qr" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>कित्ता स्मार्ट QR कोड जेनेरेटर</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/tools/aamin-syllabus" 
+                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-teal-300 transition-colors"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-teal-300 group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <span>लोकसेवा नापी अमिन पाठ्यक्रम र पुराना प्रश्न</span>
                 </Link>
               </li>
               <li>
@@ -182,32 +218,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a 
-                  href="/land-solution-demo/index.html" 
-                  target="_blank" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-emerald-300 transition-colors"
-                >
-                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-emerald-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>Land Solution Live Web Demo</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#hamro-kosh" 
-                  className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-indigo-300 transition-colors"
-                >
-                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>हाम्रो कोष (Hamro Kosh Demo)</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#autocad-lsp" 
+                <Link 
+                  href="/tools/autocad-scripts" 
                   className="group flex items-center justify-center sm:justify-start gap-1.5 text-slate-300 hover:text-amber-300 transition-colors"
                 >
                   <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-amber-300 group-hover:translate-x-0.5 transition-all shrink-0" />
-                  <span>AutoCAD LSP Scripts (.lsp)</span>
-                </a>
+                  <span>AutoCAD LSP Scripts हब (.lsp)</span>
+                </Link>
               </li>
               <li>
                 <Link 
