@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Copy } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,7 +10,8 @@ export default function Contact() {
     service: 'Land Solution सम्बन्धी',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
   const emailAddress = 'aabiralbhatt@gmail.com';
@@ -21,14 +22,42 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    const subject = encodeURIComponent(`Inquiry: ${formData.service} from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nContact: ${formData.contact}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
-    );
-    window.open(`mailto:${emailAddress}?subject=${subject}&body=${body}`, '_blank');
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/aabiralbhatt@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          'नाम (Name)': formData.name,
+          'सम्पर्क (Phone/Email)': formData.contact,
+          'सेवा वा विषय (Topic)': formData.service,
+          'सन्देश (Message)': formData.message,
+          '_subject': `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
+          '_template': 'table',
+          '_captcha': 'false',
+        }),
+      });
+
+      const resData = await response.json();
+
+      if (response.ok && (resData.success === 'true' || resData.success === true || (resData.message && resData.message.includes('Activation')))) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+        setErrorMessage(resData?.message || 'सन्देश पठाउन सकिएन। कृपया पुनः प्रयास गर्नुहोस् वा सिधै इमेल गर्नुहोस्।');
+      }
+    } catch (err: any) {
+      console.error('Submission error:', err);
+      setStatus('error');
+      setErrorMessage('सर्भरमा जडान हुन सकेन। कृपया सिधै इमेल गर्नुहोस् वा इन्टरनेट जाँच्नुहोस्।');
+    }
   };
 
   return (
@@ -132,24 +161,41 @@ export default function Contact() {
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">सिधै सन्देश पठाउनुहोस्</h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mb-5 sm:mb-6">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
 
-              {submitted ? (
-                <div className="py-10 text-center space-y-3">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center border border-emerald-200 dark:border-emerald-800">
-                    <CheckCircle2 className="w-7 h-7" />
+              {status === 'success' ? (
+                <div className="py-10 text-center space-y-4">
+                  <div className="w-14 h-14 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-300 dark:border-emerald-800 shadow-sm animate-pulse">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">धन्यवाद!</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-sm mx-auto">
-                    तपाईंको सन्देश तयार भयो र इमेल क्लाइन्ट खुल्यो। हामी चाँडै सम्पर्क गर्नेछौँ।
-                  </p>
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="mt-3 px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 min-h-[40px]"
-                  >
-                    अर्को सन्देश पठाउनुहोस्
-                  </button>
+                  <div className="space-y-1">
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">सन्देश सफलतापूर्वक पठाइयो!</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
+                      धन्यवाद {formData.name ? <strong>{formData.name} ज्यू</strong> : ''}। तपाईंको सन्देश सिधै हाम्रो आधिकारिक इमेल (<strong className="text-emerald-700 dark:text-emerald-400">{emailAddress}</strong>) मा प्राप्त भएको छ। हामी छिट्टै सम्पर्क गर्नेछौं।
+                    </p>
+                  </div>
+                  <div className="pt-2">
+                    <button
+                      onClick={() => {
+                        setStatus('idle');
+                        setFormData({ name: '', contact: '', service: 'Land Solution सम्बन्धी', message: '' });
+                      }}
+                      className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+                    >
+                      अर्को सन्देश पठाउनुहोस्
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {status === 'error' && (
+                    <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 flex items-start gap-2.5 text-xs text-rose-800 dark:text-rose-300">
+                      <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold">सन्देश पठाउन समस्या भयो</p>
+                        <p className="mt-0.5">{errorMessage}</p>
+                      </div>
+                    </div>
+                  )}
+
                   <div>
                     <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                       तपाईंको पूरा नाम *
@@ -157,10 +203,11 @@ export default function Contact() {
                     <input
                       type="text"
                       required
+                      disabled={status === 'sending'}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="उदा. रमेश अधिकारी"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
                     />
                   </div>
 
@@ -171,10 +218,11 @@ export default function Contact() {
                     <input
                       type="text"
                       required
+                      disabled={status === 'sending'}
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                       placeholder="उदा. 98XXXXXXXX वा yourname@example.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
                     />
                   </div>
 
@@ -183,9 +231,10 @@ export default function Contact() {
                       कुन विषयमा सहयोग चाहिएको हो?
                     </label>
                     <select
+                      disabled={status === 'sending'}
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px]"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
                     >
                       <option value="Land Solution सम्बन्धी">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
                       <option value="हाम्रो कोष सम्बन्धी">हाम्रो कोष (Hamro Kosh App)</option>
@@ -201,20 +250,31 @@ export default function Contact() {
                     </label>
                     <textarea
                       required
+                      disabled={status === 'sending'}
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="आफ्नो आवश्यकता, प्रश्न वा प्रतिक्रिया यहाँ लेख्नुहोस्..."
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none disabled:opacity-60"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm shadow-sm transition-all min-h-[48px]"
+                    disabled={status === 'sending'}
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm shadow-sm transition-all min-h-[48px] cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>इमेलमार्फत सन्देश पठाउनुहोस्</span>
+                    {status === 'sending' ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>सन्देश पठाउँदैछ...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>सन्देश पठाउनुहोस्</span>
+                      </>
+                    )}
                   </button>
 
                   <p className="text-center text-[11px] text-slate-500 dark:text-slate-400 pt-1">
