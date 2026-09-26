@@ -24,8 +24,9 @@ export default function MalpotCalculator() {
   // Inputs
   const [propertyValue, setPropertyValue] = useState<number>(3000000);
   const [muniType, setMuniType] = useState<'metro' | 'submetro' | 'muni' | 'rural'>('metro');
-  const [ownershipType, setOwnershipType] = useState<'general' | 'female' | 'senior' | 'marginalized' | 'joint'>('general');
+  const [ownershipType, setOwnershipType] = useState<'general' | 'female' | 'single_female' | 'senior' | 'marginalized' | 'joint'>('general');
   const [isMountainOrRemote, setIsMountainOrRemote] = useState<boolean>(false);
+  const [isKathmanduValley, setIsKathmanduValley] = useState<boolean>(true);
 
   // Capital Gains Tax (CGT) inputs
   const [hasGain, setHasGain] = useState<boolean>(true);
@@ -37,7 +38,7 @@ export default function MalpotCalculator() {
   const [kittaNo, setKittaNo] = useState('');
   const [copied, setCopied] = useState(false);
 
-  // Registration Tax Rates (Provincial & Local Financial Acts)
+  // Registration Tax Rates (Provincial & Local Financial Acts 2081/82)
   const muniRates = {
     metro: { rate: 0.05, label: 'महानगरपालिका (५.०%)' },
     submetro: { rate: 0.045, label: 'उप-महानगरपालिका (४.५%)' },
@@ -48,12 +49,19 @@ export default function MalpotCalculator() {
   const regBaseRate = muniRates[muniType].rate;
   const grossRegFee = propertyValue * regBaseRate;
 
+  // Bagmati Civilization Development Tax (वाग्मती सभ्यता विकास कोष कर - ०.५%)
+  const bagmatiRate = isKathmanduValley ? 0.005 : 0;
+  const bagmatiFee = propertyValue * bagmatiRate;
+
   // Rebate / Discount Calculation
   let discountRate = 0;
   let discountLabel = 'छुट छैन';
 
   if (ownershipType === 'joint') {
     discountLabel = 'दम्पती संयुक्त जग्गाधनी सहुलियत (रु. १०० मात्र)';
+  } else if (ownershipType === 'single_female') {
+    discountRate = 0.35;
+    discountLabel = 'एकल महिला (विधवा) स्वामित्व ३५% छुट';
   } else if (ownershipType === 'female') {
     if (isMountainOrRemote || muniType === 'rural') {
       discountRate = 0.50;
@@ -95,23 +103,25 @@ export default function MalpotCalculator() {
 
   // Auxiliary / Administrative fees
   const stampDocFee = 150; // लिखत फाराम तथा टिकट दस्तुर
-  const totalGovtRevenue = netRegFee + cgtAmount + stampDocFee;
+  const totalGovtRevenue = netRegFee + bagmatiFee + cgtAmount + stampDocFee;
 
   const copySummary = () => {
     const text = `--- मालपोत रजिस्ट्रेसन तथा लाभकर हिसाब विवरण ---
 थैली अङ्क (जग्गाको मूल्याङ्कन): रु. ${propertyValue.toLocaleString('en-IN')}
 स्थानीय तह: ${muniRates[muniType].label}
 स्वामित्व प्रकार: ${discountLabel}
+${isKathmanduValley ? 'काठमाडौँ उपत्यका: वाग्मती सभ्यता कर (०.५%) लागू' : ''}
 ---------------------------------------------
 १. कुल रजिस्ट्रेसन दस्तुर: रु. ${grossRegFee.toLocaleString('en-IN')}
 २. प्राप्त छुट रकम: - रु. ${discountAmount.toLocaleString('en-IN')}
 ३. खुद रजिस्ट्रेसन राजस्व (क्रेताले तिर्ने): रु. ${netRegFee.toLocaleString('en-IN')}
-४. खुद पुँजीगत लाभ: रु. ${netGain.toLocaleString('en-IN')}
-५. पुँजीगत लाभकर (CGT - बिक्रेताले तिर्ने): रु. ${cgtAmount.toLocaleString('en-IN')} (${(cgtRate * 100)}%)
-६. लिखत टिकट दस्तुर: रु. ${stampDocFee}
+${isKathmanduValley ? `४. वाग्मती सभ्यता कर (०.५%): रु. ${bagmatiFee.toLocaleString('en-IN')}\n` : ''}५. खुद पुँजीगत लाभ: रु. ${netGain.toLocaleString('en-IN')}
+६. पुँजीगत लाभकर (CGT - बिक्रेताले तिर्ने): रु. ${cgtAmount.toLocaleString('en-IN')} (${(cgtRate * 100)}%)
+७. लिखत टिकट दस्तुर: रु. ${stampDocFee}
 ---------------------------------------------
 कुल सरकारी राजस्व: रु. ${totalGovtRevenue.toLocaleString('en-IN')}
 गणना मिति: ${new Date().toLocaleDateString('ne-NP')}
+मापदण्ड: आर्थिक ऐन तथा मालपोत नियमावली २०८१/८२
 स्रोत: www.brbhatta.com/tools/malpot-calculator`;
 
     navigator.clipboard.writeText(text);
@@ -203,6 +213,7 @@ export default function MalpotCalculator() {
               >
                 <option value="general">सामान्य / पुरुष (कुनै छुट छैन)</option>
                 <option value="female">महिलाको एकल नाममा दर्ता (२५% - ५०% छुट)</option>
+                <option value="single_female">एकल महिला / विधवा (३५% छुट - आर्थिक ऐन)</option>
                 <option value="joint">श्रीमान्-श्रीमती संयुक्त दर्ता (रु. १०० मात्र)</option>
                 <option value="senior">ज्येष्ठ नागरिक (७० वर्ष माथि - २५% छुट)</option>
                 <option value="marginalized">दलित / अपाङ्गता / सहिद परिवार (२५% छुट)</option>
@@ -213,21 +224,36 @@ export default function MalpotCalculator() {
             </div>
           </div>
 
-          {/* Toggle for Mountain/Remote Region if Female */}
-          {ownershipType === 'female' && (
-            <div className="flex items-center gap-2 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800/60 text-xs">
+          {/* Regional Checkboxes: Kathmandu Valley Bagmati Cess & Remote Region */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="flex items-center gap-2.5 p-3 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800/60 text-xs">
               <input
                 type="checkbox"
-                id="mountainRemote"
-                checked={isMountainOrRemote}
-                onChange={(e) => setIsMountainOrRemote(e.target.checked)}
-                className="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer"
+                id="kathmanduValley"
+                checked={isKathmanduValley}
+                onChange={(e) => setIsKathmanduValley(e.target.checked)}
+                className="w-4 h-4 text-amber-600 rounded border-slate-300 focus:ring-amber-500 cursor-pointer"
               />
-              <label htmlFor="mountainRemote" className="text-emerald-900 dark:text-emerald-200 font-medium cursor-pointer">
-                जग्गा हिमाली, दुर्गम वा पिछडिएको क्षेत्रको गाउँपालिकामा पर्दछ (५०% अधिक छुट लागू हुने)
+              <label htmlFor="kathmanduValley" className="text-amber-950 dark:text-amber-200 font-medium cursor-pointer">
+                <strong>काठमाडौँ उपत्यका</strong> (काठमाडौँ, ललितपुर, भक्तपुरमा ०.५% वाग्मती सभ्यता कोष कर लाग्ने)
               </label>
             </div>
-          )}
+
+            {ownershipType === 'female' ? (
+              <div className="flex items-center gap-2.5 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800/60 text-xs">
+                <input
+                  type="checkbox"
+                  id="mountainRemote"
+                  checked={isMountainOrRemote}
+                  onChange={(e) => setIsMountainOrRemote(e.target.checked)}
+                  className="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer"
+                />
+                <label htmlFor="mountainRemote" className="text-emerald-900 dark:text-emerald-200 font-medium cursor-pointer">
+                  हिमाली/दुर्गम गाउँपालिका (महिलालाई ५०% छुट लागू हुने)
+                </label>
+              </div>
+            ) : null}
+          </div>
         </div>
 
         {/* Section 2: Capital Gains Tax (बिक्रेताले तिर्नुपर्ने लाभकर) */}
@@ -335,6 +361,12 @@ export default function MalpotCalculator() {
                   <span>सहुलियत छुट:</span>
                   <span className="font-mono">- रु. {discountAmount.toLocaleString('en-IN')}</span>
                 </div>
+                {isKathmanduValley && (
+                  <div className="flex justify-between text-amber-700 dark:text-amber-400 font-semibold pt-1 border-t border-dashed border-emerald-200">
+                    <span>वाग्मती सभ्यता कर (०.५%):</span>
+                    <span className="font-mono">+ रु. {bagmatiFee.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -371,6 +403,12 @@ export default function MalpotCalculator() {
                   <span>रजिस्ट्रेसन + लाभकर:</span>
                   <span className="font-mono">रु. {(netRegFee + cgtAmount).toLocaleString('en-IN')}</span>
                 </div>
+                {isKathmanduValley && (
+                  <div className="flex justify-between text-amber-700 dark:text-amber-400">
+                    <span>वाग्मती सभ्यता कर (०.५%):</span>
+                    <span className="font-mono">रु. {bagmatiFee.toLocaleString('en-IN')}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span>लिखत फाराम/टिकट:</span>
                   <span className="font-mono">रु. {stampDocFee}</span>
@@ -411,7 +449,7 @@ export default function MalpotCalculator() {
           </div>
 
           <span className="text-[11px] text-slate-500">
-            * स्थानीय कानुन तथा वार्षिक बजेट संशोधन अनुसार सामान्य फरक पर्न सक्छ।
+            * आर्थिक ऐन २०८१/८२ तथा सम्बन्धित प्रदेश/स्थानीय आर्थिक ऐन अनुसार।
           </span>
         </div>
 
@@ -441,7 +479,7 @@ export default function MalpotCalculator() {
           </div>
           <div>
             <span className="text-slate-500 block text-[10px]">स्थानीय तह वर्ग:</span>
-            <span className="font-bold text-slate-900 text-sm">{muniRates[muniType].label}</span>
+            <span className="font-bold text-slate-900 text-sm">{muniRates[muniType].label} {isKathmanduValley ? '(काठमाडौँ उपत्यका)' : ''}</span>
           </div>
           <div>
             <span className="text-slate-500 block text-[10px]">स्वामित्व सहुलियत:</span>
@@ -477,6 +515,13 @@ export default function MalpotCalculator() {
               <td className="py-2 px-3">—</td>
               <td className="py-2 px-3 text-right font-mono">रु. {netRegFee.toLocaleString('en-IN')}</td>
             </tr>
+            {isKathmanduValley && (
+              <tr>
+                <td className="py-2 px-3 text-amber-900">वाग्मती सभ्यता विकास कोष कर</td>
+                <td className="py-2 px-3">०.५%</td>
+                <td className="py-2 px-3 text-right font-mono text-amber-900">रु. {bagmatiFee.toLocaleString('en-IN')}</td>
+              </tr>
+            )}
             <tr>
               <td className="py-2 px-3">पुँजीगत लाभकर (CGT - बिक्रेता)</td>
               <td className="py-2 px-3">{(cgtRate * 100)}%</td>
