@@ -3,19 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
-  GripVertical, 
   ArrowUp, 
   ArrowDown, 
+  Trash2, 
+  RotateCcw, 
+  Sparkles, 
+  Copy, 
+  Check, 
   Eye, 
   EyeOff, 
+  Maximize2, 
+  Minimize2, 
   Columns, 
-  Sparkles, 
-  Check, 
-  Copy, 
-  RotateCcw, 
-  Smartphone, 
-  Monitor, 
+  Plus, 
   Sliders, 
+  CheckCircle2, 
   ExternalLink,
   ChevronRight,
   Calculator,
@@ -34,9 +36,11 @@ import {
   FileStack,
   GraduationCap,
   Play,
-  CheckCircle2,
+  Smartphone,
   BookOpen,
-  Mail
+  Mail,
+  GripVertical,
+  QrCode
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
@@ -46,170 +50,123 @@ import Contact from '../Contact';
 export type BlockId = 
   | 'greeting' 
   | 'quickTiles' 
-  | 'calculator' 
   | 'secondaryChips' 
+  | 'calculator' 
   | 'apps' 
   | 'articles' 
   | 'contact';
 
-export interface LayoutBlock {
+export interface EditableBlock {
   id: BlockId;
-  nameNp: string;
-  nameEn: string;
-  desc: string;
-  icon: React.ElementType;
-  visible: boolean;
-  width: 'full' | 'half'; // full = 100%, half = 50% (grid col-span-1 vs 2)
-  accentColor: string;
+  titleNp: string;
+  size: '100%' | '50%' | '75%'; // full width, half width (side-by-side), or compact 75%
+  padding: 'normal' | 'compact';
 }
 
-const DEFAULT_BLOCKS: LayoutBlock[] = [
-  {
-    id: 'greeting',
-    nameNp: 'नेपाली पात्रो, पञ्चाङ्ग & ग्रिटिङ ब्यानर',
-    nameEn: 'Citizen Greeting Banner & Tithi Widget',
-    desc: 'नेपाल डिजिटल नागरिक सेवा स्वागत सन्देश, लाइभ मिति र समय',
-    icon: Calendar,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-emerald-700 to-teal-800'
-  },
-  {
-    id: 'quickTiles',
-    nameNp: '८ मुख्य अनलाइन सेवा टाइल्स (Quick Access)',
-    nameEn: '8 Big Vibrant Action Tiles',
-    desc: 'क्यालकुलेटर, फोटो कम्प्रेस, प्रिती युनिकोड, A4 PDF, मालपोत कर, नापी आदि',
-    icon: Sparkles,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-blue-600 to-indigo-700'
-  },
-  {
-    id: 'calculator',
-    nameNp: 'जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर',
-    nameEn: 'Precision Land Calculator Core',
-    desc: 'रोपनी-आना र बिघा-कट्ठा हिसाब गर्ने र स्लिप प्रिन्ट निकाल्ने मुख्य यन्त्र',
-    icon: Calculator,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-emerald-600 to-green-700'
-  },
-  {
-    id: 'secondaryChips',
-    nameNp: 'थप टूलहरूको छरितो चिप्स पट्टी (Secondary Strip)',
-    nameEn: 'Single-Row Compact Tools Strip',
-    desc: 'AutoCAD, Excel to KML, बहु-कित्ता, अक्षरेपी, अमिन क्विज बटनहरू',
-    icon: Compass,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-slate-700 to-slate-900'
-  },
-  {
-    id: 'apps',
-    nameNp: 'हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू',
-    nameEn: 'Land Solution & Hamro Kosh Apps Showcase',
-    desc: 'नापी इन्जिनियरिङ एप र बचत वित्तीय सफ्टवेयरको कार्ड',
-    icon: Smartphone,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-purple-600 to-indigo-800'
-  },
-  {
-    id: 'articles',
-    nameNp: 'नापी ज्ञान तथा कानुनी लेखहरू (Knowledge Base)',
-    nameEn: 'Articles & Guides Section',
-    desc: 'कित्ताकाट, नापी ऐन र प्राविधिक जानकारीमूलक लेखहरू',
-    icon: BookOpen,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-cyan-700 to-blue-800'
-  },
-  {
-    id: 'contact',
-    nameNp: 'सम्पर्क तथा प्रतिक्रिया फारम (Contact Helpdesk)',
-    nameEn: 'Direct Contact & Inquiries Form',
-    desc: 'सेवाग्राहीका लागि सन्देश पठाउने फारम र इमेल ठेगाना',
-    icon: Mail,
-    visible: true,
-    width: 'full',
-    accentColor: 'from-teal-600 to-emerald-800'
-  }
+const DEFAULT_LAYOUT: EditableBlock[] = [
+  { id: 'greeting', titleNp: '१. नागरिक सेवा ब्यानर तथा पञ्चाङ्ग (Greeting & Tithi)', size: '100%', padding: 'normal' },
+  { id: 'quickTiles', titleNp: '२. मुख्य ८ वटा अनलाइन सेवा टाइल्स (Quick Access)', size: '100%', padding: 'normal' },
+  { id: 'secondaryChips', titleNp: '३. थप टूलहरूको छरितो पट्टी (Secondary Chips)', size: '100%', padding: 'normal' },
+  { id: 'calculator', titleNp: '४. जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर', size: '100%', padding: 'normal' },
+  { id: 'apps', titleNp: '५. हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू (Apps Showcase)', size: '100%', padding: 'normal' },
+  { id: 'articles', titleNp: '६. नापी ज्ञान तथा प्राविधिक गाइडहरू (Knowledge Base)', size: '100%', padding: 'normal' },
+  { id: 'contact', titleNp: '७. सम्पर्क तथा प्रतिक्रिया फारम (Contact Helpdesk)', size: '100%', padding: 'normal' },
 ];
 
 export default function InteractiveLayoutBuilder() {
-  const [blocks, setBlocks] = useState<LayoutBlock[]>(DEFAULT_BLOCKS);
-  const [activeTab, setActiveTab] = useState<'editor' | 'preview'>('editor');
-  const [copied, setCopied] = useState(false);
+  const [blocks, setBlocks] = useState<EditableBlock[]>(DEFAULT_LAYOUT);
+  const [deletedBlocks, setDeletedBlocks] = useState<EditableBlock[]>([]);
+  const [editMode, setEditMode] = useState<boolean>(true);
+  const [copied, setCopied] = useState<boolean>(false);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
-  // Load saved layout from localStorage if available
+  // Load from localStorage
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('brbhatta_custom_layout');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // Merge with default block templates in case of schema update
-          const merged = parsed.map((p: any) => {
-            const def = DEFAULT_BLOCKS.find(d => d.id === p.id) || DEFAULT_BLOCKS[0];
-            return { ...def, ...p };
-          });
-          setBlocks(merged);
-        }
+      const savedLayout = localStorage.getItem('brbhatta_visual_layout_v3');
+      const savedDeleted = localStorage.getItem('brbhatta_visual_deleted_v3');
+      if (savedLayout) {
+        const parsed = JSON.parse(savedLayout);
+        if (Array.isArray(parsed) && parsed.length > 0) setBlocks(parsed);
+      }
+      if (savedDeleted) {
+        const parsedDel = JSON.parse(savedDeleted);
+        if (Array.isArray(parsedDel)) setDeletedBlocks(parsedDel);
       }
     } catch (e) {
       console.error(e);
     }
   }, []);
 
-  const saveLayoutToStorage = (newBlocks: LayoutBlock[]) => {
+  const saveState = (newBlocks: EditableBlock[], newDeleted: EditableBlock[]) => {
+    setBlocks(newBlocks);
+    setDeletedBlocks(newDeleted);
     try {
-      localStorage.setItem('brbhatta_custom_layout', JSON.stringify(newBlocks));
+      localStorage.setItem('brbhatta_visual_layout_v3', JSON.stringify(newBlocks));
+      localStorage.setItem('brbhatta_visual_deleted_v3', JSON.stringify(newDeleted));
     } catch (e) {}
   };
 
-  // Move Block Up
+  // Move Up
   const moveUp = (index: number) => {
     if (index === 0) return;
     const newBlocks = [...blocks];
     const temp = newBlocks[index - 1];
     newBlocks[index - 1] = newBlocks[index];
     newBlocks[index] = temp;
-    setBlocks(newBlocks);
-    saveLayoutToStorage(newBlocks);
+    saveState(newBlocks, deletedBlocks);
   };
 
-  // Move Block Down
+  // Move Down
   const moveDown = (index: number) => {
     if (index === blocks.length - 1) return;
     const newBlocks = [...blocks];
     const temp = newBlocks[index + 1];
     newBlocks[index + 1] = newBlocks[index];
     newBlocks[index] = temp;
-    setBlocks(newBlocks);
-    saveLayoutToStorage(newBlocks);
+    saveState(newBlocks, deletedBlocks);
   };
 
-  // Toggle Visibility
-  const toggleVisibility = (index: number) => {
+  // Delete/Remove block
+  const deleteBlock = (index: number) => {
+    const toDelete = blocks[index];
+    const newBlocks = blocks.filter((_, i) => i !== index);
+    const newDeleted = [...deletedBlocks, toDelete];
+    saveState(newBlocks, newDeleted);
+  };
+
+  // Restore deleted block
+  const restoreBlock = (blockId: BlockId) => {
+    const toRestore = deletedBlocks.find(b => b.id === blockId);
+    if (!toRestore) return;
+    const newDeleted = deletedBlocks.filter(b => b.id !== blockId);
+    const newBlocks = [...blocks, toRestore];
+    saveState(newBlocks, newDeleted);
+  };
+
+  // Cycle Size (100% -> 50% -> 75% -> 100%)
+  const cycleSize = (index: number) => {
     const newBlocks = [...blocks];
-    newBlocks[index] = { ...newBlocks[index], visible: !newBlocks[index].visible };
-    setBlocks(newBlocks);
-    saveLayoutToStorage(newBlocks);
+    const current = newBlocks[index].size;
+    const nextSize: '100%' | '50%' | '75%' = current === '100%' ? '50%' : current === '50%' ? '75%' : '100%';
+    newBlocks[index] = { ...newBlocks[index], size: nextSize };
+    saveState(newBlocks, deletedBlocks);
   };
 
-  // Toggle Width (Full 100% vs Half 50%)
-  const toggleWidth = (index: number) => {
+  // Cycle Padding (normal -> compact -> normal)
+  const cyclePadding = (index: number) => {
     const newBlocks = [...blocks];
-    newBlocks[index] = { 
-      ...newBlocks[index], 
-      width: newBlocks[index].width === 'full' ? 'half' : 'full' 
-    };
-    setBlocks(newBlocks);
-    saveLayoutToStorage(newBlocks);
+    const current = newBlocks[index].padding;
+    newBlocks[index] = { ...newBlocks[index], padding: current === 'normal' ? 'compact' : 'normal' };
+    saveState(newBlocks, deletedBlocks);
   };
 
-  // Drag and drop handlers
+  // Reset to default layout
+  const resetToDefault = () => {
+    saveState(DEFAULT_LAYOUT, []);
+  };
+
+  // Drag and Drop
   const handleDragStart = (index: number) => {
     setDraggedIndex(index);
   };
@@ -223,41 +180,27 @@ export default function InteractiveLayoutBuilder() {
     newBlocks.splice(index, 0, draggedItem);
     setDraggedIndex(index);
     setBlocks(newBlocks);
-    saveLayoutToStorage(newBlocks);
   };
 
   const handleDragEnd = () => {
     setDraggedIndex(null);
+    saveState(blocks, deletedBlocks);
   };
 
-  // Reset to default
-  const resetToDefault = () => {
-    setBlocks(DEFAULT_BLOCKS);
-    saveLayoutToStorage(DEFAULT_BLOCKS);
-  };
-
-  // Generate Copyable Configuration String
-  const getLayoutSummaryText = () => {
-    const visibleOrder = blocks
-      .filter(b => b.visible)
-      .map((b, idx) => `${idx + 1}. ${b.nameNp} (${b.width === 'full' ? 'पूरा चौडाइ १००%' : 'आधा ५०% दायाँ/बायाँ'})`)
-      .join('\n');
-    
-    const hidden = blocks.filter(b => !b.visible).map(b => b.nameNp).join(', ');
-
-    return `नमस्ते, मलाई यो लेआउट मनपर्‍यो। वेबसाइटमा यसरी सेट गरिदिनुहोस्:\n\n【क्रमबद्ध सूची】:\n${visibleOrder}${hidden ? `\n\n【हटाउने/लुकाउने】:\n${hidden}` : ''}\n\n[Code]: ${JSON.stringify(blocks.map(b => ({ id: b.id, visible: b.visible, width: b.width })))}`;
-  };
-
+  // Copy Layout Code for Agent
   const copyLayoutConfig = () => {
-    const text = getLayoutSummaryText();
+    const summary = blocks.map((b, i) => `${i + 1}. [${b.id}] (${b.size} चौडाइ, ${b.padding})`).join('\n');
+    const deletedSummary = deletedBlocks.map(b => b.id).join(', ');
+    const text = `नमस्ते! मैले वेबसाइटको लेआउट यसरी मिलाएँ, कृपया मुख्य साइटमा सेट गरिदिनुहोस्:\n\nक्रम:\n${summary}\n\nहटाएको/लुकाएको: ${deletedSummary || 'कुनै छैन'}\n\nJSON:\n${JSON.stringify({ layout: blocks, deleted: deletedBlocks })}`;
+    
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   };
 
-  // Render individual component preview
-  const renderComponent = (block: LayoutBlock) => {
-    switch (block.id) {
+  // Render actual component content
+  const renderComponentContent = (id: BlockId) => {
+    switch (id) {
       case 'greeting':
         return (
           <section className="p-5 sm:p-7 rounded-3xl bg-gradient-to-r from-emerald-700 via-teal-700 to-indigo-800 text-white shadow-md space-y-4">
@@ -267,7 +210,7 @@ export default function InteractiveLayoutBuilder() {
                   <Calendar className="w-3.5 h-3.5" />
                   <span>नेपाल डिजिटल नागरिक सेवा (Citizen Services Portal)</span>
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
                   तपाईंलाई आज कुन सेवा वा टूल आवश्यक छ?
                 </h1>
                 <p className="text-xs sm:text-sm text-emerald-100 leading-relaxed max-w-xl">
@@ -283,46 +226,93 @@ export default function InteractiveLayoutBuilder() {
 
       case 'quickTiles':
         const tiles = [
-          { title: 'जग्गा क्यालकुलेटर', sub: 'रोपनी-बिघा हिसाब', icon: Calculator, color: 'bg-emerald-500 text-white', href: '#land-calc-section' },
-          { title: 'फोटो कम्प्रेसर', sub: 'फारमका लागि २००KB', icon: ImageIcon, color: 'bg-rose-500 text-white', href: '/tools/image-compressor' },
-          { title: 'Preeti ⇄ Unicode', sub: 'नेपाली टाइपिङ', icon: ArrowRightLeft, color: 'bg-teal-500 text-white', href: '/tools/preeti-to-unicode' },
-          { title: 'तस्विरबाट A4 PDF', sub: 'लालपुर्जा / नक्सा', icon: FileText, color: 'bg-indigo-500 text-white', href: '/tools/images-to-pdf' },
-          { title: 'मालपोत तथा कर', sub: 'रजिस्ट्रेसन & CGT', icon: Coins, color: 'bg-amber-500 text-white', href: '/tools/malpot-calculator' },
-          { title: '७७ जिल्ला नापी', sub: 'फोन, इमेल र ठेगाना', icon: Building2, color: 'bg-sky-500 text-white', href: '/tools/survey-offices' },
-          { title: 'जग्गा बैना कागज', sub: 'A4 कानुनी लिखत', icon: ScrollText, color: 'bg-orange-500 text-white', href: '/tools/legal-templates' },
-          { title: 'कित्ताकाट मापदण्ड', sub: '१३० वर्गमिटर नियम', icon: Split, color: 'bg-purple-500 text-white', href: '/tools/kitta-kat-checker' },
+          { title: 'जग्गा क्यालकुलेटर', sub: 'रोपनी-बिघा-वर्गमिटर हिसाब', icon: Calculator, color: 'bg-emerald-500 text-white', href: '#land-calc-section' },
+          { title: 'फोटो कम्प्रेसर', sub: 'सरकारी फारमका लागि २००KB', icon: ImageIcon, color: 'bg-rose-500 text-white', href: '/tools/image-compressor' },
+          { title: 'Preeti ⇄ Unicode', sub: 'नेपाली टाइपिङ कन्भर्टर', icon: ArrowRightLeft, color: 'bg-teal-500 text-white', href: '/tools/preeti-to-unicode' },
+          { title: 'तस्विरबाट A4 PDF', sub: 'लालपुर्जा / नक्सा डकुमेन्ट', icon: FileText, color: 'bg-indigo-500 text-white', href: '/tools/images-to-pdf' },
+          { title: 'मालपोत तथा कर', sub: 'रजिस्ट्रेसन & CGT दस्तुर', icon: Coins, color: 'bg-amber-500 text-white', href: '/tools/malpot-calculator' },
+          { title: '७७ जिल्ला नापी', sub: 'कार्यालय फोन, इमेल र ठेगाना', icon: Building2, color: 'bg-sky-500 text-white', href: '/tools/survey-offices' },
+          { title: 'जग्गा बैना कागज', sub: 'A4 कानुनी लिखत तमसुक', icon: ScrollText, color: 'bg-orange-500 text-white', href: '/tools/legal-templates' },
+          { title: 'कित्ताकाट मापदण्ड', sub: '१३० वर्गमिटर नियम चेकर', icon: Split, color: 'bg-purple-500 text-white', href: '/tools/kitta-kat-checker' },
         ];
         return (
-          <section className="space-y-3">
+          <section className="space-y-3.5">
             <div className="flex items-center justify-between">
               <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-emerald-600" />
                 <span>प्रमुख अनलाइन सेवाहरू (Quick Access Tiles)</span>
               </h2>
-              <span className="text-xs text-slate-500">१-ट्यापमा खोल्नुहोस्</span>
+              <Link href="/tools" className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                सबै १५+ टूल्स हेर्नुहोस् →
+              </Link>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {tiles.map((t, idx) => {
-                const Icon = t.icon;
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              {tiles.map((tile, idx) => {
+                const Icon = tile.icon;
                 return (
-                  <div key={idx} className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs flex flex-col justify-between space-y-2">
-                    <div className={`w-10 h-10 rounded-xl ${t.color} flex items-center justify-center shadow-xs shrink-0`}>
+                  <Link
+                    key={idx}
+                    href={tile.href}
+                    className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between space-y-2.5 group active:scale-98"
+                  >
+                    <div className={`w-11 h-11 rounded-xl ${tile.color} flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-tight">{t.title}</h3>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{t.sub}</p>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors leading-tight">
+                        {tile.title}
+                      </h3>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">
+                        {tile.sub}
+                      </p>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
           </section>
         );
 
+      case 'secondaryChips':
+        const secondaryChips = [
+          { label: 'बहु-कित्ता क्यालकुलेटर', href: '/tools/multi-kitta-calculator', icon: Layers },
+          { label: 'AutoCAD Scripts', href: '/tools/autocad-scripts', icon: Compass },
+          { label: 'Excel to KML', href: '/tools/excel-to-kml', icon: FileSpreadsheet },
+          { label: 'PDF सुइट', href: '/tools/pdf-tools', icon: FileStack },
+          { label: 'अक्षरेपी (Number to Words)', href: '/tools/number-to-words', icon: ScrollText },
+          { label: 'कित्ता QR कोड', href: '/tools/kitta-qr', icon: QrCode },
+          { label: 'अमिन लोकसेवा क्विज', href: '/tools/aamin-quiz', icon: GraduationCap },
+        ];
+        return (
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none no-scrollbar">
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
+              थप टूल्स:
+            </span>
+            {secondaryChips.map((chip, idx) => {
+              const Icon = chip.icon;
+              return (
+                <Link
+                  key={idx}
+                  href={chip.href}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-emerald-600 hover:border-emerald-500 text-xs font-semibold border border-slate-200 dark:border-slate-800 shadow-2xs transition-colors shrink-0"
+                >
+                  <Icon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>{chip.label}</span>
+                </Link>
+              );
+            })}
+            <Link
+              href="/tools"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 text-xs font-bold border border-emerald-200 dark:border-emerald-800 shrink-0 transition-colors"
+            >
+              <span>सबै टूल्स →</span>
+            </Link>
+          </div>
+        );
+
       case 'calculator':
         return (
-          <section id="land-calc-section" className="space-y-2.5">
+          <section id="land-calc-section" className="scroll-mt-24 space-y-2.5">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -330,72 +320,83 @@ export default function InteractiveLayoutBuilder() {
                   <span>जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर</span>
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  रोपनी-आना र बिघा-कट्ठा हिसाब तथा स्लिप प्रिन्टिङ
+                  रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर-कनुवा हिसाब र आधिकारिक स्लिप प्रिन्ट
                 </p>
               </div>
+              <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800 shrink-0 hidden sm:inline-block">
+                स्लिप प्रिन्ट उपलब्ध
+              </span>
             </div>
+
             <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs p-1">
               <LandCalculator />
             </div>
           </section>
         );
 
-      case 'secondaryChips':
-        const chips = [
-          { label: 'बहु-कित्ता क्यालकुलेटर', icon: Layers },
-          { label: 'AutoCAD Scripts', icon: Compass },
-          { label: 'Excel to KML', icon: FileSpreadsheet },
-          { label: 'PDF सुइट', icon: FileStack },
-          { label: 'अक्षरेपी (Number to Words)', icon: ScrollText },
-          { label: 'अमिन लोकसेवा क्विज', icon: GraduationCap },
-        ];
-        return (
-          <div className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2 overflow-x-auto scrollbar-none no-scrollbar">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">थप टूल्स:</span>
-            {chips.map((c, i) => {
-              const Icon = c.icon;
-              return (
-                <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold shrink-0">
-                  <Icon className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{c.label}</span>
-                </span>
-              );
-            })}
-          </div>
-        );
-
       case 'apps':
         return (
-          <section className="space-y-3">
-            <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-              <Smartphone className="w-4 h-4 text-emerald-600" />
-              <span>हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-1.5 flex items-center justify-center shrink-0">
+          <section className="space-y-3 pt-2">
+            <div className="flex items-center justify-between">
+              <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+                <Smartphone className="w-4 h-4 text-emerald-600" />
+                <span>हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0">
                     <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-black">Land Solution (नापी एप)</h3>
-                    <p className="text-[11px] text-slate-300">फिल्ड नापजाँच, कित्ताकाट र नक्सा रेखांकन</p>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-base font-black truncate">Land Solution</h3>
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">
+                        नापी एप
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
+                      फिल्ड नापजाँच, कित्ताकाट, चारकिल्ला र नक्सा रेखांकन
+                    </p>
                   </div>
                 </div>
-                <span className="px-3 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold shrink-0">Web Demo</span>
+                <a
+                  href="/land-solution-demo/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs"
+                >
+                  <Play className="w-3.5 h-3.5 fill-white" />
+                  <span className="hidden sm:inline">Web Demo</span>
+                </a>
               </div>
 
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
                     <Wallet className="w-5 h-5" />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-black">हाम्रो कोष (बचत सफ्टवेयर)</h3>
-                    <p className="text-[11px] text-slate-300">सहकारी, समूह तथा व्यक्तिगत बचत र ऋण हिसाब</p>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-base font-black truncate">हाम्रो कोष (Hamro Kosh)</h3>
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 shrink-0">
+                        बचत सफ्टवेयर
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
+                      सहकारी, समूह तथा व्यक्तिगत बचत, ऋण र ब्याज हिसाब
+                    </p>
                   </div>
                 </div>
-                <span className="px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold shrink-0">विवरण</span>
+                <Link
+                  href="/#hamro-kosh"
+                  className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs"
+                >
+                  <span>विवरण</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </div>
           </section>
@@ -419,162 +420,145 @@ export default function InteractiveLayoutBuilder() {
   return (
     <div className="space-y-6">
       
-      {/* Visual Studio Master Control Bar */}
-      <div className="sticky top-16 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-3.5 sm:p-4 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+      {/* 1. TOP DOCKED LIVE WYSIWYG STUDIO BAR */}
+      <div className="sticky top-16 z-40 bg-slate-900/95 text-white backdrop-blur-md px-4 py-3 rounded-2xl border border-slate-800 shadow-xl flex flex-col md:flex-row items-center justify-between gap-3">
+        
+        {/* Left Status & Toggle */}
+        <div className="flex items-center gap-3 w-full md:w-auto">
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs sm:text-sm font-black text-white">
+                लाइभ होमपेज सम्पादक (Direct Live WYSIWYG Studio)
+              </span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                {editMode ? 'सम्पादन खुला' : 'प्रिभ्यु मोड'}
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400">
+              {editMode 
+                ? 'प्रत्येक सेक्सनको माथिल्लो पट्टीबाट माथि/तल सार्नुहोस्, साइज बदल्नुहोस् वा डिलिट गर्नुहोस्।' 
+                : 'सम्पादन टुलबार लुकाइएको छ। वास्तविक वेबसाइट जस्तै देखिन्छ।'}
+            </p>
+          </div>
+        </div>
+
+        {/* Action Controls */}
+        <div className="flex items-center gap-2 w-full md:w-auto justify-end flex-wrap">
           
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-              <Sliders className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-sm sm:text-base font-black text-slate-900 dark:text-white leading-none">
-                  दृष्य सम्पादक (Visual Layout Builder)
-                </h1>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
-                  Interactive
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                ब्लकहरूलाई माथि/तल सार्नुहोस् वा लुकाउनुहोस् र आफ्नो मनपर्ने लेआउट बनाउनुहोस्।
-              </p>
-            </div>
-          </div>
+          {/* Toggle Edit Controls Visibility */}
+          <button
+            onClick={() => setEditMode(!editMode)}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              editMode 
+                ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700' 
+                : 'bg-emerald-600 hover:bg-emerald-500 text-white'
+            }`}
+          >
+            {editMode ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+            <span>{editMode ? 'टुलबार लुकाउनुहोस्' : 'टुलबार देखाउनुहोस्'}</span>
+          </button>
 
-          {/* Mode Switcher & Actions */}
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end flex-wrap">
-            
-            <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-2xl border border-slate-200 dark:border-slate-700">
-              <button
-                onClick={() => setActiveTab('editor')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeTab === 'editor'
-                    ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-2xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                ✏️ सम्पादन (Canvas)
-              </button>
-              <button
-                onClick={() => setActiveTab('preview')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeTab === 'preview'
-                    ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-2xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                👁️ लाइभ प्रिभ्यु (Preview)
-              </button>
-            </div>
+          {/* Reset button */}
+          <button
+            onClick={resetToDefault}
+            title="पहिलेको सामान्य अवस्थामा फर्काउनुहोस्"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
 
-            <button
-              onClick={resetToDefault}
-              title="पूर्वनिर्धारित अवस्थामा फर्काउनुहोस्"
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-            >
-              <RotateCcw className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={copyLayoutConfig}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer ${
-                copied 
-                  ? 'bg-emerald-600 text-white' 
-                  : 'bg-emerald-600 hover:bg-emerald-500 text-white active:scale-95'
-              }`}
-            >
-              {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'कपी गरियो!' : 'यो लेआउट कपी गर्नुहोस्'}</span>
-            </button>
-
-          </div>
+          {/* Copy Layout for Agent */}
+          <button
+            onClick={copyLayoutConfig}
+            className={`px-4 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer ${
+              copied 
+                ? 'bg-emerald-500 text-slate-950' 
+                : 'bg-emerald-600 hover:bg-emerald-500 text-white'
+            }`}
+          >
+            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copied ? 'कपी भयो!' : 'यो लेआउट कपी गर्नुहोस्'}</span>
+          </button>
 
         </div>
+
       </div>
 
-      {/* VIEWPORT MODE 1: VISUAL CANVAS / EDITOR */}
-      {activeTab === 'editor' && (
-        <div className="space-y-4 animate-fadeIn">
-          
-          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2.5">
-            <Sparkles className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-            <div>
-              <strong>प्रयोग गर्ने तरिका:</strong> तलका कुनै पनि ब्लकलाई <strong>↑ माथि</strong> वा <strong>↓ तल</strong> बटन थिचेर सार्न सक्नुहुन्छ। जुन ब्लक मन पर्दैन, त्यसलाई <strong>👁️ आँखा चिन्ह</strong> थिचेर बन्द गर्न सक्नुहुन्छ। तयार भएपछि माथिको <strong>"यो लेआउट कपी गर्नुहोस्"</strong> थिचेर मलाई च्याटमा पठाउनुहोस्!
-            </div>
+      {/* Deleted Items Restoration Bar (If any block is deleted) */}
+      {deletedBlocks.length > 0 && (
+        <div className="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-xs text-amber-900 dark:text-amber-200 flex flex-wrap items-center justify-between gap-2.5">
+          <div className="flex items-center gap-2">
+            <Trash2 className="w-4 h-4 text-amber-600 shrink-0" />
+            <span>
+              तपाईंले हटाउनुभएका खण्डहरू: <strong>{deletedBlocks.length} वटा</strong>
+            </span>
           </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            {deletedBlocks.map((del) => (
+              <button
+                key={del.id}
+                onClick={() => restoreBlock(del.id)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 border border-amber-300 dark:border-amber-700 hover:border-emerald-500 text-amber-900 dark:text-amber-200 hover:text-emerald-600 text-xs font-bold transition-all shadow-2xs cursor-pointer"
+              >
+                <Plus className="w-3 h-3 text-emerald-600" />
+                <span>{del.titleNp.split('(')[0].trim()} +</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
-          {/* Block Cards List (Sortable & Free-move) */}
-          <div className="space-y-3">
-            {blocks.map((block, idx) => {
-              const Icon = block.icon;
-              return (
-                <div
-                  key={block.id}
-                  draggable
-                  onDragStart={() => handleDragStart(idx)}
-                  onDragOver={(e) => handleDragOver(e, idx)}
-                  onDragEnd={handleDragEnd}
-                  className={`p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
-                    block.visible 
-                      ? 'border-slate-200 dark:border-slate-800 shadow-2xs hover:border-emerald-500' 
-                      : 'border-dashed border-slate-300 dark:border-slate-800 opacity-50 bg-slate-50 dark:bg-slate-950'
-                  }`}
-                >
+      {/* 2. THE LIVE WEBSITE CANVAS WITH IN-PLACE EDIT CONTROLLERS */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-start">
+        {blocks.map((block, idx) => {
+          const isHalf = block.size === '50%';
+          const isCompact = block.size === '75%';
+
+          return (
+            <div
+              key={block.id}
+              draggable={editMode}
+              onDragStart={() => handleDragStart(idx)}
+              onDragOver={(e) => handleDragOver(e, idx)}
+              onDragEnd={handleDragEnd}
+              className={`transition-all relative group ${
+                isHalf 
+                  ? 'col-span-1' 
+                  : isCompact 
+                    ? 'col-span-1 md:col-span-2 max-w-4xl mx-auto w-full' 
+                    : 'col-span-1 md:col-span-2 w-full'
+              }`}
+            >
+              
+              {/* Floating Action Header Bar Over Each Section (Only in Edit Mode) */}
+              {editMode && (
+                <div className="mb-2 p-2 rounded-xl bg-slate-900/90 text-white backdrop-blur-md border border-slate-700/80 shadow-md flex items-center justify-between gap-2">
                   
-                  {/* Left: Drag Handle, Number, Icon, Titles */}
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    
-                    {/* Drag Handle Indicator */}
-                    <div className="cursor-grab active:cursor-grabbing p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden sm:block">
-                      <GripVertical className="w-5 h-5" />
+                  {/* Left Label & Drag Handle */}
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="cursor-grab active:cursor-grabbing p-1 text-slate-400 hover:text-white">
+                      <GripVertical className="w-4 h-4" />
                     </div>
-
-                    {/* Order Number Badge */}
-                    <span className="w-7 h-7 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-black flex items-center justify-center shrink-0">
+                    <span className="w-5 h-5 rounded-md bg-emerald-600 text-white text-[11px] font-black flex items-center justify-center shrink-0">
                       {idx + 1}
                     </span>
-
-                    {/* Icon */}
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
-                      <Icon className="w-5 h-5" />
-                    </div>
-
-                    {/* Info */}
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate">
-                          {block.nameNp}
-                        </h3>
-                        {!block.visible && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-600 shrink-0">
-                            लुकाइएको
-                          </span>
-                        )}
-                        {block.width === 'half' && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-600 shrink-0">
-                            आधा कलम (५०%)
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                        {block.desc}
-                      </p>
-                    </div>
-
+                    <span className="text-xs font-bold text-slate-200 truncate">
+                      {block.titleNp}
+                    </span>
                   </div>
 
-                  {/* Right: Controller Buttons */}
-                  <div className="flex items-center gap-1.5 self-end sm:self-center shrink-0">
+                  {/* Right Action Buttons: Move Up, Move Down, Size, Delete */}
+                  <div className="flex items-center gap-1.5 shrink-0">
                     
                     {/* Move Up */}
                     <button
                       onClick={() => moveUp(idx)}
                       disabled={idx === 0}
                       title="माथि सार्नुहोस्"
-                      className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer border border-slate-200 dark:border-slate-800"
+                      className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer border border-slate-700"
                     >
-                      <ArrowUp className="w-4 h-4" />
+                      <ArrowUp className="w-3.5 h-3.5" />
                     </button>
 
                     {/* Move Down */}
@@ -582,106 +566,61 @@ export default function InteractiveLayoutBuilder() {
                       onClick={() => moveDown(idx)}
                       disabled={idx === blocks.length - 1}
                       title="तल सार्नुहोस्"
-                      className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer border border-slate-200 dark:border-slate-800"
+                      className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer border border-slate-700"
                     >
-                      <ArrowDown className="w-4 h-4" />
+                      <ArrowDown className="w-3.5 h-3.5" />
                     </button>
 
-                    {/* Column Width Toggle (Full 100% vs Half 50%) */}
+                    {/* Toggle Size (100% vs 50% vs 75%) */}
                     <button
-                      onClick={() => toggleWidth(idx)}
-                      title={block.width === 'full' ? 'आधा कलम (५०%) बनाउनुहोस्' : 'पूरा चौडाइ (१००%) बनाउनुहोस्'}
-                      className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1 border transition-colors cursor-pointer ${
-                        block.width === 'half'
-                          ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-800'
-                          : 'text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
-                      }`}
+                      onClick={() => cycleSize(idx)}
+                      title="साइज बदल्नुहोस् (१००%, ५०%, ७५%)"
+                      className="px-2 py-1 rounded-lg text-[11px] font-bold text-indigo-300 bg-indigo-950/60 hover:bg-indigo-900 border border-indigo-700 flex items-center gap-1 transition-colors cursor-pointer"
                     >
-                      <Columns className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">{block.width === 'full' ? '100%' : '50%'}</span>
+                      <Columns className="w-3 h-3" />
+                      <span>{block.size}</span>
                     </button>
 
-                    {/* Visibility Toggle */}
+                    {/* Delete Section */}
                     <button
-                      onClick={() => toggleVisibility(idx)}
-                      title={block.visible ? 'यो खण्ड लुकाउनुहोस्' : 'यो खण्ड देखाउनुहोस्'}
-                      className={`p-2 rounded-xl transition-colors cursor-pointer border ${
-                        block.visible
-                          ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800'
-                          : 'text-rose-500 bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800'
-                      }`}
+                      onClick={() => deleteBlock(idx)}
+                      title="यो सेक्सन हटाउनुहोस् (Delete)"
+                      className="p-1.5 rounded-lg text-rose-300 bg-rose-950/60 hover:bg-rose-900 border border-rose-700 transition-colors cursor-pointer"
                     >
-                      {block.visible ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                      <Trash2 className="w-3.5 h-3.5" />
                     </button>
 
                   </div>
 
                 </div>
-              );
-            })}
-          </div>
+              )}
 
-          {/* Bottom Export Bar */}
-          <div className="p-5 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-            <div className="space-y-1 text-center sm:text-left">
-              <h3 className="text-base font-bold text-emerald-400">लेआउट फाइनल भयो?</h3>
-              <p className="text-xs text-slate-300">
-                तपाईंले मिलाउनुभएको क्रम सुरक्षित भइसकेको छ। कपी गरेर मलाई पठाइदिनुहोस् वा लाइभ प्रिभ्यु हेर्नुहोस्।
-              </p>
+              {/* The Real Interactive Component (Clicks 100% work!) */}
+              <div className={editMode ? 'rounded-2xl transition-all' : ''}>
+                {renderComponentContent(block.id)}
+              </div>
+
             </div>
-            <div className="flex items-center gap-2.5 w-full sm:w-auto">
-              <button
-                onClick={() => setActiveTab('preview')}
-                className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all text-center"
-              >
-                लाइभ हेर्नुहोस् (Live Preview)
-              </button>
-              <button
-                onClick={copyLayoutConfig}
-                className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
-              >
-                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'कपी गरियो!' : 'लेआउट कपी गर्नुहोस्'}</span>
-              </button>
-            </div>
+          );
+        })}
+      </div>
+
+      {/* Floating Bottom Reminder */}
+      {editMode && (
+        <div className="p-4 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+            <span className="text-xs sm:text-sm text-slate-200">
+              सबै कम्पोनेन्टहरू प्रत्यक्ष क्लिक गरेर चलाउन सकिन्छ (क्यालकुलेटर, बटम, लिङ्क सबै सक्रिय छन्)।
+            </span>
           </div>
-
-        </div>
-      )}
-
-      {/* VIEWPORT MODE 2: REAL-TIME LIVE PREVIEW OF CUSTOMIZED HOMEPAGE */}
-      {activeTab === 'preview' && (
-        <div className="space-y-8 animate-fadeIn border-t border-slate-200 dark:border-slate-800 pt-6">
-          
-          <div className="flex items-center justify-between p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>यो तपाईंले मिलाउनुभएको लेआउट अनुसारको प्रत्यक्ष लाइभ होमपेज प्रिभ्यु हो।</span>
-            </div>
-            <button
-              onClick={() => setActiveTab('editor')}
-              className="px-3 py-1 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 hover:underline cursor-pointer"
-            >
-              ← सम्पादनमा फर्कनुहोस्
-            </button>
-          </div>
-
-          {/* Render in the exact user-arranged order and widths */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {blocks.map((block) => {
-              if (!block.visible) return null;
-              const isHalf = block.width === 'half';
-              return (
-                <div
-                  key={block.id}
-                  className={isHalf ? 'col-span-1' : 'col-span-1 md:col-span-2'}
-                >
-                  {renderComponent(block)}
-                </div>
-              );
-            })}
-          </div>
-
+          <button
+            onClick={copyLayoutConfig}
+            className="w-full sm:w-auto px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            <span>{copied ? 'कपी गरियो!' : 'यो लेआउट कपी गरेर च्याटमा पठाउनुहोस्'}</span>
+          </button>
         </div>
       )}
 
