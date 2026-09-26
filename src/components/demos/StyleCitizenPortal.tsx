@@ -170,18 +170,23 @@ export default function StyleCitizenPortal() {
         </div>
       </section>
 
-      {/* 5. COMPACT MOBILE APPLICATIONS (Land Solution & Hamro Kosh) */}
-      <section className="space-y-3 pt-2">
+      {/* 5. COMPACT MOBILE APPLICATIONS (Option 2: Action-Oriented) */}
+      <section className="space-y-3 pt-1">
         <div className="flex items-center justify-between">
-          <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Smartphone className="w-4 h-4 text-emerald-600" />
-            <span>हाम्रा आधिकारिक मोबाइल सफ्टवेयरहरू</span>
-          </h2>
+          <div className="space-y-0.5">
+            <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <Smartphone className="w-4 h-4 text-emerald-600" />
+              <span>दैनिक कामलाई सजिलो बनाउने हाम्रा मोबाइल एपहरू</span>
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              फिल्ड नापजाँच, कित्ताकाट तथा बचत हिसाबका लागि निर्मित आधिकारिक एन्ड्रोइड सफ्टवेयर
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           
-          {/* App 1: Land Solution (Compact) */}
+          {/* App 1: Land Solution (Compact & Action-Oriented) */}
           <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4">
             <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0">
@@ -195,7 +200,7 @@ export default function StyleCitizenPortal() {
                   </span>
                 </div>
                 <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                  फिल्ड नापजाँच, कित्ताकाट, चारकिल्ला र नक्सा रेखांकन
+                  फिल्डमा जग्गा नाप्ने, कित्ताकाट गर्ने र नक्सा रेखांकन गर्ने सजिलो एप
                 </p>
               </div>
             </div>
@@ -211,7 +216,7 @@ export default function StyleCitizenPortal() {
             </a>
           </div>
 
-          {/* App 2: Hamro Kosh (Compact) */}
+          {/* App 2: Hamro Kosh (Compact & Action-Oriented) */}
           <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4">
             <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
@@ -225,7 +230,7 @@ export default function StyleCitizenPortal() {
                   </span>
                 </div>
                 <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                  सहकारी, समूह तथा व्यक्तिगत बचत, ऋण र ब्याज हिसाब
+                  सहकारी, समूह तथा व्यक्तिगत बचत, ऋण र हिसाब-किताबको डिजिटल समाधान
                 </p>
               </div>
             </div>

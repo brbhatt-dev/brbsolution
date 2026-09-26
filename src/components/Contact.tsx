@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle, Clock, MessageSquare } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -61,181 +61,159 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950 transition-colors duration-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="contact" className="py-8 sm:py-10 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 transition-colors duration-200 notranslate" translate="no">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold mb-3 border border-emerald-100 dark:border-emerald-800">
-            <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>सम्पर्क तथा ठेगाना (Contact & Location)</span>
+        {/* Compact Section Header */}
+        <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8 space-y-1">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
+            <Mail className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <span>सम्पर्क तथा सोधपुछ (Contact & Support)</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            कुनै सोधपुछ वा सहकार्यका लागि सम्पर्क गर्नुहोस्
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            कुनै सोधपुछ वा सहयोगका लागि सम्पर्क गर्नुहोस्
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base mt-3">
-            ल्याण्ड सोलुसन, हाम्रो कोष एप, वा AutoCAD LSP फाइल्स सम्बन्धी कुनै पनि जिज्ञासाका लागि सिधै इमेल, सोसियल मिडिया वा तलको फर्ममार्फत सम्पर्क गर्न सक्नुहुन्छ।
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            ल्याण्ड सोलुसन, हाम्रो कोष एप वा जग्गा नापजाँच सम्बन्धी कुनै पनि जिज्ञासा सिधै पठाउनुहोस्।
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Compact 2-Column Balanced Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
           
-          {/* Left: Contact Info & Socials */}
-          <div className="lg:col-span-5 space-y-6">
+          {/* Left Column: Direct Info Cards (40% width) */}
+          <div className="lg:col-span-5 space-y-3">
             
             {/* Primary Email Card */}
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center border border-emerald-100 dark:border-emerald-800">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">आधिकारिक इमेल</p>
-                    <a
-                      href={`mailto:${emailAddress}`}
-                      className="text-base font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors break-all"
-                    >
-                      {emailAddress}
-                    </a>
-                  </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
+                  <Mail className="w-4 h-4" />
                 </div>
-                <button
-                  onClick={copyEmail}
-                  title="Copy Email"
-                  className="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                >
-                  {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                </button>
+                <div>
+                  <span className="text-[10px] text-slate-400 font-bold uppercase block">आधिकारिक इमेल</span>
+                  <a
+                    href={`mailto:${emailAddress}`}
+                    className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors break-all"
+                  >
+                    {emailAddress}
+                  </a>
+                </div>
               </div>
-              {copied && (
-                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">✓ इमेल क्लिपबोर्डमा कपी भयो!</p>
-              )}
+              <button
+                onClick={copyEmail}
+                title="इमेल कपी गर्नुहोस्"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-600 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              >
+                {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+              </button>
             </div>
 
             {/* Location Card */}
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center border border-blue-100 dark:border-blue-800 shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">स्थान / Location</p>
-                  <p className="text-sm font-bold text-slate-900 dark:text-white">काठमाडौँ, नेपाल (Kathmandu, Nepal)</p>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                    नेपालभर अनलाइन सफ्टवेयर सपोर्ट, ल्याण्ड क्यालकुलेसन परामर्श तथा प्राविधिक सहायता उपलब्ध छ।
-                  </p>
-                </div>
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center shrink-0 border border-blue-200 dark:border-blue-800">
+                <MapPin className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-[10px] text-slate-400 font-bold uppercase block">स्थान / Location</span>
+                <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">काठमाडौँ, नेपाल (Kathmandu, Nepal)</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">नेपालभर अनलाइन प्राविधिक सहायता उपलब्ध</p>
               </div>
             </div>
 
-            {/* Embedded Google Map */}
-            <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
-              <div className="px-4 py-2.5 bg-slate-100/70 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs text-slate-700 dark:text-slate-300 font-semibold">
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  काठमाडौँ, नेपाल (Interactive Map)
-                </span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-normal">Kathmandu 44600</span>
-              </div>
-              <div className="h-56 w-full">
-                <iframe
-                  title="BR Bhatta Location Map Kathmandu"
-                  src="https://maps.google.com/maps?q=Kathmandu,Nepal&t=&z=12&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
-                ></iframe>
-              </div>
+            {/* Support Guarantee Card */}
+            <div className="p-3.5 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-900/40 flex items-center gap-2.5 text-xs text-emerald-800 dark:text-emerald-300">
+              <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <span>हामी सामान्यतया २४ घण्टाभित्र इमेल तथा सन्देशको जवाफ दिन्छौं।</span>
             </div>
 
           </div>
 
-          {/* Right: Interactive Contact Form */}
+          {/* Right Column: Sleek Compact Contact Form (60% width) */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-8 shadow-xs">
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">सिधै सन्देश पठाउनुहोस्</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mb-5 sm:mb-6">आफ्नो विवरण र आवश्यकता तल फारममा भर्नुहोस्:</p>
+            <div className="bg-slate-50 dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-xs">
+              
+              <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-800">
+                <h3 className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <MessageSquare className="w-4 h-4 text-emerald-600" />
+                  <span>सिधै सन्देश पठाउनुहोस्</span>
+                </h3>
+                <span className="text-[10px] text-slate-400">फारम भरेर पठाउनुहोस्</span>
+              </div>
 
               {status === 'success' ? (
-                <div className="py-10 text-center space-y-4">
-                  <div className="w-14 h-14 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-300 dark:border-emerald-800 shadow-sm animate-pulse">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="py-6 text-center space-y-3">
+                  <div className="w-11 h-11 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-300 dark:border-emerald-800 animate-pulse">
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">सन्देश सफलतापूर्वक पठाइयो!</h4>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
-                      धन्यवाद {formData.name ? <strong>{formData.name} ज्यू</strong> : ''}। तपाईंको सन्देश सिधै हाम्रो आधिकारिक इमेल (<strong className="text-emerald-700 dark:text-emerald-400">{emailAddress}</strong>) मा प्राप्त भएको छ। हामी छिट्टै सम्पर्क गर्नेछौं।
+                  <div>
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white">सन्देश सफलतापूर्वक पठाइयो!</h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 max-w-sm mx-auto">
+                      धन्यवाद {formData.name ? <strong>{formData.name} ज्यू</strong> : ''}। हामी छिट्टै सम्पर्क गर्नेछौं।
                     </p>
                   </div>
-                  <div className="pt-2">
-                    <button
-                      onClick={() => {
-                        setStatus('idle');
-                        setFormData({ name: '', contact: '', service: 'Land Solution सम्बन्धी', message: '' });
-                      }}
-                      className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
-                    >
-                      अर्को सन्देश पठाउनुहोस्
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => {
+                      setStatus('idle');
+                      setFormData({ name: '', contact: '', service: 'Land Solution सम्बन्धी', message: '' });
+                    }}
+                    className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+                  >
+                    अर्को सन्देश पठाउनुहोस्
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   {status === 'error' && (
-                    <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 flex items-start gap-2.5 text-xs text-rose-800 dark:text-rose-300">
+                    <div className="p-2.5 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 flex items-start gap-2 text-xs text-rose-800 dark:text-rose-300">
                       <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold">सन्देश पठाउन समस्या भयो</p>
-                        <p className="mt-0.5">{errorMessage}</p>
-                      </div>
+                      <p>{errorMessage}</p>
                     </div>
                   )}
 
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      तपाईंको पूरा नाम *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      disabled={status === 'sending'}
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="उदा. रमेश अधिकारी"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
-                    />
+                  {/* Name and Phone side-by-side in 2 columns (Saves vertical space!) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        पूरा नाम *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        disabled={status === 'sending'}
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="उदा. रमेश अधिकारी"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        मोबाइल / फोन नम्बर *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        inputMode="numeric"
+                        disabled={status === 'sending'}
+                        value={formData.contact}
+                        onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                        placeholder="उदा. 98XXXXXXXX"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60"
+                      />
+                    </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      सम्पर्क मोबाइल / फोन नम्बर *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      inputMode="numeric"
-                      disabled={status === 'sending'}
-                      value={formData.contact}
-                      onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                      placeholder="उदा. 98XXXXXXXX"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      कुन विषयमा सहयोग चाहिएको हो?
+                    <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      सहयोग चाहिएको विषय
                     </label>
                     <select
                       disabled={status === 'sending'}
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 min-h-[48px] disabled:opacity-60"
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60"
                     >
                       <option value="Land Solution सम्बन्धी">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
                       <option value="हाम्रो कोष सम्बन्धी">हाम्रो कोष (Hamro Kosh App)</option>
@@ -246,43 +224,40 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      तपाईंको सन्देश वा जिज्ञासा *
+                    <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      सन्देश वा आवश्यकता *
                     </label>
                     <textarea
                       required
                       disabled={status === 'sending'}
-                      rows={4}
+                      rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="आफ्नो आवश्यकता, प्रश्न वा प्रतिक्रिया यहाँ लेख्नुहोस्..."
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none disabled:opacity-60"
+                      placeholder="आफ्नो आवश्यकता वा प्रतिक्रिया यहाँ लेख्नुहोस्..."
+                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 resize-none disabled:opacity-60"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm shadow-sm transition-all min-h-[48px] cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-all cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                   >
                     {status === 'sending' ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>सन्देश पठाउँदैछ...</span>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>पठाउँदैछ...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-3.5 h-3.5" />
                         <span>सन्देश पठाउनुहोस्</span>
                       </>
                     )}
                   </button>
-
-                  <p className="text-center text-[11px] text-slate-500 dark:text-slate-400 pt-1">
-                    तपाईं सिधै <a href={`mailto:${emailAddress}`} className="text-emerald-700 dark:text-emerald-400 font-semibold underline">{emailAddress}</a> मा पनि इमेल गर्न सक्नुहुन्छ।
-                  </p>
                 </form>
               )}
+
             </div>
           </div>
 
