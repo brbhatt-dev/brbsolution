@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Eye, Check, Sparkles } from 'lucide-react';
+import { Eye, Check, Search, Sparkles } from 'lucide-react';
 
 export type DemoStyleId = 
   | 'style1' 
@@ -15,7 +15,12 @@ export type DemoStyleId =
   | 'style9'
   | 'style10'
   | 'style11'
-  | 'style12';
+  | 'style12'
+  | 'style13'
+  | 'style14'
+  | 'style15'
+  | 'style16'
+  | 'style17';
 
 interface StyleSwitcherBarProps {
   currentStyle: DemoStyleId;
@@ -25,80 +30,123 @@ interface StyleSwitcherBarProps {
 export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleSwitcherBarProps) {
   const styles = [
     {
+      id: 'style13' as DemoStyleId,
+      name: 'Style १३: Perplexity Deep Search',
+      vibe: 'स्मार्ट एआई सर्च इन्जिन',
+      badge: '🔥 BEST SEARCH',
+      highlight: true
+    },
+    {
+      id: 'style14' as DemoStyleId,
+      name: 'Style १४: Bloomberg Terminal',
+      vibe: 'वित्तीय टिमर र म्याट्रिक्स',
+      badge: 'PRO FINANCE',
+      highlight: true
+    },
+    {
+      id: 'style15' as DemoStyleId,
+      name: 'Style १५: Gov.uk Minimal Standard',
+      vibe: 'आधिकारिक डिजिटल नेपाल',
+      badge: 'विश्वस्तरीय सरकारी',
+      highlight: true
+    },
+    {
+      id: 'style16' as DemoStyleId,
+      name: 'Style १६: Linear Enterprise',
+      vibe: 'Stripe / Linear स्लिक सास',
+      badge: 'एक्जिक्युटिभ',
+      highlight: true
+    },
+    {
+      id: 'style17' as DemoStyleId,
+      name: 'Style १७: Mobile Super-App',
+      vibe: '१-हात टच किप्याड र बबल्स',
+      badge: 'सुपर-एप',
+      highlight: true
+    },
+    {
       id: 'style9' as DemoStyleId,
       name: 'Style ९: Visual Parcel Map',
       vibe: 'नक्सामा प्लट छुने इन्जिन',
-      badge: '🌟 नयाँ र युनिक!',
-      highlight: true
+      badge: 'म्याप स्टुडियो',
+      highlight: false
     },
     {
       id: 'style10' as DemoStyleId,
       name: 'Style १०: Raycast OS',
       vibe: 'Spotlight & Floating Dock',
-      badge: '🌟 कमान्ड सेन्टर',
-      highlight: true
+      badge: 'कमान्ड सेन्टर',
+      highlight: false
     },
     {
       id: 'style11' as DemoStyleId,
       name: 'Style ११: Neo-Brutalist Pop',
       vibe: 'Bold Gumroad / Retrowave',
-      badge: '🌟 उच्च कन्ट्रास्ट',
-      highlight: true
+      badge: 'बोल्ड पप',
+      highlight: false
     },
     {
       id: 'style12' as DemoStyleId,
       name: 'Style १२: Cyber Spatial HUD',
       vibe: 'लाइभ स्लाइडर + होलोग्राफिक',
-      badge: '🌟 फ्युचरिस्टिक',
-      highlight: true
+      badge: 'फ्युचरिस्टिक',
+      highlight: false
     },
     {
       id: 'style1' as DemoStyleId,
       name: 'Style १: Modern Tech SaaS',
       vibe: 'Linear / Stripe',
-      badge: 'सिलिकन भ्याली'
+      badge: 'सिलिकन भ्याली',
+      highlight: false
     },
     {
       id: 'style2' as DemoStyleId,
       name: 'Style २: Citizen Utility',
       vibe: 'हाम्रोपात्रो / नागरिक एप',
-      badge: 'मोबाइल-फर्स्ट'
+      badge: 'मोबाइल-फर्स्ट',
+      highlight: false
     },
     {
       id: 'style3' as DemoStyleId,
       name: 'Style ३: CAD & Cadastre',
       vibe: 'AutoCAD / GIS इन्जिनियर',
-      badge: 'प्राविधिक'
+      badge: 'प्राविधिक',
+      highlight: false
     },
     {
       id: 'style4' as DemoStyleId,
       name: 'Style ४: Apple Bento Grid',
       vibe: 'आधुनिक बेन्टो ग्रिड',
-      badge: 'एप्पल लुक'
+      badge: 'एप्पल लुक',
+      highlight: false
     },
     {
       id: 'style5' as DemoStyleId,
       name: 'Style ५: GovTech Nepal',
       vibe: 'आधिकारिक नागरिक पोर्टल',
-      badge: 'सरकारी/विश्वसनीय'
+      badge: 'विश्वसनीय',
+      highlight: false
     },
     {
       id: 'style6' as DemoStyleId,
       name: 'Style ६: Micro-Tool Rapid',
       vibe: 'iLovePDF / Tool-First',
-      badge: 'द्रुत औजार'
+      badge: 'द्रुत औजार',
+      highlight: false
     },
     {
       id: 'style7' as DemoStyleId,
       name: 'Style ७: Fintech & Wealth',
       vibe: 'Stripe / eSewa वित्तीय',
-      badge: 'सम्पत्ति मूल्यांकन'
+      badge: 'सम्पत्ति मूल्यांकन',
+      highlight: false
     },
     {
       id: 'style8' as DemoStyleId,
       name: 'Style ८: Nordic Editorial',
       vibe: 'Kinfolk / Substack',
-      badge: 'शान्त मिनिमलिस्ट'
+      badge: 'शान्त मिनिमलिस्ट',
+      highlight: false
     },
   ];
 
@@ -110,17 +158,17 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 flex items-center justify-center shrink-0">
-              <Eye className="w-4 h-4 animate-pulse" />
+              <Search className="w-4 h-4 animate-pulse" />
             </div>
             <div>
               <h3 className="text-xs sm:text-sm font-black text-white flex items-center gap-2">
                 <span>लाइभ डिजाइन छनोट (Live Design Switcher)</span>
                 <span className="text-[10px] bg-gradient-to-r from-emerald-500 to-teal-400 text-black px-2 py-0.5 rounded font-black">
-                  १२ वटा युनिक शैलीहरू (12 Total Styles)
+                  १७ वटा शैलीहरू (17 Designs Ready)
                 </span>
               </h3>
               <p className="text-[11px] text-slate-400 hidden sm:block">
-                तलको कुनै पनि डिजाइन बटन थिच्नुहोस् — पेज तत्काल परिवर्तन हुनेछ:
+                विशेष गरी <strong>Style १३ (Perplexity AI Search)</strong> र <strong>Style १४, १५, १६, १७</strong> हेर्नुहोस्:
               </p>
             </div>
           </div>
@@ -130,7 +178,7 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
           </div>
         </div>
 
-        {/* 12 Horizontal Scrollable Selector Buttons */}
+        {/* 17 Horizontal Scrollable Selector Buttons */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-none no-scrollbar">
           {styles.map((s) => {
             const isSelected = currentStyle === s.id;
@@ -142,7 +190,7 @@ export default function StyleSwitcherBar({ currentStyle, onChangeStyle }: StyleS
                   isSelected
                     ? 'bg-emerald-500 text-slate-950 font-black shadow-lg scale-102 ring-2 ring-emerald-300'
                     : s.highlight
-                      ? 'bg-slate-800 text-emerald-300 border border-emerald-500/50 hover:bg-slate-700'
+                      ? 'bg-slate-800 text-emerald-300 border border-emerald-500/60 hover:bg-slate-700'
                       : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 hover:border-slate-600'
                 }`}
               >

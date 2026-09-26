@@ -16,11 +16,16 @@ import StyleVisualParcel from '@/components/demos/StyleVisualParcel';
 import StyleRaycastOS from '@/components/demos/StyleRaycastOS';
 import StyleNeoBrutalist from '@/components/demos/StyleNeoBrutalist';
 import StyleCyberSpatial from '@/components/demos/StyleCyberSpatial';
-import { Sparkles, MessageSquare } from 'lucide-react';
+import StylePerplexitySearch from '@/components/demos/StylePerplexitySearch';
+import StyleBloombergTerminal from '@/components/demos/StyleBloombergTerminal';
+import StyleGovUkClean from '@/components/demos/StyleGovUkClean';
+import StyleLinearEnterprise from '@/components/demos/StyleLinearEnterprise';
+import StyleMobileSuperApp from '@/components/demos/StyleMobileSuperApp';
+import { Sparkles, MessageSquare, Search } from 'lucide-react';
 import Link from 'next/link';
 
 export default function DemoShowroomPage() {
-  const [currentStyle, setCurrentStyle] = useState<DemoStyleId>('style9');
+  const [currentStyle, setCurrentStyle] = useState<DemoStyleId>('style13');
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-[#070b14] text-slate-900 dark:text-slate-100 transition-colors">
@@ -38,22 +43,24 @@ export default function DemoShowroomPage() {
         {/* Style Introduction Notice with direct links */}
         <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-2xs">
           <div className="flex items-center gap-2.5">
-            <Sparkles className="w-5 h-5 text-emerald-600 shrink-0" />
+            <Search className="w-5 h-5 text-emerald-600 shrink-0" />
             <span>
-              <strong>१२ वटा युनिक डिजाइन डेमोहरू उपलब्ध:</strong> माथिका बटनहरूबाट १-क्लिकमै डिजाइन बदल्नुहोस्। विशेष गरी <strong>Style ९, १०, ११, र १२</strong> एकदमै फरक र अनौठो शैलीमा बनाइएका छन्।
+              <strong>१७ वटा व्यावसायिक डिजाइनहरू:</strong> विशेष गरी <strong>Style १३ (Perplexity AI Search)</strong> र <strong>Style १४, १५, १६, १७</strong> नयाँ थपिएका छन्। माथिको पट्टीबाट १-क्लिकमै जुनसुकै शैली रोज्नुहोस्।
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5 shrink-0 text-xs font-bold text-emerald-700 dark:text-emerald-400">
-            <span className="text-slate-500 mr-1">प्रत्यक्ष लिङ्कहरू:</span>
-            {[9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+            <span className="text-slate-500 mr-1">नयाँ डिजाइनहरू:</span>
+            {[13, 14, 15, 16, 17, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
               <Link 
                 key={num} 
                 href={`/demo/${num}`} 
                 className={`px-2 py-0.5 rounded transition ${
-                  num >= 9 
+                  num >= 13 
                     ? 'bg-emerald-500 text-black font-black' 
-                    : 'bg-emerald-100 dark:bg-emerald-900/60 hover:bg-emerald-200 text-emerald-800 dark:text-emerald-300'
+                    : num >= 9
+                      ? 'bg-teal-100 dark:bg-teal-900/60 text-teal-800 dark:text-teal-300'
+                      : 'bg-slate-100 dark:bg-slate-850 hover:bg-slate-200 text-slate-700 dark:text-slate-300'
                 }`}
               >
                 Style {num}
@@ -64,6 +71,11 @@ export default function DemoShowroomPage() {
 
         {/* Dynamic Style Container */}
         <div className="transition-all duration-300">
+          {currentStyle === 'style13' && <StylePerplexitySearch />}
+          {currentStyle === 'style14' && <StyleBloombergTerminal />}
+          {currentStyle === 'style15' && <StyleGovUkClean />}
+          {currentStyle === 'style16' && <StyleLinearEnterprise />}
+          {currentStyle === 'style17' && <StyleMobileSuperApp />}
           {currentStyle === 'style9' && <StyleVisualParcel />}
           {currentStyle === 'style10' && <StyleRaycastOS />}
           {currentStyle === 'style11' && <StyleNeoBrutalist />}
@@ -86,10 +98,10 @@ export default function DemoShowroomPage() {
 
           <div className="space-y-1">
             <h3 className="text-lg sm:text-xl font-black">
-              तपाईंलाई यी मध्ये कुन डिजाइन सबैभन्दा उत्कृष्ट र मनपर्ने लाग्यो?
+              तपाईंलाई कुन चाहिँ डिजाइन सबैभन्दा उत्कृष्ट र आकर्षक लाग्यो?
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl mx-auto">
-              <strong>१ देखि १२</strong> सम्मको नम्बर (जस्तै: <strong>Style ९</strong> - Visual Parcel Map, <strong>Style १०</strong> - Raycast OS, <strong>Style ११</strong> - Neo Brutalist, वा <strong>Style १२</strong> - Cyber HUD) रोज्नुहोस्। तपाईंले रोज्नुभएको डिजाइन अनुसार हामी मुख्य वेबसाइटलाई स्थायी बनाउनेछौँ!
+              <strong>१ देखि १७</strong> सम्मको नम्बर (जस्तै: <strong>Style १३</strong> - Perplexity AI Search, <strong>Style १४</strong> - Bloomberg, <strong>Style १५</strong> - Gov.uk, <strong>Style १६</strong> - Linear, वा <strong>Style १७</strong> - Mobile Super-App) रोज्नुहोस्। तपाईंले मन पराउनुभएको डिजाइनलाई नै हामी मुख्य वेबसाइट (brbhatta.com) को स्थायी डिजाइन बनाइदिनेछौँ!
             </p>
           </div>
         </div>
