@@ -7,11 +7,7 @@ import {
   Mail, 
   Facebook, 
   Instagram, 
-  Github, 
-  Heart, 
-  ShieldCheck, 
-  Sparkles,
-  ExternalLink
+  Github
 } from 'lucide-react';
 
 export default function HomeFooter() {
@@ -173,32 +169,15 @@ export default function HomeFooter() {
           </Link>
         </div>
 
-        {/* Bottom Section: Mission Statement + Copyright & Badges */}
-        <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left sm:pr-48 lg:pr-56">
-          <div className="space-y-1.5">
-            {/* Proud Mission Tagline */}
-            <p className="text-xs sm:text-[13px] text-emerald-300 font-medium flex items-center justify-center sm:justify-start gap-1.5">
-              <span>🇳🇵</span>
-              <span>नेपाली माटो, आफ्नै प्रविधि — इन्जिनियर, अमिन र आम नागरिकका लागि निःशुल्क डिजिटल सहयोगी।</span>
-            </p>
+        {/* Bottom Section: Pure & Minimal (Tagline on Left, Curated by BR BHATTA on Right) */}
+        <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-center sm:text-left sm:pr-48 lg:pr-56">
+          <p className="text-xs sm:text-[13px] text-emerald-300 font-medium">
+            नेपाली माटो, आफ्नै प्रविधि — इन्जिनियर, अमिन र आम नागरिकका लागि निःशुल्क डिजिटल सहयोगी।
+          </p>
 
-            <p className="text-[12px] text-slate-400">
-              &copy; {new Date().getFullYear()} <strong className="text-white font-bold">BR Bhatta</strong> (brbhatta.com). सर्वाधिकार सुरक्षित।
-            </p>
-            <p className="text-[11px] text-slate-500 leading-relaxed max-w-2xl">
-              सूचना तथा प्राविधिक गणनाका लागि निर्मित। आधिकारिक निर्णयका लागि सम्बन्धित नापी तथा मालपोत कार्यालयको अभिलेख मान्य हुनेछ।
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2 text-[11px] text-slate-400 shrink-0">
-            <span>Made with</span>
-            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 animate-pulse" />
-            <span>in Nepal</span>
-            <span className="text-slate-700">&bull;</span>
-            <span className="px-2 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-[10px] text-emerald-400 font-mono font-bold">
-              v2.4 (२०२६)
-            </span>
-          </div>
+          <p className="text-xs sm:text-[12px] text-slate-400 font-medium tracking-wide shrink-0">
+            curated by <span className="text-white font-bold tracking-wider">BR BHATTA</span>
+          </p>
         </div>
 
       </div>
