@@ -240,14 +240,6 @@ export default function Navbar() {
             >
               सम्पर्क
             </Link>
-
-            <Link
-              href="/builder"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-xs transition-transform active:scale-95"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Live Builder</span>
-            </Link>
           </nav>
 
           {/* Desktop Right Side: Social Media Icons + Theme Toggle */}
@@ -475,15 +467,6 @@ export default function Navbar() {
                 सम्पर्क
               </Link>
             </div>
-            
-            <Link
-              href="/builder"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-emerald-600 text-white font-black text-center flex items-center justify-center gap-1.5 shadow-xs"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Live Visual Builder (सम्पादक खोल्नुहोस्)</span>
-            </Link>
           </div>
 
         </div>
