@@ -24,8 +24,7 @@ import {
   FileStack,
   FileText,
   Compass,
-  ScrollText,
-  Users
+  ScrollText
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -261,21 +260,6 @@ const TOOL_SECTIONS: ToolCategory[] = [
           '७ वटै प्रदेश अनुसार कार्यालयहरूको वर्गीकरण',
           'नापी र मालपोत कार्यालयको १-क्लिक कल (tel:)',
           'प्रत्येक कार्यालयको वडा तथा कार्यक्षेत्र विवरण'
-        ]
-      },
-      {
-        id: 'find-surveyor',
-        titleNp: 'नेपालका नापी अमिन तथा इन्जिनियर निर्देशिका',
-        titleEn: 'Find Land Surveyors & Engineers Directory',
-        description: 'कित्ताकाट, सिमाना नाप र घर नक्सा पासका लागि नेपालभरिका लाइसेन्सप्राप्त अमिन, इन्जिनियर र सर्भे कम्पनीहरूको सम्पर्क निर्देशिका।',
-        badge: 'प्रत्यक्ष सम्पर्क (Direct Call)',
-        icon: Users,
-        href: '/tools/find-surveyor',
-        features: [
-          '७ वटै प्रदेश र जिल्ला अनुसार स्थानीय अमिन खोजी',
-          'लाइसेन्स विवरण, अनुभव र उपकरण सूची',
-          '📞 सिधै फोन तथा WhatsApp मा १-क्लिक कुराकानी',
-          'नयाँ अमिन/इन्जिनियरहरूको निःशुल्क प्रोफाइल दर्ता'
         ]
       }
     ]
