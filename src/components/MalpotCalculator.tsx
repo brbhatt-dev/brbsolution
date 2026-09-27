@@ -462,13 +462,13 @@ ${isKathmanduValley ? `४. वाग्मती सभ्यता कर (०
       >
         <div className="border-b-2 border-emerald-800 pb-4 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-black text-emerald-900">BR BHATTA • LAND SOLUTION</h1>
+            <h1 className="text-xl font-black text-emerald-900">LAND SOLUTION</h1>
             <p className="text-xs text-slate-600">घरजग्गा रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर आधिकारिक स्लिप</p>
-            <p className="text-[10px] text-slate-500">पोर्टल: www.brbhatta.com/tools/malpot-calculator</p>
+            <p className="text-[10px] text-slate-500">नेपाल डिजिटल घरजग्गा रजिस्ट्रेसन तथा मालपोत कर हिसाब प्रणाली</p>
           </div>
           <div className="text-right text-xs">
             <p className="font-bold text-slate-800">मिति: {new Date().toLocaleDateString('ne-NP')}</p>
-            <p className="text-[10px] text-slate-500">स्लिप नं: BRB-TAX-{Math.floor(100000 + Math.random() * 900000)}</p>
+            <p className="text-[10px] text-slate-500">स्लिप नं: LS-TAX-{Math.floor(100000 + Math.random() * 900000)}</p>
           </div>
         </div>
 
@@ -549,6 +549,11 @@ ${isKathmanduValley ? `४. वाग्मती सभ्यता कर (०
             <div className="w-36 border-b border-slate-400 mx-auto mb-2"></div>
             <p className="font-bold">जग्गाधनी / खरिदकर्ता</p>
           </div>
+        </div>
+
+        <div className="text-center text-[9px] text-slate-400 pt-2 border-t border-slate-100 flex items-center justify-between">
+          <span>Land Solution • नेपाल डिजिटल घरजग्गा कर तथा रजिस्ट्रेसन प्रणाली</span>
+          <span>Official Registration Tax Slip</span>
         </div>
       </div>
 

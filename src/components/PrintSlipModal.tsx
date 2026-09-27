@@ -6,23 +6,22 @@ import { Printer, X, FileText, CheckCircle2, ShieldCheck, Calendar, User, MapPin
 interface PrintSlipModalProps {
   isOpen: boolean;
   onClose: () => void;
-  // Calculation data
   data: {
+    system?: 'ropani' | 'bigha';
+    rawSqft?: number;
+    rawSqm?: number;
     totalSqft: number;
-    outSqm: string;
-    // Pahadi
     outRopani: number;
     outAana: number;
     outPaisa: number;
-    outDaam: string;
-    // Terai
+    outDaam: string | number;
     outBigha: number;
     outKatha: number;
     outDhur: number;
-    outKanwa: string;
-    // Price
-    pricePerUnit?: number;
+    outKanwa: string | number;
+    outSqm: string;
     estimatedPrice?: number;
+    pricePerUnit?: number;
     priceUnitLabel?: string;
   };
 }
@@ -32,7 +31,7 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
   const [ownerName, setOwnerName] = useState('');
   const [kittaNo, setKittaNo] = useState('');
   const [location, setLocation] = useState('');
-  const [surveyorName, setSurveyorName] = useState('BR Bhatta / प्राविधिक अमिन');
+  const [surveyorName, setSurveyorName] = useState('');
   const [remarks, setRemarks] = useState('डिजिटल नापजाँच प्रणाली अनुसार प्रमाणित क्षेत्रफल।');
   
   // Format current date
@@ -41,7 +40,7 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
     month: 'long',
     day: 'numeric'
   });
-  const slipId = `BRB-${Math.floor(100000 + Math.random() * 900000)}`;
+  const slipId = `LS-${Math.floor(100000 + Math.random() * 900000)}`;
 
   if (!isOpen) return null;
 
@@ -96,7 +95,7 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
             <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
               स्लिपमा देखाउने विवरणहरू भर्नुहोस् (वैकल्पिक):
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
               <div>
                 <label className="block text-slate-600 dark:text-slate-400 mb-1 font-semibold">ग्राहक / क्रेताको नाम:</label>
                 <input
@@ -137,6 +136,16 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
                   className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
                 />
               </div>
+              <div>
+                <label className="block text-slate-600 dark:text-slate-400 mb-1 font-semibold">तयार गर्ने / अमिनको नाम:</label>
+                <input
+                  type="text"
+                  placeholder="उदा: नापी प्राविधिक / अमिन"
+                  value={surveyorName}
+                  onChange={(e) => setSurveyorName(e.target.value)}
+                  className="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+                />
+              </div>
             </div>
           </div>
 
@@ -150,18 +159,18 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
               <div className="flex items-center gap-3">
                 <img 
                   src="/logo.png" 
-                  alt="BR Bhatta Logo" 
+                  alt="Land Solution Logo" 
                   className="w-14 h-14 object-contain rounded-xl border border-slate-200 p-0.5" 
                 />
                 <div>
                   <h1 className="text-xl font-black text-emerald-900 tracking-tight">
-                    BR BHATTA • LAND SOLUTION
+                    LAND SOLUTION
                   </h1>
                   <p className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">
                     नेपाल डिजिटल जग्गा व्यवस्थापन तथा नापजाँच प्रणाली
                   </p>
                   <p className="text-[10px] text-slate-500">
-                    वेबसाइट: www.brbhatta.com • प्राविधिक जग्गा सेवा
+                    आधिकारिक डिजिटल जग्गा हिसाब तथा प्राविधिक नाप स्लिप
                   </p>
                 </div>
               </div>
@@ -293,7 +302,7 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
             <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-[11px] text-slate-600 leading-relaxed space-y-1">
               <p><strong>प्रमाणीकरण टिपोट:</strong> १ रोपनी = १६ आना = ६४ पैसा = २५६ दाम (५४७६ वर्गफिट)। १ बिघा = २० कट्ठा = ४०० धुर (७२९०० वर्गफिट)।</p>
               <p className="italic text-[10px] text-slate-500">
-                * यो हिसाब कम्प्युटराइज्ड रूपमा Land Solution (BR Bhatta) प्रणालीद्वारा तयार पारिएको हो। जग्गाको कानुनी लिखत, रजिस्ट्रेसन र कित्ताकाटका लागि आधिकारिक नापी नक्सा र फिल्डबुक अनिवार्य हुन्छ।
+                * यो हिसाब कम्प्युटराइज्ड रूपमा Land Solution प्रणालीद्वारा तयार पारिएको हो। जग्गाको कानुनी लिखत, रजिस्ट्रेसन र कित्ताकाटका लागि आधिकारिक नापी नक्सा र फिल्डबुक अनिवार्य हुन्छ।
               </p>
             </div>
 
@@ -301,7 +310,7 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
             <div className="pt-8 grid grid-cols-2 gap-8 text-xs text-center border-t border-slate-200">
               <div className="space-y-1">
                 <div className="w-40 border-b border-slate-400 mx-auto mb-2"></div>
-                <p className="font-bold text-slate-900">{surveyorName || 'अमिन / प्राविधिक'}</p>
+                <p className="font-bold text-slate-900">{surveyorName || 'नापी प्राविधिक / अमिन'}</p>
                 <p className="text-[10px] text-slate-500">तयार गर्ने (नापी प्राविधिक / आधिकारिक)</p>
               </div>
 
@@ -314,8 +323,8 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
 
             {/* Watermark / Footer */}
             <div className="text-center text-[9px] text-slate-400 pt-2 border-t border-slate-100 flex items-center justify-between">
-              <span>BR Bhatta • Technology & Land Information Portal</span>
-              <span>www.brbhatta.com</span>
+              <span>Land Solution • नेपाल डिजिटल जग्गा नापजाँच प्रणाली</span>
+              <span>Digital Land Measurement &amp; Valuation Slip</span>
             </div>
 
           </div>

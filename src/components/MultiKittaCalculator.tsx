@@ -609,13 +609,13 @@ export default function MultiKittaCalculator() {
       >
         <div className="border-b-2 border-emerald-800 pb-4 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-black text-emerald-900">BR BHATTA • LAND SOLUTION</h1>
+            <h1 className="text-xl font-black text-emerald-900">LAND SOLUTION</h1>
             <p className="text-xs text-slate-600">बहु-कित्ता जग्गा नापजाँच तथा संयुक्त क्षेत्रफल प्रतिवेदन पत्र</p>
-            <p className="text-[10px] text-slate-500">पोर्टल: www.brbhatta.com/tools/multi-kitta-calculator</p>
+            <p className="text-[10px] text-slate-500">नेपाल डिजिटल बहु-कित्ता नापजाँच तथा क्षेत्रफल प्रतिवेदन प्रणाली</p>
           </div>
           <div className="text-right text-xs">
             <p className="font-bold text-slate-800">मिति: {new Date().toLocaleDateString('ne-NP')}</p>
-            <p className="text-[10px] text-slate-500">स्लिप नं: BRB-MK-{Math.floor(100000 + Math.random() * 900000)}</p>
+            <p className="text-[10px] text-slate-500">स्लिप नं: LS-MK-{Math.floor(100000 + Math.random() * 900000)}</p>
           </div>
         </div>
 
@@ -696,6 +696,11 @@ export default function MultiKittaCalculator() {
             <div className="w-36 border-b border-slate-400 mx-auto mb-2"></div>
             <p className="font-bold">जग्गाधनी / अधिकृत प्रतिनिधि</p>
           </div>
+        </div>
+
+        <div className="text-center text-[9px] text-slate-400 pt-2 border-t border-slate-100 flex items-center justify-between">
+          <span>Land Solution • नेपाल डिजिटल बहु-कित्ता प्रतिवेदन प्रणाली</span>
+          <span>Multi-Parcel Land Area Report</span>
         </div>
       </div>
 

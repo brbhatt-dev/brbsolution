@@ -300,8 +300,8 @@ export default function KittaQrGenerator() {
 
             {/* Official Branding Watermark */}
             <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-500">
-              <span>BR Bhatta • Nepal Digital Land Platform</span>
-              <span>www.brbhatta.com</span>
+              <span>Land Solution • नेपाल डिजिटल जग्गा सेवा</span>
+              <span>Digital Land Platform</span>
             </div>
 
           </div>
