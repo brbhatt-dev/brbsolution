@@ -26,7 +26,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Compass,
-  Wallet
+  Wallet,
+  Users
 } from 'lucide-react';
 import LandCalculator from './LandCalculator';
 
@@ -346,7 +347,7 @@ export default function ToolsAppDashboard() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               
               {/* Tool 1 */}
               <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group">
@@ -377,7 +378,36 @@ export default function ToolsAppDashboard() {
                 </div>
               </div>
 
-              {/* Tool 2 */}
+              {/* Tool 2: Find Surveyor & Engineer */}
+              <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-600 flex items-center justify-center">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">प्राविधिक डाइरेक्टरी</span>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1">अमिन तथा इन्जिनियर खोज्नुहोस्</h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                      कित्ताकाट, सिमाना नाप र घर नक्साका लागि नेपालभरका लाइसेन्सप्राप्त अमिन तथा इन्जिनियर निर्देशिका।
+                    </p>
+                  </div>
+                  <ul className="text-xs text-slate-600 dark:text-slate-300 space-y-1 pt-2 border-t border-slate-100 dark:border-slate-800">
+                    <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /><span>फोन र WhatsApp प्रत्यक्ष च्याट</span></li>
+                    <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /><span>निःशुल्क प्रोफाइल दर्ता सुविधा</span></li>
+                  </ul>
+                </div>
+                <div className="pt-6">
+                  <Link
+                    href="/tools/find-surveyor"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
+                  >
+                    <span>अमिन खोज्नुहोस्</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Tool 3 */}
               <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 text-purple-600 flex items-center justify-center">
@@ -406,14 +436,14 @@ export default function ToolsAppDashboard() {
                 </div>
               </div>
 
-              {/* Tool 3 */}
+              {/* Tool 4 */}
               <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group">
                 <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-600 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-600 flex items-center justify-center">
                     <GraduationCap className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">लोकसेवा परीक्षा</span>
+                    <span className="text-[10px] font-bold text-teal-600 uppercase tracking-wider">लोकसेवा परीक्षा</span>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1">नापी अमिन क्विज & पाठ्यक्रम</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
                       लोक सेवा आयोग नापी अमिन परीक्षाका लागि समय सीमा र नेगेटिभ मार्किङसहितको नमुना परीक्षा अभ्यास गर्नुहोस्।
@@ -427,7 +457,7 @@ export default function ToolsAppDashboard() {
                 <div className="pt-6">
                   <Link
                     href="/tools/aamin-quiz"
-                    className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
+                    className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-teal-600 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
                   >
                     <span>क्विज सुरु गर्नुहोस्</span>
                     <ArrowRight className="w-4 h-4" />

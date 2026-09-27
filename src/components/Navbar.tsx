@@ -28,7 +28,8 @@ import {
   Compass,
   Wallet,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Users
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -168,7 +169,7 @@ export default function Navbar() {
                     onClick={() => setToolsDropdownOpen(false)}
                     className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs font-bold transition-colors"
                   >
-                    <span>सम्पूर्ण १७+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
+                    <span>सम्पूर्ण १८+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -209,6 +210,14 @@ export default function Navbar() {
                 >
                   <Building2 className="w-4 h-4 text-sky-600 shrink-0" />
                   <span>७७ जिल्ला नापी निर्देशिका</span>
+                </Link>
+                <Link
+                  href="/tools/find-surveyor"
+                  onClick={() => setLawsDropdownOpen(false)}
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-bold transition-colors"
+                >
+                  <Users className="w-4 h-4 text-indigo-600 shrink-0" />
+                  <span>अमिन तथा इन्जिनियर खोज्नुहोस्</span>
                 </Link>
               </div>
             </div>
@@ -312,7 +321,7 @@ export default function Navbar() {
           >
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
-              <span>सम्पूर्ण १७+ डिजिटल उपकरण हब (Open Tools Hub)</span>
+              <span>सम्पूर्ण १८+ डिजिटल उपकरण हब (Open Tools Hub)</span>
             </div>
             <ArrowRight className="w-4 h-4" />
           </Link>
@@ -406,6 +415,14 @@ export default function Navbar() {
             </span>
             <div className="grid grid-cols-2 gap-1.5 text-xs font-bold">
               <Link
+                href="/tools/find-surveyor"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Users className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <span className="truncate">अमिन / इन्जिनियर</span>
+              </Link>
+              <Link
                 href="/tools/survey-offices"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
@@ -430,11 +447,19 @@ export default function Navbar() {
                 <span className="truncate">नापी अमिन क्विज</span>
               </Link>
               <Link
+                href="/tools/aamin-syllabus"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <FileCode className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                <span className="truncate">अमिन पाठ्यक्रम</span>
+              </Link>
+              <Link
                 href="/articles"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               >
-                <FileText className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <FileText className="w-3.5 h-3.5 text-teal-500 shrink-0" />
                 <span className="truncate">गाइड तथा लेखहरू</span>
               </Link>
             </div>
