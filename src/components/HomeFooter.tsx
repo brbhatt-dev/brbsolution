@@ -10,6 +10,31 @@ import {
   Github
 } from 'lucide-react';
 
+// Official crisp SVG flag of Nepal (prevents "NP" fallback on Windows OS)
+const NepalFlag = () => (
+  <svg
+    className="w-3.5 h-4.5 shrink-0 inline-block align-middle drop-shadow-xs"
+    viewBox="0 0 395 505"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-label="Nepal Flag"
+  >
+    <g fillRule="evenodd" transform="translate(0, 10)">
+      <path
+        fill="#ce0000"
+        stroke="#000063"
+        strokeWidth="14"
+        strokeLinejoin="round"
+        d="M6.5 489.5h378.8L137.4 238.1l257.3.3L6.6-9.5v499z"
+      />
+      <path
+        fill="#fff"
+        d="m180.7 355.8-27 9 21.2 19.8-28.5-1.8 11.7 26.2-25.5-12.3.5 28.6-18.8-20.9-10.7 26.6-9.2-26.3-20.3 20.6 1.8-27.7L49 409l12.6-25-29.3.6 21.5-18.3-27.3-10.5 27-9L32.2 327l28.4 1.8L49 302.6l25.6 12.3-.5-28.6 18.8 20.9 10.7-26.6 9.1 26.3 20.4-20.6-1.9 27.7 27-11.4-12.7 25 29.4-.6-21.5 18.3zm-32.4-184.7-11.3 8.4 5.6 4.6a94 94 0 0 0 30.7-36c1.8 21.3-17.7 69-68.7 69.5a70.6 70.6 0 0 1-71.5-70.3c10 18.2 16.2 27 32 36.5l4.7-4.4-10.6-8.9 13.7-3.6-7.4-12.4 14.4 1-1.8-14.4 12.6 7.4 4-13.5 9 10.8 8.5-10.3 4.6 14 11.8-8.2-1.5 14.3 14.2-1.7-6.7 13.2z"
+      />
+    </g>
+  </svg>
+);
+
 export default function HomeFooter() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,15 +48,15 @@ export default function HomeFooter() {
 
       {/* Top Thin Ribbon: Mission & Dedication Slogan */}
       <div className="bg-emerald-950/40 border-b border-emerald-900/40 px-4 py-1.5 text-center text-xs text-emerald-300 font-medium flex items-center justify-center gap-2">
-        <span>🇳🇵</span>
+        <NepalFlag />
         <span>नेपाली माटो, आफ्नै प्रविधि — इन्जिनियर, अमिन र आम नागरिकका लागि निःशुल्क डिजिटल सहयोगी।</span>
       </div>
 
-      {/* Main Bar: Brand, Navigation Links & Social Media Icons */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 pb-16 sm:pb-3.5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+      {/* Main Bar: Brand, Navigation Links & Social Media Icons with AI Button Safe Clearance */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-8 lg:pr-72 2xl:pr-8 py-3.5 pb-20 lg:pb-3.5 flex flex-col lg:flex-row items-center justify-between gap-3 text-xs text-slate-400">
         
         {/* Left: Brand Identity & Creator Signature */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <img src="/logo.png" alt="BR Bhatta" className="w-6 h-6 object-contain rounded-md bg-white p-0.5 shadow-2xs" />
           <span className="font-bold text-white text-sm">BR Bhatta</span>
           <span className="text-slate-600">|</span>
@@ -41,7 +66,7 @@ export default function HomeFooter() {
         </div>
 
         {/* Center: Legal & Information Links */}
-        <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-5 gap-y-1 text-xs text-slate-400">
+        <div className="flex flex-wrap items-center justify-center gap-x-3.5 sm:gap-x-4 gap-y-1 text-xs text-slate-400">
           <Link href="/about" className="hover:text-emerald-400 transition-colors">
             हाम्रो बारेमा
           </Link>
@@ -64,7 +89,7 @@ export default function HomeFooter() {
         </div>
 
         {/* Right: Social Media Profiles + Back to Top Action */}
-        <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="flex items-center gap-1.5 flex-wrap shrink-0">
           <a
             href="https://www.facebook.com/aabiral.bhatt/"
             target="_blank"
