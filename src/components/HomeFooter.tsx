@@ -145,8 +145,8 @@ export default function HomeFooter() {
           </button>
         </div>
 
-        {/* Clean Centered Legal Links */}
-        <div className="py-3 px-4 rounded-xl bg-slate-900/40 border border-slate-800/80 flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-6 gap-y-2 text-xs text-slate-400">
+        {/* Clean Centered Legal Links Divider */}
+        <div className="py-3.5 border-y border-slate-800/80 w-full flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-8 gap-y-2 text-xs text-slate-400">
           <Link href="/about" className="hover:text-emerald-400 transition-colors font-medium">
             हाम्रो बारेमा
           </Link>

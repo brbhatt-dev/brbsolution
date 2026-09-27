@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle, Clock, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle, Clock, MessageSquare, ChevronDown } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -209,18 +209,21 @@ export default function Contact() {
                     <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
                       सहयोग चाहिएको विषय
                     </label>
-                    <select
-                      disabled={status === 'sending'}
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60"
-                    >
-                      <option value="Land Solution सम्बन्धी">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
-                      <option value="हाम्रो कोष सम्बन्धी">हाम्रो कोष (Hamro Kosh App)</option>
-                      <option value="AutoCAD LSP फाइल्स सम्बन्धी">AutoCAD LSP फाइल्स तथा क्याड स्क्रिप्ट</option>
-                      <option value="जग्गा नापजाँच वा प्राविधिक परामर्श">जग्गा नापजाँच वा प्राविधिक परामर्श</option>
-                      <option value="अन्य सामान्य सोधपुछ">अन्य सामान्य सोधपुछ</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        disabled={status === 'sending'}
+                        value={formData.service}
+                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                        className="w-full appearance-none px-3.5 py-2.5 pr-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60 cursor-pointer shadow-2xs transition-colors"
+                      >
+                        <option value="Land Solution सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
+                        <option value="हाम्रो कोष सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">हाम्रो कोष (Hamro Kosh App)</option>
+                        <option value="AutoCAD LSP फाइल्स सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">AutoCAD LSP फाइल्स तथा क्याड स्क्रिप्ट</option>
+                        <option value="जग्गा नापजाँच वा प्राविधिक परामर्श" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">जग्गा नापजाँच वा प्राविधिक परामर्श</option>
+                        <option value="अन्य सामान्य सोधपुछ" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">अन्य सामान्य सोधपुछ</option>
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
                   </div>
 
                   <div>
