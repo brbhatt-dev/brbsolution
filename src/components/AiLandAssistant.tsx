@@ -227,7 +227,7 @@ export default function AiLandAssistant() {
     {
       id: 'welcome',
       sender: 'bot',
-      text: 'नमस्ते! म BR Bhatta नेपाल जग्गा तथा कानुनी एआई सहायक (Land AI 2.0) हुँ। \n\nपछिल्लो आर्थिक ऐन २०८१/८२, मालपोत कर हिसाब, कित्ताकाट मापदण्ड वा क्षेत्रफल रूपान्तरण सम्बन्धी कुनै पनि प्रश्न सोध्नुहोस्।'
+      text: '**तपाईंको प्रश्न, १००% शुद्ध हिसाब!** ⚖️\n\nजग्गाको नापजाँच, मालपोत कर, वा कित्ताकाट सम्बन्धी कुनै पनि जिज्ञासा तुरुन्त सोध्नुहोस्।'
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -707,12 +707,12 @@ export default function AiLandAssistant() {
               </div>
               <div>
                 <h3 className="font-black text-sm text-white flex items-center gap-1.5">
-                  <span>BR Bhatta • Land AI</span>
+                  <span>Land AI Nepal</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 </h3>
                 <p className="text-[10px] text-emerald-200 flex items-center gap-1">
                   <Sparkles className="w-3 h-3 text-amber-300 animate-pulse" />
-                  <span>Google Gemini 3.1 Flash • २४/७ कानुनी सहायक</span>
+                  <span>Precision Land Guide • २४/७ सक्रिय</span>
                 </p>
               </div>
             </div>
@@ -722,7 +722,7 @@ export default function AiLandAssistant() {
                 onClick={() => setMessages([{
                   id: 'welcome',
                   sender: 'bot',
-                  text: 'च्याट रिसेट भयो! जग्गाको कुनै रकम वा इकाइ लेखेर सोध्नुहोस्, म तुरुन्तै शुद्ध हिसाब निकालिदिनेछु।'
+                  text: '**च्याट रिसेट भयो!** 🔄\n\nजग्गा सम्बन्धी कुनै पनि जिज्ञासा तुरुन्त सोध्नुहोस्।'
                 }])}
                 title="च्याट रिसेट"
                 className="p-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
