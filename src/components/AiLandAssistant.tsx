@@ -91,6 +91,135 @@ function parseUnitQuantity(query: string, unitKeywords: string[]): number | null
   return null;
 }
 
+// Helper to render inline markdown: **bold**, `code`, [label](url), *italic*
+function renderInlineFormatted(text: string): React.ReactNode[] {
+  const tokenRegex = /(\[.*?\]\(.*?\)|\*\*.*?\*\*|`.*?`|\*.*?\*)/g;
+  const parts = text.split(tokenRegex);
+
+  return parts.map((part, index) => {
+    if (!part) return null;
+
+    // Check [label](url)
+    const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+    if (linkMatch) {
+      const label = linkMatch[1];
+      const href = linkMatch[2];
+      const isInternal = href.startsWith('/') || href.includes('brbhatta.com');
+      return (
+        <a
+          key={index}
+          href={href}
+          target={isInternal ? '_self' : '_blank'}
+          rel="noopener noreferrer"
+          className="text-emerald-600 dark:text-emerald-400 font-bold underline hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors inline"
+        >
+          {label}
+        </a>
+      );
+    }
+
+    // Check **bold** (recursively parses inside bold, like **[link](url)**)
+    if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
+      const boldText = part.slice(2, -2);
+      return (
+        <strong key={index} className="font-extrabold text-slate-900 dark:text-white">
+          {renderInlineFormatted(boldText)}
+        </strong>
+      );
+    }
+
+    // Check `code`
+    if (part.startsWith('`') && part.endsWith('`') && part.length >= 2) {
+      return (
+        <code key={index} className="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-700/80 text-emerald-700 dark:text-emerald-300 font-mono text-[11px]">
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+
+    // Check *italic*
+    if (part.startsWith('*') && part.endsWith('*') && part.length >= 2) {
+      return <em key={index}>{part.slice(1, -1)}</em>;
+    }
+
+    return <React.Fragment key={index}>{part}</React.Fragment>;
+  });
+}
+
+// Full Markdown Block Parser for Gemini Bot Responses
+function FormattedBotMessage({ text }: { text: string }) {
+  const lines = text.split('\n');
+
+  return (
+    <div className="space-y-1.5 leading-relaxed text-xs">
+      {lines.map((rawLine, idx) => {
+        const line = rawLine.trim();
+
+        if (!line) {
+          return <div key={idx} className="h-0.5" />;
+        }
+
+        // Horizontal Line (--- or ***)
+        if (line === '---' || line === '***' || line === '___') {
+          return <hr key={idx} className="my-2 border-slate-200 dark:border-slate-700" />;
+        }
+
+        // Headings (###, ##, #)
+        if (line.startsWith('### ')) {
+          return (
+            <h4 key={idx} className="font-black text-xs sm:text-sm text-emerald-800 dark:text-emerald-300 pt-1.5 pb-0.5">
+              {renderInlineFormatted(line.replace(/^###\s+/, ''))}
+            </h4>
+          );
+        }
+        if (line.startsWith('## ')) {
+          return (
+            <h3 key={idx} className="font-black text-sm sm:text-base text-emerald-900 dark:text-emerald-200 pt-2 pb-0.5">
+              {renderInlineFormatted(line.replace(/^##\s+/, ''))}
+            </h3>
+          );
+        }
+        if (line.startsWith('# ')) {
+          return (
+            <h2 key={idx} className="font-black text-base text-emerald-950 dark:text-emerald-100 pt-2 pb-1">
+              {renderInlineFormatted(line.replace(/^#\s+/, ''))}
+            </h2>
+          );
+        }
+
+        // Bullet lists (*, -, +)
+        const bulletMatch = line.match(/^[\*\-\+]\s+(.*)$/);
+        if (bulletMatch) {
+          return (
+            <div key={idx} className="flex items-start gap-1.5 pl-1 my-0.5">
+              <span className="text-emerald-500 font-bold shrink-0 mt-0.5 text-xs">•</span>
+              <span className="flex-1">{renderInlineFormatted(bulletMatch[1])}</span>
+            </div>
+          );
+        }
+
+        // Numbered lists (1., 2., etc.)
+        const numMatch = line.match(/^(\d+)\.\s+(.*)$/);
+        if (numMatch) {
+          return (
+            <div key={idx} className="flex items-start gap-1.5 pl-1 my-0.5">
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold shrink-0 text-xs">{numMatch[1]}.</span>
+              <span className="flex-1">{renderInlineFormatted(numMatch[2])}</span>
+            </div>
+          );
+        }
+
+        // Standard Paragraph
+        return (
+          <p key={idx} className="text-slate-800 dark:text-slate-200">
+            {renderInlineFormatted(line)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function AiLandAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -618,9 +747,9 @@ export default function AiLandAssistant() {
                 className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div
-                  className={`max-w-[88%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-line ${
+                  className={`max-w-[88%] p-3.5 rounded-2xl leading-relaxed ${
                     msg.sender === 'user'
-                      ? 'bg-emerald-600 text-white rounded-br-xs shadow-xs font-medium'
+                      ? 'bg-emerald-600 text-white rounded-br-xs shadow-xs font-medium whitespace-pre-line'
                       : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-bl-xs border border-slate-200 dark:border-slate-700 shadow-2xs'
                   }`}
                 >
@@ -631,7 +760,11 @@ export default function AiLandAssistant() {
                     </div>
                   )}
 
-                  {msg.text}
+                  {msg.sender === 'bot' ? (
+                    <FormattedBotMessage text={msg.text} />
+                  ) : (
+                    msg.text
+                  )}
 
                   {/* Optional Suggestion Link */}
                   {msg.link && (
