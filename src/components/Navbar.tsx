@@ -28,7 +28,8 @@ import {
   Compass,
   Wallet,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Maximize2
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -153,6 +154,15 @@ export default function Navbar() {
                   </Link>
 
                   <Link
+                    href="/tools/plot-visualizer"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Maximize2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span className="truncate">जग्गा रेखाचित्र स्केचर</span>
+                  </Link>
+
+                  <Link
                     href="/tools/number-to-words"
                     onClick={() => setToolsDropdownOpen(false)}
                     className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
@@ -168,7 +178,7 @@ export default function Navbar() {
                     onClick={() => setToolsDropdownOpen(false)}
                     className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs font-bold transition-colors"
                   >
-                    <span>सम्पूर्ण १७+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
+                    <span>सम्पूर्ण १८+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -312,7 +322,7 @@ export default function Navbar() {
           >
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
-              <span>सम्पूर्ण १७+ डिजिटल उपकरण हब (Open Tools Hub)</span>
+              <span>सम्पूर्ण १८+ डिजिटल उपकरण हब (Open Tools Hub)</span>
             </div>
             <ArrowRight className="w-4 h-4" />
           </Link>
@@ -324,11 +334,19 @@ export default function Navbar() {
             </span>
             <div className="grid grid-cols-2 gap-1.5 text-xs font-bold">
               <Link
+                href="/tools/plot-visualizer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="truncate">जग्गा रेखाचित्र</span>
+              </Link>
+              <Link
                 href="/tools/land-calculator"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               >
-                <Calculator className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <Calculator className="w-3.5 h-3.5 text-teal-600 shrink-0" />
                 <span className="truncate">जग्गा क्यालकुलेटर</span>
               </Link>
               <Link
@@ -352,8 +370,16 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               >
-                <Layers className="w-3.5 h-3.5 text-teal-500 shrink-0" />
+                <Layers className="w-3.5 h-3.5 text-sky-500 shrink-0" />
                 <span className="truncate">बहु-कित्ता जोड</span>
+              </Link>
+              <Link
+                href="/tools/kitta-qr"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                <QrCode className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                <span className="truncate">कित्ता QR कोड</span>
               </Link>
             </div>
           </div>

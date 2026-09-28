@@ -26,7 +26,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Compass,
-  Wallet
+  Wallet,
+  Maximize2
 } from 'lucide-react';
 import LandCalculator from './LandCalculator';
 
@@ -88,6 +89,14 @@ export default function ToolsAppDashboard() {
                 सम्बन्धित जग्गा तथा नापी टूल्स:
               </span>
               <div className="flex flex-wrap items-center gap-2">
+                <Link
+                  href="/tools/plot-visualizer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 hover:text-emerald-700 text-xs font-bold border border-emerald-300 dark:border-emerald-700 shadow-2xs transition-colors"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>जग्गा रेखाचित्र स्केचर</span>
+                </Link>
+
                 <Link
                   href="/tools/multi-kitta-calculator"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 text-xs font-bold border border-slate-200 dark:border-slate-700 shadow-2xs transition-colors"

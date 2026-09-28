@@ -24,7 +24,8 @@ import {
   FileStack,
   FileText,
   Compass,
-  ScrollText
+  ScrollText,
+  Maximize2
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -172,6 +173,21 @@ const TOOL_SECTIONS: ToolCategory[] = [
     categoryDesc: 'नेपालको आधिकारिक नापी ऐन, भू-उपयोग नियमावली र आर्थिक ऐन २०८१/८२ अनुसार तयार गरिएका क्यालकुलेटरहरू।',
     badgeColor: 'bg-indigo-50 dark:bg-indigo-950/60 border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300',
     tools: [
+      {
+        id: 'plot-visualizer',
+        titleNp: 'जग्गाको आकार र रेखाचित्र स्केचर (Plot Visualizer)',
+        titleEn: 'Interactive Land Plot Shape & Map Visualizer',
+        description: 'जग्गाका ४ वा ३ भुजा र छड्के विकर्ण (Diagonal) हाल्नुहोस्—स्क्रिनमा जग्गाको वास्तविक रेखाचित्र (SVG Plot) प्रत्यक्ष कोरिन्छ र कुल क्षेत्रफल (रोपनी/बिघा) सहित A4 प्रिन्ट प्रतिवेदन तयार हुन्छ।',
+        badge: 'नयाँ र शक्तिशाली',
+        icon: Maximize2,
+        href: '/tools/plot-visualizer',
+        features: [
+          'विषमबाहु चतुर्भुज, त्रिभुज र आयतको प्रत्यक्ष रेखाचित्र',
+          'हेरोन्स सूत्र (Heron\'s Formula) बाट १००% शुद्ध क्षेत्रफल',
+          'चारै कुनाको डिग्री कोण (Angles) र परिमिति गणना',
+          '🖨️ A4 साइजमा आधिकारिक नक्सा स्लिप प्रिन्ट तथा SVG डाउनलोड'
+        ]
+      },
       {
         id: 'land-calculator',
         titleNp: 'जग्गा नापजाँच तथा रूपान्तरण क्यालकुलेटर',
