@@ -124,23 +124,22 @@ export default function StyleCitizenPortal() {
               </div>
               <span className="px-2 py-0.5 rounded-full bg-emerald-400/25 text-emerald-200 text-[10px] font-bold border border-emerald-300/40 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Web Demo
+                Full Version
               </span>
             </div>
 
             <p className="text-xs text-emerald-100/90 leading-snug">
-              कुनै एप इन्स्टल नगरी सिधै ल्यापटप वा मोबाइल ब्राउजरमै चलाएर परीक्षण गर्नुहोस्।
+              ७५३ स्थानीय तह र वडा नक्सा सहित iPhone, Android र PC मा पूर्ण संस्करण चलाउनुहोस्।
             </p>
 
             <div className="space-y-2">
-              <button
-                type="button"
-                onClick={() => setShowDemoModal(true)}
+              <Link
+                href="/land-solution"
                 className="w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-md transition-all active:scale-98 cursor-pointer group"
               >
                 <Play className="w-3.5 h-3.5 fill-emerald-700 text-emerald-700 group-hover:scale-110 transition-transform" />
-                <span>लाइभ वेब डेमो चलाउनुहोस् ▶</span>
-              </button>
+                <span>पूर्ण एप चलाउनुहोस् (Open Full App) ▶</span>
+              </Link>
 
               {/* iOS / iPhone Add to Home Screen Link */}
               <button
@@ -152,7 +151,7 @@ export default function StyleCitizenPortal() {
                   <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
                 </svg>
                 <span className="underline underline-offset-4 decoration-white/30 group-hover:decoration-white font-medium">
-                  iPhone / iPad मा एप कसरी राख्ने? (Add to Home)
+                  iPhone / iPad मा पूर्ण एप राख्ने तरिका (Add to Home)
                 </span>
               </button>
             </div>
@@ -283,14 +282,13 @@ export default function StyleCitizenPortal() {
                 <span className="hidden sm:inline">iOS</span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => setShowDemoModal(true)}
-                className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+              <Link
+                href="/land-solution"
+                className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs"
               >
                 <Play className="w-3.5 h-3.5 fill-white" />
-                <span className="hidden sm:inline">Web Demo</span>
-              </button>
+                <span>पूर्ण एप (Full App)</span>
+              </Link>
             </div>
           </div>
 
@@ -338,14 +336,14 @@ export default function StyleCitizenPortal() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-black text-xs sm:text-base text-white block leading-tight">
-                      Land Solution (Live Web Demo)
+                      Land Solution (पूर्ण संस्करण - All Data)
                     </span>
                     <span className="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 hidden sm:inline">
-                      ⚡ Browser Interactive
+                      ७५३ स्थानीय तह
                     </span>
                   </div>
                   <span className="text-[10px] sm:text-xs text-emerald-400">
-                    डाउनलोड नगरी सिधै ब्राउजरमा चल्ने आधिकारिक नापी सफ्टवेयर
+                    डाउनलोड नगरी सिधै ब्राउजरमा चल्ने आधिकारिक पूर्ण नापी सफ्टवेयर
                   </span>
                 </div>
               </div>

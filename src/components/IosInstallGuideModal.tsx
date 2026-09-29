@@ -10,7 +10,9 @@ import {
   Globe, 
   PlusSquare, 
   Sparkles,
-  QrCode
+  QrCode,
+  Database,
+  ShieldCheck
 } from 'lucide-react';
 
 interface IosInstallGuideModalProps {
@@ -23,14 +25,14 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
 
   if (!isOpen) return null;
 
-  const demoUrl = typeof window !== 'undefined' 
-    ? `${window.location.origin}/land-solution-demo/index.html` 
-    : 'https://www.brbhatta.com/land-solution-demo/index.html';
+  const appUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}/land-solution` 
+    : 'https://www.brbhatta.com/land-solution';
 
-  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(demoUrl)}&margin=8`;
+  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(appUrl)}&margin=8`;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(demoUrl);
+    navigator.clipboard.writeText(appUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -53,14 +55,14 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-base sm:text-lg font-black leading-tight">
-                  iPhone / iOS मा Land Solution एप राख्ने तरिका
+                  iPhone / iOS मा Land Solution पूर्ण एप राख्ने तरिका
                 </h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 hidden sm:inline">
-                  Add to Home Screen
+                  Full Version
                 </span>
               </div>
               <p className="text-xs text-slate-300 mt-0.5">
-                बिना App Store सिधै Safari बाट १००% फुल-स्क्रिन एप इन्स्टल गर्नुहोस्
+                ७५३ स्थानीय तह, वडा नक्सा र सम्पूर्ण डेटा सहितको आधिकारिक पूर्ण संस्करण
               </p>
             </div>
           </div>
@@ -77,11 +79,29 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
         {/* Content Body */}
         <div className="p-5 sm:p-7 space-y-6 max-h-[80vh] overflow-y-auto">
           
-          {/* Highlight Notice */}
-          <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs sm:text-sm flex items-start gap-3">
-            <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-            <div className="leading-relaxed">
-              <strong>किन यो तरिका?</strong> iOS ले .apk फाइल सपोर्ट नगर्ने भएकाले, Apple Safari को <strong>&quot;Add to Home Screen&quot; (PWA)</strong> प्रविधिद्वारा iPhone को होम स्क्रिनमा आधिकारिक एपको रूपमा राख्न सकिन्छ। यो सफारीको कुनै ब्राउजर बार बिना नेटिभ एप झैँ चल्छ!
+          {/* Highlight Notice: Full Version Guarantee */}
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-900 text-white border border-emerald-500/40 shadow-sm space-y-2">
+            <div className="flex items-center gap-2 text-emerald-300 text-xs sm:text-sm font-black">
+              <Database className="w-4 h-4 text-emerald-400" />
+              <span>यो कुनै सीमित डेमो होइन — १००% पूर्ण संस्करण (All Data Included) हो!</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-[11px] text-slate-300">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>७५३ स्थानीय तह</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>नेपाल वडा नक्सा</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>२D/३D आर्किटेक्चर</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>अफलाइन डेटा सेभ</span>
+              </div>
             </div>
           </div>
 
@@ -102,16 +122,16 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
                   <span>iPhone को Safari ब्राउजरमा खोल्नुहोस्</span>
                 </h5>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  आफ्नो iPhone वा iPad मा रहेको आधिकारिक <strong>Safari Browser</strong> खोल्नुहोस् र तलको लिङ्कमा जानुहोस्। (Chrome वा Google App बाट होइन, Safari बाट मात्र होम स्क्रिनमा थप्न मिल्छ)।
+                  आफ्नो iPhone वा iPad मा रहेको <strong>Safari Browser</strong> खोल्नुहोस् र सिधै तलको लिङ्कमा जानुहोस्:
                 </p>
                 <div className="pt-1.5 flex flex-wrap items-center gap-2">
                   <a
-                    href="/land-solution-demo/index.html"
+                    href="/land-solution"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-colors shadow-xs"
                   >
-                    <span>Safari मा खोल्नुहोस्</span>
+                    <span>Safari मा सिधै खोल्नुहोस्</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                   <button
@@ -142,7 +162,7 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
                   <span>Safari को &apos;Share&apos; बटन थिच्नुहोस्</span>
                 </h5>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Safari को स्क्रिनको सबैभन्दा तल (iPad मा माथि) रहेको <strong>Share (बाकसबाट माथि बाण निस्केको चिन्ह ⎋)</strong> मा ट्याप गर्नुहोस्।
+                  Safari स्क्रिनको तल (iPad मा माथिल्लो दायाँ कुना) रहेको <strong>Share (बाकसबाट माथि बाण निस्केको चिन्ह ⎋)</strong> मा ट्याप गर्नुहोस्।
                 </p>
               </div>
             </div>
@@ -158,7 +178,7 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
                   <span>&apos;Add to Home Screen&apos; मा ट्याप गर्नुहोस्</span>
                 </h5>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  आएको मेनुलाई थोरै तल स्क्रोल गरी <strong>&quot;Add to Home Screen&quot; (होम स्क्रिनमा थप्नुहोस्)</strong> छान्नुहोस् र माथिल्लो दायाँ कुनामा रहेको <strong>&apos;Add&apos;</strong> बटन थिच्नुहोस्।
+                  मेनुलाई थोरै तल स्क्रोल गरी <strong>&quot;Add to Home Screen&quot; (होम स्क्रिनमा थप्नुहोस्)</strong> छान्नुहोस् र माथिको <strong>&apos;Add&apos;</strong> बटन थिच्नुहोस्।
                 </p>
               </div>
             </div>
@@ -170,7 +190,7 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
             <div className="w-24 h-24 rounded-xl bg-white p-1.5 shadow-sm border border-slate-200 shrink-0">
               <img 
                 src={qrImageUrl} 
-                alt="Land Solution iPhone QR Code" 
+                alt="Land Solution iPhone Full App QR Code" 
                 className="w-full h-full object-contain"
               />
             </div>
@@ -180,16 +200,16 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
                 <span>ल्यापटप / कम्प्युटरबाट iPhone मा खोल्न:</span>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                आफ्नो iPhone को क्यामेरा एप खोलेर यो QR कोड स्क्यान गर्नुहोस् र <strong>Safari</strong> मा सिधै यो पेज खोल्नुहोस्।
+                आफ्नो iPhone को क्यामरा एपबाट यो QR कोड स्क्यान गर्नुहोस् र <strong>Safari</strong> मा सिधै पूर्ण एप खोल्नुहोस्।
               </p>
             </div>
           </div>
 
           {/* Result Confirmation Card */}
           <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-900 dark:text-emerald-200 text-xs flex items-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
             <span>
-              <strong>पूर्ण भयो!</strong> अब तपाईंको iPhone को होम स्क्रिनमा आधिकारिक <strong>Land Solution</strong> एप आइकन बस्नेछ र बिना कुनै ब्राउजर बार नेटिभ एप जसरी द्रुत गतिमा खुल्नेछ।
+              <strong>बधाई छ!</strong> अब तपाईंको iPhone मा <strong>Land Solution</strong> को आफ्नै आधिकारिक एप आइकन बस्नेछ। यसमा सम्पूर्ण नापी हिसाब, कित्ताकाट र वडा नक्साहरू अफलाइन तपाईंको फोनमै सुरक्षित रहनेछन्।
             </span>
           </div>
 
@@ -198,7 +218,7 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
         {/* Footer Modal Action */}
         <div className="px-5 sm:px-7 py-3.5 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <span className="text-[11px] text-slate-500 dark:text-slate-400">
-            Apple Web App (PWA) Standard Supported
+            Apple Web App (PWA) • 753 Local Palikas Data
           </span>
           <button
             type="button"

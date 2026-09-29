@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   Compass, 
   Wallet, 
@@ -255,13 +256,13 @@ export default function ProductHubTabs() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
-                  <button
-                    onClick={() => setShowDemoModal(true)}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all min-h-[42px] cursor-pointer"
+                  <Link
+                    href="/land-solution"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all min-h-[42px]"
                   >
                     <Play className="w-4 h-4 fill-white" />
-                    <span>लाइभ Web Demo खोल्नुहोस्</span>
-                  </button>
+                    <span>पूर्ण संस्करण खोल्नुहोस् (Open App)</span>
+                  </Link>
                   <button
                     type="button"
                     onClick={() => setShowIosGuide(true)}
@@ -361,15 +362,13 @@ export default function ProductHubTabs() {
                           </svg>
                           <span>३-स्टेप सचित्र गाइड खोल्नुहोस्</span>
                         </button>
-                        <a
-                          href="/land-solution-demo/index.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          href="/land-solution"
                           className="px-4 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors shadow-md"
                         >
                           <ExternalLink className="w-4 h-4" />
-                          <span>Safari मा खोल्नुहोस्</span>
-                        </a>
+                          <span>Safari मा पूर्ण एप खोल्नुहोस्</span>
+                        </Link>
                       </div>
                     </div>
 
@@ -444,22 +443,28 @@ export default function ProductHubTabs() {
                   <div className="rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 text-white p-5 sm:p-8 relative overflow-hidden border border-emerald-900/40">
                     <div className="relative z-10 max-w-xl space-y-3">
                       <span className="text-[11px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-400/30 inline-block">
-                        Interactive Web Demo Available
+                        Full Version • ७५३ स्थानीय तह डेटा
                       </span>
                       <h4 className="text-xl sm:text-2xl font-black leading-tight">
-                        ल्याण्ड सोलुसनलाई सिधै ब्राउजरमै चलाएर परीक्षण गर्नुहोस्
+                        ल्याण्ड सोलुसन आधिकारिक पूर्ण वेब संस्करण
                       </h4>
                       <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        कुनै एप डाउनलोड नगरीकनै मोबाइल तथा कम्प्युटरको ब्राउजरबाट जग्गा नापजाँच, कित्ताकाट र कन्भर्टरको प्रत्यक्ष अनुभव लिन सक्नुहुन्छ।
+                        कुनै एप डाउनलोड नगरीकनै मोबाइल तथा कम्प्युटरको ब्राउजरबाट ७५३ स्थानीय तह, वडा नक्सा, कित्ताकाट र २D/३D आर्किटेक्चरल सिस्टमको पूर्ण अनुभव लिनुहोस्।
                       </p>
-                      <div className="pt-2">
+                      <div className="pt-2 flex flex-wrap items-center gap-3">
+                        <Link
+                          href="/land-solution"
+                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-emerald-900 hover:bg-emerald-50 font-black text-xs sm:text-sm shadow-lg transition-transform active:scale-95"
+                        >
+                          <Play className="w-4 h-4 fill-emerald-800" />
+                          <span>पूर्ण संस्करण खोल्नुहोस् (Open Full App)</span>
+                        </Link>
                         <button
                           type="button"
                           onClick={() => setShowDemoModal(true)}
-                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-emerald-900 hover:bg-emerald-50 font-black text-xs sm:text-sm shadow-lg transition-transform active:scale-95 cursor-pointer"
+                          className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs sm:text-sm border border-slate-700 transition-colors cursor-pointer"
                         >
-                          <Play className="w-4 h-4 fill-emerald-800" />
-                          <span>वेब डेमो चलाउनुहोस् (Click to Launch)</span>
+                          पपअपमा हेर्नुहोस्
                         </button>
                       </div>
                     </div>
