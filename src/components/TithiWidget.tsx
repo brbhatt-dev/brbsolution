@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Moon, Sun, Sparkles } from 'lucide-react';
 import { getNepaliCalendarDetails, NepaliCalendarDetails } from '@/lib/nepaliDate';
+import UpcomingFestivalsBar from './UpcomingFestivalsBar';
 
 interface TithiWidgetProps {
   variant?: 'compact' | 'panoramic';
@@ -92,6 +93,11 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
 
         </div>
 
+        {/* Dynamic Upcoming Festivals & Holidays Countdown Strip */}
+        <div className="relative z-10">
+          <UpcomingFestivalsBar variant="inline" />
+        </div>
+
       </div>
     );
   }
@@ -172,6 +178,9 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
             <span className="text-slate-300 text-[10px]">नेपाल मानक समय</span>
           </div>
         </div>
+
+        {/* Compact Upcoming Festival Ticker */}
+        <UpcomingFestivalsBar variant="compact" />
 
       </div>
 
