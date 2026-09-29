@@ -25,7 +25,8 @@ import {
   FileText,
   Compass,
   ScrollText,
-  Maximize2
+  Maximize2,
+  Satellite
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -285,6 +286,21 @@ const TOOL_SECTIONS: ToolCategory[] = [
     categoryDesc: 'AutoCAD LISP, Total Station GIS कोर्डिनेट, र लोकसेवा आयोग परीक्षा तयारीका टूल्स।',
     badgeColor: 'bg-teal-50 dark:bg-teal-950/60 border-teal-200 dark:border-teal-800 text-teal-800 dark:text-teal-300',
     tools: [
+      {
+        id: 'satellite-viewer',
+        titleNp: 'ताजा ५-दिने स्याटेलाइट सन्दर्भ भ्युअर (Sentinel-2)',
+        titleEn: 'Nepal Fresh 5-Day Satellite Reference (Sentinel-2)',
+        description: 'युरोपेली अन्तरिक्ष एजेन्सी (ESA) को १० मिटर अप्टिकल उपग्रहबाट नेपालको ५ दिन अघिको ताजा तस्विर हेर्नुहोस्। गुगल म्यापसँग स्प्लिट तुलना गरी नयाँ बाटो, नदी कटान र बाढी अनुगमन।',
+        badge: '५-दिने ताजा उपग्रह',
+        icon: Satellite,
+        href: '/tools/satellite-viewer',
+        features: [
+          'युरोपेली स्पेस एजेन्सी (ESA) Sentinel-2 १० मिटर डेटा',
+          'Before / After स्प्लिट तुलना स्लाइडर (गुगल vs ताजा उपग्रह)',
+          'नेपालभरिका नदी, बाढी र नयाँ बाटो ट्र्याकिङ',
+          'GPS अक्षांश/देशान्तर खोज तथा १-क्लिक लोकेशन जम्प'
+        ]
+      },
       {
         id: 'excel-to-kml',
         titleNp: 'सर्भे कोर्डिनेट Excel ➔ Google Earth (KML Generator)',
