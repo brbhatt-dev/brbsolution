@@ -9,7 +9,7 @@ import { ArrowLeft, Satellite, Sparkles, BookOpen, Layers, CheckCircle2 } from '
 
 export const metadata: Metadata = {
   title: 'ताजा ५-दिने स्याटेलाइट सन्दर्भ भ्युअर (Sentinel-2 Latest Satellite Reference Nepal) | BR Bhatta',
-  description: 'युरोपेली अन्तरिक्ष एजेन्सी (ESA) को Sentinel-2 उपग्रहबाट नेपालको ५ दिन अगाडिको ताजा तस्विर हेर्नुहोस्। गुगल म्यापसँग स्प्लिट स्लाइडर तुलना, नयाँ बाटो, नदी कटान, बाढी/पहिरो र जग्गाको पछिल्लो अवस्था अनुगमन।',
+  description: 'युरोपेली अन्तरिक्ष एजेन्सी (ESA) को Sentinel-2 उपग्रहबाट नेपालको ताजा ५-दिने तस्विर हेर्नुहोस्। नयाँ बाटो, नदी कटान, बाढी/पहिरो र जग्गाको पछिल्लो अवस्था अनुगमन र समयरेखा तुलना।',
   keywords: [
     'Sentinel-2 Nepal Satellite',
     'Latest Satellite Image Nepal',
@@ -42,7 +42,7 @@ export default function SatelliteViewerPage() {
     applicationCategory: 'GeographicApplication',
     operatingSystem: 'All',
     url: 'https://www.brbhatta.com/tools/satellite-viewer',
-    description: 'Interactive near real-time 5-day revisit satellite imagery viewer for Nepal utilizing European Space Agency Copernicus Sentinel-2 10-meter optical data and split comparison slider.',
+    description: 'Interactive near real-time 5-day revisit satellite imagery viewer for Nepal utilizing European Space Agency Copernicus Sentinel-2 10-meter optical data and timeline comparisons.',
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -127,7 +127,7 @@ export default function SatelliteViewerPage() {
                 <span>३. खोला र नदी कटानको अनुगमन</span>
               </h3>
               <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                तराईका खोलाहरूले वर्षायाममा धार बदल्ने हुनाले जग्गा बगर बन्ने वा डुबानमा पर्ने जोखिम हुन्छ। यो टूलमार्फत बाढी अघि र पछिको स्याटेलाइट फोटो स्लाइड गरेर वास्तविक अवस्था जाँच्न सकिन्छ।
+                तराईका खोलाहरूले वर्षायाममा धार बदल्ने हुनाले जग्गा बगर बन्ने वा डुबानमा पर्ने जोखिम हुन्छ। यो टूलमार्फत बाढी अघि र पछिको स्याटेलाइट फोटो तथा समयरेखा (Timeline) हेरेर वास्तविक अवस्था जाँच्न सकिन्छ।
               </p>
             </div>
 
