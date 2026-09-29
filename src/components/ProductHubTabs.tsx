@@ -24,17 +24,24 @@ import {
   Terminal,
   Layers,
   ArrowRight,
-  ChevronRight
+  ChevronRight,
+  Smartphone,
+  Globe,
+  PlusSquare,
+  QrCode
 } from 'lucide-react';
 import HamroKoshDemo from './HamroKoshDemo';
+import IosInstallGuideModal from './IosInstallGuideModal';
 
 export type TabKey = 'land-solution' | 'hamro-kosh' | 'autocad-lsp' | 'articles' | 'faq';
 
 export default function ProductHubTabs() {
   const [activeTab, setActiveTab] = useState<TabKey>('land-solution');
   
-  // Land Solution Demo Modal
+  // Land Solution Demo Modal & iOS Guide
   const [showDemoModal, setShowDemoModal] = useState(false);
+  const [showIosGuide, setShowIosGuide] = useState(false);
+  const [selectedOs, setSelectedOs] = useState<'ios' | 'android' | 'web'>('ios');
   const [iframeKey, setIframeKey] = useState(1);
 
   // Hamro Kosh Demo Modal
@@ -247,43 +254,217 @@ export default function ProductHubTabs() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <button
                     onClick={() => setShowDemoModal(true)}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all min-h-[42px]"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-600/20 transition-all min-h-[42px] cursor-pointer"
                   >
                     <Play className="w-4 h-4 fill-white" />
                     <span>लाइभ Web Demo खोल्नुहोस्</span>
                   </button>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold min-h-[42px]">
-                    <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                    <span>APK: Coming Soon</span>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowIosGuide(true)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-bold min-h-[42px] transition-colors cursor-pointer"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                      <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                    </svg>
+                    <span>🍎 iOS Guide</span>
+                  </button>
                 </div>
               </div>
 
-              {/* Interactive Demo Banner Card */}
-              <div className="rounded-2xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 text-white p-5 sm:p-8 relative overflow-hidden border border-emerald-900/40">
-                <div className="relative z-10 max-w-xl space-y-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-400/30 inline-block">
-                    Interactive Web Demo Available
-                  </span>
-                  <h4 className="text-xl sm:text-2xl font-black leading-tight">
-                    ल्याण्ड सोलुसनलाई सिधै ब्राउजरमै चलाएर परीक्षण गर्नुहोस्
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    कुनै एप डाउनलोड नगरीकनै मोबाइल तथा कम्प्युटरको ब्राउजरबाट जग्गा नापजाँच, कित्ताकाट र कन्भर्टरको प्रत्यक्ष अनुभव लिन सक्नुहुन्छ।
-                  </p>
-                  <div className="pt-2">
+              {/* OS / Platform Switcher Sub-Tabs */}
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <h4 className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-600" />
+                      <span>तपाईंको डिभाइस अनुसार चलाउने माध्यम छान्नुहोस्:</span>
+                    </h4>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                     <button
-                      onClick={() => setShowDemoModal(true)}
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-emerald-900 hover:bg-emerald-50 font-black text-xs sm:text-sm shadow-lg transition-transform active:scale-95"
+                      type="button"
+                      onClick={() => setSelectedOs('ios')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                        selectedOs === 'ios'
+                          ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs ring-1 ring-slate-300 dark:ring-slate-700'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      }`}
                     >
-                      <Play className="w-4 h-4 fill-emerald-800" />
-                      <span>वेब डेमो चलाउनुहोस् (Click to Launch)</span>
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                        <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                      </svg>
+                      <span>Apple iOS / iPhone</span>
+                      <span className="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-[9px] font-bold">
+                        Add to Home
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedOs('android')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                        selectedOs === 'android'
+                          ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-xs ring-1 ring-slate-300 dark:ring-slate-700'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      }`}
+                    >
+                      <Smartphone className="w-3.5 h-3.5" />
+                      <span>Android (APK)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedOs('web')}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                        selectedOs === 'web'
+                          ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-xs ring-1 ring-slate-300 dark:ring-slate-700'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      }`}
+                    >
+                      <Play className="w-3.5 h-3.5" />
+                      <span>Web Browser (PC/Mac)</span>
                     </button>
                   </div>
                 </div>
+
+                {/* Sub-view 1: iOS iPhone Dedicated View */}
+                {selectedOs === 'ios' && (
+                  <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950 text-white p-5 sm:p-7 border border-emerald-500/30 shadow-lg space-y-5">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                      <div className="space-y-2 max-w-xl">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-emerald-300">
+                          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                          </svg>
+                          <span>Apple iOS (iPhone / iPad) Supported</span>
+                        </div>
+                        <h4 className="text-xl sm:text-2xl font-black">
+                          iPhone मा Land Solution लाई एप बनाएर चलाउनुहोस्
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                          iOS ले सिधै .apk सपोर्ट नगर्ने भएकाले, Apple Safari को <strong>&quot;Add to Home Screen&quot;</strong> बाट तपाईंको iPhone मा आफ्नै एप आइकन बस्छ र Safari बार बिना १००% फुल-स्क्रिनमा नेटिभ एप झैँ चल्छ।
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setShowIosGuide(true)}
+                          className="px-5 py-3 rounded-2xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center gap-2 shadow-lg transition-transform active:scale-95 cursor-pointer"
+                        >
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 170 170">
+                            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                          </svg>
+                          <span>३-स्टेप सचित्र गाइड खोल्नुहोस्</span>
+                        </button>
+                        <a
+                          href="/land-solution-demo/index.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors shadow-md"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span>Safari मा खोल्नुहोस्</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Visual 3 Steps Horizontal Bar */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                      <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-full bg-sky-500 text-white font-black text-xs flex items-center justify-center">१</span>
+                          <span className="font-bold text-xs text-white">Safari मा खोल्नुहोस्</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300">
+                          iPhone वा iPad को सफारीमा डेमो लिङ्क खोल्नुहोस्।
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-full bg-indigo-500 text-white font-black text-xs flex items-center justify-center">२</span>
+                          <span className="font-bold text-xs text-white">Share थिच्नुहोस् (⎋)</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300">
+                          Safari को तल रहेको शेयर बटन (बाकसबाट माथि बाण) थिच्नुहोस्।
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-full bg-emerald-500 text-white font-black text-xs flex items-center justify-center">३</span>
+                          <span className="font-bold text-xs text-white">Add to Home Screen</span>
+                        </div>
+                        <p className="text-[11px] text-slate-300">
+                          &quot;Add to Home Screen&quot; छान्नुहोस् र Add गर्नुहोस्।
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Sub-view 2: Android View */}
+                {selectedOs === 'android' && (
+                  <div className="rounded-3xl bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-950 text-white p-5 sm:p-7 border border-emerald-800/40 space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="space-y-1 max-w-xl">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold">
+                          <Smartphone className="w-3.5 h-3.5" />
+                          <span>Android Native Package</span>
+                        </div>
+                        <h4 className="text-xl font-black">Land Solution Android APK</h4>
+                        <p className="text-xs text-slate-300 leading-relaxed">
+                          अफलाइन फिल्ड नापी, क्याड कोअर्डिनेट र कित्ताकाटका लागि पूर्ण एन्ड्रोइड सफ्टवेयर।
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <div className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>APK Release: Coming Soon</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setShowDemoModal(true)}
+                          className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer"
+                        >
+                          वेबमै चलाएर हेर्नुहोस् ▶
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Sub-view 3: Web Browser View */}
+                {selectedOs === 'web' && (
+                  <div className="rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 text-white p-5 sm:p-8 relative overflow-hidden border border-emerald-900/40">
+                    <div className="relative z-10 max-w-xl space-y-3">
+                      <span className="text-[11px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-400/30 inline-block">
+                        Interactive Web Demo Available
+                      </span>
+                      <h4 className="text-xl sm:text-2xl font-black leading-tight">
+                        ल्याण्ड सोलुसनलाई सिधै ब्राउजरमै चलाएर परीक्षण गर्नुहोस्
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        कुनै एप डाउनलोड नगरीकनै मोबाइल तथा कम्प्युटरको ब्राउजरबाट जग्गा नापजाँच, कित्ताकाट र कन्भर्टरको प्रत्यक्ष अनुभव लिन सक्नुहुन्छ।
+                      </p>
+                      <div className="pt-2">
+                        <button
+                          type="button"
+                          onClick={() => setShowDemoModal(true)}
+                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-emerald-900 hover:bg-emerald-50 font-black text-xs sm:text-sm shadow-lg transition-transform active:scale-95 cursor-pointer"
+                        >
+                          <Play className="w-4 h-4 fill-emerald-800" />
+                          <span>वेब डेमो चलाउनुहोस् (Click to Launch)</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Core Features */}
@@ -720,6 +901,9 @@ export default function ProductHubTabs() {
 
       {/* Interactive Hamro Kosh Demo Modal */}
       <HamroKoshDemo isOpen={showHamroKoshDemo} onClose={() => setShowHamroKoshDemo(false)} />
+
+      {/* 🍎 Apple iOS / iPhone Add to Home Screen Guide Modal */}
+      <IosInstallGuideModal isOpen={showIosGuide} onClose={() => setShowIosGuide(false)} />
 
     </section>
   );

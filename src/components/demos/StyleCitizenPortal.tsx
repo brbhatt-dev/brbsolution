@@ -26,9 +26,11 @@ import {
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
+import IosInstallGuideModal from '../IosInstallGuideModal';
 
 export default function StyleCitizenPortal() {
   const [showDemoModal, setShowDemoModal] = useState(false);
+  const [showIosGuide, setShowIosGuide] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
 
   // Dynamic Time-Aware Greeting (Option 4: Smart Auto-Dynamic Greeting)
@@ -91,7 +93,7 @@ export default function StyleCitizenPortal() {
         <TithiWidget variant="panoramic" />
       </section>
 
-      {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD (अभिवादन + LAND SOLUTION WEB DEMO CTA CARD) */}
+      {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD (अभिवादन + LAND SOLUTION WEB DEMO & iOS CTA CARD) */}
       <section className={`p-5 sm:p-7 rounded-3xl bg-gradient-to-r ${greeting.gradient} text-white shadow-md transition-all duration-500 border border-white/10 relative overflow-hidden`}>
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
           {/* Left Greeting Column */}
@@ -130,14 +132,30 @@ export default function StyleCitizenPortal() {
               कुनै एप इन्स्टल नगरी सिधै ल्यापटप वा मोबाइल ब्राउजरमै चलाएर परीक्षण गर्नुहोस्।
             </p>
 
-            <button
-              type="button"
-              onClick={() => setShowDemoModal(true)}
-              className="w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-md transition-all active:scale-98 cursor-pointer group"
-            >
-              <Play className="w-3.5 h-3.5 fill-emerald-700 text-emerald-700 group-hover:scale-110 transition-transform" />
-              <span>लाइभ वेब डेमो चलाउनुहोस् ▶</span>
-            </button>
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => setShowDemoModal(true)}
+                className="w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-md transition-all active:scale-98 cursor-pointer group"
+              >
+                <Play className="w-3.5 h-3.5 fill-emerald-700 text-emerald-700 group-hover:scale-110 transition-transform" />
+                <span>लाइभ वेब डेमो चलाउनुहोस् ▶</span>
+              </button>
+
+              {/* iOS / iPhone Add to Home Screen Link */}
+              <button
+                type="button"
+                onClick={() => setShowIosGuide(true)}
+                className="w-full py-1 text-[11px] text-emerald-100/90 hover:text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer group"
+              >
+                <svg className="w-3.5 h-3.5 fill-current opacity-90 group-hover:opacity-100 shrink-0" viewBox="0 0 170 170">
+                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                </svg>
+                <span className="underline underline-offset-4 decoration-white/30 group-hover:decoration-white font-medium">
+                  iPhone / iPad मा एप कसरी राख्ने? (Add to Home)
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -220,7 +238,7 @@ export default function StyleCitizenPortal() {
               <span>दैनिक कामलाई सजिलो बनाउने हाम्रा मोबाइल एपहरू</span>
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              फिल्ड नापजाँच, कित्ताकाट तथा बचत हिसाबका लागि निर्मित आधिकारिक एन्ड्रोइड सफ्टवेयर
+              फिल्ड नापजाँच, कित्ताकाट तथा बचत हिसाबका लागि निर्मित आधिकारिक एन्ड्रोइड तथा iOS वेब सफ्टवेयर
             </p>
           </div>
         </div>
@@ -234,26 +252,46 @@ export default function StyleCitizenPortal() {
                 <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
               </div>
               <div className="min-w-0">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="text-base font-black truncate">Land Solution</h3>
                   <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">
                     नापी एप
                   </span>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 shrink-0 flex items-center gap-1">
+                    <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 170 170">
+                      <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                    </svg>
+                    <span>iOS Supported</span>
+                  </span>
                 </div>
                 <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                  फिल्डमा जग्गा नाप्ने, कित्ताकाट गर्ने र नक्सा रेखांकन गर्ने सजिलो एप
+                  फिल्डमा जग्गा नाप्ने, कित्ताकाट गर्ने र नक्सा रेखांकन गर्ने आधुनिक प्रणाली
                 </p>
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setShowDemoModal(true)}
-              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs cursor-pointer"
-            >
-              <Play className="w-3.5 h-3.5 fill-white" />
-              <span className="hidden sm:inline">Web Demo</span>
-            </button>
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowIosGuide(true)}
+                title="iPhone / iOS मा होम स्क्रिनमा राख्ने तरिका"
+                className="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors border border-slate-700 cursor-pointer"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                </svg>
+                <span className="hidden sm:inline">iOS</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowDemoModal(true)}
+                className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+              >
+                <Play className="w-3.5 h-3.5 fill-white" />
+                <span className="hidden sm:inline">Web Demo</span>
+              </button>
+            </div>
           </div>
 
           {/* App 2: Hamro Kosh (Compact & Action-Oriented) */}
@@ -312,7 +350,19 @@ export default function StyleCitizenPortal() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowIosGuide(true)}
+                  title="iPhone / iPad मा एप कसरी बनाउने"
+                  className="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-xs flex items-center gap-1.5 border border-slate-700 cursor-pointer"
+                >
+                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
+                  </svg>
+                  <span className="hidden sm:inline">iPhone Guide</span>
+                </button>
+
                 <button
                   type="button"
                   onClick={() => setIframeKey((k) => k + 1)}
@@ -356,6 +406,12 @@ export default function StyleCitizenPortal() {
           </div>
         </div>
       )}
+
+      {/* 🍎 REUSABLE iOS INSTALL GUIDE MODAL */}
+      <IosInstallGuideModal 
+        isOpen={showIosGuide} 
+        onClose={() => setShowIosGuide(false)} 
+      />
 
     </div>
   );
