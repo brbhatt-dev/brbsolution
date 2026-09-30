@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { copyToClipboard } from '@/lib/clipboard';
 import { 
   FileText, 
   Printer, 
@@ -41,12 +42,14 @@ export default function LegalTemplatesPage() {
   const [advanceAmount, setAdvanceAmount] = useState('५,००,०००');
   const [dueDate, setDueDate] = useState('२०८२ असार मसान्तभित्र');
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const el = document.getElementById('printable-document');
     if (el) {
-      navigator.clipboard.writeText(el.innerText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      const ok = await copyToClipboard(el.innerText);
+      if (ok) {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
     }
   };
 

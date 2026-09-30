@@ -23,33 +23,46 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.brbhatta.com/about',
   },
+  openGraph: {
+    title: 'हाम्रो बारेमा (About Us) | BR Bhatta & Land Solution Nepal',
+    description: 'About BR Bhatta and Land Solution. Mission, cadastre automation tools, and tech innovations built for Nepal.',
+    url: 'https://www.brbhatta.com/about',
+    siteName: 'BR Bhatta',
+    locale: 'ne_NP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'हाम्रो बारेमा (About Us) | BR Bhatta & Land Solution Nepal',
+    description: 'About BR Bhatta, Land Solution, Hamro Kosh and tech innovations built for Nepal.',
+  },
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-200">
       
       {/* Header Bar */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-30">
+      <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 transition-colors">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link 
             href="/" 
-            className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-emerald-700 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>गृहपृष्ठ (Home) फर्कनुहोस्</span>
           </Link>
-          <span className="text-xs font-mono text-slate-500 font-semibold">www.brbhatta.com</span>
+          <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold">www.brbhatta.com</span>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-sm space-y-10">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm space-y-10 transition-colors">
           
           {/* Creator Profile Section */}
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-8 border-b border-slate-100">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white border-2 border-emerald-500 p-2 shadow-lg shadow-emerald-500/10 shrink-0 flex items-center justify-center">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-8 border-b border-slate-100 dark:border-slate-800">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white dark:bg-slate-800 border-2 border-emerald-500 p-2 shadow-lg shadow-emerald-500/10 shrink-0 flex items-center justify-center">
               <img 
                 src="/logo.png" 
                 alt="BR Bhatta Land Solution" 
@@ -58,18 +71,18 @@ export default function AboutPage() {
             </div>
 
             <div className="space-y-2 text-center sm:text-left flex-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>संस्थापक तथा सफ्टवेयर विकासकर्ता</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 BR Bhatta
               </h1>
-              <p className="text-xs sm:text-sm text-emerald-700 font-bold">
+              <p className="text-xs sm:text-sm text-emerald-700 dark:text-emerald-400 font-bold">
                 Creator of Land Solution, Hamro Kosh & AutoCAD LSP Automation for Nepal
               </p>
-              <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-slate-500 pt-1">
-                <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-slate-500 dark:text-slate-400 pt-1">
+                <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
               </div>
             </div>
@@ -77,54 +90,54 @@ export default function AboutPage() {
 
           {/* Mission & Story */}
           <section className="space-y-3">
-            <h2 className="text-xl font-black text-slate-900">
+            <h2 className="text-xl font-black text-slate-900 dark:text-white">
               हाम्रो उद्देश्य (Our Mission)
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               नेपालमा परम्परागत रूपमा गरिने जग्गा नापजाँच, कित्ताकाट, तथा क्षेत्रफल गणनाको प्रक्रिया जटिल, समय लाग्ने र मानवीय त्रुटि हुने खालको छ। नापी सर्भेक्षक, अमिन, इन्जिनियर तथा सामान्य जग्गाधनीहरूलाई आफ्नो जग्गाको यथार्थ विवरण तत्काल दिन सक्ने गरी हामीले <strong>Land Solution</strong> विकास गरेका हौं।
             </p>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               हाम्रो लक्ष्य आधुनिक कम्प्युटर विज्ञान, क्लाउड प्रविधि, र AutoLISP अटोमेसनलाई नेपाली माटो र स्थानीय नाप प्रणाली (रोपनी-आना तथा बिघा-कट्ठा) सँग जोडेर कार्यसम्पादनलाई १०० गुणा छिटो र सरल बनाउनु हो।
             </p>
           </section>
 
           {/* Key Innovations */}
           <section className="space-y-4">
-            <h2 className="text-xl font-black text-slate-900">
+            <h2 className="text-xl font-black text-slate-900 dark:text-white">
               हाम्रा मुख्य उत्पादन तथा प्राविधिक सेवाहरू
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               
               {/* Land Solution */}
-              <div className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-100 space-y-2">
+              <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800 space-y-2">
                 <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center">
                   <Compass className="w-5 h-5" />
                 </div>
-                <h3 className="font-extrabold text-sm sm:text-base text-slate-900">Land Solution</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">Land Solution</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   नेपालको जग्गा नापजाँच, कित्ताकाट, नक्सा कोअर्डिनेट गणना र अफलाइन फिल्ड सर्भेको लागि तयार गरिएको आधुनिक एप।
                 </p>
               </div>
 
               {/* Hamro Kosh */}
-              <div className="p-5 rounded-2xl bg-indigo-50/50 border border-indigo-100 space-y-2">
+              <div className="p-5 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-800 space-y-2">
                 <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center">
                   <Wallet className="w-5 h-5" />
                 </div>
-                <h3 className="font-extrabold text-sm sm:text-base text-slate-900">हाम्रो कोष (Hamro Kosh)</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">हाम्रो कोष (Hamro Kosh)</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   समूह, समिति, गुठी र व्यक्तिगत मासिक बचत, ऋण लगानी, र ब्याज हिसाब राख्ने पारदर्शी वित्तीय डिजिटल लेजर।
                 </p>
               </div>
 
               {/* AutoCAD LSP */}
-              <div className="p-5 rounded-2xl bg-amber-50/50 border border-amber-100 space-y-2">
+              <div className="p-5 rounded-2xl bg-amber-50/50 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-800 space-y-2">
                 <div className="w-9 h-9 rounded-xl bg-amber-600 text-white flex items-center justify-center">
                   <FileCode className="w-5 h-5" />
                 </div>
-                <h3 className="font-extrabold text-sm sm:text-base text-slate-900">AutoCAD LSP Scripts</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">AutoCAD LSP Scripts</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   क्याड नक्सामा पोलिलाइनको क्षेत्रफललाई एकै क्लिकमा रोपनी र बिघामा बदलेर टेक्स्ट लेख्ने स्वचालित स्क्रिप्टहरू।
                 </p>
               </div>
@@ -134,31 +147,31 @@ export default function AboutPage() {
 
           {/* Core Values */}
           <section className="space-y-3">
-            <h2 className="text-xl font-black text-slate-900">हाम्रा विशेषताहरू (Why Choose Us)</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700">
-              <div className="flex items-center gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <h2 className="text-xl font-black text-slate-900 dark:text-white">हाम्रा विशेषताहरू (Why Choose Us)</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+              <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>१००% नेपाली मापदण्ड र नाप प्रणाली अनुकूल</span>
               </div>
-              <div className="flex items-center gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>फिल्डमा अफलाइन काम गर्न सकिने भरपर्दो कोड</span>
               </div>
-              <div className="flex items-center gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>इन्जिनियर तथा अमिनहरूको वास्तविक सल्लाहमा निर्मित</span>
               </div>
-              <div className="flex items-center gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200/80">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>निःशुल्क लाइभ वेब डेमो तथा खुला स्रोत साधन</span>
               </div>
             </div>
           </section>
 
           {/* Social & Contact Box */}
-          <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <span className="text-xs font-bold text-slate-600">जोडिनुहोस्:</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">जोडिनुहोस्:</span>
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
                 target="_blank"

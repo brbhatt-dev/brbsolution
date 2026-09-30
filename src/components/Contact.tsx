@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle, Clock, MessageSquare, ChevronDown } from 'lucide-react';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,10 +17,12 @@ export default function Contact() {
 
   const emailAddress = 'infobrbhatta@gmail.com';
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText(emailAddress);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const copyEmail = async () => {
+    const ok = await copyToClipboard(emailAddress);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,42 +33,22 @@ export default function Contact() {
     try {
       const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '276bc8b9-2f47-41d4-a1dd-5c2ced198ab6';
 
-      let response: Response;
-      if (web3FormsKey) {
-        response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({
-            access_key: web3FormsKey,
-            name: formData.name,
-            phone: formData.contact,
-            service: formData.service,
-            subject: `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
-            message: formData.message,
-            from_name: `${formData.name} (BR Bhatta Website)`,
-          }),
-        });
-      } else {
-        response = await fetch(`https://formsubmit.co/ajax/${emailAddress}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({
-            'नाम (Name)': formData.name,
-            'सम्पर्क (Phone/Email)': formData.contact,
-            'सेवा वा विषय (Topic)': formData.service,
-            'सन्देश (Message)': formData.message,
-            '_subject': `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
-            '_template': 'table',
-            '_captcha': 'false',
-          }),
-        });
-      }
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: web3FormsKey,
+          name: formData.name,
+          phone: formData.contact,
+          service: formData.service,
+          subject: `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
+          message: formData.message,
+          from_name: `${formData.name} (BR Bhatta Website)`,
+        }),
+      });
 
       const resData = await response.json();
 

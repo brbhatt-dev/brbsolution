@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -83,15 +81,15 @@ html.dark ::-webkit-scrollbar-thumb:hover {
    Guarantees all cards, inputs, tabs & text look impeccable
    ======================================================== */
 
-html.dark [class*="bg-white"]:not([class*="bg-white/"]):not(button.bg-gradient-to-r):not(a.bg-gradient-to-tr) {
+html.dark [class*="bg-white"]:not([class*="bg-white/"]):not([class*="dark:bg-"]):not(button.bg-gradient-to-r):not(a.bg-gradient-to-tr) {
   background-color: #111827 !important;
 }
 
-html.dark [class*="bg-slate-50"] {
+html.dark [class*="bg-slate-50"]:not([class*="dark:bg-"]) {
   background-color: #0f172a !important;
 }
 
-html.dark [class*="bg-slate-100"] {
+html.dark [class*="bg-slate-100"]:not([class*="dark:bg-"]) {
   background-color: #1e293b !important;
 }
 

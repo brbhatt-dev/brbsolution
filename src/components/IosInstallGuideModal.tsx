@@ -14,6 +14,7 @@ import {
   Database,
   ShieldCheck
 } from 'lucide-react';
+import { copyToClipboard } from '@/lib/clipboard';
 
 interface IosInstallGuideModalProps {
   isOpen: boolean;
@@ -31,10 +32,12 @@ export default function IosInstallGuideModal({ isOpen, onClose }: IosInstallGuid
 
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(appUrl)}&margin=8`;
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(appUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const handleCopy = async () => {
+    const ok = await copyToClipboard(appUrl);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   return (

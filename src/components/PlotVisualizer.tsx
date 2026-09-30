@@ -23,6 +23,7 @@ import {
   X
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import { copyToClipboard } from '@/lib/clipboard';
 
 type UnitType = 'ft' | 'm' | 'haat' | 'gaj';
 type PlotMode = 'quad' | 'tri' | 'rect';
@@ -468,7 +469,7 @@ export default function PlotVisualizer() {
   }, [currentPlot, facing]);
 
   // Copy share summary
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const summary = `📐 जग्गाको नाप तथा रेखाचित्र प्रतिवेदन (Land Solution)
 --------------------------------------
 कुल क्षेत्रफल: ${areaBreakdown.sqft} वर्ग फिट (${areaBreakdown.sqm} वर्ग मिटर)
@@ -478,9 +479,11 @@ export default function PlotVisualizer() {
 --------------------------------------
 तयार गरिएको: www.brbhatta.com/tools/plot-visualizer`;
 
-    navigator.clipboard.writeText(summary);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    const ok = await copyToClipboard(summary);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   // Download SVG

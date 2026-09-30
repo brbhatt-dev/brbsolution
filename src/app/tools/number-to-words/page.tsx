@@ -16,6 +16,7 @@ import {
   Coins
 } from 'lucide-react';
 import { numberToNepaliWords, numberToEnglishWords, formatNepaliCurrency } from '@/lib/numberToWords';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function NumberToWordsPage() {
   const [amount, setAmount] = useState<string>('1250000');
@@ -28,16 +29,20 @@ export default function NumberToWordsPage() {
   const englishWords = numberToEnglishWords(numVal);
   const formattedNepDigits = formatNepaliCurrency(numVal);
 
-  const handleCopyNep = () => {
-    navigator.clipboard.writeText(nepaliWords);
-    setCopiedNep(true);
-    setTimeout(() => setCopiedNep(false), 2000);
+  const handleCopyNep = async () => {
+    const ok = await copyToClipboard(nepaliWords);
+    if (ok) {
+      setCopiedNep(true);
+      setTimeout(() => setCopiedNep(false), 2000);
+    }
   };
 
-  const handleCopyEng = () => {
-    navigator.clipboard.writeText(englishWords);
-    setCopiedEng(true);
-    setTimeout(() => setCopiedEng(false), 2000);
+  const handleCopyEng = async () => {
+    const ok = await copyToClipboard(englishWords);
+    if (ok) {
+      setCopiedEng(true);
+      setTimeout(() => setCopiedEng(false), 2000);
+    }
   };
 
   const setPreset = (val: number) => {

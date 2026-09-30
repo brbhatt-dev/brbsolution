@@ -46,6 +46,7 @@ import {
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export interface FreeWidget {
   id: string;
@@ -231,16 +232,18 @@ export default function InteractiveLayoutBuilder() {
   };
 
   // Copy Full Coordinates & Design Code for Agent
-  const copyLayoutPlan = () => {
+  const copyLayoutPlan = async () => {
     const active = widgets.filter(w => !w.deleted);
     const summary = active.map(w => `• [${w.nameNp}]: X=${w.x}px, Y=${w.y}px, चौडाइ=${w.width}px`).join('\n');
     const deletedList = widgets.filter(w => w.deleted).map(w => w.nameNp).join(', ');
 
     const text = `नमस्ते! मैले वेबसाइटलाई क्यानभासमा तस्विर जस्तै फ्री-ड्र्याग गरेर आफ्नो इच्छा अनुसार मिलाएँ। कृपया यसै अनुसार मुख्य होमपेज सेट गरिदिनुहोस्:\n\n【प्रत्येक बक्सको स्थान र साइज】:\n${summary}\n\n【हटाइएका बक्सहरू】: ${deletedList || 'कुनै छैन'}\n\n[Code]: ${JSON.stringify(active.map(w => ({ id: w.id, x: w.x, y: w.y, width: w.width })))}`;
 
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    }
   };
 
   const deletedList = widgets.filter(w => w.deleted);
@@ -694,7 +697,7 @@ export default function InteractiveLayoutBuilder() {
 
                 {widget.id === 'w-footer-bottom' && (
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 py-2">
-                    <div>© 2026 BR Bhatta (brbhatta.com). सर्वाधिकार सुरक्षित।</div>
+                    <div>© {new Date().getFullYear()} BR Bhatta (brbhatta.com). सर्वाधिकार सुरक्षित।</div>
                     <div className="flex items-center gap-3">
                       <span>हाम्रो बारेमा</span>
                       <span>गोपनीयता नीति</span>

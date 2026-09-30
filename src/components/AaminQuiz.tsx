@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { AAMIN_QUIZ_QUESTIONS, QuizQuestion } from '@/data/quiz';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function AaminQuiz() {
   const [selectedCategory, setSelectedCategory] = useState<string>('सबै');
@@ -97,11 +98,13 @@ export default function AaminQuiz() {
     badgeColor = 'text-rose-700 bg-rose-50 border-rose-200';
   }
 
-  const handleShareScore = () => {
+  const handleShareScore = async () => {
     const text = `मैले BR Bhatta नापी अमिन तथा सर्भेक्षक अनलाइन क्विजमा ${totalQuestions} मध्ये ${correctCount} प्रश्न सही गरी ${scorePercentage}% अङ्क प्राप्त गरेँ! \nतपाईं पनि आफ्नो तयारी जाँच्नुहोस्: https://www.brbhatta.com/tools/aamin-quiz`;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   return (

@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SocialShareBar from '@/components/SocialShareBar';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import { copyToClipboard } from '@/lib/clipboard';
 import { 
   FileCode, 
   Download, 
@@ -251,10 +252,12 @@ export default function AutoCadScriptsPage() {
 
   const currentScript = SCRIPTS.find((s) => s.id === activeTab) || SCRIPTS[0];
 
-  const handleCopy = (scriptId: string, code: string) => {
-    navigator.clipboard.writeText(code);
-    setCopiedScriptId(scriptId);
-    setTimeout(() => setCopiedScriptId(null), 2500);
+  const handleCopy = async (scriptId: string, code: string) => {
+    const ok = await copyToClipboard(code);
+    if (ok) {
+      setCopiedScriptId(scriptId);
+      setTimeout(() => setCopiedScriptId(null), 2500);
+    }
   };
 
   const handleDownload = (filename: string, code: string) => {

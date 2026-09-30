@@ -21,6 +21,7 @@ import {
   Hash
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function QuickMalpotSlipCalculator() {
   // Inputs
@@ -108,7 +109,7 @@ export default function QuickMalpotSlipCalculator() {
   const stampDocFee = 150; // लिखत फाराम तथा टिकट दस्तुर
   const totalGovtRevenue = netRegFee + bagmatiFee + cgtAmount + stampDocFee;
 
-  const copySummary = () => {
+  const copySummary = async () => {
     const text = `--- मालपोत रजिस्ट्रेसन तथा लाभकर हिसाब विवरण ---
 ${clientName ? `ग्राहक / जग्गाधनी: ${clientName}\n` : ''}${kittaNo ? `कित्ता नम्बर: ${kittaNo}\n` : ''}जिल्ला / क्षेत्र: ${districtName}
 थैली अङ्क (जग्गाको मूल्याङ्कन): रु. ${propertyValue.toLocaleString('en-IN')}
@@ -127,9 +128,11 @@ ${isKathmanduValley ? `४. वाग्मती सभ्यता कर (०
 मापदण्ड: आर्थिक ऐन तथा मालपोत नियमावली २०८१/८२
 स्रोत: www.brbhatta.com/tools/malpot-calculator`;
 
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   const handlePrint = () => {

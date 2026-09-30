@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.brbhatta.com/articles',
   },
+  openGraph: {
+    title: 'गाइड तथा ज्ञान केन्द्र (Articles & Guides) | BR Bhatta & Land Solution Nepal',
+    description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, र नापी गाइडहरू।',
+    url: 'https://www.brbhatta.com/articles',
+    siteName: 'BR Bhatta',
+    locale: 'ne_NP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'गाइड तथा ज्ञान केन्द्र (Articles & Guides) | BR Bhatta & Land Solution Nepal',
+    description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, र नापी गाइडहरू।',
+  },
 };
 
 export default function ArticlesHubPage() {

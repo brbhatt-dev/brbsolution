@@ -2,14 +2,17 @@
 
 import React, { useState } from 'react';
 import { FileCode, Clock, Terminal, CheckCircle2, Copy, BookOpen, Layers } from 'lucide-react';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function AutoCADLspSection() {
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedCmd(text);
-    setTimeout(() => setCopiedCmd(null), 2000);
+  const handleCopyCmd = async (text: string) => {
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      setCopiedCmd(text);
+      setTimeout(() => setCopiedCmd(null), 2000);
+    }
   };
 
   const lspFiles = [
@@ -85,7 +88,7 @@ export default function AutoCADLspSection() {
                     {lsp.name}
                   </span>
                   <button
-                    onClick={() => copyToClipboard(lsp.command)}
+                    onClick={() => handleCopyCmd(lsp.command)}
                     title="कमाण्ड कपी गर्नुहोस्"
                     className="text-[11px] font-mono font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 px-2 py-0.5 rounded flex items-center gap-1 transition-colors"
                   >

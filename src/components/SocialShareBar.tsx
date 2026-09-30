@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Share2, Copy, Check, MessageCircle } from 'lucide-react';
+import { copyToClipboard } from '@/lib/clipboard';
 
 interface SocialShareBarProps {
   title: string;
@@ -11,14 +12,18 @@ interface SocialShareBarProps {
 export default function SocialShareBar({ title, url }: SocialShareBarProps) {
   const [copied, setCopied] = useState(false);
 
-  const fullUrl = typeof window !== 'undefined' ? `${window.location.origin}${url}` : `https://www.brbhatta.com${url}`;
+  const fullUrl = url.startsWith('http') 
+    ? url 
+    : (typeof window !== 'undefined' ? `${window.location.origin}${url}` : `https://www.brbhatta.com${url}`);
   const encodedUrl = encodeURIComponent(fullUrl);
   const encodedTitle = encodeURIComponent(title);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(fullUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const handleCopy = async () => {
+    const ok = await copyToClipboard(fullUrl);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   return (

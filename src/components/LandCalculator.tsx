@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import PrintSlipModal from '@/components/PrintSlipModal';
+import { copyToClipboard } from '@/lib/clipboard';
 
 type Mode = 'pahadi' | 'terai' | 'sqft' | 'tax';
 
@@ -148,16 +149,18 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
     setSqftInput(presetSqft);
   };
 
-  const copyResult = () => {
+  const copyResult = async () => {
     let summary = '';
     if (mode === 'tax') {
       summary = `--- मालपोत घर-जग्गा रजिस्ट्रेसन कर हिसाब ---\nथैली अङ्क: रु. ${propertyValue.toLocaleString('en-IN')}\nस्थानीय तह दर: ${(regBaseRate * 100)}%\nकुल रजिस्ट्रेसन दस्तुर: रु. ${grossRegFee.toLocaleString('en-IN')}\nछुट रकम: रु. ${discountAmount.toLocaleString('en-IN')}\nखुद रजिस्ट्रेसन राजस्व: रु. ${netRegFee.toLocaleString('en-IN')}\nपुँजीगत लाभकर (CGT): रु. ${cgtAmount.toLocaleString('en-IN')}\nकुल सरकारी खर्च: रु. ${totalGovernmentFee.toLocaleString('en-IN')}\nस्रोत: www.brbhatta.com`;
     } else {
       summary = `--- नेपाल जग्गा क्षेत्रफल नाप विवरण ---\nकुल क्षेत्रफल: ${totalSqft.toFixed(2)} वर्गफिट (${outSqm} वर्गमिटर)\nपहाडी नाप: ${outRopani} रोपनी - ${outAana} आना - ${outPaisa} पैसा - ${outDaam} दाम\nतराई नाप: ${outBigha} बिघा - ${outKatha} कट्ठा - ${outDhur} धुर - ${outKanwa} कन्वा\nस्रोत: www.brbhatta.com`;
     }
-    navigator.clipboard.writeText(summary);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    const ok = await copyToClipboard(summary);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   const calculatorBox = (

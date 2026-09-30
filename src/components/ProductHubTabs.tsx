@@ -31,6 +31,7 @@ import {
   PlusSquare,
   QrCode
 } from 'lucide-react';
+import { copyToClipboard } from '@/lib/clipboard';
 import HamroKoshDemo from './HamroKoshDemo';
 import IosInstallGuideModal from './IosInstallGuideModal';
 
@@ -78,10 +79,12 @@ export default function ProductHubTabs() {
     }
   };
 
-  const copyCommand = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedCmd(text);
-    setTimeout(() => setCopiedCmd(null), 2000);
+  const copyCommand = async (text: string) => {
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      setCopiedCmd(text);
+      setTimeout(() => setCopiedCmd(null), 2000);
+    }
   };
 
   const tabsConfig = [

@@ -23,6 +23,7 @@ import {
   FileCheck2,
   Maximize2
 } from 'lucide-react';
+import { copyToClipboard } from '@/lib/clipboard';
 import { LAW_DOCUMENTS, LAW_CATEGORIES, LawDocument } from '@/data/laws';
 
 export default function LawsDirectory() {
@@ -109,11 +110,13 @@ export default function LawsDirectory() {
     }, 300);
   };
 
-  const handleCopyLink = (doc: LawDocument) => {
-    const url = `${window.location.origin}/laws#${doc.id}`;
-    navigator.clipboard.writeText(url);
-    setCopiedDocId(doc.id);
-    setTimeout(() => setCopiedDocId(null), 2500);
+  const handleCopyLink = async (doc: LawDocument) => {
+    const url = typeof window !== 'undefined' ? `${window.location.origin}/laws#${doc.id}` : `https://www.brbhatta.com/laws#${doc.id}`;
+    const ok = await copyToClipboard(url);
+    if (ok) {
+      setCopiedDocId(doc.id);
+      setTimeout(() => setCopiedDocId(null), 2500);
+    }
   };
 
   // Filtered sections inside Reader Modal

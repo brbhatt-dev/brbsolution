@@ -16,6 +16,7 @@ import {
   Compass
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
+import { copyToClipboard } from '@/lib/clipboard';
 
 interface KittaRow {
   id: string;
@@ -196,7 +197,7 @@ export default function MultiKittaCalculator() {
     setPricePerAana(0);
   };
 
-  const copySummary = () => {
+  const copySummary = async () => {
     let text = `--- बहु-कित्ता जग्गा कुल क्षेत्रफल विवरण ---\n`;
     if (clientName) text += `ग्राहक: ${clientName}\n`;
     if (locationName) text += `स्थान: ${locationName}\n`;
@@ -224,9 +225,11 @@ export default function MultiKittaCalculator() {
     }
     text += `स्रोत: www.brbhatta.com/tools/multi-kitta-calculator`;
 
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    const ok = await copyToClipboard(text);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   const handlePrint = () => {

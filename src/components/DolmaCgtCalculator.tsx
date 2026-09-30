@@ -13,6 +13,7 @@ import {
   Landmark,
   Coins
 } from 'lucide-react';
+import { sanitizeHtml } from '@/lib/sanitizeHtml';
 
 export const DOLMA_PROCESSES = [
   { id: '1', name: 'लिखत पारित' },
@@ -275,7 +276,7 @@ export default function DolmaCgtCalculator() {
       if (res.ok) {
         const text = await res.text();
         if (text && text.includes('<table')) {
-          setResultHtml(text);
+          setResultHtml(sanitizeHtml(text));
           setLoading(false);
           return;
         }

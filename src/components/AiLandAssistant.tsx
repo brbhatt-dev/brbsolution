@@ -625,43 +625,7 @@ export default function AiLandAssistant() {
         }
       }
     } catch (err) {
-      console.warn('Serverless endpoint fetch error, trying direct Gemini API...', err);
-    }
-
-    // 2. Direct client-side Gemini fallback using NEXT_PUBLIC_GEMINI_KEY
-    const clientKey = process.env.NEXT_PUBLIC_GEMINI_KEY;
-    if (clientKey) {
-      try {
-        const sysPrompt = "You are BR Bhatta Land AI (नेपाल जग्गा तथा कानुनी एआई सहायक), authoritative expert on Nepal cadastral surveying, land laws, land revenue (आर्थिक ऐन २०८१/८२, महानगर ५%, उपत्यका वाग्मती कर ०.५%, महिला छुट २५%-५०%, एकल महिला ३५%, पुँजीगत लाभकर ५%/७.५%), Land Use Act 2079/2081 (आवासीय १३० वर्गमिटर, ८ मिटर बाटो), and land measurements (Ropani/Bigha). Respond in clear, polite, structured Nepali with markdown bold points and reference tools on brbhatta.com.";
-        const gResp = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${clientKey}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              systemInstruction: { parts: [{ text: sysPrompt }] },
-              contents: [{ parts: [{ text: query.trim() }] }]
-            })
-          }
-        );
-        if (gResp.ok) {
-          const gData = await gResp.json();
-          const ans = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (ans && ans.trim().length > 0) {
-            const botMsg: ChatMessage = {
-              id: `bot-${Date.now()}`,
-              sender: 'bot',
-              text: ans.trim(),
-              isAiGenerated: true
-            };
-            setMessages((prev) => [...prev, botMsg]);
-            setIsTyping(false);
-            return;
-          }
-        }
-      } catch (e) {
-        console.warn('Direct Gemini API error:', e);
-      }
+      console.warn('Serverless endpoint fetch error, falling back to local engine...', err);
     }
 
     // Fallback: Local instant math & knowledge base

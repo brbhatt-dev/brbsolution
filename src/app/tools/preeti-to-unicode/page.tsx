@@ -17,6 +17,7 @@ import {
   Share2
 } from 'lucide-react';
 import { preetiToUnicode, unicodeToPreeti } from '@/lib/unicodeConverter';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function PreetiToUnicodePage() {
   const [direction, setDirection] = useState<'preetiToUnicode' | 'unicodeToPreeti'>('preetiToUnicode');
@@ -37,11 +38,13 @@ export default function PreetiToUnicodePage() {
     }
   }, [inputText, direction]);
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     if (!outputText) return;
-    navigator.clipboard.writeText(outputText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const ok = await copyToClipboard(outputText);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   const handleClear = () => {
