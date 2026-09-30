@@ -65,6 +65,17 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
 
+/* Utility to completely hide scrollbar while preserving touch/mouse scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
 /* ========================================================
    GLOBAL HIGH-CONTRAST DARK MODE OVERRIDES
    Guarantees all cards, inputs, tabs & text look impeccable

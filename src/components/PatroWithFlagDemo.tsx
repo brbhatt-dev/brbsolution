@@ -402,114 +402,117 @@ export default function PatroWithFlagDemo() {
             <span className="text-[11px]">कम्प्युटरमा आधा-आधा | मोबाइलमा मिलेर बस्ने</span>
           </div>
 
-          <div className="w-full bg-gradient-to-r from-[#061814] via-[#091e19] to-[#040e0b] text-white rounded-3xl p-5 sm:p-6 shadow-xl border border-emerald-500/30 relative overflow-hidden">
+          <div className="w-full bg-gradient-to-r from-[#061814] via-[#091e19] to-[#040e0b] text-white rounded-3xl p-4 sm:p-6 shadow-xl border border-emerald-500/30 relative overflow-hidden">
             
             {/* Subtle atmospheric ambient glows */}
-            <div className="absolute top-0 right-1/3 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-1/4 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              
-              {/* LEFT SIDE (60%): Compact Nepali Patro & Live Clock */}
-              <div className="lg:col-span-7 space-y-4">
+            <div className="relative z-10 space-y-4">
+
+              {/* 50/50 SPLIT GRID: Left Patro + Right Flag */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 items-stretch">
                 
-                {/* Header Line */}
-                <div className="flex items-center justify-between border-b border-emerald-500/20 pb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>नेपाली पात्रो</span>
-                    </span>
-                    <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
-                      वि.सं.
-                    </span>
-                  </div>
-
-                  {/* Live Clock with Pulsing Green Dot */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-xs sm:text-sm font-mono font-bold text-emerald-300">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    <span>{liveTime} NPT</span>
-                  </div>
-                </div>
-
-                {/* Main Date & Details Row */}
-                <div className="flex items-center gap-4">
-                  {/* Big Date Box */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col items-center justify-center shrink-0 shadow-inner">
-                    <span className="text-3xl sm:text-4xl font-black text-white font-mono leading-none">
-                      {details.bsDate}
-                    </span>
-                    <span className="text-[11px] sm:text-xs font-bold text-emerald-300 mt-1">
-                      {details.dayName}
-                    </span>
-                  </div>
-
-                  {/* Month, Year & Tithi */}
-                  <div className="space-y-1.5">
-                    <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-none">
-                      {details.bsMonthName} {details.bsYear}
-                    </h2>
-                    <p className="text-xs text-slate-300">
-                      ईस्वी संवत् (AD): <span className="font-semibold text-white">{details.adDateString}</span>
-                    </p>
-
-                    {/* Tithi & Ritu Badge */}
-                    <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-400/30 text-xs text-amber-300 font-semibold">
-                        <Moon className="w-3.5 h-3.5 text-amber-400 fill-amber-400/40" />
-                        <span>{details.paksha}, {details.tithiName}</span>
+                {/* LEFT HALF (50%): Compact Nepali Patro & Live Clock */}
+                <div className="rounded-2xl bg-white/5 border border-white/10 p-4 sm:p-5 flex flex-col justify-between space-y-3.5">
+                  
+                  {/* Header Line */}
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>नेपाली पात्रो</span>
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/30 text-xs text-emerald-300 font-semibold">
-                        <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>{details.ritu} ऋतु</span>
+                      <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                        वि.सं.
                       </span>
                     </div>
+
+                    {/* Live Clock with Pulsing Green Dot */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-xs sm:text-sm font-mono font-bold text-emerald-300">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                      <span>{liveTime} NPT</span>
+                    </div>
                   </div>
+
+                  {/* Main Date & Details Row */}
+                  <div className="flex items-center gap-3.5 sm:gap-4">
+                    {/* Big Date Box */}
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col items-center justify-center shrink-0 shadow-inner">
+                      <span className="text-3xl sm:text-4xl font-black text-white font-mono leading-none">
+                        {details.bsDate}
+                      </span>
+                      <span className="text-[11px] sm:text-xs font-bold text-emerald-300 mt-1">
+                        {details.dayName}
+                      </span>
+                    </div>
+
+                    {/* Month, Year & Tithi */}
+                    <div className="space-y-1 min-w-0">
+                      <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-none">
+                        {details.bsMonthName} {details.bsYear}
+                      </h2>
+                      <p className="text-xs text-slate-300">
+                        ईस्वी संवत् (AD): <span className="font-semibold text-white">{details.adDateString}</span>
+                      </p>
+
+                      {/* Tithi & Ritu Badge */}
+                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg bg-amber-500/20 border border-amber-400/30 text-xs text-amber-300 font-semibold">
+                          <Moon className="w-3.5 h-3.5 text-amber-400 fill-amber-400/40" />
+                          <span>{details.paksha}, {details.tithiName}</span>
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg bg-emerald-500/20 border border-emerald-400/30 text-xs text-emerald-300 font-semibold">
+                          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>{details.ritu} ऋतु</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
-                {/* Upcoming Festivals Marquee / Countdown */}
-                <div className="pt-1">
-                  <UpcomingFestivalsBar variant="inline" />
+                {/* RIGHT HALF (50%): Fluttering Nepal Flag Container */}
+                <div className="rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/0 p-4 sm:p-5 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[190px]">
+                  
+                  {/* Top Badge: National Pride */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-600/30 text-red-300 text-[10px] font-bold border border-red-500/40">
+                      <Heart className="w-3 h-3 fill-red-400 text-red-400" />
+                      <span>राष्ट्रिय स्वाभिमान</span>
+                    </span>
+                    <span className="text-[10px] text-emerald-300 font-mono">
+                      अद्वितीय झण्डा 🇳🇵
+                    </span>
+                  </div>
+
+                  {/* Centerpiece: Waving Nepal Flag */}
+                  <div className="relative z-10 flex items-center justify-center py-1">
+                    <FlutteringNepalFlag 
+                      size={flagSize}
+                      variant={activeFlag}
+                      windSpeed={windSpeed}
+                      showGlow={true}
+                    />
+                  </div>
+
+                  {/* Bottom Slogan / Motto */}
+                  <div className="relative z-10 text-center pt-1.5 border-t border-white/10">
+                    <p className="text-xs font-bold text-amber-300 tracking-wide">
+                      &ldquo;जननी जन्मभूमिश्च स्वर्गादपि गरीयसी&rdquo;
+                    </p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">
+                      संसारकै एकमात्र त्रिकोणात्मक, चन्द्र-सूर्य अंकित जीवित झण्डा
+                    </p>
+                  </div>
+
                 </div>
+
               </div>
 
-              {/* VERTICAL DIVIDER ON DESKTOP */}
-              <div className="hidden lg:block lg:col-span-1 h-44 w-px bg-gradient-to-b from-transparent via-emerald-500/30 to-transparent mx-auto" />
-
-              {/* RIGHT SIDE (40%): Fluttering Nepal Flag Container */}
-              <div className="lg:col-span-4 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 p-4 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[240px]">
-                
-                {/* Top Badge: National Pride */}
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-600/30 text-red-300 text-[10px] font-bold border border-red-500/40">
-                    <Heart className="w-3 h-3 fill-red-400 text-red-400" />
-                    <span>राष्ट्रिय स्वाभिमान</span>
-                  </span>
-                  <span className="text-[10px] text-emerald-300 font-mono">
-                    विश्वकै अद्वितीय झण्डा 🇳🇵
-                  </span>
-                </div>
-
-                {/* Centerpiece: Waving Nepal Flag */}
-                <div className="relative z-10 flex items-center justify-center py-3">
-                  <FlutteringNepalFlag 
-                    size={flagSize}
-                    variant={activeFlag}
-                    windSpeed={windSpeed}
-                    showGlow={true}
-                  />
-                </div>
-
-                {/* Bottom Slogan / Motto */}
-                <div className="relative z-10 text-center pt-2 border-t border-white/10">
-                  <p className="text-xs font-bold text-amber-300 tracking-wide">
-                    &ldquo;जननी जन्मभूमिश्च स्वर्गादपि गरीयसी&rdquo;
-                  </p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">
-                    संसारकै एकमात्र त्रिकोणात्मक, चन्द्र-सूर्य अंकित जीवित झण्डा
-                  </p>
-                </div>
-
+              {/* FULL-WIDTH UPCOMING FESTIVALS STRIP */}
+              <div>
+                <UpcomingFestivalsBar variant="inline" />
               </div>
 
             </div>
