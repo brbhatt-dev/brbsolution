@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { Calendar, Moon, Sun, Sparkles, Heart } from 'lucide-react';
 import { getNepaliCalendarDetails, NepaliCalendarDetails } from '@/lib/nepaliDate';
 import UpcomingFestivalsBar from './UpcomingFestivalsBar';
@@ -105,11 +104,10 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
 
             </div>
 
-            {/* RIGHT HALF (50%): Land Solution Fluttering Nepal Flag Container */}
-            <Link
-              href="/demo/flag"
-              className="rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/0 p-4 sm:p-5 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[190px] group hover:border-emerald-500/40 transition-colors"
-              title="नेपालको राष्ट्रिय झण्डा फरर्र (हाम्रो ल्याण्ड सोलुसन एपको म्याथ) - सम्पूर्ण विकल्पहरू हेर्नुहोस्"
+            {/* RIGHT HALF (50%): Land Solution Fluttering Nepal Flag Container (Static display, no link) */}
+            <div
+              className="rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/0 p-4 sm:p-5 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[190px]"
+              title="नेपालको राष्ट्रिय झण्डा फरर्र 🇳🇵"
             >
               {/* Top Badge: National Pride */}
               <div className="relative z-10 flex items-center justify-between">
@@ -140,7 +138,7 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                   संसारकै एकमात्र त्रिकोणात्मक, चन्द्र-सूर्य अंकित जीवित झण्डा
                 </p>
               </div>
-            </Link>
+            </div>
 
           </div>
 
