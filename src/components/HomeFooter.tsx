@@ -145,10 +145,10 @@ export default function HomeFooter() {
             <Github className="w-3.5 h-3.5 shrink-0" />
           </a>
           <a
-            href="mailto:aabiralbhatt@gmail.com"
+            href="mailto:infobrbhatta@gmail.com"
             className="w-7 h-7 rounded-lg bg-slate-900/90 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center border border-slate-800 transition-colors shadow-2xs"
             aria-label="Send Email"
-            title="Email"
+            title="Email (infobrbhatta@gmail.com)"
           >
             <Mail className="w-3.5 h-3.5 shrink-0" />
           </a>

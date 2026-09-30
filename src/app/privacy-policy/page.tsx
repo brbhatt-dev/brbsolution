@@ -55,8 +55,8 @@ export default function PrivacyPolicyPage() {
             </p>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at{' '}
-              <a href="mailto:aabiralbhatt@gmail.com" className="text-emerald-700 font-semibold hover:underline">
-                aabiralbhatt@gmail.com
+              <a href="mailto:infobrbhatta@gmail.com" className="text-emerald-700 font-semibold hover:underline">
+                infobrbhatta@gmail.com
               </a>.
             </p>
           </section>
@@ -146,11 +146,11 @@ export default function PrivacyPolicyPage() {
               <p className="text-xs text-slate-500">हाम्रो कानुनी तथा नीति विभाग २४-४८ घण्टाभित्र सम्पर्कमा आउनेछ।</p>
             </div>
             <a
-              href="mailto:aabiralbhatt@gmail.com"
+              href="mailto:infobrbhatta@gmail.com"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all"
             >
               <Mail className="w-4 h-4" />
-              <span>aabiralbhatt@gmail.com</span>
+              <span>infobrbhatta@gmail.com</span>
             </a>
           </div>
 

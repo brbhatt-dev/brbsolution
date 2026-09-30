@@ -14,7 +14,7 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const emailAddress = 'aabiralbhatt@gmail.com';
+  const emailAddress = 'infobrbhatta@gmail.com';
 
   const copyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -28,22 +28,44 @@ export default function Contact() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/aabiralbhatt@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          'नाम (Name)': formData.name,
-          'सम्पर्क (Phone/Email)': formData.contact,
-          'सेवा वा विषय (Topic)': formData.service,
-          'सन्देश (Message)': formData.message,
-          '_subject': `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
-          '_template': 'table',
-          '_captcha': 'false',
-        }),
-      });
+      const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+
+      let response: Response;
+      if (web3FormsKey) {
+        response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: web3FormsKey,
+            name: formData.name,
+            phone: formData.contact,
+            subject: `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
+            topic: formData.service,
+            message: formData.message,
+            from_name: 'BR Bhatta Website Contact Form',
+          }),
+        });
+      } else {
+        response = await fetch(`https://formsubmit.co/ajax/${emailAddress}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            'नाम (Name)': formData.name,
+            'सम्पर्क (Phone/Email)': formData.contact,
+            'सेवा वा विषय (Topic)': formData.service,
+            'सन्देश (Message)': formData.message,
+            '_subject': `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
+            '_template': 'table',
+            '_captcha': 'false',
+          }),
+        });
+      }
 
       const resData = await response.json();
 
@@ -51,12 +73,12 @@ export default function Contact() {
         setStatus('success');
       } else {
         setStatus('error');
-        setErrorMessage(resData?.message || 'सन्देश पठाउन सकिएन। कृपया पुनः प्रयास गर्नुहोस् वा सिधै इमेल गर्नुहोस्।');
+        setErrorMessage(resData?.message || 'सन्देश पठाउन सकिएन। कृपया तलको बटनबाट सिधै इमेल पठाउनुहोस्।');
       }
     } catch (err: any) {
       console.error('Submission error:', err);
       setStatus('error');
-      setErrorMessage('सर्भरमा जडान हुन सकेन। कृपया सिधै इमेल गर्नुहोस् वा इन्टरनेट जाँच्नुहोस्।');
+      setErrorMessage('सर्भरमा जडान हुन सकेन। कृपया तलको बटनबाट सिधै इमेल पठाउनुहोस् वा फोन गर्नुहोस्।');
     }
   };
 
@@ -165,9 +187,18 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-3">
                   {status === 'error' && (
-                    <div className="p-2.5 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 flex items-start gap-2 text-xs text-rose-800 dark:text-rose-300">
-                      <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                      <p>{errorMessage}</p>
+                    <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 space-y-2 text-xs text-rose-800 dark:text-rose-300">
+                      <div className="flex items-start gap-2">
+                        <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                        <p>{errorMessage}</p>
+                      </div>
+                      <a
+                        href={`mailto:${emailAddress}?subject=${encodeURIComponent(`[BR Bhatta Website] ${formData.service} - ${formData.name || 'Inquiry'}`)}&body=${encodeURIComponent(`पूरा नाम: ${formData.name}\nसम्पर्क: ${formData.contact}\nविषय: ${formData.service}\n\nसन्देश:\n${formData.message}`)}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-bold text-xs transition-all shadow-2xs"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>सिधै इमेलबाट पठाउनुहोस् (Open Email)</span>
+                      </a>
                     </div>
                   )}
 

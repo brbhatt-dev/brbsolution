@@ -93,11 +93,11 @@ export default function DisclaimerPage() {
               <p className="text-xs text-slate-500">हामी तपाईंलाई सहयोग गर्न सधैं तत्पर छौं।</p>
             </div>
             <a
-              href="mailto:aabiralbhatt@gmail.com"
+              href="mailto:infobrbhatta@gmail.com"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm transition-all"
             >
               <Mail className="w-4 h-4 text-emerald-400" />
-              <span>aabiralbhatt@gmail.com</span>
+              <span>infobrbhatta@gmail.com</span>
             </a>
           </div>
 

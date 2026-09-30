@@ -590,7 +590,7 @@ export default function InteractiveLayoutBuilder() {
                       <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
                       <div>
                         <span className="text-[10px] font-bold text-slate-500 uppercase block">इमेल</span>
-                        <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">aabiralbhatt@gmail.com</span>
+                        <span className="text-xs font-mono font-bold text-slate-900 dark:text-white">infobrbhatta@gmail.com</span>
                       </div>
                     </div>
                     <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex items-center gap-3">
@@ -686,7 +686,7 @@ export default function InteractiveLayoutBuilder() {
                   <div className="space-y-2 text-xs text-slate-600 dark:text-slate-400 h-full">
                     <h5 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">सम्पर्क तथा सहयोग</h5>
                     <div className="p-2 rounded bg-slate-100 dark:bg-slate-800 font-mono text-emerald-600 text-[11px]">
-                      aabiralbhatt@gmail.com
+                      infobrbhatta@gmail.com
                     </div>
                     <div className="text-[11px]">🟢 अनलाइन सहायता उपलब्ध</div>
                   </div>
