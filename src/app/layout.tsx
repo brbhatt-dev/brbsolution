@@ -51,6 +51,17 @@ export const metadata: Metadata = {
     title: 'BR Bhatta | Land Solution & Tech Innovations Nepal',
     description: 'Explore Land Solution, Hamro Kosh, and AutoCAD LSP tools built for Nepal.',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '64x64' },
+      { url: '/icon.png', type: 'image/png', sizes: '192x192' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -109,6 +120,10 @@ export default function RootLayout({
     <html lang="ne" className="notranslate" translate="no" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="192x192" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&d)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
