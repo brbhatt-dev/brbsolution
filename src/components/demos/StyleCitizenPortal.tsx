@@ -22,8 +22,7 @@ import {
   Moon,
   X,
   RotateCw,
-  ExternalLink,
-  Satellite
+  ExternalLink
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
@@ -75,12 +74,12 @@ export default function StyleCitizenPortal() {
   // Primary 8 Big Vibrant Quick Tiles (HamroPatro / Nagarik App style)
   const quickTiles = [
     { title: 'जग्गा क्यालकुलेटर', sub: 'रोपनी-बिघा-वर्गमिटर हिसाब', icon: Calculator, color: 'bg-emerald-500 text-white', href: '#land-calc-section' },
-    { title: 'ताजा स्याटेलाइट (५-दिने)', sub: 'ESA Sentinel-2 उपग्रह दृश्य', icon: Satellite, color: 'bg-teal-600 text-white', href: '/tools/satellite-viewer' },
     { title: 'फोटो कम्प्रेसर', sub: 'सरकारी फारमका लागि २००KB', icon: ImageIcon, color: 'bg-rose-500 text-white', href: '/tools/image-compressor' },
-    { title: 'Preeti ⇄ Unicode', sub: 'नेपाली टाइपिङ कन्भर्टर', icon: ArrowRightLeft, color: 'bg-indigo-500 text-white', href: '/tools/preeti-to-unicode' },
-    { title: 'तस्विरबाट A4 PDF', sub: 'लालपुर्जा / नक्सा डकुमेन्ट', icon: FileText, color: 'bg-blue-600 text-white', href: '/tools/images-to-pdf' },
+    { title: 'Preeti ⇄ Unicode', sub: 'नेपाली टाइपिङ कन्भर्टर', icon: ArrowRightLeft, color: 'bg-teal-500 text-white', href: '/tools/preeti-to-unicode' },
+    { title: 'तस्विरबाट A4 PDF', sub: 'लालपुर्जा / नक्सा डकुमेन्ट', icon: FileText, color: 'bg-indigo-500 text-white', href: '/tools/images-to-pdf' },
     { title: 'मालपोत तथा कर', sub: 'रजिस्ट्रेसन & CGT दस्तुर', icon: Coins, color: 'bg-amber-500 text-white', href: '/tools/malpot-calculator' },
     { title: '७७ जिल्ला नापी', sub: 'कार्यालय फोन, इमेल र ठेगाना', icon: Building2, color: 'bg-sky-500 text-white', href: '/tools/survey-offices' },
+    { title: 'जग्गा बैना कागज', sub: 'A4 कानुनी लिखत तमसुक', icon: ScrollText, color: 'bg-orange-500 text-white', href: '/tools/legal-templates' },
     { title: 'कित्ताकाट मापदण्ड', sub: '१३० वर्गमिटर नियम चेकर', icon: Split, color: 'bg-purple-500 text-white', href: '/tools/kitta-kat-checker' },
   ];
 
