@@ -2,8 +2,11 @@
 
 import React, { useState } from 'react';
 
+export type NepalFlagVariant = 'classic' | 'royal-gold' | 'floating' | 'himalayan' | 'glow';
+
 interface FlutteringNepalFlagProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  variant?: NepalFlagVariant;
   showPole?: boolean;
   windSpeed?: 'gentle' | 'normal' | 'strong';
   showGlow?: boolean;
@@ -12,6 +15,7 @@ interface FlutteringNepalFlagProps {
 
 export default function FlutteringNepalFlag({
   size = 'md',
+  variant = 'classic',
   showPole = true,
   windSpeed = 'normal',
   showGlow = true,
@@ -38,6 +42,27 @@ export default function FlutteringNepalFlag({
 
   const s = sizeStyles[size];
 
+  // In floating variant, pole is always hidden
+  const effectiveShowPole = variant === 'floating' ? false : showPole;
+
+  // Variant-specific glow filters
+  const getGlowFilter = () => {
+    if (!showGlow) return 'none';
+    switch (variant) {
+      case 'royal-gold':
+        return 'drop-shadow(0 10px 22px rgba(245, 158, 11, 0.45)) drop-shadow(0 0 10px rgba(220, 20, 60, 0.35))';
+      case 'glow':
+        return 'drop-shadow(0 0 25px rgba(220, 20, 60, 0.75)) drop-shadow(0 0 12px rgba(0, 56, 147, 0.6))';
+      case 'himalayan':
+        return 'drop-shadow(0 10px 20px rgba(56, 189, 248, 0.3)) drop-shadow(0 4px 12px rgba(220, 20, 60, 0.3))';
+      case 'floating':
+        return 'drop-shadow(0 14px 28px rgba(220, 20, 60, 0.45))';
+      case 'classic':
+      default:
+        return 'drop-shadow(0 10px 20px rgba(220, 20, 60, 0.4))';
+    }
+  };
+
   return (
     <div 
       className={`relative inline-flex items-stretch select-none ${className}`}
@@ -45,26 +70,74 @@ export default function FlutteringNepalFlag({
       onMouseLeave={() => setIsHovered(false)}
       title="नेपालको राष्ट्रिय झण्डा (फरर्र फहराएको)"
     >
-      {/* Metallic Flagpole on the Left */}
-      {showPole && (
+      {/* Background Mountain Silhouette for Himalayan variant */}
+      {variant === 'himalayan' && (
+        <div className="absolute inset-0 -top-6 -left-6 -right-6 opacity-25 pointer-events-none flex items-end">
+          <svg viewBox="0 0 300 120" className="w-full text-white fill-current">
+            <path d="M0,120 L50,50 L90,85 L150,20 L210,75 L260,35 L300,120 Z" />
+          </svg>
+        </div>
+      )}
+
+      {/* Flagpole on the Left */}
+      {effectiveShowPole && (
         <div className="relative shrink-0 flex flex-col items-center z-20 mr-[-2px]">
-          {/* Golden Finial Knob */}
-          <div 
-            style={{ width: s.knobSize, height: s.knobSize }}
-            className="rounded-full bg-gradient-to-tr from-amber-600 via-yellow-300 to-amber-200 shadow-md border border-amber-300 shrink-0"
-          />
-          {/* Metallic Silver Pole */}
+          
+          {/* Finial (Knob on Top) */}
+          {variant === 'royal-gold' ? (
+            /* Royal Golden Crown Finial with Ruby Gem */
+            <div className="relative flex items-center justify-center">
+              <div 
+                style={{ width: s.knobSize * 1.2, height: s.knobSize * 1.2 }}
+                className="rounded-full bg-gradient-to-tr from-amber-600 via-yellow-200 to-amber-500 shadow-lg border border-amber-300 flex items-center justify-center"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-red-600 shadow-xs animate-pulse" />
+              </div>
+              {/* Dangling Golden Cord Tassels */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 flex gap-0.5 pointer-events-none">
+                <span className="w-0.5 h-3 bg-amber-400/90 rounded-full" />
+                <span className="w-0.5 h-2.5 bg-yellow-300 rounded-full" />
+              </div>
+            </div>
+          ) : variant === 'himalayan' ? (
+            /* Frosted Ice-Crest Finial */
+            <div 
+              style={{ width: s.knobSize, height: s.knobSize }}
+              className="rounded-full bg-gradient-to-tr from-sky-300 via-white to-slate-200 shadow-md border border-sky-200"
+            />
+          ) : (
+            /* Classic Golden Brass Finial */
+            <div 
+              style={{ width: s.knobSize, height: s.knobSize }}
+              className="rounded-full bg-gradient-to-tr from-amber-600 via-yellow-300 to-amber-200 shadow-md border border-amber-300 shrink-0"
+            />
+          )}
+
+          {/* Pole Shaft */}
           <div 
             style={{ width: s.poleWidth, minHeight: s.poleHeight }}
-            className="flex-grow bg-gradient-to-r from-slate-400 via-slate-100 to-slate-400 shadow-sm relative rounded-b-xs"
+            className={`flex-grow shadow-sm relative rounded-b-xs ${
+              variant === 'royal-gold'
+                ? 'bg-gradient-to-r from-amber-600 via-yellow-200 to-amber-600'
+                : variant === 'himalayan'
+                ? 'bg-gradient-to-r from-slate-300 via-sky-100 to-slate-300'
+                : 'bg-gradient-to-r from-slate-400 via-slate-100 to-slate-400'
+            }`}
           >
             {/* Cord ties / rings at top, middle, and bottom of flag */}
-            <div className="absolute top-2 left-0 right-0 h-1 bg-amber-400/90 rounded-xs" />
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-amber-400/90 rounded-xs" />
-            <div className="absolute bottom-2 left-0 right-0 h-1 bg-amber-400/90 rounded-xs" />
+            <div className={`absolute top-2 left-0 right-0 h-1 rounded-xs ${variant === 'royal-gold' ? 'bg-amber-300' : 'bg-amber-400/90'}`} />
+            <div className={`absolute top-1/2 left-0 right-0 h-1 rounded-xs ${variant === 'royal-gold' ? 'bg-amber-300' : 'bg-amber-400/90'}`} />
+            <div className={`absolute bottom-2 left-0 right-0 h-1 rounded-xs ${variant === 'royal-gold' ? 'bg-amber-300' : 'bg-amber-400/90'}`} />
           </div>
-          {/* Base Stand */}
-          <div className="w-6 h-2 bg-gradient-to-t from-slate-700 to-slate-500 rounded-t-sm shadow-xs shrink-0 -mt-0.5" />
+
+          {/* Base Pedestal Stand */}
+          <div 
+            className={`w-6 h-2 rounded-t-sm shadow-xs shrink-0 -mt-0.5 ${
+              variant === 'royal-gold'
+                ? 'bg-gradient-to-t from-amber-800 via-amber-600 to-yellow-500'
+                : 'bg-gradient-to-t from-slate-700 to-slate-500'
+            }`} 
+          />
         </div>
       )}
 
@@ -76,7 +149,7 @@ export default function FlutteringNepalFlag({
           height: s.height,
           transformOrigin: 'left center',
           animation: `flagFlutter ${currentDuration} ease-in-out infinite alternate`,
-          filter: showGlow ? 'drop-shadow(0 10px 20px rgba(220, 20, 60, 0.4))' : 'none',
+          filter: getGlowFilter(),
         }}
       >
         {/* Exact Official Constitution SVG Flag of Nepal */}
@@ -151,6 +224,14 @@ export default function FlutteringNepalFlag({
         <div className="absolute -right-3 top-8 w-6 h-0.5 bg-white/40 rounded-full blur-[0.5px] animate-pulse pointer-events-none" />
         <div className="absolute -right-5 top-20 w-8 h-0.5 bg-white/30 rounded-full blur-[0.5px] animate-pulse pointer-events-none" style={{ animationDelay: '0.4s' }} />
         <div className="absolute -right-4 bottom-6 w-5 h-0.5 bg-white/30 rounded-full blur-[0.5px] animate-pulse pointer-events-none" style={{ animationDelay: '0.8s' }} />
+
+        {/* Himalayan Sparkles for Himalayan variant */}
+        {variant === 'himalayan' && (
+          <>
+            <div className="absolute top-2 right-4 w-1.5 h-1.5 rounded-full bg-cyan-200/80 animate-ping pointer-events-none" />
+            <div className="absolute bottom-6 right-2 w-1 h-1 rounded-full bg-white/90 animate-pulse pointer-events-none" />
+          </>
+        )}
       </div>
     </div>
   );

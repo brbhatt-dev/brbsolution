@@ -12,16 +12,73 @@ import {
   Layers, 
   Heart,
   Mountain,
-  Compass
+  Compass,
+  Crown,
+  Flame,
+  ShieldCheck
 } from 'lucide-react';
 import { getNepaliCalendarDetails, NepaliCalendarDetails } from '@/lib/nepaliDate';
 import UpcomingFestivalsBar from './UpcomingFestivalsBar';
-import FlutteringNepalFlag from './FlutteringNepalFlag';
+import FlutteringNepalFlag, { NepalFlagVariant } from './FlutteringNepalFlag';
+
+interface FlagOptionItem {
+  id: NepalFlagVariant;
+  name: string;
+  subtitle: string;
+  tag: string;
+  badgeColor: string;
+  description: string;
+}
+
+const FLAG_OPTIONS: FlagOptionItem[] = [
+  {
+    id: 'classic',
+    name: '१. क्लासिक फरर्र झण्डा (Classic)',
+    subtitle: 'सिल्भर खम्बा + सुनौलो टुप्पो',
+    tag: 'सर्वाधिक लोकप्रिय',
+    badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+    description: 'धातुको स्टिल खम्बामा सुनौलो गजुर, गोल्डेन डोरी र प्राकृतिक ३D फरर्र कपडाको लहर।',
+  },
+  {
+    id: 'royal-gold',
+    name: '२. शाही स्वर्ण स्तम्भ (Royal Gold)',
+    subtitle: 'स्वर्ण खम्बा + लाल मणि गजुर',
+    tag: 'प्रिमियम लक्जरी',
+    badgeColor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+    description: 'पूर्ण सुनौलो पित्तलको स्तम्भ, टुप्पोमा रातो मणियुक्त गजुर र सुनौलो झुम्कासहितको भव्य रूप।',
+  },
+  {
+    id: 'floating',
+    name: '३. हावामा तैरिएको (Free Floating)',
+    subtitle: 'खम्बा बिना स्वच्छ रेशम',
+    tag: 'आधुनिक न्यूनतम (Clean)',
+    badgeColor: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20',
+    description: 'खम्बा बिना सिधै हावाको सिरेटोमा मडारिएर तैरिने शुद्ध रेशमी झण्डा—आधुनिक इन्टरफेसका लागि उपयुक्त।',
+  },
+  {
+    id: 'himalayan',
+    name: '४. सगरमाथा सिरेटो (Himalayan Peak)',
+    subtitle: 'हिमशिखर पृष्ठभूमि + चिसो हावा',
+    tag: 'राष्ट्रिय स्वाभिमान',
+    badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
+    description: 'सगरमाथाको पृष्ठभूमि, हिउँका कणहरू र नीलो आकाशीय आभासहित उच्च हिमशिखरमा फहराएको झण्डा।',
+  },
+  {
+    id: 'glow',
+    name: '५. नियन दिव्य आभा (Neon Glow)',
+    subtitle: 'रातो-नीलो चहकिलो ज्योति',
+    tag: 'चहकिलो डिजिटल',
+    badgeColor: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
+    description: 'डार्क थिममा चम्किने रातो र नीलो स्वर्गीय नियन किरणहरू (Multi-layer Glow Aura)।',
+  },
+];
 
 export default function PatroWithFlagDemo() {
   const [details, setDetails] = useState<NepaliCalendarDetails>(() => getNepaliCalendarDetails(new Date()));
   const [liveTime, setLiveTime] = useState<string>('लाइभ समय...');
+  const [activeFlag, setActiveFlag] = useState<NepalFlagVariant>('classic');
   const [windSpeed, setWindSpeed] = useState<'gentle' | 'normal' | 'strong'>('strong');
+  const [flagSize, setFlagSize] = useState<'sm' | 'md' | 'lg'>('md');
   const [selectedDemo, setSelectedDemo] = useState<'option1' | 'option2' | 'option3'>('option1');
 
   useEffect(() => {
@@ -37,113 +94,231 @@ export default function PatroWithFlagDemo() {
 
   return (
     <div className="space-y-8">
-      
-      {/* Demo Controls Bar */}
-      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
-              नेपाली पात्रो + नेपालको झण्डा (Live Interactive Demo)
-            </h3>
+
+      {/* ================================================================ */}
+      {/* 1. DEDICATED FLAG OPTIONS GALLERY (Interactive Selector)         */}
+      {/* ================================================================ */}
+      <div className="space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="p-1 rounded-lg bg-red-600 text-white font-bold text-xs">🇳🇵</span>
+              <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
+                नेपालको झण्डाका ५ वटा फरक विकल्पहरू (Flag Options Gallery)
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              तलका कुनै पनि झण्डामा क्लिक गर्नुहोस्—पात्रो ब्यानरमा त्यही झण्डा तुरुन्तै अपडेट हुनेछ:
+            </p>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
-            तपाईंले खोज्नुभएको जस्तै आधा भागमा पात्रो र बाँकी भागमा फरर्र फहराएको झण्डाका ३ वटा डिजाइनहरू:
-          </p>
+
+          <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            <span>क्लिक गरेर छान्नुहोस्</span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
+        {/* 5 Flag Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {FLAG_OPTIONS.map((opt) => {
+            const isSelected = activeFlag === opt.id;
+            return (
+              <button
+                key={opt.id}
+                onClick={() => setActiveFlag(opt.id)}
+                className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between group ${
+                  isSelected
+                    ? 'bg-gradient-to-b from-red-500/10 via-emerald-500/5 to-slate-900/40 border-red-500 shadow-md ring-2 ring-red-500/30'
+                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                }`}
+              >
+                {/* Active Selection Check Badge */}
+                {isSelected && (
+                  <span className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xs">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </span>
+                )}
+
+                {/* Live Flag Preview inside card */}
+                <div className="w-full h-32 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
+                  <FlutteringNepalFlag 
+                    size="sm" 
+                    variant={opt.id} 
+                    windSpeed={windSpeed}
+                    showGlow={true}
+                  />
+                </div>
+
+                {/* Details */}
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${opt.badgeColor}`}>
+                      {opt.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xs font-black text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                    {opt.name}
+                  </h3>
+
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+                    {opt.subtitle}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* 2. LIVE CONTROLS: WIND SPEED & SIZE                              */}
+      {/* ================================================================ */}
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div>
+            <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100">
+              अहिले छानिएको झण्डा: <span className="text-red-600 dark:text-red-400 font-black">{FLAG_OPTIONS.find(f => f.id === activeFlag)?.name}</span>
+            </h4>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              हावाको गति वा साइज परिवर्तन गरी तलको ब्यानरमा प्रत्यक्ष प्रभाव हेर्नुहोस्
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 flex-wrap">
           {/* Wind Speed Selector */}
           <div className="inline-flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold">
             <Wind className="w-3.5 h-3.5 text-sky-500 ml-1.5" />
             <span className="text-[11px] text-slate-500 dark:text-slate-400 mr-1">हावा:</span>
             <button
               onClick={() => setWindSpeed('gentle')}
-              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${windSpeed === 'gentle' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs' : 'text-slate-600 dark:text-slate-400'}`}
+              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${windSpeed === 'gentle' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs font-bold' : 'text-slate-600 dark:text-slate-400'}`}
             >
               मन्द
             </button>
             <button
               onClick={() => setWindSpeed('normal')}
-              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${windSpeed === 'normal' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs' : 'text-slate-600 dark:text-slate-400'}`}
+              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${windSpeed === 'normal' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs font-bold' : 'text-slate-600 dark:text-slate-400'}`}
             >
               मध्यम
             </button>
             <button
               onClick={() => setWindSpeed('strong')}
-              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${windSpeed === 'strong' ? 'bg-emerald-600 text-white shadow-2xs' : 'text-slate-600 dark:text-slate-400'}`}
+              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${windSpeed === 'strong' ? 'bg-emerald-600 text-white shadow-2xs font-bold' : 'text-slate-600 dark:text-slate-400'}`}
             >
-              तीव्र (फरर्र)
+              तीव्र फरर्र
+            </button>
+          </div>
+
+          {/* Flag Size Selector */}
+          <div className="inline-flex items-center gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold">
+            <span className="text-[11px] text-slate-500 dark:text-slate-400 ml-1.5 mr-1">साइज:</span>
+            <button
+              onClick={() => setFlagSize('sm')}
+              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${flagSize === 'sm' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs font-bold' : 'text-slate-600 dark:text-slate-400'}`}
+            >
+              सानो
+            </button>
+            <button
+              onClick={() => setFlagSize('md')}
+              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${flagSize === 'md' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs font-bold' : 'text-slate-600 dark:text-slate-400'}`}
+            >
+              मध्यम
+            </button>
+            <button
+              onClick={() => setFlagSize('lg')}
+              className={`px-2 py-1 rounded-lg transition-colors cursor-pointer ${flagSize === 'lg' ? 'bg-white dark:bg-slate-900 text-emerald-600 shadow-2xs font-bold' : 'text-slate-600 dark:text-slate-400'}`}
+            >
+              ठूलो
             </button>
           </div>
         </div>
       </div>
 
-      {/* Selector Tabs for Demo Designs */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <button
-          onClick={() => setSelectedDemo('option1')}
-          className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer ${
-            selectedDemo === 'option1'
-              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 shadow-sm text-emerald-950 dark:text-emerald-200'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
-          }`}
-        >
-          <div className="flex items-center justify-between font-bold text-xs">
-            <span>डिजाइन १: Integrated Panoramic Split</span>
-            {selectedDemo === 'option1' && <Check className="w-4 h-4 text-emerald-600" />}
-          </div>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-            एउटै फराकिलो ब्यानरमा बाँया पात्रो र दायाँ फहराएको झण्डा (तपाईंले रोज्नुभएको)
-          </p>
-        </button>
+      {/* ================================================================ */}
+      {/* 3. LAYOUT TABS (How it integrates with Patro)                     */}
+      {/* ================================================================ */}
+      <div className="space-y-3 pt-2">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <Layers className="w-3.5 h-3.5 text-emerald-500" />
+            <span>पात्रोसँग समायोजन गरिएका ३ लेआउटहरू (Choose Layout):</span>
+          </h3>
+          <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">
+            लाइभ प्रिभ्यु तल देखिन्छ
+          </span>
+        </div>
 
-        <button
-          onClick={() => setSelectedDemo('option2')}
-          className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer ${
-            selectedDemo === 'option2'
-              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 shadow-sm text-emerald-950 dark:text-emerald-200'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
-          }`}
-        >
-          <div className="flex items-center justify-between font-bold text-xs">
-            <span>डिजाइन २: Dual Bento Twin Cards</span>
-            {selectedDemo === 'option2' && <Check className="w-4 h-4 text-emerald-600" />}
-          </div>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-            दुईवटा चिटिक्क परेका कार्ड: एउटामा पात्रो, अर्कोमा राष्ट्रिय झण्डा र गौरव
-          </p>
-        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <button
+            onClick={() => setSelectedDemo('option1')}
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+              selectedDemo === 'option1'
+                ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 shadow-sm text-emerald-950 dark:text-emerald-200'
+                : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
+            }`}
+          >
+            <div className="flex items-center justify-between font-bold text-xs">
+              <span>लेआउट १: ५०/५० Panoramic Split</span>
+              {selectedDemo === 'option1' && <Check className="w-4 h-4 text-emerald-600" />}
+            </div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+              एउटै फराकिलो ब्यानरमा बाँया पात्रो र दायाँ फहराएको झण्डा (तपाईंको रोजाइ)
+            </p>
+          </button>
 
-        <button
-          onClick={() => setSelectedDemo('option3')}
-          className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer ${
-            selectedDemo === 'option3'
-              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 shadow-sm text-emerald-950 dark:text-emerald-200'
-              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
-          }`}
-        >
-          <div className="flex items-center justify-between font-bold text-xs">
-            <span>डिजाइन ३: Himalayan Heritage Banner</span>
-            {selectedDemo === 'option3' && <Check className="w-4 h-4 text-emerald-600" />}
-          </div>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-            सगरमाथाको पृष्ठभूमि, स्वर्ण बोर्डर, ठूलो झण्डा र राष्ट्रिय गान उद्धरण
-          </p>
-        </button>
+          <button
+            onClick={() => setSelectedDemo('option2')}
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+              selectedDemo === 'option2'
+                ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 shadow-sm text-emerald-950 dark:text-emerald-200'
+                : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
+            }`}
+          >
+            <div className="flex items-center justify-between font-bold text-xs">
+              <span>लेआउट २: Dual Bento Twin Cards</span>
+              {selectedDemo === 'option2' && <Check className="w-4 h-4 text-emerald-600" />}
+            </div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+              दुई बराबर चिटिक्क बक्सहरू: ५०% पात्रो कार्ड + ५०% राष्ट्रिय झण्डा
+            </p>
+          </button>
+
+          <button
+            onClick={() => setSelectedDemo('option3')}
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+              selectedDemo === 'option3'
+                ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 shadow-sm text-emerald-950 dark:text-emerald-200'
+                : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
+            }`}
+          >
+            <div className="flex items-center justify-between font-bold text-xs">
+              <span>लेआउट ३: Himalayan Heritage Banner</span>
+              {selectedDemo === 'option3' && <Check className="w-4 h-4 text-emerald-600" />}
+            </div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+              स्वर्णिम किनारा, ठूलो फन्ट र दायाँ ठूलो आकारको फहराएको झण्डा
+            </p>
+          </button>
+        </div>
       </div>
 
-      {/* ============================================================== */}
-      {/* OPTION 1: INTEGRATED PANORAMIC SPLIT (User's Exact Vision)      */}
-      {/* ============================================================== */}
+      {/* ================================================================ */}
+      {/* 4. ACTUAL LIVE DEMO RENDERING                                     */}
+      {/* ================================================================ */}
+      
+      {/* OPTION 1: INTEGRATED PANORAMIC SPLIT */}
       {selectedDemo === 'option1' && (
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-500 px-1">
             <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
               <Eye className="w-3.5 h-3.5" />
-              <span>लाइभ प्रिभ्यु (डिजाइन १): ५०/५० Panoramic Split</span>
+              <span>प्रत्यक्ष ब्यानर: ५०% पात्रो + ५०% फहराएको राष्ट्रिय झण्डा ({FLAG_OPTIONS.find(f => f.id === activeFlag)?.name})</span>
             </span>
-            <span className="text-[11px]">Desktop: दुई भाग | Mobile: क्रमबद्ध</span>
+            <span className="text-[11px]">कम्प्युटरमा आधा-आधा | मोबाइलमा मिलेर बस्ने</span>
           </div>
 
           <div className="w-full bg-gradient-to-r from-[#061814] via-[#091e19] to-[#040e0b] text-white rounded-3xl p-5 sm:p-6 shadow-xl border border-emerald-500/30 relative overflow-hidden">
@@ -154,7 +329,7 @@ export default function PatroWithFlagDemo() {
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               
-              {/* LEFT SIDE (60%): Compact, Elegant Nepali Patro & Live Clock */}
+              {/* LEFT SIDE (60%): Compact Nepali Patro & Live Clock */}
               <div className="lg:col-span-7 space-y-4">
                 
                 {/* Header Line */}
@@ -220,16 +395,9 @@ export default function PatroWithFlagDemo() {
               {/* VERTICAL DIVIDER ON DESKTOP */}
               <div className="hidden lg:block lg:col-span-1 h-44 w-px bg-gradient-to-b from-transparent via-emerald-500/30 to-transparent mx-auto" />
 
-              {/* RIGHT SIDE (40%): Fluttering Nepal Flag with Mountain Breeze */}
-              <div className="lg:col-span-4 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 p-4 border border-white/10 relative overflow-hidden flex flex-col justify-between h-full min-h-[190px]">
+              {/* RIGHT SIDE (40%): Fluttering Nepal Flag Container */}
+              <div className="lg:col-span-4 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 p-4 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[240px]">
                 
-                {/* Mountain Silhouette Background */}
-                <div className="absolute inset-0 opacity-15 pointer-events-none flex items-end">
-                  <svg viewBox="0 0 500 150" className="w-full text-white fill-current">
-                    <path d="M0,150 L80,70 L140,110 L230,30 L310,90 L390,40 L450,80 L500,150 Z" />
-                  </svg>
-                </div>
-
                 {/* Top Badge: National Pride */}
                 <div className="relative z-10 flex items-center justify-between">
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-600/30 text-red-300 text-[10px] font-bold border border-red-500/40">
@@ -242,11 +410,11 @@ export default function PatroWithFlagDemo() {
                 </div>
 
                 {/* Centerpiece: Waving Nepal Flag */}
-                <div className="relative z-10 flex items-center justify-center py-2">
+                <div className="relative z-10 flex items-center justify-center py-3">
                   <FlutteringNepalFlag 
-                    size="md" 
+                    size={flagSize}
+                    variant={activeFlag}
                     windSpeed={windSpeed}
-                    showPole={true}
                     showGlow={true}
                   />
                 </div>
@@ -269,15 +437,13 @@ export default function PatroWithFlagDemo() {
         </div>
       )}
 
-      {/* ============================================================== */}
-      {/* OPTION 2: DUAL BENTO TWIN CARDS (50% / 50% Separate Cards)    */}
-      {/* ============================================================== */}
+      {/* OPTION 2: DUAL BENTO TWIN CARDS */}
       {selectedDemo === 'option2' && (
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-500 px-1">
             <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
               <Eye className="w-3.5 h-3.5" />
-              <span>लाइभ प्रिभ्यु (डिजाइन २): दुई समान बक्स (Twin Bento Cards)</span>
+              <span>प्रत्यक्ष ब्यानर: दुई समान बक्स (Twin Bento Cards)</span>
             </span>
             <span className="text-[11px]">५०% पात्रो + ५०% झण्डा</span>
           </div>
@@ -334,11 +500,11 @@ export default function PatroWithFlagDemo() {
                 </span>
               </div>
 
-              <div className="flex items-center justify-around gap-4 py-2 relative z-10">
+              <div className="flex items-center justify-around gap-4 py-3 relative z-10">
                 <FlutteringNepalFlag 
-                  size="md" 
+                  size={flagSize}
+                  variant={activeFlag}
                   windSpeed={windSpeed}
-                  showPole={true}
                   showGlow={true}
                 />
                 <div className="space-y-2 text-left max-w-xs">
@@ -366,17 +532,15 @@ export default function PatroWithFlagDemo() {
         </div>
       )}
 
-      {/* ============================================================== */}
-      {/* OPTION 3: HIMALAYAN HERITAGE HERO BANNER                       */}
-      {/* ============================================================== */}
+      {/* OPTION 3: HIMALAYAN HERITAGE HERO BANNER */}
       {selectedDemo === 'option3' && (
         <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-500 px-1">
             <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
               <Eye className="w-3.5 h-3.5" />
-              <span>लाइभ प्रिभ्यु (डिजाइन ३): Himalayan Heritage Banner</span>
+              <span>प्रत्यक्ष ब्यानर: Himalayan Heritage Banner</span>
             </span>
-            <span className="text-[11px]">लामो ब्यानर + दायाँ ठूलो झण्डा</span>
+            <span className="text-[11px]">लामो ब्यानर + दायाँ फहराएको झण्डा</span>
           </div>
 
           <div className="w-full bg-gradient-to-r from-slate-950 via-teal-950 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-2xl border-2 border-amber-500/40 relative overflow-hidden">
@@ -413,9 +577,9 @@ export default function PatroWithFlagDemo() {
 
               <div className="md:col-span-4 flex flex-col items-center justify-center text-center border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6">
                 <FlutteringNepalFlag 
-                  size="lg" 
+                  size={flagSize === 'sm' ? 'md' : 'lg'}
+                  variant={activeFlag}
                   windSpeed={windSpeed}
-                  showPole={true}
                   showGlow={true}
                 />
                 <span className="text-xs font-bold text-white mt-2 block">
