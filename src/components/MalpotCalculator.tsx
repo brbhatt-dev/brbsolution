@@ -1,601 +1,130 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Building2, 
-  Receipt, 
-  Calculator, 
-  Percent, 
-  CheckCircle2, 
-  Copy, 
-  Info, 
-  Printer, 
-  ShieldCheck, 
-  HelpCircle, 
+  FileText, 
   Coins, 
-  Sparkles,
-  ArrowRight,
-  TrendingDown,
-  UserCheck
+  Printer, 
+  Receipt, 
+  ShieldCheck, 
+  Sparkles, 
+  Zap,
+  HelpCircle,
+  Building2,
+  Scale
 } from 'lucide-react';
-import AdSenseSlot from '@/components/AdSenseSlot';
+import DolmaRegistrationRateCalculator from '@/components/DolmaRegistrationRateCalculator';
+import DolmaCgtCalculator from '@/components/DolmaCgtCalculator';
+import QuickMalpotSlipCalculator from '@/components/QuickMalpotSlipCalculator';
 
-export default function MalpotCalculator() {
-  // Inputs
-  const [propertyValue, setPropertyValue] = useState<number>(3000000);
-  const [muniType, setMuniType] = useState<'metro' | 'submetro' | 'muni' | 'rural'>('metro');
-  const [ownershipType, setOwnershipType] = useState<'general' | 'female' | 'single_female' | 'senior' | 'marginalized' | 'joint'>('general');
-  const [isMountainOrRemote, setIsMountainOrRemote] = useState<boolean>(false);
-  const [isKathmanduValley, setIsKathmanduValley] = useState<boolean>(true);
+interface MalpotCalculatorProps {
+  defaultTab?: 'reg' | 'cgt' | 'quick';
+}
 
-  // Capital Gains Tax (CGT) inputs
-  const [hasGain, setHasGain] = useState<boolean>(true);
-  const [purchasePrice, setPurchasePrice] = useState<number>(2000000);
-  const [holdingYears, setHoldingYears] = useState<'over5' | 'under5' | 'private_resident'>('over5');
+export default function MalpotCalculator({ defaultTab = 'reg' }: MalpotCalculatorProps) {
+  const [activeTab, setActiveTab] = useState<'reg' | 'cgt' | 'quick'>(defaultTab);
 
-  // Print Slip State
-  const [clientName, setClientName] = useState('');
-  const [kittaNo, setKittaNo] = useState('');
-  const [copied, setCopied] = useState(false);
-
-  // Registration Tax Rates (Provincial & Local Financial Acts 2081/82)
-  const muniRates = {
-    metro: { rate: 0.05, label: 'महानगरपालिका (५.०%)' },
-    submetro: { rate: 0.045, label: 'उप-महानगरपालिका (४.५%)' },
-    muni: { rate: 0.04, label: 'नगरपालिका (४.०%)' },
-    rural: { rate: 0.03, label: 'गाउँपालिका (३.०%)' },
-  };
-
-  const regBaseRate = muniRates[muniType].rate;
-  const grossRegFee = propertyValue * regBaseRate;
-
-  // Bagmati Civilization Development Tax (वाग्मती सभ्यता विकास कोष कर - ०.५%)
-  const bagmatiRate = isKathmanduValley ? 0.005 : 0;
-  const bagmatiFee = propertyValue * bagmatiRate;
-
-  // Rebate / Discount Calculation
-  let discountRate = 0;
-  let discountLabel = 'छुट छैन';
-
-  if (ownershipType === 'joint') {
-    discountLabel = 'दम्पती संयुक्त जग्गाधनी सहुलियत (रु. १०० मात्र)';
-  } else if (ownershipType === 'single_female') {
-    discountRate = 0.35;
-    discountLabel = 'एकल महिला (विधवा) स्वामित्व ३५% छुट';
-  } else if (ownershipType === 'female') {
-    if (isMountainOrRemote || muniType === 'rural') {
-      discountRate = 0.50;
-      discountLabel = 'दुर्गम/गाउँपालिका महिला ५०% छुट';
-    } else {
-      discountRate = 0.25;
-      discountLabel = 'महिला स्वामित्व २५% छुट';
+  // Sync tab with URL hash if present
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#cgt' || hash === '#capital-gain') {
+        setActiveTab('cgt');
+      } else if (hash === '#quick' || hash === '#slip' || hash === '#print') {
+        setActiveTab('quick');
+      } else if (hash === '#reg' || hash === '#registration') {
+        setActiveTab('reg');
+      }
     }
-  } else if (ownershipType === 'senior' || ownershipType === 'marginalized') {
-    discountRate = 0.25;
-    discountLabel = 'ज्येष्ठ नागरिक / दलित / अपाङ्गता २५% छुट';
-  }
+  }, []);
 
-  const discountAmount = ownershipType === 'joint' 
-    ? Math.max(0, grossRegFee - 100) 
-    : grossRegFee * discountRate;
-
-  const netRegFee = ownershipType === 'joint' 
-    ? 100 
-    : (grossRegFee - discountAmount);
-
-  // Capital Gains Tax (पुँजीगत लाभकर) Calculation
-  const netGain = Math.max(0, propertyValue - purchasePrice);
-  let cgtRate = 0;
-  let cgtLabel = 'छैन';
-
-  if (!hasGain || holdingYears === 'private_resident') {
-    cgtRate = 0;
-    cgtLabel = holdingYears === 'private_resident' ? '१० वर्ष बसोबास निजी घरजग्गा (पूर्ण छुट)' : 'पुँजीगत लाभ नभएको';
-  } else if (holdingYears === 'over5') {
-    cgtRate = 0.05;
-    cgtLabel = '५ वर्ष वा सोभन्दा बढी स्वामित्व (५%)';
-  } else {
-    cgtRate = 0.075;
-    cgtLabel = '५ वर्षभन्दा कम स्वामित्व (७.५%)';
-  }
-
-  const cgtAmount = netGain * cgtRate;
-
-  // Auxiliary / Administrative fees
-  const stampDocFee = 150; // लिखत फाराम तथा टिकट दस्तुर
-  const totalGovtRevenue = netRegFee + bagmatiFee + cgtAmount + stampDocFee;
-
-  const copySummary = () => {
-    const text = `--- मालपोत रजिस्ट्रेसन तथा लाभकर हिसाब विवरण ---
-थैली अङ्क (जग्गाको मूल्याङ्कन): रु. ${propertyValue.toLocaleString('en-IN')}
-स्थानीय तह: ${muniRates[muniType].label}
-स्वामित्व प्रकार: ${discountLabel}
-${isKathmanduValley ? 'काठमाडौँ उपत्यका: वाग्मती सभ्यता कर (०.५%) लागू' : ''}
----------------------------------------------
-१. कुल रजिस्ट्रेसन दस्तुर: रु. ${grossRegFee.toLocaleString('en-IN')}
-२. प्राप्त छुट रकम: - रु. ${discountAmount.toLocaleString('en-IN')}
-३. खुद रजिस्ट्रेसन राजस्व (क्रेताले तिर्ने): रु. ${netRegFee.toLocaleString('en-IN')}
-${isKathmanduValley ? `४. वाग्मती सभ्यता कर (०.५%): रु. ${bagmatiFee.toLocaleString('en-IN')}\n` : ''}५. खुद पुँजीगत लाभ: रु. ${netGain.toLocaleString('en-IN')}
-६. पुँजीगत लाभकर (CGT - बिक्रेताले तिर्ने): रु. ${cgtAmount.toLocaleString('en-IN')} (${(cgtRate * 100)}%)
-७. लिखत टिकट दस्तुर: रु. ${stampDocFee}
----------------------------------------------
-कुल सरकारी राजस्व: रु. ${totalGovtRevenue.toLocaleString('en-IN')}
-गणना मिति: ${new Date().toLocaleDateString('ne-NP')}
-मापदण्ड: आर्थिक ऐन तथा मालपोत नियमावली २०८१/८२
-स्रोत: www.brbhatta.com/tools/malpot-calculator`;
-
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
-  const handlePrint = () => {
-    window.print();
+  const handleTabChange = (tab: 'reg' | 'cgt' | 'quick') => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      const hash = tab === 'reg' ? '#registration' : tab === 'cgt' ? '#cgt' : '#quick';
+      window.history.replaceState(null, '', hash);
+    }
   };
 
   return (
-    <div className="space-y-8">
-      {/* Header Banner */}
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/70 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-xs font-bold">
-          <Receipt className="w-3.5 h-3.5 text-amber-600" />
-          <span>आर्थिक ऐन तथा मालपोत नियमावली २०८१/८२ मापदण्ड</span>
+    <div className="space-y-6">
+      {/* MASTER TOP BANNER */}
+      <div className="text-center max-w-3xl mx-auto space-y-2.5">
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-bold shadow-2xs">
+          <Receipt className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+          <span>आर्थिक ऐन तथा मालपोत नियमावली २०८१/८२ आधिकारिक मापदण्ड</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-          मालपोत रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर क्यालकुलेटर
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+          मालपोत तथा घरजग्गा कर क्यालकुलेटर
         </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          नेपालमा घरजग्गा खरिद-बिक्री गर्दा लाग्ने रजिस्ट्रेसन शुल्क, महिला छुट सहुलियत, र पुँजीगत लाभकर (CGT) को १००% सही डिजिटल हिसाब।
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          नेपालका ७ वटै प्रदेश र ७७ जिल्लाका मालपोत कार्यालयहरूको रजिष्ट्रेशन दस्तुर, रोक्का/फुकुवा, महिला छुट सहुलियत, पुँजीगत लाभकर (CGT) र आधिकारिक कर स्लिप प्रिन्ट गर्ने सम्पूर्ण डिजिटल प्रणाली।
         </p>
       </div>
 
-      {/* Main Calculator Card */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-8 shadow-sm space-y-8 no-print">
-        
-        {/* Section 1: Property Valuation & Local Category */}
-        <div className="space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2">
-            <Building2 className="w-4 h-4 text-emerald-600" />
-            <span>१. जग्गाको मूल्याङ्कन तथा स्थानीय तह छनोट (Property Details)</span>
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Property Value Input */}
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                थैली अङ्क / रजिस्ट्रेसन मूल्याङ्कन (रु.):
-              </label>
-              <div className="relative">
-                <input
-                  type="number"
-                  min="50000"
-                  step="50000"
-                  value={propertyValue}
-                  onChange={(e) => setPropertyValue(Math.max(0, Number(e.target.value)))}
-                  className="w-full pl-8 pr-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold text-sm focus:ring-2 focus:ring-emerald-500/20 focus:outline-emerald-600"
-                />
-                <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">रु</span>
-              </div>
-              <p className="text-[10px] text-slate-500 mt-1">
-                मालपोतको न्यूनतम सरकारी मूल्याङ्कन वा आपसी सहमति थैली अङ्क।
-              </p>
+      {/* MASTER 3-TAB SEGMENTED CONTROLLER */}
+      <div className="p-1.5 bg-slate-200/80 dark:bg-slate-800/90 rounded-2xl border border-slate-300 dark:border-slate-700 shadow-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 w-full">
+          
+          {/* Tab 1: Registration Fee */}
+          <button
+            type="button"
+            onClick={() => handleTabChange('reg')}
+            className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'reg'
+                ? 'bg-white dark:bg-slate-900 text-emerald-700 dark:text-emerald-400 shadow-md border border-slate-200 dark:border-slate-700'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-slate-700/40'
+            }`}
+          >
+            <FileText className={`w-4 h-4 ${activeTab === 'reg' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`} />
+            <div className="text-left sm:text-center leading-tight">
+              <span className="block">१. लिखत तथा रजिष्ट्रेशन दस्तुर</span>
+              <span className="text-[10px] font-normal opacity-80 hidden sm:block">७ प्रदेश, ७७ जिल्ला, सबै कारोबार</span>
             </div>
+          </button>
 
-            {/* Municipality Tier */}
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                स्थानीय तहको वर्ग (Municipality Tier):
-              </label>
-              <select
-                value={muniType}
-                onChange={(e) => setMuniType(e.target.value as any)}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs focus:ring-2 focus:ring-emerald-500/20 focus:outline-emerald-600"
-              >
-                <option value="metro">काठमाडौँ उपत्यका / महानगरपालिका (५.०%)</option>
-                <option value="submetro">उप-महानगरपालिका (४.५%)</option>
-                <option value="muni">नगरपालिका (४.०%)</option>
-                <option value="rural">गाउँपालिका क्षेत्र (३.०%)</option>
-              </select>
-              <p className="text-[10px] text-slate-500 mt-1">
-                आर्थिक ऐन अनुसार सम्बन्धित स्थानीय निकायमा लाग्ने आधार दर।
-              </p>
+          {/* Tab 2: Capital Gains Tax */}
+          <button
+            type="button"
+            onClick={() => handleTabChange('cgt')}
+            className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'cgt'
+                ? 'bg-white dark:bg-slate-900 text-amber-700 dark:text-amber-400 shadow-md border border-slate-200 dark:border-slate-700'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-slate-700/40'
+            }`}
+          >
+            <Coins className={`w-4 h-4 ${activeTab === 'cgt' ? 'text-amber-600 dark:text-amber-400' : 'text-slate-400'}`} />
+            <div className="text-left sm:text-center leading-tight">
+              <span className="block">२. पुँजीगत लाभकर (CGT)</span>
+              <span className="text-[10px] font-normal opacity-80 hidden sm:block">व्यक्ति/संस्था, ५ वर्ष अवधि, बहु-कारोबार</span>
             </div>
+          </button>
 
-            {/* Ownership / Rebate Category */}
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                स्वामित्व वर्ग / सहुलियत छुट:
-              </label>
-              <select
-                value={ownershipType}
-                onChange={(e) => setOwnershipType(e.target.value as any)}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs focus:ring-2 focus:ring-emerald-500/20 focus:outline-emerald-600"
-              >
-                <option value="general">सामान्य / पुरुष (कुनै छुट छैन)</option>
-                <option value="female">महिलाको एकल नाममा दर्ता (२५% - ५०% छुट)</option>
-                <option value="single_female">एकल महिला / विधवा (३५% छुट - आर्थिक ऐन)</option>
-                <option value="joint">श्रीमान्-श्रीमती संयुक्त दर्ता (रु. १०० मात्र)</option>
-                <option value="senior">ज्येष्ठ नागरिक (७० वर्ष माथि - २५% छुट)</option>
-                <option value="marginalized">दलित / अपाङ्गता / सहिद परिवार (२५% छुट)</option>
-              </select>
-              <p className="text-[10px] text-emerald-600 dark:text-emerald-400 mt-1">
-                {discountLabel}
-              </p>
+          {/* Tab 3: Quick Calculator & Printable Voucher Slip */}
+          <button
+            type="button"
+            onClick={() => handleTabChange('quick')}
+            className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'quick'
+                ? 'bg-white dark:bg-slate-900 text-indigo-700 dark:text-indigo-400 shadow-md border border-slate-200 dark:border-slate-700'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/40 dark:hover:bg-slate-700/40'
+            }`}
+          >
+            <Printer className={`w-4 h-4 ${activeTab === 'quick' ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400'}`} />
+            <div className="text-left sm:text-center leading-tight">
+              <span className="block">३. द्रुत हिसाब तथा स्लिप प्रिन्ट</span>
+              <span className="text-[10px] font-normal opacity-80 hidden sm:block">तत्काल सारांश र आधिकारिक भौचर प्रिन्ट</span>
             </div>
-          </div>
+          </button>
 
-          {/* Regional Checkboxes: Kathmandu Valley Bagmati Cess & Remote Region */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <div className="flex items-center gap-2.5 p-3 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800/60 text-xs">
-              <input
-                type="checkbox"
-                id="kathmanduValley"
-                checked={isKathmanduValley}
-                onChange={(e) => setIsKathmanduValley(e.target.checked)}
-                className="w-4 h-4 text-amber-600 rounded border-slate-300 focus:ring-amber-500 cursor-pointer"
-              />
-              <label htmlFor="kathmanduValley" className="text-amber-950 dark:text-amber-200 font-medium cursor-pointer">
-                <strong>काठमाडौँ उपत्यका</strong> (काठमाडौँ, ललितपुर, भक्तपुरमा ०.५% वाग्मती सभ्यता कोष कर लाग्ने)
-              </label>
-            </div>
-
-            {ownershipType === 'female' ? (
-              <div className="flex items-center gap-2.5 p-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800/60 text-xs">
-                <input
-                  type="checkbox"
-                  id="mountainRemote"
-                  checked={isMountainOrRemote}
-                  onChange={(e) => setIsMountainOrRemote(e.target.checked)}
-                  className="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer"
-                />
-                <label htmlFor="mountainRemote" className="text-emerald-900 dark:text-emerald-200 font-medium cursor-pointer">
-                  हिमाली/दुर्गम गाउँपालिका (महिलालाई ५०% छुट लागू हुने)
-                </label>
-              </div>
-            ) : null}
-          </div>
-        </div>
-
-        {/* Section 2: Capital Gains Tax (बिक्रेताले तिर्नुपर्ने लाभकर) */}
-        <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
-              <Coins className="w-4 h-4 text-amber-600" />
-              <span>२. पुँजीगत लाभकर हिसाब - बिक्रेता (Capital Gains Tax - Seller)</span>
-            </h2>
-            <div className="flex items-center gap-2">
-              <label className="text-xs text-slate-600 dark:text-slate-400 font-medium cursor-pointer">
-                बिक्रीमा नाफा (लाभ) भएको छ?
-              </label>
-              <input
-                type="checkbox"
-                checked={hasGain}
-                onChange={(e) => setHasGain(e.target.checked)}
-                className="w-4 h-4 text-amber-600 rounded border-slate-300 cursor-pointer"
-              />
-            </div>
-          </div>
-
-          {hasGain ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  साबिक खरिद मूल्य / आधार लागत (रु.):
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    min="0"
-                    step="50000"
-                    value={purchasePrice}
-                    onChange={(e) => setPurchasePrice(Math.max(0, Number(e.target.value)))}
-                    className="w-full pl-8 pr-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-mono font-bold text-sm focus:ring-2 focus:ring-amber-500/20 focus:outline-amber-600"
-                  />
-                  <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">रु</span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-1">
-                  जग्गा खरिद गर्दाको लिखत थैली अङ्क।
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                  स्वामित्व अवधि (Holding Duration):
-                </label>
-                <select
-                  value={holdingYears}
-                  onChange={(e) => setHoldingYears(e.target.value as any)}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-medium text-xs focus:ring-2 focus:ring-amber-500/20 focus:outline-amber-600"
-                >
-                  <option value="over5">५ वर्ष वा सोभन्दा बढी स्वामित्व (५.०% लाभकर)</option>
-                  <option value="under5">५ वर्षभन्दा कम स्वामित्व (७.५% लाभकर)</option>
-                  <option value="private_resident">निजी आवासीय घरजग्गा (१० वर्ष बसोबास - ०% कर)</option>
-                </select>
-                <p className="text-[10px] text-slate-500 mt-1">
-                  दर्ता मितिदेखि हालसम्मको जग्गाधनी प्रमाण।
-                </p>
-              </div>
-
-              <div className="p-3 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl border border-amber-200 dark:border-amber-800/60 flex flex-col justify-center">
-                <span className="text-[11px] font-bold text-amber-800 dark:text-amber-300">
-                  खुद पुँजीगत लाभ (Net Capital Gain):
-                </span>
-                <span className="text-lg font-black text-amber-900 dark:text-amber-200 font-mono">
-                  रु. {netGain.toLocaleString('en-IN')}
-                </span>
-                <span className="text-[10px] text-amber-700 dark:text-amber-400">
-                  (बिक्री मूल्य - खरिद लागत)
-                </span>
-              </div>
-            </div>
-          ) : (
-            <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs text-slate-600 dark:text-slate-300">
-              बिक्रीमा कुनै पुँजीगत नाफा नभएको खण्डमा बिक्रेताले कुनै लाभकर (CGT) तिर्नुपर्दैन।
-            </div>
-          )}
-        </div>
-
-        {/* Section 3: Summary Results Cards */}
-        <div className="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2">
-            <Receipt className="w-4 h-4 text-indigo-600" />
-            <span>३. भुक्तानी विवरण सारांश (Calculated Financial Summary)</span>
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {/* 1. Buyer's Registration Fee */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-slate-800 border border-emerald-200 dark:border-emerald-800 space-y-2">
-              <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider block">
-                क्रेता (खरिदकर्ता) ले तिर्ने
-              </span>
-              <p className="text-2xl sm:text-3xl font-black text-emerald-900 dark:text-emerald-200 font-mono">
-                रु. {netRegFee.toLocaleString('en-IN')}
-              </p>
-              <div className="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 pt-1 border-t border-emerald-200/60 dark:border-emerald-800/60">
-                <div className="flex justify-between">
-                  <span>कुल दस्तुर ({(regBaseRate * 100)}%):</span>
-                  <span className="font-mono">रु. {grossRegFee.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="flex justify-between text-emerald-700 dark:text-emerald-400 font-bold">
-                  <span>सहुलियत छुट:</span>
-                  <span className="font-mono">- रु. {discountAmount.toLocaleString('en-IN')}</span>
-                </div>
-                {isKathmanduValley && (
-                  <div className="flex justify-between text-amber-700 dark:text-amber-400 font-semibold pt-1 border-t border-dashed border-emerald-200">
-                    <span>वाग्मती सभ्यता कर (०.५%):</span>
-                    <span className="font-mono">+ रु. {bagmatiFee.toLocaleString('en-IN')}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* 2. Seller's Capital Gains Tax */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-slate-800 border border-amber-200 dark:border-amber-800 space-y-2">
-              <span className="text-xs font-bold text-amber-800 dark:text-amber-300 uppercase tracking-wider block">
-                बिक्रेताले तिर्ने (पुँजीगत लाभकर)
-              </span>
-              <p className="text-2xl sm:text-3xl font-black text-amber-900 dark:text-amber-200 font-mono">
-                रु. {cgtAmount.toLocaleString('en-IN')}
-              </p>
-              <div className="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 pt-1 border-t border-amber-200/60 dark:border-amber-800/60">
-                <div className="flex justify-between">
-                  <span>लाभकर दर:</span>
-                  <span className="font-bold">{(cgtRate * 100)}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>पुँजीगत लाभ रकम:</span>
-                  <span className="font-mono">रु. {netGain.toLocaleString('en-IN')}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 3. Total Combined Revenue */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-50 to-slate-100 dark:from-indigo-950/40 dark:to-slate-800 border border-indigo-200 dark:border-indigo-800 space-y-2">
-              <span className="text-xs font-bold text-indigo-800 dark:text-indigo-300 uppercase tracking-wider block">
-                कुल सरकारी राजस्व (Total Govt. Fee)
-              </span>
-              <p className="text-2xl sm:text-3xl font-black text-indigo-900 dark:text-indigo-200 font-mono">
-                रु. {totalGovtRevenue.toLocaleString('en-IN')}
-              </p>
-              <div className="text-[11px] text-slate-600 dark:text-slate-400 space-y-1 pt-1 border-t border-indigo-200/60 dark:border-indigo-800/60">
-                <div className="flex justify-between">
-                  <span>रजिस्ट्रेसन + लाभकर:</span>
-                  <span className="font-mono">रु. {(netRegFee + cgtAmount).toLocaleString('en-IN')}</span>
-                </div>
-                {isKathmanduValley && (
-                  <div className="flex justify-between text-amber-700 dark:text-amber-400">
-                    <span>वाग्मती सभ्यता कर (०.५%):</span>
-                    <span className="font-mono">रु. {bagmatiFee.toLocaleString('en-IN')}</span>
-                  </div>
-                )}
-                <div className="flex justify-between">
-                  <span>लिखत फाराम/टिकट:</span>
-                  <span className="font-mono">रु. {stampDocFee}</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Action Buttons: Print Land Slip & Copy Summary */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all active:scale-95 shadow-xs cursor-pointer"
-            >
-              <Printer className="w-4 h-4" />
-              <span>कर स्लिप प्रिन्ट गर्नुहोस् (Print Tax Slip)</span>
-            </button>
-
-            <button
-              onClick={copySummary}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold transition-all active:scale-95 shadow-xs cursor-pointer"
-            >
-              {copied ? (
-                <>
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>विवरण कपी भयो!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 text-slate-300" />
-                  <span>हिसाब कपी गर्नुहोस् (Copy Summary)</span>
-                </>
-              )}
-            </button>
-          </div>
-
-          <span className="text-[11px] text-slate-500">
-            * आर्थिक ऐन २०८१/८२ तथा सम्बन्धित प्रदेश/स्थानीय आर्थिक ऐन अनुसार।
-          </span>
-        </div>
-
-      </div>
-
-      {/* PRINT-ONLY FORMAL TAX CALCULATION SLIP */}
-      <div 
-        id="printable-land-slip"
-        className="hidden print:block p-8 bg-white text-slate-900 border border-slate-300 rounded-xl space-y-6 font-sans mx-auto max-w-[210mm]"
-      >
-        <div className="border-b-2 border-emerald-800 pb-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-black text-emerald-900">LAND SOLUTION</h1>
-            <p className="text-xs text-slate-600">घरजग्गा रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर आधिकारिक स्लिप</p>
-            <p className="text-[10px] text-slate-500">नेपाल डिजिटल घरजग्गा रजिस्ट्रेसन तथा मालपोत कर हिसाब प्रणाली</p>
-          </div>
-          <div className="text-right text-xs">
-            <p className="font-bold text-slate-800">मिति: {new Date().toLocaleDateString('ne-NP')}</p>
-            <p className="text-[10px] text-slate-500">स्लिप नं: LS-TAX-{Math.floor(100000 + Math.random() * 900000)}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 text-xs bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <div>
-            <span className="text-slate-500 block text-[10px]">थैली अङ्क (जग्गाको मूल्याङ्कन):</span>
-            <span className="font-bold text-slate-900 text-sm">रु. {propertyValue.toLocaleString('en-IN')}</span>
-          </div>
-          <div>
-            <span className="text-slate-500 block text-[10px]">स्थानीय तह वर्ग:</span>
-            <span className="font-bold text-slate-900 text-sm">{muniRates[muniType].label} {isKathmanduValley ? '(काठमाडौँ उपत्यका)' : ''}</span>
-          </div>
-          <div>
-            <span className="text-slate-500 block text-[10px]">स्वामित्व सहुलियत:</span>
-            <span className="font-bold text-slate-900 text-sm">{discountLabel}</span>
-          </div>
-          <div>
-            <span className="text-slate-500 block text-[10px]">पुँजीगत लाभकर दर:</span>
-            <span className="font-bold text-slate-900 text-sm">{cgtLabel}</span>
-          </div>
-        </div>
-
-        <table className="w-full text-xs text-left border border-slate-200 rounded-lg overflow-hidden">
-          <thead className="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
-            <tr>
-              <th className="py-2 px-3">विवरण</th>
-              <th className="py-2 px-3">दर / प्रतिशत</th>
-              <th className="py-2 px-3 text-right">रकम (रु.)</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-200">
-            <tr>
-              <td className="py-2 px-3">कुल रजिस्ट्रेसन दस्तुर</td>
-              <td className="py-2 px-3">{(regBaseRate * 100)}%</td>
-              <td className="py-2 px-3 text-right font-mono">रु. {grossRegFee.toLocaleString('en-IN')}</td>
-            </tr>
-            <tr>
-              <td className="py-2 px-3 text-emerald-800">सहुलियत छुट</td>
-              <td className="py-2 px-3 text-emerald-800 font-semibold">{discountLabel}</td>
-              <td className="py-2 px-3 text-right font-mono text-emerald-800">- रु. {discountAmount.toLocaleString('en-IN')}</td>
-            </tr>
-            <tr className="bg-slate-50 font-bold">
-              <td className="py-2 px-3 text-slate-900">खुद रजिस्ट्रेसन राजस्व (क्रेता)</td>
-              <td className="py-2 px-3">—</td>
-              <td className="py-2 px-3 text-right font-mono">रु. {netRegFee.toLocaleString('en-IN')}</td>
-            </tr>
-            {isKathmanduValley && (
-              <tr>
-                <td className="py-2 px-3 text-amber-900">वाग्मती सभ्यता विकास कोष कर</td>
-                <td className="py-2 px-3">०.५%</td>
-                <td className="py-2 px-3 text-right font-mono text-amber-900">रु. {bagmatiFee.toLocaleString('en-IN')}</td>
-              </tr>
-            )}
-            <tr>
-              <td className="py-2 px-3">पुँजीगत लाभकर (CGT - बिक्रेता)</td>
-              <td className="py-2 px-3">{(cgtRate * 100)}%</td>
-              <td className="py-2 px-3 text-right font-mono">रु. {cgtAmount.toLocaleString('en-IN')}</td>
-            </tr>
-            <tr>
-              <td className="py-2 px-3">लिखत फाराम तथा टिकट</td>
-              <td className="py-2 px-3">नियम अनुसार</td>
-              <td className="py-2 px-3 text-right font-mono">रु. {stampDocFee}</td>
-            </tr>
-            <tr className="bg-emerald-50 text-emerald-950 font-black text-sm">
-              <td className="py-2.5 px-3">कुल सरकारी राजस्व भुक्तानी</td>
-              <td className="py-2.5 px-3">—</td>
-              <td className="py-2.5 px-3 text-right font-mono">रु. {totalGovtRevenue.toLocaleString('en-IN')}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div className="pt-10 grid grid-cols-2 gap-8 text-xs text-center border-t border-slate-200">
-          <div>
-            <div className="w-36 border-b border-slate-400 mx-auto mb-2"></div>
-            <p className="font-bold">तयार गर्ने / लेखापढी व्यवसायी</p>
-          </div>
-          <div>
-            <div className="w-36 border-b border-slate-400 mx-auto mb-2"></div>
-            <p className="font-bold">जग्गाधनी / खरिदकर्ता</p>
-          </div>
-        </div>
-
-        <div className="text-center text-[9px] text-slate-400 pt-2 border-t border-slate-100 flex items-center justify-between">
-          <span>Land Solution • नेपाल डिजिटल घरजग्गा कर तथा रजिस्ट्रेसन प्रणाली</span>
-          <span>Official Registration Tax Slip</span>
         </div>
       </div>
 
-      {/* In-feed AdSense Slot */}
-      <AdSenseSlot userFacingLabel="विज्ञापन (AdSense Slot)" />
-
-      {/* Educational Guide on Malpot Fees */}
-      <div className="p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 text-xs sm:text-sm">
-        <h3 className="font-extrabold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
-          <Info className="w-5 h-5 text-emerald-600" />
-          <span>नेपालमा घरजग्गा रजिस्ट्रेसन तथा लाभकर सम्बन्धी मुख्य कानुनी व्यवस्थाहरू</span>
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
-            <h4 className="font-bold text-slate-900 dark:text-white">महिला स्वामित्व छुट (२५% देखि ५०%):</h4>
-            <p>
-              महिलाको नाममा मात्र जग्गा खरिद गरी रजिस्ट्रेसन पारित गर्दा सम्बन्धित प्रदेश आर्थिक ऐन अनुसार रजिस्ट्रेसन शुल्कमा २५% छुट पाइन्छ। हिमाली वा दुर्गम गाउँपालिकामा यो छुट ५०% सम्म हुन सक्छ।
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
-            <h4 className="font-bold text-slate-900 dark:text-white">दम्पती संयुक्त जग्गाधनी (रु. १०० शुल्क):</h4>
-            <p>
-              कुनै एक श्रीमान् वा श्रीमतीको नाममा रहेको जग्गामा दुवैजनालाई संयुक्त जग्गाधनी कायम गर्न नामसारी गर्दा वा संयुक्त लिखत गर्दा सरकारले प्रोत्साहन स्वरूप मात्र रु. १०० को टोकन शुल्क लिने गर्दछ।
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
-            <h4 className="font-bold text-slate-900 dark:text-white">पुँजीगत लाभकर (CGT ५% र ७.५%):</h4>
-            <p>
-              बिक्रेताले जग्गा बेच्दा साबिक खरिद मूल्यभन्दा बढीमा बेचेको खुद मुनाफामा ५ वर्षभन्दा बढी स्वामित्व भए ५% र ५ वर्षभन्दा कम स्वामित्व भए ७.५% पुँजीगत लाभकर मालपोत कार्यालयमा बुझाउनुपर्छ।
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-1.5">
-            <h4 className="font-bold text-slate-900 dark:text-white">निजी आवासीय घरजग्गा कर छुट:</h4>
-            <p>
-              यदि कुनै प्राकृतिक व्यक्तिले कम्तीमा १० वर्षदेखि बसोबास गरेको १ रोपनी (काठमाडौँ उपत्यका) वा १० कट्ठा (तराई) सम्मको निजी आवास बिक्री गर्दा पुँजीगत लाभकर पूर्ण छुट हुन्छ।
-            </p>
-          </div>
-        </div>
+      {/* RENDER THE ACTIVE TOOL TAB */}
+      <div className="transition-all duration-200">
+        {activeTab === 'reg' && <DolmaRegistrationRateCalculator />}
+        {activeTab === 'cgt' && <DolmaCgtCalculator />}
+        {activeTab === 'quick' && <QuickMalpotSlipCalculator />}
       </div>
     </div>
   );
