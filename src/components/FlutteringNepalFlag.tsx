@@ -22,117 +22,126 @@ export default function FlutteringNepalFlag({
   // Speed configs
   const speedDurations = {
     gentle: '3.2s',
-    normal: '2.1s',
+    normal: '2.0s',
     strong: '1.2s',
   };
 
-  const currentDuration = isHovered ? '0.9s' : speedDurations[windSpeed];
+  const currentDuration = isHovered ? '0.8s' : speedDurations[windSpeed];
 
-  // Scale configs based on size
+  // Scale configs based on size (Nepal Flag aspect ratio width:height = ~71.5:87.2)
   const sizeStyles = {
-    sm: { width: 90, height: 115, poleHeight: 135, poleWidth: 4, knobSize: 10 },
-    md: { width: 140, height: 180, poleHeight: 205, poleWidth: 5, knobSize: 13 },
-    lg: { width: 190, height: 245, poleHeight: 275, poleWidth: 6, knobSize: 16 },
-    xl: { width: 240, height: 310, poleHeight: 345, poleWidth: 7, knobSize: 19 },
+    sm: { width: 95, height: 116, poleHeight: 140, poleWidth: 4, knobSize: 10 },
+    md: { width: 135, height: 165, poleHeight: 195, poleWidth: 5, knobSize: 13 },
+    lg: { width: 185, height: 226, poleHeight: 260, poleWidth: 6, knobSize: 16 },
+    xl: { width: 235, height: 287, poleHeight: 330, poleWidth: 7, knobSize: 20 },
   };
 
   const s = sizeStyles[size];
 
   return (
     <div 
-      className={`relative inline-flex items-end select-none ${className}`}
+      className={`relative inline-flex items-stretch select-none ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       title="नेपालको राष्ट्रिय झण्डा (फरर्र फहराएको)"
     >
-      {/* Flagpole (if enabled) */}
+      {/* Metallic Flagpole on the Left */}
       {showPole && (
-        <div className="relative shrink-0 flex flex-col items-center z-20">
-          {/* Golden Finial (Knob) */}
+        <div className="relative shrink-0 flex flex-col items-center z-20 mr-[-2px]">
+          {/* Golden Finial Knob */}
           <div 
             style={{ width: s.knobSize, height: s.knobSize }}
-            className="rounded-full bg-gradient-to-tr from-amber-600 via-yellow-300 to-amber-200 shadow-md border border-amber-400"
+            className="rounded-full bg-gradient-to-tr from-amber-600 via-yellow-300 to-amber-200 shadow-md border border-amber-300 shrink-0"
           />
-          {/* Metallic Silver/Steel Pole */}
+          {/* Metallic Silver Pole */}
           <div 
-            style={{ width: s.poleWidth, height: s.poleHeight }}
-            className="bg-gradient-to-r from-slate-400 via-slate-200 to-slate-400 shadow-sm rounded-b-sm relative"
+            style={{ width: s.poleWidth, minHeight: s.poleHeight }}
+            className="flex-grow bg-gradient-to-r from-slate-400 via-slate-100 to-slate-400 shadow-sm relative rounded-b-xs"
           >
-            {/* Cord ties / rings */}
-            <div className="absolute top-2 left-0 right-0 h-1 bg-amber-400/80 rounded-xs" />
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-amber-400/80 rounded-xs" />
-            <div className="absolute bottom-4 left-0 right-0 h-1 bg-amber-400/80 rounded-xs" />
+            {/* Cord ties / rings at top, middle, and bottom of flag */}
+            <div className="absolute top-2 left-0 right-0 h-1 bg-amber-400/90 rounded-xs" />
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-amber-400/90 rounded-xs" />
+            <div className="absolute bottom-2 left-0 right-0 h-1 bg-amber-400/90 rounded-xs" />
           </div>
           {/* Base Stand */}
-          <div className="w-5 h-2 bg-gradient-to-t from-slate-700 to-slate-500 rounded-t-sm shadow-xs -mt-1" />
+          <div className="w-6 h-2 bg-gradient-to-t from-slate-700 to-slate-500 rounded-t-sm shadow-xs shrink-0 -mt-0.5" />
         </div>
       )}
 
       {/* Flag Canvas Wrapper with 3D Flutter and Wave Animation */}
       <div 
-        className="relative flag-wave-container z-10"
+        className="relative z-10 self-start mt-2"
         style={{
           width: s.width,
           height: s.height,
           transformOrigin: 'left center',
           animation: `flagFlutter ${currentDuration} ease-in-out infinite alternate`,
-          filter: showGlow ? 'drop-shadow(0 8px 16px rgba(220, 20, 60, 0.28))' : 'none',
+          filter: showGlow ? 'drop-shadow(0 10px 20px rgba(220, 20, 60, 0.4))' : 'none',
         }}
       >
-        {/* Crisp Mathematical Vector Nepal Flag */}
+        {/* Exact Official Constitution SVG Flag of Nepal */}
         <svg
-          viewBox="0 0 395 505"
-          className="w-full h-full block overflow-visible"
           xmlns="http://www.w3.org/2000/svg"
+          viewBox="-17.582 -4.664 71.571 87.246"
+          className="w-full h-full block drop-shadow-sm select-none pointer-events-none"
+          style={{ overflow: 'visible' }}
         >
-          <defs>
-            {/* Silk cloth gradient shimmer */}
-            <linearGradient id="silkSheen" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#DC143C" />
-              <stop offset="35%" stopColor="#FF2E56" />
-              <stop offset="70%" stopColor="#C40E32" />
-              <stop offset="100%" stopColor="#E61943" />
-            </linearGradient>
+          {/* Official Flag Body: Crimson Red with Royal Navy Blue Border */}
+          <path 
+            d="M -15,37.5735931288 h 60 L -15,0 v 80 h 60 L -15,20 z" 
+            stroke="#003893" 
+            strokeWidth="5.165" 
+            strokeLinejoin="round" 
+            fill="#DC143C" 
+          />
 
-            {/* Deep Royal Blue Border */}
-            <linearGradient id="blueBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#003893" />
-              <stop offset="50%" stopColor="#002266" />
-              <stop offset="100%" stopColor="#001440" />
-            </linearGradient>
+          <defs>
+            <path id="np_b" d="M 0.195090322016,-0.980785280403 L 0,-1.388784109750 L -0.195090322016,-0.980785280403" transform="rotate(11.25)" />
+            <path id="np_e" d="M 0.258819045103,0.965925826289 L 0,1.576749285537 L -0.258819045103,0.965925826289" />
           </defs>
 
-          {/* Double-Pennant Body with Deep Blue Border */}
-          <path
-            fill="url(#silkSheen)"
-            stroke="url(#blueBorderGrad)"
-            strokeWidth="15"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            d="M 10 495 L 380 495 L 140 245 L 380 245 L 10 10 Z"
-          />
+          {/* Pure White Emblems */}
+          <g fill="#FFFFFF">
+            {/* Upper Moon Crescent */}
+            <path d="M -11.9502769431,23.4834957055 A 12.8400974233,12.8400974233 0 0,0 11.9502769431,23.4834957055 A 11.9502769431 11.9502769431 0 0,1 -11.9502769431,23.4834957055" />
+            
+            {/* Upper Moon Rays (8 Rays) */}
+            <g transform="translate(0 29.045) scale(5.56106)">
+              <circle r="1" />
+              <use href="#np_b" xlinkHref="#np_b" />
+              <use href="#np_b" xlinkHref="#np_b" transform="rotate(22.5)" />
+              <use href="#np_b" xlinkHref="#np_b" transform="rotate(45)" />
+              <use href="#np_b" xlinkHref="#np_b" transform="rotate(67.5)" />
+              <use href="#np_b" xlinkHref="#np_b" transform="scale(-1 1)" />
+              <use href="#np_b" xlinkHref="#np_b" transform="scale(-1 1) rotate(22.5)" />
+              <use href="#np_b" xlinkHref="#np_b" transform="scale(-1 1) rotate(45)" />
+              <use href="#np_b" xlinkHref="#np_b" transform="scale(-1 1) rotate(67.5)" />
+            </g>
 
-          {/* Pure White Emblems: Crescent Moon with 8-ray Sun & 12-ray Sun */}
-          {/* Upper Crescent Moon with 8 rays */}
-          <path
-            fill="#FFFFFF"
-            d="m 180.7 355.8 l -27 9 l 21.2 19.8 l -28.5 -1.8 l 11.7 26.2 l -25.5 -12.3 l 0.5 28.6 l -18.8 -20.9 l -10.7 26.6 l -9.2 -26.3 l -20.3 20.6 l 1.8 -27.7 L 49 409 l 12.6 -25 l -29.3 0.6 l 21.5 -18.3 l -27.3 -10.5 l 27 -9 L 32.2 327 l 28.4 1.8 L 49 302.6 l 25.6 12.3 l -0.5 -28.6 l 18.8 20.9 l 10.7 -26.6 l 9.1 26.3 l 20.4 -20.6 l -1.9 27.7 l 27 -11.4 l -12.7 25 l 29.4 -0.6 l -21.5 18.3 z"
-            transform="scale(0.85) translate(40, -110)"
-          />
-
-          {/* Lower 12-pointed Sun */}
-          <path
-            fill="#FFFFFF"
-            d="m 180.7 355.8 l -27 9 l 21.2 19.8 l -28.5 -1.8 l 11.7 26.2 l -25.5 -12.3 l 0.5 28.6 l -18.8 -20.9 l -10.7 26.6 l -9.2 -26.3 l -20.3 20.6 l 1.8 -27.7 L 49 409 l 12.6 -25 l -29.3 0.6 l 21.5 -18.3 l -27.3 -10.5 l 27 -9 L 32.2 327 l 28.4 1.8 L 49 302.6 l 25.6 12.3 l -0.5 -28.6 l 18.8 20.9 l 10.7 -26.6 l 9.1 26.3 l 20.4 -20.6 l -1.9 27.7 l 27 -11.4 l -12.7 25 l 29.4 -0.6 l -21.5 18.3 z"
-            transform="scale(0.7) translate(30, 200)"
-          />
+            {/* Lower 12-Ray Sun */}
+            <g transform="matrix(8.1434 0 0 8.1434 0 58.787)">
+              <circle r="1" />
+              <use href="#np_e" xlinkHref="#np_e" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(30)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(60)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(90)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(120)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(150)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(180)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(210)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(240)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(270)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(300)" />
+              <use href="#np_e" xlinkHref="#np_e" transform="rotate(330)" />
+            </g>
+          </g>
         </svg>
 
         {/* Dynamic Light Ripple Sheen (Simulating flowing wind waves on cloth) */}
         <div 
-          className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-70"
+          className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-60"
           style={{
-            background: 'linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.45) 45%, rgba(0,0,0,0.35) 60%, transparent 85%)',
+            background: 'linear-gradient(110deg, transparent 15%, rgba(255,255,255,0.45) 45%, rgba(0,0,0,0.3) 60%, transparent 85%)',
             backgroundSize: '200% 100%',
             animation: `clothRipple ${currentDuration} linear infinite`,
           }}
@@ -140,7 +149,8 @@ export default function FlutteringNepalFlag({
 
         {/* Subtle Wind Breeze Trails */}
         <div className="absolute -right-3 top-8 w-6 h-0.5 bg-white/40 rounded-full blur-[0.5px] animate-pulse pointer-events-none" />
-        <div className="absolute -right-5 top-24 w-8 h-0.5 bg-white/30 rounded-full blur-[0.5px] animate-pulse pointer-events-none" style={{ animationDelay: '0.4s' }} />
+        <div className="absolute -right-5 top-20 w-8 h-0.5 bg-white/30 rounded-full blur-[0.5px] animate-pulse pointer-events-none" style={{ animationDelay: '0.4s' }} />
+        <div className="absolute -right-4 bottom-6 w-5 h-0.5 bg-white/30 rounded-full blur-[0.5px] animate-pulse pointer-events-none" style={{ animationDelay: '0.8s' }} />
       </div>
     </div>
   );
