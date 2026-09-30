@@ -11,8 +11,8 @@ export default function DolmaTestTabs() {
   return (
     <div className="space-y-6">
       {/* Tab Switcher Navigation */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-1.5 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl border border-slate-300/60 dark:border-slate-700/60">
-        <div className="grid grid-cols-2 gap-1.5 w-full sm:w-auto">
+      <div className="p-1.5 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl border border-slate-300/60 dark:border-slate-700/60">
+        <div className="grid grid-cols-2 gap-1.5 w-full">
           <button
             type="button"
             onClick={() => setActiveTab('reg')}
@@ -38,12 +38,6 @@ export default function DolmaTestTabs() {
             <Coins className="w-4 h-4" />
             <span>पुँजीगत लाभकर (CGT) क्यालकुलेटर</span>
           </button>
-        </div>
-
-        {/* BR Bhatta in-house badge */}
-        <div className="hidden sm:flex items-center gap-2 px-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>BR Bhatta | Land Tax System</span>
         </div>
       </div>
 

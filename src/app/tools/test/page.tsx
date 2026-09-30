@@ -33,10 +33,6 @@ export default function TaxCalculatorPage() {
             <span>/</span>
             <span className="text-slate-800 dark:text-slate-200">कर क्यालकुलेटर (Tax Calculator)</span>
           </div>
-
-          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-            <span>BR Bhatta Calculator</span>
-          </div>
         </div>
 
         {/* The Exact Registration Rate & CGT Tabs Component */}
