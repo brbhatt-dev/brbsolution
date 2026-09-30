@@ -18,7 +18,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Land Solution - Real Estate, Land Area Calculation, Civil Engineering & 2D/3D Architectural Blueprints">
   <meta name="theme-color" content="#0F172A">
 
@@ -116,13 +116,53 @@
   </div>
 
   <script>
-    window.addEventListener('flutter-first-frame', function () {
-      var loader = document.getElementById('loading-container');
-      if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(function() { loader.remove(); }, 400);
+    (function () {
+      // 1. Safely unregister any legacy service workers without reloading
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (var i = 0; i < registrations.length; i++) {
+            registrations[i].unregister().catch(function () {});
+          }
+        }).catch(function () {});
       }
-    });
+
+      var dismissed = false;
+      function dismissLoader() {
+        if (dismissed) return;
+        dismissed = true;
+        var loader = document.getElementById('loading-container');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(function () {
+            if (loader && loader.parentNode) {
+              loader.parentNode.removeChild(loader);
+            }
+          }, 400);
+        }
+      }
+
+      // Event 1: Normal Flutter first frame event
+      window.addEventListener('flutter-first-frame', dismissLoader);
+
+      // Event 2: DOM MutationObserver to catch Flutter UI mount
+      // (Protects against 120Hz ProMotion screens where first-frame event timing may be skipped)
+      if (window.MutationObserver) {
+        var observer = new MutationObserver(function () {
+          var flutterHost = document.querySelector('flutter-view, flt-glass-pane, flt-scene-host, canvas');
+          if (flutterHost) {
+            setTimeout(dismissLoader, 350);
+            observer.disconnect();
+          }
+        });
+        if (document.body) {
+          observer.observe(document.body, { childList: true, subtree: true });
+        }
+      }
+
+      // Event 3: Hard safety fallback timeout (3.5s)
+      // Ensures user is never trapped by a frozen loading screen
+      setTimeout(dismissLoader, 3500);
+    })();
   </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
