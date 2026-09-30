@@ -65,16 +65,11 @@ export default function FlutteringNepalFlag({
   };
 
   if (variant === 'land-solution') {
-    const scaleMap = {
-      sm: 1.0,
-      md: 1.5,
-      lg: 2.1,
-      xl: 2.8,
-    };
-    const speedMap = {
-      gentle: 2400,
-      normal: 1600, // Land Solution Flutter app duration (patro_dashboard_widget.dart)
-      strong: 1100,
+    const heightMap = {
+      sm: 'h-16',
+      md: 'h-28 sm:h-36',
+      lg: 'h-44 sm:h-52',
+      xl: 'h-60 sm:h-72',
     };
 
     return (
@@ -82,12 +77,16 @@ export default function FlutteringNepalFlag({
         className={`relative inline-flex items-center justify-center select-none ${className}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        title="हाम्रो ल्याण्ड सोलुसन एपको आधिकारिक फरर्र फहराएको झण्डा 🇳🇵"
+        title="नेपालको राष्ट्रिय झण्डा (फरर्र फहराएको) 🇳🇵"
       >
-        <LandSolutionWavingFlag 
-          scale={scaleMap[size]}
-          speed={isHovered ? 850 : speedMap[windSpeed]}
-          className={showGlow ? 'filter drop-shadow-[0_10px_22px_rgba(220,20,60,0.35)]' : ''}
+        <img 
+          src="/nepal_flag.gif" 
+          alt="नेपालको राष्ट्रिय झण्डा"
+          width={249}
+          height={338}
+          className={`${heightMap[size]} w-auto object-contain select-none pointer-events-none transition-transform duration-300 ${
+            isHovered ? 'scale-105' : 'scale-100'
+          } ${showGlow ? 'filter drop-shadow-[0_12px_24px_rgba(220,20,60,0.45)]' : ''}`}
         />
       </div>
     );

@@ -204,9 +204,9 @@ export default function PatroWithFlagDemo() {
             {/* Subtle glow inside card */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-red-600/10 rounded-full blur-2xl pointer-events-none" />
 
-            {/* Exact Waving Flag (width: 30, height: 44 in Flutter app) */}
+            {/* Exact Waving Flag */}
             <div className="shrink-0 flex items-center justify-center pl-1">
-              <LandSolutionWavingFlag width={34} height={50} scale={1.0} speed={1600} />
+              <img src="/nepal_flag.gif" alt="Nepal Flag" className="h-12 w-auto object-contain select-none" />
             </div>
 
             {/* Date & Time Column matching Flutter styling */}

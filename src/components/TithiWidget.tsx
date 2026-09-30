@@ -120,12 +120,14 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                 </span>
               </div>
 
-              {/* Centerpiece: Land Solution Waving Nepal Flag */}
-              <div className="relative z-10 flex items-center justify-center py-1">
-                <LandSolutionWavingFlag 
-                  scale={1.3}
-                  speed={1600}
-                  className="filter drop-shadow-[0_10px_22px_rgba(220,20,60,0.35)]"
+              {/* Centerpiece: Official Animated Nepal Flag GIF */}
+              <div className="relative z-10 flex items-center justify-center py-1 sm:py-2">
+                <img 
+                  src="/nepal_flag.gif" 
+                  alt="नेपालको राष्ट्रिय झण्डा"
+                  width={249}
+                  height={338}
+                  className="h-28 sm:h-36 w-auto object-contain select-none pointer-events-none filter drop-shadow-[0_12px_26px_rgba(220,20,60,0.45)] transition-transform duration-300 hover:scale-105"
                 />
               </div>
 
