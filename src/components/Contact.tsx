@@ -28,7 +28,7 @@ export default function Contact() {
     setErrorMessage('');
 
     try {
-      const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+      const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || '276bc8b9-2f47-41d4-a1dd-5c2ced198ab6';
 
       let response: Response;
       if (web3FormsKey) {
@@ -42,10 +42,10 @@ export default function Contact() {
             access_key: web3FormsKey,
             name: formData.name,
             phone: formData.contact,
+            service: formData.service,
             subject: `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
-            topic: formData.service,
             message: formData.message,
-            from_name: 'BR Bhatta Website Contact Form',
+            from_name: `${formData.name} (BR Bhatta Website)`,
           }),
         });
       } else {
