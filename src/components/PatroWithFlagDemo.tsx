@@ -20,6 +20,7 @@ import {
 import { getNepaliCalendarDetails, NepaliCalendarDetails } from '@/lib/nepaliDate';
 import UpcomingFestivalsBar from './UpcomingFestivalsBar';
 import FlutteringNepalFlag, { NepalFlagVariant } from './FlutteringNepalFlag';
+import LandSolutionWavingFlag from './LandSolutionWavingFlag';
 
 interface FlagOptionItem {
   id: NepalFlagVariant;
@@ -32,16 +33,24 @@ interface FlagOptionItem {
 
 const FLAG_OPTIONS: FlagOptionItem[] = [
   {
+    id: 'land-solution',
+    name: '⭐ ल्याण्ड सोलुसन एपको झण्डा (Land Solution Canvas)',
+    subtitle: 'Flutter patro_dashboard_widget.dart म्याथ',
+    tag: 'हाम्रो एपको आधिकारिक 🇳🇵',
+    badgeColor: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
+    description: 'हाम्रो ल्याण्ड सोलुसन मोबाइल एपमा भएको झण्डाको exact harmonic wave physics, सुनौलो खम्बा, र dynamic cloth sheen।',
+  },
+  {
     id: 'classic',
-    name: '१. क्लासिक फरर्र झण्डा (Classic)',
+    name: '२. क्लासिक फरर्र झण्डा (Classic)',
     subtitle: 'सिल्भर खम्बा + सुनौलो टुप्पो',
-    tag: 'सर्वाधिक लोकप्रिय',
+    tag: 'लोकप्रिय ३D',
     badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
     description: 'धातुको स्टिल खम्बामा सुनौलो गजुर, गोल्डेन डोरी र प्राकृतिक ३D फरर्र कपडाको लहर।',
   },
   {
     id: 'royal-gold',
-    name: '२. शाही स्वर्ण स्तम्भ (Royal Gold)',
+    name: '३. शाही स्वर्ण स्तम्भ (Royal Gold)',
     subtitle: 'स्वर्ण खम्बा + लाल मणि गजुर',
     tag: 'प्रिमियम लक्जरी',
     badgeColor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
@@ -49,15 +58,15 @@ const FLAG_OPTIONS: FlagOptionItem[] = [
   },
   {
     id: 'floating',
-    name: '३. हावामा तैरिएको (Free Floating)',
+    name: '४. हावामा तैरिएको (Free Floating)',
     subtitle: 'खम्बा बिना स्वच्छ रेशम',
-    tag: 'आधुनिक न्यूनतम (Clean)',
+    tag: 'आधुनिक न्यूनतम',
     badgeColor: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20',
     description: 'खम्बा बिना सिधै हावाको सिरेटोमा मडारिएर तैरिने शुद्ध रेशमी झण्डा—आधुनिक इन्टरफेसका लागि उपयुक्त।',
   },
   {
     id: 'himalayan',
-    name: '४. सगरमाथा सिरेटो (Himalayan Peak)',
+    name: '५. सगरमाथा सिरेटो (Himalayan Peak)',
     subtitle: 'हिमशिखर पृष्ठभूमि + चिसो हावा',
     tag: 'राष्ट्रिय स्वाभिमान',
     badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
@@ -65,7 +74,7 @@ const FLAG_OPTIONS: FlagOptionItem[] = [
   },
   {
     id: 'glow',
-    name: '५. नियन दिव्य आभा (Neon Glow)',
+    name: '६. नियन दिव्य आभा (Neon Glow)',
     subtitle: 'रातो-नीलो चहकिलो ज्योति',
     tag: 'चहकिलो डिजिटल',
     badgeColor: 'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
@@ -76,7 +85,7 @@ const FLAG_OPTIONS: FlagOptionItem[] = [
 export default function PatroWithFlagDemo() {
   const [details, setDetails] = useState<NepaliCalendarDetails>(() => getNepaliCalendarDetails(new Date()));
   const [liveTime, setLiveTime] = useState<string>('लाइभ समय...');
-  const [activeFlag, setActiveFlag] = useState<NepalFlagVariant>('classic');
+  const [activeFlag, setActiveFlag] = useState<NepalFlagVariant>('land-solution');
   const [windSpeed, setWindSpeed] = useState<'gentle' | 'normal' | 'strong'>('strong');
   const [flagSize, setFlagSize] = useState<'sm' | 'md' | 'lg'>('md');
   const [selectedDemo, setSelectedDemo] = useState<'option1' | 'option2' | 'option3'>('option1');
@@ -104,7 +113,7 @@ export default function PatroWithFlagDemo() {
             <div className="flex items-center gap-2">
               <span className="p-1 rounded-lg bg-red-600 text-white font-bold text-xs">🇳🇵</span>
               <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                नेपालको झण्डाका ५ वटा फरक विकल्पहरू (Flag Options Gallery)
+                नेपालको झण्डाका ६ वटा फरक विकल्पहरू (Flag Options Gallery)
               </h2>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -118,8 +127,8 @@ export default function PatroWithFlagDemo() {
           </div>
         </div>
 
-        {/* 5 Flag Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        {/* 6 Flag Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
           {FLAG_OPTIONS.map((opt) => {
             const isSelected = activeFlag === opt.id;
             return (
@@ -168,6 +177,78 @@ export default function PatroWithFlagDemo() {
               </button>
             );
           })}
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* LAND SOLUTION APP EXACT WIDGET REPLICA                           */}
+      {/* ================================================================ */}
+      <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-[#0d111a] via-[#141720] to-[#0d111a] border border-emerald-500/30 shadow-xl space-y-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+          <div className="flex items-center gap-2">
+            <span className="p-1 rounded-lg bg-emerald-600 text-white font-bold text-xs">📱</span>
+            <h3 className="text-sm font-black text-white flex items-center gap-1.5">
+              <span>हाम्रो &quot;ल्याण्ड सोलुसन&quot; Flutter मोबाइल एपको वास्तविक विजेट</span>
+              <span className="text-emerald-400 font-mono text-xs">(Exact In-App Widget)</span>
+            </h3>
+          </div>
+          <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30 self-start sm:self-auto">
+            patro_dashboard_widget.dart बाट १००% क्यानभास म्याथ
+          </span>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center justify-around gap-6 py-2">
+          {/* Exact Replica Card matching Land Solution Flutter patro_dashboard_widget.dart */}
+          <div className="w-full max-w-sm rounded-2xl bg-[#141720] border border-[#222530] p-3 sm:p-4 shadow-2xl flex items-center gap-3 relative overflow-hidden group hover:border-emerald-500/50 transition-colors">
+            
+            {/* Subtle glow inside card */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-red-600/10 rounded-full blur-2xl pointer-events-none" />
+
+            {/* Exact Waving Flag (width: 30, height: 44 in Flutter app) */}
+            <div className="shrink-0 flex items-center justify-center pl-1">
+              <LandSolutionWavingFlag width={34} height={50} scale={1.0} speed={1600} />
+            </div>
+
+            {/* Date & Time Column matching Flutter styling */}
+            <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5 space-y-1">
+              {/* 1. Live Time (Outfit bold) */}
+              <div className="text-[15px] font-extrabold text-white font-mono tracking-wide leading-none">
+                {liveTime}
+              </div>
+
+              {/* 2. BS Date (Royal Blue with Martel font) */}
+              <div className="text-[13px] font-bold text-[#60A5FA] tracking-tight leading-snug">
+                {details.bsYear} {details.bsMonthName} {details.bsDate} गते, {details.dayName}
+              </div>
+
+              {/* 3. Nepal Sambat & Tithi (Royal Green with Martel font) */}
+              <div className="text-[11.5px] font-semibold text-[#34D399] truncate leading-tight">
+                ने.सं. {details.paksha} {details.tithiName}
+              </div>
+
+              {/* 4. English Date (Slate Grey) */}
+              <div className="text-[10.5px] font-medium text-[#94A3B8] leading-tight">
+                {details.adDateString}
+              </div>
+            </div>
+          </div>
+
+          {/* Explanation Text */}
+          <div className="text-xs text-slate-300 max-w-md space-y-2">
+            <div className="font-bold text-amber-300 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>ल्याण्ड सोलुसन एपको म्याथ वेबसाइटमा जस्ताको तस्तै!</span>
+            </div>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              तपाईंको एप <code className="text-emerald-300 bg-emerald-950/80 px-1.5 py-0.5 rounded font-mono text-[10px]">patro_dashboard_widget.dart</code> मा प्रयोग भएको 
+              <code className="text-amber-300 bg-amber-950/80 px-1.5 py-0.5 rounded font-mono text-[10px] ml-1">NepalFlagWavePainter</code> को multi-frequency sine wave गणित, 
+              सुनौलो खम्बा (gold pole) र dynamic cloth ripples लाई HTML5 60fps Canvas मा १००% दुरुस्त उतारिएको छ।
+            </p>
+            <div className="flex items-center gap-2 pt-1 text-[11px] text-emerald-400 font-semibold">
+              <Check className="w-3.5 h-3.5 stroke-[3]" />
+              <span>अब तलका जुनसुकै ५०/५० ब्यानर लेआउटमा पनि यही झण्डा देखिन्छ!</span>
+            </div>
+          </div>
         </div>
       </div>
 

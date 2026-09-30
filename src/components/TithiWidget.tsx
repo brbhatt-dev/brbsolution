@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Calendar, Moon, Sun, Sparkles } from 'lucide-react';
 import { getNepaliCalendarDetails, NepaliCalendarDetails } from '@/lib/nepaliDate';
 import UpcomingFestivalsBar from './UpcomingFestivalsBar';
+import LandSolutionWavingFlag from './LandSolutionWavingFlag';
 
 interface TithiWidgetProps {
   variant?: 'compact' | 'panoramic';
@@ -77,7 +79,7 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
             </div>
           </div>
 
-          {/* Right: Live Ticking Clock & Nepal Standard Time */}
+          {/* Right: Live Ticking Clock & Nepal Standard Time & Land Solution Flag */}
           <div className="flex items-center justify-end gap-3 w-full md:w-auto shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-white/10">
             <div className="text-center md:text-right w-full md:w-auto">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-xs sm:text-sm font-mono font-bold text-emerald-300">
@@ -89,6 +91,15 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                 <span>नेपाल मानक समय</span>
               </div>
             </div>
+
+            {/* Land Solution Flutter App Waving Flag */}
+            <Link
+              href="/demo/flag"
+              className="shrink-0 flex items-center justify-center p-1 rounded-xl hover:bg-white/10 transition-colors group"
+              title="नेपालको राष्ट्रिय झण्डा फरर्र (हाम्रो ल्याण्ड सोलुसन एपको म्याथ) - ५०/५० विकल्पहरू हेर्नुहोस्"
+            >
+              <LandSolutionWavingFlag width={34} height={48} scale={1.0} speed={1600} />
+            </Link>
           </div>
 
         </div>

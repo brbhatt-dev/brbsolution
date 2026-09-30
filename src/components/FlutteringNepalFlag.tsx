@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import LandSolutionWavingFlag from './LandSolutionWavingFlag';
 
-export type NepalFlagVariant = 'classic' | 'royal-gold' | 'floating' | 'himalayan' | 'glow';
+export type NepalFlagVariant = 'land-solution' | 'classic' | 'royal-gold' | 'floating' | 'himalayan' | 'glow';
 
 interface FlutteringNepalFlagProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -15,7 +16,7 @@ interface FlutteringNepalFlagProps {
 
 export default function FlutteringNepalFlag({
   size = 'md',
-  variant = 'classic',
+  variant = 'land-solution',
   showPole = true,
   windSpeed = 'normal',
   showGlow = true,
@@ -62,6 +63,35 @@ export default function FlutteringNepalFlag({
         return 'drop-shadow(0 10px 20px rgba(220, 20, 60, 0.4))';
     }
   };
+
+  if (variant === 'land-solution') {
+    const scaleMap = {
+      sm: 1.0,
+      md: 1.5,
+      lg: 2.1,
+      xl: 2.8,
+    };
+    const speedMap = {
+      gentle: 2400,
+      normal: 1600, // Land Solution Flutter app duration (patro_dashboard_widget.dart)
+      strong: 1100,
+    };
+
+    return (
+      <div 
+        className={`relative inline-flex items-center justify-center select-none ${className}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        title="हाम्रो ल्याण्ड सोलुसन एपको आधिकारिक फरर्र फहराएको झण्डा 🇳🇵"
+      >
+        <LandSolutionWavingFlag 
+          scale={scaleMap[size]}
+          speed={isHovered ? 850 : speedMap[windSpeed]}
+          className={showGlow ? 'filter drop-shadow-[0_10px_22px_rgba(220,20,60,0.35)]' : ''}
+        />
+      </div>
+    );
+  }
 
   return (
     <div 
