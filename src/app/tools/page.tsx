@@ -219,6 +219,21 @@ const TOOL_SECTIONS: ToolCategory[] = [
         ]
       },
       {
+        id: 'tax-calculator',
+        titleNp: 'घरजग्गा कर तथा पुँजीगत लाभकर क्यालकुलेटर',
+        titleEn: 'Land Tax & Capital Gain Tax (CGT) Calculator',
+        description: 'मालपोत लिखत पारित, रोक्का दस्तुर, सेवा शुल्क तथा विगत खरिद मिति अनुसारको पुँजीगत लाभकर (CGT) हिसाब गर्ने पूर्ण डिजिटल क्यालकुलेटर।',
+        badge: 'Tax Calculator',
+        icon: Coins,
+        href: '/tools/tax-calculator',
+        features: [
+          'रजिष्ट्रेशन दस्तुर, रोक्का र सेवा शुल्क',
+          '५ वर्ष बढी/घटी स्वामित्व अनुसार लाभकर (CGT)',
+          'चालु आ.व. का बहु-कारोबार थप्न मिल्ने',
+          'नेपाली वि.सं. मिति छनौट सुविधा'
+        ]
+      },
+      {
         id: 'malpot-calculator',
         titleNp: 'मालपोत रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर क्यालकुलेटर',
         titleEn: 'Malpot Registration Fee & CGT Tax',

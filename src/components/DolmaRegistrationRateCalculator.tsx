@@ -431,30 +431,30 @@ export default function DolmaRegistrationRateCalculator() {
   return (
     <div className="space-y-6">
 
-      {/* 1. OFFICIAL DOLMA HEADER BANNER */}
-      <div className="bg-gradient-to-r from-red-950 via-slate-900 to-blue-950 border border-red-500/30 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+      {/* 1. BR BHATTA TAX CALCULATOR HEADER BANNER */}
+      <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-teal-950 border border-emerald-500/30 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white rounded-2xl p-1.5 shadow-md flex items-center justify-center">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white dark:bg-slate-900 rounded-2xl p-2 shadow-md border border-emerald-500/20 flex items-center justify-center">
               <img
                 src="/logo.png"
-                alt="Nepal Emblem / DOLMA"
+                alt="BR Bhatta Land Solution"
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="space-y-1">
-              <p className="text-xs font-semibold text-red-300">नेपाल सरकार | भूमि व्यवस्था, सहकारी तथा गरिबी निवारण मन्त्रालय</p>
+              <p className="text-xs font-semibold text-emerald-400">BR Bhatta | Land Solution Nepal</p>
               <h1 className="text-xl sm:text-2xl font-black text-white">
-                भूमि व्यवस्थापन तथा अभिलेख विभाग (DOLMA)
+                घरजग्गा कर तथा दस्तुर क्यालकुलेटर
               </h1>
-              <p className="text-xs text-slate-300 font-medium">बबरमहल, काठमाडौं | अनलाइन रजिष्ट्रेशन रेट क्यालकुलेटर</p>
+              <p className="text-xs text-slate-300 font-medium">नेपालभरका मालपोत कार्यालयहरूको रजिष्ट्रेशन दस्तुर, सेवा शुल्क र रोक्का दस्तुर</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-bold text-amber-300 backdrop-blur-md">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs font-bold text-emerald-300 backdrop-blur-md">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>आधिकारिक सरकारी ढाँचा (Test Mode)</span>
+              <span>Smart Tax Calculator</span>
             </span>
           </div>
         </div>

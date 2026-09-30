@@ -8,15 +8,15 @@ import SocialShareBar from '@/components/SocialShareBar';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'सरकारी मालपोत तथा पुँजीगत लाभकर क्यालकुलेटर (DOLMA Test) | BR Bhatta',
-  description: 'नेपाल सरकार, भूमि व्यवस्थापन तथा अभिलेख विभाग (DOLMA) को आधिकारिक रजिष्ट्रेशन दस्तुर, रोक्का दस्तुर तथा पुँजीगत लाभकर (CGT) क्यालकुलेटर (परीक्षण संस्करण)।',
+  title: 'घरजग्गा कर क्यालकुलेटर (Tax Calculator) | BR Bhatta',
+  description: 'नेपालको घरजग्गा रजिस्ट्रेसन दस्तुर, रोक्का दस्तुर, सेवा शुल्क तथा पुँजीगत लाभकर (CGT) को पूर्ण नेपाली क्यालकुलेटर।',
   robots: {
-    index: false,
+    index: true,
     follow: true,
   }
 };
 
-export default function DolmaTestPage() {
+export default function TaxCalculatorPage() {
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <Navbar />
@@ -31,39 +31,21 @@ export default function DolmaTestPage() {
               <span>उपकरणहरू (Tools Hub)</span>
             </Link>
             <span>/</span>
-            <span className="text-slate-800 dark:text-slate-200">सरकारी मालपोत क्यालकुलेटर (DOLMA Test)</span>
+            <span className="text-slate-800 dark:text-slate-200">कर क्यालकुलेटर (Tax Calculator)</span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-3 text-slate-500 dark:text-slate-400">
-            <a
-              href="https://dolma.gov.np/public/api/utilities/registration_rate.php"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              <span>रजिष्ट्रेशन दर</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <span>•</span>
-            <a
-              href="https://dolma.gov.np/public/api/utilities/cgt.php"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              <span>लाभकर (CGT)</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <span>BR Bhatta Calculator</span>
           </div>
         </div>
 
-        {/* The Exact DOLMA Registration Rate & CGT Tabs Component */}
+        {/* The Exact Registration Rate & CGT Tabs Component */}
         <DolmaTestTabs />
 
         {/* Share Bar */}
         <div className="pt-2">
           <SocialShareBar 
-            title="रजिष्ट्रेशन दस्तुर, सेवा शुल्क र रोक्का दस्तुर (DOLMA सरकारी दर)" 
+            title="घरजग्गा कर तथा पुँजीगत लाभकर क्यालकुलेटर (Tax Calculator)" 
             url="/tools/test" 
           />
         </div>

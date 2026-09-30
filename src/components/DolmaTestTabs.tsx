@@ -40,30 +40,10 @@ export default function DolmaTestTabs() {
           </button>
         </div>
 
-        {/* Source link depending on tab */}
-        <div className="hidden sm:flex items-center gap-2 px-3 text-xs text-slate-500 dark:text-slate-400">
-          <span>स्रोत:</span>
-          {activeTab === 'reg' ? (
-            <a
-              href="https://dolma.gov.np/public/api/utilities/registration_rate.php"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-medium"
-            >
-              <span>registration_rate.php</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          ) : (
-            <a
-              href="https://dolma.gov.np/public/api/utilities/cgt.php"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline font-medium"
-            >
-              <span>cgt.php</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          )}
+        {/* BR Bhatta in-house badge */}
+        <div className="hidden sm:flex items-center gap-2 px-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>BR Bhatta | Land Tax System</span>
         </div>
       </div>
 

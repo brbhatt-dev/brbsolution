@@ -417,7 +417,7 @@ export default function DolmaCgtCalculator() {
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 mb-2">
             <Coins className="w-3.5 h-3.5" />
-            <span>नेपाल सरकार, भूमि व्यवस्थापन तथा अभिलेख विभाग (DOLMA) आधिकारिक</span>
+            <span>BR Bhatta | Land Solution Nepal</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100">
             पुँजीगत लाभकर क्यालकुलेटर (Capital Gain Tax)
@@ -926,7 +926,7 @@ export default function DolmaCgtCalculator() {
                 <span>कृपया ध्यान दिनुहोला (Disclaimer):</span>
               </div>
               <p>
-                यस क्यालकुलेटरमा देखिएको रकम नेपाल सरकार भूमि व्यवस्थापन तथा अभिलेख विभागको अनलाइन कम्प्युटर प्रणाली अनुसारको अनुमानित हिसाब हो। लिखत पास गर्दा सम्बन्धित मालपोत कार्यालयका राजस्व अधिकृतले निर्धारण गरेको दर र फाँटको निर्णयलाई नै अन्तिम आधिकारिक मानिनेछ।
+                यस क्यालकुलेटरमा देखिएको रकम नेपालको प्रचलित कानुन र राजस्व नियमावली अनुसारको अनुमानित हिसाब हो। लिखत पास गर्दा सम्बन्धित मालपोत कार्यालयका राजस्व अधिकृतले निर्धारण गरेको दरलाई नै अन्तिम आधिकारिक मान्यता दिइनेछ।
               </p>
             </div>
           </div>
