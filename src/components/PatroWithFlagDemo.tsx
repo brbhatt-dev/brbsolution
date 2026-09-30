@@ -19,8 +19,8 @@ import UpcomingFestivalsBar from './UpcomingFestivalsBar';
 import FlutteringNepalFlag from './FlutteringNepalFlag';
 
 export default function PatroWithFlagDemo() {
-  const [details, setDetails] = useState<NepaliCalendarDetails | null>(null);
-  const [liveTime, setLiveTime] = useState<string>('');
+  const [details, setDetails] = useState<NepaliCalendarDetails>(() => getNepaliCalendarDetails(new Date()));
+  const [liveTime, setLiveTime] = useState<string>('लाइभ समय...');
   const [windSpeed, setWindSpeed] = useState<'gentle' | 'normal' | 'strong'>('strong');
   const [selectedDemo, setSelectedDemo] = useState<'option1' | 'option2' | 'option3'>('option1');
 
@@ -34,10 +34,6 @@ export default function PatroWithFlagDemo() {
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  if (!details) {
-    return <div className="h-40 w-full bg-slate-900 rounded-3xl animate-pulse" />;
-  }
 
   return (
     <div className="space-y-8">

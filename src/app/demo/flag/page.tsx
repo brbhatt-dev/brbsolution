@@ -43,18 +43,21 @@ export default function FlagPatroDemoPage() {
           </div>
         </div>
 
-        {/* Intro Card */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-emerald-950 via-slate-900 to-red-950 text-white border border-emerald-500/20 shadow-xl relative overflow-hidden space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-emerald-300 border border-white/15">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>तपाईंको परिकल्पना अनुसारको प्रत्यक्ष नमुना (Design Demo)</span>
+        {/* Compact Title & Subtitle */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <span>🇳🇵</span>
+              <span>नेपाली पात्रो (५०%) + फरर्र फहराएको राष्ट्रिय झण्डा</span>
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+              तपाईंले भन्नुभए अनुसार आधा भागमा पात्रो र बाँकी ठाउँमा ३D हावाको लहरसहित फहराएको नेपालको झण्डाका प्रत्यक्ष विकल्पहरू:
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-white">
-            नेपाली पात्रो आधा भागमा + बाँकी भागमा फरर्र फहराएको झण्डा
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            तपाईंले भन्नुभए जस्तै पात्रो ब्यानरलाई चिटिक्क आधा साइज (५०%) बनाएर बाँकी खाली ठाउँमा हावाको गति अनुसार जीवन्त फहराउने (Fluttering 3D Animation) नेपालको चन्द्र-सूर्य अंकित झण्डा राखिएका ३ वटा प्रत्यक्ष विकल्पहरू तल हेर्न सक्नुहुन्छ:
-          </p>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold border border-emerald-500/20 shrink-0">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
+            <span>३ वटा प्रत्यक्ष विकल्पहरू (Live)</span>
+          </div>
         </div>
 
         {/* Interactive Patro + Flag Showcase Component */}

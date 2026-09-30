@@ -239,3 +239,30 @@ html.dark [class*="shadow-slate-"] {
   }
 }
 
+/* Fluttering Nepal Flag 3D Physics Keyframes */
+@keyframes flagFlutter {
+  0% {
+    transform: perspective(600px) rotateY(0deg) rotateZ(0deg) skewY(0deg) scaleY(1);
+  }
+  25% {
+    transform: perspective(600px) rotateY(12deg) rotateZ(1.5deg) skewY(2deg) scaleY(0.97);
+  }
+  50% {
+    transform: perspective(600px) rotateY(-8deg) rotateZ(-1deg) skewY(-2.5deg) scaleY(1.02);
+  }
+  75% {
+    transform: perspective(600px) rotateY(15deg) rotateZ(2deg) skewY(1.5deg) scaleY(0.98);
+  }
+  100% {
+    transform: perspective(600px) rotateY(-12deg) rotateZ(-1.5deg) skewY(-1.8deg) scaleY(1.01);
+  }
+}
+
+@keyframes clothRipple {
+  0% {
+    background-position: -120% 0;
+  }
+  100% {
+    background-position: 220% 0;
+  }
+}
