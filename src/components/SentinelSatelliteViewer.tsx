@@ -59,7 +59,7 @@ export default function SentinelSatelliteViewer() {
   const markerRef = useRef<any>(null);
 
   const [activeLayer, setActiveLayer] = useState<LayerType>('sentinel');
-  const [selectedYear, setSelectedYear] = useState<string>('2023');
+  const [selectedYear, setSelectedYear] = useState<string>('2025');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isReady, setIsReady] = useState<boolean>(false);
 
@@ -356,7 +356,9 @@ export default function SentinelSatelliteViewer() {
             </span>
             <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
               {[
-                { year: '2023', label: 'ताजा (Latest)' },
+                { year: '2025', label: '२०२५ (ताजा)' },
+                { year: '2024', label: '२०२४' },
+                { year: '2023', label: '२०२३' },
                 { year: '2022', label: '२०२२' },
                 { year: '2021', label: '२०२१' },
                 { year: '2020', label: '२०२०' }
@@ -364,7 +366,7 @@ export default function SentinelSatelliteViewer() {
                 <button
                   key={item.year}
                   onClick={() => handleYearChange(item.year)}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                  className={`px-2 py-1 rounded-lg text-xs font-semibold transition-all ${
                     selectedYear === item.year && activeLayer === 'sentinel'
                       ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs'
                       : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
