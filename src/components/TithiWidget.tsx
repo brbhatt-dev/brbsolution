@@ -120,15 +120,24 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                 </span>
               </div>
 
-              {/* Centerpiece: Official Animated Nepal Flag GIF */}
+              {/* Centerpiece: Official Animated Nepal Flag (Hardware Accelerated for iOS 120Hz & all devices) */}
               <div className="relative z-10 flex items-center justify-center py-1 sm:py-2">
-                <img 
-                  src="/nepal_flag.gif" 
-                  alt="नेपालको राष्ट्रिय झण्डा"
-                  width={249}
-                  height={338}
-                  className="h-28 sm:h-36 w-auto object-contain select-none pointer-events-none filter drop-shadow-[0_12px_26px_rgba(220,20,60,0.45)] transition-transform duration-300 hover:scale-105"
-                />
+                {/* Ambient Soft Red Glow behind flag (Hardware safe, no filter on image itself) */}
+                <div className="absolute w-28 h-28 bg-red-600/25 rounded-full blur-2xl pointer-events-none" />
+                
+                <picture className="relative z-10">
+                  <source srcSet="/nepal_flag.webp" type="image/webp" />
+                  <img 
+                    src="/nepal_flag.gif" 
+                    alt="नेपालको राष्ट्रिय झण्डा"
+                    width={249}
+                    height={338}
+                    loading="eager"
+                    decoding="async"
+                    className="h-28 sm:h-36 w-auto object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
+                    style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}
+                  />
+                </picture>
               </div>
 
               {/* Bottom Slogan / Motto */}

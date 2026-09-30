@@ -79,15 +79,24 @@ export default function FlutteringNepalFlag({
         onMouseLeave={() => setIsHovered(false)}
         title="नेपालको राष्ट्रिय झण्डा (फरर्र फहराएको) 🇳🇵"
       >
-        <img 
-          src="/nepal_flag.gif" 
-          alt="नेपालको राष्ट्रिय झण्डा"
-          width={249}
-          height={338}
-          className={`${heightMap[size]} w-auto object-contain select-none pointer-events-none transition-transform duration-300 ${
-            isHovered ? 'scale-105' : 'scale-100'
-          } ${showGlow ? 'filter drop-shadow-[0_12px_24px_rgba(220,20,60,0.45)]' : ''}`}
-        />
+        {showGlow && (
+          <div className="absolute inset-0 max-w-[80%] max-h-[80%] m-auto bg-red-600/30 rounded-full blur-xl pointer-events-none" />
+        )}
+        <picture className="relative z-10">
+          <source srcSet="/nepal_flag.webp" type="image/webp" />
+          <img 
+            src="/nepal_flag.gif" 
+            alt="नेपालको राष्ट्रिय झण्डा"
+            width={249}
+            height={338}
+            loading="eager"
+            decoding="async"
+            className={`${heightMap[size]} w-auto object-contain select-none pointer-events-none transition-transform duration-300 ${
+              isHovered ? 'scale-105' : 'scale-100'
+            }`}
+            style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}
+          />
+        </picture>
       </div>
     );
   }
