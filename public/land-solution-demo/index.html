@@ -32,6 +32,8 @@
   <link rel="apple-touch-icon" sizes="192x192" href="icons/Icon-192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-512.png">
 
+  <link rel="preload" href="main.dart.js?v=2.8.19-2314-r10" as="script">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
@@ -131,6 +133,10 @@
     <div id="loading-status" style="margin-top: 16px; font-size: 12px; color: #94A3B8; text-align: center; max-width: 280px; min-height: 36px; line-height: 1.5;">
       इन्जिन तथा डेटाबेस लोड हुँदैछ...
     </div>
+    <div id="loading-actions" style="display:none; gap:12px; margin-top:16px; flex-wrap:wrap; justify-content:center">
+      <button type="button" onclick="location.reload()" style="min-height:48px;padding:0 18px;background:#1e293b;color:white;border:1px solid #475569;border-radius:12px;cursor:pointer">Retry</button>
+      <a href="/land-solution" target="_top" style="min-height:48px;display:flex;align-items:center;padding:0 18px;color:#7dd3fc">Website मा खोल्नुहोस्</a>
+    </div>
   </div>
 
   <script>
@@ -147,65 +153,34 @@
       }
 
       var dismissed = false;
+      var statusEl = document.getElementById('loading-status');
+      var timeout;
+      window.landSolutionBootStage = function (phase) {
+        var labels = {download:'App डाउनलोड हुँदैछ…',engine:'चित्र र नक्सा इन्जिन तयार हुँदैछ…',application:'App सुरु हुँदैछ…',error:'लोड हुन समस्या भयो। इन्टरनेट जाँचेर Retry गर्नुहोस्।'};
+        if (!dismissed && statusEl) statusEl.textContent = labels[phase] || labels.download;
+        if (phase === 'error' && !dismissed) document.getElementById('loading-actions').style.display='flex';
+        if (window.parent !== window) window.parent.postMessage(JSON.stringify({type:'land-solution-status',phase:phase}),location.origin);
+      };
       function dismissLoader() {
         if (dismissed) return;
-        dismissed = true;
+        dismissed = true; clearTimeout(timeout);
         var loader = document.getElementById('loading-container');
-        if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(function () {
-            if (loader && loader.parentNode) {
-              loader.parentNode.removeChild(loader);
-            }
-          }, 400);
-        }
+        if (loader) loader.remove();
       }
-
-      // Event 1: Normal Flutter first frame event
-      window.addEventListener('flutter-first-frame', dismissLoader);
-
-      // Event 2: DOM MutationObserver to catch Flutter UI mount
-      if (window.MutationObserver) {
-        var observer = new MutationObserver(function () {
-          var flutterHost = document.querySelector('flutter-view, flt-glass-pane, flt-scene-host, canvas');
-          if (flutterHost) {
-            setTimeout(dismissLoader, 200);
-            observer.disconnect();
-          }
-        });
-        if (document.body) {
-          observer.observe(document.body, { childList: true, subtree: true });
+      // Ready is emitted by the mounted Flutter application, not by the mere presence of a canvas.
+      window.addEventListener('land-solution-app-ready',dismissLoader);
+      window.landSolutionBootStage('download');
+      timeout = setTimeout(function () {
+        if (!dismissed) {
+          if (statusEl) statusEl.textContent='लोड हुन धेरै समय लाग्यो। इन्टरनेट जाँचेर फेरि प्रयास गर्नुहोस्।';
+          document.getElementById('loading-actions').style.display='flex';
         }
-      }
-
-      // Progressive loading feedback (No premature hiding!)
-      var statusEl = document.getElementById('loading-status');
-      setTimeout(function () {
-        if (!dismissed && statusEl) {
-          statusEl.innerText = 'क्यानभास इन्जिन (CanvasKit) लोड हुँदैछ...';
-        }
-      }, 3500);
-
-      setTimeout(function () {
-        if (!dismissed && statusEl) {
-          statusEl.innerText = 'थ्रीडी नक्सा तथा स्थानीय तह डेटा तयार गरिँदैछ...';
-        }
-      }, 7000);
-
-      setTimeout(function () {
-        if (!dismissed && statusEl) {
-          statusEl.innerHTML = 'इन्टरनेट ढिलो भएको हुन सक्छ...<br><a href="/land-solution-demo/index.html" target="_top" style="color: #38BDF8; font-weight: bold; text-decoration: underline; margin-top: 6px; display: inline-block;">सफारीमा सिधै खोल्नुहोस् ↗</a>';
-        }
-      }, 14000);
-
-      // Error catching
-      window.addEventListener('error', function (e) {
-        console.error("Global Loader Error:", e.error || e.message);
-        if (statusEl && !dismissed) {
-          statusEl.innerHTML = '<span style="color:#F87171">लोड हुन समस्या भयो।</span><br><a href="/land-solution-demo/index.html" target="_top" style="color:#38BDF8;font-weight:bold;text-decoration:underline;margin-top:6px;display:inline-block">यहाँ ट्याप गरी सिधै खोल्नुहोस् ↗</a>';
-        }
+      },45000);
+      window.addEventListener('error',function () { if (!dismissed) window.landSolutionBootStage('error'); });
+      window.addEventListener('unhandledrejection',function () { if (!dismissed) window.landSolutionBootStage('error'); });
+      window.addEventListener('offline',function () {
+        if (!dismissed) { window.landSolutionBootStage('error'); if (statusEl) statusEl.textContent='इन्टरनेट जोडिएको छैन। जोडिएपछि Retry गर्नुहोस्।'; }
       });
-
 
       // 4. Safari iOS Geolocation Permissions API Compatibility Shim
       window._locationGranted = false;
@@ -245,6 +220,6 @@
       window.addEventListener('touchstart', enableIosSensors, { once: true });
     })();
   </script>
-  <script src="flutter_bootstrap.js?v=2.8.19-2314-r9" async></script>
+  <script src="flutter_bootstrap.js?v=2.8.19-2314-r10" async></script>
 </body>
 </html>

@@ -1,177 +1,129 @@
 'use client';
 
 import { LAND_SOLUTION_WEB_URL } from '@/lib/land-solution-release';
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { 
-  RotateCw, 
-  ExternalLink, 
-  Maximize2, 
-  Minimize2, 
-  Home, 
-  Sparkles, 
-  Database,
-  Layers
-} from 'lucide-react';
+import { Home, Search, Menu, X, RotateCw, ExternalLink, Maximize2, Minimize2, Smartphone, ChevronRight, Loader2, AlertCircle, EyeOff } from 'lucide-react';
 import IosInstallGuideModal from './IosInstallGuideModal';
 
+const aliases: Record<string, string> = {
+  Plotter: 'जग्गा क्षेत्रफल त्रिभुज नाप plot', Map: 'नक्सा naksa gps', 'Stake Out': 'स्टेक आउट stakeout बिन्दु',
+  Shapefile: 'सेपफाइल कित्ता shp shape file', Converter: 'युनिट रूपान्तरण रोपनी आना बिघा कट्ठा ropani aana bigha kattha',
+  '3D House Design': 'घर नक्सा house design', 'Sheet Coords': 'सिट निर्देशाङ्क coordinates',
+  'My Land GPS': 'जग्गा gps', 'Plotter Pro': 'कित्ताकाट plot divide', Calculator: 'क्यालकुलेटर हिसाब scientific calculator', 'Area Calculator': 'क्षेत्रफल जोड घटाउ area',
+};
+const control = 'min-h-[48px] min-w-[48px] flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800 text-slate-100 hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400';
+
 export default function LandSolutionFullApp() {
+  const frame = useRef<HTMLIFrameElement>(null);
+  const searchButton = useRef<HTMLButtonElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
   const [showIosGuide, setShowIosGuide] = useState(false);
   const [iframeKey, setIframeKey] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showTopBar, setShowTopBar] = useState(true);
+  const [panel, setPanel] = useState<'search' | 'menu' | null>(null);
+  const [query, setQuery] = useState('');
+  const [tools, setTools] = useState<string[]>([]);
+  const [recent, setRecent] = useState<string[]>([]);
+  const [phase, setPhase] = useState('download');
+  const [ready, setReady] = useState(false);
+  const [problem, setProblem] = useState('');
+  const [opening, setOpening] = useState('');
+  const openTimer = useRef<ReturnType<typeof setTimeout>>();
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => setIsFullscreen(true)).catch(() => {});
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().then(() => setIsFullscreen(false)).catch(() => {});
-      }
-    }
-  };
+  const post = (data: object) => frame.current?.contentWindow?.postMessage(JSON.stringify(data), window.location.origin);
+  const closePanel = () => { const previous = panel; setPanel(null); setTimeout(() => (previous === 'search' ? searchButton : menuButton).current?.focus(), 0); };
+  const retry = () => { clearTimeout(openTimer.current); setReady(false); setProblem(''); setPhase('download'); setOpening(''); setIframeKey(k => k + 1); };
 
   useEffect(() => {
-    const handleFsChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+    try { const saved = JSON.parse(localStorage.getItem('land-solution-recent-tools') || '[]'); if (Array.isArray(saved)) setRecent(saved.filter(t => typeof t === 'string').slice(0, 4)); } catch {}
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin || event.source !== frame.current?.contentWindow || typeof event.data !== 'string') return;
+      let data; try { data = JSON.parse(event.data); } catch { return; }
+      if (data?.type === 'land-solution-status' && typeof data.phase === 'string') { setPhase(data.phase); if (data.phase === 'error') setProblem('App खोल्न समस्या भयो। इन्टरनेट जाँचेर फेरि प्रयास गर्नुहोस्।'); }
+      if (data?.type === 'land-solution-ready' && Array.isArray(data.tools)) {
+        setTools(data.tools.filter((t: unknown): t is string => typeof t === 'string')); setReady(true); setProblem(''); setPhase('ready');
+      }
+      if (data?.type === 'land-solution-tool-opened' && typeof data.tool === 'string') {
+        clearTimeout(openTimer.current); setOpening(''); setPanel(null); frame.current?.focus();
+        setRecent(previous => { const next = [data.tool, ...previous.filter(t => t !== data.tool)].slice(0,4); try { localStorage.setItem('land-solution-recent-tools',JSON.stringify(next)); } catch {} return next; });
+      }
     };
-    document.addEventListener('fullscreenchange', handleFsChange);
-    return () => document.removeEventListener('fullscreenchange', handleFsChange);
+    const fullscreen = () => setIsFullscreen(!!document.fullscreenElement);
+    window.addEventListener('message', onMessage); document.addEventListener('fullscreenchange',fullscreen);
+    return () => { window.removeEventListener('message',onMessage); document.removeEventListener('fullscreenchange',fullscreen); clearTimeout(openTimer.current); };
   }, []);
 
-  return (
-    <div className="fixed inset-0 w-full h-full h-[100dvh] flex flex-col bg-slate-950 text-white overflow-hidden select-none z-50">
-      
-      {/* Top Header Control Strip */}
-      {showTopBar && (
-        <header className="min-h-13 sm:min-h-15 pt-[env(safe-area-inset-top)] bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 px-3 sm:px-5 flex items-center justify-between shrink-0 z-20">
-          
-          {/* Left: Branding & Full Version Data Badge */}
-          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-            <Link 
-              href="/"
-              title="मुख्य पेजमा फर्कनुहोस्"
-              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors shrink-0"
-            >
-              <Home className="w-4 h-4" />
-            </Link>
+  useEffect(() => {
+    if (ready) return;
+    const ping = setInterval(() => post({type:'land-solution-hello'}),1500);
+    const timeout = setTimeout(() => setProblem('लोड हुन धेरै समय लाग्यो। पुनः प्रयास गर्नुहोस् वा सिधै खोल्नुहोस्।'),45000);
+    return () => { clearInterval(ping); clearTimeout(timeout); };
+  }, [iframeKey,ready]);
 
-            <div className="w-8 h-8 rounded-xl bg-white p-0.5 flex items-center justify-center shrink-0 shadow-sm">
-              <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
-            </div>
+  useEffect(() => {
+    if (!panel) return;
+    const first = dialog.current?.querySelector<HTMLElement>('input') || dialog.current?.querySelector<HTMLElement>('button, a'); first?.focus();
+    const key = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); setPanel(null); setTimeout(() => (panel === 'search' ? searchButton : menuButton).current?.focus(),0); }
+      if (event.key === 'Tab') {
+        const elements = Array.from(dialog.current?.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], input:not(:disabled)') || []);
+        const first = elements[0], last = elements[elements.length-1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    };
+    document.addEventListener('keydown',key); return () => document.removeEventListener('keydown',key);
+  }, [panel]);
 
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <h1 className="text-xs sm:text-sm font-black text-white truncate">
-                  Land Solution (पूर्ण संस्करण)
-                </h1>
-                <span className="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold">
-                  <Database className="w-3 h-3" />
-                  ७५३ स्थानीय तह डेटा
-                </span>
-                <span className="hidden sm:inline-flex px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 text-[10px] font-bold">
-                  iOS & Web
-                </span>
-              </div>
-              <p className="text-[10px] sm:text-[11px] text-emerald-400 truncate">
-                नेपाल जग्गा नापजाँच, कित्ताकाट तथा ३D नक्सा प्रणाली (Full Data Enabled)
-              </p>
-            </div>
-          </div>
+  const openTool = (tool: string) => {
+    if (!ready || !tools.includes(tool) || opening) return;
+    setOpening(tool); setProblem(''); post({type:'land-solution-open-tool',tool});
+    clearTimeout(openTimer.current); openTimer.current = setTimeout(() => { setOpening(''); setProblem('Tool खोल्न सकेन। फेरि रोज्नुहोस्।'); },20000);
+  };
+  const toggleFullscreen = async () => {
+    try { if (document.fullscreenElement) await document.exitFullscreen(); else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen(); else setShowTopBar(false); setPanel(null); }
+    catch { setShowTopBar(false); setPanel(null); }
+  };
+  const normalized = query.trim().toLocaleLowerCase();
+  const matches = tools.filter(t => (t.toLocaleLowerCase()+' '+(aliases[t]||'')).includes(normalized));
+  const displayed = normalized ? matches : [...recent.filter(t=>tools.includes(t)), ...tools.filter(t=>!recent.includes(t))];
+  const status = phase === 'engine' ? 'चित्र र नक्सा इन्जिन तयार हुँदैछ…' : phase === 'application' ? 'App सुरु हुँदैछ…' : 'App डाउनलोड हुँदैछ…';
 
-          {/* Right: Actions (iOS Guide, Reload, Fullscreen) */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            
-            {/* 🍎 iPhone Add to Home Screen Button */}
-            <button
-              type="button"
-              onClick={() => setShowIosGuide(true)}
-              className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-slate-800 to-emerald-950 hover:from-slate-700 hover:to-emerald-900 text-emerald-200 hover:text-white border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer"
-            >
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
-                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
-              </svg>
-              <span>iPhone App बनाउनुहोस्</span>
-            </button>
-
-            {/* Open Directly in Safari / Standalone */}
-            <a
-              href={LAND_SOLUTION_WEB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="सफारीमा सिधै पूर्ण स्क्रिन खोल्नुहोस् (१००% नेटिभ पर्फर्मेन्स)"
-              className="px-2 sm:px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">सिधै खोल्नुहोस्</span>
-            </a>
-
-            {/* Reload App */}
-            <button
-              type="button"
-              onClick={() => setIframeKey((k) => k + 1)}
-              title="एप पुनः लोड गर्नुहोस्"
-              className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
-            >
-              <RotateCw className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">रिलोड</span>
-            </button>
-
-            {/* Fullscreen Toggle */}
-            <button
-              type="button"
-              onClick={toggleFullscreen}
-              title={isFullscreen ? 'सामान्य स्क्रिन' : 'फुल स्क्रिन'}
-              className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
-            >
-              {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-              <span className="hidden md:inline">{isFullscreen ? 'Exit Full' : 'Full Screen'}</span>
-            </button>
-
-            {/* Hide/Show Top Bar for clean native feel */}
-            <button
-              type="button"
-              onClick={() => setShowTopBar(false)}
-              title="माथिल्लो बार लुकाउनुहोस् (१००% सफा स्क्रिन)"
-              className="p-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white text-xs transition-colors"
-            >
-              ▲
-            </button>
-          </div>
-        </header>
-      )}
-
-      {/* Floating Restore Button when top bar is hidden */}
-      {!showTopBar && (
-        <button
-          type="button"
-          onClick={() => setShowTopBar(true)}
-          title="मेनु बार देखाउनुहोस्"
-          className="fixed top-2 right-2 z-30 px-3 py-1 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white text-[11px] font-bold backdrop-blur-md border border-slate-700 shadow-lg flex items-center gap-1.5 transition-all opacity-40 hover:opacity-100"
-        >
-          <img src="/logo.png" alt="" className="w-3.5 h-3.5 object-contain" />
-          <span>मेनु ▼</span>
-        </button>
-      )}
-
-      {/* Main Full Version Flutter Engine Viewport */}
-      <main className="flex-1 w-full h-full bg-slate-950 relative pb-[env(safe-area-inset-bottom)]">
-        <iframe
-          key={iframeKey}
-          src={LAND_SOLUTION_WEB_URL}
-          title="Land Solution Full Version Application"
-          className="w-full h-full border-0 select-auto"
-          allow="geolocation *; camera *; accelerometer *; gyroscope *; magnetometer *"
-        />
-      </main>
-
-      {/* Reusable iOS Installation Guide Modal */}
-      <IosInstallGuideModal 
-        isOpen={showIosGuide} 
-        onClose={() => setShowIosGuide(false)} 
-      />
-
-    </div>
-  );
+  return <div data-land-solution-shell className="fixed inset-0 h-[100dvh] flex flex-col bg-slate-950 text-white overflow-hidden z-50">
+    {showTopBar ? <header className="shrink-0 border-b border-slate-800 bg-slate-900 px-2 sm:px-4 py-2 pt-[max(8px,env(safe-area-inset-top))] flex items-center gap-2">
+      <Link href="/" aria-label="मुख्य पेज" title="मुख्य पेज" className={control}><Home size={20}/></Link>
+      <div className="flex-1 min-w-0 flex items-center gap-2"><img src="/logo.png" alt="" width="32" height="32" className="hidden sm:block rounded-lg"/><div className="min-w-0"><h1 className="text-sm font-bold truncate">Land Solution</h1><p className="text-[11px] text-slate-400 truncate">जग्गा नापी तथा नक्सा</p></div></div>
+      <button ref={searchButton} type="button" aria-label="Tools खोज्नुहोस्" onClick={()=>{setQuery('');setPanel('search');}} className={control+' px-3'}><Search size={20}/><span className="hidden sm:inline text-sm">Tools खोज्नुहोस्</span></button>
+      <button ref={menuButton} type="button" aria-label="App menu" aria-expanded={panel==='menu'} onClick={()=>setPanel('menu')} className={control}><Menu size={20}/></button>
+    </header> : <button type="button" onClick={()=>setShowTopBar(true)} aria-label="मेनु देखाउनुहोस्" className={control+' fixed top-2 right-2 z-30 px-3 shadow-lg'}><Menu size={20}/></button>}
+    <main className="flex-1 min-h-0 relative pb-[env(safe-area-inset-bottom)]">
+      <iframe ref={frame} key={iframeKey} src={LAND_SOLUTION_WEB_URL} title="Land Solution Full Version Application" className="w-full h-full border-0" allow="geolocation *; camera *; accelerometer *; gyroscope *; magnetometer *" onLoad={()=>post({type:'land-solution-hello'})} onError={()=>setProblem('App डाउनलोड हुन सकेन। पुनः प्रयास गर्नुहोस्।')}/>
+      {(!ready || (problem && !panel)) && <div className="absolute inset-0 bg-slate-950/95 flex items-center justify-center p-5" aria-live="polite">
+        <div className="max-w-sm text-center"><img src="/logo.png" alt="" width="64" height="64" className="mx-auto mb-5 rounded-2xl"/>
+          {problem ? <AlertCircle className="mx-auto mb-3 text-amber-400" size={28}/> : <Loader2 className="mx-auto mb-3 animate-spin text-sky-400" size={28}/>}
+          <h2 className="font-semibold text-lg">{problem ? 'फेरि प्रयास गर्नुहोस्' : 'Land Solution खोल्दैछ'}</h2><p className="text-sm text-slate-300 mt-2 leading-6">{problem || status}</p>
+          <p className="text-xs text-slate-500 mt-3">पहिलो पटक खुल्दा केही समय लाग्न सक्छ।</p>
+          {problem && <div className="flex flex-wrap justify-center gap-2 mt-5"><button type="button" onClick={retry} className={control+' px-4'}><RotateCw size={18}/>Retry</button><a href={LAND_SOLUTION_WEB_URL} target="_blank" rel="noopener noreferrer" className={control+' px-4'}>सिधै खोल्नुहोस्<ExternalLink size={16}/></a></div>}
+        </div>
+      </div>}
+    </main>
+    {panel && <div className="fixed inset-0 z-40 bg-black/60 flex items-start sm:items-center justify-center p-3 pt-[max(16px,env(safe-area-inset-top))]" onMouseDown={e=>{if(e.target===e.currentTarget)closePanel();}}>
+      <div ref={dialog} role="dialog" aria-modal="true" aria-labelledby="app-panel-title" className="w-full max-w-lg max-h-[90dvh] flex flex-col rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl overflow-hidden">
+        <div className="flex items-center gap-3 p-3 border-b border-slate-800"><h2 id="app-panel-title" className="flex-1 font-bold">{panel==='search' ? 'Tools खोज्नुहोस्' : 'App menu'}</h2><button type="button" aria-label="Close panel" onClick={closePanel} className={control}><X size={20}/></button></div>
+        {panel==='search' ? <><div className="p-3"><input autoFocus value={query} onChange={e=>setQuery(e.target.value)} onKeyDown={e=>{if(e.key==='Enter' && displayed.length===1)openTool(displayed[0]);}} aria-label="Search tools" placeholder="Plotter, नक्सा, GPS…" className="w-full min-h-[48px] rounded-xl border border-slate-600 bg-slate-950 px-3 text-base focus:outline-none focus:border-sky-400"/><p className="text-xs text-slate-400 mt-2">{normalized ? `${matches.length} tools भेटिए` : recent.length ? 'हालै खोलेका tools पहिले देखिन्छन्' : 'नेपाली वा English मा खोज्नुहोस्'}</p></div>
+          <div className="overflow-y-auto px-3 pb-3 flex-1">{!ready ? <p role="status" className="p-3 text-slate-300">App तयार भएपछि tools देखिन्छन्…</p> : displayed.length===0 ? <p role="status" className="p-3 text-slate-300">कुनै tool भेटिएन। अर्को नाम खोज्नुहोस्।</p> : displayed.map(tool=><button type="button" key={tool} disabled={!!opening} onClick={()=>openTool(tool)} className="w-full min-h-[48px] flex items-center justify-between gap-3 text-left rounded-xl p-3 mb-1 hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400 disabled:opacity-60"><span>{tool}{!normalized && recent.includes(tool) && <span className="ml-2 text-xs text-sky-400">हालै</span>}</span>{opening===tool ? <Loader2 size={18} className="animate-spin"/> : <ChevronRight size={18}/>}</button>)}</div>{problem && <p role="alert" className="px-4 pb-4 text-amber-300 text-sm">{problem}</p>}
+        </> : <div className="p-3 space-y-2 overflow-y-auto">
+          <button type="button" onClick={()=>{setPanel(null);setShowIosGuide(true);}} className={control+' w-full justify-start px-3'}><Smartphone size={20}/>iPhone मा Home Screen मा राख्ने</button>
+          <a href={LAND_SOLUTION_WEB_URL} target="_blank" rel="noopener noreferrer" className={control+' w-full justify-start px-3'}><ExternalLink size={20}/>App सिधै खोल्नुहोस्</a>
+          <button type="button" onClick={()=>{if(window.confirm('रिलोड गर्दा अहिलेको नसुरक्षित काम हट्न सक्छ। App रिलोड गर्ने?')){closePanel();retry();}}} className={control+' w-full justify-start px-3'}><RotateCw size={20}/>App रिलोड</button>
+          <button type="button" onClick={toggleFullscreen} className={control+' w-full justify-start px-3'}>{isFullscreen ? <Minimize2 size={20}/> : <Maximize2 size={20}/>} {isFullscreen ? 'सामान्य स्क्रिन' : 'Full screen'}</button>
+          <button type="button" onClick={()=>{setPanel(null);setShowTopBar(false);}} className={control+' w-full justify-start px-3'}><EyeOff size={20}/>माथिल्लो बार लुकाउने</button>
+        </div>}
+      </div>
+    </div>}
+    <IosInstallGuideModal isOpen={showIosGuide} onClose={()=>setShowIosGuide(false)}/>
+  </div>;
 }

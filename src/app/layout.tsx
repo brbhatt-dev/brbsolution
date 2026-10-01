@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import AiLandAssistant from '@/components/AiLandAssistant';
-import CookieConsent from '@/components/CookieConsent';
 
 export const metadata: Metadata = {
   title: 'BR Bhatta | Land Solution, Hamro Kosh & Tech Innovations Nepal',
@@ -195,7 +194,6 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
           <AiLandAssistant />
-          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>

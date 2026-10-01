@@ -36,6 +36,22 @@ if (!window._flutter) {
 _flutter.buildConfig = {"engineRevision":"0cd610717bde95fd88343c64f81c11ba4e5c0010","builds":[{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"},{}]};
 
 _flutter.buildConfig.builds.forEach(function(build) {
-  if (build.mainJsPath) build.mainJsPath += '?v=2.8.19-2314-r9';
+  if (build.mainJsPath) build.mainJsPath += '?v=2.8.19-2314-r10';
 });
-_flutter.loader.load({config:{canvasKitBaseUrl:'canvaskit/',canvasKitMaximumSurfaces:2}});
+_flutter.loader.load({
+  config:{canvasKitBaseUrl:'canvaskit/',canvasKitMaximumSurfaces:2},
+  onEntrypointLoaded:async function(engineInitializer) {
+    try {
+      window.landSolutionBootStage && window.landSolutionBootStage('engine');
+      var appRunner = await engineInitializer.initializeEngine();
+      window.landSolutionBootStage && window.landSolutionBootStage('application');
+      await appRunner.runApp();
+    } catch (error) {
+      window.landSolutionBootStage && window.landSolutionBootStage('error');
+      console.error('Land Solution initialization failed',error);
+    }
+  }
+}).catch(function(error) {
+  window.landSolutionBootStage && window.landSolutionBootStage('error');
+  console.error('Land Solution download failed',error);
+});
