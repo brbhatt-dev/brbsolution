@@ -48696,7 +48696,7 @@ if(o==null)o=0
 n=k.heading
 if(n==null)n=0
 m=k.speed
-return A.Hd(o,q,p,null,!1,!1,!1,!1,!1,!1,!1,n,0,!1,s,r,m==null?0:m,0,l)},
+var res=A.Hd(o,q,p,null,!1,!1,!1,!1,!1,!1,!1,n,0,!1,s,r,m==null?0:m,0,l);window._locationGranted=!0;window._lastPosition=res;return res},
 clc(a){switch(a){case"granted":return B.lj
 case"prompt":return B.cy
 case"denied":return B.fT
@@ -65959,7 +65959,7 @@ b1K(a,b,c,d){var s=a.watchPosition(b,A.nz(c,1),d)
 s.toString
 return s}}
 A.ayC.prototype={
-$1(a){this.b.eD(0,B.oY.a8N(this.a,a))},
+$1(a){window._locationGranted=!0;this.b.eD(0,B.oY.a8N(this.a,a))},
 $S:51}
 A.ayD.prototype={
 $1(a){this.a.mv(a)},
@@ -65973,7 +65973,7 @@ $0(){var s=this,r=s.b,q=s.c
 s.a.a=B.oY.b1J(r,new A.ayE(r,q),new A.ayF(q),s.d)},
 $S:0}
 A.ayE.prototype={
-$1(a){this.b.H(0,B.oY.a8N(this.a,a))},
+$1(a){window._locationGranted=!0;this.b.H(0,B.oY.a8N(this.a,a))},
 $S:51}
 A.ayF.prototype={
 $1(a){this.a.lE(a)},
@@ -162488,7 +162488,7 @@ break
 case 6:case 1:return A.A(q,r)
 case 2:return A.z(o.at(-1),r)}})
 return A.B($async$hU,r)},
-j_(a){return A.as(this.Yb("getLastKnownPosition"))},
+j_(a){return A.eO(window._lastPosition||null,t.H)},
 tn(a,b){return this.apV(0,b)},
 apV(a,b){var s=0,r=A.C(t.C9),q,p=this,o
 var $async$tn=A.D(function(c,d){if(c===1)return A.z(d,r)
@@ -162561,15 +162561,19 @@ $S:1004}
 A.aAp.prototype={
 QN(a,b){return this.bdd(0,b)},
 bdd(a,b){var s=0,r=A.C(t.D5),q,p=this,o
-var $async$QN=A.D(function(c,d){if(c===1)return A.z(d,r)
-for(;;)switch(s){case 0:o=p.a
-if(o==null){q=B.bkt
+var $async$QN=A.D(function(c,d){if(c===1)return A.A(window._locationGranted?B.lj:B.cy,r)
+for(;;)switch(s){case 0:if(window._locationGranted){q=B.lj
 s=1
-break}o=o.query(A.a_a(B.W9))
-o.toString
+break}o=p.a
+if(o==null||!o.query){q=B.cy
+s=1
+break}try{o=o.query(A.a_a(B.W9))}catch(e){q=B.cy
+s=1
+break}o.toString
 s=3
 return A.n(A.hK(o,t.dl),$async$QN)
 case 3:o=d.state
+if(o==="granted")window._locationGranted=!0
 q=o!=null?A.clc(o):B.cy
 s=1
 break

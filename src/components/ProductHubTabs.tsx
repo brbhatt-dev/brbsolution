@@ -901,7 +901,7 @@ export default function ProductHubTabs() {
               src="/land-solution-demo/index.html"
               title="Land Solution Interactive Live Demo"
               className="w-full h-full border-0"
-              allow="geolocation; camera"
+              allow="geolocation; camera; accelerometer; gyroscope"
             />
           </div>
         </div>

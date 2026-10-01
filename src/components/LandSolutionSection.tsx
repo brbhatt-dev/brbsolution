@@ -297,7 +297,7 @@ export default function LandSolutionSection() {
                 key={iframeKey}
                 src="/land-solution-demo/index.html"
                 title="Land Solution Web Demo"
-                allow="geolocation; camera"
+                allow="geolocation; camera; accelerometer; gyroscope"
                 className="w-full h-full border-0"
               />
             </div>

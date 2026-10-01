@@ -162,6 +162,30 @@
       // Event 3: Hard safety fallback timeout (3.5s)
       // Ensures user is never trapped by a frozen loading screen
       setTimeout(dismissLoader, 3500);
+
+      // 4. Safari iOS Geolocation Permissions API Compatibility Shim
+      window._locationGranted = false;
+      if (navigator.permissions && navigator.permissions.query) {
+        var origQuery = navigator.permissions.query.bind(navigator.permissions);
+        navigator.permissions.query = function (param) {
+          try {
+            return origQuery(param).then(function (res) {
+              if (res && res.state === 'granted') window._locationGranted = true;
+              return res;
+            }).catch(function () {
+              return { state: window._locationGranted ? 'granted' : 'prompt', addEventListener: function () {}, onchange: null };
+            });
+          } catch (e) {
+            return Promise.resolve({ state: window._locationGranted ? 'granted' : 'prompt', addEventListener: function () {}, onchange: null });
+          }
+        };
+      } else if (!navigator.permissions) {
+        navigator.permissions = {
+          query: function () {
+            return Promise.resolve({ state: window._locationGranted ? 'granted' : 'prompt', addEventListener: function () {}, onchange: null });
+          }
+        };
+      }
     })();
   </script>
   <script src="flutter_bootstrap.js" async></script>
