@@ -134,6 +134,11 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
+            __html: `(function(){try{var h=window.location.hostname;if(h==='bhattbr.com.np'||h==='www.bhattbr.com.np'){window.location.replace('https://www.brbhatta.com'+window.location.pathname+window.location.search+window.location.hash);}}catch(e){}})();`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem('theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(!s&&d)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
           }}
         />

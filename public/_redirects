@@ -1,0 +1,5 @@
+# Redirect bhattbr.com.np and www.bhattbr.com.np to primary domain www.brbhatta.com
+https://bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
+https://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
+http://bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
+http://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!

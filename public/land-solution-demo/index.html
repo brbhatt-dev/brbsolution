@@ -139,7 +139,9 @@
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(function (registrations) {
           for (var i = 0; i < registrations.length; i++) {
-            registrations[i].unregister().catch(function () {});
+            if (new URL(registrations[i].scope).pathname.startsWith('/land-solution-demo/')) {
+              registrations[i].unregister().catch(function () {});
+            }
           }
         }).catch(function () {});
       }
@@ -243,6 +245,6 @@
       window.addEventListener('touchstart', enableIosSensors, { once: true });
     })();
   </script>
-  <script src="flutter_bootstrap.js" async></script>
+  <script src="flutter_bootstrap.js?v=2.8.19-2314-r9" async></script>
 </body>
 </html>

@@ -1,0 +1,18 @@
+
+# Land Solution mutable entry files must revalidate after a release.
+/land-solution-demo/index.html
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/flutter_bootstrap.js
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/main.dart.js
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/version.json
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/flutter_service_worker.js
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/assets/AssetManifest.bin
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/assets/AssetManifest.bin.json
+  Cache-Control: no-cache, max-age=0, must-revalidate
+/land-solution-demo/assets/FontManifest.json
+  Cache-Control: no-cache, max-age=0, must-revalidate

@@ -1,5 +1,7 @@
 'use client';
 
+import { LAND_SOLUTION_WEB_URL } from '@/lib/land-solution-release';
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
@@ -875,7 +877,7 @@ export default function ProductHubTabs() {
               </button>
 
               <a
-                href="/land-solution-demo/index.html"
+                href={LAND_SOLUTION_WEB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-xs font-bold text-white transition-colors"
@@ -898,10 +900,10 @@ export default function ProductHubTabs() {
           <div className="flex-1 w-full bg-slate-900 relative">
             <iframe
               key={iframeKey}
-              src="/land-solution-demo/index.html"
+              src={LAND_SOLUTION_WEB_URL}
               title="Land Solution Interactive Live Demo"
               className="w-full h-full border-0"
-              allow="geolocation; camera; accelerometer; gyroscope"
+              allow="geolocation; camera; accelerometer; gyroscope; magnetometer"
             />
           </div>
         </div>

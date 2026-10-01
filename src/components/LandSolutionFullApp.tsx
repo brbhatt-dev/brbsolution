@@ -1,5 +1,7 @@
 'use client';
 
+import { LAND_SOLUTION_WEB_URL } from '@/lib/land-solution-release';
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
@@ -95,7 +97,7 @@ export default function LandSolutionFullApp() {
 
             {/* Open Directly in Safari / Standalone */}
             <a
-              href="/land-solution-demo/index.html"
+              href={LAND_SOLUTION_WEB_URL}
               target="_blank"
               rel="noopener noreferrer"
               title="सफारीमा सिधै पूर्ण स्क्रिन खोल्नुहोस् (१००% नेटिभ पर्फर्मेन्स)"
@@ -157,7 +159,7 @@ export default function LandSolutionFullApp() {
       <main className="flex-1 w-full h-full bg-slate-950 relative pb-[env(safe-area-inset-bottom)]">
         <iframe
           key={iframeKey}
-          src="/land-solution-demo/index.html"
+          src={LAND_SOLUTION_WEB_URL}
           title="Land Solution Full Version Application"
           className="w-full h-full border-0 select-auto"
           allow="geolocation *; camera *; accelerometer *; gyroscope *; magnetometer *"
