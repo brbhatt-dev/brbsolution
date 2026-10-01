@@ -113,14 +113,23 @@
       100% { transform: translateX(100%); }
     }
   </style>
+  <script>
+    window.flutterConfiguration = {
+      canvasKitBaseUrl: "canvaskit/",
+      canvasKitMaximumSurfaces: 2
+    };
+  </script>
 </head>
 <body>
   <div id="loading-container">
     <img class="loading-logo" src="icons/Icon-192.png" alt="Land Solution Logo" onerror="this.style.display='none'">
     <div class="loading-title">Land Solution</div>
-    <div class="loading-sub">जग्गा नापी, थ्रीडी घर नक्सा तथा आर्किटेक्चरल सिस्टम</div>
+    <div class="loading-sub">जग्गा नापी, थ्रीडी घर नक्सा तथा आर्किटेक्चरल प्रणाली</div>
     <div class="loading-bar-bg">
       <div class="loading-bar-fill"></div>
+    </div>
+    <div id="loading-status" style="margin-top: 16px; font-size: 12px; color: #94A3B8; text-align: center; max-width: 280px; min-height: 36px; line-height: 1.5;">
+      इन्जिन तथा डेटाबेस लोड हुँदैछ...
     </div>
   </div>
 
@@ -154,12 +163,11 @@
       window.addEventListener('flutter-first-frame', dismissLoader);
 
       // Event 2: DOM MutationObserver to catch Flutter UI mount
-      // (Protects against 120Hz ProMotion screens where first-frame event timing may be skipped)
       if (window.MutationObserver) {
         var observer = new MutationObserver(function () {
           var flutterHost = document.querySelector('flutter-view, flt-glass-pane, flt-scene-host, canvas');
           if (flutterHost) {
-            setTimeout(dismissLoader, 350);
+            setTimeout(dismissLoader, 200);
             observer.disconnect();
           }
         });
@@ -168,9 +176,34 @@
         }
       }
 
-      // Event 3: Hard safety fallback timeout (3.5s)
-      // Ensures user is never trapped by a frozen loading screen
-      setTimeout(dismissLoader, 3500);
+      // Progressive loading feedback (No premature hiding!)
+      var statusEl = document.getElementById('loading-status');
+      setTimeout(function () {
+        if (!dismissed && statusEl) {
+          statusEl.innerText = 'क्यानभास इन्जिन (CanvasKit) लोड हुँदैछ...';
+        }
+      }, 3500);
+
+      setTimeout(function () {
+        if (!dismissed && statusEl) {
+          statusEl.innerText = 'थ्रीडी नक्सा तथा स्थानीय तह डेटा तयार गरिँदैछ...';
+        }
+      }, 7000);
+
+      setTimeout(function () {
+        if (!dismissed && statusEl) {
+          statusEl.innerHTML = 'इन्टरनेट ढिलो भएको हुन सक्छ...<br><a href="/land-solution-demo/index.html" target="_top" style="color: #38BDF8; font-weight: bold; text-decoration: underline; margin-top: 6px; display: inline-block;">सफारीमा सिधै खोल्नुहोस् ↗</a>';
+        }
+      }, 14000);
+
+      // Error catching
+      window.addEventListener('error', function (e) {
+        console.error("Global Loader Error:", e.error || e.message);
+        if (statusEl && !dismissed) {
+          statusEl.innerHTML = '<span style="color:#F87171">लोड हुन समस्या भयो।</span><br><a href="/land-solution-demo/index.html" target="_top" style="color:#38BDF8;font-weight:bold;text-decoration:underline;margin-top:6px;display:inline-block">यहाँ ट्याप गरी सिधै खोल्नुहोस् ↗</a>';
+        }
+      });
+
 
       // 4. Safari iOS Geolocation Permissions API Compatibility Shim
       window._locationGranted = false;

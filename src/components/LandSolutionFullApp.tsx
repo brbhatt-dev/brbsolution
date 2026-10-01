@@ -93,6 +93,18 @@ export default function LandSolutionFullApp() {
               <span>iPhone App बनाउनुहोस्</span>
             </button>
 
+            {/* Open Directly in Safari / Standalone */}
+            <a
+              href="/land-solution-demo/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="सफारीमा सिधै पूर्ण स्क्रिन खोल्नुहोस् (१००% नेटिभ पर्फर्मेन्स)"
+              className="px-2 sm:px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">सिधै खोल्नुहोस्</span>
+            </a>
+
             {/* Reload App */}
             <button
               type="button"
@@ -148,7 +160,7 @@ export default function LandSolutionFullApp() {
           src="/land-solution-demo/index.html"
           title="Land Solution Full Version Application"
           className="w-full h-full border-0 select-auto"
-          allow="geolocation; camera; accelerometer; gyroscope"
+          allow="geolocation *; camera *; accelerometer *; gyroscope *; magnetometer *"
         />
       </main>
 
