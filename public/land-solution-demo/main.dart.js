@@ -102749,10 +102749,10 @@ $1(a){return this.aqL(a)},
 aqL(a){var s=0,r=A.H(t.H),q,p=2,o=[],n=[],m=this,l,k,j,i,h,g
 var $async$$1=A.I(function(b,c){if(b===1){o.push(c)
 s=p}for(;;)switch(s){case 0:j=a.source
-i=window.parent
+i=v.G.window.parent
 h=a.origin
 h.toString
-if(h!==B.S_.gHZ(window.location)||(j==null?i!=null:j!==i)||typeof new A.adb([],[]).ak8(a.data,!0)!="string"){s=1
+if(h!==B.S_.gHZ(window.location)||j!==i||typeof new A.adb([],[]).ak8(a.data,!0)!="string"){s=1
 break}p=4
 l=B.bs.fp(0,A.bB(new A.adb([],[]).ak8(a.data,!0)),null)
 if(!t.f.b(l)){s=1

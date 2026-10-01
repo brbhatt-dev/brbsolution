@@ -128,7 +128,7 @@ export default function DosNoticesWidget({ maxItems = 6, showSearch = true }: Do
     .slice(0, maxItems);
 
   return (
-    <div className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-7 shadow-xs space-y-6">
+    <div id="dos-notices" className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-7 shadow-xs space-y-6 scroll-mt-24">
       
       {/* Header with Live Sync Status */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5">

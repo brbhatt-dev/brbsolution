@@ -20,6 +20,7 @@ export default function LandSolutionFullApp() {
   const menuButton = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
   const [showIosGuide, setShowIosGuide] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [iframeKey, setIframeKey] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showTopBar, setShowTopBar] = useState(true);
@@ -38,6 +39,7 @@ export default function LandSolutionFullApp() {
   const retry = () => { clearTimeout(openTimer.current); setReady(false); setProblem(''); setPhase('download'); setOpening(''); setIframeKey(k => k + 1); };
 
   useEffect(() => {
+    setHydrated(true);
     try { const saved = JSON.parse(localStorage.getItem('land-solution-recent-tools') || '[]'); if (Array.isArray(saved)) setRecent(saved.filter(t => typeof t === 'string').slice(0, 4)); } catch {}
     const onMessage = (event: MessageEvent) => {
       if (event.origin !== window.location.origin || event.source !== frame.current?.contentWindow || typeof event.data !== 'string') return;
@@ -96,8 +98,8 @@ export default function LandSolutionFullApp() {
     {showTopBar ? <header className="shrink-0 border-b border-slate-800 bg-slate-900 px-2 sm:px-4 py-2 pt-[max(8px,env(safe-area-inset-top))] flex items-center gap-2">
       <Link href="/" aria-label="मुख्य पेज" title="मुख्य पेज" className={control}><Home size={20}/></Link>
       <div className="flex-1 min-w-0 flex items-center gap-2"><img src="/logo.png" alt="" width="32" height="32" className="hidden sm:block rounded-lg"/><div className="min-w-0"><h1 className="text-sm font-bold truncate">Land Solution</h1><p className="text-[11px] text-slate-400 truncate">जग्गा नापी तथा नक्सा</p></div></div>
-      <button ref={searchButton} type="button" aria-label="Tools खोज्नुहोस्" onClick={()=>{setQuery('');setPanel('search');}} className={control+' px-3'}><Search size={20}/><span className="hidden sm:inline text-sm">Tools खोज्नुहोस्</span></button>
-      <button ref={menuButton} type="button" aria-label="App menu" aria-expanded={panel==='menu'} onClick={()=>setPanel('menu')} className={control}><Menu size={20}/></button>
+      <button ref={searchButton} type="button" disabled={!hydrated} aria-label="Tools खोज्नुहोस्" onClick={()=>{setQuery('');setPanel('search');}} className={control+' px-3 disabled:opacity-50'}><Search size={20}/><span className="hidden sm:inline text-sm">Tools खोज्नुहोस्</span></button>
+      <button ref={menuButton} type="button" disabled={!hydrated} aria-label="App menu" aria-expanded={panel==='menu'} onClick={()=>setPanel('menu')} className={control+' disabled:opacity-50'}><Menu size={20}/></button>
     </header> : <button type="button" onClick={()=>setShowTopBar(true)} aria-label="मेनु देखाउनुहोस्" className={control+' fixed top-2 right-2 z-30 px-3 shadow-lg'}><Menu size={20}/></button>}
     <main className="flex-1 min-h-0 relative pb-[env(safe-area-inset-bottom)]">
       <iframe ref={frame} key={iframeKey} src={LAND_SOLUTION_WEB_URL} title="Land Solution Full Version Application" className="w-full h-full border-0" allow="geolocation *; camera *; accelerometer *; gyroscope *; magnetometer *" onLoad={()=>post({type:'land-solution-hello'})} onError={()=>setProblem('App डाउनलोड हुन सकेन। पुनः प्रयास गर्नुहोस्।')}/>

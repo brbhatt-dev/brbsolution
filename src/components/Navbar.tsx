@@ -30,7 +30,8 @@ import {
   Sparkles,
   ArrowRight,
   Maximize2,
-  Cpu
+  Cpu,
+  Bell
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -207,6 +208,17 @@ export default function Navbar() {
                 }`}
               >
                 <Link
+                  href="/notices"
+                  onClick={() => setLawsDropdownOpen(false)}
+                  className="flex items-center justify-between p-2 rounded-lg bg-emerald-50/60 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-xs font-bold transition-colors border border-emerald-200/60 dark:border-emerald-800/60"
+                >
+                  <div className="flex items-center gap-2">
+                    <Bell className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>नापी विभाग ताजा सूचना</span>
+                  </div>
+                  <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">LIVE</span>
+                </Link>
+                <Link
                   href="/laws"
                   onClick={() => setLawsDropdownOpen(false)}
                   className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 text-xs font-bold transition-colors"
@@ -224,6 +236,21 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
+
+            {/* Live Survey Notices Button */}
+            <Link
+              href="/notices"
+              className="relative inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-1 px-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>नापी सूचना</span>
+              <span className="text-[9px] font-black tracking-normal px-1.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">
+                LIVE
+              </span>
+            </Link>
 
             {/* 3. सफ्टवेयर ड्रपडाउन (Software Hub) */}
             <div 
@@ -508,6 +535,17 @@ export default function Navbar() {
               📚 कानुन, निर्देशिका तथा अध्ययन
             </span>
             <div className="grid grid-cols-2 gap-1.5 text-xs font-bold">
+              <Link
+                href="/notices"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-extrabold col-span-2 border border-emerald-200 dark:border-emerald-800"
+              >
+                <div className="flex items-center gap-2">
+                  <Bell className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>नापी विभाग प्रत्यक्ष सूचना (Live Notices)</span>
+                </div>
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">LIVE</span>
+              </Link>
               <Link
                 href="/tools/survey-offices"
                 onClick={() => setMobileMenuOpen(false)}
