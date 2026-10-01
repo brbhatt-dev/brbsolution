@@ -38,7 +38,7 @@ export default function TickerDemoPage() {
         {activeStyle === 'slide' && <TickerStyleSlide showDismiss={false} />}
         {activeStyle === 'marquee' && <TickerStyleMarquee showDismiss={false} />}
         {activeStyle === 'capsule' && <TickerStyleCapsule showDismiss={false} />}
-        <Navbar />
+        <Navbar hideTicker={true} />
       </div>
 
       {/* 2. Interactive Switcher & Control Panel */}
