@@ -1,0 +1,17 @@
+;;; ==========================================================================
+;;; File: NEPAL_SURVEY.LIN (AutoCAD Custom Linestyles for Nepal Survey & CAD)
+;;; Author: BR Bhatta | www.brbhatta.com | infobrbhatta@gmail.com
+;;; Description: Load via AutoCAD LINETYPE command -> Load -> Browse this file.
+;;; ==========================================================================
+
+*KITTA_BOUNDARY,Parcel Boundary ---- KB ---- KB ----
+A,1.0,-0.15,["KB",STANDARD,S=0.15,R=0.0,X=-0.08,Y=-0.07],-0.15
+
+*ROAD_BOUNDARY,Road Right of Way ---- ROAD ---- ROAD ----
+A,1.5,-0.2,["ROAD",STANDARD,S=0.15,R=0.0,X=-0.1,Y=-0.07],-0.2
+
+*RIVER_SETBACK,River / Canal Setback ---- CANAL ----
+A,1.2,-0.2,["CANAL",STANDARD,S=0.15,R=0.0,X=-0.1,Y=-0.07],-0.2
+
+*HIGH_TENSION,High Tension Electric Line ---- HT ----
+A,1.0,-0.15,["HT",STANDARD,S=0.15,R=0.0,X=-0.08,Y=-0.07],-0.15

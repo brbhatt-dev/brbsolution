@@ -29,7 +29,8 @@ import {
   Wallet,
   Sparkles,
   ArrowRight,
-  Maximize2
+  Maximize2,
+  Cpu
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -37,6 +38,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [lawsDropdownOpen, setLawsDropdownOpen] = useState(false);
+  const [softwareDropdownOpen, setSoftwareDropdownOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200 notranslate" translate="no">
@@ -223,12 +225,87 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link
-              href="/#land-solution"
-              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+            {/* 3. सफ्टवेयर ड्रपडाउन (Software Hub) */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setSoftwareDropdownOpen(true)}
+              onMouseLeave={() => setSoftwareDropdownOpen(false)}
             >
-              सफ्टवेयर
-            </Link>
+              <Link
+                href="/software"
+                className="flex items-center gap-1 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-2"
+              >
+                <span>सफ्टवेयर</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${softwareDropdownOpen ? 'rotate-180 text-emerald-600' : ''}`} />
+              </Link>
+
+              {/* Dropdown Menu */}
+              <div 
+                className={`absolute top-full left-0 w-80 p-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl transition-all duration-200 z-50 ${
+                  softwareDropdownOpen 
+                    ? 'opacity-100 visible translate-y-0' 
+                    : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                }`}
+              >
+                <Link
+                  href="/software"
+                  onClick={() => setSoftwareDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-800 dark:text-slate-200 transition-colors"
+                >
+                  <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 shrink-0">
+                    <Cpu className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-emerald-700 dark:text-emerald-400">सफ्टवेयर हब (Software Hub)</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">सम्पूर्ण सफ्टवेयर, AutoLISP र क्याड टुल्स</div>
+                  </div>
+                </Link>
+
+                <div className="my-1 border-t border-slate-100 dark:border-slate-800"></div>
+
+                <Link
+                  href="/land-solution"
+                  onClick={() => setSoftwareDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors"
+                >
+                  <div className="p-1.5 rounded-lg bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 shrink-0">
+                    <Compass className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black">Land Solution (नापी एप)</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">७५३ स्थानीय तह, ३D नक्सा, कित्ताकाट</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/software#autocad-lsp"
+                  onClick={() => setSoftwareDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors"
+                >
+                  <div className="p-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 shrink-0">
+                    <FileCode className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black">AutoCAD AutoLISP (.LSP)</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">रोपनी, बिघा, कित्ता नम्बरिङ कोडहरू</div>
+                  </div>
+                </Link>
+
+                <Link
+                  href="/software#cad-extensions"
+                  onClick={() => setSoftwareDropdownOpen(false)}
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors"
+                >
+                  <div className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 shrink-0">
+                    <Layers className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black">CAD टेम्प्लेट & लाइनस्टाइल (.LIN)</div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">नेपाल नापी आधिकारिक क्याड फाइल्स</div>
+                  </div>
+                </Link>
+              </div>
+            </div>
 
             <Link
               href="/articles"
@@ -466,23 +543,51 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Category 4: मुख्य सफ्टवेयर र सम्पर्क */}
+          {/* Category 4: मुख्य सफ्टवेयर र टूल्स हब */}
           <div className="flex flex-col gap-2 p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold">
-            <div className="flex items-center justify-between">
+            <span className="text-[10px] uppercase font-black text-slate-400 px-1">सफ्टवेयर तथा क्याड टूल्स</span>
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                href="/software"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-1.5 p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-extrabold"
+              >
+                <Cpu className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span className="truncate">सफ्टवेयर हब</span>
+              </Link>
+              <Link
+                href="/land-solution"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-1.5 p-2 rounded-xl bg-teal-50 dark:bg-teal-950/40 text-teal-800 dark:text-teal-300"
+              >
+                <Compass className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                <span className="truncate">Land Solution</span>
+              </Link>
+              <Link
+                href="/software#autocad-lsp"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-1.5 p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300"
+              >
+                <FileCode className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+                <span className="truncate">AutoCAD LISP</span>
+              </Link>
+              <Link
+                href="/software#cad-extensions"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-1.5 p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300"
+              >
+                <Layers className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <span className="truncate">क्याड टेम्प्लेट</span>
+              </Link>
+            </div>
+            
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-slate-600 dark:text-slate-400">
               <Link
                 href="/about"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
+                className="hover:text-emerald-600"
               >
                 हाम्रो बारेमा
-              </Link>
-              <span>•</span>
-              <Link
-                href="/#land-solution"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-slate-700 dark:text-slate-300 hover:text-emerald-600"
-              >
-                Land Solution
               </Link>
               <span>•</span>
               <Link

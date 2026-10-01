@@ -228,18 +228,24 @@ export default function StyleCitizenPortal() {
         </div>
       </section>
 
-      {/* 5. COMPACT MOBILE APPLICATIONS (Option 2: Action-Oriented) */}
-      <section className="space-y-3 pt-1">
+      {/* 5. COMPACT MOBILE APPLICATIONS & SOFTWARE (Action-Oriented) */}
+      <section id="land-solution" className="space-y-3 pt-1">
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
             <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
               <Smartphone className="w-4 h-4 text-emerald-600" />
-              <span>दैनिक कामलाई सजिलो बनाउने हाम्रा मोबाइल एपहरू</span>
+              <span>दैनिक कामलाई सजिलो बनाउने हाम्रा सफ्टवेयर तथा मोबाइल एपहरू</span>
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              फिल्ड नापजाँच, कित्ताकाट तथा बचत हिसाबका लागि निर्मित आधिकारिक एन्ड्रोइड तथा iOS वेब सफ्टवेयर
+              फिल्ड नापजाँच, कित्ताकाट, AutoLISP क्याड तथा बचत हिसाबका लागि निर्मित आधिकारिक सफ्टवेयर
             </p>
           </div>
+          <Link
+            href="/software"
+            className="px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-xs font-bold hover:bg-emerald-100 transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span>सफ्टवेयर हब ↗</span>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
@@ -312,7 +318,7 @@ export default function StyleCitizenPortal() {
             </div>
 
             <Link
-              href="/#hamro-kosh"
+              href="/software#other-apps"
               className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs"
             >
               <span>विवरण</span>
