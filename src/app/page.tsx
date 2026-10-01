@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import StyleCitizenPortal from '@/components/demos/StyleCitizenPortal';
 import KnowledgeBaseSection from '@/components/KnowledgeBaseSection';
+import DosNoticesWidget from '@/components/DosNoticesWidget';
 import Contact from '@/components/Contact';
 import HomeFooter from '@/components/HomeFooter';
 
@@ -12,6 +13,9 @@ export default function Home() {
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-8 sm:space-y-10 w-full">
         {/* Full Demo 2: Citizen Utility Hub Core (Greeting, Quick Tiles, Precision Calculator, Directory, Mobile Apps) */}
         <StyleCitizenPortal />
+
+        {/* Real-Time Survey Department Live Notices */}
+        <DosNoticesWidget maxItems={4} showSearch={false} />
 
         {/* Informative Guidance & Articles */}
         <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800">

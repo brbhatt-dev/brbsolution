@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Scale, ArrowLeft, Building2, ShieldCheck, Sparkles, BookOpen, ExternalLink, HelpCircle } from 'lucide-react';
 import LawsDirectory from '@/components/LawsDirectory';
+import DosNoticesWidget from '@/components/DosNoticesWidget';
 import SocialShareBar from '@/components/SocialShareBar';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import { LAW_DOCUMENTS } from '@/data/laws';
@@ -138,6 +139,9 @@ export default function LawsPage() {
         
         {/* AdSense Slot */}
         <AdSenseSlot userFacingLabel="प्रायोजित सूचना (Sponsored Legal Hub)" />
+
+        {/* Real-Time Survey Department Live Notices */}
+        <DosNoticesWidget maxItems={6} showSearch={true} />
 
         {/* Interactive Directory (Search, Filter Tabs, Expandable Provisions) */}
         <LawsDirectory />
