@@ -178594,8 +178594,8 @@ n=p.URL.createObjectURL(o)
 m=p.window.document
 l=p.document.createElement("a")
 l.href=n
+l.target="_blank"
 if(b!=null)l.download=b
-else l.target="_blank"
 p=m.body
 if(p!=null)p.append(l)
 l.click()

@@ -39,11 +39,11 @@ export default function LandSolutionFullApp() {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-screen h-screen flex flex-col bg-slate-950 text-white overflow-hidden select-none z-50">
+    <div className="fixed inset-0 w-full h-full h-[100dvh] flex flex-col bg-slate-950 text-white overflow-hidden select-none z-50">
       
       {/* Top Header Control Strip */}
       {showTopBar && (
-        <header className="h-13 sm:h-15 bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 px-3 sm:px-5 flex items-center justify-between shrink-0 z-20">
+        <header className="min-h-13 sm:min-h-15 pt-[env(safe-area-inset-top)] bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 px-3 sm:px-5 flex items-center justify-between shrink-0 z-20">
           
           {/* Left: Branding & Full Version Data Badge */}
           <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
@@ -142,7 +142,7 @@ export default function LandSolutionFullApp() {
       )}
 
       {/* Main Full Version Flutter Engine Viewport */}
-      <main className="flex-1 w-full h-full bg-slate-950 relative">
+      <main className="flex-1 w-full h-full bg-slate-950 relative pb-[env(safe-area-inset-bottom)]">
         <iframe
           key={iframeKey}
           src="/land-solution-demo/index.html"

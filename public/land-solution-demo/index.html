@@ -39,12 +39,21 @@
   <link rel="manifest" href="manifest.json">
 
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
       background-color: #0F172A;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow: hidden;
+      position: fixed;
+      inset: 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+      overscroll-behavior: none;
     }
     #loading-container {
       position: fixed;
@@ -186,6 +195,19 @@
           }
         };
       }
+
+      // 5. iOS Motion & Compass (DeviceOrientation) Permission Request
+      function enableIosSensors() {
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+          DeviceOrientationEvent.requestPermission().then(function (state) {
+            if (state === 'granted') {
+              window._iosSensorsEnabled = true;
+            }
+          }).catch(function () {});
+        }
+      }
+      window.addEventListener('click', enableIosSensors, { once: true });
+      window.addEventListener('touchstart', enableIosSensors, { once: true });
     })();
   </script>
   <script src="flutter_bootstrap.js" async></script>

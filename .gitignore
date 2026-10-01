@@ -33,3 +33,4 @@ deploy.ps1
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.wrangler/
