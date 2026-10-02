@@ -10,15 +10,6 @@ export default function TopTickerBanner() {
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    // Check session storage if user dismissed the banner
-    try {
-      if (sessionStorage.getItem('brbhatta_top_ticker_dismissed') === 'true') {
-        setIsDismissed(true);
-      }
-    } catch {
-      // Ignore storage errors in incognito/restricted modes
-    }
-
     // Attempt to fetch latest live DOS notice in background to keep it genuinely 100% live
     async function syncLatestDosNotice() {
       try {
@@ -54,11 +45,6 @@ export default function TopTickerBanner() {
 
   const handleDismiss = () => {
     setIsDismissed(true);
-    try {
-      sessionStorage.setItem('brbhatta_top_ticker_dismissed', 'true');
-    } catch {
-      // Ignore storage errors
-    }
   };
 
   // Duplicate items for seamless continuous infinite marquee

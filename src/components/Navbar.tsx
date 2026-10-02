@@ -421,6 +421,24 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 pt-3 pb-8 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
           
+          {/* Top Quick Action to Live Survey Notices */}
+          <Link
+            href="/notices"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-rose-600 via-rose-700 to-rose-800 text-white font-bold text-xs shadow-md"
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+              </span>
+              <span>नापी विभाग प्रत्यक्ष सूचना (Live Notices)</span>
+            </div>
+            <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black tracking-wider uppercase">
+              LIVE
+            </span>
+          </Link>
+
           {/* Top Quick Action to All Tools */}
           <Link
             href="/tools"
