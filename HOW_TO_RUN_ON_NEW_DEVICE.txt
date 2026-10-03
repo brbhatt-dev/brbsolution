@@ -1,0 +1,39 @@
+========================================================================
+BR BHATTA WEBSITE - COMPLETE PORTABLE PROJECT BACKUP
+Official Portal: https://www.brbhatta.com
+GitHub Repo: https://github.com/brbhatt-dev/brbsolution
+========================================================================
+
+नयाँ डिभाइसमा यो प्रोजेक्ट सुरु गर्ने ३ सजिला चरणहरू (Quick Setup Guide):
+
+१. आवश्यक सफ्टवेयर (Prerequisites):
+   - Node.js (v18 वा माथिल्लो भर्सन): https://nodejs.org बाट इन्स्टल गर्नुहोस्।
+   - Git: https://git-scm.com बाट इन्स्टल गर्नुहोस्।
+
+२. डिपेन्डेन्सीहरू इन्स्टल गर्ने (Install Dependencies):
+   यो फोल्डरलाई नयाँ कम्प्युटरमा जहाँसुकै राख्नुहोस्, त्यसपछि Terminal वा PowerShell खोलेर तलको कमान्ड हान्नुहोस्:
+   
+   npm install
+
+३. लोकल कम्प्युटरमा चलाएर हेर्ने (Run Locally):
+   
+   npm run dev
+
+   त्यसपछि ब्राउजरमा http://localhost:3000 खोल्नुहोस्। वेबसाइट चल्नेछ।
+
+४. नयाँ अपडेट क्लाउडफ्लेयरमा लाइभ गर्ने (Deploy to Live Production):
+   यस फोल्डरभित्र .env.local मा Cloudflare API Token, Account ID, र Gemini API Key पहिले नै सुरक्षित छ। 
+   तपाईंले सिधै तलको कमान्ड हान्नुभयो भने वेबसाइट आफैँ बिल्ड भएर brbhatta.com मा लाइभ हुन्छ:
+
+   npm run deploy
+
+५. GitHub सिंक (Git Sync):
+   यस ब्याकअपमा सम्पूर्ण .git इतिहास सुरक्षित छ। कोड फेरबदल गरेपछि GitHub मा पुश गर्न:
+   
+   git add .
+   git commit -m "Your update message"
+   git push origin main
+
+========================================================================
+सुरक्षित मिति: अक्टोबर ३, २०२६
+========================================================================
