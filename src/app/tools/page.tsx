@@ -25,7 +25,8 @@ import {
   FileText,
   Compass,
   ScrollText,
-  Maximize2
+  Maximize2,
+  Trophy
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -343,6 +344,21 @@ const TOOL_SECTIONS: ToolCategory[] = [
           'तत्काल सही उत्तर र विस्तृत व्याख्या',
           '१५ मिनेट टाइमर र नेगेटिभ मार्किङ',
           'असीमित निःशुल्क अभ्यास'
+        ]
+      },
+      {
+        id: 'virtual-amin-game',
+        titleNp: 'भर्चुअल अमिन फिल्ड नापी सिमुलेटर खेल',
+        titleEn: 'Virtual Amin Cadastral Game',
+        description: 'वास्तविक नापी फित्ता, हेरन सूत्र र कित्ताकाट नियम प्रयोग गरी बाङ्गो-टिङ्गो जग्गा नाप्ने र "प्रमाणित डिजिटल अमिन" प्रमाणपत्र जित्ने अन्तरक्रियात्मक खेल।',
+        badge: 'इन्टर्याक्टिभ गेम 🎮',
+        icon: Trophy,
+        href: '/tools/virtual-amin-game',
+        features: [
+          '३ वटा फिल्ड लेभलहरू (समकोण, हेरन सूत्र, कित्ताकाट)',
+          'वास्तविक भर्चुअल फित्ता र सूत्र संकेत प्रणाली',
+          'सफलतापूर्वक उत्तीर्ण गरेपछि डिजिटल अमिन प्रमाणपत्र',
+          'A4 प्रिन्ट तथा सेयरिङ सुविधा'
         ]
       },
       {

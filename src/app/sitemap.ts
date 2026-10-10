@@ -50,6 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/tools/virtual-amin-game`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.96,
+    },
+    {
       url: `${baseUrl}/tools/kitta-kat-checker`,
       lastModified: currentDate,
       changeFrequency: 'weekly',

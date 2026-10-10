@@ -13,10 +13,12 @@ import {
   Receipt,
   Building2,
   Percent,
-  Printer
+  Printer,
+  Mic
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import PrintSlipModal from '@/components/PrintSlipModal';
+import VoiceLandModal, { ParsedLandResult } from '@/components/VoiceLandModal';
 import { copyToClipboard } from '@/lib/clipboard';
 
 type Mode = 'pahadi' | 'terai' | 'sqft' | 'tax';
@@ -27,6 +29,7 @@ interface LandCalculatorProps {
 
 export default function LandCalculator({ compact = false }: LandCalculatorProps) {
   const [mode, setMode] = useState<Mode>('pahadi');
+  const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
 
   // Pahadi inputs
   const [ropani, setRopani] = useState<number>(1);
@@ -163,9 +166,51 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
     }
   };
 
+  const handleApplyVoice = (result: ParsedLandResult) => {
+    setMode(result.mode);
+    if (result.mode === 'pahadi' && result.values) {
+      if (result.values.ropani !== undefined) setRopani(result.values.ropani);
+      if (result.values.aana !== undefined) setAana(result.values.aana);
+      if (result.values.paisa !== undefined) setPaisa(result.values.paisa);
+      if (result.values.daam !== undefined) setDaam(result.values.daam);
+    } else if (result.mode === 'terai' && result.values) {
+      if (result.values.bigha !== undefined) setBigha(result.values.bigha);
+      if (result.values.katha !== undefined) setKatha(result.values.katha);
+      if (result.values.dhur !== undefined) setDhur(result.values.dhur);
+      if (result.values.kanwa !== undefined) setKanwa(result.values.kanwa);
+    } else if (result.mode === 'sqft' && result.values) {
+      if (result.values.sqft !== undefined) {
+        setUnitType('sqft');
+        setSqftInput(result.values.sqft);
+      }
+    } else if (result.mode === 'tax' && result.values) {
+      if (result.values.propertyValue !== undefined) {
+        setPropertyValue(result.values.propertyValue);
+      }
+    }
+  };
+
   const calculatorBox = (
     <div className={`bg-slate-50 dark:bg-slate-900/80 rounded-2xl sm:rounded-3xl border border-slate-200 dark:border-slate-800 ${compact ? 'p-3.5 sm:p-5 shadow-xs' : 'p-5 sm:p-8 shadow-sm'}`}>
       
+      {/* Voice Assistant Trigger Row */}
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <button
+          type="button"
+          onClick={() => setIsVoiceModalOpen(true)}
+          className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs shadow-md shadow-emerald-600/25 transition-all active:scale-95 cursor-pointer group"
+          title="नेपालीमा बोलेर जग्गा हिसाब गर्नुहोस्"
+        >
+          <Mic className="w-4 h-4 animate-pulse text-amber-300" />
+          <span>मुखले बोलेर हिसाब (Voice AI)</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+        </button>
+
+        <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:inline">
+          💡 "५ आना" वा "२ बिघा" बोल्नुहोस्
+        </span>
+      </div>
+
       {/* Mode Switcher Tabs (4 Modes) */}
       <div className={`grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-xl ${compact ? 'mb-4' : 'mb-6'}`}>
             <button
@@ -704,6 +749,13 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
             estimatedPrice,
             priceUnitLabel: mode === 'terai' ? 'प्रति धुर' : 'प्रति आना'
           }}
+        />
+
+        {/* 🎙️ Voice-Activated Land Calculator Modal */}
+        <VoiceLandModal
+          isOpen={isVoiceModalOpen}
+          onClose={() => setIsVoiceModalOpen(false)}
+          onApply={handleApplyVoice}
         />
 
         {/* AdSense Slot below calculator */}

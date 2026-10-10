@@ -24,7 +24,8 @@ import {
   Maximize2,
   Coins,
   QrCode,
-  GraduationCap
+  GraduationCap,
+  Trophy
 } from 'lucide-react';
 
 interface SearchItem {
@@ -161,6 +162,17 @@ const SEARCH_DATABASE: SearchItem[] = [
     href: '/tools/aamin-quiz',
     keywords: ['अमिन', 'क्विज', 'लोकसेवा', 'सर्भे', 'aamin quiz', 'तयारी'],
     icon: GraduationCap
+  },
+  {
+    id: 'virtual-amin-game',
+    titleNp: 'भर्चुअल अमिन फिल्ड नापी सिमुलेटर खेल',
+    titleEn: 'Virtual Amin Cadastral Game',
+    category: 'tool',
+    categoryLabel: 'इन्टर्याक्टिभ खेल',
+    badge: 'गेम 🎮',
+    href: '/tools/virtual-amin-game',
+    keywords: ['अमिन खेल', 'सिमुलेटर', 'गेम', 'game', 'फित्ता', 'नापी खेल', 'प्रमाणपत्र', 'virtual amin'],
+    icon: Trophy
   },
 
   // 2. Mobile Applications & Software

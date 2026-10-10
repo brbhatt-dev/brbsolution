@@ -19,6 +19,7 @@ import {
 import { ARTICLES_DATA, ArticleDetail } from '@/data/articles';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import SocialShareBar from '@/components/SocialShareBar';
+import AudioArticlePlayer from '@/components/AudioArticlePlayer';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -201,6 +202,13 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 text-xs sm:text-sm text-emerald-950 dark:text-emerald-200 leading-relaxed font-medium">
               <p><strong>सारांश (Summary):</strong> {article.summary}</p>
             </div>
+
+            {/* 🎧 Interactive Nepali Audio Player */}
+            <AudioArticlePlayer 
+              title={article.title} 
+              summary={article.summary} 
+              sections={article.sections} 
+            />
 
             {/* Social Share Bar Top */}
             <SocialShareBar title={article.title} url={`/articles/${article.slug}`} />
