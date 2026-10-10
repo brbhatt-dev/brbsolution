@@ -56,7 +56,7 @@ export default function GlobalError({
         {/* Help footer */}
         <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1.5">
           <Mail className="w-3.5 h-3.5 text-slate-400" />
-          <span>समस्या निरन्तर रहेमा: infobrbhatta@gmail.com</span>
+          <span>समस्या निरन्तर रहेमा: info@brbhatta.com</span>
         </div>
 
       </div>

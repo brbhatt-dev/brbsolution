@@ -73,7 +73,7 @@ export default function RootLayout({
     '@type': 'Person',
     name: 'BR Bhatta',
     url: 'https://www.brbhatta.com',
-    email: 'mailto:infobrbhatta@gmail.com',
+    email: 'mailto:info@brbhatta.com',
     jobTitle: 'Software Developer & Land Tech Specialist',
     address: {
       '@type': 'PostalAddress',

@@ -192,7 +192,7 @@ const LSP_SCRIPTS: LspScript[] = [
     unitSystem: 'कुनै पनि स्केल र युनिटमा काम गर्ने स्वचालित नम्बरिङ',
     code: `;;; ==========================================================================
 ;;; Program: KITTA_NUMBER.LSP (AutoCAD AutoLISP Script for Nepal Cadastral Survey)
-;;; Author: BR Bhatta | www.brbhatta.com | infobrbhatta@gmail.com
+;;; Author: BR Bhatta | www.brbhatta.com | info@brbhatta.com
 ;;; Command: KN or KITTANUM
 ;;; Description: Sequentially numbers land parcels / kittas with auto-increment.
 ;;; ==========================================================================
@@ -277,7 +277,7 @@ const LSP_SCRIPTS: LspScript[] = [
     unitSystem: 'फिट र मिटर दुवै युनिटमा काम गर्ने',
     code: `;;; ==========================================================================
 ;;; Program: BOUNDARY_OFFSET.LSP (Building & Road Setback Tool for Nepal CAD)
-;;; Author: BR Bhatta | www.brbhatta.com | infobrbhatta@gmail.com
+;;; Author: BR Bhatta | www.brbhatta.com | info@brbhatta.com
 ;;; Command: SETBACK or BSET
 ;;; Description: Creates standard municipal setbacks from parcel boundary line.
 ;;; ==========================================================================

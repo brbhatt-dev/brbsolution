@@ -15,7 +15,7 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const emailAddress = 'infobrbhatta@gmail.com';
+  const emailAddress = 'info@brbhatta.com';
 
   const copyEmail = async () => {
     const ok = await copyToClipboard(emailAddress);
