@@ -45,11 +45,20 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'ne_NP',
     type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Land Solution & BR Bhatta Nepal',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'BR Bhatta | Land Solution & Tech Innovations Nepal',
     description: 'Explore Land Solution, Hamro Kosh, and AutoCAD LSP tools built for Nepal.',
+    images: ['/logo.png'],
   },
   icons: {
     icon: [
@@ -124,6 +133,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="32x32" />
         <link rel="icon" href="/icon.png?v=2" type="image/png" sizes="192x192" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180" />
+        <link rel="manifest" href="/manifest.json" />
 
         {/* Google Fonts: Mukta (PMO opmcm.gov.np GIWMS Standard) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
