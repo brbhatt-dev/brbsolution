@@ -55,7 +55,7 @@ export default function Hero() {
             </h1>
 
             {/* Concise Subtitle */}
-            <p className="text-xs sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
               नापी अमिन, इन्जिनियर, घरजग्गा व्यवसायी तथा सर्वसाधारणका लागि जग्गा क्यालकुलेटर, मालपोत कर, Preeti to Unicode, २००KB फोटो कम्प्रेसर, र Land Solution एपको आधिकारिक हब।
             </p>
 
@@ -63,7 +63,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 pt-1">
               <a
                 href="#featured-tools"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-sm sm:text-base shadow-sm transition-all"
               >
                 <span>डिजिटल उपकरणहरू प्रयोग गर्नुहोस्</span>
                 <ArrowRight className="w-4 h-4" />
@@ -73,7 +73,7 @@ export default function Hero() {
                 href="/land-solution-demo/index.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:bg-slate-950 text-white dark:bg-slate-800 dark:hover:bg-slate-700 font-bold text-xs sm:text-sm border border-slate-800 dark:border-slate-700 transition-all shadow-2xs"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:bg-slate-950 text-white dark:bg-slate-800 dark:hover:bg-slate-700 font-bold text-sm sm:text-base border border-slate-800 dark:border-slate-700 transition-all shadow-2xs"
               >
                 <Play className="w-4 h-4 fill-white" />
                 <span>Land Solution Web Demo</span>
@@ -83,7 +83,7 @@ export default function Hero() {
 
             {/* Mobile Horizontal Quick Action Pills */}
             <div className="pt-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2 text-center lg:text-left">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-2 text-center lg:text-left">
                 द्रुत उपकरणहरू (Quick Access):
               </span>
               <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none no-scrollbar -mx-2 px-2">
@@ -93,7 +93,7 @@ export default function Hero() {
                     <a
                       key={idx}
                       href={pill.href}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 text-xs font-semibold whitespace-nowrap shrink-0 transition-colors shadow-2xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-colors shadow-2xs"
                     >
                       <Icon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                       <span>{pill.label}</span>
@@ -102,7 +102,7 @@ export default function Hero() {
                     <Link
                       key={idx}
                       href={pill.href}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 text-xs font-semibold whitespace-nowrap shrink-0 transition-colors shadow-2xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-emerald-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-300 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-colors shadow-2xs"
                     >
                       <Icon className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                       <span>{pill.label}</span>
@@ -113,7 +113,7 @@ export default function Hero() {
             </div>
 
             {/* Micro Trust Indicators */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>१००% शुद्ध नापी सूत्र</span>

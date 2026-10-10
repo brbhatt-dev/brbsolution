@@ -5,9 +5,22 @@
 @tailwind utilities;
 
 html {
+  font-size: 17px;
   scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100%;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 17.5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 html.dark {
@@ -18,22 +31,31 @@ body {
   background-color: #ffffff;
   color: #1e293b;
   font-family: 'Mukta', sans-serif !important;
-  font-weight: 400;
-  line-height: 1.5;
+  font-weight: 450;
+  line-height: 1.6;
   overflow-x: hidden;
   width: 100%;
   -webkit-tap-highlight-color: transparent;
   padding-bottom: env(safe-area-inset-bottom, 0px);
   transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* PMO opmcm.gov.np Standard Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Mukta', sans-serif !important;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
 
 button, input, select, textarea, a, p, span, label, table {
   font-family: 'Mukta', sans-serif;
+  letter-spacing: 0.005em;
+}
+
+p {
+  line-height: 1.65;
 }
 
 code, kbd, samp, pre, .font-mono {

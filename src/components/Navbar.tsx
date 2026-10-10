@@ -66,7 +66,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
                 Land Solution
               </span>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
                 BR Bhatta • brbhatta.com
               </span>
             </div>
@@ -83,7 +83,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             >
               <Link
                 href="/tools"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
               >
                 <span>उपकरणहरू (Tools Hub)</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
@@ -95,7 +95,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                   toolsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
                 }`}
               >
-                <div className="grid grid-cols-2 gap-1 text-xs">
+                <div className="grid grid-cols-2 gap-1 text-sm">
                   <Link
                     href="/tools/land-calculator"
                     onClick={() => setToolsDropdownOpen(false)}
@@ -199,7 +199,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             >
               <Link
                 href="/laws"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
               >
                 <span>नापी कानुन (Laws)</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
@@ -243,7 +243,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             {/* Live Survey Notices Button */}
             <Link
               href="/notices"
-              className="relative inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-1 px-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="relative inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-1 px-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -263,7 +263,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             >
               <Link
                 href="/software"
-                className="flex items-center gap-1 text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-2"
+                className="flex items-center gap-1 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-2"
               >
                 <span>सफ्टवेयर</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${softwareDropdownOpen ? 'rotate-180 text-emerald-600' : ''}`} />
@@ -286,8 +286,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                     <Cpu className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-emerald-700 dark:text-emerald-400">सफ्टवेयर हब (Software Hub)</div>
-                    <div className="text-[10px] text-slate-500 dark:text-slate-400">सम्पूर्ण सफ्टवेयर, AutoLISP र क्याड टुल्स</div>
+                    <div className="text-sm font-black text-emerald-700 dark:text-emerald-400">सफ्टवेयर हब (Software Hub)</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">सम्पूर्ण सफ्टवेयर, AutoLISP र क्याड टुल्स</div>
                   </div>
                 </Link>
 
@@ -302,8 +302,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                     <Compass className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-black">Land Solution (नापी एप)</div>
-                    <div className="text-[10px] text-slate-500 dark:text-slate-400">७५३ स्थानीय तह, ३D नक्सा, कित्ताकाट</div>
+                    <div className="text-sm font-black">Land Solution (नापी एप)</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">७५३ स्थानीय तह, ३D नक्सा, कित्ताकाट</div>
                   </div>
                 </Link>
 
@@ -316,8 +316,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                     <FileCode className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-black">AutoCAD AutoLISP (.LSP)</div>
-                    <div className="text-[10px] text-slate-500 dark:text-slate-400">रोपनी, बिघा, कित्ता नम्बरिङ कोडहरू</div>
+                    <div className="text-sm font-black">AutoCAD AutoLISP (.LSP)</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">रोपनी, बिघा, कित्ता नम्बरिङ कोडहरू</div>
                   </div>
                 </Link>
 
@@ -330,8 +330,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                     <Layers className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-black">CAD टेम्प्लेट & लाइनस्टाइल (.LIN)</div>
-                    <div className="text-[10px] text-slate-500 dark:text-slate-400">नेपाल नापी आधिकारिक क्याड फाइल्स</div>
+                    <div className="text-sm font-black">CAD टेम्प्लेट & लाइनस्टाइल (.LIN)</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">नेपाल नापी आधिकारिक क्याड फाइल्स</div>
                   </div>
                 </Link>
               </div>
@@ -339,21 +339,21 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
 
             <Link
               href="/articles"
-              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+              className="text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
             >
               गाइड तथा लेखहरू
             </Link>
 
             <Link
               href="/about"
-              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+              className="text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
             >
               हाम्रो बारेमा
             </Link>
 
             <Link
               href="/contact"
-              className="text-xs font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+              className="text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
             >
               सम्पर्क
             </Link>
