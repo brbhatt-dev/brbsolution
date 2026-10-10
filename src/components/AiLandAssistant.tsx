@@ -240,6 +240,12 @@ export default function AiLandAssistant() {
     }
   }, [messages, isOpen]);
 
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-land-ai', handleOpen);
+    return () => window.removeEventListener('open-land-ai', handleOpen);
+  }, []);
+
   // Comprehensive Knowledge Base & Live Computational Matcher
   const generateAnswer = (rawQuery: string): { text: string; link?: { label: string; href: string } } => {
     const q = rawQuery.toLowerCase().trim();
@@ -642,9 +648,9 @@ export default function AiLandAssistant() {
 
   return (
     <>
-      {/* Floating Trigger Button (Bottom-Right) */}
+      {/* Floating Trigger Button (Bottom-Right, shown on desktop where bottom dock is hidden) */}
       {!isOpen && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 notranslate no-print" translate="no">
+        <div className="fixed bottom-6 right-6 z-40 notranslate no-print hidden lg:block" translate="no">
           <button
             onClick={() => setIsOpen(true)}
             className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-emerald-600 via-teal-700 to-emerald-800 hover:from-emerald-500 hover:to-teal-600 text-white font-bold text-xs sm:text-sm shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 active:scale-95 border-2 border-white/30 cursor-pointer group"
@@ -661,7 +667,7 @@ export default function AiLandAssistant() {
 
       {/* Floating Chat Modal Window */}
       {isOpen && (
-        <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-24px)] sm:w-[430px] h-[560px] max-h-[85vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 notranslate no-print" translate="no">
+        <div className="fixed bottom-16 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-24px)] sm:w-[430px] h-[540px] max-h-[82vh] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 notranslate no-print" translate="no">
           
           {/* Header */}
           <div className="p-4 bg-gradient-to-r from-emerald-800 to-slate-900 text-white flex items-center justify-between shrink-0">
