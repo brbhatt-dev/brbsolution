@@ -71,16 +71,88 @@ export default function StyleCitizenPortal() {
     }
   }, []);
 
-  // Primary 8 Big Vibrant Quick Tiles (HamroPatro / Nagarik App style)
+  // Primary 8 Big Vibrant Quick Tiles (HamroPatro / Nagarik App style with modern interactive badges)
   const quickTiles = [
-    { title: 'जग्गा क्यालकुलेटर', sub: 'रोपनी-बिघा-वर्गमिटर हिसाब', icon: Calculator, color: 'bg-emerald-500 text-white', href: '#land-calc-section' },
-    { title: 'फोटो कम्प्रेसर', sub: 'सरकारी फारमका लागि २००KB', icon: ImageIcon, color: 'bg-rose-500 text-white', href: '/tools/image-compressor' },
-    { title: 'Preeti ⇄ Unicode', sub: 'नेपाली टाइपिङ कन्भर्टर', icon: ArrowRightLeft, color: 'bg-teal-500 text-white', href: '/tools/preeti-to-unicode' },
-    { title: 'तस्विरबाट A4 PDF', sub: 'लालपुर्जा / नक्सा डकुमेन्ट', icon: FileText, color: 'bg-indigo-500 text-white', href: '/tools/images-to-pdf' },
-    { title: 'मालपोत तथा कर', sub: 'रजिस्ट्रेसन & CGT दस्तुर', icon: Coins, color: 'bg-amber-500 text-white', href: '/tools/malpot-calculator' },
-    { title: '७७ जिल्ला नापी', sub: 'कार्यालय फोन, इमेल र ठेगाना', icon: Building2, color: 'bg-sky-500 text-white', href: '/tools/survey-offices' },
-    { title: 'जग्गा बैना कागज', sub: 'A4 कानुनी लिखत तमसुक', icon: ScrollText, color: 'bg-orange-500 text-white', href: '/tools/legal-templates' },
-    { title: 'कित्ताकाट मापदण्ड', sub: '१३० वर्गमिटर नियम चेकर', icon: Split, color: 'bg-purple-500 text-white', href: '/tools/kitta-kat-checker' },
+    { 
+      title: 'जग्गा क्यालकुलेटर', 
+      sub: 'रोपनी-बिघा-वर्गमिटर हिसाब', 
+      icon: Calculator, 
+      color: 'bg-emerald-500 text-white', 
+      glowColor: 'shadow-emerald-500/25',
+      badge: 'लोकप्रिय',
+      badgeColor: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
+      href: '#land-calc-section' 
+    },
+    { 
+      title: 'फोटो कम्प्रेसर', 
+      sub: 'सरकारी फारमका लागि २००KB', 
+      icon: ImageIcon, 
+      color: 'bg-rose-500 text-white', 
+      glowColor: 'shadow-rose-500/25',
+      badge: '२०० KB',
+      badgeColor: 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30',
+      href: '/tools/image-compressor' 
+    },
+    { 
+      title: 'Preeti ⇄ Unicode', 
+      sub: 'नेपाली टाइपिङ कन्भर्टर', 
+      icon: ArrowRightLeft, 
+      color: 'bg-teal-500 text-white', 
+      glowColor: 'shadow-teal-500/25',
+      badge: '१००% शुद्ध',
+      badgeColor: 'bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/30',
+      href: '/tools/preeti-to-unicode' 
+    },
+    { 
+      title: 'तस्विरबाट A4 PDF', 
+      sub: 'लालपुर्जा / नक्सा डकुमेन्ट', 
+      icon: FileText, 
+      color: 'bg-indigo-500 text-white', 
+      glowColor: 'shadow-indigo-500/25',
+      badge: 'द्रुत',
+      badgeColor: 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30',
+      href: '/tools/images-to-pdf' 
+    },
+    { 
+      title: 'मालपोत तथा कर', 
+      sub: 'रजिस्ट्रेसन & CGT दस्तुर', 
+      icon: Coins, 
+      color: 'bg-amber-500 text-white', 
+      glowColor: 'shadow-amber-500/25',
+      badge: 'कर नियम',
+      badgeColor: 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30',
+      href: '/tools/malpot-calculator' 
+    },
+    { 
+      title: '७७ जिल्ला नापी', 
+      sub: 'कार्यालय फोन, इमेल र ठेगाना', 
+      icon: Building2, 
+      color: 'bg-sky-500 text-white', 
+      glowColor: 'shadow-sky-500/25',
+      badge: 'आधिकारिक',
+      badgeColor: 'bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/30',
+      href: '/tools/survey-offices' 
+    },
+    { 
+      title: 'जग्गा बैना कागज', 
+      sub: 'A4 कानुनी लिखत तमसुक', 
+      icon: ScrollText, 
+      color: 'bg-orange-500 text-white', 
+      glowColor: 'shadow-orange-500/25',
+      badge: 'टेम्प्लेट',
+      badgeColor: 'bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/30',
+      href: '/tools/legal-templates' 
+    },
+    { 
+      title: 'कित्ताकाट मापदण्ड', 
+      sub: '१३० वर्गमिटर नियम चेकर', 
+      icon: Split, 
+      color: 'bg-purple-500 text-white', 
+      glowColor: 'shadow-purple-500/25',
+      badge: 'चेकर',
+      badgeColor: 'bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30',
+      href: '/tools/kitta-kat-checker' 
+    },
   ];
 
   const GIcon = greeting.icon;
@@ -94,50 +166,54 @@ export default function StyleCitizenPortal() {
       </section>
 
       {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD (अभिवादन + LAND SOLUTION WEB DEMO & iOS CTA CARD) */}
-      <section className={`p-5 sm:p-7 rounded-3xl bg-gradient-to-r ${greeting.gradient} text-white shadow-md transition-all duration-500 border border-white/10 relative overflow-hidden`}>
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
+      <section className={`p-5 sm:p-7 rounded-3xl bg-gradient-to-r ${greeting.gradient} text-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/15 relative overflow-hidden group`}>
+        {/* Ambient glow backgrounds */}
+        <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 w-80 h-80 bg-emerald-400/15 rounded-full blur-3xl" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
           {/* Left Greeting Column */}
-          <div className="space-y-2.5 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-bold text-emerald-200">
-              <GIcon className="w-3.5 h-3.5" />
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs font-bold text-emerald-100 shadow-xs">
+              <GIcon className="w-3.5 h-3.5 text-amber-300" />
               <span>{greeting.badge}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight drop-shadow-xs">
               {greeting.title}
             </h1>
-            <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+            <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-normal">
               {greeting.sub}
             </p>
           </div>
 
-          {/* Right Side Land Solution CTA Card (ब्यानरको दायाँ खाली भाग भर्ने चिटिक्क परेको कार्ड) */}
-          <div className="shrink-0 w-full lg:w-80 xl:w-96 rounded-2xl bg-white/15 dark:bg-black/40 backdrop-blur-md p-4 sm:p-5 border border-white/25 shadow-lg flex flex-col justify-between gap-3 text-white">
+          {/* Right Side Land Solution CTA Card */}
+          <div className="shrink-0 w-full lg:w-80 xl:w-96 rounded-2xl bg-white/15 dark:bg-black/50 backdrop-blur-md p-4 sm:p-5 border border-white/25 shadow-xl hover:shadow-2xl hover:border-white/40 transition-all duration-300 flex flex-col justify-between gap-3 text-white">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-white/90 p-1 flex items-center justify-center shrink-0 shadow-xs">
+                <div className="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center shrink-0 shadow-md">
                   <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h3 className="text-sm font-black text-white leading-tight">Land Solution</h3>
-                  <p className="text-[10px] text-emerald-200">डिजिटल नापी सफ्टवेयर</p>
+                  <p className="text-[11px] text-emerald-200 font-medium">डिजिटल नापी सफ्टवेयर</p>
                 </div>
               </div>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-400/25 text-emerald-200 text-[10px] font-bold border border-emerald-300/40 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Full Version
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/25 text-emerald-200 text-[10px] font-bold border border-emerald-300/40 flex items-center gap-1.5 shadow-2xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>Full Version</span>
               </span>
             </div>
 
-            <p className="text-xs text-emerald-100/90 leading-snug">
+            <p className="text-xs text-emerald-100/95 leading-snug">
               ७५३ स्थानीय तह र वडा नक्सा सहित iPhone, Android र PC मा पूर्ण संस्करण चलाउनुहोस्।
             </p>
 
             <div className="space-y-2">
               <Link
                 href="/land-solution"
-                className="w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-md transition-all active:scale-98 cursor-pointer group"
+                className="w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-98 cursor-pointer group/btn"
               >
-                <Play className="w-3.5 h-3.5 fill-emerald-700 text-emerald-700 group-hover:scale-110 transition-transform" />
+                <Play className="w-3.5 h-3.5 fill-emerald-700 text-emerald-700 group-hover/btn:scale-125 transition-transform" />
                 <span>पूर्ण एप चलाउनुहोस् (Open Full App) ▶</span>
               </Link>
 
@@ -145,12 +221,12 @@ export default function StyleCitizenPortal() {
               <button
                 type="button"
                 onClick={() => setShowIosGuide(true)}
-                className="w-full py-1 text-[11px] text-emerald-100/90 hover:text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer group"
+                className="w-full py-1 text-[11px] text-emerald-100/90 hover:text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer group/ios"
               >
-                <svg className="w-3.5 h-3.5 fill-current opacity-90 group-hover:opacity-100 shrink-0" viewBox="0 0 170 170">
+                <svg className="w-3.5 h-3.5 fill-current opacity-90 group-hover/ios:opacity-100 shrink-0" viewBox="0 0 170 170">
                   <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
                 </svg>
-                <span className="underline underline-offset-4 decoration-white/30 group-hover:decoration-white font-medium">
+                <span className="underline underline-offset-4 decoration-white/30 group-hover/ios:decoration-white font-medium">
                   iPhone / iPad मा पूर्ण एप राख्ने तरिका (Add to Home)
                 </span>
               </button>
@@ -168,31 +244,47 @@ export default function StyleCitizenPortal() {
           </h2>
           <Link 
             href="/tools" 
-            className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1"
+            className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 group"
           >
             <span>सबै १५+ टूल्स हेर्नुहोस्</span>
-            <ArrowRight className="w-3 h-3" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
-        {/* 8 Primary Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {/* 8 Primary Cards Grid with Modern Micro-Interactions */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4.5">
           {quickTiles.map((tile, idx) => {
             const Icon = tile.icon;
             return (
               <Link
                 key={idx}
                 href={tile.href}
-                className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between space-y-2.5 group active:scale-98"
+                className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800/90 hover:border-emerald-500 dark:hover:border-emerald-400/80 shadow-xs hover:shadow-xl dark:hover:shadow-emerald-950/30 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between space-y-3 group active:scale-[0.98] relative overflow-hidden backdrop-blur-xs"
               >
-                <div className={`w-11 h-11 rounded-xl ${tile.color} flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0`}>
-                  <Icon className="w-5 h-5" />
+                {/* Subtle hover gradient wash */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-transparent to-emerald-500/5 group-hover:to-emerald-500/10 transition-colors pointer-events-none" />
+
+                {/* Top Row: Icon + Badge */}
+                <div className="flex items-center justify-between gap-2 relative z-10">
+                  <div className={`w-12 h-12 rounded-2xl ${tile.color} flex items-center justify-center shadow-md ${tile.glowColor} group-hover:scale-110 group-hover:rotate-2 transition-all duration-300 shrink-0`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  {tile.badge && (
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${tile.badgeColor} transition-transform group-hover:scale-105`}>
+                      {tile.badge}
+                    </span>
+                  )}
                 </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition-colors leading-tight">
-                    {tile.title}
-                  </h3>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">
+
+                {/* Bottom Row: Title, Subtitle & Arrow */}
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between gap-1">
+                    <h3 className="text-sm sm:text-[15px] font-black text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
+                      {tile.title}
+                    </h3>
+                    <ChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:translate-x-1 transition-all shrink-0 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-1 font-medium leading-snug">
                     {tile.sub}
                   </p>
                 </div>
@@ -250,19 +342,20 @@ export default function StyleCitizenPortal() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           
-          {/* App 1: Land Solution (Compact & Action-Oriented) */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 shadow-xs flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0">
+          {/* App 1: Land Solution (Compact & Action-Oriented with Modern Glow) */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 hover:border-emerald-500/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between gap-4 group relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-transparent to-emerald-500/10 group-hover:opacity-100 opacity-0 transition-opacity pointer-events-none" />
+            <div className="flex items-center gap-3.5 min-w-0 relative z-10">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 p-2 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
                 <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="text-base font-black truncate">Land Solution</h3>
-                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 shrink-0">
+                  <h3 className="text-base font-black truncate group-hover:text-emerald-300 transition-colors">Land Solution</h3>
+                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">
                     नापी एप
                   </span>
-                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 shrink-0 flex items-center gap-1">
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0 flex items-center gap-1">
                     <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 170 170">
                       <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
                     </svg>
@@ -275,7 +368,7 @@ export default function StyleCitizenPortal() {
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 relative z-10">
               <button
                 type="button"
                 onClick={() => setShowIosGuide(true)}
@@ -290,7 +383,7 @@ export default function StyleCitizenPortal() {
 
               <Link
                 href="/land-solution"
-                className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs"
+                className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-md hover:shadow-lg group-hover:scale-105"
               >
                 <Play className="w-3.5 h-3.5 fill-white" />
                 <span>पूर्ण एप (Full App)</span>
@@ -298,16 +391,17 @@ export default function StyleCitizenPortal() {
             </div>
           </div>
 
-          {/* App 2: Hamro Kosh (Compact & Action-Oriented) */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 shadow-xs flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0">
+          {/* App 2: Hamro Kosh (Compact & Action-Oriented with Modern Glow) */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 hover:border-indigo-500/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between gap-4 group relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-transparent to-indigo-500/10 group-hover:opacity-100 opacity-0 transition-opacity pointer-events-none" />
+            <div className="flex items-center gap-3.5 min-w-0 relative z-10">
+              <div className="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-400 shrink-0 shadow-md group-hover:scale-105 transition-transform">
                 <Wallet className="w-5 h-5" />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base font-black truncate">हाम्रो कोष (Hamro Kosh)</h3>
-                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 shrink-0">
+                  <h3 className="text-base font-black truncate group-hover:text-indigo-300 transition-colors">हाम्रो कोष (Hamro Kosh)</h3>
+                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
                     बचत सफ्टवेयर
                   </span>
                 </div>
@@ -319,10 +413,10 @@ export default function StyleCitizenPortal() {
 
             <Link
               href="/software#other-apps"
-              className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-colors shadow-2xs"
+              className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 shrink-0 transition-all shadow-md hover:shadow-lg group-hover:scale-105 relative z-10"
             >
               <span>विवरण</span>
-              <ChevronRight className="w-3.5 h-3.5" />
+              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
