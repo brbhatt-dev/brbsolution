@@ -124,11 +124,11 @@ export default function RootLayout({
         <link rel="icon" href="/icon.png?v=2" type="image/png" sizes="192x192" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180" />
 
-        {/* Google Fonts: Mukta (Devanagari) & Inter (UI) */}
+        {/* Google Fonts: Mukta (PMO opmcm.gov.np GIWMS Standard) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" 
           rel="stylesheet" 
         />
         <script
