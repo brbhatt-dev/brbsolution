@@ -46,8 +46,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200 notranslate" translate="no">
       {/* Top Breaking News / Updates Marquee Ticker */}
       {!hideTicker && <TopTickerBanner />}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18 gap-4">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-18 gap-2 xl:gap-4">
           
           {/* Logo with Brand Identity */}
           <Link href="/" className="flex items-center gap-2.5 group py-1 shrink-0">
@@ -73,7 +73,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-5 shrink-0">
             
             {/* All Tools Hub Dropdown */}
             <div 
@@ -83,9 +83,9 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             >
               <Link
                 href="/tools"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center gap-1 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
               >
-                <span>उपकरणहरू (Tools Hub)</span>
+                <span>उपकरणहरू</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
               </Link>
 
@@ -199,9 +199,9 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             >
               <Link
                 href="/laws"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+                className="inline-flex items-center gap-1 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
               >
-                <span>नापी कानुन (Laws)</span>
+                <span>नापी कानुन</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
               </Link>
 
@@ -243,9 +243,9 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             {/* Live Survey Notices Button */}
             <Link
               href="/notices"
-              className="relative inline-flex items-center gap-1.5 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-1 px-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="relative inline-flex items-center gap-1.5 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap py-1 px-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
             >
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
@@ -263,7 +263,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             >
               <Link
                 href="/software"
-                className="flex items-center gap-1 text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider py-2"
+                className="inline-flex items-center gap-1 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap py-2"
               >
                 <span>सफ्टवेयर</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${softwareDropdownOpen ? 'rotate-180 text-emerald-600' : ''}`} />
@@ -339,21 +339,21 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
 
             <Link
               href="/articles"
-              className="text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+              className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               गाइड तथा लेखहरू
             </Link>
 
             <Link
               href="/about"
-              className="text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+              className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               हाम्रो बारेमा
             </Link>
 
             <Link
               href="/contact"
-              className="text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider"
+              className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               सम्पर्क
             </Link>
