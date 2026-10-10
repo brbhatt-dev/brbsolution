@@ -61,6 +61,13 @@ export default function NepaliTithiClockBar() {
             </span>
           </div>
 
+          {/* Nakshatra Badge */}
+          {calendarInfo.nakshatra && (
+            <div className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs sm:text-sm hidden md:inline-flex">
+              <span>⭐ {calendarInfo.nakshatra}</span>
+            </div>
+          )}
+
           {/* Gregorian Date */}
           <span className="text-slate-400 text-[11px] sm:text-xs">
             (AD: {calendarInfo.adDateString})

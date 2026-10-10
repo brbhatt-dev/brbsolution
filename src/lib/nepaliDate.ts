@@ -1,5 +1,6 @@
 // @ts-ignore
 import NepaliDate from 'nepali-date-converter';
+import { getPanchangDetails } from './panchang';
 
 const nepaliDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
 
@@ -26,77 +27,20 @@ export interface NepaliCalendarDetails {
   fullBsDate: string;
   adDateString: string;
   ritu: string;
+  nakshatra?: string;
+  yoga?: string;
+  karana?: string;
+  sunrise?: string;
+  sunset?: string;
+  moonRashi?: string;
+  sunRashi?: string;
+  abhijitMuhurta?: string;
+  rahuKaal?: string;
+  yamaganda?: string;
+  gulikaKaal?: string;
+  dishaShoola?: string;
 }
 
 export function getNepaliCalendarDetails(date = new Date()): NepaliCalendarDetails {
-  let bsYear = 2083;
-  let bsMonth = 5; // 0-indexed, 5 is Ashwin/Asoj
-  let bsDate = 8;
-  
-  try {
-    const NepaliDateConstructor = (NepaliDate as any).default || NepaliDate;
-    const nd = new NepaliDateConstructor(date);
-    bsYear = nd.getYear();
-    bsMonth = nd.getMonth();
-    bsDate = nd.getDate();
-  } catch (err) {
-    // Fallback if conversion fails
-    bsYear = 2083;
-    bsMonth = 5;
-    bsDate = 8;
-  }
-
-  const dayIndex = date.getDay();
-
-  // Lunar Tithi calculation based on Udaya Tithi (sunrise tithi in Nepal, synodic month = 29.53058867 days)
-  const synodicMonth = 29.53058867;
-  const refDate = new Date('2000-01-06T18:14:00Z').getTime();
-  // Anchor to Nepal Standard Time (UTC+5:45) sunrise (~06:00 AM NPT = 00:15 UTC)
-  const nptDate = new Date(date.getTime() + (5.75 * 60 * 60 * 1000));
-  const sunriseUtc = new Date(Date.UTC(
-    nptDate.getUTCFullYear(),
-    nptDate.getUTCMonth(),
-    nptDate.getUTCDate(),
-    0, 15, 0
-  ));
-  const diffDays = (sunriseUtc.getTime() - refDate) / (1000 * 60 * 60 * 24);
-  const lunarAge = ((diffDays % synodicMonth) + synodicMonth) % synodicMonth;
-  const tithiIndex = Math.floor((lunarAge / synodicMonth) * 30); // 0 to 29
-  
-  const paksha = tithiIndex < 15 ? 'शुक्ल पक्ष' : 'कृष्ण पक्ष';
-  const tithiNames = [
-    'प्रतिपदा', 'द्वितीया', 'तृतीया', 'चतुर्थी', 'पञ्चमी',
-    'षष्ठी', 'सप्तमी', 'अष्टमी', 'नवमी', 'दशमी',
-    'एकादशी', 'द्वादशी', 'त्रयोदशी', 'चतुर्दशी', 'पूर्णिमा'
-  ];
-  let tithiName = tithiNames[tithiIndex % 15];
-  if (tithiIndex === 29) {
-    tithiName = 'औंसी (अमावस्या)';
-  }
-
-  // Nepali Ritu calculation (6 seasons: 2 months each)
-  // Baisakh & Jestha (0, 1): ग्रीष्म
-  // Asar & Shrawan (2, 3): वर्षा
-  // Bhadau & Asoj (4, 5): शरद
-  // Kartik & Mangsir (6, 7): हेमन्त
-  // Poush & Magh (8, 9): शिशिर
-  // Falgun & Chaitra (10, 11): वसन्त
-  const rituNames = ['ग्रीष्म', 'वर्षा', 'शरद', 'हेमन्त', 'शिशिर', 'वसन्त'];
-  const ritu = rituNames[Math.floor(bsMonth / 2)] || 'शरद';
-
-  const formattedDate = bsDate < 10 ? `०${toNepaliDigits(bsDate)}` : toNepaliDigits(bsDate);
-  const monthName = nepaliMonths[bsMonth] || 'असोज';
-  const dayName = nepaliDays[dayIndex] || 'बिहीबार';
-
-  return {
-    bsYear: toNepaliDigits(bsYear),
-    bsMonthName: monthName,
-    bsDate: formattedDate,
-    dayName,
-    paksha,
-    tithiName,
-    fullBsDate: `वि.सं. ${toNepaliDigits(bsYear)} ${monthName} ${formattedDate} गते, ${dayName}`,
-    adDateString: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    ritu,
-  };
+  return getPanchangDetails(date);
 }
