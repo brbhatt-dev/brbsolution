@@ -172,18 +172,19 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
               >
                 {/* Top Badge: National Pride */}
                 <div className="relative z-10 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-600/30 text-red-300 text-[10px] font-bold border border-red-500/40">
-                    <Heart className="w-3 h-3 fill-red-400 text-red-400" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/25 text-red-200 text-xs font-bold border border-red-500/40">
+                    <Heart className="w-3.5 h-3.5 fill-red-400 text-red-400" />
                     <span>राष्ट्रिय स्वाभिमान</span>
                   </span>
-                  <span className="text-[10px] text-emerald-300 font-mono">
-                    अद्वितीय झण्डा 🇳🇵
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-300">
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>अद्वितीय राष्ट्रिय झण्डा</span>
                   </span>
                 </div>
 
                 {/* Centerpiece: Official Animated Nepal Flag */}
-                <div className="relative z-10 flex items-center justify-center py-1 sm:py-2">
-                  <div className="absolute w-28 h-28 bg-red-600/25 rounded-full blur-2xl pointer-events-none" />
+                <div className="relative z-10 flex items-center justify-center py-2 sm:py-3">
+                  <div className="absolute w-32 h-32 bg-red-600/20 rounded-full blur-2xl pointer-events-none" />
                   
                   <picture className="relative z-10">
                     <source srcSet="/nepal_flag.webp" type="image/webp" />
@@ -194,18 +195,18 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                       height={338}
                       loading="eager"
                       decoding="async"
-                      className="h-28 sm:h-36 w-auto object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105"
+                      className="h-28 sm:h-36 w-auto object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105 drop-shadow-md"
                       style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}
                     />
                   </picture>
                 </div>
 
                 {/* Bottom Slogan / Motto */}
-                <div className="relative z-10 text-center pt-2 border-t border-white/10">
-                  <p className="text-xs font-bold text-amber-300 tracking-wide">
+                <div className="relative z-10 text-center pt-2.5 pb-0.5 border-t border-white/10 space-y-1">
+                  <p className="text-sm sm:text-base font-extrabold text-amber-300 tracking-wide leading-tight">
                     &ldquo;जननी जन्मभूमिश्च स्वर्गादपि गरीयसी&rdquo;
                   </p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">
+                  <p className="text-xs sm:text-[13px] font-medium text-slate-200 leading-normal">
                     संसारकै एकमात्र त्रिकोणात्मक, चन्द्र-सूर्य अंकित जीवित झण्डा
                   </p>
                 </div>
