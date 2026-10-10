@@ -22,7 +22,8 @@ import {
   Moon,
   X,
   RotateCw,
-  ExternalLink
+  ExternalLink,
+  Trophy
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
@@ -231,6 +232,41 @@ export default function StyleCitizenPortal() {
                 </span>
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 🎮 FEATURED SPOTLIGHT: VIRTUAL AMIN GAME BANNER */}
+      <section className="rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-600 via-emerald-800 to-teal-900 text-white p-4.5 sm:p-6 border border-amber-400/40 shadow-lg relative overflow-hidden notranslate group">
+        <div className="absolute -top-12 -right-12 w-48 h-48 bg-amber-400/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-start sm:items-center gap-3.5">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/30 text-amber-300 border border-amber-400/50 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 group-hover:rotate-3 transition-transform">
+              <Trophy className="w-6 h-6 animate-bounce" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-sm sm:text-base font-black tracking-tight text-white">
+                  🎮 भर्चुअल अमिन फिल्ड नापी खेल (Interactive Simulator)
+                </span>
+                <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 shadow-xs">
+                  नयाँ खेल • NEW
+                </span>
+              </div>
+              <p className="text-xs text-emerald-100/90 leading-relaxed max-w-xl">
+                फिल्डको फित्ता, हेरन सूत्र र कित्ताकाट नियम प्रयोग गरी जग्गा नाप्नुहोस् र आफ्नो नामको आधिकारिक <strong>"प्रमाणित डिजिटल अमिन"</strong> प्रमाणपत्र जित्नुहोस्!
+              </p>
+            </div>
+          </div>
+
+          <div className="shrink-0 flex items-center gap-2">
+            <Link
+              href="/tools/virtual-amin-game"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/25 transition-all duration-200 active:scale-95 group/gbtn cursor-pointer"
+            >
+              <span>अहिले नै खेल्नुहोस् (Play Now)</span>
+              <ArrowRight className="w-4 h-4 group-hover/gbtn:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>

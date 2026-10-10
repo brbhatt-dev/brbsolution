@@ -425,7 +425,10 @@ export default function VirtualAminGame() {
           </div>
 
           {/* 📜 OFFICIAL PRINTABLE CERTIFICATE CARD */}
-          <div className="max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-amber-50 via-white to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950 border-4 border-amber-500/40 shadow-2xl relative text-center space-y-6">
+          <div 
+            id="printable-certificate"
+            className="max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-amber-50 via-white to-emerald-50 dark:from-slate-950 dark:via-slate-900 dark:to-emerald-950 border-4 border-amber-500/40 shadow-2xl relative text-center space-y-6"
+          >
             
             {/* Top Seal & Flag */}
             <div className="flex items-center justify-between pb-4 border-b border-amber-300/60 dark:border-amber-700/60">
@@ -473,15 +476,38 @@ export default function VirtualAminGame() {
 
           </div>
 
-          {/* Action Buttons: Print & Restart */}
+          {/* Action Buttons: Share, Print & Restart */}
           <div className="flex flex-wrap items-center justify-center gap-3 no-print">
             <button
               type="button"
+              onClick={() => {
+                const shareText = `🎉 मैले BR Bhatta नापी सिमुलेटरमा ${score}/१०० अङ्क ल्याएर "प्रमाणित डिजिटल अमिन" प्रमाणपत्र प्राप्त गरेँ! तपाईं पनि जग्गा नाप्ने परीक्षा दिएर प्रमाणपत्र जित्नुहोस्:`;
+                const shareUrl = typeof window !== 'undefined' ? window.location.href : 'https://www.brbhatta.com/tools/virtual-amin-game';
+
+                if (typeof navigator !== 'undefined' && navigator.share) {
+                  navigator.share({
+                    title: 'प्रमाणित डिजिटल अमिन प्रमाणपत्र - BR Bhatta',
+                    text: shareText,
+                    url: shareUrl,
+                  }).catch(() => {});
+                } else {
+                  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+                  window.open(whatsappUrl, '_blank');
+                }
+              }}
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition-all active:scale-95 cursor-pointer"
+            >
+              <Share2 className="w-4 h-4" />
+              <span>ह्वाट्सएप / साथीलाई सेयर गर्नुहोस्</span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => window.print()}
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition-all cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 font-bold text-xs flex items-center gap-2 shadow-md transition-all cursor-pointer"
             >
               <Printer className="w-4 h-4" />
-              <span>प्रमाणपत्र प्रिन्ट गर्नुहोस् (Print)</span>
+              <span>प्रमाणपत्र प्रिन्ट (Print / PDF)</span>
             </button>
 
             <button

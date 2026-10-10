@@ -9,7 +9,9 @@ import {
   VolumeX, 
   Sparkles, 
   Headphones,
-  Gauge
+  Gauge,
+  SkipBack,
+  SkipForward
 } from 'lucide-react';
 
 interface AudioArticlePlayerProps {
@@ -19,6 +21,11 @@ interface AudioArticlePlayerProps {
     heading: string;
     content: string;
   }[];
+}
+
+interface AudioQueueItem {
+  text: string;
+  label: string;
 }
 
 export default function AudioArticlePlayer({
@@ -33,8 +40,8 @@ export default function AudioArticlePlayer({
   const [progress, setProgress] = useState<number>(0);
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
-  // Full clean text array to read paragraph by paragraph
-  const textQueue = useRef<string[]>([]);
+  // Full clean text array with labels to read paragraph by paragraph
+  const textQueue = useRef<AudioQueueItem[]>([]);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   useEffect(() => {
@@ -43,19 +50,30 @@ export default function AudioArticlePlayer({
       return;
     }
 
-    // Assemble text queue
-    const queue: string[] = [];
-    queue.push(title);
-    if (summary) queue.push(summary);
-    sections.forEach((sec) => {
-      if (sec.heading) queue.push(sec.heading);
+    const loadVoices = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+      }
+    };
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+
+    // Assemble text queue with section labels
+    const queue: AudioQueueItem[] = [];
+    queue.push({ text: title, label: 'लेख शीर्षक' });
+    if (summary) queue.push({ text: summary, label: 'मुख्य सारांश' });
+    sections.forEach((sec, idx) => {
+      if (sec.heading) {
+        queue.push({ text: sec.heading, label: sec.heading });
+      }
       if (sec.content) {
-        // Strip markdown-like links or extra spaces
         const cleanContent = sec.content
           .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
           .replace(/[#*`_]/g, '')
           .trim();
-        if (cleanContent) queue.push(cleanContent);
+        if (cleanContent) {
+          queue.push({ text: cleanContent, label: sec.heading || `भाग ${idx + 1}` });
+        }
       }
     });
     textQueue.current = queue;
@@ -79,8 +97,10 @@ export default function AudioArticlePlayer({
 
     window.speechSynthesis.cancel();
 
-    const text = textQueue.current[index];
-    const utterance = new SpeechSynthesisUtterance(text);
+    const item = textQueue.current[index];
+    if (!item) return;
+
+    const utterance = new SpeechSynthesisUtterance(item.text);
     utteranceRef.current = utterance;
 
     // Pick best available voice (Nepali > Hindi > Default)
@@ -142,6 +162,30 @@ export default function AudioArticlePlayer({
     speakQueueItem(0);
   };
 
+  const handleSkipNext = () => {
+    if (!('speechSynthesis' in window)) return;
+    if (currentTextIndex < textQueue.current.length - 1) {
+      const next = currentTextIndex + 1;
+      setCurrentTextIndex(next);
+      setProgress(Math.round((next / textQueue.current.length) * 100));
+      if (isPlaying) {
+        speakQueueItem(next);
+      }
+    }
+  };
+
+  const handleSkipPrev = () => {
+    if (!('speechSynthesis' in window)) return;
+    if (currentTextIndex > 0) {
+      const prev = currentTextIndex - 1;
+      setCurrentTextIndex(prev);
+      setProgress(Math.round((prev / textQueue.current.length) * 100));
+      if (isPlaying) {
+        speakQueueItem(prev);
+      }
+    }
+  };
+
   const handleRateChange = () => {
     const nextRate = rate === 1 ? 1.25 : rate === 1.25 ? 1.5 : 1;
     setRate(nextRate);
@@ -188,7 +232,7 @@ export default function AudioArticlePlayer({
         </div>
 
         {/* Right Side: Player Controls */}
-        <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 self-end sm:self-center">
           
           {/* Speed Toggle (1x, 1.25x, 1.5x) */}
           <button
@@ -213,6 +257,17 @@ export default function AudioArticlePlayer({
             </button>
           )}
 
+          {/* Skip Previous Section */}
+          <button
+            type="button"
+            onClick={handleSkipPrev}
+            disabled={currentTextIndex === 0}
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-slate-300 hover:text-white transition-colors border border-slate-700 cursor-pointer"
+            title="अघिल्लो अनुच्छेद (Previous)"
+          >
+            <SkipBack className="w-3.5 h-3.5" />
+          </button>
+
           {/* Primary Play / Pause Button */}
           {isPlaying ? (
             <button
@@ -234,6 +289,17 @@ export default function AudioArticlePlayer({
             </button>
           )}
 
+          {/* Skip Next Section */}
+          <button
+            type="button"
+            onClick={handleSkipNext}
+            disabled={currentTextIndex >= textQueue.current.length - 1}
+            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed text-slate-300 hover:text-white transition-colors border border-slate-700 cursor-pointer"
+            title="पछिल्लो अनुच्छेद (Next)"
+          >
+            <SkipForward className="w-3.5 h-3.5" />
+          </button>
+
         </div>
 
       </div>
@@ -241,10 +307,17 @@ export default function AudioArticlePlayer({
       {/* Progress & Waveform Bar */}
       {(isPlaying || isPaused || progress > 0) && (
         <div className="mt-3 pt-3 border-t border-emerald-900/50 space-y-1.5 relative z-10">
-          <div className="flex items-center justify-between text-[10px] text-slate-400 font-medium">
-            <span>प्रगति: {progress}%</span>
+          <div className="flex items-center justify-between text-[10px] text-slate-400 font-medium gap-2">
+            <div className="flex items-center gap-1.5 truncate min-w-0">
+              <span>प्रगति: {progress}%</span>
+              {textQueue.current[currentTextIndex]?.label && (
+                <span className="text-amber-300 font-bold truncate">
+                  • {textQueue.current[currentTextIndex].label}
+                </span>
+              )}
+            </div>
             {isPlaying && (
-              <span className="flex items-center gap-1 text-emerald-400">
+              <span className="flex items-center gap-1 text-emerald-400 shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                 <span>वाचन हुँदैछ</span>
               </span>

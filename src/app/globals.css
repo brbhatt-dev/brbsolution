@@ -287,6 +287,22 @@ html.dark [class*="shadow-slate-"] {
   #printable-land-slip * {
     color: #0f172a !important;
   }
+
+  #printable-certificate {
+    border: 4px solid #d97706 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    margin: 5mm auto !important;
+    padding: 24px !important;
+    max-width: 100% !important;
+    color: #0f172a !important;
+    page-break-inside: avoid !important;
+  }
+
+  #printable-certificate * {
+    color: #0f172a !important;
+    text-shadow: none !important;
+  }
 }
 
 /* Fluttering Nepal Flag 3D Physics Keyframes */

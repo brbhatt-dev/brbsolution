@@ -37,13 +37,59 @@ interface VoiceLandModalProps {
   onApply: (result: ParsedLandResult) => void;
 }
 
-// Convert Nepali numerals (०, १, २...) to standard numbers
-function normalizeNepDigits(str: string): string {
+// Convert Nepali words ("पाँच", "दुई", "साढे तीन", "आधा") & numerals (०, १, २...) to standard numbers
+function normalizeNepWordsAndDigits(str: string): string {
+  let res = str.toLowerCase().trim();
+
+  // 1. Convert Nepali Devanagari numerals (०, १, २...) to standard digits
   const nepDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
-  let res = str;
   nepDigits.forEach((digit, index) => {
     res = res.replaceAll(digit, index.toString());
   });
+
+  // 2. Compound and colloquial Nepali fractions
+  res = res.replace(/साढे\s*दुई|साढे\s*2/g, '2.5')
+           .replace(/साढे\s*तीन|साढे\s*3/g, '3.5')
+           .replace(/साढे\s*चार|साढे\s*4/g, '4.5')
+           .replace(/साढे\s*पाँच|साढे\s*पाच|साढे\s*5/g, '5.5')
+           .replace(/साढे\s*छ|साढे\s*छह|साढे\s*6/g, '6.5')
+           .replace(/साढे\s*सात|साढे\s*7/g, '7.5')
+           .replace(/साढे\s*आठ|साढे\s*8/g, '8.5')
+           .replace(/साढे\s*नौ|साढे\s*9/g, '9.5')
+           .replace(/साढे\s*दश|साढे\s*दस|साढे\s*10/g, '10.5')
+           .replace(/साढे\s*१/g, '1.5')
+           .replace(/अढाई|ढाई/g, '2.5')
+           .replace(/डेढ/g, '1.5')
+           .replace(/आधा/g, '0.5')
+           .replace(/सवा/g, '1.25')
+           .replace(/पौने/g, '0.75');
+
+  // 3. Spoken number words mapping (Nepali & English)
+  const wordMap: Record<string, string> = {
+    'शुन्य': '0', 'शून्य': '0', 'एक': '1', 'दुई': '2', 'तीन': '3', 'चार': '4',
+    'पाँच': '5', 'पांच': '5', 'छ': '6', 'छह': '6', 'सात': '7', 'आठ': '8',
+    'नौ': '9', 'दश': '10', 'दस': '10', 'एघार': '11', 'बाह्र': '12', 'तेह्र': '13',
+    'चौध': '14', 'पन्ध्र': '15', 'सोह्र': '16', 'सत्र': '17', 'अठार': '18',
+    'उन्नाइस': '19', 'बीस': '20', 'बिस': '20', 'एक्काईस': '21', 'बाईस': '22',
+    'तेईस': '23', 'चौबीस': '24', 'पच्चीस': '25', 'छब्बीस': '26', 'सत्ताइस': '27',
+    'अठ्ठाइस': '28', 'उनन्तीस': '29', 'तीस': '30', 'तिस': '30', 'पैंतीस': '35',
+    'चालीस': '40', 'चालिस': '40', 'पचास': '50', 'साठी': '60', 'सत्तरी': '70',
+    'अस्सी': '80', 'नब्बे': '90', 'सय': '100',
+    // English words
+    'zero': '0', 'one': '1', 'two': '2', 'three': '3', 'four': '4',
+    'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9',
+    'ten': '10', 'twenty': '20', 'thirty': '30', 'forty': '40',
+    'fifty': '50', 'hundred': '100', 'half': '0.5'
+  };
+
+  // Replace each spoken word with digit
+  for (const [w, num] of Object.entries(wordMap)) {
+    const reg = new RegExp(`(^|\\s)${w}(\\s|$)`, 'gi');
+    res = res.replace(reg, `$1${num}$2`);
+    const joinedReg = new RegExp(`(^|\\s)${w}(?=[a-zA-Z\\u0900-\\u097F])`, 'gi');
+    res = res.replace(joinedReg, `$1${num} `);
+  }
+
   return res;
 }
 
@@ -136,7 +182,7 @@ export default function VoiceLandModal({ isOpen, onClose, onApply }: VoiceLandMo
 
   // Natural language parsing of Nepali land speech
   const processVoiceCommand = (rawText: string) => {
-    const text = normalizeNepDigits(rawText.toLowerCase().trim());
+    const text = normalizeNepWordsAndDigits(rawText);
 
     // Helper to find number before keywords
     const extractNumber = (keywords: string[]): number | null => {
@@ -360,6 +406,8 @@ export default function VoiceLandModal({ isOpen, onClose, onApply }: VoiceLandMo
             <div className="flex flex-wrap gap-1.5">
               {[
                 '४ आना',
+                'पाँच आना',
+                'साढे तीन आना',
                 '१ रोपनी ८ आना',
                 '१ बिघा ५ कट्ठा',
                 '१५०० वर्गफिट',

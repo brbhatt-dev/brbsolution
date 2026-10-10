@@ -42,7 +42,7 @@ export default function VirtualAminGamePage() {
       <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8 w-full">
         
         {/* Breadcrumb Navigation */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between no-print">
           <Link
             href="/tools"
             className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-400 transition-colors"
@@ -58,19 +58,23 @@ export default function VirtualAminGamePage() {
         </div>
 
         {/* AdSense Top Slot */}
-        <AdSenseSlot userFacingLabel="प्रायोजित सूचना (Sponsored Notice)" />
+        <div className="no-print">
+          <AdSenseSlot userFacingLabel="प्रायोजित सूचना (Sponsored Notice)" />
+        </div>
 
         {/* 🎮 The Interactive Virtual Amin Game Core */}
         <VirtualAminGame />
 
         {/* Social Share Bar */}
-        <SocialShareBar 
-          title="भर्चुअल अमिन फिल्ड नापी सिमुलेटर खेल — जग्गा नाप्नुहोस् र प्रमाणपत्र जित्नुहोस्!" 
-          url="/tools/virtual-amin-game" 
-        />
+        <div className="no-print">
+          <SocialShareBar 
+            title="भर्चुअल अमिन फिल्ड नापी सिमुलेटर खेल — जग्गा नाप्नुहोस् र प्रमाणपत्र जित्नुहोस्!" 
+            url="/tools/virtual-amin-game" 
+          />
+        </div>
 
         {/* Educational Information Box */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4 text-xs sm:text-sm">
+        <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4 text-xs sm:text-sm no-print">
           <div className="flex items-center gap-2 text-slate-900 dark:text-white font-black text-base sm:text-lg">
             <BookOpen className="w-5 h-5 text-emerald-600" />
             <span>यो खेलबाट तपाईंले के सिक्नुहुन्छ?</span>
