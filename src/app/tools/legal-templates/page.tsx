@@ -15,10 +15,11 @@ import {
   ScrollText,
   FileCheck2,
   Building2,
-  Download
+  Download,
+  Home
 } from 'lucide-react';
 
-type TemplateType = 'bayana' | 'boundary' | 'fieldbook';
+type TemplateType = 'bayana' | 'boundary' | 'fieldbook' | 'rent';
 
 export default function LegalTemplatesPage() {
   const [activeTemplate, setActiveTemplate] = useState<TemplateType>('bayana');
@@ -41,6 +42,17 @@ export default function LegalTemplatesPage() {
   const [totalPrice, setTotalPrice] = useState('५०,००,०००');
   const [advanceAmount, setAdvanceAmount] = useState('५,००,०००');
   const [dueDate, setDueDate] = useState('२०८२ असार मसान्तभित्र');
+
+  // Rent Agreement Specific State
+  const [rentUnitType, setRentUnitType] = useState('२ कोठा, १ भान्सा र १ बाथरुम (पहिलो तल्ला)');
+  const [monthlyRent, setMonthlyRent] = useState('२५,०००');
+  const [securityDeposit, setSecurityDeposit] = useState('५०,०००');
+  const [electricityUnitRate, setElectricityUnitRate] = useState('रु. १५ प्रति युनिट');
+  const [waterWasteRate, setWaterWasteRate] = useState('रु. १,००० मासिक एकमुष्ट');
+  const [leaseDuration, setLeaseDuration] = useState('१ वर्ष (२०८१ मंसिर १ देखि २०८२ कात्तिक मसान्तसम्म)');
+  const [paymentDay, setPaymentDay] = useState('प्रत्येक महिनाको ७ गतेभित्र');
+  const [rentPurpose, setRentPurpose] = useState('पारिवारिक बसोबास (Residential)');
+  const [noticePeriod, setNoticePeriod] = useState('३५ दिन (एक महिना अगावै)');
 
   const handleCopy = async () => {
     const el = document.getElementById('printable-document');
@@ -129,6 +141,18 @@ export default function LegalTemplatesPage() {
               <FileCheck2 className="w-4 h-4" />
               <span>नक्सा तथा फिल्डबुक उतार निवेदन</span>
             </button>
+
+            <button
+              onClick={() => setActiveTemplate('rent')}
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                activeTemplate === 'rent'
+                  ? 'bg-emerald-600 text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:white'
+              }`}
+            >
+              <Home className="w-4 h-4" />
+              <span>घर तथा सटर भाडा सम्झौता (Rent Agreement)</span>
+            </button>
           </div>
         </div>
 
@@ -140,7 +164,9 @@ export default function LegalTemplatesPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">जग्गाधनी / बिक्रेताको नाम:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'घरधनीको नाम (प्रथम पक्ष):' : 'जग्गाधनी / बिक्रेताको नाम:'}
+              </label>
               <input
                 type="text"
                 value={sellerName}
@@ -150,7 +176,9 @@ export default function LegalTemplatesPage() {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">बिक्रेताको ठेगाना:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'घरधनीको स्थायी ठेगाना:' : 'बिक्रेताको ठेगाना:'}
+              </label>
               <input
                 type="text"
                 value={sellerAddress}
@@ -160,7 +188,9 @@ export default function LegalTemplatesPage() {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">बिक्रेताको नागरिकता नं:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'घरधनीको नागरिकता नं:' : 'बिक्रेताको नागरिकता नं:'}
+              </label>
               <input
                 type="text"
                 value={sellerCitizenNo}
@@ -170,7 +200,9 @@ export default function LegalTemplatesPage() {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">खरिदकर्ताको नाम:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'बहालमा लिने व्यक्तिको नाम (दोस्रो पक्ष):' : 'खरिदकर्ताको नाम:'}
+              </label>
               <input
                 type="text"
                 value={buyerName}
@@ -180,7 +212,9 @@ export default function LegalTemplatesPage() {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">खरिदकर्ताको ठेगाना:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'बहालमा लिने व्यक्तिको स्थायी ठेगाना:' : 'खरिदकर्ताको ठेगाना:'}
+              </label>
               <input
                 type="text"
                 value={buyerAddress}
@@ -190,7 +224,9 @@ export default function LegalTemplatesPage() {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">खरिदकर्ताको नागरिकता नं:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'बहालवालाको नागरिकता / प्यान नं:' : 'खरिदकर्ताको नागरिकता नं:'}
+              </label>
               <input
                 type="text"
                 value={buyerCitizenNo}
@@ -200,7 +236,9 @@ export default function LegalTemplatesPage() {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">जिल्ला तथा स्थानीय तह:</label>
+              <label className="font-bold text-slate-700 dark:text-slate-300">
+                {activeTemplate === 'rent' ? 'भाडामा रहेको घर/सटरको ठेगाना:' : 'जिल्ला तथा स्थानीय तह:'}
+              </label>
               <input
                 type="text"
                 value={`${district}, ${localGov}`}
@@ -209,25 +247,40 @@ export default function LegalTemplatesPage() {
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">कित्ता नम्बर:</label>
-              <input
-                type="text"
-                value={kittaNo}
-                onChange={(e) => setKittaNo(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-emerald-600"
-              />
-            </div>
+            {activeTemplate !== 'rent' ? (
+              <>
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">कित्ता नम्बर:</label>
+                  <input
+                    type="text"
+                    value={kittaNo}
+                    onChange={(e) => setKittaNo(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-emerald-600"
+                  />
+                </div>
 
-            <div className="space-y-1">
-              <label className="font-bold text-slate-700 dark:text-slate-300">क्षेत्रफल:</label>
-              <input
-                type="text"
-                value={area}
-                onChange={(e) => setArea(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold"
-              />
-            </div>
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">क्षेत्रफल:</label>
+                  <input
+                    type="text"
+                    value={area}
+                    onChange={(e) => setArea(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold"
+                  />
+                </div>
+              </>
+            ) : (
+              <div className="space-y-1">
+                <label className="font-bold text-slate-700 dark:text-slate-300">भाडामा दिइएको कोठा/सटर विवरण:</label>
+                <input
+                  type="text"
+                  value={rentUnitType}
+                  onChange={(e) => setRentUnitType(e.target.value)}
+                  className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-emerald-600"
+                  placeholder="उदा: १ सटर वा २ कोठा १ किचेन"
+                />
+              </div>
+            )}
 
             {activeTemplate === 'bayana' && (
               <>
@@ -258,6 +311,90 @@ export default function LegalTemplatesPage() {
                     value={dueDate}
                     onChange={(e) => setDueDate(e.target.value)}
                     className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold"
+                  />
+                </div>
+              </>
+            )}
+
+            {activeTemplate === 'rent' && (
+              <>
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">मासिक बहाल रकम (रु.):</label>
+                  <input
+                    type="text"
+                    value={monthlyRent}
+                    onChange={(e) => setMonthlyRent(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-emerald-600"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">अग्रिम सुरक्षण धरौटी (रु.):</label>
+                  <input
+                    type="text"
+                    value={securityDeposit}
+                    onChange={(e) => setSecurityDeposit(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">सम्झौता अवधि:</label>
+                  <input
+                    type="text"
+                    value={leaseDuration}
+                    onChange={(e) => setLeaseDuration(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">भाडा बुझाउने भाका:</label>
+                  <input
+                    type="text"
+                    value={paymentDay}
+                    onChange={(e) => setPaymentDay(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">बिजुली महसुल दर:</label>
+                  <input
+                    type="text"
+                    value={electricityUnitRate}
+                    onChange={(e) => setElectricityUnitRate(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">पानी तथा फोहोर व्यवस्थापन:</label>
+                  <input
+                    type="text"
+                    value={waterWasteRate}
+                    onChange={(e) => setWaterWasteRate(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">बहालको प्रयोजन:</label>
+                  <input
+                    type="text"
+                    value={rentPurpose}
+                    onChange={(e) => setRentPurpose(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 dark:text-slate-300">खाली गर्ने सूचना म्याद:</label>
+                  <input
+                    type="text"
+                    value={noticePeriod}
+                    onChange={(e) => setNoticePeriod(e.target.value)}
+                    className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
                   />
                 </div>
               </>
@@ -417,6 +554,75 @@ export default function LegalTemplatesPage() {
                   <p>ठेगाना: {sellerAddress}</p>
                   <p>नागरिकता नं: {sellerCitizenNo}</p>
                   <p>दस्तखत: .....................................</p>
+                </div>
+              </>
+            )}
+
+            {activeTemplate === 'rent' && (
+              <>
+                <div className="text-center space-y-1 border-b pb-4">
+                  <h2 className="text-xl sm:text-2xl font-black tracking-wide">
+                    घर तथा सटर बहाल सम्झौता पत्र
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    (मुलुकी देवानी संहिता, २०७४ को परिच्छेद ९ 'घर बहाल सम्बन्धी व्यवस्था' बमोजिम)
+                  </p>
+                </div>
+
+                <div className="space-y-4 text-justify">
+                  <p>
+                    लिखितम् हामी <strong>प्रथम पक्ष (घरधनी)</strong> {sellerAddress} स्थायी ठेगाना भई हाल {district}, {localGov} बस्ने नागरिकता प्रमाणपत्र नं. {sellerCitizenNo} भएको श्री <strong>{sellerName}</strong> (यसपछि "प्रथम पक्ष" भनिएको) तथा <strong>दोस्रो पक्ष (बहालमा लिने)</strong> स्थायी ठेगाना {buyerAddress} भई हाल {district} बस्ने नागरिकता/प्यान प्रमाणपत्र नं. {buyerCitizenNo} भएको श्री <strong>{buyerName}</strong> (यसपछि "दोस्रो पक्ष" भनिएको) का बीचमा तपसिलमा उल्लिखित घर/सटर आपसी मञ्जुरीले बहाल (भाडा) मा लिने-दिने गरी यो सम्झौता पत्र सम्पन्न गरियो।
+                  </p>
+
+                  <div className="p-4 bg-slate-50 border rounded-xl space-y-1.5 font-sans text-xs sm:text-sm">
+                    <p className="font-bold text-slate-800">तपसिल (बहाल सम्पत्ति तथा आर्थिक सर्तहरू):</p>
+                    <p>• सम्पत्तिको स्थान: <strong>{district}, {localGov}</strong></p>
+                    <p>• बहालमा दिइएको एकाइ/विवरण: <strong>{rentUnitType}</strong></p>
+                    <p>• प्रयोजन: <strong>{rentPurpose}</strong></p>
+                    <p>• मासिक बहाल (भाडा) रकम: <strong>रु. {monthlyRent} /- (अक्षरेपी ........................................)</strong></p>
+                    <p>• अग्रिम सुरक्षण धरौटी (Security Deposit): <strong>रु. {securityDeposit} /-</strong></p>
+                    <p>• सम्झौता अवधि: <strong>{leaseDuration}</strong></p>
+                    <p>• भाडा भुक्तानी भाका: <strong>{paymentDay}</strong></p>
+                    <p>• बिजुली महसुल दर: <strong>{electricityUnitRate}</strong></p>
+                    <p>• खानेपानी तथा फोहोर व्यवस्थापन: <strong>{waterWasteRate}</strong></p>
+                  </div>
+
+                  <div className="space-y-2 pt-2 text-xs sm:text-sm">
+                    <p className="font-bold underline text-slate-800">करारका मुख्य सर्त तथा बन्देजहरू:</p>
+                    <p>१. दोस्रो पक्षले प्रत्येक महिनाको बहाल रकम तोकिएको भाकाभित्र प्रथम पक्षलाई अनिवार्य रूपमा बुझाई भरपाई लिनुपर्नेछ।</p>
+                    <p>२. उपभोग गरेको बिजुली (सब-मिटर अनुसार), खानेपानी तथा फोहोरमैला निष्कासन शुल्क दोस्रो पक्ष स्वयंले समयमै भुक्तानी गर्नुपर्नेछ।</p>
+                    <p>३. बहालमा लिएको घर/सटरमा प्रचलित नेपाल कानुनले निषेध गरेको कुनै पनि गैरकानुनी वा समाजलाई असर पर्ने गतिविधि गर्न पाइने छैन।</p>
+                    <p>४. प्रथम पक्षको पूर्व लिखित अनुमति बिना दोस्रो पक्षले उक्त सम्पत्ति तेस्रो व्यक्ति वा संस्थालाई उप-बहाल (Sub-lease) मा दिन पाउने छैन।</p>
+                    <p>५. सामान्य दैनिक टुटफुट मर्मत दोस्रो पक्षले गर्नुपर्नेछ। भवनको मुख्य संरचनात्मक (Structural) मर्मत प्रथम पक्षको जिम्मेवारी हुनेछ।</p>
+                    <p>६. सम्झौता अवधि समाप्त हुनु अगावै कुनै एक पक्षले बहाल खाली गर्न वा गराउन चाहेमा कम्तीमा <strong>{noticePeriod}</strong> लिखित पूर्वसूचना दिनुपर्नेछ।</p>
+                    <p>७. सम्झौता समाप्त भई सम्पत्ति दुरुस्त अवस्थामा बुझाएपछि प्रथम पक्षले बाँकी बक्यौता कट्टा गरी अग्रिम सुरक्षण धरौटी रकम दोस्रो पक्षलाई फिर्ता गर्नुपर्नेछ।</p>
+                  </div>
+
+                  <p className="pt-2 text-xs">
+                    माथि उल्लिखित सम्पूर्ण बेहोरा हामी दुवै पक्षले राम्ररी पढी, बुझी, पूर्ण होस-हवासमा कसैको दबाब वा प्रभावमा नपरी साक्षीहरूको रोहबरमा सहीछाप गरी एक-एक प्रति लियौँ, दियौँ।
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8 pt-8 border-t mt-6">
+                  <div className="space-y-6">
+                    <p className="font-bold">प्रथम पक्ष (घरधनी):</p>
+                    <div className="h-12 border-b border-dashed border-slate-400"></div>
+                    <p className="text-xs">दस्तखत: ................................<br/>नाम: {sellerName}<br/>मिति: ................................</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <p className="font-bold">दोस्रो पक्ष (बहालवाला):</p>
+                    <div className="h-12 border-b border-dashed border-slate-400"></div>
+                    <p className="text-xs">दस्तखत: ................................<br/>नाम: {buyerName}<br/>मिति: ................................</p>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t mt-4">
+                  <p className="font-bold text-xs">रोहबर / साक्षीहरू:</p>
+                  <div className="grid grid-cols-2 gap-4 text-xs pt-2">
+                    <p>१) नाम: ................................... ठेगाना: ................................... सही: ............</p>
+                    <p>२) नाम: ................................... ठेगाना: ................................... सही: ............</p>
+                  </div>
                 </div>
               </>
             )}

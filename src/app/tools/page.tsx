@@ -27,7 +27,9 @@ import {
   ScrollText,
   Maximize2,
   Trophy,
-  Users
+  Users,
+  Hammer,
+  Landmark
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -295,6 +297,37 @@ const TOOL_SECTIONS: ToolCategory[] = [
           '४-चरणीय नक्सा पास तथा निर्माण सम्पन्न प्रक्रिया'
         ]
       },
+      {
+        id: 'construction-cost-calculator',
+        titleNp: 'घर निर्माण लागत तथा सामग्री क्याल्कुलेटर',
+        titleEn: 'Building Construction Cost & Material Estimator',
+        description: 'नेपाल भवन संहिता (NBC 105:2020) र DUDBC अनुसार प्रति वर्गफिट दर, सिमेन्ट, डण्डी, बालुवा, गिट्टीको परिमाण र चरणबद्ध बजेट निकाल्ने इन्जिनियरिङ टूल।',
+        badge: 'भवन निर्माण विशेष',
+        icon: Hammer,
+        href: '/tools/construction-cost-calculator',
+        features: [
+          'बजेट, स्ट्यान्डर्ड र प्रिमियम प्याकेज अनुसार प्रति sq.ft दर',
+          'सिमेन्ट, डण्डी (Fe500), बालुवा, गिट्टी र इँटाको परिमाण',
+          '५-चरणीय प्रगतिशील भुक्तानी तालिका (Phased Cash Flow)',
+          'माटोको अवस्था अनुसार फाउन्डेसन (र्याफ्ट/आइसोलेटेड) हिसाब'
+        ]
+      },
+      {
+        id: 'loan-emi-calculator',
+        titleNp: 'जग्गा धितो बैंक लोन EMI तथा मूल्याङ्कन क्याल्कुलेटर',
+        titleEn: 'Home & Land Loan EMI Calculator (NRB LTV)',
+        description: 'नेपाल राष्ट्र बैंकको मौद्रिक नीति २०८१/८२ (LTV र DSR) अनुसार धितो मूल्याङ्कनको अधिकतम ऋण सीमा, मासिक किस्ता (EMI) र आवश्यक मासिक तलब हिसाब गर्ने टूल।',
+        badge: 'राष्ट्र बैंक LTV मापदण्ड',
+        icon: Landmark,
+        href: '/tools/loan-emi-calculator',
+        features: [
+          'पहिलो घर (७०%), उपत्यका बाहिर (६०%), उपत्यका भित्र (५०%) LTV सीमा',
+          'मासिक किस्ता (EMI), कुल ब्याज र भुक्तानी अनुपात',
+          'DSR ५०% अनुसार चाहिने न्यूनतम मासिक आम्दानी',
+          'वर्षैपिच्छे साँवा र ब्याज भुक्तानी तालिका (Amortization)'
+        ]
+      },
+
 
       {
         id: 'kitta-qr',
