@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'घरजग्गा कानुनी विवाद तथा समाधान विगार्ड (Property Dispute Solver Nepal) | BR Bhatta',
+  title: 'घरजग्गा कानुनी विवाद तथा समाधान विजार्ड (Property Dispute Solver Nepal) | BR Bhatta',
   description: 'नेपालमा छिमेकीले जग्गा मिचेको, बाटो बन्द गरेको, मोही विवाद वा दाजुभाइ अंशबन्डा समस्यामा कुन सरकारी कार्यालय जाने, हदम्याद कति छ र निवेदन कसरी दिने, आधिकारिक कानुनी कार्ययोजना प्राप्त गर्नुहोस्।',
   keywords: [
     'Property Dispute Nepal',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.brbhatta.com/tools/property-dispute-wizard',
   },
   openGraph: {
-    title: 'घरजग्गा कानुनी विवाद तथा समाधान विगार्ड | BR Bhatta',
+    title: 'घरजग्गा कानुनी विवाद तथा समाधान विजार्ड | BR Bhatta',
     description: 'साँध-सिमाना, बाटो निकास, मोही र अंशबन्डा विवादमा तत्काल चाल्नुपर्ने कानुनी कदम, हदम्याद र आवश्यक कागजात चेकलिस्ट।',
     url: 'https://www.brbhatta.com/tools/property-dispute-wizard',
     siteName: 'Land Solution & BR Bhatta',
@@ -48,7 +48,7 @@ export default function PropertyDisputeWizardPage() {
       {
         '@type': 'WebApplication',
         '@id': 'https://www.brbhatta.com/tools/property-dispute-wizard#app',
-        name: 'नेपाल घरजग्गा कानुनी विवाद समाधान विगार्ड',
+        name: 'नेपाल घरजग्गा कानुनी विवाद समाधान विजार्ड',
         applicationCategory: 'LegalApplication',
         operatingSystem: 'All',
         url: 'https://www.brbhatta.com/tools/property-dispute-wizard',
@@ -112,7 +112,7 @@ export default function PropertyDisputeWizardPage() {
             <span>सबै टूल्सहरू (Tools Hub)</span>
           </Link>
           <span>/</span>
-          <span className="text-slate-800 dark:text-slate-200">घरजग्गा विवाद समाधान विगार्ड</span>
+          <span className="text-slate-800 dark:text-slate-200">घरजग्गा विवाद समाधान विजार्ड</span>
         </div>
 
         {/* Interactive Dispute Wizard Component */}
@@ -120,7 +120,7 @@ export default function PropertyDisputeWizardPage() {
 
         {/* Social Share Bar */}
         <SocialShareBar 
-          title="नेपाल घरजग्गा कानुनी विवाद तथा समाधान विगार्ड (साँध, बाटो, मोही र अंश)" 
+          title="नेपाल घरजग्गा कानुनी विवाद तथा समाधान विजार्ड (साँध, बाटो, मोही र अंश)" 
           url="/tools/property-dispute-wizard" 
         />
 

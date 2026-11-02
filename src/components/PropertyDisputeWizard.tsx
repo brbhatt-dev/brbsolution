@@ -69,7 +69,7 @@ ${scenario.steps.map((s) => `${s.stepNo}. ${s.title}: ${s.description}`).join('\
               <span>मुलुकी देवानी संहिता २०७४ र नापी ऐन २०१९ अनुसार</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-              घरजग्गा कानुनी विवाद तथा समाधान विगार्ड (Property Dispute Solver)
+              घरजग्गा कानुनी विवाद तथा समाधान विजार्ड (Property Dispute Solver)
             </h2>
             <p className="text-sm text-rose-100/90 leading-relaxed">
               आफ्नो जग्गा वा बाटो सम्बन्धी समस्या छान्नुहोस्। तुरुन्तै कुन सरकारी कार्यालय जाने, हदम्याद कति दिन छ र कानुनी प्रक्रिया के हो, चरणबद्ध कार्ययोजना पाउनुहोस्।

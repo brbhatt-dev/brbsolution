@@ -347,7 +347,7 @@ const TOOL_SECTIONS: ToolCategory[] = [
       },
       {
         id: 'property-dispute-wizard',
-        titleNp: 'घरजग्गा कानुनी विवाद तथा समाधान विगार्ड',
+        titleNp: 'घरजग्गा कानुनी विवाद तथा समाधान विजार्ड',
         titleEn: 'Property Dispute & Boundary Legal Wizard',
         description: 'छिमेकीले जग्गा मिचेको, बाटो बन्द गरेको, मोही वा अंशबन्डा विवादमा जानुपर्ने सरकारी कार्यालय, कानुनी हदम्याद र आवश्यक कागजात चेकलिस्ट।',
         badge: 'कानुनी कार्ययोजना',
