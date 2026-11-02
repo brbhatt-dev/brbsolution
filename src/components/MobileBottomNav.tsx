@@ -25,7 +25,11 @@ import {
   Coins,
   QrCode,
   GraduationCap,
-  Trophy
+  Trophy,
+  Calendar,
+  Gavel,
+  Landmark,
+  Hammer
 } from 'lucide-react';
 
 interface SearchItem {
@@ -173,6 +177,83 @@ const SEARCH_DATABASE: SearchItem[] = [
     href: '/tools/virtual-amin-game',
     keywords: ['अमिन खेल', 'सिमुलेटर', 'गेम', 'game', 'फित्ता', 'नापी खेल', 'प्रमाणपत्र', 'virtual amin'],
     icon: Trophy
+  },
+  {
+    id: 'legal-templates',
+    titleNp: 'बैनापट्टा तथा कानुनी लिखत ढाँचा (Word/Excel)',
+    titleEn: 'Legal Deeds & Contracts Vault',
+    category: 'tool',
+    categoryLabel: 'कानुनी ढाँचा',
+    badge: 'Word/Excel',
+    href: '/tools/legal-templates',
+    keywords: ['बैनापट्टा', 'करार', 'भाडा सम्झौता', 'लिखत', 'ढाँचा', 'सिमाना', 'निवेदन', 'word', 'docx', 'excel', 'डाउनलोड', 'legal templates'],
+    icon: FileText
+  },
+  {
+    id: 'real-estate-saait-calendar',
+    titleNp: 'घरजग्गा पास तथा गृहप्रवेश शुभ साइत २०८१/२०८२',
+    titleEn: 'Real Estate Auspicious Dates Calendar',
+    category: 'tool',
+    categoryLabel: 'पञ्चाङ्ग साइत',
+    badge: 'शुभ साइत',
+    href: '/tools/real-estate-saait-calendar',
+    keywords: ['साइत', 'शुभ साइत', 'घरजग्गा पास', 'गृहप्रवेश', 'जग पूजा', 'शिलान्यास', 'छत ढलान', '२०८१', '२०८२', 'saait', 'calendar', 'वास्तु'],
+    icon: Calendar
+  },
+  {
+    id: 'property-dispute-wizard',
+    titleNp: 'जग्गा विवाद समाधान विजार्ड',
+    titleEn: 'Property Dispute Solver Wizard',
+    category: 'tool',
+    categoryLabel: 'विवाद समाधान',
+    badge: 'मार्गचित्र',
+    href: '/tools/property-dispute-wizard',
+    keywords: ['विवाद', 'सिमाना मिचिएको', 'मोही', 'दोहोरो स्रेस्ता', 'बाटो अवरोध', 'बैना', 'अदालत', 'मालपोत', 'हदम्याद', 'dispute'],
+    icon: Gavel
+  },
+  {
+    id: 'malpot-valuation-rates',
+    titleNp: 'जिल्ला अनुसार मालपोत न्यूनतम मूल्याङ्कन दर',
+    titleEn: 'District Malpot Government Valuation Rates',
+    category: 'tool',
+    categoryLabel: 'सरकारी दररेट',
+    badge: 'सरकारी भाउ',
+    href: '/tools/malpot-valuation-rates',
+    keywords: ['मालपोत दर', 'मूल्याङ्कन', 'न्यूनतम दर', 'काठमाडौँ', 'ललितपुर', 'भक्तपुर', 'पोखरा', 'चितवन', 'बुटवल', 'बैंक लोन', 'valuation'],
+    icon: Landmark
+  },
+  {
+    id: 'municipal-bye-laws',
+    titleNp: '१० प्रमुख सहरको भवन निर्माण मापदण्ड',
+    titleEn: '10 Major Cities Municipal Bye-Laws',
+    category: 'tool',
+    categoryLabel: 'भवन मापदण्ड',
+    badge: 'नक्सा पास',
+    href: '/tools/municipal-bye-laws',
+    keywords: ['मापदण्ड', 'भवन निर्माण', 'नक्सा पास', 'सेटब्याक', 'setback', 'far', 'ground coverage', 'काठमाडौँ', 'पोखरा', 'bye laws'],
+    icon: Building2
+  },
+  {
+    id: 'construction-cost-calculator',
+    titleNp: 'घर निर्माण लागत क्यालकुलेटर',
+    titleEn: 'House Construction Cost Calculator',
+    category: 'tool',
+    categoryLabel: 'निर्माण लागत',
+    badge: 'बजेट अनुमान',
+    href: '/tools/construction-cost-calculator',
+    keywords: ['घर निर्माण', 'लागत', 'इस्टिमेट', 'सिमेन्ट', 'रड', 'बालुवा', 'गिट्टी', 'construction cost', 'बजेट'],
+    icon: Hammer
+  },
+  {
+    id: 'loan-emi-calculator',
+    titleNp: 'घरजग्गा बैंक कर्जा EMI क्यालकुलेटर',
+    titleEn: 'Home Loan & Land EMI Calculator',
+    category: 'tool',
+    categoryLabel: 'बैंकिङ ऋण',
+    badge: 'EMI हिसाब',
+    href: '/tools/loan-emi-calculator',
+    keywords: ['emi', 'होम लोन', 'बैंक कर्जा', 'किस्ता', 'ब्याज', 'loan', 'calculator'],
+    icon: Coins
   },
 
   // 2. Mobile Applications & Software

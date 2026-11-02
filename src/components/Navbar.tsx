@@ -32,7 +32,11 @@ import {
   Maximize2,
   Cpu,
   Bell,
-  Search
+  Search,
+  Calendar,
+  Gavel,
+  Landmark,
+  Hammer
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import TopTickerBanner from './tickers/TopTickerBanner';
@@ -92,7 +96,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
 
               {/* Mega Dropdown Menu */}
               <div 
-                className={`absolute top-full left-0 w-[420px] bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-3 space-y-2 transition-all duration-150 z-50 ${
+                className={`absolute top-full left-0 w-[480px] bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-3 space-y-2 transition-all duration-150 z-50 ${
                   toolsDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1'
                 }`}
               >
@@ -170,6 +174,60 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                   </Link>
 
                   <Link
+                    href="/tools/legal-templates"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <FileText className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span className="truncate">बैनापट्टा तथा कानुनी ढाँचा</span>
+                  </Link>
+
+                  <Link
+                    href="/tools/real-estate-saait-calendar"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Calendar className="w-4 h-4 text-rose-500 shrink-0" />
+                    <span className="truncate">जग्गा पास/गृहप्रवेश साइत</span>
+                  </Link>
+
+                  <Link
+                    href="/tools/malpot-valuation-rates"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Landmark className="w-4 h-4 text-amber-500 shrink-0" />
+                    <span className="truncate">मालपोत सरकारी दररेट</span>
+                  </Link>
+
+                  <Link
+                    href="/tools/property-dispute-wizard"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Gavel className="w-4 h-4 text-indigo-500 shrink-0" />
+                    <span className="truncate">जग्गा विवाद समाधान विजार्ड</span>
+                  </Link>
+
+                  <Link
+                    href="/tools/municipal-bye-laws"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Building2 className="w-4 h-4 text-teal-500 shrink-0" />
+                    <span className="truncate">१० सहर भवन मापदण्ड</span>
+                  </Link>
+
+                  <Link
+                    href="/tools/construction-cost-calculator"
+                    onClick={() => setToolsDropdownOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
+                  >
+                    <Hammer className="w-4 h-4 text-orange-500 shrink-0" />
+                    <span className="truncate">घर निर्माण लागत क्यालकुलेटर</span>
+                  </Link>
+
+                  <Link
                     href="/tools/number-to-words"
                     onClick={() => setToolsDropdownOpen(false)}
                     className="flex items-center gap-2 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-semibold"
@@ -185,7 +243,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                     onClick={() => setToolsDropdownOpen(false)}
                     className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs font-bold transition-colors"
                   >
-                    <span>सम्पूर्ण १८+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
+                    <span>सम्पूर्ण २८+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
