@@ -1,11 +1,13 @@
 import { MetadataRoute } from 'next';
 import { ARTICLES_DATA } from '@/data/articles';
+import { sortArticlesDescending } from '@/lib/articlesSort';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.brbhatta.com';
   const currentDate = new Date();
 
-  const articleEntries: MetadataRoute.Sitemap = ARTICLES_DATA.map((article) => ({
+  const sortedArticles = sortArticlesDescending(ARTICLES_DATA);
+  const articleEntries: MetadataRoute.Sitemap = sortedArticles.map((article) => ({
     url: `${baseUrl}/articles/${article.slug}`,
     lastModified: currentDate,
     changeFrequency: 'weekly',
@@ -21,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/articles`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/blog`,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 0.95,
@@ -62,6 +70,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/tools/anshabanda-calculator`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/tools/setback-calculator`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
       url: `${baseUrl}/tools/multi-kitta-calculator`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
@@ -69,6 +89,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/tools/survey-offices`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/tools/merokitta-online-naksa`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.95,
@@ -181,12 +207,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/land-solution-demo/index.html`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
+
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: currentDate,

@@ -26,7 +26,8 @@ import {
   Compass,
   ScrollText,
   Maximize2,
-  Trophy
+  Trophy,
+  Users
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -265,6 +266,37 @@ const TOOL_SECTIONS: ToolCategory[] = [
         ]
       },
       {
+        id: 'anshabanda-calculator',
+        titleNp: 'जग्गा अंशबन्डा तथा कित्ता हिस्सा क्याल्कुलेटर',
+        titleEn: 'Land Partition & Anshabanda Share Calculator',
+        description: 'मुलुकी देवानी संहिता २०७४ र भू-उपयोग नियमावली २०८१ अनुसार अंशियारहरू बीच जग्गाको बराबर हिस्सा, रोपनी/बिघा भाग र कित्ताकाट योग्यता निकाल्ने टूल।',
+        badge: 'नयाँ र विशेष',
+        icon: Users,
+        href: '/tools/anshabanda-calculator',
+        features: [
+          'रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर बराबर बाँडफाँड',
+          '२ देखि १० जना अंशियारहरूको हिस्सा तत्काल गणना',
+          'न्यूनतम कित्ताकाट मापदण्ड (१३०/१६९.३ वर्गमिटर) चेक',
+          'अंशबन्डा पास गर्दा चाहिने ५ कागजात चेकलिस्ट'
+        ]
+      },
+      {
+        id: 'setback-calculator',
+        titleNp: 'घर नक्सा पास तथा बाटो छोड्ने मापदण्ड क्याल्कुलेटर (Setback)',
+        titleEn: 'Building Setback & Road Right-of-Way Calculator',
+        description: 'सडक केन्द्र (Centerline) बाट छोड्नुपर्ने दुरी, चारैतिरको सेटब्याक (Front, Side, Rear) र अधिकतम ग्राउन्ड कभरेज हिसाब गर्ने इन्जिनियरिङ क्याल्कुलेटर।',
+        badge: 'भवन निर्माण मापदण्ड',
+        icon: Building2,
+        href: '/tools/setback-calculator',
+        features: [
+          'सडक केन्द्र रेखा (Centerline) बाट कुल दुरी हिसाब',
+          'साँधतर्फ झ्याल खोल्न ५ फिट (१.५m) अनिवार्य सेतब्याक',
+          'अधिकतम भुईंतला कभरेज (Ground Coverage) र Plinth Area',
+          '४-चरणीय नक्सा पास तथा निर्माण सम्पन्न प्रक्रिया'
+        ]
+      },
+
+      {
         id: 'kitta-qr',
         titleNp: 'कित्ता स्मार्ट QR कोड तथा जग्गा बिक्री फ्लायर जेनेरेटर',
         titleEn: 'Smart Kitta QR Code & Sale Flyer',
@@ -277,6 +309,21 @@ const TOOL_SECTIONS: ToolCategory[] = [
           'A4 वा बोर्ड साइजको आकर्षक "जग्गा बिक्रीमा" फ्लायर',
           'कित्ता नं, क्षेत्रफल, बाटो चौडाइ र मूल्य विवरण',
           '🖨️ १-क्लिकमा आधिकारिक साइनबोर्ड प्रिन्ट'
+        ]
+      },
+      {
+        id: 'merokitta-online-naksa',
+        titleNp: 'मेरोकित्ता अनलाइन नक्सा तथा फिल्डबुक डाउनलोड गाइड',
+        titleEn: 'MeroKitta DLIS Online Map & Fieldbook Guide',
+        description: 'नापी विभागको आधिकारिक मेरोकित्ता (merokitta.dos.gov.np) पोर्टलबाट घरमै बसेर ३ मिनेटमा नक्सा ट्रेस, फिल्डबुक र प्लट रजिष्टर PDF डाउनलोड गर्ने तरिका।',
+        badge: 'नापी विभाग (DOS) सेवा',
+        icon: Compass,
+        href: '/tools/merokitta-online-naksa',
+        features: [
+          '३ मिनेटमा घरमै बसेर नक्सा ट्रेस PDF प्रिन्ट',
+          'eSewa / Khalti मार्फत तोकिएको रु १०० राजस्व भुक्तानी',
+          'नापी विभागको डिजिटल हस्ताक्षर र आधिकारिक QR कोड',
+          'सक्रिय नापी कार्यालयहरूको सूची र समस्या समाधान'
         ]
       },
       {
