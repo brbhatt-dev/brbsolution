@@ -95,11 +95,35 @@ export default function DisclaimerPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">४. प्राविधिक शुद्धता (Accuracy & Software Use)</h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              हामी सफ्टवेयर र लिपिहरूलाई त्रुटिरहित बनाउन निरन्तर परीक्षण गर्दछौं। यद्यपि, सफ्टवेयर &apos;जस्तो छ त्यस्तै&apos; (As Is) आधारमा प्रदान गरिन्छ। प्रयोगकर्ताको उपकरण, अपरेटिङ सिस्टमको असंगति, वा गलत इनपुटबाट आउने परिणामको जिम्मेवारी प्रयोगकर्ता स्वयम्मा रहनेछ।
+              हामी सफ्टवेयर, डिजिटल क्यालकुलेटर र लिपिहरूलाई त्रुटिरहित बनाउन निरन्तर परीक्षण गर्दछौं। यद्यपि, सफ्टवेयर &apos;जस्तो छ त्यस्तै&apos; (As Is) आधारमा प्रदान गरिन्छ। प्रयोगकर्ताको उपकरण, अपरेटिङ सिस्टमको असंगति, वा गलत इनपुटबाट आउने परिणामको जिम्मेवारी प्रयोगकर्ता स्वयम्मा रहनेछ।
             </p>
           </section>
 
-          {/* 5. Contact Information */}
+          {/* 5. Legal, Tax & Financial Advice Disclaimer */}
+          <section className="space-y-3 p-5 rounded-2xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
+            <h2 className="text-lg font-bold text-amber-950 dark:text-amber-300 flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              <span>५. कानुनी सल्लाह, कर तथा वित्तीय परामर्श सम्बन्धी अस्वीकरण (No Legal Advice, Tax or Financial Counsel)</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-amber-950 dark:text-amber-200 leading-relaxed">
+              यस वेबसाइटमा प्रस्तुत <strong>नेपाली लिखत तथा तमसुक ढाँचाहरू (Legal Deed Templates)</strong>, <strong>जग्गा विवाद तथा कानुनी समाधान गाइड (Property Dispute Wizard)</strong>, <strong>मालपोत सरकारी मूल्याङ्कन दरहरू</strong>, तथा <strong>नगरपालिका भवन निर्माण मापदण्डहरू (Municipal Bye-Laws)</strong> केवल सामान्य जानकारी र शैक्षिक सहजीकरणका लागि हुन्:
+            </p>
+            <ul className="list-disc pl-5 text-xs sm:text-sm text-amber-950 dark:text-amber-200 space-y-1.5 leading-relaxed">
+              <li><strong>कानुनी सल्लाह होइन र वकिल-पक्ष सम्बन्ध नरहने (No Legal Advice & No Attorney-Client Relationship):</strong> यी सामग्रीहरू कुनै पनि अर्थमा औपचारिक कानुनी सल्लाह (Legal Counsel) होइनन्। यी सामग्रीहरू प्रयोग गर्दा कुनै पनि प्रकारको कानुनी वा व्यावसायिक परामर्श सम्बन्ध स्थापित हुँदैन। कुनै पनि अदालत, मालपोत वा स्थानीय निकायमा मुद्दा, उजुरी वा लिखत पेश गर्नुअघि नेपाल बार काउन्सिलमा दर्ता भएको आधिकारिक कानुन व्यवसायी (अधिवक्ता) सँग परामर्श लिन अनिवार्य छ।</li>
+              <li><strong>कर तथा रजिष्ट्रेसन शुल्क:</strong> मालपोत मूल्याङ्कन र पूँजीगत लाभकर गणना पब्लिक दरहरूमा आधारित अनुमानित हिसाब हुन्। अन्तिम रजिस्ट्रेसन शुल्क र कर सम्बन्धित मालपोत कार्यालयले निर्धारण गरेको आधिकारिक दर अनुसार नै मान्य हुनेछ।</li>
+              <li><strong>भवन नक्सा मापदण्ड (Setback & FAR):</strong> भवन निर्माण संहिता तथा मापदण्ड स्थानीय तहको नीति अनुसार फरक हुन सक्ने भएकाले घरको नक्सा पास गर्दा सम्बन्धित नगरपालिका/गाउँपालिकाबाट इजाजतप्राप्त इन्जिनियर वा आर्किटेक्टबाट नक्सा तयार गरी प्रमाणित गराउनु पर्दछ।</li>
+            </ul>
+          </section>
+
+          {/* 6. Advertising & AdSense Disclaimer */}
+          <section className="space-y-3">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">६. विज्ञापन तथा तेस्रो-पक्षीय सामग्री सम्बन्धी अस्वीकरण (Third-Party Advertising & AdSense Disclaimer)</h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              यस वेबसाइटमा देखाइने विज्ञापनहरू Google AdSense वा अन्य तेस्रो पक्ष विज्ञापन सञ्जालहरूद्वारा स्वचालित रूपमा डेलिभर गरिन्छ। वेबसाइटमा विज्ञापन प्रदर्शित हुनुले ती उत्पादन, सेवा वा कम्पनीहरूलाई हाम्रो आधिकारिक सिफारिस (Endorsement) वा ग्यारेन्टी जनाउँदैन। विज्ञापनदाताहरूसँग कारोबार गर्नुअघि प्रयोगकर्ताहरूले आफ्नै विवेक र अनुसन्धान प्रयोग गर्नुपर्नेछ।
+            </p>
+          </section>
+
+          {/* 7. Contact Information */}
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <p className="font-bold text-slate-900 dark:text-white text-sm">कुनै जिज्ञासा वा स्पष्टीकरण आवश्यक छ?</p>

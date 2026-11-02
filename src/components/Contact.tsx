@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle, Clock, MessageSquare, ChevronDown } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Copy, Loader2, AlertCircle, Clock, MessageSquare, ChevronDown, Facebook, Instagram, Github } from 'lucide-react';
 import { copyToClipboard } from '@/lib/clipboard';
 
 export default function Contact() {
@@ -123,6 +123,69 @@ export default function Contact() {
                 <span className="text-[10px] text-slate-400 font-bold uppercase block">स्थान / Location</span>
                 <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">काठमाडौँ, नेपाल (Kathmandu, Nepal)</p>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">नेपालभर अनलाइन प्राविधिक सहायता उपलब्ध</p>
+              </div>
+            </div>
+
+            {/* Official Verified Social Profiles Card */}
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2.5">
+              <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">
+                आधिकारिक सामाजिक सञ्जाल (Connect with Founder)
+              </span>
+              <div className="flex items-center gap-2 flex-wrap">
+                <a
+                  href="https://www.facebook.com/aabiral.bhatt/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-xl bg-[#1877F2] text-white flex items-center justify-center hover:scale-105 transition-transform shadow-2xs"
+                  title="Facebook Profile"
+                  aria-label="Facebook Profile"
+                >
+                  <Facebook className="w-4 h-4 fill-white" />
+                </a>
+                <a
+                  href="https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white flex items-center justify-center hover:scale-105 transition-transform shadow-2xs"
+                  title="Instagram Profile"
+                  aria-label="Instagram Profile"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-xl bg-black text-white flex items-center justify-center hover:scale-105 transition-transform shadow-2xs border border-slate-800"
+                  title="TikTok (@br_bhatta)"
+                  aria-label="TikTok Profile"
+                >
+                  <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com/LandSolutionNpl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-xl bg-black text-white flex items-center justify-center hover:scale-105 transition-transform shadow-2xs border border-slate-700"
+                  title="X (Twitter)"
+                  aria-label="X Profile"
+                >
+                  <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/brbhatt-dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center hover:scale-105 transition-transform shadow-2xs border border-slate-700"
+                  title="GitHub (brbhatt-dev)"
+                  aria-label="GitHub Profile"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
               </div>
             </div>
 

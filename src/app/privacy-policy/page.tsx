@@ -229,58 +229,72 @@ export default function PrivacyPolicyPage() {
 
 
           {/* Cookies & Google AdSense */}
-
           <section className="space-y-3 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-
             <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-
               <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-
-              <span>४. कुकीज र गुगल एडसेन्स (Cookies & Google AdSense)</span>
-
+              <span>४. कुकीज, तेस्रो पक्ष विज्ञापन तथा गुगल एडसेन्स (Cookies & Google AdSense Policy)</span>
             </h2>
-
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-
-              हाम्रो वेबसाइटले प्रयोगकर्ताको प्राथमिकताहरू सुरक्षित गर्न तथा विज्ञापन सम्बन्धी सेवाहरूका लागि कुकीज (Cookies) प्रयोग गर्न सक्दछ।
-
+              हाम्रो वेबसाइटले प्रयोगकर्ताको ब्राउजिङ अनुभव सुधार गर्न, प्राथमिकताहरू सुरक्षित गर्न तथा सान्दर्भिक विज्ञापन सेवाहरूका लागि मानक कुकीज (Cookies) तथा वेब बीकनहरू प्रयोग गर्न सक्दछ।
             </p>
-
-            <div className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-
+            <div className="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
               <p>
-
-                <strong>Google DoubleClick DART Cookie:</strong> गुगल हाम्रो वेबसाइटमा तेस्रो पक्ष (Third-party) विज्ञापन साझेदार हो। गुगलले हाम्रा प्रयोगकर्ताहरूलाई हाम्रो साइट वा इन्टरनेटका अन्य साइटहरूमा उनीहरूको भ्रमणको आधारमा सान्दर्भिक विज्ञापन देखाउन DART कुकीज प्रयोग गर्दछ।
-
+                <strong>Google AdSense & DoubleClick DART Cookie:</strong> गुगल लगायतका तेस्रो पक्ष विज्ञापन साझेदारहरू (Third-party vendors) ले प्रयोगकर्ताहरूले यस वेबसाइट वा इन्टरनेटका अन्य वेबसाइटहरूमा यसअघि गरेका भ्रमणका आधारमा सान्दर्भिक विज्ञापन देखाउन कुकीज प्रयोग गर्दछन्।
               </p>
-
               <p>
-
-                प्रयोगकर्ताहरूले गुगल विज्ञापन र सामग्री नेटवर्क गोपनीयता नीति भ्रमण गरी DART कुकीजको प्रयोग अस्वीकार (Opt-out) गर्न सक्नुहुन्छ:{' '}
-
-                <a 
-
-                  href="https://policies.google.com/technologies/ads" 
-
-                  target="_blank" 
-
-                  rel="noopener noreferrer" 
-
-                  className="text-emerald-600 dark:text-emerald-400 underline font-semibold"
-
-                >
-
-                  https://policies.google.com/technologies/ads
-
-                </a>
-
+                गुगलको विज्ञापन कुकीज (DoubleClick DART Cookie) को प्रयोगले गुगल र यसका साझेदारहरूलाई हाम्रा प्रयोगकर्ताहरूको रुचि अनुसार व्यक्तिगत विज्ञापन (Personalized Ads) देखाउन सक्षम बनाउँछ।
               </p>
-
+              <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  विज्ञापन तथा कुकीज अस्वीकार गर्ने विकल्पहरू (Ad Choices & Opt-Out Mechanisms):
+                </p>
+                <ul className="list-disc pl-5 space-y-1.5 text-slate-600 dark:text-slate-300">
+                  <li>
+                    प्रयोगकर्ताहरूले <strong>Google Ads Settings</strong> मा गएर व्यक्तिगत विज्ञापन देखाउने सुविधा बन्द (Opt-out) गर्न सक्नुहुन्छ:{' '}
+                    <a 
+                      href="https://adssettings.google.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-emerald-600 dark:text-emerald-400 underline font-semibold break-all"
+                    >
+                      https://adssettings.google.com
+                    </a>
+                  </li>
+                  <li>
+                    गुगलको विज्ञापन तथा प्रविधि गोपनीयता नीति विस्तृत रूपमा हेर्न:{' '}
+                    <a 
+                      href="https://policies.google.com/technologies/ads" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-emerald-600 dark:text-emerald-400 underline font-semibold break-all"
+                    >
+                      https://policies.google.com/technologies/ads
+                    </a>
+                  </li>
+                  <li>
+                    तेस्रो पक्ष विज्ञापनदाताहरूको व्यक्तिगत कुकीज अस्वीकार गर्न <strong>Digital Advertising Alliance (AboutAds)</strong> पोर्टल भ्रमण गर्न सक्नुहुन्छ:{' '}
+                    <a 
+                      href="https://www.aboutads.info/choices" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-emerald-600 dark:text-emerald-400 underline font-semibold break-all"
+                    >
+                      https://www.aboutads.info/choices
+                    </a>{' '}
+                    वा <strong>Network Advertising Initiative</strong>:{' '}
+                    <a 
+                      href="https://optout.networkadvertising.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-emerald-600 dark:text-emerald-400 underline font-semibold break-all"
+                    >
+                      https://optout.networkadvertising.org
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-
           </section>
-
-
 
           {/* Third Party Privacy Policies */}
 
