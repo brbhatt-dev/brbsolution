@@ -40,6 +40,16 @@ export const defaultTickerItems: TickerItem[] = [
     date: 'नयाँ भर्सन'
   },
   {
+    id: 'blog-guides',
+    category: 'blog',
+    badgeLabel: 'ज्ञान केन्द्र',
+    badgeColor: 'bg-purple-500/20 text-purple-400 border-purple-500/40',
+    title: 'जग्गा कित्ताकाट, मालपोत कर छुट र नापजाँच सम्बन्धी २२+ आधिकारिक गाइडहरू उपलब्ध',
+    href: '/blog',
+    date: '२२+ लेखहरू',
+    highlight: true
+  },
+  {
     id: 'law-survey-act',
     category: 'law',
     badgeLabel: 'नापी कानुन',

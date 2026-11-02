@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["'Mukta'", "sans-serif"],
+        sans: ["'Noto Sans Devanagari'", "'Mukta'", "sans-serif"],
       },
       colors: {
         brand: {

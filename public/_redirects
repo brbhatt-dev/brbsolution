@@ -1,5 +1,24 @@
+# Apex to Primary Canonical WWW Host
+https://brbhatta.com/* https://www.brbhatta.com/:splat 301!
+http://brbhatta.com/* https://www.brbhatta.com/:splat 301!
+
 # Redirect bhattbr.com.np and www.bhattbr.com.np to primary domain www.brbhatta.com
 https://bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 https://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 http://bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 http://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
+
+# Blog & Article aliases for search bots & crawlers
+/posts /blog 301
+/post /blog 301
+/blogs /blog 301
+/posts/:slug /articles/:slug 301
+/blog/:slug /articles/:slug 301
+
+# Compliance & Trust Policy Aliases (Gridinsoft, ScamAdviser & Crawler bots)
+/terms-of-service /terms 301
+/terms-and-conditions /terms 301
+/contact-us /contact 301
+/about-us /about 301
+/privacy /privacy-policy 301
+/legal /terms 301

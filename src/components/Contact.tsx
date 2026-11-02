@@ -66,7 +66,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-8 sm:py-10 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 transition-colors duration-200 notranslate" translate="no">
+    <section id="contact" className="py-8 sm:py-10 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 transition-colors duration-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
         {/* Compact Section Header */}

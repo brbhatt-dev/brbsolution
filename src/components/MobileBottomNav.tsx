@@ -256,6 +256,61 @@ const SEARCH_DATABASE: SearchItem[] = [
     href: '/articles/malpot-land-registration-fee-tax-calculator-nepal',
     keywords: ['जग्गा पास', 'खरिद बिक्री', 'रजिस्ट्रेसन', 'गाइड'],
     icon: FileText
+  },
+  {
+    id: 'guide-women-discount',
+    titleNp: 'गाइड: महिला, दलित तथा ज्येष्ठ नागरिक ३५% जग्गा कर छुट',
+    titleEn: 'Women & Dalit Land Tax Discount Guide',
+    category: 'article',
+    categoryLabel: 'मार्गदर्शन लेख',
+    badge: '३५% छुट',
+    href: '/articles/women-land-registration-discount-nepal-tax-rebate',
+    keywords: ['महिला', 'दलित', 'ज्येष्ठ नागरिक', 'कर छुट', 'छुट', 'मालपोत छुट', 'जग्गा पास'],
+    icon: FileText
+  },
+  {
+    id: 'guide-amsa-banda',
+    titleNp: 'गाइड: अंशबन्डा र जग्गा बाँडफाँड कानुनी प्रक्रिया',
+    titleEn: 'Land Partition & Inheritance Law Guide',
+    category: 'article',
+    categoryLabel: 'मार्गदर्शन लेख',
+    badge: 'कानुन',
+    href: '/articles/amsa-banda-land-partition-process-nepal-law',
+    keywords: ['अंशबन्डा', 'बकसपत्र', 'जग्गा बाँडफाँड', 'दाजुभाइ', 'विवाद'],
+    icon: FileText
+  },
+  {
+    id: 'guide-house-setback',
+    titleNp: 'गाइड: घर बनाउँदा सडक र साँधियार सेटब्याक नियम',
+    titleEn: 'Building Road Setback & Distance Rules Guide',
+    category: 'article',
+    categoryLabel: 'मार्गदर्शन लेख',
+    badge: 'मापदण्ड',
+    href: '/articles/house-boundary-setback-neighbor-distance-building-rules-nepal',
+    keywords: ['घर नक्सा', 'बाटो', 'सेटब्याक', 'साँधियार', 'दूरी', 'झ्याल', 'कौसी'],
+    icon: FileText
+  },
+  {
+    id: 'guide-aamin-exam',
+    titleNp: 'गाइड: नापी अमिन तथा सर्भेयर लोकसेवा २५ नमुना प्रश्नोत्तर',
+    titleEn: 'Aamin Surveyor Exam Practice 25 Questions',
+    category: 'article',
+    categoryLabel: 'मार्गदर्शन लेख',
+    badge: 'लोकसेवा',
+    href: '/articles/aamin-surveyor-exam-important-questions-answers-nepal',
+    keywords: ['अमिन', 'सर्भेयर', 'लोकसेवा', 'प्रश्नोत्तर', 'तयारी', 'परीक्षा'],
+    icon: FileText
+  },
+  {
+    id: 'guide-blog-all',
+    titleNp: 'आधिकारिक ब्लग तथा ज्ञान केन्द्र (२२+ गाइडहरू)',
+    titleEn: 'All 22+ Land & Survey Articles & Blog',
+    category: 'article',
+    categoryLabel: 'ज्ञान केन्द्र',
+    badge: '२२+ लेख',
+    href: '/blog',
+    keywords: ['ब्लग', 'लेख', 'गाइड', 'blog', 'articles', 'ज्ञान केन्द्र', 'निर्देशिका'],
+    icon: FileText
   }
 ];
 
@@ -473,8 +528,10 @@ export default function MobileBottomNav() {
               </span>
               {[
                 'जग्गा हिसाब',
+                'ब्लग/गाइड',
                 'Preeti',
                 'मालपोत',
+                'महिला कर छुट',
                 'फोटो २००KB',
                 'कित्ताकाट',
                 'नापी ऐन',

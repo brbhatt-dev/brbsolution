@@ -66,11 +66,17 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
   if (variant === 'panoramic') {
     return (
       <>
-        <div className="w-full bg-gradient-to-r from-[#061814] via-[#091e19] to-[#040e0b] text-white rounded-3xl p-4 sm:p-6 shadow-xl border border-emerald-500/30 relative overflow-hidden">
+        <div className="w-full bg-[#041410] text-white rounded-3xl p-4 sm:p-6 shadow-xl border border-emerald-500/30 relative overflow-hidden">
           
-          {/* Subtle atmospheric ambient glows */}
-          <div className="absolute top-0 right-1/4 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+          {/* Crisp background ambient gradients (no blur filters to maintain razor-sharp text) */}
+          <div 
+            className="absolute top-0 right-1/4 w-80 h-80 rounded-full pointer-events-none opacity-40" 
+            style={{ background: 'radial-gradient(circle, rgba(220, 38, 38, 0.2) 0%, transparent 70%)' }}
+          />
+          <div 
+            className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full pointer-events-none opacity-50" 
+            style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%)' }}
+          />
 
           <div className="relative z-10 space-y-4">
 
@@ -78,10 +84,10 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 items-stretch">
               
               {/* LEFT HALF (50%): Compact Nepali Patro & Live Clock */}
-              <div className="rounded-2xl bg-white/5 border border-white/10 p-4 sm:p-5 flex flex-col justify-between space-y-3.5">
+              <div className="rounded-2xl bg-[#08221b] border border-emerald-500/25 p-4 sm:p-5 flex flex-col justify-between space-y-3.5 shadow-sm">
                 
                 {/* Header Line */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                <div className="flex items-center justify-between border-b border-emerald-500/20 pb-2.5">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                       <Calendar className="w-3.5 h-3.5" />
@@ -102,32 +108,32 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                 {/* Main Date & Details Row */}
                 <div className="flex items-center gap-3.5 sm:gap-4">
                   {/* Big Date Box */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col items-center justify-center shrink-0 shadow-inner">
-                    <span className="text-3xl sm:text-4xl font-black text-white font-mono leading-none">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#0c3127] border border-emerald-400/30 flex flex-col items-center justify-center shrink-0 shadow-sm">
+                    <span className="text-3xl sm:text-4xl font-black text-white leading-none">
                       {details.bsDate}
                     </span>
-                    <span className="text-[11px] sm:text-xs font-bold text-emerald-300 mt-1">
+                    <span className="text-xs sm:text-[13px] font-extrabold text-emerald-300 mt-1">
                       {details.dayName}
                     </span>
                   </div>
 
                   {/* Month, Year & Tithi */}
                   <div className="space-y-1 min-w-0">
-                    <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-none">
+                    <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                       {details.bsMonthName} {details.bsYear}
                     </h2>
-                    <p className="text-xs text-slate-300">
-                      ईस्वी संवत् (AD): <span className="font-semibold text-white">{details.adDateString}</span>
+                    <p className="text-xs sm:text-[13px] text-slate-100 font-medium">
+                      ईस्वी संवत् (AD): <span className="font-bold text-white">{details.adDateString}</span>
                     </p>
 
                     {/* Tithi & Ritu Badge */}
                     <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg bg-amber-500/20 border border-amber-400/30 text-xs text-amber-300 font-semibold">
-                        <Moon className="w-3.5 h-3.5 text-amber-400 fill-amber-400/40" />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-xs sm:text-[13px] text-amber-300 font-bold">
+                        <Moon className="w-3.5 h-3.5 text-amber-300 fill-amber-300/40" />
                         <span>{details.paksha}, {details.tithiName}</span>
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-lg bg-emerald-500/20 border border-emerald-400/30 text-xs text-emerald-300 font-semibold">
-                        <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-xs sm:text-[13px] text-emerald-300 font-bold">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
                         <span>{details.ritu} ऋतु</span>
                       </span>
                     </div>
@@ -135,19 +141,19 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                 </div>
 
                 {/* Vedic Panchang Quick Strip (Sunrise, Sunset, Nakshatra & Modal CTA) */}
-                <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
-                  <div className="flex flex-wrap items-center gap-3 text-slate-300 text-[11px]">
-                    <span className="inline-flex items-center gap-1 text-amber-300">
-                      <Sun className="w-3 h-3 text-amber-400" />
+                <div className="pt-2 border-t border-emerald-500/20 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex flex-wrap items-center gap-3.5 text-slate-100 text-xs font-semibold">
+                    <span className="inline-flex items-center gap-1 text-amber-200 font-semibold">
+                      <Sun className="w-3.5 h-3.5 text-amber-300" />
                       <span>सूर्योदय: {details.sunrise}</span>
                     </span>
-                    <span className="inline-flex items-center gap-1 text-rose-300">
-                      <Moon className="w-3 h-3 text-rose-400" />
+                    <span className="inline-flex items-center gap-1 text-rose-200 font-semibold">
+                      <Moon className="w-3.5 h-3.5 text-rose-300" />
                       <span>सूर्यास्त: {details.sunset}</span>
                     </span>
                     {details.nakshatra && (
-                      <span className="inline-flex items-center gap-1 text-emerald-300 hidden sm:inline-flex">
-                        <Star className="w-3 h-3 text-emerald-400" />
+                      <span className="inline-flex items-center gap-1 text-emerald-200 font-semibold hidden sm:inline-flex">
+                        <Star className="w-3.5 h-3.5 text-emerald-300" />
                         <span>नक्षत्र: {details.nakshatra}</span>
                       </span>
                     )}
@@ -155,7 +161,7 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
 
                   <button
                     onClick={() => setShowPanchangModal(true)}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600/80 hover:bg-emerald-600 text-white font-bold text-[11px] transition-all hover:scale-105 active:scale-95 shadow-xs"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all hover:scale-105 active:scale-95 shadow-sm"
                     title="विस्तृत वैदिक पञ्चाङ्ग हेर्नुहोस्"
                   >
                     <Compass className="w-3 h-3" />
@@ -167,7 +173,7 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
 
               {/* RIGHT HALF (50%): Land Solution Fluttering Nepal Flag Container */}
               <div
-                className="rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/0 p-4 sm:p-5 border border-white/10 relative overflow-hidden flex flex-col justify-between min-h-[190px]"
+                className="rounded-2xl bg-[#08221b] p-4 sm:p-5 border border-emerald-500/25 relative overflow-hidden flex flex-col justify-between min-h-[190px] shadow-sm"
                 title="नेपालको राष्ट्रिय झण्डा फरर्र 🇳🇵"
               >
                 {/* Top Badge: National Pride */}
@@ -184,7 +190,10 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
 
                 {/* Centerpiece: Official Animated Nepal Flag */}
                 <div className="relative z-10 flex items-center justify-center py-2 sm:py-3">
-                  <div className="absolute w-32 h-32 bg-red-600/20 rounded-full blur-2xl pointer-events-none" />
+                  <div 
+                    className="absolute w-32 h-32 rounded-full pointer-events-none opacity-40" 
+                    style={{ background: 'radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, transparent 70%)' }}
+                  />
                   
                   <picture className="relative z-10">
                     <source srcSet="/nepal_flag.webp" type="image/webp" />
@@ -196,17 +205,16 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                       loading="eager"
                       decoding="async"
                       className="h-28 sm:h-36 w-auto object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-105 drop-shadow-md"
-                      style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}
                     />
                   </picture>
                 </div>
 
                 {/* Bottom Slogan / Motto */}
-                <div className="relative z-10 text-center pt-2.5 pb-0.5 border-t border-white/10 space-y-1">
-                  <p className="text-sm sm:text-base font-extrabold text-amber-300 tracking-wide leading-tight">
+                <div className="relative z-10 text-center pt-2.5 pb-0.5 border-t border-emerald-500/20 space-y-1">
+                  <p className="text-sm sm:text-base font-black text-amber-300 leading-tight">
                     &ldquo;जननी जन्मभूमिश्च स्वर्गादपि गरीयसी&rdquo;
                   </p>
-                  <p className="text-xs sm:text-[13px] font-medium text-slate-200 leading-normal">
+                  <p className="text-xs sm:text-[13px] font-bold text-white leading-normal">
                     संसारकै एकमात्र त्रिकोणात्मक, चन्द्र-सूर्य अंकित जीवित झण्डा
                   </p>
                 </div>
@@ -234,11 +242,17 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
   // DEFAULT COMPACT VARIANT
   return (
     <>
-      <div className="bg-gradient-to-br from-emerald-950 via-teal-950 to-slate-950 text-white rounded-2xl p-3.5 sm:p-4 shadow-inner border border-emerald-500/30 relative overflow-hidden">
+      <div className="bg-[#051c16] text-white rounded-2xl p-3.5 sm:p-4 shadow-inner border border-emerald-500/30 relative overflow-hidden">
         
         {/* Background glow decoration */}
-        <div className="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-teal-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div 
+          className="absolute -top-12 -right-12 w-32 h-32 rounded-full pointer-events-none opacity-40" 
+          style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%)' }}
+        />
+        <div 
+          className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full pointer-events-none opacity-40" 
+          style={{ background: 'radial-gradient(circle, rgba(20, 184, 166, 0.3) 0%, transparent 70%)' }}
+        />
 
         <div className="relative z-10 space-y-2.5">
           
@@ -261,7 +275,7 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
           <div className="grid grid-cols-12 gap-2.5 items-center">
             
             {/* Day Big Number Box */}
-            <div className="col-span-4 bg-white/10 backdrop-blur-md rounded-xl p-2 sm:p-2.5 text-center border border-white/10 shrink-0">
+            <div className="col-span-4 bg-[#0a2820] rounded-xl p-2 sm:p-2.5 text-center border border-emerald-500/30 shrink-0 shadow-xs">
               <span className="text-3xl sm:text-4xl font-black text-white font-mono block leading-none">
                 {details.bsDate}
               </span>

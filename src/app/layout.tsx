@@ -15,8 +15,15 @@ export const metadata: Metadata = {
     'Hamro Kosh',
     'हाम्रो कोष',
     'AutoCAD LSP Nepal',
+    'Ropani to Aana Calculator',
     'Ropani Aana Paisa Daam Calculator',
+    'Bigha to Kattha Converter',
     'Bigha Katha Dhur Calculator',
+    'Kitta Kat Niyam 2081 2082',
+    'कित्ताकाट नियम',
+    'Malpot Tax Calculator Nepal',
+    'Capital Gains Tax Nepal Real Estate',
+    'जग्गा लाभकर',
     'Nepal Land Measurement App',
     'AutoCAD Area Lisp',
     'Land Survey Nepal',
@@ -47,10 +54,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo.png',
-        width: 512,
-        height: 512,
-        alt: 'Land Solution & BR Bhatta Nepal',
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'BR Bhatta | Land Solution Nepal - नापी, कित्ताकाट तथा क्याड टूल्स',
       },
     ],
   },
@@ -58,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BR Bhatta | Land Solution & Tech Innovations Nepal',
     description: 'Explore Land Solution, Hamro Kosh, and AutoCAD LSP tools built for Nepal.',
-    images: ['/logo.png'],
+    images: ['/og-image.png'],
   },
   icons: {
     icon: [
@@ -118,28 +125,58 @@ export default function RootLayout({
     },
   };
 
+  const jsonLdOrg = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'BR Bhatta',
+    alternateName: ['Land Solution Nepal', 'brbhatta.com', 'Land Solution'],
+    url: 'https://www.brbhatta.com',
+    logo: 'https://www.brbhatta.com/logo.png',
+    email: 'info@brbhatta.com',
+    sameAs: [
+      'https://www.facebook.com/aabiral.bhatt/',
+      'https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4',
+      'https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd',
+      'https://x.com/LandSolutionNpl',
+      'https://www.threads.com/@landsolutionnepal',
+      'https://github.com/brbhatt-dev',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'technical support',
+      email: 'info@brbhatta.com',
+      availableLanguage: ['Nepali', 'English'],
+    },
+  };
+
   const jsonLdWebsite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    alternateName: ['brbhatta.com', 'brbhatta', 'Land Solution Nepal', 'BR Bhatta Nepal', 'Land Solution'],
     name: 'BR Bhatta',
     url: 'https://www.brbhatta.com',
   };
 
   return (
-    <html lang="ne" className="notranslate" translate="no" suppressHydrationWarning>
+    <html lang="ne" suppressHydrationWarning>
       <head>
-        <meta name="google" content="notranslate" />
-        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+                <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
         <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="32x32" />
         <link rel="icon" href="/icon.png?v=2" type="image/png" sizes="192x192" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" sizes="180x180" />
+        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png?v=3" sizes="180x180" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Land Solution" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="alternate" type="application/rss+xml" title="BR Bhatta &amp; Land Solution Nepal RSS Feed" href="https://www.brbhatta.com/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title="BR Bhatta &amp; Land Solution Nepal (rss.xml)" href="https://www.brbhatta.com/rss.xml" />
 
         {/* Google Fonts: Mukta (PMO opmcm.gov.np GIWMS Standard) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Mukta:wght@400;500;600;700;800&display=swap" 
           rel="stylesheet" 
         />
         <script
@@ -164,6 +201,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
+        />
         {/* Google AdSense Script */}
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
           <script
@@ -173,25 +214,22 @@ export default function RootLayout({
           />
         )}
 
-        {/* Google Analytics 4 (GA4) */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-                `,
-              }}
-            />
-          </>
-        )}
+        {/* Google tag (gtag.js) - Google Analytics 4 */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-ZEHZLLS88P'}`}
+        />
+        <script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-ZEHZLLS88P'}');
+            `,
+          }}
+        />
 
         {/* Google Search Console Verification Meta */}
         {process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && (
@@ -200,8 +238,13 @@ export default function RootLayout({
             content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
           />
         )}
+        {/* Gridinsoft Domain Verification Meta Tag */}
+        <meta
+          name="gridinsoft-key"
+          content="yb4ea5rs16uumfo2kn2ze73ak3dzqkdrtp4us3vfrdzfqqr6dydft3eyordy55tw"
+        />
       </head>
-      <body className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased selection:bg-emerald-600 selection:text-white transition-colors duration-200">
+      <body className="min-h-screen bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-100 subpixel-antialiased selection:bg-emerald-600 selection:text-white transition-colors duration-200">
         <ThemeProvider>
           {children}
           <AiLandAssistant />

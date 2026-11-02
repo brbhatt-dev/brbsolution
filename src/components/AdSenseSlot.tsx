@@ -42,13 +42,13 @@ export default function AdSenseSlot({
   }
 
   return (
-    <div className={`my-6 text-center overflow-hidden notranslate ${className}`} translate="no">
+    <div className={`my-6 text-center overflow-hidden min-h-[120px] sm:min-h-[260px] flex flex-col justify-center items-center notranslate ${className}`} translate="no">
       <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-1">
         {userFacingLabel}
       </span>
       <ins
         ref={adRef}
-        className="adsbygoogle block"
+        className="adsbygoogle block w-full"
         style={{ display: 'block' }}
         data-ad-client={adsenseClientId}
         data-ad-slot={slotId}

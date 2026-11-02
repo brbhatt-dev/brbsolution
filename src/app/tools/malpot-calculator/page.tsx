@@ -8,24 +8,27 @@ import SocialShareBar from '@/components/SocialShareBar';
 import { Receipt, ArrowLeft, BookOpen, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'मालपोत रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर क्यालकुलेटर (Nepal Malpot Tax Calculator) | BR Bhatta',
-  description: 'नेपालमा घरजग्गा खरिदबिक्री गर्दा लाग्ने मालपोत रजिस्ट्रेसन दस्तुर, महिला छुट (२५%-५०%), संयुक्त दम्पती दर्ता (रु. १००) र पुँजीगत लाभकर (CGT ५% र ७.५%) को आधिकारिक अनलाइन हिसाब।',
+  title: 'जग्गा पास गर्दा लाग्ने शुल्क र मालपोत रजिस्ट्रेसन दस्तुर क्यालकुलेटर (Nepal Land Tax Calculator) | BR Bhatta',
+  description: 'नेपालमा घरजग्गा पास (खरिदबिक्री) गर्दा लाग्ने मालपोत रजिस्ट्रेसन दस्तुर, पुँजीगत लाभकर (CGT ५% र ७.५%), महिला छुट (२५%-५०%) र सेवा शुल्कको आधिकारिक अनलाइन हिसाब।',
   keywords: [
+    'जग्गा पास गर्दा लाग्ने शुल्क',
+    'jagga calculator nepal',
+    'registration fee of land in nepal',
     'Malpot Tax Calculator Nepal',
     'Nepal Land Registration Fee Calculator',
     'Capital Gains Tax Nepal Land',
     'घरजग्गा रजिस्ट्रेसन दस्तुर',
     'पुँजीगत लाभकर हिसाब',
     'महिला जग्गा रजिस्ट्रेसन छुट',
-    'मालपोत कर २०८१',
+    'मालपोत कर २०८१/२०८२',
     'BR Bhatta Malpot Calculator'
   ],
   alternates: {
     canonical: 'https://www.brbhatta.com/tools/malpot-calculator',
   },
   openGraph: {
-    title: 'नेपाल मालपोत रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर क्यालकुलेटर | BR Bhatta',
-    description: 'आर्थिक ऐन तथा मालपोत नियमावली अनुसार घरजग्गा खरिदबिक्रीमा लाग्ने सरकारी राजस्व तथा पुँजीगत लाभकरको तुरुन्त हिसाब।',
+    title: 'जग्गा पास गर्दा लाग्ने शुल्क र मालपोत रजिस्ट्रेसन दस्तुर क्यालकुलेटर | BR Bhatta',
+    description: 'आर्थिक ऐन तथा मालपोत नियमावली अनुसार घरजग्गा पास गर्दा लाग्ने सरकारी राजस्व तथा पुँजीगत लाभकरको तुरुन्त हिसाब।',
     url: 'https://www.brbhatta.com/tools/malpot-calculator',
     siteName: 'Land Solution & BR Bhatta',
     locale: 'ne_NP',

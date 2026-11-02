@@ -38,8 +38,8 @@ export default function NepaliTithiClockBar() {
 
   return (
     <div 
-      translate="no" 
-      className="notranslate w-full rounded-2xl bg-slate-950 border border-slate-800 text-white p-2.5 sm:px-4 sm:py-3 shadow-lg shadow-slate-950/20 mb-6 sm:mb-8"
+      
+      className="w-full rounded-2xl bg-slate-950 border border-slate-800 text-white p-2.5 sm:px-4 sm:py-3 shadow-lg shadow-slate-950/20 mb-6 sm:mb-8"
     >
       <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3">
         

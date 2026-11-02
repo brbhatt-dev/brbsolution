@@ -20,6 +20,11 @@ import { ARTICLES_DATA, ArticleDetail } from '@/data/articles';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import SocialShareBar from '@/components/SocialShareBar';
 import AudioArticlePlayer from '@/components/AudioArticlePlayer';
+import ArticleQueryBox from '@/components/ArticleQueryBox';
+import SmartRelatedArticles from '@/components/SmartRelatedArticles';
+import StickyFloatingShare from '@/components/StickyFloatingShare';
+import ArticleTaxCalculatorWidget from '@/components/ArticleTaxCalculatorWidget';
+import ArticleKittaKatWidget from '@/components/ArticleKittaKatWidget';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -54,6 +59,10 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     keywords: [
       article.tag,
       article.categoryNepali,
+      article.slug.replace(/-/g, ' '),
+      'Nepal land rules 2081',
+      'Nepal surveying guide',
+      'Ropani Bigha calculator',
       'जग्गा नापजाँच नेपाल',
       'किताकाट नियम',
       'मालपोत दस्तुर',
@@ -68,11 +77,20 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       siteName: 'BR Bhatta | Land Solution',
       locale: 'ne_NP',
       authors: [article.author.name],
+      images: [
+        {
+          url: 'https://www.brbhatta.com/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description: article.summary,
+      images: ['https://www.brbhatta.com/og-image.png'],
     },
   };
 }
@@ -85,16 +103,33 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const relatedArticles = ARTICLES_DATA.filter((a) =>
-    article.relatedSlugs?.includes(a.slug)
-  );
+  // Contextual smart related articles (always exactly 4 top recommendations)
+  const explicitRelated = ARTICLES_DATA.filter((a) => article.relatedSlugs?.includes(a.slug));
+  const sameCategoryRelated = ARTICLES_DATA.filter((a) => a.category === article.category && a.slug !== article.slug && !article.relatedSlugs?.includes(a.slug));
+  const otherRelated = ARTICLES_DATA.filter((a) => a.slug !== article.slug && !article.relatedSlugs?.includes(a.slug) && a.category !== article.category);
+  const smartRelatedArticles = [...explicitRelated, ...sameCategoryRelated, ...otherRelated].slice(0, 4);
+  const relatedArticles = smartRelatedArticles;
 
-  // Article JSON-LD Structured Data
+  const isTaxArticle = [
+    'malpot-land-registration-fee-tax-calculator-nepal',
+    'government-land-valuation-minimum-rate-district-nepal',
+    'women-land-registration-discount-nepal-tax-rebate',
+    'nepal-government-land-valuation-minimum-rate-guide',
+  ].includes(article.slug);
+
+  const isKittaKatArticle = [
+    'kitta-kat-minimum-area-criteria-residential-agricultural-nepal',
+    'kitta-kat-process-rules-nepal-land-reform',
+    'bato-chhodne-mapdanda-naksa-pas-nepal',
+  ].includes(article.slug);
+
+  // 1. Article JSON-LD Structured Data
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
     description: article.summary,
+    image: 'https://www.brbhatta.com/og-image.png',
     author: {
       '@type': 'Person',
       name: article.author.name,
@@ -116,14 +151,67 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
     inLanguage: 'ne',
   };
 
+  // 2. BreadcrumbList JSON-LD Structured Data
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'गृहपृष्ठ (Home)',
+        item: 'https://www.brbhatta.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'ब्लग तथा लेखहरू (Blog)',
+        item: 'https://www.brbhatta.com/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: `https://www.brbhatta.com/articles/${article.slug}`,
+      },
+    ],
+  };
+
+  // 3. FAQPage JSON-LD Structured Data (If article has FAQs)
+  const faqJsonLd =
+    article.faq && article.faq.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: article.faq.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#070b14] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       
-      {/* Schema.org Article Structured Data */}
+      {/* Schema.org Structured Data Scripts */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       {/* Top Header Bar */}
       <header className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 transition-colors">
@@ -252,6 +340,20 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                   {section.content}
                 </div>
 
+                {/* Embedded Interactive Live Widgets */}
+                {idx === 0 && isTaxArticle && (
+                  <ArticleTaxCalculatorWidget 
+                    initialPrice={
+                      article.slug === 'women-land-registration-discount-nepal-tax-rebate' 
+                        ? 4000000 
+                        : 5000000
+                    } 
+                  />
+                )}
+                {idx === 0 && isKittaKatArticle && (
+                  <ArticleKittaKatWidget />
+                )}
+
                 {/* Optional Table */}
                 {section.table && (
                   <div className="overflow-x-auto my-4 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -330,6 +432,9 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             <SocialShareBar title={article.title} url={`/articles/${article.slug}`} />
           </div>
 
+          {/* 💬 Reader Land Question & AI Answer Box */}
+          <ArticleQueryBox articleTitle={article.title} articleCategory={article.categoryNepali} />
+
           {/* Author Box */}
           <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center sm:items-start gap-4">
             <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center shrink-0">
@@ -349,30 +454,51 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             </div>
           </div>
 
-          {/* Related Articles */}
-          {relatedArticles.length > 0 && (
-            <div className="pt-6 border-t border-slate-200 dark:border-slate-800 space-y-4">
-              <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                सम्बन्धित अन्य गाइडहरू (Related Guides)
+          {/* Internal Linking: Interactive Tools CTA */}
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800/60 space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">🧮</span>
+              <h3 className="font-black text-sm sm:text-base text-slate-900 dark:text-white">
+                सम्बन्धित उपयोगी डिजिटल क्याल्कुलेटरहरू (Interactive Tools):
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {relatedArticles.map((rel) => (
-                  <Link
-                    key={rel.slug}
-                    href={`/articles/${rel.slug}`}
-                    className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-all group"
-                  >
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100/60 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300">
-                      {rel.tag}
-                    </span>
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-200 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors mt-1.5 line-clamp-2">
-                      {rel.title}
-                    </h4>
-                  </Link>
-                ))}
-              </div>
             </div>
-          )}
+            <p className="text-xs text-slate-600 dark:text-slate-300">
+              यस लेखसँग सम्बन्धित हिसाब तथा नापी कार्यलाई १००% सटीक बनाउन तलका निःशुल्क टूल्सहरू चलाउनुहोस्:
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+              <Link
+                href="/tools/land-calculator"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/80 dark:border-emerald-700/60 text-center hover:shadow-sm hover:scale-[1.02] transition-all"
+              >
+                <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">जग्गा क्याल्कुलेटर</p>
+                <p className="text-[10px] text-slate-500">रोपनी-आना / बिघा-कट्ठा</p>
+              </Link>
+              <Link
+                href="/tools/kitta-kat-checker"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/80 dark:border-emerald-700/60 text-center hover:shadow-sm hover:scale-[1.02] transition-all"
+              >
+                <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">कित्ताकाट चेकर</p>
+                <p className="text-[10px] text-slate-500">न्यूनतम मापदण्ड २०८१</p>
+              </Link>
+              <Link
+                href="/tools/malpot-calculator"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/80 dark:border-emerald-700/60 text-center hover:shadow-sm hover:scale-[1.02] transition-all"
+              >
+                <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">मालपोत तथा कर</p>
+                <p className="text-[10px] text-slate-500">रजिष्ट्रेसन र लाभकर</p>
+              </Link>
+              <Link
+                href="/tools/aamin-quiz"
+                className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/80 dark:border-emerald-700/60 text-center hover:shadow-sm hover:scale-[1.02] transition-all"
+              >
+                <p className="text-xs font-bold text-emerald-800 dark:text-emerald-300">नापी अमिन क्विज</p>
+                <p className="text-[10px] text-slate-500">लोकसेवा परीक्षा अभ्यास</p>
+              </Link>
+            </div>
+          </div>
+
+          {/* Smart Contextual Related Articles */}
+          <SmartRelatedArticles articles={smartRelatedArticles} />
 
           {/* Back Button */}
           <div className="pt-4 text-center">
@@ -387,6 +513,9 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
 
         </article>
       </main>
+
+      {/* 🚀 Sticky Floating Quick Share Pill */}
+      <StickyFloatingShare title={article.title} url={`/articles/${article.slug}`} />
 
     </div>
   );

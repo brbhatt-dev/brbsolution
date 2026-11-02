@@ -44,7 +44,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
   const [softwareDropdownOpen, setSoftwareDropdownOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200 notranslate" translate="no">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200">
       {/* Top Breaking News / Updates Marquee Ticker */}
       {!hideTicker && <TopTickerBanner />}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -339,10 +339,15 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             </div>
 
             <Link
-              href="/articles"
+              href="/blog"
               className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
-              गाइड तथा लेखहरू
+              <span className="inline-flex items-center gap-1.5">
+                <span>ब्लग तथा लेखहरू</span>
+                <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                  २२+
+                </span>
+              </span>
             </Link>
 
             <Link
@@ -625,12 +630,15 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                 <span className="truncate">नापी अमिन क्विज</span>
               </Link>
               <Link
-                href="/articles"
+                href="/blog"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               >
                 <FileText className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                <span className="truncate">गाइड तथा लेखहरू</span>
+                <span className="truncate">ब्लग तथा लेखहरू</span>
+                <span className="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 shrink-0">
+                  २२+
+                </span>
               </Link>
             </div>
           </div>

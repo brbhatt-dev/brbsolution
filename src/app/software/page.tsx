@@ -1,5 +1,6 @@
 'use client';
 
+import AppleLogo from '@/components/AppleLogo';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
@@ -24,7 +25,6 @@ import {
   Database, 
   Smartphone, 
   Laptop, 
-  Apple, 
   Terminal, 
   HelpCircle, 
   FolderArchive, 
@@ -493,7 +493,7 @@ export default function SoftwareHubPage() {
                       onClick={() => setShowIosGuide(true)}
                       className="px-4 py-3.5 rounded-2xl bg-slate-800/80 hover:bg-slate-700 text-emerald-300 font-bold text-sm flex items-center gap-2 border border-emerald-500/30 transition-colors cursor-pointer"
                     >
-                      <Apple className="w-4 h-4" />
+                      <AppleLogo className="w-4 h-4 text-white fill-current" />
                       <span>iPhone मा सेभ गर्ने तरिका</span>
                     </button>
                   </div>

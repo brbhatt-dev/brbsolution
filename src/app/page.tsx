@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import StyleCitizenPortal from '@/components/demos/StyleCitizenPortal';
-import KnowledgeBaseSection from '@/components/KnowledgeBaseSection';
+
 import DosNoticesWidget from '@/components/DosNoticesWidget';
 import Contact from '@/components/Contact';
 import HomeFooter from '@/components/HomeFooter';
@@ -17,10 +17,7 @@ export default function Home() {
         {/* Real-Time Survey Department Live Notices */}
         <DosNoticesWidget maxItems={4} showSearch={false} />
 
-        {/* Informative Guidance & Articles */}
-        <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800">
-          <KnowledgeBaseSection />
-        </div>
+
 
         {/* Direct Contact & Feedback Form */}
         <Contact />

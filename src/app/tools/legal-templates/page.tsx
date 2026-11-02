@@ -424,6 +424,20 @@ export default function LegalTemplatesPage() {
                 <Printer className="w-3.5 h-3.5" />
                 <span>A4 प्रिन्ट गर्नुहोस् (Print)</span>
               </button>
+
+              <a
+                href={
+                  activeTemplate === 'bayana' ? '/downloads/bayanapatta-paper-format.docx' :
+                  activeTemplate === 'rent' ? '/downloads/house-rent-agreement-format.docx' :
+                  activeTemplate === 'boundary' ? '/downloads/boundary-demarcation-application.docx' :
+                  '/downloads/fieldbook-trace-application.docx'
+                }
+                download
+                className="px-4 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-transform active:scale-95"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Word (.docx) डाउनलोड</span>
+              </a>
             </div>
           </div>
 
@@ -629,6 +643,108 @@ export default function LegalTemplatesPage() {
           </div>
         </div>
 
+        {/* Dedicated Free Word & Excel Download Vault (hidden on print) */}
+        <div className="print:hidden bg-linear-to-br from-slate-900 via-slate-850 to-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-6">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/30">
+              <Download className="w-3.5 h-3.5" />
+              <span>१००% निःशुल्क डाउनलोड भल्ट (Free Word & Excel Templates)</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white">
+              सम्पादन गर्न मिल्ने आधिकारिक कानुनी तथा नापी डकुमेन्टहरू (.docx / .xlsx)
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300">
+              कम्प्युटर वा मोबाइलमा एमएस वर्ड (Word) र एक्सेल (Excel) मा खोलेर नाम र विवरण तुरुन्त परिवर्तन गरी आफ्नै अफिसियल काममा प्रयोग गर्नुहोस्:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Download Card 1 */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all flex flex-col justify-between space-y-3">
+              <div className="space-y-1.5">
+                <span className="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 text-2xs font-bold">Word (.docx)</span>
+                <h4 className="font-bold text-sm text-white">जग्गा बैनापट्टा लिखित कागज</h4>
+                <p className="text-2xs text-slate-400">मुलुकी देवानी संहिता अनुसार जग्गा खरिद-बिक्री बैना कागजको पूर्ण सम्पादनयोग्य ढाँचा।</p>
+              </div>
+              <a
+                href="/downloads/bayanapatta-paper-format.docx"
+                download
+                className="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Word फाइल डाउनलोड</span>
+              </a>
+            </div>
+
+            {/* Download Card 2 */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all flex flex-col justify-between space-y-3">
+              <div className="space-y-1.5">
+                <span className="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 text-2xs font-bold">Word (.docx)</span>
+                <h4 className="font-bold text-sm text-white">घर तथा सटर बहाल सम्झौता</h4>
+                <p className="text-2xs text-slate-400">आवासीय फ्ल्याट तथा व्यावसायिक सटर भाडामा दिँदा गरिने आधिकारिक कानुनी सम्झौता पत्र।</p>
+              </div>
+              <a
+                href="/downloads/house-rent-agreement-format.docx"
+                download
+                className="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Word सम्झौता डाउनलोड</span>
+              </a>
+            </div>
+
+            {/* Download Card 3 */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all flex flex-col justify-between space-y-3">
+              <div className="space-y-1.5">
+                <span className="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 text-2xs font-bold">Word (.docx)</span>
+                <h4 className="font-bold text-sm text-white">नापी सीमांकन निवेदन पत्र</h4>
+                <p className="text-2xs text-slate-400">नापी कार्यालयमा अमिन खटाई साँध-सिमाना छुट्याउन पेश गरिने आधिकारिक सरकारी निवेदन।</p>
+              </div>
+              <a
+                href="/downloads/boundary-demarcation-application.docx"
+                download
+                className="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Word निवेदन डाउनलोड</span>
+              </a>
+            </div>
+
+            {/* Download Card 4 */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all flex flex-col justify-between space-y-3">
+              <div className="space-y-1.5">
+                <span className="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 text-2xs font-bold">Word (.docx)</span>
+                <h4 className="font-bold text-sm text-white">नक्सा ट्रेस तथा फिल्डबुक उतार</h4>
+                <p className="text-2xs text-slate-400">बैंक धितो, कित्ताकाट तथा निर्माण सम्पन्नका लागि नक्सा ट्रेस र फिल्डबुक उतार माग निवेदन।</p>
+              </div>
+              <a
+                href="/downloads/fieldbook-trace-application.docx"
+                download
+                className="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Word निवेदन डाउनलोड</span>
+              </a>
+            </div>
+
+            {/* Download Card 5 */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/50 transition-all flex flex-col justify-between space-y-3">
+              <div className="space-y-1.5">
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-2xs font-bold">Excel (.xlsx)</span>
+                <h4 className="font-bold text-sm text-white">जग्गा नापजाँच स्वचालित एक्सेल सिट</h4>
+                <p className="text-2xs text-slate-400">रोपनी-आना र बिघा-कट्ठा हाल्नासाथ स्वतः वर्गफिट, वर्गमिटर र कुल मूल्य निकाल्ने फर्मुला सिट।</p>
+              </div>
+              <a
+                href="/downloads/nepal-land-area-calculator.xlsx"
+                download
+                className="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Excel सिट डाउनलोड</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </main>
 
       <div className="print:hidden">

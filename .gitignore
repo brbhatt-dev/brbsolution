@@ -27,6 +27,8 @@ yarn-error.log*
 .env
 .env.local.backup
 deploy.ps1
+google index.json
+*index*.json
 
 # vercel
 .vercel
@@ -35,3 +37,7 @@ deploy.ps1
 *.tsbuildinfo
 next-env.d.ts
 .wrangler/
+
+*.bak
+*.pre_faq_backup
+scratch/

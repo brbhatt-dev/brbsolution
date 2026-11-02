@@ -29,7 +29,10 @@ import {
   Trophy,
   Users,
   Hammer,
-  Landmark
+  Landmark,
+  Calendar,
+  Gavel,
+  MapPin
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -327,6 +330,67 @@ const TOOL_SECTIONS: ToolCategory[] = [
           'वर्षैपिच्छे साँवा र ब्याज भुक्तानी तालिका (Amortization)'
         ]
       },
+      {
+        id: 'real-estate-saait-calendar',
+        titleNp: 'घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत २०८१/२०८२',
+        titleEn: 'Real Estate & Griha Prabesh Auspicious Calendar',
+        description: 'पञ्चाङ्ग समिति तथा वैदिक वास्तु अनुसार जग्गा पास, शिलान्यास, छाना ढलान र नयाँ घर सर्ने महिना अनुसारका शुभ मुहूर्त तथा राहुकाल तालिका।',
+        badge: 'पञ्चाङ्ग तथा वास्तु',
+        icon: Calendar,
+        href: '/tools/real-estate-saait-calendar',
+        features: [
+          'जग्गा पास, जग पूजा, छाना ढलान र गृहप्रवेश साइत',
+          'महिना (वैशाख-चैत) र वर्ष (२०८१/२०८२) अनुसार फिल्टर',
+          'दैनिक राहुकाल, पञ्चक विचार र शुभ नक्षत्र विवरण',
+          '🖨️ A4 साइजमा साइत स्लिप तत्काल प्रिन्ट'
+        ]
+      },
+      {
+        id: 'property-dispute-wizard',
+        titleNp: 'घरजग्गा कानुनी विवाद तथा समाधान विगार्ड',
+        titleEn: 'Property Dispute & Boundary Legal Wizard',
+        description: 'छिमेकीले जग्गा मिचेको, बाटो बन्द गरेको, मोही वा अंशबन्डा विवादमा जानुपर्ने सरकारी कार्यालय, कानुनी हदम्याद र आवश्यक कागजात चेकलिस्ट।',
+        badge: 'कानुनी कार्ययोजना',
+        icon: Gavel,
+        href: '/tools/property-dispute-wizard',
+        features: [
+          'साँध-सिमाना, बाटो निकास, मोही र अंशबन्डा निदान',
+          'नापी, वडा, न्यायिक समिति र अदालत जाने बाटो',
+          'कानुनी हदम्याद (Deadline) र ऐनका दफाहरू',
+          'चरणबद्ध समाधान कार्ययोजना (Action Roadmap)'
+        ]
+      },
+      {
+        id: 'malpot-valuation-rates',
+        titleNp: 'जिल्ला मालपोत न्यूनतम सरकारी मूल्याङ्कन सर्च इन्जिन',
+        titleEn: 'District Malpot Land Valuation Rate Finder',
+        description: 'काठमाडौँ, ललितपुर, भक्तपुर, पोखरा, चितवन, बुटवल लगायत प्रमुख जिल्लाको सडक चौडाइ अनुसार सरकारी दर, बजार दर र बैंक भ्यालुएसन दर।',
+        badge: 'आ.व. २०८१/८२ रेट',
+        icon: Landmark,
+        href: '/tools/malpot-valuation-rates',
+        features: [
+          'जिल्ला, कार्यालय र सडक प्रकार अनुसार प्रत्यक्ष खोज',
+          'सरकारी न्यूनतम मूल्याङ्कन (प्रति आना / प्रति कट्ठा)',
+          'बजार मूल्य र बैंक भ्यालुएसन (FMV) अनुमान',
+          'अनुमानित मालपोत रजिष्ट्रेसन राजस्व हिसाब'
+        ]
+      },
+      {
+        id: 'municipal-bye-laws',
+        titleNp: 'नेपालका प्रमुख १० सहर "घरबाटो, नक्सा पास र बाइ-लज हब"',
+        titleEn: '10 Major Cities Municipal Building Bye-Laws Hub',
+        description: 'काठमाडौँ, पोखरा, ललितपुर, भरतपुर, बुटवल, वीरगञ्ज लगायत १० सहरको नक्सा पासका लागि न्यूनतम बाटो, सेतब्याक, ग्राउन्ड कभरेज र घरबाटो दस्तुर।',
+        badge: 'सहरी विकास मापदण्ड',
+        icon: MapPin,
+        href: '/tools/municipal-bye-laws',
+        features: [
+          '१० सहरहरूको तुलनात्मक सेतब्याक तालिका (Matrix)',
+          'न्यूनतम बाटो (६m / ८m) र हाइटेन्सन सेतब्याक',
+          'घरबाटो सिफारिस लिने प्रक्रिया र दस्तुर दर',
+          'नगरपालिका अनलाइन नक्सा पास (E-BPS) लिंक'
+        ]
+      },
+
 
 
       {

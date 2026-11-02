@@ -30,7 +30,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative pt-6 pb-10 sm:pt-14 sm:pb-16 bg-gradient-to-b from-slate-50 via-white to-white dark:from-slate-950 dark:via-slate-900/60 dark:to-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors overflow-hidden notranslate" translate="no">
+    <section className="relative pt-6 pb-10 sm:pt-14 sm:pb-16 bg-gradient-to-b from-slate-50 via-white to-white dark:from-slate-950 dark:via-slate-900/60 dark:to-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors overflow-hidden">
       
       {/* Background Subtle Ambient Glows */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>

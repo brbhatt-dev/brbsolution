@@ -83,7 +83,7 @@ export default function UpcomingFestivalsBar({ variant = 'inline' }: UpcomingFes
             <span className="p-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30 shrink-0">
               <Flame className="w-3.5 h-3.5" />
             </span>
-            <span className="text-xs font-bold text-slate-200 tracking-wide flex items-center gap-1.5">
+            <span className="text-xs sm:text-[13px] font-bold text-white flex items-center gap-1.5">
               <span>आगामी चाडपर्व र बिदा:</span>
             </span>
           </div>
@@ -100,30 +100,30 @@ export default function UpcomingFestivalsBar({ variant = 'inline' }: UpcomingFes
                   onClick={() => setIsModalOpen(true)}
                   className={`inline-flex items-center gap-2 py-1 px-2.5 sm:px-3 rounded-xl border text-xs transition-all shrink-0 text-left group hover:scale-[1.02] active:scale-[0.98] ${
                     isToday
-                      ? 'bg-emerald-500/20 border-emerald-400 text-white shadow-xs'
+                      ? 'bg-emerald-500/25 border-emerald-400 text-white shadow-xs'
                       : isFirst
-                      ? 'bg-white/10 border-white/20 text-white hover:bg-white/15'
-                      : 'bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10'
+                      ? 'bg-[#0c3127] border-emerald-500/35 text-white hover:bg-[#103d31]'
+                      : 'bg-[#08221b] border-emerald-500/20 text-slate-100 hover:text-white hover:bg-[#0c3127]'
                   }`}
                 >
-                  <span className="text-sm shrink-0">{event.icon}</span>
+                  <span className="text-base shrink-0">{event.icon}</span>
                   
                   <div className="flex flex-col leading-tight">
-                    <span className="font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    <span className="font-extrabold text-white group-hover:text-emerald-300 transition-colors text-xs sm:text-[13px]">
                       {event.nameNepali}
                     </span>
-                    <span className="text-[10px] text-slate-400 font-mono">
+                    <span className="text-[11px] text-slate-200 font-semibold mt-0.5">
                       {event.formattedBsDate}
                     </span>
                   </div>
 
                   <span
-                    className={`ml-1 text-[10px] font-bold px-1.5 py-0.5 rounded-md shrink-0 border ${
+                    className={`ml-1 text-[11px] font-extrabold px-2 py-0.5 rounded-md shrink-0 border shadow-xs ${
                       isToday
                         ? 'bg-emerald-500 text-slate-950 font-black border-emerald-400'
                         : event.isPublicHoliday
                         ? 'bg-rose-500/25 text-rose-300 border-rose-500/30'
-                        : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                        : 'bg-emerald-500/25 text-emerald-200 border-emerald-400/40'
                     }`}
                   >
                     {formatDaysRemaining(event.daysRemaining ?? 0)}
@@ -136,7 +136,7 @@ export default function UpcomingFestivalsBar({ variant = 'inline' }: UpcomingFes
           {/* "View All" button */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="self-end sm:self-auto shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all"
+            className="self-end sm:self-auto shrink-0 inline-flex items-center gap-1 text-xs font-bold text-emerald-300 hover:text-white px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 transition-all shadow-xs"
           >
             <Calendar className="w-3 h-3" />
             <span>सबै हेर्नुहोस्</span>

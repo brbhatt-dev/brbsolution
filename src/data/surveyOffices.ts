@@ -12,7 +12,9 @@ export interface SurveyOffice {
 }
 
 export const SURVEY_OFFICES: SurveyOffice[] = [
-  // 1. Kathmandu Valley (बागमती प्रदेश)
+  // ==========================================
+  // १. बागमती प्रदेश (Bagmati Province)
+  // ==========================================
   {
     id: 'so-dillibazar',
     nameNp: 'नापी कार्यालय, डिल्लीबजार',
@@ -32,10 +34,10 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     type: 'malpot',
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
-    location: 'डिल्लीबजार, काठमाडौँ',
-    phone: '०१-४४११५४५',
+    location: 'डिल्लीबazar, काठमाडौँ',
+    phone: '०१-४४१२३६०',
     email: 'lro.dillibazar@dolrm.gov.np',
-    jurisdiction: 'डिल्लीबजार नापी कार्यालय अन्तर्गतका सम्पूर्ण वडाहरूको रजिस्ट्रेसन'
+    jurisdiction: 'डिल्लीबजार नापी कार्यालय अन्तर्गत पर्ने सम्पूर्ण वडा तथा क्षेत्रहरू'
   },
   {
     id: 'so-chabahil',
@@ -45,9 +47,9 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
     location: 'चाबहिल, काठमाडौँ',
-    phone: '०१-४४७४८९१',
+    phone: '०१-४४८२१५०',
     email: 'chabahil@dos.gov.np',
-    jurisdiction: 'काठमाडौँ महानगर वडा नं ६, ७, ८, ९ र गोकर्णेश्वर, कागेश्वरी मनोहरा, शंखरापुर नगरपालिका'
+    jurisdiction: 'काठमाडौँ म.न.पा. वडा नं ६, ७, ८, ९ र बूढानीलकण्ठ, कागेश्वरी मनोहरा, गोकर्णेश्वर न.पा.'
   },
   {
     id: 'mo-chabahil',
@@ -57,9 +59,9 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
     location: 'चाबहिल, काठमाडौँ',
-    phone: '०१-४४७१२२०',
+    phone: '०१-४४९०२२१',
     email: 'lro.chabahil@dolrm.gov.np',
-    jurisdiction: 'चाबहिल, गोकर्णेश्वर, कागेश्वरी मनोहरा क्षेत्रको रजिस्ट्रेसन तथा मोठ'
+    jurisdiction: 'चाबहिल नापी कार्यालय कार्यक्षेत्र भित्रका सम्पूर्ण भूभाग'
   },
   {
     id: 'so-kalanki',
@@ -69,9 +71,9 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
     location: 'कलंकी, काठमाडौँ',
-    phone: '०१-५२१८२३०',
+    phone: '०१-५२१८३०२',
     email: 'kalanki@dos.gov.np',
-    jurisdiction: 'काठमाडौँ महानगर वडा नं १२, १३, १४, १५ तथा चन्द्रागिरि, नागार्जुन, कीर्तिपुर नगरपालिका'
+    jurisdiction: 'काठमाडौँ म.न.पा. वडा नं १२, १३, १४, १५ र चन्द्रागिरि, कीर्तिपुर, नागार्जुन न.पा.'
   },
   {
     id: 'mo-kalanki',
@@ -81,9 +83,9 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
     location: 'कलंकी, काठमाडौँ',
-    phone: '०१-५२१८२४५',
+    phone: '०१-५२१८३०३',
     email: 'lro.kalanki@dolrm.gov.np',
-    jurisdiction: 'कलंकी, चन्द्रागिरि, नागार्जुन र कीर्तिपुर क्षेत्र'
+    jurisdiction: 'कलंकी नापी कार्यालयको कार्यक्षेत्र पर्ने चन्द्रागिरि, कीर्तिपुर र काठमाडौँका पश्चिमि वडाहरू'
   },
   {
     id: 'so-manamaiju',
@@ -92,10 +94,10 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     type: 'survey',
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
-    location: 'मनमैजु, तारकेश्वर, काठमाडौँ',
-    phone: '०१-४०२६३५०',
+    location: 'मनमैजु, काठमाडौँ',
+    phone: '०१-४०२५०११',
     email: 'manamaiju@dos.gov.np',
-    jurisdiction: 'तारकेश्वर नगरपालिका र टोखा नगरपालिका क्षेत्र'
+    jurisdiction: 'तारकेश्वर नगरपालिका र टोखा नगरपालिकाका केही वडाहरू'
   },
   {
     id: 'mo-manamaiju',
@@ -104,34 +106,106 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     type: 'malpot',
     district: 'काठमाडौँ',
     province: 'बागमती प्रदेश',
-    location: 'तारकेश्वर, काठमाडौँ',
-    phone: '०१-४०२६३५५',
+    location: 'मनमैजु, काठमाडौँ',
+    phone: '०१-४०२५०१२',
     email: 'lro.manamaiju@dolrm.gov.np',
-    jurisdiction: 'तारकेश्वर तथा टोखा नगरपालिका'
+    jurisdiction: 'तारकेश्वर तथा उत्तर-पश्चिमी काठमाडौँ उपत्यका क्षेत्र'
   },
   {
-    id: 'so-lalitpur',
+    id: 'so-sankhu',
+    nameNp: 'नापी कार्यालय, साँखु',
+    nameEn: 'Survey Office, Sankhu',
+    type: 'survey',
+    district: 'काठमाडौँ',
+    province: 'बागमती प्रदेश',
+    location: 'साँखु, काठमाडौँ',
+    phone: '०१-४४५००१२',
+    email: 'sankhu@dos.gov.np',
+    jurisdiction: 'शङ्खरापुर नगरपालिका र कागेश्वरी मनोहराका पूर्वी वडाहरू'
+  },
+  {
+    id: 'mo-sankhu',
+    nameNp: 'मालपोत कार्यालय, साँखु',
+    nameEn: 'Land Revenue Office, Sankhu',
+    type: 'malpot',
+    district: 'काठमाडौँ',
+    province: 'बागमती प्रदेश',
+    location: 'साँखु, काठमाडौँ',
+    phone: '०१-४४५००१५',
+    email: 'lro.sankhu@dolrm.gov.np',
+    jurisdiction: 'शङ्खरापुर नगरपालिका सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-tokha',
+    nameNp: 'नापी कार्यालय, टोखा',
+    nameEn: 'Survey Office, Tokha',
+    type: 'survey',
+    district: 'काठमाडौँ',
+    province: 'बागमती प्रदेश',
+    location: 'टोखा, काठमाडौँ',
+    phone: '०१-४३८८९०१',
+    email: 'tokha@dos.gov.np',
+    jurisdiction: 'टोखा नगरपालिका तथा आसपासका वडाहरू'
+  },
+  {
+    id: 'mo-tokha',
+    nameNp: 'मालपोत कार्यालय, टोखा',
+    nameEn: 'Land Revenue Office, Tokha',
+    type: 'malpot',
+    district: 'काठमाडौँ',
+    province: 'बागमती प्रदेश',
+    location: 'टोखा, काठमाडौँ',
+    phone: '०१-४३८८९०२',
+    email: 'lro.tokha@dolrm.gov.np',
+    jurisdiction: 'टोखा नगरपालिका सम्पूर्ण क्षेत्र'
+  },
+  {
+    id: 'so-lagankhel',
     nameNp: 'नापी कार्यालय, लगनखेल (ललितपुर)',
     nameEn: 'Survey Office, Lagankhel (Lalitpur)',
     type: 'survey',
     district: 'ललितपुर',
     province: 'बागमती प्रदेश',
     location: 'लगनखेल, ललितपुर',
-    phone: '०१-५५२१३४५',
+    phone: '०१-५५२१४१३',
     email: 'lalitpur@dos.gov.np',
-    jurisdiction: 'ललितपुर महानगरपालिका, महालक्ष्मी, गोदावरी नगरपालिका र गाउँपालिकाहरू'
+    jurisdiction: 'ललितपुर महानगरपालिका तथा महालक्ष्मी नगरपालिका'
   },
   {
-    id: 'mo-lalitpur',
-    nameNp: 'मालपोत कार्यालय, लगनखेल (ललितपुर)',
-    nameEn: 'Land Revenue Office, Lagankhel (Lalitpur)',
+    id: 'mo-lagankhel',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, लगनखेल',
+    nameEn: 'Land Revenue Office, Lagankhel',
     type: 'malpot',
     district: 'ललितपुर',
     province: 'बागमती प्रदेश',
     location: 'लगनखेल, ललितपुर',
-    phone: '०१-५५२२८९०',
+    phone: '०१-५५२२८३०',
     email: 'lro.lalitpur@dolrm.gov.np',
-    jurisdiction: 'ललितपुर जिल्लाभरिको जग्गा रजिस्ट्रेसन तथा मोठ स्रेस्ता'
+    jurisdiction: 'ललितपुर जिल्लाका सहरी वडाहरू'
+  },
+  {
+    id: 'so-godawari',
+    nameNp: 'नापी कार्यालय, गोदावरी (ललितपुर)',
+    nameEn: 'Survey Office, Godawari',
+    type: 'survey',
+    district: 'ललितपुर',
+    province: 'बागमती प्रदेश',
+    location: 'छम्पी / गोदावरी, ललितपुर',
+    phone: '०१-५५७२०११',
+    email: 'godawari@dos.gov.np',
+    jurisdiction: 'गोदावरी नगरपालिका, कोञ्ज्योसोम, बागमती र महांकाल गाउँपालिका'
+  },
+  {
+    id: 'mo-godawari',
+    nameNp: 'मालपोत कार्यालय, गोदावरी',
+    nameEn: 'Land Revenue Office, Godawari',
+    type: 'malpot',
+    district: 'ललितपुर',
+    province: 'बागमती प्रदेश',
+    location: 'छम्पी, ललितपुर',
+    phone: '०१-५५७२०१२',
+    email: 'lro.godawari@dolrm.gov.np',
+    jurisdiction: 'गोदावरी नगरपालिका तथा ललितपुरका दक्षिणी भेगका वडाहरू'
   },
   {
     id: 'so-bhaktapur',
@@ -140,75 +214,183 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     type: 'survey',
     district: 'भक्तपुर',
     province: 'बागमती प्रदेश',
-    location: 'सूर्यविनायक, भक्तपुर',
-    phone: '०१-६६११४५०',
+    location: 'कमलविनायक / ब्यासी, भक्तपुर',
+    phone: '०१-६६१०६०२',
     email: 'bhaktapur@dos.gov.np',
     jurisdiction: 'भक्तपुर, मध्यपुर थिमी, सूर्यविनायक र चाँगुनारायण नगरपालिका'
   },
   {
     id: 'mo-bhaktapur',
-    nameNp: 'मालपोत कार्यालय, भक्तपुर',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, भक्तपुर',
     nameEn: 'Land Revenue Office, Bhaktapur',
     type: 'malpot',
     district: 'भक्तपुर',
     province: 'बागमती प्रदेश',
-    location: 'सूर्यविनायक, भक्तपुर',
-    phone: '०१-६६११४५२',
+    location: 'दरबार क्षेत्र / ब्यासी, भक्तपुर',
+    phone: '०१-६६११२३४',
     email: 'lro.bhaktapur@dolrm.gov.np',
-    jurisdiction: 'भक्तपुर जिल्ला सम्पूर्ण क्षेत्र'
+    jurisdiction: 'भक्तपुर जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-kavre',
+    nameNp: 'नापी कार्यालय, काभ्रेपलाञ्चोक (धुलिखेल)',
+    nameEn: 'Survey Office, Kavrepalanchok',
+    type: 'survey',
+    district: 'काभ्रेपलाञ्चोक',
+    province: 'बागमती प्रदेश',
+    location: 'धुलिखेल, काभ्रे',
+    phone: '०११-४९०३२२',
+    email: 'kavre@dos.gov.np',
+    jurisdiction: 'धुलिखेल, बनेपा, पनौती, नमोबुद्ध, पाँचखाल लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-kavre',
+    nameNp: 'मालपोत कार्यालय, काभ्रेपलाञ्चोक',
+    nameEn: 'Land Revenue Office, Kavrepalanchok',
+    type: 'malpot',
+    district: 'काभ्रेपलाञ्चोक',
+    province: 'बागमती प्रदेश',
+    location: 'धुलिखेल, काभ्रे',
+    phone: '०११-४९०१५०',
+    email: 'lro.kavre@dolrm.gov.np',
+    jurisdiction: 'काभ्रेपलाञ्चोक जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-chitwan',
+    nameNp: 'नापी कार्यालय, चितवन (भरतपुर)',
+    nameEn: 'Survey Office, Chitwan',
+    type: 'survey',
+    district: 'चितवन',
+    province: 'बागमती प्रदेश',
+    location: 'चौबीसकोठी, भरतपुर, चितवन',
+    phone: '०५६-५२४१२०',
+    email: 'chitwan@dos.gov.np',
+    jurisdiction: 'भरतपुर महानगरपालिका, रत्ननगर, खैरहनी र राप्ती नगरपालिका'
+  },
+  {
+    id: 'mo-chitwan',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, भरतपुर (चितवन)',
+    nameEn: 'Land Revenue Office, Bharatpur (Chitwan)',
+    type: 'malpot',
+    district: 'चितवन',
+    province: 'बागमती प्रदेश',
+    location: 'भरतपुर, चितवन',
+    phone: '०५६-५२११३०',
+    email: 'lro.chitwan@dolrm.gov.np',
+    jurisdiction: 'भरतपुर म.न.पा. तथा पूर्व चितवन'
+  },
+  {
+    id: 'mo-madi',
+    nameNp: 'मालपोत कार्यालय, माडी (चितवन)',
+    nameEn: 'Land Revenue Office, Madi (Chitwan)',
+    type: 'malpot',
+    district: 'चितवन',
+    province: 'बागमती प्रदेश',
+    location: 'बसन्तपुर, माडी, चितवन',
+    phone: '०५६-५०११२०',
+    email: 'lro.madi@dolrm.gov.np',
+    jurisdiction: 'माडी नगरपालिका सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-makwanpur',
+    nameNp: 'नापी कार्यालय, मकवानपुर (हेटौंडा)',
+    nameEn: 'Survey Office, Makwanpur (Hetauda)',
+    type: 'survey',
+    district: 'मकवानपुर',
+    province: 'बागमती प्रदेश',
+    location: 'हेटौंडा, मकवानपुर',
+    phone: '०५७-५२०१४४',
+    email: 'makwanpur@dos.gov.np',
+    jurisdiction: 'हेटौंडा उपमहानगरपालिका, थाहा नगरपालिका र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-makwanpur',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, हेटौंडा',
+    nameEn: 'Land Revenue Office, Hetauda',
+    type: 'malpot',
+    district: 'मकवानपुर',
+    province: 'बागमती प्रदेश',
+    location: 'हेटौंडा, मकवानपुर',
+    phone: '०५७-५२०२३०',
+    email: 'lro.makwanpur@dolrm.gov.np',
+    jurisdiction: 'मकवानपुर जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-dhadhing',
+    nameNp: 'नापी कार्यालय, धादिङ',
+    nameEn: 'Survey Office, Dhading',
+    type: 'survey',
+    district: 'धादिङ',
+    province: 'बागमती प्रदेश',
+    location: 'धादिङबेसी, धादिङ',
+    phone: '०१०-५२०१२०',
+    email: 'dhading@dos.gov.np',
+    jurisdiction: 'नीलकण्ठ नगरपालिका, गजुरी, गल्छी, धुनीबेसी लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-dhadhing',
+    nameNp: 'मालपोत कार्यालय, धादिङ',
+    nameEn: 'Land Revenue Office, Dhading',
+    type: 'malpot',
+    district: 'धादिङ',
+    province: 'बागमती प्रदेश',
+    location: 'धादिङबेसी, धादिङ',
+    phone: '०१०-५२०१३३',
+    email: 'lro.dhading@dolrm.gov.np',
+    jurisdiction: 'धादिङ जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-nuwakot',
+    nameNp: 'नापी कार्यालय, नुवाकोट (विदुर)',
+    nameEn: 'Survey Office, Nuwakot',
+    type: 'survey',
+    district: 'नुवाकोट',
+    province: 'बागमती प्रदेश',
+    location: 'विदुर, नुवाकोट',
+    phone: '०१०-५६०१३०',
+    email: 'nuwakot@dos.gov.np',
+    jurisdiction: 'विदुर नगरपालिका, बेलकोटगढी र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-nuwakot',
+    nameNp: 'मालपोत कार्यालय, नुवाकोट',
+    nameEn: 'Land Revenue Office, Nuwakot',
+    type: 'malpot',
+    district: 'नुवाकोट',
+    province: 'बागमती प्रदेश',
+    location: 'विदुर, नुवाकोट',
+    phone: '०१०-५६०१२०',
+    email: 'lro.nuwakot@dolrm.gov.np',
+    jurisdiction: 'नुवाकोट जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-sindhupalchok',
+    nameNp: 'नापी कार्यालय, सिन्धुपाल्चोक (चौतारा)',
+    nameEn: 'Survey Office, Sindhupalchok',
+    type: 'survey',
+    district: 'सिन्धुपाल्चोक',
+    province: 'बागमती प्रदेश',
+    location: 'चौतारा, सिन्धुपाल्चोक',
+    phone: '०११-६२०१०५',
+    email: 'sindhupalchok@dos.gov.np',
+    jurisdiction: 'चौतारा साँगाचोकगढी, मेलम्ची, बाह्रबिसे र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-sindhupalchok',
+    nameNp: 'मालपोत कार्यालय, सिन्धुपाल्चोक',
+    nameEn: 'Land Revenue Office, Sindhupalchok',
+    type: 'malpot',
+    district: 'सिन्धुपाल्चोक',
+    province: 'बागमती प्रदेश',
+    location: 'चौतारा, सिन्धुपाल्चोक',
+    phone: '०११-६२०१०६',
+    email: 'lro.sindhupalchok@dolrm.gov.np',
+    jurisdiction: 'सिन्धुपाल्चोक जिल्ला सम्पूर्ण भूभाग'
   },
 
-  // 2. Gandaki Province (गण्डकी प्रदेश)
-  {
-    id: 'so-kaski',
-    nameNp: 'नापी कार्यालय, कास्की (पोखरा)',
-    nameEn: 'Survey Office, Kaski (Pokhara)',
-    type: 'survey',
-    district: 'कास्की',
-    province: 'गण्डकी प्रदेश',
-    location: 'सहिदचोक, पोखरा',
-    phone: '०६१-४६११२३',
-    email: 'kaski@dos.gov.np',
-    jurisdiction: 'पोखरा महानगरपालिका तथा कास्की जिल्लाभरि'
-  },
-  {
-    id: 'mo-kaski',
-    nameNp: 'मालपोत कार्यालय, कास्की (पोखरा)',
-    nameEn: 'Land Revenue Office, Kaski (Pokhara)',
-    type: 'malpot',
-    district: 'कास्की',
-    province: 'गण्डकी प्रदेश',
-    location: 'सहिदचोक, पोखरा',
-    phone: '०६१-४६११२५',
-    email: 'lro.kaski@dolrm.gov.np',
-    jurisdiction: 'पोखरा महानगरपालिका तथा कास्की जिल्ला'
-  },
-  {
-    id: 'so-tanahun',
-    nameNp: 'नापी कार्यालय, तनहुँ (दमौली)',
-    nameEn: 'Survey Office, Tanahun (Damauli)',
-    type: 'survey',
-    district: 'तनहुँ',
-    province: 'गण्डकी प्रदेश',
-    location: 'दमौली, तनहुँ',
-    phone: '०६५-५६०१४५',
-    email: 'tanahun@dos.gov.np',
-    jurisdiction: 'व्यास, भानु, शुक्लागण्डकी, भीमाद नगरपालिका र गाउँपालिकाहरू'
-  },
-  {
-    id: 'mo-tanahun',
-    nameNp: 'मालपोत कार्यालय, तनहुँ',
-    nameEn: 'Land Revenue Office, Tanahun',
-    type: 'malpot',
-    district: 'तनहुँ',
-    province: 'गण्डकी प्रदेश',
-    location: 'दमौली, तनहुँ',
-    phone: '०६५-५६०१४०',
-    email: 'lro.tanahun@dolrm.gov.np',
-    jurisdiction: 'तनहुँ जिल्लाभरि'
-  },
-
-  // 3. Koshi Province (कोशी प्रदेश)
+  // ==========================================
+  // २. कोशी प्रदेश (Koshi Province)
+  // ==========================================
   {
     id: 'so-morang',
     nameNp: 'नापी कार्यालय, मोरङ (विराटनगर)',
@@ -217,21 +399,45 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     district: 'मोरङ',
     province: 'कोशी प्रदेश',
     location: 'विराटनगर, मोरङ',
-    phone: '०२१-५२२३३०',
+    phone: '०२१-४६०४१०',
     email: 'morang@dos.gov.np',
-    jurisdiction: 'विराटनगर महानगरपालिका, सुन्दरहरैंचा, बेलबारी नगरपालिका र क्षेत्र'
+    jurisdiction: 'विराटनगर महानगरपालिका, कटहरी र बुढीगंगा'
   },
   {
     id: 'mo-morang',
-    nameNp: 'मालपोत कार्यालय, मोरङ (विराटनगर)',
-    nameEn: 'Land Revenue Office, Morang',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, विराटनगर',
+    nameEn: 'Land Revenue Office, Biratnagar',
     type: 'malpot',
     district: 'मोरङ',
     province: 'कोशी प्रदेश',
     location: 'विराटनगर, मोरङ',
-    phone: '०२१-५२२३३२',
-    email: 'lro.morang@dolrm.gov.np',
-    jurisdiction: 'विराटनगर महानगरपालिका तथा मोरङ'
+    phone: '०२१-४६०१२०',
+    email: 'lro.biratnagar@dolrm.gov.np',
+    jurisdiction: 'विराटनगर म.न.पा. तथा दक्षिणी मोरङ'
+  },
+  {
+    id: 'so-belbari',
+    nameNp: 'नापी कार्यालय, बेलबारी (मोरङ)',
+    nameEn: 'Survey Office, Belbari',
+    type: 'survey',
+    district: 'मोरङ',
+    province: 'कोशी प्रदेश',
+    location: 'बेलबारी, मोरङ',
+    phone: '०२१-५४०११०',
+    email: 'belbari@dos.gov.np',
+    jurisdiction: 'बेलबारी, सुन्दरहरैंचा, पथरीशनिश्चरे, उर्लाबारी नगरपालिका'
+  },
+  {
+    id: 'mo-belbari',
+    nameNp: 'मालपोत कार्यालय, बेलबारी',
+    nameEn: 'Land Revenue Office, Belbari',
+    type: 'malpot',
+    district: 'मोरङ',
+    province: 'कोशी प्रदेश',
+    location: 'बेलबारी, मोरङ',
+    phone: '०२१-५४०११२',
+    email: 'lro.belbari@dolrm.gov.np',
+    jurisdiction: 'उत्तरी तथा पूर्वी मोरङ क्षेत्र'
   },
   {
     id: 'so-jhapa',
@@ -241,86 +447,170 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     district: 'झापा',
     province: 'कोशी प्रदेश',
     location: 'भद्रपुर, झापा',
-    phone: '०२३-५२११२०',
+    phone: '०२३-५२०२२०',
     email: 'jhapa@dos.gov.np',
-    jurisdiction: 'भद्रपुर, मेचीनगर, दमक, बिर्तामोड नगरपालिका र क्षेत्र'
+    jurisdiction: 'भद्रपुर, मेचीनगर, विर्तामोड र दक्षिणी झापा'
   },
   {
-    id: 'mo-damak',
-    nameNp: 'मालपोत कार्यालय, दमक (झापा)',
-    nameEn: 'Land Revenue Office, Damak (Jhapa)',
-    type: 'malpot',
-    district: 'झापा',
-    province: 'कोशी प्रदेश',
-    location: 'दमक, झापा',
-    phone: '०२३-५८०१४०',
-    email: 'lro.damak@dolrm.gov.np',
-    jurisdiction: 'दमक नगरपालिका, गौरादह, कमल गाउँपालिका क्षेत्र'
-  },
-  {
-    id: 'mo-bhadrapur',
-    nameNp: 'मालपोत कार्यालय, भद्रपुर (झापा)',
-    nameEn: 'Land Revenue Office, Bhadrapur (Jhapa)',
+    id: 'mo-jhapa',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, भद्रपुर',
+    nameEn: 'Land Revenue Office, Bhadrapur',
     type: 'malpot',
     district: 'झापा',
     province: 'कोशी प्रदेश',
     location: 'भद्रपुर, झापा',
-    phone: '०२३-५२११२५',
+    phone: '०२३-५२०१२०',
     email: 'lro.bhadrapur@dolrm.gov.np',
-    jurisdiction: 'भद्रपुर, मेचीनगर, बिर्तामोड क्षेत्र'
+    jurisdiction: 'भद्रपुर, मेचीनगर तथा पूर्वी झापा'
+  },
+  {
+    id: 'so-damak',
+    nameNp: 'नापी कार्यालय, दमक (झापा)',
+    nameEn: 'Survey Office, Damak',
+    type: 'survey',
+    district: 'झापा',
+    province: 'कोशी प्रदेश',
+    location: 'दमक, झापा',
+    phone: '०२३-५८०१४०',
+    email: 'damak@dos.gov.np',
+    jurisdiction: 'दमक, गौरादह, शिवसताक्षी र कमल गाउँपालिका'
+  },
+  {
+    id: 'mo-damak',
+    nameNp: 'मालपोत कार्यालय, दमक',
+    nameEn: 'Land Revenue Office, Damak',
+    type: 'malpot',
+    district: 'झापा',
+    province: 'कोशी प्रदेश',
+    location: 'दमक, झापा',
+    phone: '०२३-५८०१३०',
+    email: 'lro.damak@dolrm.gov.np',
+    jurisdiction: 'पश्चिमी झापाका सम्पूर्ण पालिकाहरू'
+  },
+  {
+    id: 'so-sunsari',
+    nameNp: 'नापी कार्यालय, सुनसरी (इनरुवा)',
+    nameEn: 'Survey Office, Sunsari (Inaruwa)',
+    type: 'survey',
+    district: 'सुनसरी',
+    province: 'कोशी प्रदेश',
+    location: 'इनरुवा, सुनसरी',
+    phone: '०२५-५६०१३०',
+    email: 'sunsari@dos.gov.np',
+    jurisdiction: 'इनरुवा, इटहरी, दुहबी र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-sunsari',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, इनरुवा',
+    nameEn: 'Land Revenue Office, Inaruwa',
+    type: 'malpot',
+    district: 'सुनसरी',
+    province: 'कोशी प्रदेश',
+    location: 'इनरुवा, सुनसरी',
+    phone: '०२५-५६०१२०',
+    email: 'lro.inaruwa@dolrm.gov.np',
+    jurisdiction: 'सुनसरी जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-dharan',
+    nameNp: 'नापी कार्यालय, धरान (सुनसरी)',
+    nameEn: 'Survey Office, Dharan',
+    type: 'survey',
+    district: 'सुनसरी',
+    province: 'कोशी प्रदेश',
+    location: 'धरान, सुनसरी',
+    phone: '०२५-५२०१४०',
+    email: 'dharan@dos.gov.np',
+    jurisdiction: 'धरान उपमहानगरपालिका तथा बराहक्षेत्र'
+  },
+  {
+    id: 'mo-dharan',
+    nameNp: 'मालपोत कार्यालय, धरान',
+    nameEn: 'Land Revenue Office, Dharan',
+    type: 'malpot',
+    district: 'सुनसरी',
+    province: 'कोशी प्रदेश',
+    location: 'धरान, सुनसरी',
+    phone: '०२५-५२०१५०',
+    email: 'lro.dharan@dolrm.gov.np',
+    jurisdiction: 'धरान उपमहानगरपालिका सम्पूर्ण क्षेत्र'
+  },
+  {
+    id: 'so-ilam',
+    nameNp: 'नापी कार्यालय, इलाम',
+    nameEn: 'Survey Office, Ilam',
+    type: 'survey',
+    district: 'इलाम',
+    province: 'कोशी प्रदेश',
+    location: 'इलाम बजार, इलाम',
+    phone: '०२७-५२०१२०',
+    email: 'ilam@dos.gov.np',
+    jurisdiction: 'इलाम, सूर्योदय, देउमाई, माई नगरपालिका लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-ilam',
+    nameNp: 'मालपोत कार्यालय, इलाम',
+    nameEn: 'Land Revenue Office, Ilam',
+    type: 'malpot',
+    district: 'इलाम',
+    province: 'कोशी प्रदेश',
+    location: 'इलाम बजार, इलाम',
+    phone: '०२७-५२०१२१',
+    email: 'lro.ilam@dolrm.gov.np',
+    jurisdiction: 'इलाम जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-udayapur',
+    nameNp: 'नापी कार्यालय, उदयपुर (गाईघाट)',
+    nameEn: 'Survey Office, Udayapur',
+    type: 'survey',
+    district: 'उदयपुर',
+    province: 'कोशी प्रदेश',
+    location: 'गाईघाट, उदयपुर',
+    phone: '०३५-४२०१३०',
+    email: 'udayapur@dos.gov.np',
+    jurisdiction: 'त्रियुगा, कटारी, चौदण्डीगढी र बेलका नगरपालिका'
+  },
+  {
+    id: 'mo-udayapur',
+    nameNp: 'मालपोत कार्यालय, उदयपुर',
+    nameEn: 'Land Revenue Office, Udayapur',
+    type: 'malpot',
+    district: 'उदयपुर',
+    province: 'कोशी प्रदेश',
+    location: 'गाईघाट, उदयपुर',
+    phone: '०३५-४२०१२५',
+    email: 'lro.udayapur@dolrm.gov.np',
+    jurisdiction: 'उदयपुर जिल्ला सम्पूर्ण भूभाग'
   },
 
-  // 4. Lumbini Province (लुम्बिनी प्रदेश)
+  // ==========================================
+  // ३. मधेश प्रदेश (Madhesh Province)
+  // ==========================================
   {
-    id: 'so-rupandehi',
-    nameNp: 'नापी कार्यालय, रुपन्देही (भैरहवा)',
-    nameEn: 'Survey Office, Rupandehi (Bhairahawa)',
+    id: 'so-parsa',
+    nameNp: 'नापी कार्यालय, पर्सा (वीरगञ्ज)',
+    nameEn: 'Survey Office, Parsa (Birgunj)',
     type: 'survey',
-    district: 'रुपन्देही',
-    province: 'लुम्बिनी प्रदेश',
-    location: 'भैरहवा, रुपन्देही',
-    phone: '०७१-५२११४५',
-    email: 'rupandehi@dos.gov.np',
-    jurisdiction: 'सिद्धार्थनगर, बुटवल उपमहानगरपालिका, तिलोत्तमा नगरपालिका क्षेत्र'
+    district: 'पर्सा',
+    province: 'मधेश प्रदेश',
+    location: 'वीरगञ्ज, पर्सा',
+    phone: '०५१-५२०१३५',
+    email: 'parsa@dos.gov.np',
+    jurisdiction: 'वीरगञ्ज महानगरपालिका, बहुदरमाई, पर्सागढी र सम्पूर्ण जिल्ला'
   },
   {
-    id: 'mo-butwal',
-    nameNp: 'मालपोत कार्यालय, बुटवल (रुपन्देही)',
-    nameEn: 'Land Revenue Office, Butwal (Rupandehi)',
+    id: 'mo-parsa',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, वीरगञ्ज',
+    nameEn: 'Land Revenue Office, Birgunj',
     type: 'malpot',
-    district: 'रुपन्देही',
-    province: 'लुम्बिनी प्रदेश',
-    location: 'बुटवल, रुपन्देही',
-    phone: '०७१-५४०१५०',
-    email: 'lro.butwal@dolrm.gov.np',
-    jurisdiction: 'बुटवल उपमहानगरपालिका, तिलोत्तमा नगरपालिका र उत्तर क्षेत्र'
+    district: 'पर्सा',
+    province: 'मधेश प्रदेश',
+    location: 'वीरगञ्ज, पर्सा',
+    phone: '०५१-५२०१२०',
+    email: 'lro.birgunj@dolrm.gov.np',
+    jurisdiction: 'पर्सा जिल्ला सम्पूर्ण भूभाग'
   },
-  {
-    id: 'so-banke',
-    nameNp: 'नापी कार्यालय, बाँके (नेपालगन्ज)',
-    nameEn: 'Survey Office, Banke (Nepalgunj)',
-    type: 'survey',
-    district: 'बाँके',
-    province: 'लुम्बिनी प्रदेश',
-    location: 'नेपालगन्ज, बाँके',
-    phone: '०८१-५२१२४०',
-    email: 'banke@dos.gov.np',
-    jurisdiction: 'नेपालगन्ज उपमहानगरपालिका, कोहलपुर नगरपालिका क्षेत्र'
-  },
-  {
-    id: 'mo-banke',
-    nameNp: 'मालपोत कार्यालय, बाँके (नेपालगन्ज)',
-    nameEn: 'Land Revenue Office, Banke (Nepalgunj)',
-    type: 'malpot',
-    district: 'बाँके',
-    province: 'लुम्बिनी प्रदेश',
-    location: 'नेपालगन्ज, बाँके',
-    phone: '०८१-५२१२४२',
-    email: 'lro.banke@dolrm.gov.np',
-    jurisdiction: 'बाँके जिल्ला सम्पूर्ण क्षेत्र'
-  },
-
-  // 5. Madhesh Province (मधेश प्रदेश)
   {
     id: 'so-dhanusha',
     nameNp: 'नापी कार्यालय, धनुषा (जनकपुर)',
@@ -328,99 +618,539 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     type: 'survey',
     district: 'धनुषा',
     province: 'मधेश प्रदेश',
-    location: 'जनकपुरधाम, धनुषा',
-    phone: '०४१-५२११३०',
+    location: 'मुजेलिया / जनकपुरधाम, धनुषा',
+    phone: '०४१-५२०२४०',
     email: 'dhanusha@dos.gov.np',
-    jurisdiction: 'जनकपुरधाम उपमहानगरपालिका तथा धनुषा जिल्ला'
+    jurisdiction: 'जनकपुरधाम उपमहानगरपालिका, क्षीरेश्वरनाथ, धनुषाधाम र सम्पूर्ण जिल्ला'
   },
   {
     id: 'mo-dhanusha',
-    nameNp: 'मालपोत कार्यालय, धनुषा (जनकपुर)',
-    nameEn: 'Land Revenue Office, Dhanusha (Janakpur)',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, जनकपुर',
+    nameEn: 'Land Revenue Office, Janakpur',
     type: 'malpot',
     district: 'धनुषा',
     province: 'मधेश प्रदेश',
     location: 'जनकपुरधाम, धनुषा',
-    phone: '०४१-५२११३५',
-    email: 'lro.dhanusha@dolrm.gov.np',
-    jurisdiction: 'धनुषा जिल्लाभरिको जग्गा रजिस्ट्रेसन'
+    phone: '०४१-५२०१२०',
+    email: 'lro.janakpur@dolrm.gov.np',
+    jurisdiction: 'धनुषा जिल्ला सम्पूर्ण भूभाग'
   },
   {
-    id: 'so-parsa',
-    nameNp: 'नापी कार्यालय, पर्सा (वीरगन्ज)',
-    nameEn: 'Survey Office, Parsa (Birgunj)',
+    id: 'so-bara',
+    nameNp: 'नापी कार्यालय, बारा (कलैया)',
+    nameEn: 'Survey Office, Bara (Kalaiya)',
     type: 'survey',
-    district: 'पर्सा',
+    district: 'बारा',
     province: 'मधेश प्रदेश',
-    location: 'वीरगन्ज, पर्सा',
-    phone: '०५१-५२२१५०',
-    email: 'parsa@dos.gov.np',
-    jurisdiction: 'वीरगन्ज महानगरपालिका, पोखरिया नगरपालिका क्षेत्र'
+    location: 'कलैया, बारा',
+    phone: '०५३-५५०१३०',
+    email: 'bara@dos.gov.np',
+    jurisdiction: 'कलैया उपमहानगरपालिका, जीतपुरसिमरा, कोल्हवी र सम्पूर्ण जिल्ला'
   },
   {
-    id: 'mo-parsa',
-    nameNp: 'मालपोत कार्यालय, पर्सा (वीरगन्ज)',
-    nameEn: 'Land Revenue Office, Parsa (Birgunj)',
+    id: 'mo-bara',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, कलैया',
+    nameEn: 'Land Revenue Office, Kalaiya',
     type: 'malpot',
-    district: 'पर्सा',
+    district: 'बारा',
     province: 'मधेश प्रदेश',
-    location: 'वीरगन्ज, पर्सा',
-    phone: '०५१-५२२१५२',
-    email: 'lro.parsa@dolrm.gov.np',
-    jurisdiction: 'पर्सा जिल्लाभरि'
+    location: 'कलैया, बारा',
+    phone: '०५३-५५०१२०',
+    email: 'lro.kalaiya@dolrm.gov.np',
+    jurisdiction: 'बारा जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-simara',
+    nameNp: 'नापी कार्यालय, सिमरा (बारा)',
+    nameEn: 'Survey Office, Simara',
+    type: 'survey',
+    district: 'बारा',
+    province: 'मधेश प्रदेश',
+    location: 'सिमरा, बारा',
+    phone: '०५३-५२०२२०',
+    email: 'simara@dos.gov.np',
+    jurisdiction: 'जीतपुरसिमरा उपमहानगरपालिका र उत्तर बारा क्षेत्र'
+  },
+  {
+    id: 'mo-simara',
+    nameNp: 'मालपोत कार्यालय, सिमरा',
+    nameEn: 'Land Revenue Office, Simara',
+    type: 'malpot',
+    district: 'बारा',
+    province: 'मधेश प्रदेश',
+    location: 'सिमरा, बारा',
+    phone: '०५३-५२०२२१',
+    email: 'lro.simara@dolrm.gov.np',
+    jurisdiction: 'जीतपुरसिमरा उपमहानगरपालिका कार्यक्षेत्र'
+  },
+  {
+    id: 'so-mahattari',
+    nameNp: 'नापी कार्यालय, महोत्तरी (जलेश्वर)',
+    nameEn: 'Survey Office, Mahottari (Jaleshwar)',
+    type: 'survey',
+    district: 'महोत्तरी',
+    province: 'मधेश प्रदेश',
+    location: 'जलेश्वर, महोत्तरी',
+    phone: '०४४-५२०१२०',
+    email: 'mahottari@dos.gov.np',
+    jurisdiction: 'जलेश्वर, बर्दिबास, गौशाला, भंगाहा लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-bardibas',
+    nameNp: 'मालपोत कार्यालय, बर्दिबास (महोत्तरी)',
+    nameEn: 'Land Revenue Office, Bardibas',
+    type: 'malpot',
+    district: 'महोत्तरी',
+    province: 'मधेश प्रदेश',
+    location: 'बर्दिबास, महोत्तरी',
+    phone: '०४४-५५०१२०',
+    email: 'lro.bardibas@dolrm.gov.np',
+    jurisdiction: 'बर्दिबास, गौशाला र उत्तरी महोत्तरी'
+  },
+  {
+    id: 'so-siraha',
+    nameNp: 'नापी कार्यालय, सिरहा',
+    nameEn: 'Survey Office, Siraha',
+    type: 'survey',
+    district: 'सिरहा',
+    province: 'मधेश प्रदेश',
+    location: 'सिरहा बजार, सिरहा',
+    phone: '०३३-५२०१२०',
+    email: 'siraha@dos.gov.np',
+    jurisdiction: 'सिरहा, लहान, गोलबजार, मिर्चैया र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-lahan',
+    nameNp: 'मालपोत कार्यालय, लहान (सिरहा)',
+    nameEn: 'Land Revenue Office, Lahan',
+    type: 'malpot',
+    district: 'सिरहा',
+    province: 'मधेश प्रदेश',
+    location: 'लहान, सिरहा',
+    phone: '०२८-५६०१३०',
+    email: 'lro.lahan@dolrm.gov.np',
+    jurisdiction: 'लहान नगरपालिका तथा पूर्वी सिरहा'
+  },
+  {
+    id: 'so-saptari',
+    nameNp: 'नापी कार्यालय, सप्तरी (राजविराज)',
+    nameEn: 'Survey Office, Saptari (Rajbiraj)',
+    type: 'survey',
+    district: 'सप्तरी',
+    province: 'मधेश प्रदेश',
+    location: 'राजविराज, सप्तरी',
+    phone: '०३१-५२०१३०',
+    email: 'saptari@dos.gov.np',
+    jurisdiction: 'राजविराज, कञ्चनरूप, डाक्नेश्वरी, बोदेबर्साइन र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-saptari',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, राजविराज',
+    nameEn: 'Land Revenue Office, Rajbiraj',
+    type: 'malpot',
+    district: 'सप्तरी',
+    province: 'मधेश प्रदेश',
+    location: 'राजविराज, सप्तरी',
+    phone: '०३१-५२०१२०',
+    email: 'lro.rajbiraj@dolrm.gov.np',
+    jurisdiction: 'सप्तरी जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-rautahat',
+    nameNp: 'नापी कार्यालय, रौतहट (गौर)',
+    nameEn: 'Survey Office, Rautahat (Gaur)',
+    type: 'survey',
+    district: 'रौतहट',
+    province: 'मधेश प्रदेश',
+    location: 'गौर, रौतहट',
+    phone: '०५५-५२०१२०',
+    email: 'rautahat@dos.gov.np',
+    jurisdiction: 'गौर, चन्द्रपुर, गरुडा लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-chandranigahpur',
+    nameNp: 'मालपोत कार्यालय, चन्द्रनिगाहपुर (रौतहट)',
+    nameEn: 'Land Revenue Office, Chandranigahpur',
+    type: 'malpot',
+    district: 'रौतहट',
+    province: 'मधेश प्रदेश',
+    location: 'चन्द्रनिगाहपुर, रौतहट',
+    phone: '०५५-५४०११०',
+    email: 'lro.chandranigahpur@dolrm.gov.np',
+    jurisdiction: 'चन्द्रपुर र उत्तरी रौतहट भेग'
   },
 
-  // 6. Sudurpashchim Province (सुदूरपश्चिम प्रदेश)
+  // ==========================================
+  // ४. गण्डकी प्रदेश (Gandaki Province)
+  // ==========================================
   {
-    id: 'so-kailali',
-    nameNp: 'नापी कार्यालय, कैलाली (धनगढी)',
-    nameEn: 'Survey Office, Kailali (Dhangadhi)',
+    id: 'so-kaski',
+    nameNp: 'नापी कार्यालय, कास्की (पोखरा)',
+    nameEn: 'Survey Office, Kaski (Pokhara)',
     type: 'survey',
-    district: 'कैलाली',
-    province: 'सुदूरपश्चिम प्रदेश',
-    location: 'धनगढी, कैलाली',
-    phone: '०९१-५२११६०',
-    email: 'kailali@dos.gov.np',
-    jurisdiction: 'धनगढी उपमहानगरपालिका, गोदावरी, घोडाघोडी, टीकापुर नगरपालिका'
+    district: 'कास्की',
+    province: 'गण्डकी प्रदेश',
+    location: 'मझ्गेरीपाटन / बिरौटा, पोखरा, कास्की',
+    phone: '०६१-४६०३३०',
+    email: 'kaski@dos.gov.np',
+    jurisdiction: 'पोखरा महानगरपालिका वडा नं १ देखि १७, रुपा, मादी, अन्नपूर्ण र माछापुच्छ्रे गाउँपालिका'
   },
   {
-    id: 'mo-kailali',
-    nameNp: 'मालपोत कार्यालय, कैलाली (धनगढी)',
-    nameEn: 'Land Revenue Office, Kailali (Dhangadhi)',
+    id: 'mo-kaski',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, पोखरा',
+    nameEn: 'Land Revenue Office, Pokhara',
     type: 'malpot',
-    district: 'कैलाली',
-    province: 'सुदूरपश्चिम प्रदेश',
-    location: 'धनगढी, कैलाली',
-    phone: '०९१-५२११६२',
-    email: 'lro.kailali@dolrm.gov.np',
-    jurisdiction: 'कैलाली जिल्लाभरि'
+    district: 'कास्की',
+    province: 'गण्डकी प्रदेश',
+    location: 'ड्यामसाइड, पोखरा, कास्की',
+    phone: '०६१-४६०१२०',
+    email: 'lro.pokhara@dolrm.gov.np',
+    jurisdiction: 'कास्की जिल्ला सम्पूर्ण भूभाग'
   },
   {
-    id: 'so-kanchanpur',
-    nameNp: 'नापी कार्यालय, कञ्चनपुर (महेन्द्रनगर)',
-    nameEn: 'Survey Office, Kanchanpur (Mahendranagar)',
+    id: 'so-lekhnath',
+    nameNp: 'नापी कार्यालय, लेखनाथ (कास्की)',
+    nameEn: 'Survey Office, Lekhnath',
     type: 'survey',
-    district: 'कञ्चनपुर',
-    province: 'सुदूरपश्चिम प्रदेश',
-    location: 'भीमदत्त (महेन्द्रनगर), कञ्चनपुर',
-    phone: '०९९-५२११४०',
-    email: 'kanchanpur@dos.gov.np',
-    jurisdiction: 'भीमदत्त, बेदकोट, शुक्लाफाँटा, कृष्णपुर नगरपालिका'
+    district: 'कास्की',
+    province: 'गण्डकी प्रदेश',
+    location: 'तालचोक, लेखनाथ, पोखरा',
+    phone: '०६१-५६०२०१',
+    email: 'lekhnath@dos.gov.np',
+    jurisdiction: 'पोखरा महानगरपालिका वडा नं २६ देखि ३३ (साविक लेखनाथ नगरपालिका क्षेत्र)'
   },
   {
-    id: 'mo-kanchanpur',
-    nameNp: 'मालपोत कार्यालय, कञ्चनपुर',
-    nameEn: 'Land Revenue Office, Kanchanpur',
+    id: 'mo-lekhnath',
+    nameNp: 'मालपोत कार्यालय, लेखनाथ',
+    nameEn: 'Land Revenue Office, Lekhnath',
     type: 'malpot',
-    district: 'कञ्चनपुर',
-    province: 'सुदूरपश्चिम प्रदेश',
-    location: 'भीमदत्त, कञ्चनपुर',
-    phone: '०९९-५२११४२',
-    email: 'lro.kanchanpur@dolrm.gov.np',
-    jurisdiction: 'कञ्चनपुर जिल्लाभरि'
+    district: 'कास्की',
+    province: 'गण्डकी प्रदेश',
+    location: 'तालचोक, लेखनाथ, पोखरा',
+    phone: '०६१-५६०२०५',
+    email: 'lro.lekhnath@dolrm.gov.np',
+    jurisdiction: 'पोखरा म.न.पा.का पूर्वी वडाहरू (लेखनाथ क्षेत्र)'
+  },
+  {
+    id: 'so-tanahu',
+    nameNp: 'नापी कार्यालय, तनहुँ (दमौली)',
+    nameEn: 'Survey Office, Tanahun (Damauli)',
+    type: 'survey',
+    district: 'तनहुँ',
+    province: 'गण्डकी प्रदेश',
+    location: 'दमौली, तनहुँ',
+    phone: '०६५-५६०१३०',
+    email: 'tanahu@dos.gov.np',
+    jurisdiction: 'व्यास, भानु, शुक्लागण्डकी, भिमाद लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-tanahu',
+    nameNp: 'मालपोत कार्यालय, तनहुँ',
+    nameEn: 'Land Revenue Office, Tanahun',
+    type: 'malpot',
+    district: 'तनहुँ',
+    province: 'गण्डकी प्रदेश',
+    location: 'दमौली, तनहुँ',
+    phone: '०६५-५६०१२०',
+    email: 'lro.tanahun@dolrm.gov.np',
+    jurisdiction: 'तनहुँ जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-syangja',
+    nameNp: 'नापी कार्यालय, स्याङ्जा',
+    nameEn: 'Survey Office, Syangja',
+    type: 'survey',
+    district: 'स्याङ्जा',
+    province: 'गण्डकी प्रदेश',
+    location: 'पुतलीबजार, स्याङ्जा',
+    phone: '०६३-४२०१३०',
+    email: 'syangja@dos.gov.np',
+    jurisdiction: 'पुतलीबजार, वालिङ, गल्याङ, चापाकोट र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-waling',
+    nameNp: 'मालपोत कार्यालय, वालिङ (स्याङ्जा)',
+    nameEn: 'Land Revenue Office, Waling',
+    type: 'malpot',
+    district: 'स्याङ्जा',
+    province: 'गण्डकी प्रदेश',
+    location: 'वालिङ, स्याङ्जा',
+    phone: '०६३-४४०१२०',
+    email: 'lro.waling@dolrm.gov.np',
+    jurisdiction: 'वालिङ नगरपालिका र दक्षिणी स्याङ्जा'
+  },
+  {
+    id: 'so-baglung',
+    nameNp: 'नापी कार्यालय, बागलुङ',
+    nameEn: 'Survey Office, Baglung',
+    type: 'survey',
+    district: 'बागलुङ',
+    province: 'गण्डकी प्रदेश',
+    location: 'बागलुङ बजार, बागलुङ',
+    phone: '०६८-५२०१३०',
+    email: 'baglung@dos.gov.np',
+    jurisdiction: 'बागलुङ, गलकोट, जैमिनी, ढोरपाटन र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-baglung',
+    nameNp: 'मालपोत कार्यालय, बागलुङ',
+    nameEn: 'Land Revenue Office, Baglung',
+    type: 'malpot',
+    district: 'बागलुङ',
+    province: 'गण्डकी प्रदेश',
+    location: 'बागलुङ बजार, बागलुङ',
+    phone: '०६८-५२०१२५',
+    email: 'lro.baglung@dolrm.gov.np',
+    jurisdiction: 'बागलुङ जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-nawalpur',
+    nameNp: 'नापी कार्यालय, नवलपरासी पूर्व (कावासोती)',
+    nameEn: 'Survey Office, Nawalpur (Kawasoti)',
+    type: 'survey',
+    district: 'नवलपरासी (पूर्व)',
+    province: 'गण्डकी प्रदेश',
+    location: 'कावासोती, नवलपुर',
+    phone: '०७८-५४०१३०',
+    email: 'nawalpur@dos.gov.np',
+    jurisdiction: 'कावासोती, गैँडाकोट, देवचुली, मध्यविन्दु र सम्पूर्ण नवलपुर'
+  },
+  {
+    id: 'mo-nawalpur',
+    nameNp: 'मालपोत कार्यालय, कावासोती',
+    nameEn: 'Land Revenue Office, Kawasoti',
+    type: 'malpot',
+    district: 'नवलपरासी (पूर्व)',
+    province: 'गण्डकी प्रदेश',
+    location: 'कावासोती, नवलपुर',
+    phone: '०७८-५४०१२०',
+    email: 'lro.kawasoti@dolrm.gov.np',
+    jurisdiction: 'नवलपरासी (बर्दघाट सुस्ता पूर्व) जिल्ला'
+  },
+  {
+    id: 'so-gorkha',
+    nameNp: 'नापी कार्यालय, गोरखा',
+    nameEn: 'Survey Office, Gorkha',
+    type: 'survey',
+    district: 'गोरखा',
+    province: 'गण्डकी प्रदेश',
+    location: 'गोरखा बजार, गोरखा',
+    phone: '०६४-४२०१३०',
+    email: 'gorkha@dos.gov.np',
+    jurisdiction: 'गोरखा, पालुङटार र उत्तरी गोरखाका सम्पूर्ण पालिकाहरू'
+  },
+  {
+    id: 'mo-gorkha',
+    nameNp: 'मालपोत कार्यालय, गोरखा',
+    nameEn: 'Land Revenue Office, Gorkha',
+    type: 'malpot',
+    district: 'गोरखा',
+    province: 'गण्डकी प्रदेश',
+    location: 'गोरखा बजार, गोरखा',
+    phone: '०६४-४२०१२०',
+    email: 'lro.gorkha@dolrm.gov.np',
+    jurisdiction: 'गोरखा जिल्ला सम्पूर्ण भूभाग'
   },
 
-  // 7. Karnali Province (कर्णाली प्रदेश)
+  // ==========================================
+  // ५. लुम्बिनी प्रदेश (Lumbini Province)
+  // ==========================================
+  {
+    id: 'so-butwal',
+    nameNp: 'नापी कार्यालय, बुटवल (रुपन्देही)',
+    nameEn: 'Survey Office, Butwal (Rupandehi)',
+    type: 'survey',
+    district: 'रुपन्देही',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'बुटवल, रुपन्देही',
+    phone: '०७१-५४०४३०',
+    email: 'butwal@dos.gov.np',
+    jurisdiction: 'बुटवल उपमहानगरपालिका, तिलोत्तमा र सैनामैना नगरपालिका'
+  },
+  {
+    id: 'mo-butwal',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, बुटवल',
+    nameEn: 'Land Revenue Office, Butwal',
+    type: 'malpot',
+    district: 'रुपन्देही',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'बुटवल, रुपन्देही',
+    phone: '०७१-५४०१२०',
+    email: 'lro.butwal@dolrm.gov.np',
+    jurisdiction: 'बुटवल उपमहानगरपालिका तथा उत्तरी रुपन्देही'
+  },
+  {
+    id: 'so-bhairahawa',
+    nameNp: 'नापी कार्यालय, भैरहवा (रुपन्देही)',
+    nameEn: 'Survey Office, Bhairahawa',
+    type: 'survey',
+    district: 'रुपन्देही',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'भैरहवा (सिद्धार्थनगर), रुपन्देही',
+    phone: '०७१-५२०१३०',
+    email: 'rupandehi@dos.gov.np',
+    jurisdiction: 'सिद्धार्थनगर, लुम्बिनी साँस्कृतिक, देवदह नगरपालिका'
+  },
+  {
+    id: 'mo-bhairahawa',
+    nameNp: 'मालपोत कार्यालय, भैरहवा',
+    nameEn: 'Land Revenue Office, Bhairahawa',
+    type: 'malpot',
+    district: 'रुपन्देही',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'भैरहवा, रुपन्देही',
+    phone: '०७१-५२०१२०',
+    email: 'lro.bhairahawa@dolrm.gov.np',
+    jurisdiction: 'सिद्धार्थनगर तथा दक्षिणी रुपन्देही'
+  },
+  {
+    id: 'so-banke',
+    nameNp: 'नापी कार्यालय, बाँके (नेपालगञ्ज)',
+    nameEn: 'Survey Office, Banke (Nepalgunj)',
+    type: 'survey',
+    district: 'बाँके',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'धम्बोझी, नेपालगञ्ज, बाँके',
+    phone: '०८१-५२०१३५',
+    email: 'banke@dos.gov.np',
+    jurisdiction: 'नेपालगञ्ज उपमहानगरपालिका, कोहलपुर नगरपालिका र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-banke',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, नेपालगञ्ज',
+    nameEn: 'Land Revenue Office, Nepalgunj',
+    type: 'malpot',
+    district: 'बाँके',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'नेपालगञ्ज, बाँके',
+    phone: '०८१-५२०१२०',
+    email: 'lro.nepalgunj@dolrm.gov.np',
+    jurisdiction: 'बाँके जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-dang',
+    nameNp: 'नापी कार्यालय, दाङ (घोराही)',
+    nameEn: 'Survey Office, Dang (Ghorahi)',
+    type: 'survey',
+    district: 'दाङ',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'घोराही, दाङ',
+    phone: '०८२-५६०१३०',
+    email: 'dang@dos.gov.np',
+    jurisdiction: 'घोराही उपमहानगरपालिका, तुलसीपुर, लमही र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-dang',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, घोराही',
+    nameEn: 'Land Revenue Office, Ghorahi',
+    type: 'malpot',
+    district: 'दाङ',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'घोराही, दाङ',
+    phone: '०८२-५६०१२०',
+    email: 'lro.ghorahi@dolrm.gov.np',
+    jurisdiction: 'दाङ जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-tulsipur',
+    nameNp: 'नापी कार्यालय, तुलसीपुर (दाङ)',
+    nameEn: 'Survey Office, Tulsipur',
+    type: 'survey',
+    district: 'दाङ',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'तुलसीपुर, दाङ',
+    phone: '०८२-५२०१४०',
+    email: 'tulsipur@dos.gov.np',
+    jurisdiction: 'तुलसीपुर उपमहानगरपालिका र पश्चिमि दाङ'
+  },
+  {
+    id: 'mo-tulsipur',
+    nameNp: 'मालपोत कार्यालय, तुलसीपुर',
+    nameEn: 'Land Revenue Office, Tulsipur',
+    type: 'malpot',
+    district: 'दाङ',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'तुलसीपुर, दाङ',
+    phone: '०८२-५२०१२५',
+    email: 'lro.tulsipur@dolrm.gov.np',
+    jurisdiction: 'तुलसीपुर उपमहानगरपालिका क्षेत्र'
+  },
+  {
+    id: 'so-kapilvastu',
+    nameNp: 'नापी कार्यालय, कपिलवस्तु (तौलिहवा)',
+    nameEn: 'Survey Office, Kapilvastu',
+    type: 'survey',
+    district: 'कपिलवस्तु',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'तौलिहवा, कपिलवस्तु',
+    phone: '०७६-५६०१३०',
+    email: 'kapilvastu@dos.gov.np',
+    jurisdiction: 'कपिलवस्तु, वाणगंगा, बुद्धभूमि, शिवराज र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-kapilvastu',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, तौलिहवा',
+    nameEn: 'Land Revenue Office, Taulihawa',
+    type: 'malpot',
+    district: 'कपिलवस्तु',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'तौलिहवा, कपिलवस्तु',
+    phone: '०७६-५६०१२०',
+    email: 'lro.taulihawa@dolrm.gov.np',
+    jurisdiction: 'कपिलवस्तु जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-palpa',
+    nameNp: 'नापी कार्यालय, पाल्पा (तानसेन)',
+    nameEn: 'Survey Office, Palpa (Tansen)',
+    type: 'survey',
+    district: 'पाल्पा',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'तानसेन, पाल्पा',
+    phone: '०७५-५२०१३०',
+    email: 'palpa@dos.gov.np',
+    jurisdiction: 'तानसेन, रामपुर नगरपालिका लगायत सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-palpa',
+    nameNp: 'मालपोत कार्यालय, पाल्पा',
+    nameEn: 'Land Revenue Office, Palpa',
+    type: 'malpot',
+    district: 'पाल्पा',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'तानसेन, पाल्पा',
+    phone: '०७५-५२०१२५',
+    email: 'lro.palpa@dolrm.gov.np',
+    jurisdiction: 'पाल्पा जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-parasi',
+    nameNp: 'नापी कार्यालय, नवलपरासी पश्चिम (परासी)',
+    nameEn: 'Survey Office, Parasi (Nawalparasi West)',
+    type: 'survey',
+    district: 'नवलपरासी (पश्चिम)',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'रामग्राम (परासी), नवलपरासी',
+    phone: '०७८-५२०१३०',
+    email: 'parasi@dos.gov.np',
+    jurisdiction: 'रामग्राम, बर्दघाट, सुनवल र सम्पूर्ण पश्चिम नवलपरासी'
+  },
+  {
+    id: 'mo-parasi',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, परासी',
+    nameEn: 'Land Revenue Office, Parasi',
+    type: 'malpot',
+    district: 'नवलपरासी (पश्चिम)',
+    province: 'लुम्बिनी प्रदेश',
+    location: 'परासी, नवलपरासी',
+    phone: '०७८-५२०१२०',
+    email: 'lro.parasi@dolrm.gov.np',
+    jurisdiction: 'नवलपरासी (बर्दघाट सुस्ता पश्चिम) जिल्ला'
+  },
+
+  // ==========================================
+  // ६. कर्णाली प्रदेश (Karnali Province)
+  // ==========================================
   {
     id: 'so-surkhet',
     nameNp: 'नापी कार्यालय, सुर्खेत (वीरेन्द्रनगर)',
@@ -431,18 +1161,190 @@ export const SURVEY_OFFICES: SurveyOffice[] = [
     location: 'वीरेन्द्रनगर, सुर्खेत',
     phone: '०८३-५२०१३०',
     email: 'surkhet@dos.gov.np',
-    jurisdiction: 'वीरेन्द्रनगर नगरपालिका, भेरीगंगा, गुर्भाकोट नगरपालिका'
+    jurisdiction: 'वीरेन्द्रनगर, भेरीगंगा, गुर्भाकोट र सम्पूर्ण सुर्खेत'
   },
   {
     id: 'mo-surkhet',
-    nameNp: 'मालपोत कार्यालय, सुर्खेत',
-    nameEn: 'Land Revenue Office, Surkhet',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, वीरेन्द्रनगर',
+    nameEn: 'Land Revenue Office, Birendranagar',
     type: 'malpot',
     district: 'सुर्खेत',
     province: 'कर्णाली प्रदेश',
     location: 'वीरेन्द्रनगर, सुर्खेत',
-    phone: '०८३-५२०१३२',
-    email: 'lro.surkhet@dolrm.gov.np',
-    jurisdiction: 'सुर्खेत जिल्लाभरि'
+    phone: '०८३-५२०१२०',
+    email: 'lro.birendranagar@dolrm.gov.np',
+    jurisdiction: 'सुर्खेत जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-dailekh',
+    nameNp: 'नापी कार्यालय, दैलेख',
+    nameEn: 'Survey Office, Dailekh',
+    type: 'survey',
+    district: 'दैलेख',
+    province: 'कर्णाली प्रदेश',
+    location: 'नारायण (दैलेख बजार), दैलेख',
+    phone: '०८९-४२०१३०',
+    email: 'dailekh@dos.gov.np',
+    jurisdiction: 'नारायण, दुल्लु, चामुण्डा विन्द्रासैनी र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-dailekh',
+    nameNp: 'मालपोत कार्यालय, दैलेख',
+    nameEn: 'Land Revenue Office, Dailekh',
+    type: 'malpot',
+    district: 'दैलेख',
+    province: 'कर्णाली प्रदेश',
+    location: 'दैलेख बजार, दैलेख',
+    phone: '०८९-४२०१२५',
+    email: 'lro.dailekh@dolrm.gov.np',
+    jurisdiction: 'दैलेख जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-jumla',
+    nameNp: 'नापी कार्यालय, जुम्ला',
+    nameEn: 'Survey Office, Jumla',
+    type: 'survey',
+    district: 'जुम्ला',
+    province: 'कर्णाली प्रदेश',
+    location: 'खलङ्गा, जुम्ला',
+    phone: '०८७-५२०१३०',
+    email: 'jumla@dos.gov.np',
+    jurisdiction: 'चन्दननाथ नगरपालिका र सम्पूर्ण जुम्ला जिल्ला'
+  },
+  {
+    id: 'mo-jumla',
+    nameNp: 'मालपोत कार्यालय, जुम्ला',
+    nameEn: 'Land Revenue Office, Jumla',
+    type: 'malpot',
+    district: 'जुम्ला',
+    province: 'कर्णाली प्रदेश',
+    location: 'खलङ्गा, जुम्ला',
+    phone: '०८७-५२०१२५',
+    email: 'lro.jumla@dolrm.gov.np',
+    jurisdiction: 'जुम्ला जिल्ला सम्पूर्ण भूभाग'
+  },
+
+  // ==========================================
+  // ७. सुदूरपश्चिम प्रदेश (Sudurpashchim Province)
+  // ==========================================
+  {
+    id: 'so-kailali',
+    nameNp: 'नापी कार्यालय, कैलाली (धनगढी)',
+    nameEn: 'Survey Office, Kailali (Dhangadhi)',
+    type: 'survey',
+    district: 'कैलाली',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'धनगढी, कैलाली',
+    phone: '०९१-५२०१३०',
+    email: 'kailali@dos.gov.np',
+    jurisdiction: 'धनगढी उपमहानगरपालिका, गोदावरी, गौरीगंगा र सम्पूर्ण जिल्ला'
+  },
+  {
+    id: 'mo-kailali',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, धनगढी',
+    nameEn: 'Land Revenue Office, Dhangadhi',
+    type: 'malpot',
+    district: 'कैलाली',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'धनगढी, कैलाली',
+    phone: '०९१-५२०१२०',
+    email: 'lro.dhangadhi@dolrm.gov.np',
+    jurisdiction: 'कैलाली जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-tikapur',
+    nameNp: 'नापी कार्यालय, टीकापुर (कैलाली)',
+    nameEn: 'Survey Office, Tikapur',
+    type: 'survey',
+    district: 'कैलाली',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'टीकापुर, कैलाली',
+    phone: '०९१-५६०१३०',
+    email: 'tikapur@dos.gov.np',
+    jurisdiction: 'टीकापुर, लम्कीचुहा, भजनी नगरपालिका र जानकी गाउँपालिका'
+  },
+  {
+    id: 'mo-tikapur',
+    nameNp: 'मालपोत कार्यालय, टीकापुर',
+    nameEn: 'Land Revenue Office, Tikapur',
+    type: 'malpot',
+    district: 'कैलाली',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'टीकापुर, कैलाली',
+    phone: '०९१-५६०१२५',
+    email: 'lro.tikapur@dolrm.gov.np',
+    jurisdiction: 'पूर्वी कैलाली क्षेत्र'
+  },
+  {
+    id: 'so-kanchanpur',
+    nameNp: 'नापी कार्यालय, कञ्चनपुर (महेन्द्रनगर)',
+    nameEn: 'Survey Office, Kanchanpur (Mahendranagar)',
+    type: 'survey',
+    district: 'कञ्चनपुर',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'भीमदत्त (महेन्द्रनगर), कञ्चनपुर',
+    phone: '०९९-५२०१३०',
+    email: 'kanchanpur@dos.gov.np',
+    jurisdiction: 'भीमदत्त, बेदकोट, शुक्लाफाँटा, कृष्णपुर, पुनर्वास र बेलौरी'
+  },
+  {
+    id: 'mo-kanchanpur',
+    nameNp: 'भूमिसुधार तथा मालपोत कार्यालय, महेन्द्रनगर',
+    nameEn: 'Land Revenue Office, Mahendranagar',
+    type: 'malpot',
+    district: 'कञ्चनपुर',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'महेन्द्रनगर, कञ्चनपुर',
+    phone: '०९९-५२०१२०',
+    email: 'lro.mahendranagar@dolrm.gov.np',
+    jurisdiction: 'कञ्चनपुर जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-doti',
+    nameNp: 'नापी कार्यालय, डोटी (दिपायल)',
+    nameEn: 'Survey Office, Doti (Dipayal)',
+    type: 'survey',
+    district: 'डोटी',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'दिपायल सिलगढी, डोटी',
+    phone: '०९४-४४०१३०',
+    email: 'doti@dos.gov.np',
+    jurisdiction: 'दिपायल सिलगढी, शिखर नगरपालिका र सम्पूर्ण डोटी'
+  },
+  {
+    id: 'mo-doti',
+    nameNp: 'मालपोत कार्यालय, डोटी',
+    nameEn: 'Land Revenue Office, Doti',
+    type: 'malpot',
+    district: 'डोटी',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'सिलगढी, डोटी',
+    phone: '०९४-४१२०२०',
+    email: 'lro.doti@dolrm.gov.np',
+    jurisdiction: 'डोटी जिल्ला सम्पूर्ण भूभाग'
+  },
+  {
+    id: 'so-dadeldhura',
+    nameNp: 'नापी कार्यालय, डडेल्धुरा',
+    nameEn: 'Survey Office, Dadeldhura',
+    type: 'survey',
+    district: 'डडेल्धुरा',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'अमरगढी, डडेल्धुरा',
+    phone: '०९६-४२०१३०',
+    email: 'dadeldhura@dos.gov.np',
+    jurisdiction: 'अमरगढी, परशुराम नगरपालिका र सम्पूर्ण डडेल्धुरा'
+  },
+  {
+    id: 'mo-dadeldhura',
+    nameNp: 'मालपोत कार्यालय, डडेल्धुरा',
+    nameEn: 'Land Revenue Office, Dadeldhura',
+    type: 'malpot',
+    district: 'डडेल्धुरा',
+    province: 'सुदूरपश्चिम प्रदेश',
+    location: 'अमरगढी, डडेल्धुरा',
+    phone: '०९६-४२०१२५',
+    email: 'lro.dadeldhura@dolrm.gov.np',
+    jurisdiction: 'डडेल्धुरा जिल्ला सम्पूर्ण भूभाग'
   }
 ];
