@@ -89,6 +89,7 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'BR Bhatta',
+    alternateName: 'Bhatt BR',
     url: 'https://www.brbhatta.com',
     email: 'mailto:info@brbhatta.com',
     jobTitle: 'Software Developer & Land Tech Specialist',
@@ -98,6 +99,8 @@ export default function RootLayout({
       addressCountry: 'NP',
     },
     sameAs: [
+      'https://bhattbr.com.np',
+      'https://github.com/brbhatt-dev',
       'https://www.facebook.com/aabiral.bhatt/',
       'https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4',
       'https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd',
@@ -129,11 +132,13 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'BR Bhatta',
-    alternateName: ['Land Solution Nepal', 'brbhatta.com', 'Land Solution'],
+    alternateName: ['Bhatt BR', 'Land Solution Nepal', 'brbhatta.com', 'Land Solution', 'bhattbr.com.np'],
     url: 'https://www.brbhatta.com',
     logo: 'https://www.brbhatta.com/logo.png',
     email: 'info@brbhatta.com',
     sameAs: [
+      'https://bhattbr.com.np',
+      'https://github.com/brbhatt-dev',
       'https://www.facebook.com/aabiral.bhatt/',
       'https://www.instagram.com/landsolutionnepal?stkn=dXBlanppYjFoMXY4',
       'https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd',
@@ -152,7 +157,7 @@ export default function RootLayout({
   const jsonLdWebsite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    alternateName: ['brbhatta.com', 'brbhatta', 'Land Solution Nepal', 'BR Bhatta Nepal', 'Land Solution'],
+    alternateName: ['bhattbr.com.np', 'Bhatt BR', 'brbhatta.com', 'brbhatta', 'Land Solution Nepal', 'BR Bhatta Nepal', 'Land Solution'],
     name: 'BR Bhatta',
     url: 'https://www.brbhatta.com',
   };
