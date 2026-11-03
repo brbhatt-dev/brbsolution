@@ -1,40 +1,31 @@
-import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'PDF मर्ज तथा कम्प्रेस टुल (PDF Tools Nepal) | BR Bhatta',
-  description: 'नापी तथा मालपोत कागजातका PDF फाइलहरू सजिलै मर्ज, स्प्लिट र कम्प्रेस गर्नुहोस्।',
+  title: "Free PDF Tools (PDF Merge, Split & Compress) | BR Bhatta",
+  description: "लालपुर्जा, नक्सा ट्रेस र सरकारी कागजातका पीडीएफ फाइलहरूलाई सुरक्षित रूपमा जोड्नुहोस् (Merge), टुक्राउनुहोस् (Split) वा साइज घटाउनुहोस्।",
+  keywords: ["PDF Merge Nepal","Free PDF tools online","Combine PDF documents","Lalpurja PDF resize","BR Bhatta"],
   alternates: {
-    canonical: 'https://www.brbhatta.com/tools/pdf-tools',
+    canonical: "https://www.brbhatta.com/tools/pdf-tools",
   },
   openGraph: {
-    title: 'PDF मर्ज तथा कम्प्रेस टुल (PDF Tools Nepal) | BR Bhatta',
-    description: 'नापी तथा मालपोत कागजातका PDF फाइलहरू सजिलै मर्ज, स्प्लिट र कम्प्रेस गर्नुहोस्।',
-    url: 'https://www.brbhatta.com/tools/pdf-tools',
-    siteName: 'BR Bhatta',
+    title: "Free PDF Tools (PDF Merge, Split & Compress) | BR Bhatta",
+    description: "लालपुर्जा, नक्सा ट्रेस र सरकारी कागजातका पीडीएफ फाइलहरूलाई सुरक्षित रूपमा जोड्नुहोस् (Merge), टुक्राउनुहोस् (Split) वा साइज घटाउनुहोस्।",
+    url: "https://www.brbhatta.com/tools/pdf-tools",
+    siteName: 'BR Bhatta | Land Solution',
     locale: 'ne_NP',
     type: 'website',
-    images: [
-      {
-        url: 'https://www.brbhatta.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'PDF मर्ज तथा कम्प्रेस टुल (PDF Tools Nepal) | BR Bhatta',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PDF मर्ज तथा कम्प्रेस टुल (PDF Tools Nepal) | BR Bhatta',
-    description: 'नापी तथा मालपोत कागजातका PDF फाइलहरू सजिलै मर्ज, स्प्लिट र कम्प्रेस गर्नुहोस्।',
-    images: ['https://www.brbhatta.com/og-image.png'],
+    title: "Free PDF Tools (PDF Merge, Split & Compress) | BR Bhatta",
+    description: "लालपुर्जा, नक्सा ट्रेस र सरकारी कागजातका पीडीएफ फाइलहरूलाई सुरक्षित रूपमा जोड्नुहोस् (Merge), टुक्राउनुहोस् (Split) वा साइज घटाउनुहोस्।",
   },
 };
 
-export default function ToolRouteLayout({
+export default function pdftoolsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 }

@@ -1,40 +1,31 @@
-import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Preeti to Unicode Converter Nepal (प्रीति युनिकोड रूपान्तरण) | BR Bhatta',
-  description: 'नेपाली प्रीति फन्टलाई युनिकोडमा तुरुन्त रूपान्तरण गर्ने आधिकारिक अनलाइन टुल। 100% सटीक, छिटो र निःशुल्क।',
+  title: "Preeti to Unicode Converter (प्रीतिबाट नेपाली युनिकोड रूपान्तरण) | BR Bhatta",
+  description: "परम्परागत प्रीति वा कान्तिपुर फन्टलाई शुद्ध नेपाली युनिकोडमा तत्काल बदल्नुहोस्। सरकारी कामकाज, निवेदन तथा फारम भर्न १००% शुद्ध कन्भर्टर।",
+  keywords: ["Preeti to Unicode","प्रीति युनिकोड कन्भर्टर","Nepali Unicode Converter","Kantipur to Unicode","Nepali typing converter","BR Bhatta"],
   alternates: {
-    canonical: 'https://www.brbhatta.com/tools/preeti-to-unicode',
+    canonical: "https://www.brbhatta.com/tools/preeti-to-unicode",
   },
   openGraph: {
-    title: 'Preeti to Unicode Converter Nepal (प्रीति युनिकोड रूपान्तरण) | BR Bhatta',
-    description: 'नेपाली प्रीति फन्टलाई युनिकोडमा तुरुन्त रूपान्तरण गर्ने आधिकारिक अनलाइन टुल। 100% सटीक, छिटो र निःशुल्क।',
-    url: 'https://www.brbhatta.com/tools/preeti-to-unicode',
-    siteName: 'BR Bhatta',
+    title: "Preeti to Unicode Converter (प्रीतिबाट नेपाली युनिकोड रूपान्तरण) | BR Bhatta",
+    description: "परम्परागत प्रीति वा कान्तिपुर फन्टलाई शुद्ध नेपाली युनिकोडमा तत्काल बदल्नुहोस्। सरकारी कामकाज, निवेदन तथा फारम भर्न १००% शुद्ध कन्भर्टर।",
+    url: "https://www.brbhatta.com/tools/preeti-to-unicode",
+    siteName: 'BR Bhatta | Land Solution',
     locale: 'ne_NP',
     type: 'website',
-    images: [
-      {
-        url: 'https://www.brbhatta.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Preeti to Unicode Converter Nepal (प्रीति युनिकोड रूपान्तरण) | BR Bhatta',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Preeti to Unicode Converter Nepal (प्रीति युनिकोड रूपान्तरण) | BR Bhatta',
-    description: 'नेपाली प्रीति फन्टलाई युनिकोडमा तुरुन्त रूपान्तरण गर्ने आधिकारिक अनलाइन टुल। 100% सटीक, छिटो र निःशुल्क।',
-    images: ['https://www.brbhatta.com/og-image.png'],
+    title: "Preeti to Unicode Converter (प्रीतिबाट नेपाली युनिकोड रूपान्तरण) | BR Bhatta",
+    description: "परम्परागत प्रीति वा कान्तिपुर फन्टलाई शुद्ध नेपाली युनिकोडमा तत्काल बदल्नुहोस्। सरकारी कामकाज, निवेदन तथा फारम भर्न १००% शुद्ध कन्भर्टर।",
   },
 };
 
-export default function ToolRouteLayout({
+export default function preetitounicodeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 }

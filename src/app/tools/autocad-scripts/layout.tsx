@@ -1,40 +1,31 @@
-import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free AutoCAD LISP Scripts for Surveyors Nepal | BR Bhatta',
-  description: 'नेपाल नापी तथा इन्जिनियरिङका लागि कित्ता एरिया, पार्सल डिभिजन र ग्रिड अटोमेशन लिसप कोडहरू।',
+  title: "AutoCAD LISP (LSP) Scripts for Nepal Surveying & Land Cadastre | BR Bhatta",
+  description: "नेपालको नापी नक्सा तथा क्याड अटोमेसनका लागि निःशुल्क AutoCAD AutoLISP (.lsp) स्क्रिप्टहरू। पोलिलाइन क्षेत्रफललाई एकै क्लिकमा रोपनी-आना र बिघा-कट्ठामा बदल्नुहोस्।",
+  keywords: ["AutoCAD LSP scripts Nepal","AutoLISP land area survey","Ropani Bigha CAD script","Polyline area label LISP","Nepal Survey CAD automation","BR Bhatta"],
   alternates: {
-    canonical: 'https://www.brbhatta.com/tools/autocad-scripts',
+    canonical: "https://www.brbhatta.com/tools/autocad-scripts",
   },
   openGraph: {
-    title: 'Free AutoCAD LISP Scripts for Surveyors Nepal | BR Bhatta',
-    description: 'नेपाल नापी तथा इन्जिनियरिङका लागि कित्ता एरिया, पार्सल डिभिजन र ग्रिड अटोमेशन लिसप कोडहरू।',
-    url: 'https://www.brbhatta.com/tools/autocad-scripts',
-    siteName: 'BR Bhatta',
+    title: "AutoCAD LISP (LSP) Scripts for Nepal Surveying & Land Cadastre | BR Bhatta",
+    description: "नेपालको नापी नक्सा तथा क्याड अटोमेसनका लागि निःशुल्क AutoCAD AutoLISP (.lsp) स्क्रिप्टहरू। पोलिलाइन क्षेत्रफललाई एकै क्लिकमा रोपनी-आना र बिघा-कट्ठामा बदल्नुहोस्।",
+    url: "https://www.brbhatta.com/tools/autocad-scripts",
+    siteName: 'BR Bhatta | Land Solution',
     locale: 'ne_NP',
     type: 'website',
-    images: [
-      {
-        url: 'https://www.brbhatta.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Free AutoCAD LISP Scripts for Surveyors Nepal | BR Bhatta',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free AutoCAD LISP Scripts for Surveyors Nepal | BR Bhatta',
-    description: 'नेपाल नापी तथा इन्जिनियरिङका लागि कित्ता एरिया, पार्सल डिभिजन र ग्रिड अटोमेशन लिसप कोडहरू।',
-    images: ['https://www.brbhatta.com/og-image.png'],
+    title: "AutoCAD LISP (LSP) Scripts for Nepal Surveying & Land Cadastre | BR Bhatta",
+    description: "नेपालको नापी नक्सा तथा क्याड अटोमेसनका लागि निःशुल्क AutoCAD AutoLISP (.lsp) स्क्रिप्टहरू। पोलिलाइन क्षेत्रफललाई एकै क्लिकमा रोपनी-आना र बिघा-कट्ठामा बदल्नुहोस्।",
   },
 };
 
-export default function ToolRouteLayout({
+export default function autocadscriptsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 }

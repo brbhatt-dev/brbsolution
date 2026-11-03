@@ -1,40 +1,31 @@
-import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'नापी तथा लोकसेवा फोटो कम्प्रेसर (<200KB Image Compressor) | BR Bhatta',
-  description: 'नेपाल लोकसेवा आयोग, मालपोत र नापी अनलाइन फारमका लागि फोटो र हस्ताक्षर २००KB भन्दा कम बनाउने टुल।',
+  title: "Online Image & Photo Compressor (लोकसेवा तथा अनलाइन फारम फोटो) | BR Bhatta",
+  description: "सरकारी अनलाइन फारम, लोकसेवा आयोग, र मालपोत सिस्टमका लागि फोटो तथा हस्ताक्षरको साइज तुरुन्त २०० KB मुनि घटाउनुहोस्।",
+  keywords: ["Image compressor Nepal","Loksewa photo compressor 200kb","Online photo resize Nepal","Signature photo compress","BR Bhatta"],
   alternates: {
-    canonical: 'https://www.brbhatta.com/tools/image-compressor',
+    canonical: "https://www.brbhatta.com/tools/image-compressor",
   },
   openGraph: {
-    title: 'नापी तथा लोकसेवा फोटो कम्प्रेसर (<200KB Image Compressor) | BR Bhatta',
-    description: 'नेपाल लोकसेवा आयोग, मालपोत र नापी अनलाइन फारमका लागि फोटो र हस्ताक्षर २००KB भन्दा कम बनाउने टुल।',
-    url: 'https://www.brbhatta.com/tools/image-compressor',
-    siteName: 'BR Bhatta',
+    title: "Online Image & Photo Compressor (लोकसेवा तथा अनलाइन फारम फोटो) | BR Bhatta",
+    description: "सरकारी अनलाइन फारम, लोकसेवा आयोग, र मालपोत सिस्टमका लागि फोटो तथा हस्ताक्षरको साइज तुरुन्त २०० KB मुनि घटाउनुहोस्।",
+    url: "https://www.brbhatta.com/tools/image-compressor",
+    siteName: 'BR Bhatta | Land Solution',
     locale: 'ne_NP',
     type: 'website',
-    images: [
-      {
-        url: 'https://www.brbhatta.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'नापी तथा लोकसेवा फोटो कम्प्रेसर (<200KB Image Compressor) | BR Bhatta',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'नापी तथा लोकसेवा फोटो कम्प्रेसर (<200KB Image Compressor) | BR Bhatta',
-    description: 'नेपाल लोकसेवा आयोग, मालपोत र नापी अनलाइन फारमका लागि फोटो र हस्ताक्षर २००KB भन्दा कम बनाउने टुल।',
-    images: ['https://www.brbhatta.com/og-image.png'],
+    title: "Online Image & Photo Compressor (लोकसेवा तथा अनलाइन फारम फोटो) | BR Bhatta",
+    description: "सरकारी अनलाइन फारम, लोकसेवा आयोग, र मालपोत सिस्टमका लागि फोटो तथा हस्ताक्षरको साइज तुरुन्त २०० KB मुनि घटाउनुहोस्।",
   },
 };
 
-export default function ToolRouteLayout({
+export default function imagecompressorLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 }

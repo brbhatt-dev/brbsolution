@@ -1,40 +1,31 @@
-import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'तस्विरबाट A4 PDF बनाउने टुल (Images to PDF Converter) | BR Bhatta',
-  description: 'लालपुर्जा, ट्रेस नक्सा, नागरिकता तथा जग्गा कागजातका तस्विरहरूलाई स्तरीय A4 PDF मा बदल्नुहोस्।',
+  title: "Images to PDF Converter (फोटोहरूबाट पीडीएफ बनाउनुहोस्) | BR Bhatta",
+  description: "मोबाइलबाट खिचेका लालपुर्जा, नागरिकता र जग्गा कागजातका फोटोहरूलाई उच्च गुणस्तरको एकल पीडीएफ फाइलमा रूपान्तरण गर्नुहोस्।",
+  keywords: ["Images to PDF converter Nepal","JPG to PDF online","Photo to PDF document","Lalpurja scan to PDF","BR Bhatta"],
   alternates: {
-    canonical: 'https://www.brbhatta.com/tools/images-to-pdf',
+    canonical: "https://www.brbhatta.com/tools/images-to-pdf",
   },
   openGraph: {
-    title: 'तस्विरबाट A4 PDF बनाउने टुल (Images to PDF Converter) | BR Bhatta',
-    description: 'लालपुर्जा, ट्रेस नक्सा, नागरिकता तथा जग्गा कागजातका तस्विरहरूलाई स्तरीय A4 PDF मा बदल्नुहोस्।',
-    url: 'https://www.brbhatta.com/tools/images-to-pdf',
-    siteName: 'BR Bhatta',
+    title: "Images to PDF Converter (फोटोहरूबाट पीडीएफ बनाउनुहोस्) | BR Bhatta",
+    description: "मोबाइलबाट खिचेका लालपुर्जा, नागरिकता र जग्गा कागजातका फोटोहरूलाई उच्च गुणस्तरको एकल पीडीएफ फाइलमा रूपान्तरण गर्नुहोस्।",
+    url: "https://www.brbhatta.com/tools/images-to-pdf",
+    siteName: 'BR Bhatta | Land Solution',
     locale: 'ne_NP',
     type: 'website',
-    images: [
-      {
-        url: 'https://www.brbhatta.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'तस्विरबाट A4 PDF बनाउने टुल (Images to PDF Converter) | BR Bhatta',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'तस्विरबाट A4 PDF बनाउने टुल (Images to PDF Converter) | BR Bhatta',
-    description: 'लालपुर्जा, ट्रेस नक्सा, नागरिकता तथा जग्गा कागजातका तस्विरहरूलाई स्तरीय A4 PDF मा बदल्नुहोस्।',
-    images: ['https://www.brbhatta.com/og-image.png'],
+    title: "Images to PDF Converter (फोटोहरूबाट पीडीएफ बनाउनुहोस्) | BR Bhatta",
+    description: "मोबाइलबाट खिचेका लालपुर्जा, नागरिकता र जग्गा कागजातका फोटोहरूलाई उच्च गुणस्तरको एकल पीडीएफ फाइलमा रूपान्तरण गर्नुहोस्।",
   },
 };
 
-export default function ToolRouteLayout({
+export default function imagestopdfLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <React.Fragment>{children}</React.Fragment>;
+  return <>{children}</>;
 }
