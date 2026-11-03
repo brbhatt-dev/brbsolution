@@ -79,6 +79,7 @@ export default function ArticleContextualToolsCard({ articleSlug }: ArticleConte
     if ([
       'kitta-kat-minimum-area-criteria-residential-agricultural-nepal',
       'kitta-kat-process-rules-nepal-land-reform',
+      'jagga-naap-jaanch-naksa-sresta-nirdeshika-2081',
       'house-boundary-setback-neighbor-distance-building-rules-nepal',
       'bato-chhodne-mapdanda-naksa-pas-nepal',
       'building-code-naksa-pas-setback-rules-nepal'
