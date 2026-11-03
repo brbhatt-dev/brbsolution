@@ -25,6 +25,7 @@ import SmartRelatedArticles from '@/components/SmartRelatedArticles';
 import StickyFloatingShare from '@/components/StickyFloatingShare';
 import ArticleTaxCalculatorWidget from '@/components/ArticleTaxCalculatorWidget';
 import ArticleKittaKatWidget from '@/components/ArticleKittaKatWidget';
+import ArticleContextualToolsCard from '@/components/ArticleContextualToolsCard';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -390,6 +391,11 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                     </span>
                     <p>{section.alert.text}</p>
                   </div>
+                )}
+
+                {/* Recommended Contextual Growth Tools Banner right after Section 1 */}
+                {idx === 1 && (
+                  <ArticleContextualToolsCard articleSlug={article.slug} category={article.category} />
                 )}
 
                 {/* Mid-Article Ad Slot after Section 2 */}
