@@ -63,14 +63,14 @@ export default function ArticleContextualToolsCard({ articleSlug }: ArticleConte
           tagColor: 'bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800'
         },
         {
-          id: 'shubh-saait',
-          title: 'घरजग्गा पास तथा बैना शुभ साइत क्यालेन्डर',
-          badge: 'वि.सं. २०८१/२०८२',
-          description: 'घरजग्गा रजिस्ट्रेसन, बैनाबट्टा, घडेरी खरिद र जग पूजा गर्ने ज्योतिषीय शुभ नक्षत्र तथा मुहूर्तहरू हेर्नुहोस्।',
-          href: '/tools/real-estate-saait-calendar',
-          icon: 'calendar',
-          highlightText: 'यस महिनाका शुभ मितिहरू',
-          tagColor: 'bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800'
+          id: 'jagga-pass-checklist',
+          title: 'जग्गा पास आवश्यक कागजात चेकलिस्ट तथा तयारी',
+          badge: 'इन्टरएक्टिभ चेकलिस्ट',
+          description: 'राजीनामा, नामसारी, बकसपत्र वा अंशबण्डा गर्दा वडा, नापी र मालपोतमा चाहिने कागजातहरूको अनुकूलित सूची।',
+          href: '/tools/jagga-pass-checklist',
+          icon: 'file',
+          highlightText: 'कागजात चेकलिस्ट हेर्नुहोस्',
+          tagColor: 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
         }
       ];
     }

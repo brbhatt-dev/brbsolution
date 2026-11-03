@@ -118,6 +118,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/tools/jagga-pass-checklist`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.96,
+    },
+    {
+      url: `${baseUrl}/tools/jagga-namsari-guide`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.96,
+    },
+    {
+      url: `${baseUrl}/tools/jagga-rokka-phukuwa`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.96,
+    },
+    {
+      url: `${baseUrl}/tools/lalpurja-pratilipi-guide`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.96,
+    },
+    {
       url: `${baseUrl}/tools/multi-kitta-calculator`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
