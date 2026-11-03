@@ -41,3 +41,6 @@ next-env.d.ts
 *.bak
 *.pre_faq_backup
 scratch/
+
+deploy_only.ps1
+*.backup
