@@ -33,7 +33,8 @@ import {
   Landmark,
   Calendar,
   Gavel,
-  MapPin
+  MapPin,
+  Car
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -507,6 +508,37 @@ const TOOL_SECTIONS: ToolCategory[] = [
         ]
       },
       {
+        id: 'cadastral-map-symbols',
+        titleNp: 'नापी कित्ता नक्सा संकेत (Cadastral Legend) तथा १:५०० स्केल क्यालकुलेटर',
+        titleEn: 'Cadastral Map Symbols & Scale Calculator',
+        description: 'नापी कित्ता नक्सा (Trace) मा हुने सिमाना स्तम्भ, कालोपत्रे बाटो, गोरेटो, राजकुलो, हाइ-टेन्सन लाइनका आधिकारिक संकेत चिन्हहरू र १:५०० देखि १:५००० स्केल क्याल्कुलेटर।',
+        badge: 'DOS आधिकारिक लेजेन्ड',
+        icon: Compass,
+        href: '/tools/cadastral-map-symbols',
+        features: [
+          'सिमाना स्तम्भ, पक्की घर, बाटो, कुलो, र हाइ-टेन्सन संकेतहरू',
+          'रुलरको १ मि.मि. = जमिनमा कति मिटर/हात १-क्लिक हिसाब',
+          'नक्सामा लम्बाइ x चौडाइबाट कुल रोपनी र बिघा क्षेत्रफल',
+          'MUTM सिट नम्बर डिकोडर र बेन्चमार्क निर्देशिका'
+        ]
+      },
+      {
+        id: 'lrims-online-services',
+        titleNp: 'LRIMS अनलाइन जग्गा सेवा, रोक्का/फुकुवा तथा न्यूनतम मूल्याङ्कन हब',
+        titleEn: 'LRIMS Online Services & Land Valuation Vault',
+        description: 'मालपोत कार्यालयमा लाइन नबसी घरबाटै अनलाइन टोकन लिने तरिका, बैंक रोक्का/फुकुवा अनलाइन जाँच, ७७ जिल्ला दररेट र लेखापढी शुल्क मापदण्ड।',
+        badge: 'DOLRM अनलाइन पोर्टल',
+        icon: Landmark,
+        href: '/tools/lrims-online-services',
+        features: [
+          'सिटिजन पोर्टलमा मोबाइल OTP बाट अनलाइन टोकन बुकिङ',
+          'बैंक ऋण चुक्तापछि रोक्का फुकुवा अनलाइन स्टाटस ट्र्याकर',
+          '७७ वटै जिल्लाको आ.व. २०८१/८२ न्यूनतम मूल्याङ्कन भल्ट',
+          'लेखापढी व्यवसायी सेवा शुल्क सीमा र आचारसंहिता'
+        ]
+      },
+
+      {
         id: 'autocad-scripts',
         titleNp: 'AutoCAD LSP स्क्रिप्ट्स हब (Survey Automation)',
         titleEn: 'AutoCAD LISP Scripts Hub',
@@ -568,6 +600,30 @@ const TOOL_SECTIONS: ToolCategory[] = [
       }
     ]
   }
+  ,
+  {
+    categoryName: '🚗 सवारी चालक अनुमतिपत्र तथा यातायात सेवा (Driving License & Transport Hub)',
+    categoryDesc: 'यातायात व्यवस्था विभाग (DOTM) को ५०० आधिकारिक प्रश्नोत्तर क्विज, ७० अंकको ट्रायल नियम, स्मार्ट कार्ड SMS चेक र सवारी कर क्यालकुलेटर।',
+    badgeColor: 'bg-indigo-50 dark:bg-indigo-950/60 border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300',
+    tools: [
+      {
+        id: 'driving-license-quiz',
+        titleNp: 'सवारी चालक अनुमतिपत्र ५०० प्रश्नोत्तर क्विज तथा ट्रायल गाइड',
+        titleEn: 'Driving License Exam Hub & 70-Point Trial',
+        description: 'यातायात व्यवस्था विभागको ५०० आधिकारिक प्रश्नोत्तरबाट २० वटा स्वचालित प्रश्नसहित ३० मिनेट टाइमर क्विज, ७० अंकको नयाँ ट्रायल सिम्युलेटर, SMS ३३००१ कार्ड चेक र ब्लुबुक कर।',
+        badge: 'DOTM आधिकारिक ५०० प्रश्न',
+        icon: Car,
+        href: '/tools/driving-license-quiz',
+        features: [
+          'वर्ग "क" (A) र "ख" (B) को २० प्रश्न ३० मिनेट अनलाइन क्विज',
+          '७० अंकको नयाँ ट्रायल नियम र ८-घुमाउरो अंक कटौती सिम्युलेटर',
+          'SMS ३३००१ मार्फत स्मार्ट लाइसेन्स प्रिन्ट स्टाटस चेक',
+          'बागमती प्रदेश मोटरसाइकल तथा कार वार्षिक कर र नवीकरण हिसाब'
+        ]
+      }
+    ]
+  }
+
 ];
 
 export default function ToolsHubPage() {

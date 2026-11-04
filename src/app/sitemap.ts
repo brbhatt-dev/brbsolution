@@ -154,6 +154,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/tools/lrims-online-services`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+
+    {
+      url: `${baseUrl}/tools/cadastral-map-symbols`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+
+    {
+      url: `${baseUrl}/tools/driving-license-quiz`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+
+    {
       url: `${baseUrl}/tools/merokitta-online-naksa`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
