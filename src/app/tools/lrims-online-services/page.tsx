@@ -3,22 +3,64 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LrimsOnlineHub from '@/components/LrimsOnlineHub';
 import Link from 'next/link';
-import { Landmark, ArrowRight, ShieldCheck, FileText, MapPin, Calculator, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { LRIMS_FAQS } from '@/data/lrimsServicesData';
 
 export default function LrimsOnlineServicesPage() {
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "LRIMS अनलाइन जग्गा सेवा, रोक्का/फुकुवा तथा न्यूनतम मूल्याङ्कन हब | Department of Land Reform and Management",
-    "description": "नेपाल सरकार भूमिसुधार तथा मालपोत विभाग (DOLRM) को LRIMS अनलाइन टोकन, बैंक रोक्का/फुकुवा ट्र्याकिङ, ७७ जिल्ला न्यूनतम मूल्याङ्कन दररेट र लेखापढी व्यवसायी सेवा शुल्क गाइड।",
-    "url": "https://www.brbhatta.com/tools/lrims-online-services",
-    "applicationCategory": "GovernmentApplication",
-    "operatingSystem": "All",
-    "author": {
-      "@type": "Person",
-      "name": "BR Bhatta",
-      "url": "https://www.brbhatta.com"
-    }
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        '@id': 'https://www.brbhatta.com/tools/lrims-online-services#app',
+        name: 'LRIMS अनलाइन जग्गा सेवा, रोक्का/फुकुवा तथा न्यूनतम मूल्याङ्कन हब | Department of Land Reform and Management',
+        description: 'नेपाल सरकार भूमिसुधार तथा मालपोत विभाग (DOLRM) को LRIMS अनलाइन टोकन, बैंक रोक्का/फुकुवा ट्र्याकिङ, ७७ जिल्ला न्यूनतम मूल्याङ्कन दररेट र लेखापढी व्यवसायी सेवा शुल्क गाइड।',
+        url: 'https://www.brbhatta.com/tools/lrims-online-services',
+        applicationCategory: 'GovernmentApplication',
+        operatingSystem: 'All',
+        author: {
+          '@type': 'Person',
+          name: 'BR Bhatta',
+          url: 'https://www.brbhatta.com'
+        }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://www.brbhatta.com/tools/lrims-online-services#breadcrumb',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'गृहपृष्ठ (Home)',
+            item: 'https://www.brbhatta.com/'
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'डिजिटल उपकरणहरू (Tools)',
+            item: 'https://www.brbhatta.com/tools'
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'LRIMS अनलाइन जग्गा सेवा हब',
+            item: 'https://www.brbhatta.com/tools/lrims-online-services'
+          }
+        ]
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://www.brbhatta.com/tools/lrims-online-services#faq',
+        mainEntity: LRIMS_FAQS.map(faq => ({
+          '@type': 'Question',
+          name: faq.qNp,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.aNp
+          }
+        }))
+      }
+    ]
   };
 
   return (
