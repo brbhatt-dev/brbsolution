@@ -26,8 +26,8 @@ import {
 import { SURVEY_OFFICES } from '@/data/surveyOffices';
 
 export const metadata: Metadata = {
-  title: 'नापी तथा मालपोत कार्यालय निर्देशिका (Survey & Land Revenue Offices Nepal) | BR Bhatta',
-  description: 'नेपालका ७७ वटै जिल्लाका नापी विभाग (dos.gov.np), नापी कार्यालय (डिल्लीबजार, कलंकी, बुटवल, पोखरा, वीरगञ्ज, जनकपुर, धनगढी, महेन्द्रनगर) र मालपोत कार्यालयहरूको आधिकारिक सम्पर्क नम्बर, ठेगाना, नागरिक बडापत्र र अनलाइन सेवा निर्देशिका।',
+  title: 'नेपालका नापी तथा मालपोत कार्यालयहरूको सम्पर्क निर्देशिका [७७ जिल्ला, १८५ कार्यालय] | BR Bhatta',
+  description: 'नेपालका सम्पूर्ण ७७ वटै जिल्लाका १८५ नापी कार्यालय (dos.gov.np) र मालपोत कार्यालय (dolrm.gov.np) हरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल, क्षेत्राधिकार र नागरिक बडापत्र।',
   keywords: [
     'www.dos.gov.np nepal',
     'Department of Survey Nepal',
@@ -194,13 +194,13 @@ export default function SurveyOfficesPage() {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-bold">
             <Building2 className="w-3.5 h-3.5 text-emerald-600" />
-            <span>नेपाल सरकार नापी विभाग तथा भूमि व्यवस्थापन विभाग निर्देशिका</span>
+            <span>नेपालका ७७ वटै जिल्लाका १८५ नापी तथा मालपोत कार्यालयहरूको पूर्ण डिजिटल डाइरेक्टरी</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-            नेपालका नापी तथा मालपोत कार्यालयहरूको आधिकारिक सम्पर्क निर्देशिका
+            नेपालका ७७ वटै जिल्लाका नापी तथा मालपोत कार्यालयहरूको आधिकारिक सम्पर्क निर्देशिका
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            काठमाडौँ उपत्यका, बुटवल, पोखरा, वीरगञ्ज, जनकपुर, विराटनगर, नेपालगञ्ज, धनगढी, महेन्द्रनगर लगायत नेपालका ७७ वटै जिल्लाका नापी तथा भूमिसुधार मालपोत कार्यालयहरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल र नागरिक सेवा बडापत्र।
+            काठमाडौँ उपत्यका, बुटवल, पोखरा, वीरगञ्ज, विराटनगर लगायत नेपालका सम्पूर्ण ७७ वटै जिल्लाका १८५ नापी विभाग (dos.gov.np) र भूमिसुधार तथा मालपोत कार्यालयहरू (dolrm.gov.np) को आधिकारिक सम्पर्क नम्बर, ठेगाना, इमेल र नागरिक बडापत्र।
           </p>
         </div>
 
