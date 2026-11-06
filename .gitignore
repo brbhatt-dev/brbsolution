@@ -44,3 +44,5 @@ scratch/
 
 deploy_only.ps1
 *.backup
+
+deploy_pages.ps1
