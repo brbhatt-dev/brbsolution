@@ -22,7 +22,9 @@ import {
   Zap, 
   Info,
   Check,
-  Copy
+  Copy,
+  BookOpen,
+  Filter
 } from 'lucide-react';
 import { 
   DRIVING_LICENSE_QUESTIONS, 
@@ -35,38 +37,64 @@ export default function DrivingLicenseExamHub() {
   const [activeTab, setActiveTab] = useState<'quiz' | 'trial' | 'print' | 'tax'>('quiz');
 
   // ----------------------------------------------------
-  // 1. QUIZ STATE
+  // 1. QUIZ STATE & MULTI-SET / TOPIC-WISE
   // ----------------------------------------------------
   const [quizVehicle, setQuizVehicle] = useState<'bike' | 'car'>('bike');
+  const [quizMode, setQuizMode] = useState<'exam' | 'practice'>('exam');
+  const [selectedSet, setSelectedSet] = useState<'random' | 'set1' | 'set2' | 'set3'>('random');
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'rules' | 'signs' | 'mechanical' | 'safety' | 'pollution'>('all');
+  
   const [currentQuestions, setCurrentQuestions] = useState<LicenseQuestion[]>([]);
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(1800); // 30 mins
   const [timerActive, setTimerActive] = useState(false);
 
-  // Initialize Quiz
-  const startNewQuiz = () => {
-    // Filter questions relevant to vehicle type
-    const relevant = DRIVING_LICENSE_QUESTIONS.filter(
+  // Initialize or re-load questions
+  const loadQuestions = () => {
+    let relevant = DRIVING_LICENSE_QUESTIONS.filter(
       q => q.vehicleType === 'both' || (quizVehicle === 'bike' ? q.vehicleType === 'bike' : q.vehicleType === 'car')
     );
-    // Shuffle and pick 20
-    const shuffled = [...relevant].sort(() => 0.5 - Math.random()).slice(0, 20);
-    setCurrentQuestions(shuffled);
-    setUserAnswers({});
-    setIsSubmitted(false);
-    setTimeLeft(1800);
-    setTimerActive(true);
+
+    if (quizMode === 'practice') {
+      if (selectedCategory !== 'all') {
+        relevant = relevant.filter(q => q.category === selectedCategory);
+      }
+      setCurrentQuestions(relevant);
+      setUserAnswers({});
+      setIsSubmitted(false);
+      setTimerActive(false);
+    } else {
+      // Exam Mode
+      let questionsToUse: LicenseQuestion[] = [];
+      if (selectedSet === 'set1') {
+        questionsToUse = relevant.slice(0, 20);
+      } else if (selectedSet === 'set2') {
+        questionsToUse = relevant.slice(20, 40);
+        if (questionsToUse.length < 20) questionsToUse = relevant.slice(0, 20);
+      } else if (selectedSet === 'set3') {
+        questionsToUse = relevant.slice(40, 60);
+        if (questionsToUse.length < 20) questionsToUse = relevant.slice(20, 40);
+      } else {
+        // Random 20
+        questionsToUse = [...relevant].sort(() => 0.5 - Math.random()).slice(0, 20);
+      }
+      setCurrentQuestions(questionsToUse);
+      setUserAnswers({});
+      setIsSubmitted(false);
+      setTimeLeft(1800);
+      setTimerActive(true);
+    }
   };
 
   useEffect(() => {
-    startNewQuiz();
-  }, [quizVehicle]);
+    loadQuestions();
+  }, [quizVehicle, quizMode, selectedSet, selectedCategory]);
 
-  // Timer countdown
+  // Timer countdown for Exam Mode
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    if (timerActive && timeLeft > 0 && !isSubmitted) {
+    if (quizMode === 'exam' && timerActive && timeLeft > 0 && !isSubmitted) {
       interval = setInterval(() => {
         setTimeLeft(prev => {
           if (prev <= 1) {
@@ -79,11 +107,19 @@ export default function DrivingLicenseExamHub() {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [timerActive, timeLeft, isSubmitted]);
+  }, [quizMode, timerActive, timeLeft, isSubmitted]);
 
   const handleSelectOption = (qId: number, optionIdx: number) => {
-    if (isSubmitted) return;
+    if (quizMode === 'exam' && isSubmitted) return;
     setUserAnswers(prev => ({ ...prev, [qId]: optionIdx }));
+  };
+
+  const handleResetQuestion = (qId: number) => {
+    setUserAnswers(prev => {
+      const updated = { ...prev };
+      delete updated[qId];
+      return updated;
+    });
   };
 
   const handleSubmitQuiz = () => {
@@ -223,56 +259,142 @@ export default function DrivingLicenseExamHub() {
       {activeTab === 'quiz' && (
         <div className="space-y-6">
           
-          {/* Quiz Header Bar */}
-          <div className="bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          {/* Quiz Top Control Bar */}
+          <div className="bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
             
-            <div className="flex items-center gap-3">
-              <span className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-                {quizVehicle === 'bike' ? <Bike className="w-6 h-6" /> : <Car className="w-6 h-6" />}
-              </span>
-              <div>
-                <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                  सवारी चालक अनुमतिपत्र लिखित परीक्षा (Mock Test)
-                </h2>
-                <p className="text-xs text-slate-500">
-                  यातायात व्यवस्था विभागको ५०० आधिकारिक प्रश्नहरूबाट छानिएका २० वस्तुगत प्रश्न
-                </p>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <span className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                  {quizVehicle === 'bike' ? <Bike className="w-6 h-6" /> : <Car className="w-6 h-6" />}
+                </span>
+                <div>
+                  <h2 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
+                    सवारी चालक अनुमतिपत्र अनलाइन तयारी हब
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    यातायात व्यवस्था विभागको ५०० आधिकारिक प्रश्नोत्तर संग्रह
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Vehicle Selector + Timer */}
-            <div className="flex items-center gap-3 flex-wrap">
-              <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold">
+              {/* Vehicle Type Toggle */}
+              <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold self-start md:self-auto">
                 <button
                   onClick={() => setQuizVehicle('bike')}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+                  className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
                     quizVehicle === 'bike' ? 'bg-white dark:bg-slate-700 text-emerald-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'
                   }`}
                 >
                   <Bike className="w-3.5 h-3.5" />
-                  <span>वर्ग 'क' (A: बाइक)</span>
+                  <span>वर्ग 'क' (A: बाइक/स्कुटर)</span>
                 </button>
                 <button
                   onClick={() => setQuizVehicle('car')}
-                  className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+                  className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
                     quizVehicle === 'car' ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'
                   }`}
                 >
                   <Car className="w-3.5 h-3.5" />
-                  <span>वर्ग 'ख' (B: कार)</span>
+                  <span>वर्ग 'ख' (B: कार/जिप)</span>
                 </button>
               </div>
+            </div>
 
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300">
-                <Clock className="w-4 h-4 text-emerald-600 animate-pulse" />
-                <span>बाँकी समय: {formatTime(timeLeft)}</span>
+            {/* Mode & Set Controls */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-1">
+              {/* Exam vs Practice Mode */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-bold text-slate-500">तयारी विधि:</span>
+                <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+                  <button
+                    onClick={() => setQuizMode('exam')}
+                    className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+                      quizMode === 'exam' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    <Award className="w-3.5 h-3.5" />
+                    <span>🎯 मोडल परीक्षा (Exam Mock)</span>
+                  </button>
+                  <button
+                    onClick={() => setQuizMode('practice')}
+                    className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+                      quizMode === 'practice' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>📚 विषयगत अभ्यास (Practice)</span>
+                  </button>
+                </div>
               </div>
+
+              {/* Sub-selectors */}
+              {quizMode === 'exam' ? (
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-bold text-slate-500">सेट छान्नुहोस्:</span>
+                  <div className="inline-flex p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+                    <button
+                      onClick={() => setSelectedSet('random')}
+                      className={`px-2.5 py-1.5 rounded-lg transition-all ${selectedSet === 'random' ? 'bg-white dark:bg-slate-700 text-emerald-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'}`}
+                    >
+                      🎲 र्‍यान्डम २०
+                    </button>
+                    <button
+                      onClick={() => setSelectedSet('set1')}
+                      className={`px-2.5 py-1.5 rounded-lg transition-all ${selectedSet === 'set1' ? 'bg-white dark:bg-slate-700 text-emerald-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'}`}
+                    >
+                      सेट १
+                    </button>
+                    <button
+                      onClick={() => setSelectedSet('set2')}
+                      className={`px-2.5 py-1.5 rounded-lg transition-all ${selectedSet === 'set2' ? 'bg-white dark:bg-slate-700 text-emerald-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'}`}
+                    >
+                      सेट २
+                    </button>
+                    <button
+                      onClick={() => setSelectedSet('set3')}
+                      className={`px-2.5 py-1.5 rounded-lg transition-all ${selectedSet === 'set3' ? 'bg-white dark:bg-slate-700 text-emerald-600 shadow-xs' : 'text-slate-600 dark:text-slate-400'}`}
+                    >
+                      सेट ३
+                    </button>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300">
+                    <Clock className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                    <span>{formatTime(timeLeft)}</span>
+                  </div>
+                </div>
+              ) : (
+                /* Practice Mode: Topic filter pills */
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-xs font-bold text-slate-500">विषय:</span>
+                  {[
+                    { id: 'all', label: 'सबै' },
+                    { id: 'rules', label: 'नियम/ऐन' },
+                    { id: 'signs', label: 'ट्राफिक संकेत' },
+                    { id: 'mechanical', label: 'यान्त्रिक ज्ञान' },
+                    { id: 'safety', label: 'सडक सुरक्षा' },
+                    { id: 'pollution', label: 'प्रदूषण' }
+                  ].map(cat => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(cat.id as any)}
+                      className={`px-2.5 py-1 rounded-lg text-2xs font-bold transition-all ${
+                        selectedCategory === cat.id 
+                          ? 'bg-emerald-600 text-white shadow-xs' 
+                          : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
           </div>
 
-          {/* Result Alert if Submitted */}
-          {isSubmitted && (
+          {/* Result Alert if Exam Submitted */}
+          {quizMode === 'exam' && isSubmitted && (
             <div className={`p-6 sm:p-8 rounded-3xl border shadow-md space-y-4 ${
               isPassed 
                 ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 text-emerald-950 dark:text-emerald-200' 
@@ -294,7 +416,7 @@ export default function DrivingLicenseExamHub() {
                       {isPassed ? 'बधाई छ! तपाईं लिखित परीक्षामा उत्तीर्ण हुनुभयो।' : 'दुःखको कुरा! तपाईं अनुत्तीर्ण हुनुभयो।'}
                     </h3>
                     <p className="text-xs sm:text-sm opacity-90">
-                      पास हुनका लागि कम्तीमा १२ प्रश्न (६०%) मिलाउनुपर्नेछ।
+                      पास हुनका लागि २० मध्ये कम्तीमा १२ प्रश्न (६०%) मिलाउनुपर्नेछ।
                     </p>
                   </div>
                 </div>
@@ -309,11 +431,11 @@ export default function DrivingLicenseExamHub() {
 
               <div className="pt-2 flex items-center gap-3">
                 <button
-                  onClick={startNewQuiz}
+                  onClick={loadQuestions}
                   className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-2 shadow-xs transition-transform active:scale-95"
                 >
                   <RotateCcw className="w-4 h-4" />
-                  <span>नयाँ २० प्रश्नहरूको सेट सुरु गर्नुहोस्</span>
+                  <span>पुनः परीक्षा दिनुहोस् (Retake Exam)</span>
                 </button>
               </div>
             </div>
@@ -326,11 +448,14 @@ export default function DrivingLicenseExamHub() {
               const isAnswered = selectedOpt !== undefined;
               const isCorrect = selectedOpt === q.correctIndex;
 
+              // In practice mode, instant feedback is given when answered
+              const showFeedback = quizMode === 'practice' ? isAnswered : isSubmitted;
+
               return (
                 <div 
                   key={q.id}
                   className={`p-5 sm:p-6 rounded-3xl bg-white dark:bg-slate-900 border transition-all shadow-xs space-y-4 ${
-                    isSubmitted 
+                    showFeedback 
                       ? isCorrect 
                         ? 'border-emerald-300 dark:border-emerald-800/80 bg-emerald-50/20' 
                         : 'border-rose-300 dark:border-rose-800/80 bg-rose-50/20'
@@ -349,9 +474,20 @@ export default function DrivingLicenseExamHub() {
                       </h4>
                     </div>
 
-                    <span className="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 text-2xs font-bold shrink-0">
-                      {q.categoryNp}
-                    </span>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 text-2xs font-bold">
+                        {q.categoryNp}
+                      </span>
+                      {quizMode === 'practice' && isAnswered && (
+                        <button
+                          onClick={() => handleResetQuestion(q.id)}
+                          title="पुनः प्रयास गर्नुहोस्"
+                          className="p-1 rounded-md text-slate-400 hover:text-emerald-600 transition-colors"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
                   </div>
 
                   {/* Options */}
@@ -362,7 +498,7 @@ export default function DrivingLicenseExamHub() {
 
                       let btnStyle = 'border-slate-200 dark:border-slate-800 hover:border-emerald-400 bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300';
                       
-                      if (isSubmitted) {
+                      if (showFeedback) {
                         if (isOptionCorrect) {
                           btnStyle = 'border-emerald-500 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-900 dark:text-emerald-200 font-bold';
                         } else if (isOptionSelected && !isOptionCorrect) {
@@ -377,7 +513,7 @@ export default function DrivingLicenseExamHub() {
                       return (
                         <button
                           key={optIdx}
-                          disabled={isSubmitted}
+                          disabled={quizMode === 'exam' && isSubmitted}
                           onClick={() => handleSelectOption(q.id, optIdx)}
                           className={`p-3 rounded-2xl border text-left text-xs sm:text-sm transition-all flex items-center justify-between gap-3 ${btnStyle}`}
                         >
@@ -388,10 +524,10 @@ export default function DrivingLicenseExamHub() {
                             <span>{opt}</span>
                           </div>
                           
-                          {isSubmitted && isOptionCorrect && (
+                          {showFeedback && isOptionCorrect && (
                             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                           )}
-                          {isSubmitted && isOptionSelected && !isOptionCorrect && (
+                          {showFeedback && isOptionSelected && !isOptionCorrect && (
                             <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
                           )}
                         </button>
@@ -399,8 +535,8 @@ export default function DrivingLicenseExamHub() {
                     })}
                   </div>
 
-                  {/* Explanation after submit */}
-                  {isSubmitted && q.explanation && (
+                  {/* Explanation */}
+                  {showFeedback && q.explanation && (
                     <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2">
                       <Info className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <p><strong>आधिकारिक व्याख्या:</strong> {q.explanation}</p>
@@ -412,8 +548,8 @@ export default function DrivingLicenseExamHub() {
             })}
           </div>
 
-          {/* Submit Action Bar */}
-          {!isSubmitted && (
+          {/* Exam Mode: Sticky Submit Action Bar */}
+          {quizMode === 'exam' && !isSubmitted && (
             <div className="sticky bottom-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-4 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl flex items-center justify-between gap-4">
               <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
                 हल गरिएका प्रश्नहरू: <strong className="text-emerald-600">{Object.keys(userAnswers).length}</strong> / {totalQuestions}
@@ -448,88 +584,82 @@ export default function DrivingLicenseExamHub() {
           }`}>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <span className="px-3 py-1 rounded-full bg-white/60 dark:bg-black/40 text-xs font-bold inline-block">
-                  नयाँ ७० अंकको ट्रायल नियम (70-Point Trial Criteria)
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-white/60 dark:bg-black/30">
+                    ७० अंक प्रणाली (New 70-Point Trial Rules)
+                  </span>
+                </div>
                 <h3 className="text-2xl sm:text-3xl font-black">
-                  {isDisqualified
-                    ? '🔴 सिधै फेल (Disqualified)!'
-                    : trialPassed
-                      ? '🟢 ट्रायल उत्तीर्ण (TRIAL PASSED)!'
-                      : '🟡 अंक नपुगेर फेल (Score Below 70)'}
+                  {isDisqualified 
+                    ? '❌ फेल (Fail / Disqualified)' 
+                    : trialPassed 
+                      ? '✓ उत्तीर्ण (Passed Trial)' 
+                      : 'अंक पुगेन (Fail)'}
                 </h3>
                 <p className="text-xs sm:text-sm opacity-90 max-w-xl">
-                  {isDisqualified
-                    ? `तपाईंले गम्भीर गल्ती गर्नुभयो: "${disqualificationReason}"। यसमा अंक नकाटी सिधै फेल गरिन्छ।`
-                    : '१०० पूर्णाङ्कमा ७० वा सोभन्दा बढी अंक ल्याएमा लाइसेन्स ट्रायल पास भइन्छ। तलका सम्भावित गल्तीहरू छान्नुहोस्:'}
+                  {isDisqualified 
+                    ? `गम्भीर गल्तीका कारण सिधै फेल: ${disqualificationReason}` 
+                    : 'नयाँ नियमानुसार ७० वा सोभन्दा बढी अंक ल्याएमा ट्रायल परीक्षा पास भइन्छ।'}
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-current/20 text-center shrink-0">
-                <span className="block text-3xs uppercase font-bold text-slate-500">तपाईंको लाइभ स्कोर</span>
-                <span className={`text-4xl font-black ${
-                  trialPassed && !isDisqualified ? 'text-emerald-600' : 'text-rose-600'
-                }`}>
-                  {trialScore} <span className="text-base font-medium">/ १००</span>
-                </span>
-                <span className="block text-2xs font-bold pt-1">
-                  न्यूनतम आवश्यक: ७० अंक
+              <div className="text-right">
+                <span className="text-4xl sm:text-5xl font-black">{trialScore}</span>
+                <span className="text-xs font-bold block opacity-80 uppercase tracking-widest">
+                  / १०० पूर्णांक (Pass: ७०)
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Interactive Checklist by Test Sections */}
+          {/* Trial Stages Checklist */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {TRIAL_RULES_CATEGORY_A.map(sec => (
+            {TRIAL_RULES_CATEGORY_A.map(stage => (
               <div 
-                key={sec.id}
-                className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4"
+                key={stage.id}
+                className="bg-white dark:bg-slate-900 p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-3"
               >
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-                  <div>
-                    <h4 className="font-bold text-sm text-slate-900 dark:text-white">
-                      {sec.nameNp}
-                    </h4>
-                    <span className="text-2xs text-slate-500">{sec.nameEn}</span>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 text-xs font-bold">
-                    भार: {sec.totalMarks} अंक
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
+                  <h4 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                    {stage.nameNp}
+                  </h4>
+                  <span className="text-2xs font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                    पूर्णांक: {stage.totalMarks}
                   </span>
                 </div>
 
-                <div className="space-y-2.5">
-                  {sec.rules.map((rule, rIdx) => {
-                    const key = `${sec.id}-${rIdx}`;
-                    const isChecked = trialMistakes[key] || false;
+                <div className="space-y-2">
+                  {stage.rules.map((rule, rIdx) => {
+                    const ruleKey = `${stage.id}-${rIdx}`;
+                    const isChecked = trialMistakes[ruleKey] || false;
 
                     return (
                       <button
                         key={rIdx}
-                        onClick={() => toggleMistake(key)}
-                        className={`w-full p-3 rounded-2xl border text-left text-xs transition-all flex items-start justify-between gap-3 ${
-                          isChecked 
+                        onClick={() => toggleMistake(ruleKey)}
+                        className={`w-full text-left p-3 rounded-2xl border text-xs transition-all flex items-start justify-between gap-3 ${
+                          isChecked
                             ? rule.isDisqualified
-                              ? 'border-rose-500 bg-rose-50 dark:bg-rose-950/60 text-rose-900 dark:text-rose-200 font-bold'
-                              : 'border-amber-500 bg-amber-50 dark:bg-amber-950/60 text-amber-900 dark:text-amber-200 font-bold'
-                            : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 bg-slate-50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300'
+                              ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/60 text-rose-900 dark:text-rose-200'
+                              : 'border-amber-400 bg-amber-50 dark:bg-amber-950/60 text-amber-900 dark:text-amber-200'
+                            : 'border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300 hover:border-slate-300'
                         }`}
                       >
-                        <div className="flex items-start gap-2.5">
+                        <div className="flex items-start gap-2">
                           <span className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 mt-0.5 ${
-                            isChecked ? 'bg-current text-white border-transparent' : 'border-slate-400'
+                            isChecked ? 'bg-current text-white border-transparent' : 'border-slate-300 dark:border-slate-600'
                           }`}>
                             {isChecked && <Check className="w-3 h-3 text-white" />}
                           </span>
                           <span>{rule.description}</span>
                         </div>
 
-                        <span className={`text-2xs font-bold px-2 py-0.5 rounded-md shrink-0 ${
+                        <span className={`text-2xs font-black shrink-0 px-1.5 py-0.5 rounded ${
                           rule.isDisqualified 
-                            ? 'bg-rose-200 text-rose-900 dark:bg-rose-900 dark:text-rose-200' 
-                            : 'bg-amber-200 text-amber-900 dark:bg-amber-900 dark:text-amber-200'
+                            ? 'bg-rose-600 text-white' 
+                            : 'bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-200'
                         }`}>
-                          {rule.isDisqualified ? 'सिधै फेल' : `-${rule.penalty} अंक`}
+                          {rule.isDisqualified ? 'सिधै फेल' : `-${rule.penalty}`}
                         </span>
                       </button>
                     );
@@ -539,233 +669,214 @@ export default function DrivingLicenseExamHub() {
             ))}
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-center">
-            <button
-              onClick={() => setTrialMistakes({})}
-              className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-1.5"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>सिम्युलेटर रिसेट गर्नुहोस् (१०० अंकबाट फेरि सुरु)</span>
-            </button>
-          </div>
-
         </div>
       )}
 
       {/* ==================================================== */}
-      {/* TAB 3: SMART LICENSE PRINT STATUS CHECKER */}
+      {/* TAB 3: SMART CARD SMS PRINT CHECKER */}
       {/* ==================================================== */}
       {activeTab === 'print' && (
-        <div className="space-y-6 max-w-3xl mx-auto">
-          
-          {/* SMS Checker Tool */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 text-xs font-bold border border-blue-200 dark:border-blue-800">
-                <Smartphone className="w-3.5 h-3.5" />
-                <span>१-सेकेन्ड SMS स्थिति जाँच (Quick SMS Check)</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-                स्मार्ट लाइसेन्स कार्ड छापियो कि छैन? तुरुन्त हेर्नुहोस्
-              </h3>
-              <p className="text-xs text-slate-500">
-                यातायात व्यवस्था विभागको ३३००१ नम्बरमा एसएमएस गरेर आफ्नो कार्ड प्रिन्ट भए/नभएको थाहा पाउनुहोस्:
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                आफ्नो Application ID वा Applicant No. राख्नुहोस्:
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="उदा: 12345678"
-                  value={appId}
-                  onChange={(e) => setAppId(e.target.value)}
-                  className="flex-grow p-3 rounded-2xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-sm font-bold"
-                />
-                <button
-                  onClick={handleCopySMS}
-                  className="px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5 shrink-0 transition-colors"
-                >
-                  {copiedSMS ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                  <span>{copiedSMS ? 'कपी भयो!' : 'SMS कपी'}</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Ready Mobile Link */}
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="text-xs">
-                <p className="font-bold text-slate-800 dark:text-slate-200">पठाउनुपर्ने सन्देश:</p>
-                <p className="font-mono text-emerald-600 font-bold text-sm">
-                  {smsBody} ➔ ३३००१ (33001) मा
-                </p>
-              </div>
-
-              <a
-                href={`sms:33001?body=${encodeURIComponent(smsBody)}`}
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-transform active:scale-95 shrink-0"
-              >
-                <Smartphone className="w-4 h-4" />
-                <span>मोबाइलबाट सिधै SMS पठाउनुहोस्</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Official Online Portals & Legal Alternative */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="space-y-6">
+          <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-6">
             
-            <div className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
-              <h4 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
-                <span>नागरिक एप (Nagarik App) डिजिटल लाइसेन्स</span>
-              </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                स्मार्ट कार्ड हातमा नआउँदा पनि नागरिक एपमा देखिने ई-लाइसेन्स (QR Code सहित) लाई नेपाल सरकार र ट्राफिक प्रहरीले <strong>पूर्ण कानुनी मान्यता</strong> दिएको छ। चेकिङमा यो देखाएमा जरिवाना हुँदैन।
+            <div className="space-y-2">
+              <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 text-2xs font-black uppercase tracking-wider">
+                SMS & Online Status Tool
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                स्मार्ट लाइसेन्स कार्ड छापियो कि छैन? तुरुन्तै जाँच्नुहोस्
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500">
+                यातायात व्यवस्था विभागको सर्भर ढिलो चलेको बेला SMS मार्फत १ सेकेन्डमा यकिन विवरण प्राप्त गर्न सकिन्छ।
               </p>
             </div>
 
-            <div className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 flex flex-col justify-between">
-              <div>
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-blue-600" />
-                  <span>यातायात विभाग आधिकारिक अनलाइन पोर्टल</span>
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed pt-1">
-                  DOTM को सर्भर चलेको बेला <code className="text-emerald-600 font-bold">applydl.dotm.gov.np</code> मा गएर पनि आफ्नो कार्ड प्रिन्ट स्थिति हेर्न सकिन्छ।
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              
+              {/* Method 1: SMS */}
+              <div className="p-5 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-4">
+                <div className="flex items-center gap-2">
+                  <Smartphone className="w-5 h-5 text-emerald-600" />
+                  <h4 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                    विधि १: SMS मार्फत स्थिति जाँच
+                  </h4>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-slate-600 dark:text-slate-400">
+                    तपाईंको Application ID वा Reference No. हाल्नुहोस्:
+                  </label>
+                  <input
+                    type="text"
+                    value={appId}
+                    onChange={(e) => setAppId(e.target.value)}
+                    placeholder="उदा: 12345678"
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold focus:outline-emerald-500"
+                  />
+                </div>
+
+                <div className="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-2">
+                  <span className="text-2xs text-slate-400 uppercase font-black tracking-wider">पठाउने म्यासेज ढाँचा:</span>
+                  <div className="flex items-center justify-between">
+                    <code className="text-sm font-mono font-black text-emerald-600">{smsBody}</code>
+                    <button
+                      onClick={handleCopySMS}
+                      className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1 transition-all"
+                    >
+                      {copiedSMS ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copiedSMS ? 'कपी भयो!' : 'Copy SMS'}</span>
+                    </button>
+                  </div>
+                  <p className="text-2xs text-slate-500">
+                    यसलाई <strong className="text-slate-800 dark:text-slate-200">33001</strong> नम्बरमा SMS पठाउनुहोस्।
+                  </p>
+                </div>
+
+                <div className="text-2xs text-slate-500 space-y-1">
+                  <p>• नेपाल टेलिकम वा एनसेलको सिमबाट SMS गर्न सकिन्छ।</p>
+                  <p>• कार्ड छापिएको भए "Printed" र नछापिएको भए "Not Printed" म्यासेज आउँछ।</p>
+                </div>
               </div>
 
-              <a
-                href="https://applydl.dotm.gov.np/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-bold text-emerald-600 hover:underline inline-flex items-center gap-1"
-              >
-                <span>DOTM पोर्टल खोल्नुहोस्</span>
-                <ChevronRight className="w-3.5 h-3.5" />
-              </a>
+              {/* Method 2: Online Link */}
+              <div className="p-5 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-emerald-600" />
+                    <h4 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+                      विधि २: यातायात विभागको अनलाइन पोर्टल
+                    </h4>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    यातायात व्यवस्था विभागको आधिकारिक अनलाइन पोर्टलबाट स्मार्ट कार्ड प्रिन्ट स्थिति र बाँकी विवरण हेर्न सक्नुहुन्छ:
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <a
+                    href="https://dotm.gov.np"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-transform active:scale-95"
+                  >
+                    <span>DoTM Official Site खोल्नुहोस्</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://applydl.dotm.gov.np"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 px-4 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-transform active:scale-95"
+                  >
+                    <span>ApplyDL पोर्टल लगइन</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
             </div>
 
           </div>
-
         </div>
       )}
 
       {/* ==================================================== */}
-      {/* TAB 4: VEHICLE TAX & BLUEBOOK RENEWAL CALCULATOR */}
+      {/* TAB 4: VEHICLE ANNUAL TAX & BLUEBOOK CALCULATOR */}
       {/* ==================================================== */}
       {activeTab === 'tax' && (
-        <div className="space-y-6 max-w-4xl mx-auto">
-          
-          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+        <div className="space-y-6">
+          <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs space-y-6">
             
-            <div className="space-y-1 border-b border-slate-100 dark:border-slate-800 pb-4">
-              <span className="text-2xs font-bold uppercase tracking-wider text-emerald-600">
-                आर्थिक ऐन २०८१/८२ (बागमती प्रदेश दररेट)
+            <div className="space-y-2">
+              <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 text-2xs font-black uppercase tracking-wider">
+                बागमती प्रदेश दररेट (२०८१/२०८२)
               </span>
               <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-                सवारी साधन वार्षिक कर तथा ब्लुबुक नवीकरण क्यालकुलेटर
+                सवारी साधन वार्षिक कर तथा ब्लुबुक नवीकरण शुल्क क्याल्कुलेटर
               </h3>
-              <p className="text-xs text-slate-500">
-                आफ्नो सवारीको इन्जिन क्षमता (CC वा kW) चयन गर्नुहोस् र लाग्ने वार्षिक कर तथा तेस्रो पक्ष बिमा हिसाब गर्नुहोस्:
+              <p className="text-xs sm:text-sm text-slate-500">
+                इन्जिन क्षमता (CC / kW) अनुसार वार्षिक लाग्ने कर, तेस्रो पक्ष बिमा र नवीकरण दस्तुरको हिसाब
               </p>
             </div>
 
-            {/* Vehicle Category Select */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-bold">
+            {/* Vehicle Type Pills */}
+            <div className="flex items-center gap-2 flex-wrap">
               {[
-                { id: 'motorcycle', name: 'मोटरसाइकल / स्कुटर', icon: Bike },
-                { id: 'car_jeep', name: 'कार / जिप / भ्यान', icon: Car },
-                { id: 'electric_bike', name: 'विद्युतीय बाइक/स्कुटर', icon: Zap },
-                { id: 'electric_car', name: 'विद्युतीय कार (EV)', icon: Zap },
-              ].map(cat => {
-                const Icon = cat.icon;
-                const isSelected = taxVehicleType === cat.id;
-
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => {
-                      setTaxVehicleType(cat.id as any);
-                      setSelectedRangeIdx(0);
-                    }}
-                    className={`p-3 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 ${
-                      isSelected
-                        ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200 shadow-xs'
-                        : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span>{cat.name}</span>
-                  </button>
-                );
-              })}
+                { id: 'motorcycle', label: 'मोटरसाइकल / स्कुटर' },
+                { id: 'car_jeep', label: 'कार / जिप / भ्यान' },
+                { id: 'electric_bike', label: 'विद्युतीय दुईपाङ्ग्रे (EV)' },
+                { id: 'electric_car', label: 'विद्युतीय कार (EV)' }
+              ].map(type => (
+                <button
+                  key={type.id}
+                  onClick={() => {
+                    setTaxVehicleType(type.id as any);
+                    setSelectedRangeIdx(0);
+                  }}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                    taxVehicleType === type.id
+                      ? 'bg-emerald-600 text-white shadow-xs'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  }`}
+                >
+                  {type.label}
+                </button>
+              ))}
             </div>
 
-            {/* Engine Capacity (CC/kW) selector */}
+            {/* Range Selector */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                इन्जिन क्षमता (Engine Displacement / Power):
+              <label className="text-xs font-bold text-slate-600 dark:text-slate-400">
+                सवारीको इन्जिन क्षमता (CC / kW) छान्नुहोस्:
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                {currentTaxOptions.map((opt, i) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                {currentTaxOptions.map((opt, idx) => (
                   <button
-                    key={i}
-                    onClick={() => setSelectedRangeIdx(i)}
-                    className={`p-3 rounded-xl border text-left text-xs font-bold transition-all flex items-center justify-between ${
-                      selectedRangeIdx === i
-                        ? 'border-emerald-600 bg-emerald-600 text-white shadow-xs'
-                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
+                    key={idx}
+                    onClick={() => setSelectedRangeIdx(idx)}
+                    className={`p-3.5 rounded-2xl border text-left text-xs transition-all ${
+                      selectedRangeIdx === idx
+                        ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 font-bold text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-500/20'
+                        : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:border-slate-300'
                     }`}
                   >
                     <span>{opt.range}</span>
-                    <span>रु. {opt.annualTax.toLocaleString('ne-NP')}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Output Calculation Breakdown */}
+            {/* Tax Output Summary Card */}
             {activeTaxObj && (
-              <div className="p-5 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-3 font-sans">
-                <h4 className="font-bold text-sm text-slate-800 dark:text-slate-200">
-                  वार्षिक भुक्तानी गर्नुपर्ने कुल अनुमानित रकम:
+              <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 space-y-4">
+                <h4 className="font-black text-sm text-slate-900 dark:text-white uppercase tracking-wider">
+                  शुल्क विवरण ({activeTaxObj.range}):
                 </h4>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                    <span className="text-slate-500 block text-2xs">सवारी साधन वार्षिक कर:</span>
-                    <span className="text-base font-black text-slate-900 dark:text-white">
-                      रु. {activeTaxObj.annualTax.toLocaleString('ne-NP')} /-
-                    </span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <span className="text-2xs font-bold text-slate-400 uppercase">१. वार्षिक सवारी कर</span>
+                    <p className="text-xl font-black text-emerald-600">रु. {activeTaxObj.annualTax.toLocaleString()}</p>
                   </div>
-
-                  <div className="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                    <span className="text-slate-500 block text-2xs">तेस्रो पक्ष बिमा (Third Party):</span>
-                    <span className="text-base font-black text-slate-900 dark:text-white">
-                      रु. {activeTaxObj.insurance.toLocaleString('ne-NP')} /-
-                    </span>
+                  <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <span className="text-2xs font-bold text-slate-400 uppercase">२. तेस्रो पक्ष बिमा (अनुमानित)</span>
+                    <p className="text-xl font-black text-blue-600">रु. {activeTaxObj.insurance.toLocaleString()}</p>
                   </div>
-
-                  <div className="p-3 rounded-2xl bg-emerald-600 text-white">
-                    <span className="text-emerald-100 block text-2xs">जम्मा एकमुष्ट भुक्तानी:</span>
-                    <span className="text-base font-black">
-                      रु. {(activeTaxObj.annualTax + activeTaxObj.insurance).toLocaleString('ne-NP')} /-
-                    </span>
+                  <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <span className="text-2xs font-bold text-slate-400 uppercase">कुल वार्षिक खर्च</span>
+                    <p className="text-xl font-black text-slate-900 dark:text-white">
+                      रु. {(activeTaxObj.annualTax + activeTaxObj.insurance).toLocaleString()}
+                    </p>
                   </div>
                 </div>
 
-                <p className="text-3xs text-slate-400 pt-1">
-                  * नोट: आर्थिक वर्ष समाप्त भएको ३ महिनाभित्र नवीकरण नगरेमा पहिलो ३० दिन ५%, त्यसपछिको ४५ दिन १०%, र सोभन्दा बढी ढिला भएमा २०% सम्म थप जरिवाना लाग्नेछ।
-                </p>
+                <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-800 text-xs text-amber-900 dark:text-amber-200">
+                  ⚠️ <strong>जरिवाना सम्बन्धी जानकारी:</strong> म्याद नाघेको ३० दिनसम्म ५%, ४५ दिनसम्म १०%, आर्थिक वर्ष कटेमा २०% र ५ वर्ष कटेमा १००% सम्म जरिवाना लाग्दछ।
+                </div>
               </div>
             )}
 
           </div>
-
         </div>
       )}
 

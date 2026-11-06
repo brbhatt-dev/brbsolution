@@ -173,6 +173,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.95,
     },
+    {
+      url: `${baseUrl}/tools/land-dispute-precedents`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
 
     {
       url: `${baseUrl}/tools/merokitta-online-naksa`,

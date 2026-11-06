@@ -142,7 +142,7 @@ export default function PrivacyPolicyPage() {
 
             <a
 
-              href="/privacy.html"
+              href="/app-privacy.html" target="_blank" rel="noopener noreferrer"
 
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-all whitespace-nowrap"
 
@@ -154,6 +154,29 @@ export default function PrivacyPolicyPage() {
 
             </a>
 
+          </div>
+
+          {/* Government Entity Disclaimer & Official Sources */}
+          <div className="p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border-2 border-amber-300 dark:border-amber-800 text-slate-800 dark:text-slate-100 space-y-3">
+            <div className="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-bold text-sm">
+              <ShieldCheck className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              <span>Government Entity Disclaimer (गैर-सरकारी निकाय घोषणा)</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+              <strong>Land Solution is an independent professional utility and calculation tool developed by Bhakta Raj Bhatt (Surveyor).</strong> This application does NOT represent, and is NOT affiliated with, endorsed by, authorized by, or in any way associated with the Government of Nepal or any government ministry or department.
+            </p>
+            <div className="pt-2 border-t border-amber-200 dark:border-amber-800/60">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-amber-900 dark:text-amber-200 mb-2">
+                🏛️ Official Sources of Government Information:
+              </h4>
+              <ul className="text-xs space-y-1.5 text-slate-700 dark:text-slate-300 list-disc pl-5">
+                <li><strong>Survey Department (नापी विभाग):</strong> <a href="https://dos.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">https://dos.gov.np</a></li>
+                <li><strong>Department of Land Management and Archive (DoLMA / मालपोत):</strong> <a href="https://dolma.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">https://dolma.gov.np</a></li>
+                <li><strong>Inland Revenue Department (आन्तरिक राजस्व विभाग - IRD):</strong> <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">https://ird.gov.np</a></li>
+                <li><strong>Nepal Law Commission (नेपाल कानून आयोग):</strong> <a href="https://lawcommission.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">https://lawcommission.gov.np</a></li>
+                <li><strong>Government of Nepal Official Portal:</strong> <a href="https://nepal.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 underline font-semibold">https://nepal.gov.np</a></li>
+              </ul>
+            </div>
           </div>
 
 
