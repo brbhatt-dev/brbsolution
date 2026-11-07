@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { 
   Calculator, 
   Split, 
@@ -227,7 +228,22 @@ const TOOL_SECTIONS: ToolCategory[] = [
           '🖨️ बहु-कित्ता संयुक्त आधिकारिक स्लिप प्रिन्ट'
         ]
       },
-      {
+            {
+        id: 'cadastral-scale-calculator',
+        titleNp: 'नापी नक्सा सिट नम्बर तथा स्केल क्याल्कुलेटर',
+        titleEn: 'Cadastral Map Scale & Distance Calculator',
+        description: 'नापीको कित्ता नक्सामा १:५००, १:१२५०, १:२५०० र १:४८०० स्केल अनुसार रुलरले नापेको दूरी (cm/mm) बाट जमिनको वास्तविक लम्बाइ, चौडाइ र रोपनी/बिघा क्षेत्रफल निकाल्ने टुल।',
+        badge: 'नापी विभाग १:५००/१२५० स्केल',
+        icon: Compass,
+        href: '/tools/cadastral-scale-calculator',
+        features: [
+          '१:५००, १:१२५०, १:२५०० र १:४८०० स्केल रूपान्तरण',
+          'नक्सामा रुलरले नापेर जमिनमा मिटर, फिट र हात गणना',
+          'लम्बाई-चौडाइबाट रोपनी-आना र बिघा-कट्ठा क्षेत्रफल',
+          'राष्ट्रिय ग्रिड सिट नम्बर (उदा: १०२-१२३४) विश्लेषक'
+        ]
+      },
+{
         id: 'tax-calculator',
         titleNp: 'घरजग्गा कर तथा पुँजीगत लाभकर क्यालकुलेटर',
         titleEn: 'Land Tax & Capital Gain Tax (CGT) Calculator',
@@ -377,7 +393,37 @@ const TOOL_SECTIONS: ToolCategory[] = [
           '८ विधाका ऐतिहासिक फैसला र कानुनी सिद्धान्त'
         ]
       },
+            {
+        id: 'bayana-agreement-generator',
+        titleNp: 'घरजग्गा बैनापट्टा (Earnest Money) A4 PDF जेनेरेटर',
+        titleEn: 'Land Bayana Agreement & A4 PDF Generator',
+        description: 'मुलुकी देवानी संहिता २०७४ अनुसार घरजग्गा खरिदबिक्रीको आधिकारिक बैनापट्टा लिखित सम्झौतापत्र अनलाइनमै तयार गरी A4 साइजमा सिधै प्रिन्ट वा PDF सेभ गर्नुहोस्।',
+        badge: 'A4 प्रिन्टेबल लिखत / नयाँ',
+        icon: ScrollText,
+        href: '/tools/bayana-agreement-generator',
+        features: [
+          'क्रेता, बिक्रेता, कित्ता नं र चारकिल्ला अनलाइन फारम',
+          'दोब्बर हर्जाना र बैना जफत सम्बन्धी कडा कानुनी सर्त',
+          '१ लाखमाथिको वडा प्रमाणीकरण मापदण्ड अनुकूल',
+          '🖨️ १-क्लिक A4 साइजमा सिधै प्रिन्ट वा PDF सेभ'
+        ]
+      },
       {
+        id: 'ghar-bato-sifaris',
+        titleNp: 'घरबाटो सिफारिस तथा चारकिल्ला प्रमाणित निवेदन जेनेरेटर',
+        titleEn: 'Ghar Bato Sifaris & Charkilla Application Hub',
+        description: 'बैंक ऋण, नक्सा पास वा जग्गा मूल्याङ्कनका लागि वडा कार्यालयबाट घरबाटो सिफारिस र चारकिल्ला प्रमाणित लिन आधिकारिक नेपाली निवेदन, दस्तुर दररेट र ५ कागजात चेकलिस्ट।',
+        badge: 'वडा कार्यालय सेवा / नयाँ',
+        icon: Building2,
+        href: '/tools/ghar-bato-sifaris',
+        features: [
+          'घरबाटो सिफारिस र चारकिल्ला प्रमाणित निवेदन ढाँचा',
+          'सडक चौडाइ अनुसार वडा सिफारिस दस्तुर दररेट',
+          'वडा कार्यालय जाँदा चाहिने ५ अनिवार्य कागजात चेकलिस्ट',
+          '🖨️ A4 साइजमा सिधै प्रिन्ट वा Word मा कपी सुविधा'
+        ]
+      },
+{
         id: 'malpot-valuation-rates',
         titleNp: 'जिल्ला मालपोत न्यूनतम सरकारी मूल्याङ्कन सर्च इन्जिन',
         titleEn: 'District Malpot Land Valuation Rate Finder',
@@ -678,6 +724,9 @@ export default function ToolsHubPage() {
         </div>
 
         {/* Categorized Sections */}
+        {/* BR Patro App Smart Sticky Promo Banner */}
+        <PatroAppPromoBanner />
+
         {TOOL_SECTIONS.map((section, sIdx) => (
           <section key={sIdx} className="space-y-5">
             <div className="border-b border-slate-200 dark:border-slate-800 pb-3">

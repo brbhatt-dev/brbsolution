@@ -23,13 +23,13 @@ import {
 
 export const metadata: Metadata = {
   title: 'BR Patro (वैदिक पञ्चाङ्ग तथा आधुनिक नेपाली पात्रो) - Official Latest APK Download | BR Bhatta',
-  description: 'डाउनलोड गर्नुहोस् BR Patro आधिकारिक एन्ड्रोइड एप (v7.9.68) - १००% निःशुल्क, शुद्ध सूर्यसिद्धान्त तथा दृक्सिद्धान्त पञ्चाङ्ग, ३६ गुण मिलान, दैनिक यात्रा विचार, राहुकाल र राशिफल।',
+  description: 'डाउनलोड गर्नुहोस् BR Patro आधिकारिक एन्ड्रोइड एप (v7.9.69) - १००% निःशुल्क, शुद्ध सूर्यसिद्धान्त तथा दृक्सिद्धान्त पञ्चाङ्ग, ३६ गुण मिलान, दैनिक यात्रा विचार, राहुकाल र राशिफल।',
   alternates: {
     canonical: 'https://www.brbhatta.com/patro',
   },
   openGraph: {
-    title: 'BR Patro (नेपाली पात्रो) - Official Latest APK v7.9.68 Download',
-    description: 'आधिकारिक BR Patro v7.9.68 डाउनलोड गर्नुहोस् - १००% सुरक्षित, वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, दैनिक साइत र राशिफल।',
+    title: 'BR Patro (नेपाली पात्रो) - Official Latest APK v7.9.69 Download',
+    description: 'आधिकारिक BR Patro v7.9.69 डाउनलोड गर्नुहोस् - १००% सुरक्षित, वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, दैनिक साइत र राशिफल।',
     url: 'https://www.brbhatta.com/patro',
     siteName: 'BR Bhatta Software Solutions',
     images: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Latest APK v7.9.68',
+        alt: 'BR Patro Official Latest APK v7.9.69',
       },
     ],
     locale: 'ne_NP',
@@ -45,15 +45,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BR Patro (नेपाली पात्रो) - Official Latest APK v7.9.68 Download',
-    description: 'आधिकारिक BR Patro v7.9.68 डाउनलोड गर्नुहोस् - १००% सुरक्षित, वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान र दैनिक साइत।',
+    title: 'BR Patro (नेपाली पात्रो) - Official Latest APK v7.9.69 Download',
+    description: 'आधिकारिक BR Patro v7.9.69 डाउनलोड गर्नुहोस् - १००% सुरक्षित, वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान र दैनिक साइत।',
     images: ['https://www.brbhatta.com/assets/br-patro-og.png'],
   },
 };
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.68/BR_Patro_v7.9.68.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.68";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.69/BR_Patro_v7.9.69.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.69";
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans">
@@ -93,7 +93,7 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.65
+                  Version 7.9.69
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                   Build 162
@@ -163,7 +163,7 @@ export default function PatroDownloadPage() {
         <div className="mb-10">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-amber-500" />
-            नयाँ भर्सन (v7.9.68) का प्रमुख विशेषताहरू
+            नयाँ भर्सन (v7.9.69) का प्रमुख विशेषताहरू
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -230,7 +230,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.68.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.69.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">३</span>
@@ -249,7 +249,7 @@ export default function PatroDownloadPage() {
             className="inline-flex items-center gap-2 text-sm font-bold text-red-600 dark:text-red-400 hover:underline"
           >
             <Download className="w-4 h-4" />
-            BR_Patro_v7.9.68.apk सिधै डाउनलोड गर्नुहोस् ({downloadUrl.split('/').pop()})
+            BR_Patro_v7.9.69.apk सिधै डाउनलोड गर्नुहोस् ({downloadUrl.split('/').pop()})
           </a>
         </div>
       </main>
