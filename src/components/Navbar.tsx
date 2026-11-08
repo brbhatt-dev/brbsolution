@@ -396,6 +396,18 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               </div>
             </div>
 
+            {/* पात्रो (Patro) Direct Link */}
+            <Link
+              href="/patro"
+              className="relative inline-flex items-center gap-1.5 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-red-600 dark:text-slate-300 dark:hover:text-amber-400 transition-colors uppercase tracking-wider whitespace-nowrap py-1 px-2.5 rounded-full hover:bg-red-50 dark:hover:bg-red-950/40"
+            >
+              <Calendar className="w-3.5 h-3.5 text-red-600 dark:text-amber-400" />
+              <span>पात्रो</span>
+              <span className="text-[9px] font-black tracking-normal px-1.5 py-0.2 rounded-full bg-red-600 text-white dark:bg-amber-500 dark:text-slate-950 shadow-2xs">
+                २०८१-८४
+              </span>
+            </Link>
+
             <Link
               href="/blog"
               className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
@@ -546,6 +558,21 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               <span>सम्पूर्ण १८+ डिजिटल उपकरण हब (Open Tools Hub)</span>
             </div>
             <ArrowRight className="w-4 h-4" />
+          </Link>
+
+          {/* Top Quick Action to BR Patro */}
+          <Link
+            href="/patro"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-[#2f0606] via-[#7f1d1d] to-[#991b1b] text-white font-bold text-xs shadow-md border border-amber-400/30"
+          >
+            <div className="flex items-center gap-2.5">
+              <Calendar className="w-4 h-4 text-amber-300" />
+              <span className="font-black text-amber-200">बी.आर. पात्रो (२०८१–२०८४ क्यालेन्डर & साइत)</span>
+            </div>
+            <span className="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black tracking-wider uppercase">
+              PRO
+            </span>
           </Link>
 
           {/* Category 1: नापी तथा जग्गा टूल्स */}

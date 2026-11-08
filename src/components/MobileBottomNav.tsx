@@ -45,6 +45,18 @@ interface SearchItem {
 }
 
 const SEARCH_DATABASE: SearchItem[] = [
+  // 0. BR Patro (Flagship App)
+  {
+    id: 'br-patro',
+    titleNp: 'बी.आर. पात्रो (नेपाली क्यालेन्डर & पञ्चाङ्ग २०८१-२०८४)',
+    titleEn: 'BR Patro Nepali Calendar, Panchang & Sait',
+    category: 'app',
+    categoryLabel: 'पात्रो तथा पञ्चाङ्ग',
+    badge: '२०८१-८४ PRO',
+    href: '/patro',
+    keywords: ['पात्रो', 'patro', 'nepali calendar', 'क्यालेन्डर', 'पञ्चाङ्ग', 'panchang', 'साइत', 'तपाईंको राशिफल', 'चाडपर्व', 'विवाह साइत', 'व्रतबन्ध', 'आजको तिथि', 'br patro', 'download apk', 'तिथि'],
+    icon: Calendar
+  },
   // 1. Digital Tools
   {
     id: 'land-calculator',

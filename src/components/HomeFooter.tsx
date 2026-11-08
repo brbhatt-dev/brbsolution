@@ -158,6 +158,10 @@ export default function HomeFooter() {
           
           {/* Navigation & Compliance Links with whitespace-nowrap */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3.5 gap-y-1.5">
+            <Link href="/patro" className="text-amber-400 hover:text-amber-300 font-semibold whitespace-nowrap transition-colors flex items-center gap-1">
+              <span>बी.आर. पात्रो (२०८१–८४)</span>
+            </Link>
+            <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/blog" className="text-emerald-400 hover:text-emerald-300 font-semibold whitespace-nowrap transition-colors">
               ब्लग तथा लेखहरू
             </Link>
