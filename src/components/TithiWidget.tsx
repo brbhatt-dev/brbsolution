@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   Calendar, 
   Moon, 
@@ -159,14 +160,24 @@ export default function TithiWidget({ variant = 'compact' }: TithiWidgetProps) {
                     )}
                   </div>
 
-                  <button
-                    onClick={() => setShowPanchangModal(true)}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all hover:scale-105 active:scale-95 shadow-sm"
-                    title="विस्तृत वैदिक पञ्चाङ्ग हेर्नुहोस्"
-                  >
-                    <Compass className="w-3 h-3" />
-                    <span>विस्तृत पञ्चाङ्ग</span>
-                  </button>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => setShowPanchangModal(true)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all hover:scale-105 active:scale-95 shadow-sm"
+                      title="विस्तृत वैदिक पञ्चाङ्ग हेर्नुहोस्"
+                    >
+                      <Compass className="w-3 h-3" />
+                      <span>विस्तृत पञ्चाङ्ग</span>
+                    </button>
+                    <Link
+                      href="/patro"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-all hover:scale-105 active:scale-95 shadow-sm"
+                      title="पूर्ण बी.आर. पात्रो एप खोल्नुहोस्"
+                    >
+                      <Calendar className="w-3 h-3" />
+                      <span>पूर्ण पात्रो ▶</span>
+                    </Link>
+                  </div>
                 </div>
 
               </div>
@@ -551,13 +562,22 @@ function PanchangDetailsModal({ details, onClose }: { details: NepaliCalendarDet
 
         {/* Footer info & close CTA */}
         <div className="pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
-          <span>* वैदिक पञ्चाङ्ग गणना सुर्यसिद्धान्त तथा आधुनिक खगोलीय स्थिति (Ephemeris) मा आधारित।</span>
-          <button
-            onClick={onClose}
-            className="w-full sm:w-auto px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-colors"
-          >
-            बन्द गर्नुहोस्
-          </button>
+          <span>* वैदिक पञ्चाङ्ग गणना सुर्यसिद्धान्त तथा बी.आर. पात्रो खगोलीय डेटाबेसमा आधारित।</span>
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <Link
+              href="/patro"
+              className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-colors flex items-center gap-1.5"
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>पूर्ण पात्रो खोल्नुहोस् ▶</span>
+            </Link>
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-colors"
+            >
+              बन्द गर्नुहोस्
+            </button>
+          </div>
         </div>
 
       </div>
