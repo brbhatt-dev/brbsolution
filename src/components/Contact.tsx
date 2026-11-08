@@ -7,6 +7,7 @@ import { copyToClipboard } from '@/lib/clipboard';
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     contact: '',
     service: 'Land Solution सम्बन्धी',
     message: '',
@@ -42,11 +43,13 @@ export default function Contact() {
         body: JSON.stringify({
           access_key: web3FormsKey,
           name: formData.name,
+          email: formData.email,
           phone: formData.contact,
           service: formData.service,
           subject: `BR Bhatta Website Inquiry: ${formData.service} (${formData.name})`,
-          message: formData.message,
+          message: `पूरा नाम: ${formData.name}\nइमेल ठेगाना: ${formData.email}\nफोन/सम्पर्क: ${formData.contact}\nविषय: ${formData.service}\n\nसन्देश:\n${formData.message}`,
           from_name: `${formData.name} (BR Bhatta Website)`,
+          replyto: formData.email,
         }),
       });
 
@@ -79,7 +82,7 @@ export default function Contact() {
             कुनै सोधपुछ वा सहयोगका लागि सम्पर्क गर्नुहोस्
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            ल्याण्ड सोलुसन, हाम्रो कोष एप वा जग्गा नापजाँच सम्बन्धी कुनै पनि जिज्ञासा सिधै पठाउनुहोस्।
+            ल्याण्ड सोलुसन, बी.आर. पात्रो, हाम्रो कोष वा जग्गा नापजाँच सम्बन्धी कुनै पनि जिज्ञासा सिधै पठाउनुहोस्।
           </p>
         </div>
 
@@ -99,18 +102,21 @@ export default function Contact() {
                   <span className="text-[10px] text-slate-400 font-bold uppercase block">आधिकारिक इमेल</span>
                   <a
                     href={`mailto:${emailAddress}`}
-                    className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors break-all"
+                    className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                   >
                     {emailAddress}
                   </a>
                 </div>
               </div>
+
               <button
+                type="button"
                 onClick={copyEmail}
-                title="इमेल कपी गर्नुहोस्"
-                className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-600 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                className="p-2 rounded-xl text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-white dark:hover:bg-slate-800 transition-all cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700 active:scale-95"
+                title="इमेल ठेगाना कपी गर्नुहोस्"
+                aria-label="Copy Email"
               >
-                {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
 
@@ -217,13 +223,13 @@ export default function Contact() {
                   <div>
                     <h4 className="text-base font-bold text-slate-900 dark:text-white">सन्देश सफलतापूर्वक पठाइयो!</h4>
                     <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 max-w-sm mx-auto">
-                      धन्यवाद {formData.name ? <strong>{formData.name} ज्यू</strong> : ''}। हामी छिट्टै सम्पर्क गर्नेछौं।
+                      धन्यवाद {formData.name ? <strong>{formData.name} ज्यू</strong> : ''}। हामी तपाईंको इमेल तथा फोन नम्बरमा छिट्टै सम्पर्क गर्नेछौं।
                     </p>
                   </div>
                   <button
                     onClick={() => {
                       setStatus('idle');
-                      setFormData({ name: '', contact: '', service: 'Land Solution सम्बन्धी', message: '' });
+                      setFormData({ name: '', email: '', contact: '', service: 'Land Solution सम्बन्धी', message: '' });
                     }}
                     className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
                   >
@@ -239,7 +245,7 @@ export default function Contact() {
                         <p>{errorMessage}</p>
                       </div>
                       <a
-                        href={`mailto:${emailAddress}?subject=${encodeURIComponent(`[BR Bhatta Website] ${formData.service} - ${formData.name || 'Inquiry'}`)}&body=${encodeURIComponent(`पूरा नाम: ${formData.name}\nसम्पर्क: ${formData.contact}\nविषय: ${formData.service}\n\nसन्देश:\n${formData.message}`)}`}
+                        href={`mailto:${emailAddress}?subject=${encodeURIComponent(`[BR Bhatta Website] ${formData.service} - ${formData.name || 'Inquiry'}`)}&body=${encodeURIComponent(`पूरा नाम: ${formData.name}\nइमेल: ${formData.email}\nसम्पर्क: ${formData.contact}\nविषय: ${formData.service}\n\nसन्देश:\n${formData.message}`)}`}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-bold text-xs transition-all shadow-2xs"
                       >
                         <Mail className="w-3.5 h-3.5" />
@@ -248,7 +254,7 @@ export default function Contact() {
                     </div>
                   )}
 
-                  {/* Name and Phone side-by-side in 2 columns (Saves vertical space!) */}
+                  {/* Row 1: Name and Phone side-by-side in 2 columns */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     <div>
                       <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
@@ -282,24 +288,43 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
-                      सहयोग चाहिएको विषय
-                    </label>
-                    <div className="relative">
-                      <select
+                  {/* Row 2: Email and Subject side-by-side in 2 columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        इमेल ठेगाना * (Email)
+                      </label>
+                      <input
+                        type="email"
+                        required
                         disabled={status === 'sending'}
-                        value={formData.service}
-                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full appearance-none px-3.5 py-2.5 pr-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60 cursor-pointer shadow-2xs transition-colors"
-                      >
-                        <option value="Land Solution सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
-                        <option value="हाम्रो कोष सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">हाम्रो कोष (Hamro Kosh App)</option>
-                        <option value="AutoCAD LSP फाइल्स सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">AutoCAD LSP फाइल्स तथा क्याड स्क्रिप्ट</option>
-                        <option value="जग्गा नापजाँच वा प्राविधिक परामर्श" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">जग्गा नापजाँच वा प्राविधिक परामर्श</option>
-                        <option value="अन्य सामान्य सोधपुछ" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">अन्य सामान्य सोधपुछ</option>
-                      </select>
-                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="उदा. yourname@gmail.com"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        सहयोग चाहिएको विषय
+                      </label>
+                      <div className="relative">
+                        <select
+                          disabled={status === 'sending'}
+                          value={formData.service}
+                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                          className="w-full appearance-none px-3.5 py-2 pr-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 disabled:opacity-60 cursor-pointer shadow-2xs transition-colors"
+                        >
+                          <option value="Land Solution सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Land Solution (नापजाँच तथा कित्ताकाट एप)</option>
+                          <option value="बी.आर. पात्रो सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">बी.आर. पात्रो (BR Patro App)</option>
+                          <option value="हाम्रो कोष सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">हाम्रो कोष (Hamro Kosh App)</option>
+                          <option value="AutoCAD LSP फाइल्स सम्बन्धी" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">AutoCAD LSP फाइल्स तथा क्याड स्क्रिप्ट</option>
+                          <option value="जग्गा नापजाँच वा प्राविधिक परामर्श" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">जग्गा नापजाँच वा प्राविधिक परामर्श</option>
+                          <option value="अन्य सामान्य सोधपुछ" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">अन्य सामान्य सोधपुछ</option>
+                        </select>
+                        <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      </div>
                     </div>
                   </div>
 
