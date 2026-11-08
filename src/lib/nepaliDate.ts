@@ -39,6 +39,12 @@ export interface NepaliCalendarDetails {
   yamaganda?: string;
   gulikaKaal?: string;
   dishaShoola?: string;
+  ayan?: string;
+  samvatsara?: string;
+  raja?: string;
+  mantri?: string;
+  anandadiYoga?: string;
+  chandraVasa?: string;
 }
 
 export function getNepaliCalendarDetails(date = new Date()): NepaliCalendarDetails {

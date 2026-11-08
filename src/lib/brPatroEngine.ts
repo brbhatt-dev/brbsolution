@@ -561,7 +561,13 @@ export function getPanchangDetails(date = new Date()) {
     rahuKaal: p.rahuKala,
     yamaganda: p.yamaGhanta,
     gulikaKaal: p.gulikaKala,
-    dishaShoola: `${p.dishaShoola} (परिहार: ${p.dishaParihara})`
+    dishaShoola: `${p.dishaShoola} (परिहार: ${p.dishaParihara})`,
+    ayan: p.ayan,
+    samvatsara: 'कालयुक्त',
+    raja: 'गुरु (बृहस्पति)',
+    mantri: 'भौम (मङ्गल)',
+    anandadiYoga: p.anandadiYoga,
+    chandraVasa: p.chandraVasa.split(' ')[0]
   };
 }
 
