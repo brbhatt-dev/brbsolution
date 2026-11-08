@@ -222,7 +222,7 @@ export default function InteractiveOnlinePatro() {
               </span>
             </div>
             <p className="text-2xs sm:text-xs text-slate-500 dark:text-slate-400 font-medium">
-              नेपालको आधिकारिक वैदिक पञ्चाङ्ग • २०८३
+              नेपालको आधिकारिक वैदिक पञ्चाङ्ग • {toNepaliDigits(todayBs.year)} वि.सं.
             </p>
           </div>
         </div>

@@ -26,7 +26,7 @@ import {
   Trophy
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
-import TithiWidget from '../TithiWidget';
+import HomePatroHub from '../HomePatroHub';
 import IosInstallGuideModal from '../IosInstallGuideModal';
 import AppleLogo from '../AppleLogo';
 import MagazineArticlesSection from '../MagazineArticlesSection';
@@ -165,7 +165,7 @@ export default function StyleCitizenPortal() {
       
       {/* 1. TOP WIDE PANORAMIC NEPALI PATRO BAR (लामो र फराकिलो पात्रो & पञ्चाङ्ग) */}
       <section className="w-full">
-        <TithiWidget variant="panoramic" />
+        <HomePatroHub />
       </section>
 
       {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD (अभिवादन + LAND SOLUTION WEB DEMO & iOS CTA CARD) */}
