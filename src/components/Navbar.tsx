@@ -80,7 +80,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-5 shrink-0">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3.5 shrink-0">
             
             {/* All Tools Hub Dropdown */}
             <div 
@@ -415,7 +415,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               <span className="inline-flex items-center gap-1.5">
-                <span>ब्लग तथा लेखहरू</span>
+                <span className="hidden 2xl:inline">ब्लग तथा </span><span>लेखहरू</span>
                 <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                   २२+
                 </span>
@@ -424,22 +424,47 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
 
             <Link
               href="/about"
-              className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
+              className="hidden 2xl:inline-block text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               हाम्रो बारेमा
             </Link>
 
             <Link
               href="/contact"
-              className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
+              className="hidden 2xl:inline-block text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               सम्पर्क
             </Link>
           </nav>
 
-          {/* Desktop Right Side: Social Media Icons + Theme Toggle */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0">
-            <div className="hidden 2xl:flex items-center gap-1.5 pl-2.5 border-l border-slate-200 dark:border-slate-800">
+          {/* Desktop Right Side: Language & Theme Toggles ALWAYS FIRST */}
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0">
+            {/* 1. Language Toggle */}
+            <LanguageToggle variant="pill" />
+
+            {/* 2. Theme Toggle */}
+            <ThemeToggle variant="pill" />
+
+            {/* 3. Quick Search Trigger */}
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-quick-search'));
+                }
+              }}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors text-xs font-bold shadow-2xs group cursor-pointer"
+              title="खोजी गर्नुहोस् (Ctrl + K)"
+            >
+              <Search className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+              <span className="hidden 2xl:inline">खोज्नुहोस्</span>
+              <kbd className="hidden 2xl:inline-block px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[10px] font-mono text-slate-400 dark:text-slate-500 shadow-2xs">
+                ⌘K
+              </kbd>
+            </button>
+
+            {/* 4. Social Media Profiles (Visible on 2xl) */}
+            <div className="hidden 2xl:flex items-center gap-1.5 pl-2 border-l border-slate-200 dark:border-slate-800">
               <a
                 href="https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd"
                 target="_blank"
@@ -475,27 +500,6 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                 <Instagram className="w-3.5 h-3.5 text-white shrink-0" />
               </a>
             </div>
-
-            {/* Quick Search Trigger (Desktop) */}
-            <button
-              type="button"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.dispatchEvent(new CustomEvent('open-quick-search'));
-                }
-              }}
-              className="hidden xl:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors text-xs font-bold shadow-2xs group cursor-pointer"
-              title="खोजी गर्नुहोस् (Ctrl + K)"
-            >
-              <Search className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
-              <span className="hidden xl:inline">खोज्नुहोस्</span>
-              <kbd className="hidden xl:inline-block px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[10px] font-mono text-slate-400 dark:text-slate-500 shadow-2xs">
-                ⌘K
-              </kbd>
-            </button>
-
-            <LanguageToggle variant="pill" />
-            <ThemeToggle variant="pill" />
           </div>
 
           {/* Mobile Right Controls */}

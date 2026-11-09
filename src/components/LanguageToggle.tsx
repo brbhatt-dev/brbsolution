@@ -103,11 +103,26 @@ export default function LanguageToggle({
   };
 
   if (!mounted) {
+    if (variant === 'compact') {
+      return (
+        <div className={`h-9 px-2.5 rounded-xl flex items-center gap-1.5 border bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 ${className}`}>
+          <span className="text-xs">🇳🇵</span>
+          <span className="text-xs font-bold">NEP</span>
+        </div>
+      );
+    }
     return (
-      <div className={`flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold ${className}`}>
-        <span className="px-2 py-1 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 flex items-center gap-1">
-          <span>🇳🇵</span> <span>नेपाली</span>
-        </span>
+      <div className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs ${className}`}>
+        <div className="px-2 xl:px-2.5 py-1 rounded-lg flex items-center gap-1 xl:gap-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs font-black">
+          <span className="text-xs leading-none">🇳🇵</span>
+          <span className="hidden xl:inline">नेपाली</span>
+          <span className="xl:hidden">NEP</span>
+        </div>
+        <div className="px-2 xl:px-2.5 py-1 rounded-lg flex items-center gap-1 xl:gap-1.5 text-slate-500">
+          <span className="text-xs leading-none">🇬🇧</span>
+          <span className="hidden xl:inline">English</span>
+          <span className="xl:hidden">ENG</span>
+        </div>
       </div>
     );
   }
