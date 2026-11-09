@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import { 
   ArrowUp, 
   Mail, 
@@ -141,6 +143,11 @@ export default function HomeFooter() {
             >
               <Mail className="w-3.5 h-3.5 shrink-0" />
             </a>
+            <div className="flex items-center gap-1.5 ml-1 border-l border-slate-800 pl-2">
+              <LanguageToggle variant="pill" />
+              <ThemeToggle variant="icon" />
+            </div>
+
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 ml-1 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-emerald-950 text-slate-300 hover:text-emerald-300 border border-slate-800 hover:border-emerald-700/60 text-xs font-medium transition-all active:scale-95 cursor-pointer shadow-2xs"

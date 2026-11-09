@@ -185,7 +185,7 @@ export default function LanguageToggle({
       <button
         type="button"
         onClick={() => switchLanguage('ne')}
-        className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+        className={`px-2 xl:px-2.5 py-1 rounded-lg flex items-center gap-1 xl:gap-1.5 transition-all cursor-pointer ${
           currentLang === 'ne'
             ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs font-black'
             : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -193,13 +193,14 @@ export default function LanguageToggle({
         title="नेपाली भाषामा हेर्नुहोस्"
       >
         <span className="text-xs leading-none">🇳🇵</span>
-        <span>नेपाली</span>
+        <span className="hidden xl:inline">नेपाली</span>
+        <span className="xl:hidden">NEP</span>
       </button>
 
       <button
         type="button"
         onClick={() => switchLanguage('en')}
-        className={`px-2.5 py-1 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+        className={`px-2 xl:px-2.5 py-1 rounded-lg flex items-center gap-1 xl:gap-1.5 transition-all cursor-pointer ${
           currentLang === 'en'
             ? 'bg-emerald-600 text-white shadow-xs font-black'
             : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -207,7 +208,8 @@ export default function LanguageToggle({
         title="Switch whole website to English"
       >
         <span className="text-xs leading-none">🇬🇧</span>
-        <span>English</span>
+        <span className="hidden xl:inline">English</span>
+        <span className="xl:hidden">ENG</span>
       </button>
     </div>
   );

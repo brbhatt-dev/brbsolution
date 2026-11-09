@@ -36,7 +36,8 @@ import {
   Calendar,
   Gavel,
   Landmark,
-  Hammer
+  Hammer,
+  SlidersHorizontal
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
@@ -72,8 +73,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
                 Land Solution
               </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
-                BR Bhatta • brbhatta.com
+              <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold truncate max-w-[125px] sm:max-w-none">
+                <span className="hidden sm:inline">BR Bhatta • </span>brbhatta.com
               </span>
             </div>
           </Link>
@@ -437,8 +438,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           </nav>
 
           {/* Desktop Right Side: Social Media Icons + Theme Toggle */}
-          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
-            <div className="flex items-center gap-1.5 pl-3 border-l border-slate-200 dark:border-slate-800">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0">
+            <div className="hidden 2xl:flex items-center gap-1.5 pl-2.5 border-l border-slate-200 dark:border-slate-800">
               <a
                 href="https://www.tiktok.com/@br_bhatta?_r=1&_t=ZS-9A2ydU7e8Rd"
                 target="_blank"
@@ -483,7 +484,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                   window.dispatchEvent(new CustomEvent('open-quick-search'));
                 }
               }}
-              className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors text-xs font-bold shadow-2xs group cursor-pointer"
+              className="hidden xl:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 border border-slate-200/80 dark:border-slate-700/80 transition-colors text-xs font-bold shadow-2xs group cursor-pointer"
               title="खोजी गर्नुहोस् (Ctrl + K)"
             >
               <Search className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
@@ -494,11 +495,11 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             </button>
 
             <LanguageToggle variant="pill" />
-            <ThemeToggle variant="icon" />
+            <ThemeToggle variant="pill" />
           </div>
 
           {/* Mobile Right Controls */}
-          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
+          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               type="button"
               onClick={() => {
@@ -506,7 +507,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                   window.dispatchEvent(new CustomEvent('open-quick-search'));
                 }
               }}
-              className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700 active:scale-95 cursor-pointer"
+              className="hidden sm:flex w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 items-center justify-center transition-colors border border-slate-200 dark:border-slate-700 active:scale-95 cursor-pointer"
               aria-label="खोज्नुहोस्"
               title="खोज्नुहोस्"
             >
@@ -519,7 +520,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700 active:scale-95 cursor-pointer"
               aria-label="Open menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -533,8 +534,24 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 pt-3 pb-8 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
           
-          {/* Mobile Language Switcher Card */}
-          <LanguageToggle variant="full" />
+          {/* QUICK SETTINGS CARD: DARK/LIGHT MODE & LANGUAGE SWITCHER */}
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2.5">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-400 px-0.5">
+              <span className="flex items-center gap-1.5">
+                <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>द्रुत सेटिङहरू (Quick Settings)</span>
+              </span>
+              <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">
+                मोड र भाषा
+              </span>
+            </div>
+
+            {/* Dark Mode Full Button */}
+            <ThemeToggle variant="full" />
+
+            {/* Language Switcher Full Button */}
+            <LanguageToggle variant="full" />
+          </div>
 
           {/* Top Quick Action to Live Survey Notices */}
           <Link
