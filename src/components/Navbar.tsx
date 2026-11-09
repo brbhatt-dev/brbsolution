@@ -39,6 +39,7 @@ import {
   Hammer
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import TopTickerBanner from './tickers/TopTickerBanner';
 
 export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } = {}) {
@@ -492,6 +493,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               </kbd>
             </button>
 
+            <LanguageToggle variant="pill" />
             <ThemeToggle variant="icon" />
           </div>
 
@@ -511,6 +513,8 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               <Search className="w-4.5 h-4.5" />
             </button>
 
+            <LanguageToggle variant="compact" />
+
             <ThemeToggle variant="icon" />
 
             <button
@@ -529,6 +533,9 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 pt-3 pb-8 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
           
+          {/* Mobile Language Switcher Card */}
+          <LanguageToggle variant="full" />
+
           {/* Top Quick Action to Live Survey Notices */}
           <Link
             href="/notices"
