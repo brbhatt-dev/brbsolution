@@ -31,9 +31,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'BR Bhatta', url: 'https://www.brbhatta.com' }],
   metadataBase: new URL('https://www.brbhatta.com'),
-  alternates: {
-    canonical: 'https://www.brbhatta.com',
-  },
   robots: {
     index: true,
     follow: true,

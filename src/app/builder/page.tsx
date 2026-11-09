@@ -7,6 +7,13 @@ import InteractiveLayoutBuilder from '@/components/builder/InteractiveLayoutBuil
 export const metadata: Metadata = {
   title: 'दृष्य सम्पादक (Visual Layout Builder) | BR Bhatta',
   description: 'वेबसाइटका सबै भागहरूलाई आफ्नो इच्छाअनुसार Drag & Drop गरेर माथि/तल सार्नुहोस् र मनपर्ने लेआउट बनाउनुहोस्।',
+  alternates: {
+    canonical: 'https://www.brbhatta.com/builder',
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function BuilderPage() {

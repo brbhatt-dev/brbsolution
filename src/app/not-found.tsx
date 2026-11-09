@@ -7,6 +7,10 @@ import Footer from '@/components/Footer';
 export const metadata = {
   title: '४०४ - पृष्ठ फेला परेन | 404 Page Not Found - BR Bhatta',
   description: 'माफ गर्नुहोस्, तपाईंले खोज्नुभएको पृष्ठ फेला परेन। (Page not found)',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function NotFound() {

@@ -1,9 +1,27 @@
+import React from 'react';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import StyleCitizenPortal from '@/components/demos/StyleCitizenPortal';
 import DosNoticesWidget from '@/components/DosNoticesWidget';
 import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import Contact from '@/components/Contact';
 import HomeFooter from '@/components/HomeFooter';
+
+export const metadata: Metadata = {
+  title: 'BR Bhatta | Land Solution, Hamro Kosh & Tech Innovations Nepal',
+  description: 'Official portal of BR Bhatta. Creator of Land Solution (नेपाल जग्गा नापजाँच तथा कित्ताकाट एप), Hamro Kosh (बचत कोष एप), and free AutoCAD LSP automation scripts for engineers and surveyors in Nepal.',
+  alternates: {
+    canonical: 'https://www.brbhatta.com',
+  },
+  openGraph: {
+    title: 'BR Bhatta | Land Solution & Tech Innovations Nepal',
+    description: 'Land Solution (नापजाँच तथा कित्ताकाट एप), Hamro Kosh, and AutoCAD LSP scripts for Nepal land surveying.',
+    url: 'https://www.brbhatta.com',
+    siteName: 'BR Bhatta',
+    locale: 'ne_NP',
+    type: 'website',
+  },
+};
 
 export default function Home() {
   return (

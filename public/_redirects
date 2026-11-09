@@ -9,11 +9,16 @@ http://bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 http://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 
 # Blog & Article aliases for search bots & crawlers
+/articles https://www.brbhatta.com/blog 301!
 /posts /blog 301
 /post /blog 301
 /blogs /blog 301
 /posts/:slug /articles/:slug 301
 /blog/:slug /articles/:slug 301
+
+# Duplicate Canonical Aliases Consolidated
+/tax-calculator https://www.brbhatta.com/tools/tax-calculator 301!
+/app https://www.brbhatta.com/land-solution 301!
 
 # Compliance & Trust Policy Aliases (Gridinsoft, ScamAdviser & Crawler bots)
 /terms-of-service /terms 301

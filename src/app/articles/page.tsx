@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title: 'गाइड तथा ज्ञान केन्द्र (Articles & Guides) | BR Bhatta & Land Solution Nepal',
   description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, अंशबन्डा, र AutoCAD LSP सम्बन्धी आधिकारिक तथा विस्तृत गाइडहरू। Official Nepal Land Surveying & Real Estate Knowledge Base.',
   alternates: {
-    canonical: 'https://www.brbhatta.com/articles',
+    canonical: 'https://www.brbhatta.com/blog',
   },
   openGraph: {
     title: 'ब्लग तथा ज्ञान केन्द्र (Blog & Articles) | BR Bhatta & Land Solution Nepal',
     description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, अंशबन्डा, र AutoCAD सम्बन्धी आधिकारिक तथा विस्तृत ब्लग र प्राविधिक गाइडहरू।',
-    url: 'https://www.brbhatta.com/articles',
+    url: 'https://www.brbhatta.com/blog',
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
