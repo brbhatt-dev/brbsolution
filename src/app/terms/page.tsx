@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FileText, ArrowLeft, ShieldAlert, CheckCircle2, Mail } from 'lucide-react';
+import { FileText, ArrowLeft, ShieldAlert, Mail } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Terms of Service (नियम तथा सर्तहरू) | BR Bhatta & Land Solution',
-  description: 'Terms and conditions governing the use of www.brbhatta.com, Land Solution apps, AutoCAD scripts, and financial simulators.',
+  description: 'Official Terms and Conditions governing the use of www.brbhatta.com, Land Solution mobile apps, AutoCAD LSP scripts, and online land surveying calculators.',
   alternates: {
     canonical: 'https://www.brbhatta.com/terms',
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Terms and conditions governing the use of www.brbhatta.com, Land Solution apps, and AutoCAD scripts.',
     url: 'https://www.brbhatta.com/terms',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
@@ -36,7 +36,7 @@ export default function TermsPage() {
             className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>गृहपृष्ठ (Home) फर्कनुहोस्</span>
+            <span>Back to Home (गृहपृष्ठ)</span>
           </Link>
           <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold">www.brbhatta.com</span>
         </div>
@@ -50,46 +50,53 @@ export default function TermsPage() {
           <div className="border-b border-slate-100 dark:border-slate-800 pb-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-xs font-bold mb-3 border border-blue-200 dark:border-blue-800">
               <FileText className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              <span>TERMS & CONDITIONS</span>
+              <span>OFFICIAL TERMS &amp; CONDITIONS</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               Terms of Service (प्रयोगका सर्तहरू)
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-              अन्तिम अपडेट (Last Updated): September 2026 • Effective Date: January 1, 2026
+              Last Updated: November 2026 • Effective Date: January 1, 2026
             </p>
           </div>
 
           {/* 1. Agreement */}
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">१. सर्तहरूको स्वीकृति (Acceptance of Terms)</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">1. Acceptance of Terms (सर्तहरूको स्वीकृति)</h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              <strong>www.brbhatta.com</strong> वेब पोर्टल, यस अन्तर्गतका Land Solution वेब डेमो, हाम्रो कोष डेमो, तथा AutoCAD LSP डाउनलोडहरू प्रयोग गर्दा तपाईं यी सम्पूर्ण नियम तथा सर्तहरू मान्न सहमत हुनुहुन्छ। यदि तपाईं यी सर्तहरूसँग असहमत हुनुहुन्छ भने कृपया हाम्रो वेबसाइट र सफ्टवेयर सेवाहरू प्रयोग नगर्नुहोला।
+              Welcome to <strong>www.brbhatta.com</strong>. By accessing this website, using our online land surveying and tax calculators, downloading our AutoCAD AutoLISP (.LSP) scripts, or installing the <strong>Land Solution</strong> and <strong>Hamro Kosh</strong> mobile applications, you agree to be bound by these Terms and Conditions of Use and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+            </p>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>www.brbhatta.com</strong> वेब पोर्टल, यस अन्तर्गतका अनलाइन क्यालकुलेटरहरू, Land Solution मोबाइल एप, तथा AutoCAD LSP डाउनलोडहरू प्रयोग गर्दा तपाईं यी सम्पूर्ण नियम तथा सर्तहरू मान्न सहमत हुनुहुन्छ।
             </p>
           </section>
 
           {/* 2. Intellectual Property */}
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">२. बौद्धिक सम्पत्ति अधिकार (Intellectual Property Rights)</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">2. Intellectual Property &amp; Use License (बौद्धिक सम्पत्ति अधिकार)</h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              यस वेबसाइटमा प्रकाशित सबै सफ्टवेयर कोड, AutoCAD LSP स्क्रिप्टहरू, Land Solution ब्राण्ड नाम, लोगो, ग्राफिक डिजाइन, र लिखित सामग्रीहरू <strong>BR Bhatta</strong> को बौद्धिक सम्पत्ति हुन्।
+              Unless otherwise stated, <strong>BR Bhatta (Bhakta Raj Bhatt)</strong> owns the intellectual property rights for all original source code, AutoCAD LSP automation scripts, the Land Solution brand, logos, UI designs, and written editorial guides on www.brbhatta.com. All intellectual property rights are reserved.
             </p>
             <ul className="list-disc pl-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1 leading-relaxed">
-              <li>तपाईंले व्यक्तिगत, शैक्षिक वा व्यावसायिक नापी प्रयोजनका लागि हाम्रा फ्रि स्क्रिप्टहरू प्रयोग गर्न सक्नुहुन्छ।</li>
-              <li>हाम्रो पूर्व लिखित अनुमति बिना हाम्रा कोड वा टुल्सहरूलाई रि-सेल (Resell) गर्न वा आफ्नो नाममा दाबी गर्न पाइने छैन।</li>
+              <li>
+                <strong>Permitted Use:</strong> You are granted a free, non-exclusive license to use our web calculators and download our free AutoCAD LSP scripts for personal, educational, and professional surveying work. (तपाईंले व्यक्तिगत, शैक्षिक वा व्यावसायिक नापी प्रयोजनका लागि हाम्रा नि:शुल्क टुल्स र स्क्रिप्टहरू प्रयोग गर्न सक्नुहुन्छ।)
+              </li>
+              <li>
+                <strong>Restrictions:</strong> You must not republish, sell, rent, sub-license, or redistribute our proprietary software code, calculators, or articles as your own commercial product without prior written consent.
+              </li>
             </ul>
           </section>
 
           {/* 3. Acceptable Use */}
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">३. स्वीकार्य प्रयोग (Acceptable Use)</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">3. User Conduct &amp; Acceptable Use (स्वीकार्य प्रयोग)</h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              प्रयोगकर्ताहरूले वेबसाइट प्रयोग गर्दा निम्न कुराहरूको पालना गर्नुपर्दछ:
+              When using www.brbhatta.com, users agree to abide by the following rules:
             </p>
             <ul className="list-disc pl-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 leading-relaxed">
-              <li>कुनै पनि गैरकानुनी वा जालसाजीपूर्ण कार्यका लागि साइट प्रयोग नगर्ने।</li>
-              <li>वेबसाइटको सुरक्षा, सर्भर वा डाटाबेसमा अनाधिकृत पहुँच (Hacking, DDoS) को प्रयास नगर्ने।</li>
-              <li>गलत वा भ्रामक सूचना नफैलाउने।</li>
+              <li>Do not use the website or its tools for any unlawful, fraudulent, or malicious activity (कुनै पनि गैरकानुनी वा जालसाजीपूर्ण कार्यका लागि साइट प्रयोग नगर्ने).</li>
+              <li>Do not attempt unauthorized access, scraping, automated DDoS attacks, or reverse-engineering of our server infrastructure (वेबसाइटको सुरक्षा वा सर्भरमा अनाधिकृत पहुँचको प्रयास नगर्ने).</li>
+              <li>Do not generate or distribute falsified legal or government documents using our templates.</li>
             </ul>
           </section>
 
@@ -97,34 +104,37 @@ export default function TermsPage() {
           <section className="space-y-3 p-5 rounded-2xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-              <span>४. दायित्वको सीमा (Limitation of Liability)</span>
+              <span>4. Limitation of Liability (दायित्वको सीमा)</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-              हाम्रा डिजिटल क्यालकुलेटरहरू तथा AutoCAD स्क्रिप्टहरू प्राविधिक गणनालाई सजिलो बनाउन तयार गरिएका सहयोग उपकरण हुन्। जग्गाको सिमाना वा कित्ताकाटको कानुनी मान्यता नेपाल सरकारको आधिकारिक नापी विभाग वा मालपोत कार्यालयबाट प्रमाणित हुनुपर्दछ। प्रयोगकर्ताको गलत डाटा इन्ट्री वा अन्य कारणले भएको कुनै पनि प्रत्यक्ष वा अप्रत्यक्ष क्षतिको जिम्मेवार यो वेबसाइट हुनेछैन।
+              In no event shall <strong>BR Bhatta</strong> or <strong>www.brbhatta.com</strong> be held liable for any direct, indirect, incidental, or consequential damages arising out of the use or inability to use the materials and calculators on this website. All cadastral measurements, Kitta-kat eligibility checks, and tax calculations are mathematical aids; official legal authority rests exclusively with the Government of Nepal Survey Office (Napi Karyalaya) and Land Revenue Office (Malpot Karyalaya).
+            </p>
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              जग्गाको सिमाना वा कित्ताकाटको कानुनी मान्यता नेपाल सरकारको आधिकारिक नापी विभाग वा मालपोत कार्यालयबाट प्रमाणित हुनुपर्दछ। प्रयोगकर्ताको गलत डाटा इन्ट्री वा अन्य कारणले भएको कुनै पनि प्रत्यक्ष वा अप्रत्यक्ष क्षतिको जिम्मेवार यो वेबसाइट हुनेछैन।
             </p>
           </section>
 
           {/* 5. External Links */}
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">५. बाह्य लिङ्कहरू (External Links)</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">5. Third-Party &amp; External Links (बाह्य लिङ्कहरू)</h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              हाम्रो वेबसाइटमा सामाजिक सञ्जाल (Facebook, Instagram, GitHub) लगायतका बाह्य लिङ्कहरू समावेश हुन सक्छन्। ती तेस्रो-पक्ष वेबसाइटहरूको सामग्री र गोपनीयता नीतिका लागि हामी जिम्मेवार छैनौं।
+              Our website contains links to official public portals (such as dos.gov.np, dolma.gov.np), Google Play Store, and social media profiles. We have no control over the nature, content, and availability of those external sites and are not responsible for their privacy practices.
             </p>
           </section>
 
           {/* 6. Governing Law */}
           <section className="space-y-3">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">६. लागू हुने कानुन (Governing Law)</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">6. Governing Law &amp; Jurisdiction (लागू हुने कानुन)</h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              यी नियम तथा सर्तहरू नेपालको प्रचलित साइबर कानुन तथा कानुनी व्यवस्था अनुसार निर्देशित र व्याख्या गरिएका छन्।
+              These Terms and Conditions shall be governed by and construed in accordance with the prevailing laws of Nepal (including the Electronic Transactions Act 2063 and National Civil Code 2074), and you irrevocably submit to the exclusive jurisdiction of the courts in Kathmandu, Nepal.
             </p>
           </section>
 
           {/* Contact Box */}
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <p className="font-bold text-slate-900 dark:text-white text-sm">थप स्पष्टता वा सोधपुछका लागि:</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">हामी तपाईंलाई सन्तुष्ट र सुरक्षित राख्न प्रतिबद्ध छौं।</p>
+              <p className="font-bold text-slate-900 dark:text-white text-sm">For legal inquiries or support (थप स्पष्टता वा सोधपुछका लागि):</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">We respond to all official inquiries within 24–48 hours.</p>
             </div>
             <a
               href="mailto:info@brbhatta.com"

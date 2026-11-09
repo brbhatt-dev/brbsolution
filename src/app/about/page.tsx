@@ -6,34 +6,34 @@ import {
   Compass, 
   Wallet, 
   FileCode, 
-  Code, 
   MapPin, 
   CheckCircle2, 
   Mail, 
   Facebook, 
   Instagram, 
   Github,
-  Award,
-  Sparkles
+  Sparkles,
+  ExternalLink
 } from 'lucide-react';
+import { LAND_SOLUTION_PLAY_STORE_URL } from '@/lib/land-solution-release';
 
 export const metadata: Metadata = {
-  title: 'हाम्रो बारेमा (About Us) | BR Bhatta & Land Solution Nepal',
-  description: 'About BR Bhatta and Land Solution. Learn about the developer, mission, cadastre automation tools, and technology innovations built for Nepal.',
+  title: 'About Us (हाम्रो बारेमा) | BR Bhatta & Land Solution Nepal',
+  description: 'About BR Bhatta (Bhakta Raj Bhatt) and Land Solution Nepal. Learn about the surveyor and software developer behind Nepal land measurement apps, AutoCAD LSP automation scripts, and citizen digital tools.',
   alternates: {
     canonical: 'https://www.brbhatta.com/about',
   },
   openGraph: {
-    title: 'हाम्रो बारेमा (About Us) | BR Bhatta & Land Solution Nepal',
+    title: 'About Us (हाम्रो बारेमा) | BR Bhatta & Land Solution Nepal',
     description: 'About BR Bhatta and Land Solution. Mission, cadastre automation tools, and tech innovations built for Nepal.',
     url: 'https://www.brbhatta.com/about',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'हाम्रो बारेमा (About Us) | BR Bhatta & Land Solution Nepal',
+    title: 'About Us (हाम्रो बारेमा) | BR Bhatta & Land Solution Nepal',
     description: 'About BR Bhatta, Land Solution, Hamro Kosh and tech innovations built for Nepal.',
   },
 };
@@ -50,7 +50,7 @@ export default function AboutPage() {
             className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>गृहपृष्ठ (Home) फर्कनुहोस्</span>
+            <span>Back to Home (गृहपृष्ठ)</span>
           </Link>
           <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold">www.brbhatta.com</span>
         </div>
@@ -73,51 +73,62 @@ export default function AboutPage() {
             <div className="space-y-2 text-center sm:text-left flex-1">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>संस्थापक तथा सफ्टवेयर विकासकर्ता</span>
+                <span>FOUNDER &amp; SOFTWARE DEVELOPER (संस्थापक तथा विकासकर्ता)</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                BR Bhatta
+                BR Bhatta (Bhakta Raj Bhatt)
               </h1>
               <p className="text-xs sm:text-sm text-emerald-700 dark:text-emerald-400 font-bold">
-                Creator of Land Solution, Hamro Kosh & AutoCAD LSP Automation for Nepal
+                Surveyor, Civil Geomatics Technologist &amp; Creator of Land Solution, Hamro Kosh &amp; AutoCAD LSP Automation for Nepal
               </p>
               <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-slate-500 dark:text-slate-400 pt-1">
                 <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>काठमाडौँ, नेपाल (Kathmandu, Nepal)</span>
+                <span>Kathmandu, Nepal (काठमाडौँ, नेपाल)</span>
               </div>
             </div>
           </div>
 
-          {/* Mission & Story */}
+          {/* English & Nepali Mission & Story */}
           <section className="space-y-3">
             <h2 className="text-xl font-black text-slate-900 dark:text-white">
-              हाम्रो उद्देश्य (Our Mission)
+              1. Who We Are &amp; Our Mission (हाम्रो परिचय र उद्देश्य)
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              नेपालमा परम्परागत रूपमा गरिने जग्गा नापजाँच, कित्ताकाट, तथा क्षेत्रफल गणनाको प्रक्रिया जटिल, समय लाग्ने र मानवीय त्रुटि हुने खालको छ। नापी सर्भेक्षक, अमिन, इन्जिनियर तथा सामान्य जग्गाधनीहरूलाई आफ्नो जग्गाको यथार्थ विवरण तत्काल दिन सक्ने गरी हामीले <strong>Land Solution</strong> विकास गरेका हौं।
+              <strong>www.brbhatta.com</strong> is an educational and technical web portal founded by <strong>Bhakta Raj Bhatt (BR Bhatta)</strong>, a land surveyor and software developer based in Kathmandu, Nepal. Traditional land area calculation, plot subdivision (Kitta-kat), and cadastral coordinate transformation in Nepal involve complex multi-unit conversions between the Hilly system (Ropani–Aana–Paisa–Daam), the Terai system (Bigha–Katha–Dhur), and international metric standards. Our mission is to eliminate human calculation errors and empower surveyors, civil engineers, law practitioners, and everyday citizens with accurate, free digital tools and regulatory guides.
             </p>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              हाम्रो लक्ष्य आधुनिक कम्प्युटर विज्ञान, क्लाउड प्रविधि, र AutoLISP अटोमेसनलाई नेपाली माटो र स्थानीय नाप प्रणाली (रोपनी-आना तथा बिघा-कट्ठा) सँग जोडेर कार्यसम्पादनलाई १०० गुणा छिटो र सरल बनाउनु हो।
+              नेपालमा परम्परागत रूपमा गरिने जग्गा नापजाँच, कित्ताकाट, तथा क्षेत्रफल गणनाको प्रक्रिया जटिल, समय लाग्ने र मानवीय त्रुटि हुने खालको छ। नापी सर्भेक्षक, अमिन, इन्जिनियर तथा सामान्य जग्गाधनीहरूलाई आफ्नो जग्गाको यथार्थ विवरण तत्काल दिन सक्ने गरी हामीले <strong>Land Solution</strong> मोबाइल एप र यस वेबसाइटका २४+ अनलाइन क्यालकुलेटरहरू विकास गरेका हौं।
             </p>
           </section>
 
           {/* Key Innovations */}
           <section className="space-y-4">
             <h2 className="text-xl font-black text-slate-900 dark:text-white">
-              हाम्रा मुख्य उत्पादन तथा प्राविधिक सेवाहरू
+              2. Core Software &amp; Technical Solutions (हाम्रा मुख्य उत्पादनहरू)
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               
               {/* Land Solution */}
-              <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800 space-y-2">
-                <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center">
-                  <Compass className="w-5 h-5" />
+              <div className="p-5 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800 space-y-2.5 flex flex-col justify-between">
+                <div className="space-y-2">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center">
+                    <Compass className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">Land Solution (Android App)</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Official Android application on Google Play Store for Nepal land measurement, Kitta-kat subdivision, MUTM coordinate transformation, and offline GPS field stakeout. (नेपालको जग्गा नापजाँच र कित्ताकाटको आधिकारिक मोबाइल एप।)
+                  </p>
                 </div>
-                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">Land Solution</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  नेपालको जग्गा नापजाँच, कित्ताकाट, नक्सा कोअर्डिनेट गणना र अफलाइन फिल्ड सर्भेको लागि तयार गरिएको आधुनिक एप।
-                </p>
+                <a
+                  href={LAND_SOLUTION_PLAY_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline pt-1"
+                >
+                  <span>View on Google Play Store</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
               {/* Hamro Kosh */}
@@ -125,9 +136,9 @@ export default function AboutPage() {
                 <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center">
                   <Wallet className="w-5 h-5" />
                 </div>
-                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">हाम्रो कोष (Hamro Kosh)</h3>
+                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">Hamro Kosh (हाम्रो कोष)</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  समूह, समिति, गुठी र व्यक्तिगत मासिक बचत, ऋण लगानी, र ब्याज हिसाब राख्ने पारदर्शी वित्तीय डिजिटल लेजर।
+                  Transparent digital financial ledger designed for community savings groups (Samuha/Guthi), cooperatives, and personal monthly savings, loan tracking, and interest calculation. (समूह, समिति र व्यक्तिगत मासिक बचत तथा ऋण हिसाब राख्ने डिजिटल लेजर।)
                 </p>
               </div>
 
@@ -136,9 +147,9 @@ export default function AboutPage() {
                 <div className="w-9 h-9 rounded-xl bg-amber-600 text-white flex items-center justify-center">
                   <FileCode className="w-5 h-5" />
                 </div>
-                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">AutoCAD LSP Scripts</h3>
+                <h3 className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">AutoCAD LSP Suite</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  क्याड नक्सामा पोलिलाइनको क्षेत्रफललाई एकै क्लिकमा रोपनी र बिघामा बदलेर टेक्स्ट लेख्ने स्वचालित स्क्रिप्टहरू।
+                  Free AutoLISP (.LSP) automation scripts for civil engineers and cadastral surveyors to compute closed polyline areas in Ropani/Bigha, generate coordinate tables, and export parcel schedules. (अटो-क्याड नक्सामा एकै क्लिकमा क्षेत्रफल र को-अर्डिनेट निकाल्ने स्क्रिप्टहरू।)
                 </p>
               </div>
 
@@ -147,23 +158,26 @@ export default function AboutPage() {
 
           {/* Core Values */}
           <section className="space-y-3">
-            <h2 className="text-xl font-black text-slate-900 dark:text-white">हाम्रा विशेषताहरू (Why Choose Us)</h2>
+            <h2 className="text-xl font-black text-slate-900 dark:text-white">3. Editorial Integrity &amp; Standards (हाम्रा विशेषताहरू)</h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Every calculator, legal template, and educational article published on www.brbhatta.com is researched against official Nepalese statutes (including the Land Act 2021, Land Use Regulation 2079/2081, and Survey Department technical manuals) and verified for mathematical accuracy.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
               <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>१००% नेपाली मापदण्ड र नाप प्रणाली अनुकूल</span>
+                <span>100% Calibrated to Nepal Cadastral Standards (१००% नेपाली नाप प्रणाली अनुकूल)</span>
               </div>
               <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>फिल्डमा अफलाइन काम गर्न सकिने भरपर्दो कोड</span>
+                <span>Offline-Ready Mobile &amp; Browser Utilities (अफलाइन काम गर्न सकिने भरपर्दो प्रविधि)</span>
               </div>
               <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>इन्जिनियर तथा अमिनहरूको वास्तविक सल्लाहमा निर्मित</span>
+                <span>Built in Consultation with Licensed Surveyors (अमिन र इन्जिनियरहरूको सल्लाहमा निर्मित)</span>
               </div>
               <div className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200/80 dark:border-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>निःशुल्क लाइभ वेब डेमो तथा खुला स्रोत साधन</span>
+                <span>Official Google Play App &amp; Free Web Calculators (Google Play एप र निःशुल्क वेब टूल्स)</span>
               </div>
             </div>
           </section>
@@ -171,7 +185,7 @@ export default function AboutPage() {
           {/* Social & Contact Box */}
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">जोडिनुहोस्:</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">Connect with us (जोडिनुहोस्):</span>
               <a
                 href="https://www.facebook.com/aabiral.bhatt/"
                 target="_blank"
@@ -208,16 +222,6 @@ export default function AboutPage() {
               >
                 <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <a
-                href="https://www.threads.com/@landsolutionnepal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-gradient-to-tr from-black to-zinc-800 text-white flex items-center justify-center shadow-xs border border-slate-700"
-              >
-                <svg className="w-4 h-4 fill-white" viewBox="0 0 192 192">
-                  <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2109 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.0328C81.4045 63.6575 90.0153 60.4065 97.222 60.4065C108.618 60.4065 117.818 67.2415 119.827 82.0494C113.883 80.7061 107.566 80.0526 100.973 80.0526C74.6558 80.0526 56.6346 94.3826 56.6346 116.141C56.6346 136.216 71.9547 150.316 93.3644 150.316C109.845 150.316 122.253 141.975 128.539 126.68C133.565 136.657 141.921 142.336 153.864 142.336C168.04 142.336 179.351 133.407 182.261 116.635L166.425 113.863C164.717 123.699 158.647 128.125 152.016 128.125C141.777 128.125 137.073 118.89 137.073 103.072C137.073 99.8735 137.339 96.7909 137.844 93.856C139.117 94.4075 140.354 94.9922 141.537 95.6083C155.074 102.664 163.535 113.208 163.535 126.969H179.197C179.197 108.685 167.348 95.0345 141.537 88.9883ZM122.091 109.308C120.301 123.703 109.734 135.253 94.2796 135.253C80.3955 135.253 71.7486 126.241 71.7486 114.733C71.7486 100.865 83.2104 94.3917 101.442 94.3917C107.575 94.3917 113.242 94.9458 118.324 96.0125C121.218 100.17 122.476 104.708 122.091 109.308Z"/>
                 </svg>
               </a>
               <a
