@@ -363,7 +363,11 @@ html.dark [class*="shadow-slate-"] {
 .goog-te-banner-frame.skiptranslate,
 iframe.goog-te-banner-frame,
 #goog-gt-tt,
-.goog-te-balloon-frame {
+.goog-te-balloon-frame,
+.VIpgJd-ZVi9od-aZ2wjd-OAZm7c,
+.VIpgJd-ZVi9od-aZ2wjd,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q,
+[class*="VIpgJd-"] {
   display: none !important;
   visibility: hidden !important;
 }

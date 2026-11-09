@@ -15,6 +15,43 @@ declare global {
   }
 }
 
+// Helpers for robust cross-domain cookie management
+const getCookie = (name: string): string | null => {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+  return match ? decodeURIComponent(match[3]) : null;
+};
+
+const setTransCookie = (val: string) => {
+  if (typeof window === 'undefined') return;
+  const host = window.location.hostname;
+  const domainParts = host.split('.');
+  const rootDomain = domainParts.length > 1 ? '.' + domainParts.slice(-2).join('.') : host;
+
+  document.cookie = `googtrans=${val}; path=/;`;
+  document.cookie = `googtrans=${val}; path=/; domain=${host};`;
+  if (rootDomain !== host) {
+    document.cookie = `googtrans=${val}; path=/; domain=${rootDomain};`;
+    document.cookie = `googtrans=${val}; path=/; domain=.${rootDomain};`;
+  }
+};
+
+const clearTransCookie = () => {
+  if (typeof window === 'undefined') return;
+  const host = window.location.hostname;
+  const domainParts = host.split('.');
+  const rootDomain = domainParts.length > 1 ? '.' + domainParts.slice(-2).join('.') : host;
+
+  const domains = ['', host, '.' + host, rootDomain, '.' + rootDomain];
+  const paths = ['/', ''];
+
+  domains.forEach((d) => {
+    paths.forEach((p) => {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${p};${d ? ` domain=${d};` : ''}`;
+    });
+  });
+};
+
 export default function LanguageToggle({
   variant = 'pill',
   className = '',
@@ -26,12 +63,31 @@ export default function LanguageToggle({
     setMounted(true);
 
     // Read stored or cookie language
-    const hasEnCookie = typeof document !== 'undefined' && document.cookie.includes('googtrans=/ne/en');
+    const cookieVal = getCookie('googtrans');
     const stored = typeof window !== 'undefined' ? localStorage.getItem('brb_lang') : null;
+    const isEn = (cookieVal && cookieVal.includes('/en')) || stored === 'en';
 
-    if (hasEnCookie || stored === 'en') {
+    if (isEn) {
       setCurrentLang('en');
+      // Ensure cookie is in sync so translation kicks in
+      if (!cookieVal || !cookieVal.includes('/en')) {
+        setTransCookie('/ne/en');
+      }
+    } else {
+      setCurrentLang('ne');
+      // If user wants Nepali, ensure no old translation cookie lingers
+      if (cookieVal && cookieVal.includes('/en') && stored === 'ne') {
+        clearTransCookie();
+      }
     }
+
+    // Cross-component sync listener (keeps Header, Drawer & Footer in sync)
+    const handleSync = (e: any) => {
+      if (e.detail) {
+        setCurrentLang(e.detail);
+      }
+    };
+    window.addEventListener('brb-lang-change', handleSync);
 
     // Initialize Google Translate Script
     if (typeof window !== 'undefined') {
@@ -44,14 +100,18 @@ export default function LanguageToggle({
 
       window.googleTranslateElementInit = function () {
         if (window.google && window.google.translate) {
-          new window.google.translate.TranslateElement(
-            {
-              pageLanguage: 'ne',
-              includedLanguages: 'ne,en',
-              autoDisplay: false,
-            },
-            'google_translate_element'
-          );
+          try {
+            new window.google.translate.TranslateElement(
+              {
+                pageLanguage: 'ne',
+                includedLanguages: 'ne,en',
+                autoDisplay: false,
+              },
+              'google_translate_element'
+            );
+          } catch (e) {
+            console.warn('Google Translate initialization error:', e);
+          }
         }
       };
 
@@ -63,45 +123,48 @@ export default function LanguageToggle({
         document.body.appendChild(script);
       }
     }
+
+    return () => {
+      window.removeEventListener('brb-lang-change', handleSync);
+    };
   }, []);
 
   const switchLanguage = (lang: 'ne' | 'en') => {
     if (lang === currentLang) return;
 
-    const host = window.location.hostname;
-    const domainParts = host.split('.');
-    const rootDomain = domainParts.length > 1 ? '.' + domainParts.slice(-2).join('.') : host;
-
     if (lang === 'en') {
-      document.cookie = `googtrans=/ne/en; path=/;`;
-      document.cookie = `googtrans=/ne/en; path=/; domain=${host};`;
-      if (rootDomain !== host) {
-        document.cookie = `googtrans=/ne/en; path=/; domain=${rootDomain};`;
-      }
+      setTransCookie('/ne/en');
       localStorage.setItem('brb_lang', 'en');
       setCurrentLang('en');
-    } else {
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${host};`;
-      if (rootDomain !== host) {
-        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${rootDomain};`;
+      window.dispatchEvent(new CustomEvent('brb-lang-change', { detail: 'en' }));
+
+      // Attempt live combo change first, fallback to reload
+      const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
+      if (combo) {
+        combo.value = 'en';
+        combo.dispatchEvent(new Event('change'));
+        // If not translated within 350ms, reload to force translation cleanly
+        setTimeout(() => {
+          if (!document.documentElement.classList.contains('translated-ltr')) {
+            window.location.reload();
+          }
+        }, 350);
+      } else {
+        window.location.reload();
       }
-      document.cookie = `googtrans=/ne/ne; path=/;`;
+    } else {
+      // Revert cleanly to pure original Nepali
+      clearTransCookie();
       localStorage.setItem('brb_lang', 'ne');
       setCurrentLang('ne');
-    }
+      window.dispatchEvent(new CustomEvent('brb-lang-change', { detail: 'ne' }));
 
-    // Try in-memory translation trigger first
-    const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
-    if (combo) {
-      combo.value = lang;
-      combo.dispatchEvent(new Event('change'));
-    } else {
-      // Reload page to let Google Translate parse with the new cookie
+      // Complete reset to clean original Nepali DOM
       window.location.reload();
     }
   };
 
+  // SSR / Pre-hydration fallback
   if (!mounted) {
     if (variant === 'compact') {
       return (
@@ -192,7 +255,7 @@ export default function LanguageToggle({
     );
   }
 
-  // Default Segmented Pill (For Desktop Header)
+  // Default Segmented Pill (For Desktop Header & Footer)
   return (
     <div
       className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs ${className}`}

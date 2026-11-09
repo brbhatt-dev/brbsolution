@@ -225,7 +225,8 @@ export default function PreetiToUnicodePage() {
               onChange={(e) => setInputText(e.target.value)}
               placeholder={direction === 'preetiToUnicode' ? 'उदा: gfd:t] (नमस्ते)...' : 'उदा: नमस्ते (gfd:t])...'}
               rows={12}
-              className="w-full p-5 bg-transparent resize-y focus:outline-none text-sm text-slate-800 dark:text-slate-100 placeholder-slate-400 leading-relaxed font-mono min-h-[260px]"
+              translate="no"
+              className="w-full p-5 bg-transparent resize-y focus:outline-none text-sm text-slate-800 dark:text-slate-100 placeholder-slate-400 leading-relaxed font-mono min-h-[260px] notranslate"
             />
           </div>
 
@@ -273,7 +274,8 @@ export default function PreetiToUnicodePage() {
               readOnly
               placeholder="यहाँ रूपान्तरण भएको नतिजा स्वतः आउनेछ..."
               rows={12}
-              className="w-full p-5 bg-slate-50/30 dark:bg-slate-950/30 resize-y focus:outline-none text-sm text-slate-900 dark:text-slate-50 leading-relaxed font-sans min-h-[260px]"
+              translate="no"
+              className="w-full p-5 bg-slate-50/30 dark:bg-slate-950/30 resize-y focus:outline-none text-sm text-slate-900 dark:text-slate-50 leading-relaxed font-sans min-h-[260px] notranslate"
             />
           </div>
 
