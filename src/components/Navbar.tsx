@@ -53,7 +53,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200">
       {/* Top Breaking News / Updates Marquee Ticker */}
       {!hideTicker && <TopTickerBanner />}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex items-center justify-between h-16 sm:h-18 gap-2 xl:gap-4">
           
           {/* Logo with Brand Identity */}
@@ -80,7 +80,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3.5 shrink-0">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3 shrink min-w-0">
             
             {/* All Tools Hub Dropdown */}
             <div 
@@ -262,7 +262,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                 href="/laws"
                 className="inline-flex items-center gap-1 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
               >
-                <span>नापी कानुन</span>
+                <span className="hidden xl:inline" translate="no">नापी </span><span>कानुन</span>
                 <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
               </Link>
 
@@ -310,7 +310,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>नापी सूचना</span>
+              <span className="hidden xl:inline" translate="no">नापी </span><span>सूचना</span>
               <span className="text-[9px] font-black tracking-normal px-1.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">
                 LIVE
               </span>
@@ -438,7 +438,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           </nav>
 
           {/* Desktop Right Side: Language & Theme Toggles ALWAYS FIRST */}
-          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0">
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2 shrink-0 ml-auto notranslate" translate="no">
             {/* 1. Language Toggle */}
             <LanguageToggle variant="pill" />
 

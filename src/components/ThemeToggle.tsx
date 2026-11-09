@@ -22,14 +22,15 @@ export default function ThemeToggle({ variant = 'icon', className = '' }: ThemeT
   if (!mounted) {
     if (variant === 'pill') {
       return (
-        <div className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs ${className}`}>
+        <div translate="no"
+        className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs notranslate shrink-0 ${className}`}>
           <div className="px-2 py-1 rounded-lg flex items-center gap-1 bg-white text-slate-900 shadow-xs font-black">
             <Sun className="w-3.5 h-3.5 text-amber-500" />
-            <span className="hidden xl:inline">लाइट</span>
+            <span className="hidden 2xl:inline">लाइट</span>
           </div>
           <div className="px-2 py-1 rounded-lg flex items-center gap-1 text-slate-400">
             <Moon className="w-3.5 h-3.5" />
-            <span className="hidden xl:inline">डार्क</span>
+            <span className="hidden 2xl:inline">डार्क</span>
           </div>
         </div>
       );
