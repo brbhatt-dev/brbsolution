@@ -26,6 +26,7 @@ import StickyFloatingShare from '@/components/StickyFloatingShare';
 import ArticleTaxCalculatorWidget from '@/components/ArticleTaxCalculatorWidget';
 import ArticleKittaKatWidget from '@/components/ArticleKittaKatWidget';
 import ArticleContextualToolsCard from '@/components/ArticleContextualToolsCard';
+import { ArticleEnglishReference } from '@/components/BilingualEnglishGuide';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -76,7 +77,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       url,
       type: 'article',
       siteName: 'BR Bhatta | Land Solution',
-      locale: 'ne_NP',
+      locale: 'en_US',
       authors: [article.author.name],
       images: [
         {
@@ -149,7 +150,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
       '@type': 'WebPage',
       '@id': `https://www.brbhatta.com/articles/${article.slug}`,
     },
-    inLanguage: 'ne',
+    inLanguage: ['en', 'ne'],
   };
 
   // 2. BreadcrumbList JSON-LD Structured Data
@@ -429,6 +430,15 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               </div>
             </section>
           )}
+
+          {/* Official Bilingual English Technical Summary for AdSense & International Readers */}
+          <ArticleEnglishReference
+            title={article.title}
+            slug={article.slug}
+            category={article.category}
+            categoryNepali={article.categoryNepali}
+            publishedDate={article.publishedDate}
+          />
 
           {/* Bottom AdSense Slot */}
           <AdSenseSlot userFacingLabel="विज्ञापन (Bottom In-Feed)" />

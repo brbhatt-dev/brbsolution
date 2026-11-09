@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import StyleCitizenPortal from '@/components/demos/StyleCitizenPortal';
-
 import DosNoticesWidget from '@/components/DosNoticesWidget';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import Contact from '@/components/Contact';
 import HomeFooter from '@/components/HomeFooter';
 
@@ -17,7 +17,8 @@ export default function Home() {
         {/* Real-Time Survey Department Live Notices */}
         <DosNoticesWidget maxItems={4} showSearch={false} />
 
-
+        {/* Official Bilingual English & Nepali Technical Overview for International & AdSense Compliance */}
+        <HomeEnglishDocumentation />
 
         {/* Direct Contact & Feedback Form */}
         <Contact />

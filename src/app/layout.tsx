@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description: 'Land Solution (नापजाँच तथा कित्ताकाट एप), Hamro Kosh, and AutoCAD LSP scripts for Nepal land surveying.',
     url: 'https://www.brbhatta.com',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
     images: [
       {
@@ -150,7 +150,7 @@ export default function RootLayout({
       '@type': 'ContactPoint',
       contactType: 'technical support',
       email: 'info@brbhatta.com',
-      availableLanguage: ['Nepali', 'English'],
+      availableLanguage: ['English', 'Nepali'],
     },
   };
 
@@ -160,12 +160,13 @@ export default function RootLayout({
     alternateName: ['bhattbr.com.np', 'Bhatt BR', 'brbhatta.com', 'brbhatta', 'Land Solution Nepal', 'BR Bhatta Nepal', 'Land Solution'],
     name: 'BR Bhatta',
     url: 'https://www.brbhatta.com',
+    inLanguage: ['en', 'ne'],
   };
 
   return (
-    <html lang="ne" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-                <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
         <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="32x32" />
         <link rel="icon" href="/icon.png?v=2" type="image/png" sizes="192x192" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" sizes="180x180" />
@@ -210,14 +211,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
         />
-        {/* Google AdSense Script */}
-        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
+
+        {/* Google AdSense Official Verification & Auto Ads Script */}
+        <meta name="google-adsense-account" content="ca-pub-9731623018158379" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9731623018158379"
+          crossOrigin="anonymous"
+        />
 
         {/* Google tag (gtag.js) - Google Analytics 4 */}
         <script

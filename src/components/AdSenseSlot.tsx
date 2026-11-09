@@ -21,11 +21,11 @@ export default function AdSenseSlot({
   className = '',
   userFacingLabel = 'विज्ञापन (Advertisement)',
 }: AdSenseSlotProps) {
-  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-9731623018158379';
   const adRef = useRef<HTMLModElement | null>(null);
 
   useEffect(() => {
-    if (!adsenseClientId) return;
+    if (!adsenseClientId || slotId === '0000000000') return;
 
     try {
       if (typeof window !== 'undefined') {
@@ -36,8 +36,8 @@ export default function AdSenseSlot({
     }
   }, [adsenseClientId, slotId]);
 
-  // Before approval or when client ID is not configured, hide completely to prevent "Under construction / Empty ad placement" flags from Google reviewers
-  if (!adsenseClientId) {
+  // Before manual ad unit slot IDs are configured, rely on Google Auto Ads from <head> and avoid rendering placeholder 0000000000 slots
+  if (!adsenseClientId || slotId === '0000000000') {
     return null;
   }
 

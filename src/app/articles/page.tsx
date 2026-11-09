@@ -6,10 +6,11 @@ import { ARTICLES_DATA } from '@/data/articles';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import DynamicArticlesGrid from '@/components/DynamicArticlesGrid';
 import ArticleQueryBox from '@/components/ArticleQueryBox';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 
 export const metadata: Metadata = {
   title: 'गाइड तथा ज्ञान केन्द्र (Articles & Guides) | BR Bhatta & Land Solution Nepal',
-  description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, अंशबन्डा, र AutoCAD LSP सम्बन्धी आधिकारिक तथा विस्तृत गाइडहरू।',
+  description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, अंशबन्डा, र AutoCAD LSP सम्बन्धी आधिकारिक तथा विस्तृत गाइडहरू। Official Nepal Land Surveying & Real Estate Knowledge Base.',
   alternates: {
     canonical: 'https://www.brbhatta.com/articles',
   },
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     description: 'नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, अंशबन्डा, र AutoCAD सम्बन्धी आधिकारिक तथा विस्तृत ब्लग र प्राविधिक गाइडहरू।',
     url: 'https://www.brbhatta.com/articles',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
     images: [
       {
@@ -62,7 +63,7 @@ export default function ArticlesHubPage() {
         <div className="max-w-4xl mx-auto px-4 text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>KNOWLEDGE BASE & SURVEY GUIDES</span>
+            <span>KNOWLEDGE BASE &amp; SURVEY GUIDES</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
             नापी, मालपोत तथा प्राविधिक ज्ञान केन्द्र
@@ -81,6 +82,9 @@ export default function ArticlesHubPage() {
 
         {/* Articles Grid */}
         <DynamicArticlesGrid initialArticles={ARTICLES_DATA} />
+
+        {/* Official Bilingual Technical Documentation */}
+        <HomeEnglishDocumentation />
 
         {/* 💬 Reader Land Question & AI Answer Box */}
         <ArticleQueryBox articleTitle="नापी, मालपोत तथा प्राविधिक ज्ञान केन्द्र" articleCategory="जग्गा नापजाँच तथा कानुन" />
