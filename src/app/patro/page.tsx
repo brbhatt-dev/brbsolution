@@ -134,9 +134,12 @@ export default function PatroDownloadPage() {
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
                 <a
                   href={downloadUrl}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-red-600/30 active:scale-95 transition transform cursor-pointer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="BR_Patro_v7.9.74.apk"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-red-600/30 active:scale-95 transition transform cursor-pointer group"
                 >
-                  <Download className="w-5 h-5 animate-bounce" />
+                  <Download className="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5" />
                   <span>डाउनलोड गर्नुहोस् (Download APK)</span>
                 </a>
 
@@ -254,19 +257,52 @@ export default function PatroDownloadPage() {
           </ol>
         </section>
 
-        {/* 5. BOTTOM CTA & VIRUS-FREE GUARANTEE */}
-        <div className="text-center py-4 space-y-2">
-          <p className="text-2xs sm:text-xs text-slate-500 dark:text-slate-400">
-            यो एप १००% सुरक्षित, कुनै ट्र्याकिङ वा अनावश्यक अनुमति नमाग्ने गरी निर्माण गरिएको छ।
-          </p>
-          <a
-            href={downloadUrl}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-red-600 dark:text-red-400 hover:underline"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>BR_Patro_v7.9.74.apk सिधै डाउनलोड गर्नुहोस्</span>
-          </a>
-        </div>
+        {/* 5. TRUST, SAFETY & POLICY DISCLOSURE (Google AdSense & Unwanted Software Standard) */}
+        <section className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 text-xs text-slate-600 dark:text-slate-400">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <span className="font-extrabold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span>सफ्टवेयर सुरक्षा तथा गोपनीयता प्रतिबद्धता (Software Trust & Safety)</span>
+            </span>
+            <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+              Verified Safe • Ad-Free
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] leading-relaxed">
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
+              <strong className="block text-slate-900 dark:text-slate-200 mb-0.5">🔒 शून्य अनावश्यक अनुमति</strong>
+              <span>यो एपले फोनबुक, क्यामेरा, कल लग वा अनावश्यक ब्याकग्राउन्ड लोकेसनको कुनै अनुमति माग्दैन।</span>
+            </div>
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
+              <strong className="block text-slate-900 dark:text-slate-200 mb-0.5">🛡️ कुनै एडवेयर/बन्डल नभएको</strong>
+              <span>सिधै आधिकारिक GitHub Releases बाट डाउनलोड हुने हुनाले कुनै थप थर्ड-पार्टी इन्स्टलर सामेल छैन।</span>
+            </div>
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
+              <strong className="block text-slate-900 dark:text-slate-200 mb-0.5">📜 कानुनी तथा नीतिगत जानकारी</strong>
+              <div className="space-x-2 mt-1">
+                <Link href="/privacy-policy" className="text-emerald-600 dark:text-emerald-400 underline">गोपनीयता नीति</Link>
+                <span>•</span>
+                <Link href="/terms" className="text-emerald-600 dark:text-emerald-400 underline">सर्तहरू</Link>
+                <span>•</span>
+                <Link href="/disclaimer" className="text-emerald-600 dark:text-emerald-400 underline">अस्वीकरण</Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center pt-2">
+            <a
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="BR_Patro_v7.9.74.apk"
+              className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>BR_Patro_v7.9.74.apk (३८.१ MB) सिधै डाउनलोड गर्नुहोस्</span>
+            </a>
+          </div>
+        </section>
 
       </main>
 
