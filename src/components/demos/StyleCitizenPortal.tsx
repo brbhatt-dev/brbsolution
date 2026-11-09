@@ -12,7 +12,6 @@ import {
   Coins, 
   Play, 
   ChevronRight, 
-  Calendar, 
   Split, 
   ScrollText, 
   Wallet, 
@@ -20,23 +19,17 @@ import {
   ArrowRight,
   Sun,
   Moon,
-  X,
-  RotateCw,
   ExternalLink,
-  Trophy
+  Trophy,
+  Download
 } from 'lucide-react';
 import LandCalculator from '../LandCalculator';
 import TithiWidget from '../TithiWidget';
-import IosInstallGuideModal from '../IosInstallGuideModal';
-import AppleLogo from '../AppleLogo';
 import MagazineArticlesSection from '../MagazineArticlesSection';
+import { LAND_SOLUTION_PLAY_STORE_URL } from '@/lib/land-solution-release';
 
 export default function StyleCitizenPortal() {
-  const [showDemoModal, setShowDemoModal] = useState(false);
-  const [showIosGuide, setShowIosGuide] = useState(false);
-  const [iframeKey, setIframeKey] = useState(0);
-
-  // Dynamic Time-Aware Greeting (Option 4: Smart Auto-Dynamic Greeting)
+  // Dynamic Time-Aware Greeting
   const [greeting, setGreeting] = useState({
     badge: 'नेपाल डिजिटल नागरिक सेवा',
     title: 'नमस्ते तथा स्वागत छ!',
@@ -74,7 +67,7 @@ export default function StyleCitizenPortal() {
     }
   }, []);
 
-  // Primary 8 Big Vibrant Quick Tiles (HamroPatro / Nagarik App style with modern interactive badges)
+  // Primary 8 Big Vibrant Quick Tiles
   const quickTiles = [
     { 
       title: 'जग्गा क्यालकुलेटर', 
@@ -163,12 +156,12 @@ export default function StyleCitizenPortal() {
   return (
     <div className="space-y-6 sm:space-y-8">
       
-      {/* 1. TOP WIDE PANORAMIC NEPALI PATRO BAR (लामो र फराकिलो पात्रो & पञ्चाङ्ग) */}
+      {/* 1. TOP WIDE PANORAMIC NEPALI PATRO BAR */}
       <section className="w-full">
         <TithiWidget variant="panoramic" />
       </section>
 
-      {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD (अभिवादन + LAND SOLUTION WEB DEMO & iOS CTA CARD) */}
+      {/* 2. DYNAMIC SMART TIME-AWARE GREETING CARD + OFFICIAL PLAY STORE APP CTA */}
       <section className={`p-5 sm:p-7 rounded-3xl bg-gradient-to-r ${greeting.gradient} text-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/15 relative overflow-hidden group`}>
         {/* Ambient glow backgrounds */}
         <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
@@ -189,7 +182,7 @@ export default function StyleCitizenPortal() {
             </p>
           </div>
 
-          {/* Right Side Land Solution CTA Card */}
+          {/* Right Side Land Solution Google Play Store Official Card */}
           <div className="shrink-0 w-full lg:w-80 xl:w-96 rounded-2xl bg-white/15 dark:bg-black/50 backdrop-blur-md p-4 sm:p-5 border border-white/25 shadow-xl hover:shadow-2xl hover:border-white/40 transition-all duration-300 flex flex-col justify-between gap-3 text-white">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
@@ -198,45 +191,41 @@ export default function StyleCitizenPortal() {
                 </div>
                 <div>
                   <h3 className="text-sm font-black text-white leading-tight">Land Solution</h3>
-                  <p className="text-[11px] text-emerald-200 font-medium">डिजिटल नापी सफ्टवेयर</p>
+                  <p className="text-[11px] text-emerald-200 font-medium">आधिकारिक एन्ड्रोइड नापी एप</p>
                 </div>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="px-2 py-0.5 rounded-full bg-slate-900/80 text-white text-[10px] font-bold border border-white/20 flex items-center gap-1 shadow-2xs">
-                  <AppleLogo className="w-3 h-3 text-white fill-current" />
-                  <span>iOS</span>
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-400/25 text-emerald-200 text-[10px] font-bold border border-emerald-300/40 flex items-center gap-1 shadow-2xs">
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-400/25 text-emerald-200 text-[10px] font-bold border border-emerald-300/40 flex items-center gap-1 shadow-2xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                  <span>Full Version</span>
+                  <span>Google Play Live</span>
                 </span>
               </div>
             </div>
 
             <p className="text-xs text-emerald-100/95 leading-snug">
-              ७५३ स्थानीय तह र वडा नक्सा सहित iPhone, Android र PC मा पूर्ण संस्करण चलाउनुहोस्।
+              ७५३ स्थानीय तह, वडा नक्सा, कित्ताकाट र जग्गा नापजाँचको आधिकारिक मोबाइल एप Google Play Store बाट डाउनलोड गर्नुहोस्।
             </p>
 
             <div className="space-y-2">
-              <Link
-                href="/land-solution"
+              <a
+                href={LAND_SOLUTION_PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-white text-slate-900 hover:bg-emerald-50 text-xs sm:text-sm font-black flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-98 cursor-pointer group/btn"
               >
-                <Play className="w-3.5 h-3.5 fill-emerald-700 text-emerald-700 group-hover/btn:scale-125 transition-transform" />
-                <span>पूर्ण एप चलाउनुहोस् (Open Full App) ▶</span>
-              </Link>
+                <Download className="w-4 h-4 text-emerald-700 group-hover/btn:scale-110 transition-transform" />
+                <span>Google Play बाट डाउनलोड गर्नुहोस्</span>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+              </a>
 
-              {/* iOS / iPhone Add to Home Screen Link */}
-              <button
-                type="button"
-                onClick={() => setShowIosGuide(true)}
-                className="w-full py-2 px-3 rounded-xl bg-slate-950/70 hover:bg-slate-900 text-xs text-white hover:text-emerald-300 flex items-center justify-center gap-2 transition-all cursor-pointer border border-white/20 hover:border-emerald-400/50 shadow-md group/ios"
+              <Link
+                href="/land-solution"
+                className="w-full py-2 px-3 rounded-xl bg-slate-950/70 hover:bg-slate-900 text-xs text-white hover:text-emerald-300 flex items-center justify-center gap-2 transition-all cursor-pointer border border-white/20 hover:border-emerald-400/50 shadow-md"
               >
-                <AppleLogo className="w-4 h-4 text-white fill-current shrink-0 group-hover/ios:scale-110 transition-transform" />
                 <span className="font-bold">
-                  iPhone / iPad मा एप राख्ने तरिका (iOS Guide)
+                  एपका विशेषता र प्रयोग गाइड हेर्नुहोस् &rarr;
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -260,7 +249,7 @@ export default function StyleCitizenPortal() {
                 </span>
               </div>
               <p className="text-xs text-emerald-100/90 leading-relaxed max-w-xl">
-                फिल्डको फित्ता, हेरन सूत्र र कित्ताकाट नियम प्रयोग गरी जग्गा नाप्नुहोस् र आफ्नो नामको आधिकारिक <strong>"प्रमाणित डिजिटल अमिन"</strong> प्रमाणपत्र जित्नुहोस्!
+                फिल्डको फित्ता, हेरन सूत्र र कित्ताकाट नियम प्रयोग गरी जग्गा नाप्नुहोस् र आफ्नो नामको आधिकारिक <strong>&quot;प्रमाणित डिजिटल अमिन&quot;</strong> प्रमाणपत्र जित्नुहोस्!
               </p>
             </div>
           </div>
@@ -303,10 +292,8 @@ export default function StyleCitizenPortal() {
                 href={tile.href}
                 className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800/90 hover:border-emerald-500 dark:hover:border-emerald-400/80 shadow-xs hover:shadow-xl dark:hover:shadow-emerald-950/30 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between space-y-3 group active:scale-[0.98] relative overflow-hidden backdrop-blur-xs"
               >
-                {/* Subtle hover gradient wash */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-transparent to-emerald-500/5 group-hover:to-emerald-500/10 transition-colors pointer-events-none" />
 
-                {/* Top Row: Icon + Badge */}
                 <div className="flex items-center justify-between gap-2 relative z-10">
                   <div className={`w-12 h-12 rounded-2xl ${tile.color} flex items-center justify-center shadow-md ${tile.glowColor} group-hover:scale-110 group-hover:rotate-2 transition-all duration-300 shrink-0`}>
                     <Icon className="w-5 h-5" />
@@ -318,7 +305,6 @@ export default function StyleCitizenPortal() {
                   )}
                 </div>
 
-                {/* Bottom Row: Title, Subtitle & Arrow */}
                 <div className="relative z-10">
                   <div className="flex items-center justify-between gap-1">
                     <h3 className="text-sm sm:text-[15px] font-black text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
@@ -387,7 +373,7 @@ export default function StyleCitizenPortal() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           
-          {/* App 1: Land Solution (Compact & Action-Oriented with Modern Glow) */}
+          {/* App 1: Land Solution (Official Google Play App) */}
           <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-950 via-slate-900 to-slate-950 text-white border border-emerald-800/40 hover:border-emerald-500/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between gap-4 group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-transparent to-emerald-500/10 group-hover:opacity-100 opacity-0 transition-opacity pointer-events-none" />
             <div className="flex items-center gap-3.5 min-w-0 relative z-10">
@@ -398,45 +384,29 @@ export default function StyleCitizenPortal() {
                 <div className="flex items-center gap-2 flex-wrap">
                   <h3 className="text-base font-black truncate group-hover:text-emerald-300 transition-colors">Land Solution</h3>
                   <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">
-                    नापी एप
-                  </span>
-                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0 flex items-center gap-1">
-                    <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 170 170">
-                      <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
-                    </svg>
-                    <span>iOS Supported</span>
+                    Google Play Store
                   </span>
                 </div>
                 <p className="text-xs text-slate-300 line-clamp-1 mt-0.5">
-                  फिल्डमा जग्गा नाप्ने, कित्ताकाट गर्ने र नक्सा रेखांकन गर्ने आधुनिक प्रणाली
+                  फिल्डमा जग्गा नाप्ने, कित्ताकाट गर्ने र नक्सा रेखांकन गर्ने आधिकारिक एन्ड्रोइड एप
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 relative z-10">
-              <button
-                type="button"
-                onClick={() => setShowIosGuide(true)}
-                title="iPhone / iOS मा होम स्क्रिनमा राख्ने तरिका"
-                className="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold flex items-center gap-1 transition-colors border border-slate-700 cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
-                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
-                </svg>
-                <span className="hidden sm:inline">iOS</span>
-              </button>
-
-              <Link
-                href="/land-solution"
+              <a
+                href={LAND_SOLUTION_PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-md hover:shadow-lg group-hover:scale-105"
               >
-                <Play className="w-3.5 h-3.5 fill-white" />
-                <span>पूर्ण एप (Full App)</span>
-              </Link>
+                <Download className="w-3.5 h-3.5" />
+                <span>Google Play</span>
+              </a>
             </div>
           </div>
 
-          {/* App 2: Hamro Kosh (Compact & Action-Oriented with Modern Glow) */}
+          {/* App 2: Hamro Kosh */}
           <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 text-white border border-indigo-800/40 hover:border-indigo-500/80 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between gap-4 group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-transparent to-indigo-500/10 group-hover:opacity-100 opacity-0 transition-opacity pointer-events-none" />
             <div className="flex items-center gap-3.5 min-w-0 relative z-10">
@@ -467,95 +437,6 @@ export default function StyleCitizenPortal() {
 
         </div>
       </section>
-
-      {/* 🚀 FULL-SCREEN INTERACTIVE LAND SOLUTION DEMO MODAL */}
-      {showDemoModal && (
-        <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex flex-col p-2 sm:p-4">
-          <div className="relative w-full h-full max-w-6xl mx-auto bg-slate-950 rounded-2xl overflow-hidden flex flex-col border border-slate-800 shadow-2xl">
-            {/* Top Modal Navigation Bar */}
-            <div className="h-14 sm:h-16 bg-slate-900 text-white px-3 sm:px-6 flex items-center justify-between border-b border-slate-800 shrink-0">
-              <div className="flex items-center gap-2.5 sm:gap-3">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white p-1 shrink-0 flex items-center justify-center shadow-xs">
-                  <img src="/logo.png" alt="Land Solution" className="w-full h-full object-contain" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-black text-xs sm:text-base text-white block leading-tight">
-                      Land Solution (पूर्ण संस्करण - All Data)
-                    </span>
-                    <span className="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 hidden sm:inline">
-                      ७५३ स्थानीय तह
-                    </span>
-                  </div>
-                  <span className="text-[10px] sm:text-xs text-emerald-400">
-                    डाउनलोड नगरी सिधै ब्राउजरमा चल्ने आधिकारिक पूर्ण नापी सफ्टवेयर
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowIosGuide(true)}
-                  title="iPhone / iPad मा एप कसरी बनाउने"
-                  className="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-xs flex items-center gap-1.5 border border-slate-700 cursor-pointer"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 170 170">
-                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.98-5.77-8.91-10.26-19.16-13.46-30.74-3.21-11.58-4.82-22.75-4.82-33.51 0-14.24 3.73-26.06 11.19-35.46 7.46-9.4 16.64-14.22 27.54-14.47 5.11 0 10.74 1.48 16.9 4.43 6.15 2.95 10.15 4.51 11.99 4.67 1.83-.16 6.01-1.78 12.54-4.86 6.53-3.08 12.06-4.49 16.59-4.22 12.65.65 22.84 5.38 30.58 14.2-11.04 6.72-16.42 16.14-16.14 28.26.33 9.4 3.86 17.22 10.6 23.46 6.74 6.24 14.88 9.87 24.42 10.89-2.28 7.07-5.22 14.33-8.81 21.78zM119.22 31.84c0-7.39 2.66-14.28 7.98-20.67 5.32-6.39 11.97-10.45 19.95-12.17.65 1.52.98 3.15.98 4.89 0 7.39-2.77 14.39-8.31 21-5.54 6.61-12.3 10.6-20.28 11.96-.22-1.63-.32-3.3-.32-5.01z"/>
-                  </svg>
-                  <span className="hidden sm:inline">iPhone Guide</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setIframeKey((k) => k + 1)}
-                  title="पुनः लोड गर्नुहोस् (Reload)"
-                  className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-xs flex items-center gap-1.5 cursor-pointer"
-                >
-                  <RotateCw className="w-4 h-4" />
-                  <span className="hidden sm:inline">Reload</span>
-                </button>
-                <a
-                  href="/land-solution-demo/index.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="नयाँ ट्याबमा पूरै स्क्रिन खोल्नुहोस्"
-                  className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors text-xs flex items-center gap-1.5"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span className="hidden sm:inline">New Tab</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setShowDemoModal(false)}
-                  title="बन्द गर्नुहोस्"
-                  className="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white transition-colors flex items-center gap-1.5 font-bold text-xs cursor-pointer shadow-xs"
-                >
-                  <X className="w-4 h-4" />
-                  <span>बन्द</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Embedded Iframe */}
-            <div className="flex-1 w-full h-full bg-slate-950 relative">
-              <iframe
-                key={iframeKey}
-                src="/land-solution-demo/index.html"
-                title="Land Solution Interactive Live Demo"
-                className="w-full h-full border-0"
-                allow="geolocation; camera; accelerometer; gyroscope"
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 🍎 REUSABLE iOS INSTALL GUIDE MODAL */}
-      <IosInstallGuideModal 
-        isOpen={showIosGuide} 
-        onClose={() => setShowIosGuide(false)} 
-      />
 
     </div>
   );

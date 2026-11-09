@@ -1,1 +1,2 @@
-export const LAND_SOLUTION_WEB_URL = '/land-solution-demo/index.html?v=2.8.19-2314-r17';
+export const LAND_SOLUTION_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.brbhatta.landsolution';
+export const LAND_SOLUTION_WEB_URL = 'https://play.google.com/store/apps/details?id=com.brbhatta.landsolution';

@@ -479,13 +479,13 @@ export default function SoftwareHubPage() {
                     </Link>
 
                     <a
-                      href="/land-solution-demo/index.html"
+                      href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-3.5 rounded-2xl bg-slate-800/90 hover:bg-slate-700 text-white font-bold text-sm flex items-center gap-2 border border-slate-700 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 text-sky-400" />
-                      <span>सफारी/क्रोममा सिधै खोल्नुहोस्</span>
+                      <span>Google Play Store बाट डाउनलोड गर्नुहोस्</span>
                     </a>
 
                     <button

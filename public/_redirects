@@ -22,3 +22,11 @@ http://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 /about-us /about 301
 /privacy /privacy-policy 301
 /legal /terms 301
+
+# Redirect Legacy Web Demo & Test Routes to Official App / Home
+/land-solution-demo/* https://play.google.com/store/apps/details?id=com.brbhatta.landsolution 301!
+/land-solution-demo https://play.google.com/store/apps/details?id=com.brbhatta.landsolution 301!
+/demo/* / 301!
+/demo / 301!
+/test / 301!
+/tools/test /tools 301!

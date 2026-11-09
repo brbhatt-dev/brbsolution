@@ -490,13 +490,13 @@ export default function ToolsAppDashboard() {
 
                 <div className="pt-2">
                   <a
-                    href="/land-solution-demo/index.html"
+                    href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all shadow-sm"
                   >
                     <Play className="w-4 h-4 fill-white" />
-                    <span>ल्याण्ड सोलुसन Web Demo चलाउनुहोस्</span>
+                    <span>Google Play बाट Land Solution डाउनलोड गर्नुहोस्</span>
                     <ExternalLink className="w-3.5 h-3.5 opacity-80" />
                   </a>
                 </div>

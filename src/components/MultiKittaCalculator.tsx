@@ -593,11 +593,12 @@ export default function MultiKittaCalculator() {
             </div>
 
             <a
-              href="/land-solution-demo/index.html"
+              href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-xs text-emerald-700 dark:text-emerald-400 hover:underline font-semibold"
             >
-              Land Solution वेब डेमो हेर्नुहोस् &rarr;
+              Google Play बाट Land Solution एप डाउनलोड गर्नुहोस् &rarr;
             </a>
           </div>
 

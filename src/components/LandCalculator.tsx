@@ -649,13 +649,13 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
             </div>
 
             <a
-              href="/land-solution-demo/index.html"
+              href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 hover:underline font-semibold"
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>कित्ताकाट तथा डिजिटल नापजाँचको लागि Land Solution वेब डेमो प्रयोग गर्नुहोस् &rarr;</span>
+              <span>कित्ताकाट तथा डिजिटल नापजाँचको लागि Google Play बाट Land Solution एप डाउनलोड गर्नुहोस् &rarr;</span>
             </a>
           </div>
 

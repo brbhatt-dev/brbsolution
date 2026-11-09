@@ -76,7 +76,7 @@ export default function LandSolutionSection() {
               </button>
 
               <a
-                href="/land-solution-demo/index.html"
+                href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-emerald-800/80 hover:bg-emerald-800 text-white border border-emerald-500/30 font-semibold text-sm transition-all min-h-[48px]"
@@ -273,7 +273,7 @@ export default function LandSolutionSection() {
                   <span className="hidden sm:inline">Reload</span>
                 </button>
                 <a
-                  href="/land-solution-demo/index.html"
+                  href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 hover:bg-emerald-900 inline-flex items-center gap-1 font-bold px-2.5 py-1.5 rounded-lg min-h-[36px]"
@@ -295,7 +295,7 @@ export default function LandSolutionSection() {
             <div className="flex-grow bg-slate-950 relative w-full h-full">
               <iframe
                 key={iframeKey}
-                src="/land-solution-demo/index.html"
+                src="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
                 title="Land Solution Web Demo"
                 allow="geolocation; camera; accelerometer; gyroscope"
                 className="w-full h-full border-0"

@@ -70,7 +70,7 @@ export default function Hero() {
               </a>
 
               <a
-                href="/land-solution-demo/index.html"
+                href="https://play.google.com/store/apps/details?id=com.brbhatta.landsolution"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:bg-slate-950 text-white dark:bg-slate-800 dark:hover:bg-slate-700 font-bold text-sm sm:text-base border border-slate-800 dark:border-slate-700 transition-all shadow-2xs"
