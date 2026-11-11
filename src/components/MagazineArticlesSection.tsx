@@ -33,6 +33,9 @@ const CATEGORIES = [
 
 // Trending quick topics for the top ribbon
 const TRENDING_TOPICS = [
+  { label: '🤝 जग्गा बैना गर्दा ध्यान दिनुपर्ने ५ कुरा', slug: 'land-earnest-money-bayana-rules-fraud-prevention-commission-nepal' },
+  { label: '💍 २०८१-२०८४ विवाह र गृहप्रवेश शुभ साइत', slug: 'nepali-patro-2081-2082-festivals-holidays-bibaha-saait-panchanga' },
+  { label: '🗺️ मेरोकित्ता अनलाइन नक्सा र फिल्डबुक', slug: 'online-lalpurja-naksa-trace-print-merokitta-dlis-guide' },
   { label: '🏦 नयाँ बैंक धितो मूल्याङ्कन नियम', slug: 'bank-land-loan-valuation-rules-process-nepal' },
   { label: '✈️ विदेशबाट जग्गा किन्ने वारेसनामा', slug: 'foreign-country-land-buying-power-of-attorney-nepal-embassy' },
   { label: '⚡ खोला तथा हाइटेन्सन सेटब्याक मापदण्ड', slug: 'river-high-tension-wire-forest-boundary-land-setback-rules-nepal' },
