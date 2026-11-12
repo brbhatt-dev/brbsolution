@@ -15,7 +15,10 @@ import {
   ArrowLeft,
   ExternalLink,
   Info,
-  Smartphone
+  Smartphone,
+  History,
+  CheckCircle2,
+  Clock
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -60,6 +63,105 @@ export const metadata: Metadata = {
     images: ['https://www.brbhatta.com/assets/br-patro-og.png'],
   },
 };
+
+interface ReleaseLogItem {
+  version: string;
+  build: string;
+  date: string;
+  tag?: string;
+  isLatest?: boolean;
+  fixes: string[];
+}
+
+const RELEASE_LOGS: ReleaseLogItem[] = [
+  {
+    version: "v7.9.77",
+    build: "Build 176",
+    date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
+    tag: "पछिल्लो ताजा रिलिज (Latest)",
+    isLatest: true,
+    fixes: [
+      "होम स्क्रिन तिहार साइत क्लिनअप: तिहार तथा भाइटीका सकिएकाले होम स्क्रिनको साइत ब्यानर हटाई आजको दैनिक पञ्चाङ्ग र मितिमा पूर्ण केन्द्रित गरिएको।",
+      "ऐतिहासिक खण्डखाद्यक अहर्गण एकीकरण: आचार्य ब्रह्मगुप्तको शक ५८७ (६६५ ईस्वी) को खण्डखाद्यक करण सिद्धान्त अनुसारको अहर्गण (४,९७,३२६ दिन) सफलतापूर्वक थप।",
+      "स्वचालित क्लाउड अपडेट नोटिफिकेसन: अब कुनै पनि नयाँ भर्सन वा बग समाधान रिलिज हुँदा युजरलाई स्वतः इन-एप ब्यानर र पुस नोटिफिकेसनमार्फत १-क्लिक डाउनलोड सुविधा।"
+    ]
+  },
+  {
+    version: "v7.9.76",
+    build: "Build 175",
+    date: "२०८३ कार्तिक २५ (११ नोभेम्बर २०२६)",
+    fixes: [
+      "कलियुग तथा खण्डखाद्यक अहर्गण अनुसन्धान: १८,७२,८९० कलि अहर्गण र ब्रह्मगुप्त अहर्गण गणनाको गहिरो शास्त्रीय परीक्षण तथा शुद्धता।",
+      "क्लीन एपीके रिबिल्ड सुधार: एन्ड्रोइड भर्सन नेम क्यासिङ समाधान गरी सबै मोबाइलमा सिधै नयाँ बिल्ड इन्स्टल हुने बनाइएको।"
+    ]
+  },
+  {
+    version: "v7.9.75",
+    build: "Build 174",
+    date: "२०८३ कार्तिक २४ (१० नोभेम्बर २०२६)",
+    fixes: [
+      "स्मार्ट नोटिफिकेसन माइक्रो-कपी: मोबाइलको स्टेटस बारमा नोटिफिकेसन नकटिने गरी २५/७५ अक्षर सीमा र च्यानेल प्राथमिकता अप्टिमाइजेसन।",
+      "दैनिक बिहानी पञ्चाङ्ग अलार्म: बिहानको पञ्चाङ्ग तथा साइत अलर्ट टाइमरमा सुधार।"
+    ]
+  },
+  {
+    version: "v7.9.74",
+    build: "Build 173",
+    date: "२०८३ कार्तिक २२ (८ नोभेम्बर २०२६)",
+    fixes: [
+      "दीपावली तथा महालक्ष्मी पूजा प्रदोष काल: स्थिर वृष लग्न, कुबेर पूजा र प्रदोष काल मुहूर्त शुद्धिकरण।",
+      "तिहार यमपञ्चक विशेष साइत तथा दिशा विवरण अद्यावधिक।"
+    ]
+  },
+  {
+    version: "v7.9.73",
+    build: "Build 172",
+    date: "२०८३ कार्तिक २० (६ नोभेम्बर २०२६)",
+    fixes: [
+      "फुल-ब्लिड नयाँ ब्रान्ड लोगो (Full-Bleed Adaptive Icon): सामसुङ One UI, Pixel तथा सम्पूर्ण एन्ड्रोइड स्मार्टफोनहरूमा सेतो प्लेट हटाई श्री गणेशजीको फुल एज-टु-एज लोगो।",
+      "एप लन्चर आइकन तथा होम स्क्रिन ड्यासबोर्डमा दृश्य सुधार।"
+    ]
+  },
+  {
+    version: "v7.9.70 - v7.9.72",
+    build: "Build 169-171",
+    date: "२०८३ कार्तिक १८ (४ नोभेम्बर २०२६)",
+    fixes: [
+      "कञ्चनपुर / महेन्द्रनगर सङ्कल्प अटो-सिङ्क: पुण्यभूमौ नेपालदेशे शारदा-महाकाली तीरे कञ्चनपुर मण्डले सिद्धनाथ क्षेत्रे स्वतः संकल्प पहिचान।",
+      "सम्पूर्ण परिवारका सदस्यहरूको नाम सहितको शास्त्रीय सङ्कल्प जेनेरेटर।"
+    ]
+  },
+  {
+    version: "v7.9.60 - v7.9.69",
+    build: "Build 158-168",
+    date: "२०८३ कार्तिक १०-१५ (२७-३१ अक्टोबर २०२६)",
+    fixes: [
+      "विवाह ३६ गुण मिलान (Kundali Matching): वर-कन्याको नामबाट अष्टकूट ३६ गुण, नाडी दोष, भकूट दोष, गण मैत्री र परिहारसहितको सटिक नतिजा।",
+      "७७ जिल्लाका ७५३ पालिका पञ्चाङ्ग: प्रत्येक स्थानीय तहको यथार्थ सूर्योदय, सूर्यास्त तथा काल साधन।",
+      "९५ वर्षका पुराना स्क्यान पात्रोहरू पढ्ने ई-लाइब्रेरी सुविधा।"
+    ]
+  },
+  {
+    version: "v7.9.0 - v7.9.50",
+    build: "Build 140-155",
+    date: "२०८३ आश्विन (दशैं विशेष - अक्टोबर २०२६)",
+    fixes: [
+      "दशैं २०८३ घटस्थापना र विजयादशमी साइत: नेपाल पञ्चाङ्ग निर्णायक विकास समिति स्वीकृत शास्त्रीय साइतहरू।",
+      "स्मार्ट संस्कृत सङ्कल्प जेनेरेटर: यजमान, कुल, गोत्र र स्थान अनुसार शुद्ध संस्कृत सङ्कल्प पाठ।",
+      "नयाँ आधुनिक डार्क मोड तथा ज्येष्ठ नागरिक (ठूलो अक्षर) मोड।"
+    ]
+  },
+  {
+    version: "v7.8.0 - v7.8.9",
+    build: "Build 130-139",
+    date: "२०८३ भाद्र (सेप्टेम्बर २०२६)",
+    fixes: [
+      "सुदूरपश्चिम हरिगढ-अठोला पञ्चाङ्ग मोड: स्थानीय पञ्चाङ्ग र काठमाडौँ मानक पञ्चाङ्ग बीच १-ट्याप स्वीच।",
+      "अफलाइन मोड सुधार: इन्टरनेट बिना नै ३६५ दिनको सम्पूर्ण पात्रो तथा राशिफल चल्ने सुविधा।",
+      "विजेट सपोर्ट: होम स्क्रिनमा मिति, बार र पञ्चाङ्ग देखाउने स्लिम तथा स्क्वायर विजेट।"
+    ]
+  }
+];
 
 export default function PatroDownloadPage() {
   const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.77/BR_Patro_v7.9.77.apk";
@@ -235,7 +337,73 @@ export default function PatroDownloadPage() {
           </div>
         </section>
 
-        {/* 4. HOW TO INSTALL APK GUIDE */}
+        {/* 4. VERSION-WISE RELEASE LOG & FIXES (CHANGELOG) */}
+        <section className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div>
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                <History className="w-5 h-5 text-red-600 dark:text-amber-400" />
+                <span>भर्सन अनुसार सुधार तथा विशेषताहरूको लग (Release Changelog)</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">
+                BR Patro एपलाई निरन्तर परिष्कृत र भरपर्दो बनाउन प्रत्येक भर्सनमा गरिएका प्रमुख सुधार तथा बग समाधानहरू:
+              </p>
+            </div>
+            <span className="self-start sm:self-auto px-3 py-1 rounded-full text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              कुल {RELEASE_LOGS.length} वटा प्रमुख रिलिज
+            </span>
+          </div>
+
+          <div className="space-y-3.5">
+            {RELEASE_LOGS.map((item, idx) => (
+              <div 
+                key={idx}
+                className={`p-4 sm:p-5 rounded-2xl transition border ${
+                  item.isLatest 
+                    ? 'bg-white dark:bg-slate-900 border-red-500/50 dark:border-amber-500/50 shadow-md ring-1 ring-red-500/20' 
+                    : 'bg-white/80 dark:bg-slate-900/70 border-slate-200 dark:border-slate-800 shadow-2xs'
+                }`}
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-black tracking-wide ${
+                      item.isLatest 
+                        ? 'bg-red-600 text-white' 
+                        : 'bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 font-bold'
+                    }`}>
+                      {item.version}
+                    </span>
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
+                      ({item.build})
+                    </span>
+                    {item.tag && (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">
+                        ✨ {item.tag}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>{item.date}</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-1.5 mt-2">
+                  {item.fixes.map((fix, fIdx) => (
+                    <li key={fIdx} className="text-xs sm:text-[13px] text-slate-700 dark:text-slate-300 flex items-start gap-2 leading-relaxed">
+                      <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${
+                        item.isLatest ? 'text-red-500 dark:text-amber-400' : 'text-slate-400 dark:text-slate-500'
+                      }`} />
+                      <span>{fix}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 5. HOW TO INSTALL APK GUIDE */}
         <section className="bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7">
           <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
             <Info className="w-4 h-4 text-blue-500" />
