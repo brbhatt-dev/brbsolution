@@ -232,7 +232,7 @@ export default function InteractiveOnlinePatro() {
             href={downloadApkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            download="BR_Patro_v7.9.74.apk"
+            download="BR_Patro_v7.9.80.apk"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white text-xs font-bold shadow-sm transition-transform active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />

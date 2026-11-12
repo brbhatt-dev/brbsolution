@@ -239,7 +239,7 @@ export default function PatroDownloadPage() {
                   Version 7.9.80
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 177
+                  Build 180
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                   📦 ३८.१ MB
@@ -285,7 +285,7 @@ export default function PatroDownloadPage() {
           <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
             <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
               <span className="block text-2xs font-semibold text-slate-500 dark:text-slate-400">अपडेट मिति</span>
-              <span className="block text-xs sm:text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-0.5">२०८१ कार्तिक २२</span>
+              <span className="block text-xs sm:text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-0.5">२०८३ कार्तिक २६</span>
             </div>
             <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
               <span className="block text-2xs font-semibold text-slate-500 dark:text-slate-400">एन्ड्रोइड सपोर्ट</span>
@@ -311,49 +311,49 @@ export default function PatroDownloadPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0">
-                <Compass className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">फुल-ब्लिड नयाँ ब्रान्ड लोगो (Full-Bleed Adaptive Icon)</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  सामसुङ One UI तथा सम्पूर्ण एन्ड्रोइड स्मार्टफोनहरूमा सेतो प्लेट पूर्ण रूपमा हटाइएको, भगवान् श्री गणेशजीको प्रिमियम एज-टु-एज फुल लोगो।
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
                 <Calendar className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">कञ्चनपुर / महेन्द्रनगर सङ्कल्प अटो-सिङ्क</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">२००-वर्षे १-क्लिक मिति चयन (वि.सं. १९९९ देखि २१९९)</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  पुण्यभूमौ नेपालदेशे शारदा-महाकाली तीरे कञ्चनपुर मण्डले सिद्धनाथ क्षेत्रे स्वगृहे स्वतः पहिचान तथा सम्पूर्ण परिवार सहितको शास्त्रीय सङ्कल्प।
+                  क्यालेन्डर शीर्षमा "📅 मिति चयन" बटन थप, जहाँबाट १९९९ देखि २१९९ सम्मका कुनै पनि साल, महिना र गते छानेर सो मितिको पञ्चाङ्ग तथा चाडपर्वहरूमा १ क्लिकमै सिधै जान सकिने।
                 </p>
               </div>
             </div>
 
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/70 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
-                <Heart className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">विवाह ३६ गुण मिलान (Kundali Matching)</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">२०८४ सालका चाडपर्व तथा दशैँ/तिहार शास्त्रीय शुद्धिकरण</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  वर र कन्याको नाम वा जन्म विवरणबाट अष्टकूट ३६ गुण, नाडी दोष, भकूट दोष, गण मैत्री र परिहारसहितको सटिक नतिजा।
+                  २०८४ को असोजमा घटस्थापना (असोज १३), फूलपाती, महाष्टमी, महानवमी, विजयादशमी र कात्तिकमा तिहार यमपञ्चक तथा छठ पर्वको वास्तविक शास्त्रीय क्रम पूर्ण रूपमा सच्याइएको।
                 </p>
               </div>
             </div>
 
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
-                <Scroll className="w-5 h-5" />
+                <Compass className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">नेपालका ७५३ वटै स्थानीय तह पञ्चाङ्ग</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">हरिगढ अहर्गण साधन दैनिक यथार्थ सिङ्क (३२६ ➔ ३२७)</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  ७७ वटै जिल्लाका ७५३ वटै पालिकाको यथार्थ स्थानीय सूर्योदय, सूर्यास्त र काल साधन। ९५ वर्षका पुराना स्क्यान पात्रोहरू पढ्ने सुविधा।
+                  टाइमजोन अफसेट समाधान गरी सूर्यसिद्धान्त र खण्डखाद्यक (Khandakhadyaka) पद्धति अनुसार दैनिक अहर्गण +१ ले क्रमशः बढ्ने (कार्तिक २५ मा ४८७,३२६ र कार्तिक २६ मा ४८७,३२७ दिन) शास्त्रीय शुद्धिकरण।
+                </p>
+              </div>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">ब्याकग्राउन्ड अलार्म सुरक्षा तथा ब्याट्री अप्टिमाइज छुट</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                  एप अपडेट वा फोन रिबुट हुँदा पनि बिहानी पञ्चाङ्ग अलार्म नहट्ने ग्यारेन्टी (MY_PACKAGE_REPLACED), अनावश्यक इन-एप अपडेट अलर्ट मौन, र सेटिङ्समा १-क्लिक ब्याट्री अप्टिमाइजेसन छुट।
                 </p>
               </div>
             </div>
