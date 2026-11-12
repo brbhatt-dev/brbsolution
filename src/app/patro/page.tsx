@@ -76,7 +76,7 @@ interface ReleaseLogItem {
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
     version: "v7.9.80",
-    build: "Build 179",
+    build: "Build 180",
     date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
