@@ -51,7 +51,7 @@ export default function PatroAppPromoBanner({ variant = 'inline' }: PatroBannerP
           <div className="space-y-1 pr-4">
             <div className="flex items-center gap-1.5">
               <span className="text-2xs font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
-                Android App v7.9.77
+                Android App v7.9.78
               </span>
             </div>
             <h4 className="text-sm font-black leading-snug">
@@ -65,7 +65,7 @@ export default function PatroAppPromoBanner({ variant = 'inline' }: PatroBannerP
 
         <div className="mt-3 pt-3 border-t border-slate-800 flex items-center gap-2">
           <a
-            href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.77/BR_Patro_v7.9.77.apk"
+            href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.78/BR_Patro_v7.9.78.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-transform active:scale-95"
@@ -128,7 +128,7 @@ export default function PatroAppPromoBanner({ variant = 'inline' }: PatroBannerP
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 self-start md:self-auto">
           <a
-            href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.77/BR_Patro_v7.9.77.apk"
+            href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.78/BR_Patro_v7.9.78.apk"
             download="BR_Patro_v7.9.76.apk"
             target="_blank"
             rel="noopener noreferrer"

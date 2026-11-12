@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'बी.आर. पात्रो (BR Patro) - आधिकारिक नेपाली क्यालेन्डर, वैदिक पञ्चाङ्ग २०८१-२०८४ र साइत | BR Bhatta',
-  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.77) डाउनलोड गर्नुहोस्।',
+  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.78) डाउनलोड गर्नुहोस्।',
   keywords: [
     'नेपाली पात्रो',
     'बी.आर. पात्रो',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Calendar & APK v7.9.77',
+        alt: 'BR Patro Official Calendar & APK v7.9.78',
       },
     ],
     locale: 'ne_NP',
@@ -75,8 +75,8 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
-    version: "v7.9.77",
-    build: "Build 176",
+    version: "v7.9.78",
+    build: "Build 177",
     date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
@@ -87,8 +87,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77",
-    build: "Build 176",
+    version: "v7.9.78",
+    build: "Build 177",
     date: "२०८३ कार्तिक २५ (११ नोभेम्बर २०२६)",
     fixes: [
       "कलियुग तथा खण्डखाद्यक अहर्गण अनुसन्धान: १८,७२,८९० कलि अहर्गण र ब्रह्मगुप्त अहर्गण गणनाको गहिरो शास्त्रीय परीक्षण तथा शुद्धता।",
@@ -96,8 +96,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77",
-    build: "Build 176",
+    version: "v7.9.78",
+    build: "Build 177",
     date: "२०८३ कार्तिक २४ (१० नोभेम्बर २०२६)",
     fixes: [
       "स्मार्ट नोटिफिकेसन माइक्रो-कपी: मोबाइलको स्टेटस बारमा नोटिफिकेसन नकटिने गरी २५/७५ अक्षर सीमा र च्यानेल प्राथमिकता अप्टिमाइजेसन।",
@@ -105,8 +105,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77",
-    build: "Build 176",
+    version: "v7.9.78",
+    build: "Build 177",
     date: "२०८३ कार्तिक २२ (८ नोभेम्बर २०२६)",
     fixes: [
       "दीपावली तथा महालक्ष्मी पूजा प्रदोष काल: स्थिर वृष लग्न, कुबेर पूजा र प्रदोष काल मुहूर्त शुद्धिकरण।",
@@ -114,8 +114,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77",
-    build: "Build 176",
+    version: "v7.9.78",
+    build: "Build 177",
     date: "२०८३ कार्तिक २० (६ नोभेम्बर २०२६)",
     fixes: [
       "फुल-ब्लिड नयाँ ब्रान्ड लोगो (Full-Bleed Adaptive Icon): सामसुङ One UI, Pixel तथा सम्पूर्ण एन्ड्रोइड स्मार्टफोनहरूमा सेतो प्लेट हटाई श्री गणेशजीको फुल एज-टु-एज लोगो।",
@@ -123,8 +123,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77 - v7.9.77",
-    build: "Build 176-171",
+    version: "v7.9.78 - v7.9.78",
+    build: "Build 177-171",
     date: "२०८३ कार्तिक १८ (४ नोभेम्बर २०२६)",
     fixes: [
       "कञ्चनपुर / महेन्द्रनगर सङ्कल्प अटो-सिङ्क: पुण्यभूमौ नेपालदेशे शारदा-महाकाली तीरे कञ्चनपुर मण्डले सिद्धनाथ क्षेत्रे स्वतः संकल्प पहिचान।",
@@ -132,8 +132,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77 - v7.9.77",
-    build: "Build 176-168",
+    version: "v7.9.78 - v7.9.78",
+    build: "Build 177-168",
     date: "२०८३ कार्तिक १०-१५ (२७-३१ अक्टोबर २०२६)",
     fixes: [
       "विवाह ३६ गुण मिलान (Kundali Matching): वर-कन्याको नामबाट अष्टकूट ३६ गुण, नाडी दोष, भकूट दोष, गण मैत्री र परिहारसहितको सटिक नतिजा।",
@@ -142,8 +142,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
     ]
   },
   {
-    version: "v7.9.77 - v7.9.77",
-    build: "Build 176-155",
+    version: "v7.9.78 - v7.9.78",
+    build: "Build 177-155",
     date: "२०८३ आश्विन (दशैं विशेष - अक्टोबर २०२६)",
     fixes: [
       "दशैं २०८३ घटस्थापना र विजयादशमी साइत: नेपाल पञ्चाङ्ग निर्णायक विकास समिति स्वीकृत शास्त्रीय साइतहरू।",
@@ -153,7 +153,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.8.0 - v7.8.9",
-    build: "Build 176-139",
+    build: "Build 177-139",
     date: "२०८३ भाद्र (सेप्टेम्बर २०२६)",
     fixes: [
       "सुदूरपश्चिम हरिगढ-अठोला पञ्चाङ्ग मोड: स्थानीय पञ्चाङ्ग र काठमाडौँ मानक पञ्चाङ्ग बीच १-ट्याप स्वीच।",
@@ -164,8 +164,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
 ];
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.77/BR_Patro_v7.9.77.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.77";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.78/BR_Patro_v7.9.78.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.78";
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans">
@@ -195,7 +195,7 @@ export default function PatroDownloadPage() {
           <InteractiveOnlinePatro />
         </section>
 
-        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.77) */}
+        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.78) */}
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -213,10 +213,10 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left space-y-3">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.77
+                  Version 7.9.78
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 176
+                  Build 177
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                   📦 ३८.१ MB
@@ -238,7 +238,7 @@ export default function PatroDownloadPage() {
                   href={downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  download="BR_Patro_v7.9.77.apk"
+                  download="BR_Patro_v7.9.78.apk"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-red-600/30 active:scale-95 transition transform cursor-pointer group"
                 >
                   <Download className="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5" />
@@ -283,7 +283,7 @@ export default function PatroDownloadPage() {
         <section className="space-y-4">
           <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-500" />
-            <span>नयाँ भर्सन (v7.9.77) का प्रमुख विशेषताहरू</span>
+            <span>नयाँ भर्सन (v7.9.78) का प्रमुख विशेषताहरू</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -416,7 +416,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.77.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.78.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">३</span>
@@ -463,11 +463,11 @@ export default function PatroDownloadPage() {
               href={downloadUrl}
               target="_blank"
               rel="noopener noreferrer"
-              download="BR_Patro_v7.9.77.apk"
+              download="BR_Patro_v7.9.78.apk"
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>BR_Patro_v7.9.77.apk (३८.१ MB) सिधै डाउनलोड गर्नुहोस्</span>
+              <span>BR_Patro_v7.9.78.apk (३८.१ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
           </div>
         </section>
