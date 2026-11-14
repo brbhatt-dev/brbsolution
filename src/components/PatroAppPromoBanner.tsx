@@ -135,7 +135,7 @@ export default function PatroAppPromoBanner({ variant = 'inline' }: PatroBannerP
             className="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95"
           >
             <Download className="w-4 h-4" />
-            <span>प्रत्यक्ष APK डाउनलोड (३८.१ MB)</span>
+            <span>प्रत्यक्ष APK डाउनलोड (१६.२ MB)</span>
           </a>
 
           <Link
