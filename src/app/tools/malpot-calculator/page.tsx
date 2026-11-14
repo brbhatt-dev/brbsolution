@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MalpotCalculator from '@/components/MalpotCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { Receipt, ArrowLeft, BookOpen, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -115,6 +116,9 @@ export default function MalpotCalculatorPage() {
             </div>
           </div>
         </div>
+
+        {/* BR Patro Conversion Banner */}
+        <PatroAppPromoBanner variant="inline" />
 
       </main>
 

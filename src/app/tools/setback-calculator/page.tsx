@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SetbackCalculator from '@/components/SetbackCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { 
   ArrowLeft, 
   BookOpen, 
@@ -17,12 +18,16 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'घर नक्सा पास तथा बाटो छोड्ने मापदण्ड क्याल्कुलेटर (Building Setback Calculator Nepal) | BR Bhatta',
-  description: 'नेपालमा घर बनाउँदा बाटोको केन्द्रबाट कति दुरी छोड्नुपर्छ? राष्ट्रिय भवन निर्माण मापदण्ड २०८१ अनुसार बाटोको चौडाइ, अगाडि (Front), दायाँ-बायाँ (Side) र पछाडि (Rear) छोड्नुपर्ने सेटब्याक र ग्राउन्ड कभरेज तुरुन्त हिसाब गर्नुहोस्।',
+  title: 'Building Setback & High Tension Line Setback Calculator Nepal (बाटो र हाइटेन्सन लाइन छोड्ने मापदण्ड) | BR Bhatta',
+  description: 'High Tension Line Setback in Nepal (11kV, 33kV, 66kV, 132kV, 220kV, 400kV), बाटोको केन्द्रबाट छोड्नुपर्ने दुरी (Road ROW), खोला किनारा र घर नक्सा पास मापदण्ड क्याल्कुलेटर।',
   keywords: [
+    'High Tension Line Setback in Nepal',
+    '11kV 33kV 132kV Transmission Line Setback Nepal',
     'Building Setback Calculator Nepal',
+    'River Khola Setback Rules Nepal',
     'घर नक्सा पास मापदण्ड',
     'बाटो छोड्ने नियम नेपाल',
+    'हाइटेन्सन लाइन मापदण्ड नेपाल',
     'Right of Way Nepal Road',
     'Bato Chhodne Mapdanda',
     'Building Bye Laws Nepal 2081',
@@ -81,6 +86,14 @@ export default function SetbackCalculatorPage() {
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'आफ्नो जग्गाको कुल क्षेत्रफलमध्ये कति प्रतिशत भागमा भुईंतलाको घरले ओगट्न पाउँछ भन्ने नियमलाई ग्राउन्ड कभरेज भनिन्छ। नेपालमा आवासीय क्षेत्रमा सामान्यतया ६०% देखि ७०% र व्यापारिक क्षेत्रमा ५०% सम्म मात्र जमिन ओगट्न पाइन्छ, बाँकी भाग खुला छाड्नुपर्छ।'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: 'High Tension Line Setback in Nepal: विद्युत प्रसारण लाइन (11kV, 33kV, 66kV, 132kV) मुनि कति दुरी छोड्नुपर्छ?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'विद्युत नियमावली २०५० तथा नेपाल विद्युत प्राधिकरण (NEA) को मापदण्ड अनुसार ६६ केभी र १३२ केभी हाइटेन्सन लाइनको केन्द्र रेखा (Centerline) बाट दायाँ-बायाँ ९/९ मिटर (कुल १८ मिटर), २२० केभीमा १५/१५ मिटर (कुल ३० मिटर), र ४०० केभीमा २३/२३ मिटर (कुल ४६ मिटर) Right of Way छोड्नुपर्छ। त्यस्तै ११ केभीमा न्यूनतम १.२५–२ मिटर र ३३ केभीमा २–३ मिटर सुरक्षा दुरी अनिवार्य हुन्छ।'
             }
           },
           {
@@ -174,6 +187,61 @@ export default function SetbackCalculatorPage() {
             </div>
           </div>
 
+          {/* High Tension Transmission Line & River Setback Rules */}
+          <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-amber-500" />
+              <span>हाइटेन्सन विद्युत लाइन र खोला किनारा मापदण्ड (High Tension Line &amp; River Setback in Nepal)</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              विद्युत नियमावली २०५०, नेपाल विद्युत प्राधिकरण (NEA) तथा स्थानीय तहको मापदण्ड अनुसार उच्च भोल्टेज प्रसारण लाइन (High Tension Line) को तार वा टावरको केन्द्रबाट तल दिइएको न्यूनतम दुरी (Right of Way) छोडेर मात्र घर बनाउन र बैंक धितो राख्न मिल्छ:
+            </p>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold border-b border-slate-200 dark:border-slate-700">
+                  <tr>
+                    <th className="p-3">विद्युत क्षमता (Voltage Level)</th>
+                    <th className="p-3">केन्द्रबाट दायाँ/बायाँ दुरी (Each Side)</th>
+                    <th className="p-3">कुल चौडाइ (Total ROW)</th>
+                    <th className="p-3">बैंक धितो / नक्सा पास स्थिति</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900 dark:text-white">११ के.भी. वितरण लाइन (11 kV)</td>
+                    <td className="p-3 font-mono font-bold">१.२५ – २.० मिटर (बाहिरी तारबाट)</td>
+                    <td className="p-3">~३ – ४ मिटर</td>
+                    <td className="p-3">सुरक्षा दुरी कटाएपछि नक्सा पास र बैंक लोन मिल्ने</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900 dark:text-white">३३ के.भी. सब-प्रसारण (33 kV)</td>
+                    <td className="p-3 font-mono font-bold">३.० मिटर (केन्द्रबाट) / २ मी. बाहिरी तार</td>
+                    <td className="p-3">६ मिटर</td>
+                    <td className="p-3">तोकिएको सेटब्याक क्षेत्र बाहिर मात्र निर्माण योग्य</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900 dark:text-white">६६ के.भी. र १३२ के.भी. (66 kV / 132 kV)</td>
+                    <td className="p-3 font-mono font-bold text-amber-700 dark:text-amber-400">९.० मिटर (करिब ३० फिट)</td>
+                    <td className="p-3 font-bold">१८ मिटर</td>
+                    <td className="p-3">१८ मिटर भित्र घर बनाउन वा बैंक धितो राख्न निषेध</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900 dark:text-white">२२० के.भी. प्रसारण लाइन (220 kV)</td>
+                    <td className="p-3 font-mono font-bold text-red-700 dark:text-red-400">१५.० मिटर (करिब ५० फिट)</td>
+                    <td className="p-3 font-bold">३० मिटर</td>
+                    <td className="p-3">३० मिटर क्षेत्रफल भित्र स्थायी संरचना वर्जित</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-slate-900 dark:text-white">४०० के.भी. महाप्रसारण लाइन (400 kV)</td>
+                    <td className="p-3 font-mono font-bold text-red-700 dark:text-red-400">२३.० मिटर (करिब ७५.५ फिट)</td>
+                    <td className="p-3 font-bold">४६ मिटर</td>
+                    <td className="p-3">उच्च जोखिम क्षेत्र — नक्सा पास नहुने</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           {/* 4-Stage Municipal Approval Process */}
           <div className="space-y-3 pt-2">
             <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -255,10 +323,21 @@ export default function SetbackCalculatorPage() {
                   उत्तर: नक्सा पास नभएको घरमा खानेपानी र बिजुलीको स्थायी मिटर जडान हुँदैन, बैंकले ऋण (Loan) दिँदैन, भविष्यमा घर बिक्री गर्दा मालपोतमा मूल्यांकन हुँदैन र पालिकाले जरिवाना वा भत्काउने आदेश दिन सक्छ।
                 </p>
               </div>
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80 space-y-1.5">
+                <h4 className="font-bold text-slate-900 dark:text-white">
+                  प्रश्न: हाइटेन्सन लाइन (High Tension Line Setback in Nepal) मुनि कति मिटर जग्गा छोड्नुपर्छ?
+                </h4>
+                <p className="text-slate-600 dark:text-slate-300">
+                  उत्तर: विद्युत नियमावली २०५० अनुसार ६६ केभी वा १३२ केभी लाइनमा केन्द्रबाट दुवैतर्फ ९/९ मिटर (कुल १८ मिटर), २२० केभीमा १५/१५ मिटर (कुल ३० मिटर) र ४०० केभीमा २३/२३ मिटर (कुल ४६ मिटर) छोड्नुपर्छ। ११ केभी र ३३ केभीमा न्यूनतम १.२५ देखि ३ मिटर सुरक्षित दुरी कायम गर्नुपर्छ।
+                </p>
+              </div>
             </div>
           </div>
 
         </div>
+
+        {/* BR Patro Conversion Banner */}
+        <PatroAppPromoBanner variant="inline" />
 
       </main>
 

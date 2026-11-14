@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MalpotValuationFinder from '@/components/MalpotValuationFinder';
 import SocialShareBar from '@/components/SocialShareBar';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { 
   ArrowLeft, 
   Landmark, 
@@ -183,6 +184,10 @@ export default function MalpotValuationRatesPage() {
             </div>
           </div>
         </section>
+
+        {/* BR Patro Conversion Banner */}
+        <PatroAppPromoBanner variant="inline" />
+
       </main>
 
       <Footer />

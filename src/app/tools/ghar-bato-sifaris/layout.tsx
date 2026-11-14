@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "घरबाटो सिफारिस तथा चारकिल्ला प्रमाणित निवेदन जेनेरेटर | Ghar Bato Sifaris Nepal | BR Bhatta",
-  description: "वडा कार्यालयबाट घरबाटो सिफारिस र चारकिल्ला प्रमाणित लिन आधिकारिक नेपाली निवेदन ढाँचा तयार गर्नुहोस्, दस्तुर दररेट, सडक चौडाइ मापदण्ड र ५ अनिवार्य कागजात चेकलिस्ट।",
+  title: "Ghar Bato Sifaris Nepal (घरबाटो सिफारिस निवेदन ढाँचा, दस्तुर र कागजात) | Charkilla Pramanit | BR Bhatta",
+  description: "Ghar Bato Sifaris Nepal & Charkilla Pramanit: वडा कार्यालयबाट घरबाटो सिफारिस लिन निवेदन ढाँचा (Format), नगरपालिका दस्तुर दररेट, सडक चौडाइ मापदण्ड र ५ अनिवार्य कागजात चेकलिस्ट।",
   keywords: [
     "ghar bato sifaris nepal",
     "charkilla pramanit nibedan format",

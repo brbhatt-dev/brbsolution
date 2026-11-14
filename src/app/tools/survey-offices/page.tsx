@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SurveyOfficesDirectory from '@/components/SurveyOfficesDirectory';
 import SocialShareBar from '@/components/SocialShareBar';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import { DISTRICT_SLUGS } from '@/lib/districtSlugs';
 import { 
   Building2, 
   ArrowLeft, 
@@ -26,12 +28,15 @@ import {
 import { SURVEY_OFFICES } from '@/data/surveyOffices';
 
 export const metadata: Metadata = {
-  title: 'नेपालका नापी तथा मालपोत कार्यालयहरूको सम्पर्क निर्देशिका [७७ जिल्ला, १८५ कार्यालय] | BR Bhatta',
-  description: 'नेपालका सम्पूर्ण ७७ वटै जिल्लाका १८५ नापी कार्यालय (dos.gov.np) र मालपोत कार्यालय (dolrm.gov.np) हरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल, क्षेत्राधिकार र नागरिक बडापत्र।',
+  title: 'नापी विभाग (dos.gov.np) तथा ७७ जिल्लाका नापी र मालपोत कार्यालय सम्पर्क निर्देशिका [Survey & Malpot Offices Nepal] | BR Bhatta',
+  description: 'Department of Survey Nepal (dos.gov.np), मेरोकित्ता (merokitta.dos.gov.np) र मालपोत (dolrm.gov.np): ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयहरूको फोन नम्बर, ठेगाना, इमेल, क्षेत्राधिकार र नागरिक बडापत्र।',
   keywords: [
+    'dos.gov.np',
+    'dos gov np',
     'www.dos.gov.np nepal',
     'Department of Survey Nepal',
     'Survey Offices Nepal',
+    'Malpot Office Phone Number Nepal',
     'मालपोत कार्यालय निर्देशिका',
     'नापी कार्यालय फोन नम्बर',
     'malpot office butwal',
@@ -202,6 +207,46 @@ export default function SurveyOfficesPage() {
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
             काठमाडौँ उपत्यका, बुटवल, पोखरा, वीरगञ्ज, विराटनगर लगायत नेपालका सम्पूर्ण ७७ वटै जिल्लाका १८५ नापी विभाग (dos.gov.np) र भूमिसुधार तथा मालपोत कार्यालयहरू (dolrm.gov.np) को आधिकारिक सम्पर्क नम्बर, ठेगाना, इमेल र नागरिक बडापत्र।
           </p>
+
+          {/* Direct Official DoS / MeroKitta / DOLRM Quick Access */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 text-left">
+            <a
+              href="https://dos.gov.np"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/70 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors"
+            >
+              <div>
+                <div className="text-xs font-black text-emerald-900 dark:text-emerald-300">नापी विभाग (dos.gov.np)</div>
+                <div className="text-[11px] text-emerald-700 dark:text-emerald-400">Department of Survey Nepal</div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-emerald-600 shrink-0" />
+            </a>
+            <a
+              href="https://merokitta.dos.gov.np"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800/70 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+            >
+              <div>
+                <div className="text-xs font-black text-blue-900 dark:text-blue-300">मेरोकित्ता (MeroKitta)</div>
+                <div className="text-[11px] text-blue-700 dark:text-blue-400">अनलाइन नक्सा र फिल्डबुक प्रिन्ट</div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-blue-600 shrink-0" />
+            </a>
+            <a
+              href="https://dolrm.gov.np"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800/70 hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors"
+            >
+              <div>
+                <div className="text-xs font-black text-amber-900 dark:text-amber-300">मालपोत विभाग (dolrm.gov.np)</div>
+                <div className="text-[11px] text-amber-700 dark:text-amber-400">LRIMS तथा सरकारी मूल्याङ्कन</div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-amber-600 shrink-0" />
+            </a>
+          </div>
         </div>
 
         {/* Zero-JS Quick Jump Anchor Bar */}
@@ -592,6 +637,34 @@ export default function SurveyOfficesPage() {
             </div>
           </div>
         </section>
+
+        {/* All 77 Districts Direct SEO Directory */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div className="space-y-1">
+            <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-emerald-600" />
+              <span>७७ वटै जिल्लाका छुट्टाछुट्टै नापी तथा मालपोत कार्यालय पृष्ठहरू (All 77 Districts)</span>
+            </h2>
+            <p className="text-xs text-slate-600 dark:text-slate-400">
+              आफ्नो जिल्ला छनोट गरी सो जिल्लाका सम्पूर्ण नापी, मालपोत फोन नम्बर, इमेल, कार्यक्षेत्र र सरकारी मूल्याङ्कन हेर्नुहोस्:
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs">
+            {DISTRICT_SLUGS.map((d) => (
+              <Link
+                key={d.slug}
+                href={`/tools/survey-offices/${d.slug}`}
+                className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 border border-slate-200/80 dark:border-slate-700/80 font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors flex items-center justify-between gap-1"
+              >
+                <span className="truncate">{d.districtNp}</span>
+                <span className="text-[10px] font-normal text-slate-400 shrink-0">{d.districtEn}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* BR Patro Conversion Banner */}
+        <PatroAppPromoBanner variant="inline" />
 
         {/* Social Share Bar */}
         <SocialShareBar 

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { ARTICLES_DATA } from '@/data/articles';
 import { sortArticlesDescending } from '@/lib/articlesSort';
+import { DISTRICT_SLUGS } from '@/lib/districtSlugs';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.brbhatta.com';
@@ -334,5 +335,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...corePages, ...articleEntries];
+  const districtEntries: MetadataRoute.Sitemap = DISTRICT_SLUGS.map((d) => ({
+    url: `${baseUrl}/tools/survey-offices/${d.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }));
+
+  return [...corePages, ...articleEntries, ...districtEntries];
 }

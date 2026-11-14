@@ -26,6 +26,7 @@ import StickyFloatingShare from '@/components/StickyFloatingShare';
 import ArticleTaxCalculatorWidget from '@/components/ArticleTaxCalculatorWidget';
 import ArticleKittaKatWidget from '@/components/ArticleKittaKatWidget';
 import ArticleContextualToolsCard from '@/components/ArticleContextualToolsCard';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { ArticleEnglishReference } from '@/components/BilingualEnglishGuide';
 
 interface ArticlePageProps {
@@ -512,6 +513,9 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
               </Link>
             </div>
           </div>
+
+          {/* BR Patro Conversion Banner */}
+          <PatroAppPromoBanner variant="inline" />
 
           {/* Smart Contextual Related Articles */}
           <SmartRelatedArticles articles={smartRelatedArticles} />

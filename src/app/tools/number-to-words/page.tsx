@@ -163,14 +163,23 @@ export default function NumberToWordsPage() {
           {/* Preset Buttons */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs text-slate-400 mr-1">द्रुत रकम छनोट:</span>
-            {[50000, 100000, 500000, 1000000, 2500000, 5000000, 10000000].map((val) => (
+            {[
+              { val: 50000, label: '५० हजार' },
+              { val: 100000, label: '१ लाख' },
+              { val: 500000, label: '५ लाख' },
+              { val: 1000000, label: '१० लाख (1 Million)' },
+              { val: 2500000, label: '२५ लाख' },
+              { val: 5000000, label: '५० लाख' },
+              { val: 10000000, label: '१ करोड (10 Million)' },
+              { val: 100000000, label: '१० करोड (100 Million)' },
+            ].map((item) => (
               <button
-                key={val}
+                key={item.val}
                 type="button"
-                onClick={() => setPreset(val)}
+                onClick={() => setPreset(item.val)}
                 className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-700 text-xs font-bold text-slate-600 dark:text-slate-300 transition-all cursor-pointer"
               >
-                {val >= 10000000 ? `${val / 10000000} करोड` : val >= 100000 ? `${val / 100000} लाख` : `${val / 1000} हजार`}
+                {item.label}
               </button>
             ))}
           </div>

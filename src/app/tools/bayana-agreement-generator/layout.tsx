@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "घरजग्गा बैनापट्टा (Earnest Money Agreement) A4 PDF जेनेरेटर | Land Bayana Deed Maker Nepal | BR Bhatta",
-  description: "मुलुकी देवानी संहिता २०७४ अनुसार घरजग्गा खरिदबिक्रीको आधिकारिक बैनापट्टा (Earnest Money Agreement) तयार गर्ने, दोब्बर हर्जाना सर्त राख्ने, र A4 साइजमा तुरुन्त प्रिन्ट वा PDF सेभ गर्ने निःशुल्क अनलाइन टुल।",
+  title: "जग्गा बैना कागज नमुना PDF (Download & Print) | घरजग्गा बैनापट्टा जेनेरेटर Nepal | BR Bhatta",
+  description: "जग्गा बैना कागज नमुना PDF डाउनलोड र प्रिन्ट गर्नुहोस्। मुलुकी देवानी संहिता २०७४ अनुसार दोब्बर हर्जाना र कानुनी सर्तसहितको आधिकारिक बैनापट्टा (Bayana Patta Agreement) तयार पार्ने निःशुल्क टुल।",
   keywords: [
     "jagga baina kagaj namuna pdf",
     "land purchase earnest money agreement nepal",
