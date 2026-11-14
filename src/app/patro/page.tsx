@@ -75,22 +75,50 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
-    version: "v7.9.80",
+    version: "v7.9.83",
     build: "Build 183",
-    date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
+    date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
+    fixes: [
+      "कस्टम हेडर र कन्ट्रास्ट सुधार (.view-topbar-custom): पूजा मन्दिर, चाडपर्व कथा, पूजा चेकलिस्ट, स्वप्न फल, तीन पुस्ता पितृ सङ्कल्प र चन्द्र/बाण विचारका रंगीन हेडरहरू लाइट, डार्क र सेपिया सबै थिममा पूर्ण स्पष्ट।",
+      "हराएको पितृ सङ्कल्प सेक्सन प्रत्यक्ष उपलब्ध: होम Quick Grid (४×४ लेआउट) र मुख्य मेनुमा 'तीन पुस्ता पितृ सङ्कल्प तथा तर्पण' सुविधा प्रत्यक्ष जोडिएको।",
+      "रीडर, थिम ग्यालरी र सर्च बार सेफ एरिया: अग्निस्थापना रीडरको तलको बटन र थिम ग्यालरीको Apply बटन एन्ड्रोइड नेभिगेसन बारमा नदबिने सुधार।",
+      "शुभ साइत २०८४, संस्कृत सङ्कल्प र गोत्रावलि सफाइ: साइत पृष्ठको डुप्लिकेट बक्स हटाइ वि.सं. २०८४ साइत सिङ्क, सङ्कल्प हेडर Copy/Share पङ्क्तिबद्धता र स्थानीय सूर्योदय/सूर्यास्त १२-घण्टे AM/PM मिलान।"
+    ]
+  },
+  {
+    version: "v7.9.82",
+    build: "Build 182",
+    date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
+    fixes: [
+      "गाढा (Dark) थिम पूर्ण स्पष्टता: राहुकाल/अभिजित् ग्रिड, ब्रोडकास्ट कार्ड, साइत फिल्टर र एन्ड्रोइड स्टेटस/नेभिगेसन बार आइकनहरू उच्च कन्ट्रास्टमा सुधार।",
+      "पात्रो हेडर र मिति चयन पपअप: लामो शीर्षक ओभरल्याप र मिति चयनमा BS वर्ष क्लिपिङ समाधान तथा सूर्यास्त/मुहूर्त समयमा स्पष्ट AM/PM।"
+    ]
+  },
+  {
+    version: "v7.9.81",
+    build: "Build 181",
+    date: "२०८३ कार्तिक २७ (१३ नोभेम्बर २०२६)",
+    fixes: [
+      "२००-वर्षे ऐतिहासिक पात्रो डेटाबेस तथा पञ्चाङ्ग इञ्जिन एकीकरण र पुस नोटिफिकेसन स्थिरता सुधार।"
+    ]
+  },
+  {
+    version: "v7.9.80",
+    build: "Build 180",
+    date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
     fixes: [
       "पृष्ठभूमि अलार्म तथा नोटिफिकेसन पुनर्जागरण (Background Persistence): MY_PACKAGE_REPLACED तथा BootReceiver सुधार गरी एप अपडेट भएपछि वा मोबाइल बन्द भएर खुल्दा पनि बिहानी ६:३० बजेको पञ्चाङ्ग अलार्म नहट्ने ग्यारेन्टी।",
       "झुटो अपडेट सूचना समाधान (False Alert Shield): नवीनतम भर्सन इन्स्टल भइसकेका युजरलाई एप खुल्दा पुनः 'अपडेट गर्नुहोस्' भन्ने अनावश्यक नोटिफिकेसन आउन नदिने स्मार्ट भर्सन शिल्ड।",
       "२००-वर्षे १-क्लिक मिति चयन (1999/01/01 देखि 2199/12/31 BS): क्यालेन्डरमा 'मिति चयन' बटन थप, जहाँबाट जुनसुकै साल, महिना र गते छानेर सिधै सो मितिको पञ्चाङ्ग तथा चाडपर्वमा पुग्न सकिने।",
-      "हरिगढ अहर्गण साधन दैनिक वृद्धि सुधार: कार्तिक २५ मा ३२६ (४८७३२६ दिन) र आज कार्तिक २६ मा ३२७ (४८७३२७ दिन) हुने गरी सूर्यसिद्धान्त तथा खण्डखाद्यक सावन दिनको यथार्थ सिङ्क।",
+      "हरिगढ अहर्गण साधन दैनिक वृद्धि सुधार: कार्तिक २५ मा ३२६ (४८७३२६ दिन) र कार्तिक २६ मा ३२७ (४८७३२७ दिन) हुने गरी सूर्यसिद्धान्त तथा खण्डखाद्यक सावन दिनको यथार्थ सिङ्क।",
       "ब्याट्री अप्टिमाइजेसन १-क्लिक छुट: सेटिङमा 'ब्याट्री अप्टिमाइजेसन सुरक्षा' कार्ड थप गरी Samsung/One UI/Xiaomi मा पनि ब्याकग्राउन्ड अलार्म नरोकिने सुविधा।"
     ]
   },
   {
     version: "v7.9.79",
-    build: "Build 183",
+    build: "Build 179",
     date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
     fixes: [
       "२०८४ सालका सम्पूर्ण १२ महिनाका चाडपर्व तथा एकादशीहरूको पूर्ण शास्त्रीय शुद्धिकरण (अशोकाष्टमी, घटस्थापना, तिहार, छठ र सबै २४ एकादशीहरू पञ्चाङ्ग अनुसार यथार्थ)।",
@@ -101,7 +129,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.78",
-    build: "Build 183",
+    build: "Build 178",
     date: "२०८३ कार्तिक २६ (१२ नोभेम्बर २०२६)",
     fixes: [
       "होम स्क्रिन तिहार साइत क्लिनअप: तिहार तथा भाइटीका सकिएकाले होम स्क्रिनको साइत ब्यानर हटाई आजको दैनिक पञ्चाङ्ग र मितिमा पूर्ण केन्द्रित गरिएको।",
@@ -111,7 +139,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.77",
-    build: "Build 183",
+    build: "Build 176",
     date: "२०८३ कार्तिक २५ (११ नोभेम्बर २०२६)",
     fixes: [
       "कलियुग तथा खण्डखाद्यक अहर्गण अनुसन्धान: १८,७२,८९० कलि अहर्गण र ब्रह्मगुप्त अहर्गण गणनाको गहिरो शास्त्रीय परीक्षण तथा शुद्धता।",
@@ -120,7 +148,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.76",
-    build: "Build 183",
+    build: "Build 175",
     date: "२०८३ कार्तिक २४ (१० नोभेम्बर २०२६)",
     fixes: [
       "स्मार्ट नोटिफिकेसन माइक्रो-कपी: मोबाइलको स्टेटस बारमा नोटिफिकेसन नकटिने गरी २५/७५ अक्षर सीमा र च्यानेल प्राथमिकता अप्टिमाइजेसन।",
@@ -129,7 +157,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.75",
-    build: "Build 183",
+    build: "Build 174",
     date: "२०८३ कार्तिक २२ (८ नोभेम्बर २०२६)",
     fixes: [
       "दीपावली तथा महालक्ष्मी पूजा प्रदोष काल: स्थिर वृष लग्न, कुबेर पूजा र प्रदोष काल मुहूर्त शुद्धिकरण।",
@@ -138,7 +166,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.73 - v7.9.74",
-    build: "Build 183-173",
+    build: "Build 172-173",
     date: "२०८३ कार्तिक २० (६ नोभेम्बर २०२६)",
     fixes: [
       "फुल-ब्लिड नयाँ ब्रान्ड लोगो (Full-Bleed Adaptive Icon): सामसुङ One UI, Pixel तथा सम्पूर्ण एन्ड्रोइड स्मार्टफोनहरूमा सेतो प्लेट हटाई श्री गणेशजीको फुल एज-टु-एज लोगो।",
@@ -147,7 +175,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.70 - v7.9.72",
-    build: "Build 183-171",
+    build: "Build 169-171",
     date: "२०८३ कार्तिक १८ (४ नोभेम्बर २०२६)",
     fixes: [
       "कञ्चनपुर / महेन्द्रनगर सङ्कल्प अटो-सिङ्क: पुण्यभूमौ नेपालदेशे शारदा-महाकाली तीरे कञ्चनपुर मण्डले सिद्धनाथ क्षेत्रे स्वतः संकल्प पहिचान।",
@@ -156,7 +184,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.60 - v7.9.69",
-    build: "Build 183-168",
+    build: "Build 158-168",
     date: "२०८३ कार्तिक १०-१५ (२७-३१ अक्टोबर २०२६)",
     fixes: [
       "विवाह ३६ गुण मिलान (Kundali Matching): वर-कन्याको नामबाट अष्टकूट ३६ गुण, नाडी दोष, भकूट दोष, गण मैत्री र परिहारसहितको सटिक नतिजा।",
@@ -166,7 +194,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.9.0 - v7.9.50",
-    build: "Build 183-155",
+    build: "Build 140-155",
     date: "२०८३ आश्विन (दशैं विशेष - अक्टोबर २०२६)",
     fixes: [
       "दशैं २०८३ घटस्थापना र विजयादशमी साइत: नेपाल पञ्चाङ्ग निर्णायक विकास समिति स्वीकृत शास्त्रीय साइतहरू।",
@@ -176,7 +204,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   },
   {
     version: "v7.8.0 - v7.8.9",
-    build: "Build 183-139",
+    build: "Build 130-139",
     date: "२०८३ भाद्र (सेप्टेम्बर २०२६)",
     fixes: [
       "सुदूरपश्चिम हरिगढ-अठोला पञ्चाङ्ग मोड: स्थानीय पञ्चाङ्ग र काठमाडौँ मानक पञ्चाङ्ग बीच १-ट्याप स्वीच।",
@@ -218,7 +246,7 @@ export default function PatroDownloadPage() {
           <InteractiveOnlinePatro />
         </section>
 
-        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.80) */}
+        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.83) */}
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -285,7 +313,7 @@ export default function PatroDownloadPage() {
           <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
             <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
               <span className="block text-2xs font-semibold text-slate-500 dark:text-slate-400">अपडेट मिति</span>
-              <span className="block text-xs sm:text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-0.5">२०८३ कार्तिक २६</span>
+              <span className="block text-xs sm:text-sm font-extrabold text-slate-800 dark:text-slate-100 mt-0.5">२०८३ कार्तिक २८</span>
             </div>
             <div className="p-2.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
               <span className="block text-2xs font-semibold text-slate-500 dark:text-slate-400">एन्ड्रोइड सपोर्ट</span>
@@ -312,24 +340,24 @@ export default function PatroDownloadPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-                <Calendar className="w-5 h-5" />
+                <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">२००-वर्षे १-क्लिक मिति चयन (वि.सं. १९९९ देखि २१९९)</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">कस्टम हेडर र कन्ट्रास्ट शुद्धिकरण (८ भ्यु)</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  क्यालेन्डर शीर्षमा "📅 मिति चयन" बटन थप, जहाँबाट १९९९ देखि २१९९ सम्मका कुनै पनि साल, महिना र गते छानेर सो मितिको पञ्चाङ्ग तथा चाडपर्वहरूमा १ क्लिकमै सिधै जान सकिने।
+                  मन्दिर, स्वप्नफल, चाडपर्व, संकल्प, कर्मकाण्ड र सेभ गरिएका कुण्डली भ्युका शीर्ष हेडरको रङ्ग र फन्ट कन्ट्रास्ट एकरूप र सुस्पष्ट बनाइएको।
                 </p>
               </div>
             </div>
 
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0">
-                <Sparkles className="w-5 h-5" />
+                <Calendar className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">२०८४ सालका चाडपर्व तथा दशैँ/तिहार शास्त्रीय शुद्धिकरण</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">पितृ सङ्कल्प सेक्सन र २०८४ शुद्ध साइत</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  २०८४ को असोजमा घटस्थापना (असोज १३), फूलपाती, महाष्टमी, महानवमी, विजयादशमी र कात्तिकमा तिहार यमपञ्चक तथा छठ पर्वको वास्तविक शास्त्रीय क्रम पूर्ण रूपमा सच्याइएको।
+                  होम ग्रिड र साइड मेनुमा "पितृ सङ्कल्प" सिधा एक्सेस थपिएको, तथा शुभ साइत पेजको वि.सं. २०८४ विवाह, व्रतबन्ध, पास्नी र गृहप्रवेश हेडिङ सच्याइएको।
                 </p>
               </div>
             </div>
@@ -339,9 +367,9 @@ export default function PatroDownloadPage() {
                 <Compass className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">हरिगढ अहर्गण साधन दैनिक यथार्थ सिङ्क (३२६ ➔ ३२७)</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">रिडर, थिम ग्यालरी र सुरक्षित नेभिगेसन</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  टाइमजोन अफसेट समाधान गरी सूर्यसिद्धान्त र खण्डखाद्यक (Khandakhadyaka) पद्धति अनुसार दैनिक अहर्गण +१ ले क्रमशः बढ्ने (कार्तिक २५ मा ४८७,३२६ र कार्तिक २६ मा ४८७,३२७ दिन) शास्त्रीय शुद्धिकरण।
+                  पुरानो पात्रो रिडर फुटर र थिम पিকার ग्यालरीमा Bottom Safe-Area प्याडिङ थप, रेडियो काउन्ट ६ वटा सुधार र संकल्प पञ्चाङ्ग नदोहोरिने बनाइएको।
                 </p>
               </div>
             </div>
@@ -351,9 +379,9 @@ export default function PatroDownloadPage() {
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">ब्याकग्राउन्ड अलार्म सुरक्षा तथा ब्याट्री अप्टिमाइज छुट</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">स्थानीय AM/PM घडी र सटिक अपडेट सिङ्क</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  एप अपडेट वा फोन रिबुट हुँदा पनि बिहानी पञ्चाङ्ग अलार्म नहट्ने ग्यारेन्टी (MY_PACKAGE_REPLACED), अनावश्यक इन-एप अपडेट अलर्ट मौन, र सेटिङ्समा १-क्लिक ब्याट्री अप्टिमाइजेसन छुट।
+                  नोटीफिकेसन तालिकामा प्रयोगकर्ताको डिभाइस टाइमजोन अनुसार AM/PM सिङ्क, साथै गोत्र र स्थान खोज बक्सका अतिरिक्त चिह्न हटाइएको।
                 </p>
               </div>
             </div>

@@ -61,9 +61,12 @@ const RASHI_LIST = [
 ];
 
 export default function InteractiveOnlinePatro() {
-  // Real-time ticking clock
-  const [now, setNow] = useState<Date>(() => new Date());
+  // Real-time ticking clock (defer live clock & greeting until mounted to prevent SSR hydration mismatches)
+  const [mounted, setMounted] = useState(false);
+  const [now, setNow] = useState<Date>(() => new Date(2026, 10, 14, 12, 0, 0));
   useEffect(() => {
+    setMounted(true);
+    setNow(new Date());
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
@@ -135,12 +138,13 @@ export default function InteractiveOnlinePatro() {
 
   // Time-aware greeting
   const greetingText = useMemo(() => {
+    if (!mounted) return '☀️ शुभ दिन';
     const hr = now.getHours();
     if (hr >= 4 && hr < 12) return '🌅 शुभ प्रभात';
     if (hr >= 12 && hr < 16) return '☀️ शुभ दिउँसो';
     if (hr >= 16 && hr < 20) return '🌇 शुभ साँझ';
     return '🌙 शुभ रात्रि';
-  }, [now]);
+  }, [mounted, now]);
 
   // Converter logic
   useEffect(() => {
@@ -272,7 +276,7 @@ export default function InteractiveOnlinePatro() {
 
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md font-mono text-xs font-bold text-white border border-white/10">
               <Clock className="w-3.5 h-3.5 text-amber-300" />
-              <span>{now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
+              <span>{mounted ? now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '--:--:--'}</span>
             </div>
           </div>
 
