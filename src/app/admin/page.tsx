@@ -17,7 +17,10 @@ import {
   Globe, 
   ExternalLink,
   HelpCircle,
-  Layers
+  Layers,
+  Smartphone,
+  Activity,
+  Users
 } from 'lucide-react';
 
 interface SectionItem {
@@ -67,6 +70,21 @@ export default function AdminStudioPage() {
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
   const [previewMode, setPreviewMode] = useState(false);
+
+  // BR Patro Anonymous Active Device Telemetry
+  const [patroStats, setPatroStats] = useState<{
+    totalDevices: number;
+    active24h: number;
+    active7d: number;
+    active30d: number;
+    newToday: number;
+    byVersion: Array<{ version: string; build: number; count: number }>;
+    byCountry: Array<{ country: string; count: number }>;
+    byPlatform: Record<string, number>;
+    generatedAt?: string;
+  } | null>(null);
+  const [isLoadingPatroStats, setIsLoadingPatroStats] = useState(false);
+  const [patroStatsError, setPatroStatsError] = useState<string | null>(null);
 
   function applyDraftData(d: any) {
     if (d.title) setTitle(d.title);
@@ -127,11 +145,35 @@ export default function AdminStudioPage() {
     }
   }
 
-  // Fetch posts & cloud draft when authenticated
+  async function loadPatroStats(tokenToUse?: string) {
+    const t = tokenToUse || sessionToken;
+    if (!t) return;
+    setIsLoadingPatroStats(true);
+    setPatroStatsError(null);
+    try {
+      const res = await fetch('/api/patro-stats', {
+        headers: { 'Authorization': `Bearer ${t}` },
+        cache: 'no-store'
+      });
+      const data = await res.json();
+      if (res.ok && data && data.success) {
+        setPatroStats(data);
+      } else {
+        setPatroStatsError(data?.error || 'Failed to load device stats');
+      }
+    } catch (e) {
+      setPatroStatsError('Network error fetching device stats');
+    } finally {
+      setIsLoadingPatroStats(false);
+    }
+  }
+
+  // Fetch posts, cloud draft & live device stats when authenticated
   useEffect(() => {
     if (isAuthenticated && sessionToken) {
       loadCustomPosts();
       checkCloudDraft(sessionToken);
+      loadPatroStats(sessionToken);
     }
   }, [isAuthenticated, sessionToken]);
 
@@ -537,6 +579,144 @@ ${faqs.filter(f => f.question).map(f => `      {
             <button onClick={() => setStatusMessage(null)} className="text-xs opacity-70 hover:opacity-100">✕</button>
           </div>
         )}
+
+        {/* BR Patro Live Active Devices (Zero-PII Telemetry) */}
+        <section className="mb-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 flex items-center justify-center">
+                <Smartphone className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                    बीआर पात्रो (BR Patro) Live Active Devices
+                  </h2>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold">
+                    Zero-PII Anonymous KV
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500">
+                  Play Store बाहिरका प्रत्यक्ष Android APK इन्स्टल र सक्रिय डिभाइस तथ्याङ्क (१८० दिन रोलिङ)
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => loadPatroStats()}
+              disabled={isLoadingPatroStats}
+              className="self-start sm:self-auto px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5 transition"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isLoadingPatroStats ? 'animate-spin' : ''}`} />
+              <span>{isLoadingPatroStats ? 'अपडेट हुँदै...' : 'तथ्याङ्क रिफ्रेस'}</span>
+            </button>
+          </div>
+
+          {patroStatsError && (
+            <div className="mb-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-xs font-semibold text-rose-700 dark:text-rose-300">
+              {patroStatsError}
+            </div>
+          )}
+
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-5">
+            <div className="p-3.5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-900/60">
+              <div className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 flex items-center gap-1">
+                <Users className="w-3.5 h-3.5" /> Total Devices
+              </div>
+              <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">
+                {patroStats ? patroStats.totalDevices : '—'}
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-sky-50/70 dark:bg-sky-950/30 border border-sky-200/80 dark:border-sky-900/60">
+              <div className="text-[11px] font-semibold text-sky-700 dark:text-sky-300 flex items-center gap-1">
+                <Activity className="w-3.5 h-3.5" /> Active 24h
+              </div>
+              <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">
+                {patroStats ? patroStats.active24h : '—'}
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200/80 dark:border-indigo-900/60">
+              <div className="text-[11px] font-semibold text-indigo-700 dark:text-indigo-300">
+                Active 7d
+              </div>
+              <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">
+                {patroStats ? patroStats.active7d : '—'}
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-violet-50/70 dark:bg-violet-950/30 border border-violet-200/80 dark:border-violet-900/60">
+              <div className="text-[11px] font-semibold text-violet-700 dark:text-violet-300">
+                Active 30d
+              </div>
+              <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">
+                {patroStats ? patroStats.active30d : '—'}
+              </div>
+            </div>
+
+            <div className="col-span-2 sm:col-span-1 p-3.5 rounded-2xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-900/60">
+              <div className="text-[11px] font-semibold text-amber-700 dark:text-amber-300">
+                New Today (NPT)
+              </div>
+              <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">
+                {patroStats ? patroStats.newToday : '—'}
+              </div>
+            </div>
+          </div>
+
+          {patroStats && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-slate-100 dark:border-slate-800/80">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  भर्सन अनुसार डिभाइस (Version Breakdown)
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {patroStats.byVersion.length === 0 ? (
+                    <span className="text-xs text-slate-400">कुनै डेटा छैन</span>
+                  ) : (
+                    patroStats.byVersion.map((item) => (
+                      <span
+                        key={`${item.version}_${item.build}`}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200"
+                      >
+                        <span>v{item.version}</span>
+                        {item.build > 0 && <span className="text-[10px] text-slate-500">(B{item.build})</span>}
+                        <span className="px-1.5 py-0.2 rounded-md bg-emerald-600 text-white text-[11px] font-bold">
+                          {item.count}
+                        </span>
+                      </span>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  देश अनुसार डिभाइस (Country Breakdown)
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {patroStats.byCountry.length === 0 ? (
+                    <span className="text-xs text-slate-400">कुनै डेटा छैन</span>
+                  ) : (
+                    patroStats.byCountry.map((item) => (
+                      <span
+                        key={item.country}
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200"
+                      >
+                        <span>{item.country}</span>
+                        <span className="px-1.5 py-0.2 rounded-md bg-sky-600 text-white text-[11px] font-bold">
+                          {item.count}
+                        </span>
+                      </span>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
