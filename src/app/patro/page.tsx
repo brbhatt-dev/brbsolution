@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'बी.आर. पात्रो (BR Patro) - आधिकारिक नेपाली क्यालेन्डर, वैदिक पञ्चाङ्ग २०८१-२०८४ र साइत | BR Bhatta',
-  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.85) डाउनलोड गर्नुहोस्।',
+  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.86) डाउनलोड गर्नुहोस्।',
   keywords: [
     'नेपाली पात्रो',
     'बी.आर. पात्रो',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Calendar & APK v7.9.85',
+        alt: 'BR Patro Official Calendar & APK v7.9.86',
       },
     ],
     locale: 'ne_NP',
@@ -75,11 +75,21 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
-    version: "v7.9.85",
-    build: "Build 185",
+    version: "v7.9.86",
+    build: "Build 186",
     date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
+    fixes: [
+      "कुण्डली UI र डार्क मोड पूर्ण सुधार: षोडशवर्ग (D1-D60) र विशेष लग्न (AL/UL/KL) ट्याब खाली देखिने समस्या समाधान, लाइट मोड सक्रिय बटन रङ्ग सुधार र सबै ट्याब डार्क/सेपिया थिम अनुकूल।",
+      "उत्तर भारतीय चक्र चार्ट र PDF लेआउट सुधार: भाव ३, ५, ९ र ११ का साँघुरा कोठामा बहुग्रह नाम खप्टिने/काटिने समस्या हटाई सफा ठाडो स्ट्याकिङ।",
+      "कुण्डली तथा पञ्चाङ्ग डेटा शुद्धीकरण: ७५३ पालिकाको सुक्ष्म अक्षांश/देशान्तर लागू, २०८३/८४ नक्षत्र-योग नाम मेल र सटीक ट्रान्जिट, वर्षफल ताजिक योग तथा D4 चतुर्थांश सूत्र सुधार।"
+    ]
+  },
+  {
+    version: "v7.9.85",
+    build: "Build 185",
+    date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
     fixes: [
       "गोपनीयता-सुरक्षित सक्रिय डिभाइस र भर्सन एनालिटिक्स: व्यक्तिगत जानकारी (नाम, फोन, IP) बिनै सक्रिय इन्स्टल र भर्सन अपडेट ट्र्याक हुने Zero-PII Anonymous Heartbeat थपिएको।",
       "नोटीफिकेसन र बाह्य ब्राउजर राउटिङ सुधार: नोटीफिकेसन ब्यानर, घण्टी (🔔) र स्ट्याटस बार ट्याप गर्दा सिधै सही मोडल र बाह्य ब्राउजरमा APK डाउनलोड खुल्ने।",
@@ -235,8 +245,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
 ];
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.85/BR_Patro_v7.9.85.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.85";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.86/BR_Patro_v7.9.86.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.86";
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans">
@@ -284,10 +294,10 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left space-y-3">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.85
+                  Version 7.9.86
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 185
+                  Build 186
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                   📦 १६.२ MB (लाइटवेट)
@@ -351,7 +361,7 @@ export default function PatroDownloadPage() {
         <section className="space-y-4">
           <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-500" />
-            <span>नयाँ भर्सन (v7.9.85) का प्रमुख विशेषताहरू</span>
+            <span>नयाँ भर्सन (v7.9.86) का प्रमुख विशेषताहरू</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -484,7 +494,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.85.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.86.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">३</span>
@@ -532,7 +542,7 @@ export default function PatroDownloadPage() {
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>BR_Patro_v7.9.85.apk (१६.२ MB) सिधै डाउनलोड गर्नुहोस्</span>
+              <span>BR_Patro_v7.9.86.apk (१६.२ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
           </div>
         </section>
