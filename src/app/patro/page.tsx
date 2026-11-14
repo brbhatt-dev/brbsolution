@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'बी.आर. पात्रो (BR Patro) - आधिकारिक नेपाली क्यालेन्डर, वैदिक पञ्चाङ्ग २०८१-२०८४ र साइत | BR Bhatta',
-  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.83) डाउनलोड गर्नुहोस्।',
+  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.84) डाउनलोड गर्नुहोस्।',
   keywords: [
     'नेपाली पात्रो',
     'बी.आर. पात्रो',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Calendar & APK v7.9.83',
+        alt: 'BR Patro Official Calendar & APK v7.9.84',
       },
     ],
     locale: 'ne_NP',
@@ -75,11 +75,21 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
-    version: "v7.9.83",
-    build: "Build 183",
+    version: "v7.9.84",
+    build: "Build 184",
     date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
+    fixes: [
+      "नोटीफिकेसन लिंक र बाह्य ब्राउजर राउटिङ सुधार: एपको नोटीफिकेसन ब्यानर र घण्टी (🔔) मोडलबाट 'नयाँ भर्सन डाउनलोड / थप विवरण' थिच्दा सिधै मोबाइलको बाह्य ब्राउजर (Chrome/Brave) मा खुलेर APK डाउनलोड हुने।",
+      "सिस्टम पुस नोटीफिकेसन ट्याप सुधार: मोबाइलको स्ट्याटस बारबाट नोटीफिकेसन ट्याप गर्दा सिधै एपको नोटीफिकेसन मोडल (🔔) खुल्ने र अनलाइन अपडेट ब्यानर स्पष्ट देखिने।",
+      "एन्ड्रोइड WebView सुरक्षित लिङ्क ह्यान्डलिङ: एप भित्रका सबै बाह्य HTTP/HTTPS लिङ्कहरू बाह्य ब्राउजरमा सुरक्षित रूपमा खुल्ने।"
+    ]
+  },
+  {
+    version: "v7.9.83",
+    build: "Build 183",
+    date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
     fixes: [
       "कस्टम हेडर र कन्ट्रास्ट सुधार (.view-topbar-custom): पूजा मन्दिर, चाडपर्व कथा, पूजा चेकलिस्ट, स्वप्न फल, तीन पुस्ता पितृ सङ्कल्प र चन्द्र/बाण विचारका रंगीन हेडरहरू लाइट, डार्क र सेपिया सबै थिममा पूर्ण स्पष्ट।",
       "हराएको पितृ सङ्कल्प सेक्सन प्रत्यक्ष उपलब्ध: होम Quick Grid (४×४ लेआउट) र मुख्य मेनुमा 'तीन पुस्ता पितृ सङ्कल्प तथा तर्पण' सुविधा प्रत्यक्ष जोडिएको।",
@@ -215,8 +225,8 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
 ];
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.83/BR_Patro_v7.9.83.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.83";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.84/BR_Patro_v7.9.84.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.84";
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans">
@@ -264,10 +274,10 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left space-y-3">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.83
+                  Version 7.9.84
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 183
+                  Build 184
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                   📦 १६.२ MB (लाइटवेट)
@@ -331,7 +341,7 @@ export default function PatroDownloadPage() {
         <section className="space-y-4">
           <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-500" />
-            <span>नयाँ भर्सन (v7.9.83) का प्रमुख विशेषताहरू</span>
+            <span>नयाँ भर्सन (v7.9.84) का प्रमुख विशेषताहरू</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -366,7 +376,7 @@ export default function PatroDownloadPage() {
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">रिडर, थिम ग्यालरी र सुरक्षित नेभिगेसन</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  पुरानो पात्रो रिडर फुटर र थिम पিকার ग्यालरीमा Bottom Safe-Area प्याडिङ थप, रेडियो काउन्ट ६ वटा सुधार र संकल्प पञ्चाङ्ग नदोहोरिने बनाइएको।
+                  पुरानो पात्रो रिडर फुटर र थिम पिकर ग्यालरीमा Bottom Safe-Area प्याडिङ थप, रेडियो काउन्ट ६ वटा सुधार र संकल्प पञ्चाङ्ग नदोहोरिने बनाइएको।
                 </p>
               </div>
             </div>
@@ -464,7 +474,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.83.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.84.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">३</span>
@@ -512,7 +522,7 @@ export default function PatroDownloadPage() {
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>BR_Patro_v7.9.83.apk (१६.२ MB) सिधै डाउनलोड गर्नुहोस्</span>
+              <span>BR_Patro_v7.9.84.apk (१६.२ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
           </div>
         </section>
