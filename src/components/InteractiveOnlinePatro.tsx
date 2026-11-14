@@ -234,9 +234,6 @@ export default function InteractiveOnlinePatro() {
         <div className="flex items-center gap-2">
           <a
             href={downloadApkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            download="BR_Patro_v7.9.83.apk"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white text-xs font-bold shadow-sm transition-transform active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />
@@ -481,8 +478,6 @@ export default function InteractiveOnlinePatro() {
           {/* 8. Download APK */}
           <a
             href={downloadApkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex flex-col items-center gap-1.5 p-2 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/80 transition group"
           >
             <div className="w-11 h-11 rounded-2xl bg-red-600 text-white flex items-center justify-center text-xl group-hover:scale-105 transition-transform shadow-md shadow-red-500/30">

@@ -66,8 +66,6 @@ export default function PatroAppPromoBanner({ variant = 'inline' }: PatroBannerP
         <div className="mt-3 pt-3 border-t border-slate-800 flex items-center gap-2">
           <a
             href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.83/BR_Patro_v7.9.83.apk"
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-transform active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />
@@ -129,9 +127,6 @@ export default function PatroAppPromoBanner({ variant = 'inline' }: PatroBannerP
         <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 self-start md:self-auto">
           <a
             href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.83/BR_Patro_v7.9.83.apk"
-            download="BR_Patro_v7.9.83.apk"
-            target="_blank"
-            rel="noopener noreferrer"
             className="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95"
           >
             <Download className="w-4 h-4" />

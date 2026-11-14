@@ -287,9 +287,6 @@ export default function PatroDownloadPage() {
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
                 <a
                   href={downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download="BR_Patro_v7.9.83.apk"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-red-600/30 active:scale-95 transition transform cursor-pointer group"
                 >
                   <Download className="w-5 h-5 text-white transition-transform group-hover:translate-y-0.5" />
@@ -512,9 +509,6 @@ export default function PatroDownloadPage() {
           <div className="text-center pt-2">
             <a
               href={downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              download="BR_Patro_v7.9.83.apk"
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
