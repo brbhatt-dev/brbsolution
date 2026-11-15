@@ -93,9 +93,14 @@ export const DISTRICT_SLUGS: DistrictSlugInfo[] = [
 ];
 
 export function getDistrictSlugByNp(districtNp: string): DistrictSlugInfo | undefined {
-  return DISTRICT_SLUGS.find((d) => d.districtNp === districtNp);
+  const norm = normalizeDistrictNp(districtNp);
+  return DISTRICT_SLUGS.find((d) => normalizeDistrictNp(d.districtNp) === norm);
 }
 
 export function getDistrictBySlug(slug: string): DistrictSlugInfo | undefined {
   return DISTRICT_SLUGS.find((d) => d.slug === slug);
+}
+
+export function normalizeDistrictNp(districtNp: string): string {
+  return districtNp.replace(/रूपन्देही/g, 'रुपन्देही').trim();
 }

@@ -342,5 +342,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...corePages, ...articleEntries, ...districtEntries];
+  const malpotDistrictEntries: MetadataRoute.Sitemap = DISTRICT_SLUGS.map((d) => ({
+    url: `${baseUrl}/tools/malpot-valuation-rates/${d.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }));
+
+  return [...corePages, ...articleEntries, ...districtEntries, ...malpotDistrictEntries];
 }

@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { SURVEY_OFFICES } from '@/data/surveyOffices';
 import { MALPOT_VALUATION_DATA } from '@/data/malpotRates';
-import { DISTRICT_SLUGS, getDistrictBySlug, getDistrictSlugByNp } from '@/lib/districtSlugs';
+import { DISTRICT_SLUGS, getDistrictBySlug, getDistrictSlugByNp, normalizeDistrictNp } from '@/lib/districtSlugs';
 
 interface DistrictPageProps {
   params: Promise<{
@@ -99,7 +99,9 @@ export default async function DistrictSurveyOfficePage({ params }: DistrictPageP
   const provinceName = offices[0].province;
   const surveyCount = offices.filter((o) => o.type === 'survey').length;
   const malpotCount = offices.filter((o) => o.type === 'malpot').length;
-  const valuationEntries = MALPOT_VALUATION_DATA.filter((m) => m.district === info.districtNp);
+  const valuationEntries = MALPOT_VALUATION_DATA.filter(
+    (m) => normalizeDistrictNp(m.district) === normalizeDistrictNp(info.districtNp)
+  );
 
   // Neighboring / same-province districts for internal linking
   const sameProvinceDistrictNames = Array.from(
@@ -323,10 +325,10 @@ export default async function DistrictSurveyOfficePage({ params }: DistrictPageP
                 <span>{info.districtNp} जिल्लाको सरकारी न्यूनतम मूल्याङ्कन (नमुना दररेट)</span>
               </h2>
               <Link
-                href="/tools/malpot-valuation-rates"
+                href={`/tools/malpot-valuation-rates/${info.slug}`}
                 className="text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
               >
-                पूर्ण दररेट हेर्नुहोस् →
+                {info.districtNp} पूर्ण दररेट हेर्नुहोस् →
               </Link>
             </div>
 

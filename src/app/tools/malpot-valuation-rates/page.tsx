@@ -17,6 +17,7 @@ import {
   Table 
 } from 'lucide-react';
 import { MALPOT_VALUATION_DATA } from '@/data/malpotRates';
+import { DISTRICT_SLUGS, normalizeDistrictNp } from '@/lib/districtSlugs';
 
 export const metadata: Metadata = {
   title: 'जिल्ला मालपोत न्यूनतम सरकारी मूल्याङ्कन सर्च इन्जिन (District Malpot Rate Nepal) | BR Bhatta',
@@ -115,9 +116,52 @@ export default function MalpotValuationRatesPage() {
 
         {/* Social Share Bar */}
         <SocialShareBar 
-          title="जिल्ला मालपोत न्यूनतम सरकारी मूल्याङ्कन सर्च इन्जिन (आ.व. २०८१/८२)" 
+          title="जिल्ला मालपोत न्यूनतम सरकारी मूल्याङ्कन सर्च इन्जिन (आ.व. २०८३/८४)" 
           url="/tools/malpot-valuation-rates" 
         />
+
+        {/* All 77 Districts Malpot Valuation & Office Pages Grid */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                <Landmark className="w-5 h-5 text-emerald-600" />
+                <span>७७ वटै जिल्लाका मालपोत मूल्याङ्कन तथा कार्यालय निर्देशिका</span>
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                आफ्नो जिल्ला छानी मालपोत कार्यालयको फोन नम्बर, ठेगाना, सरकारी मूल्याङ्कन आधार र रजिष्ट्रेसन दस्तुर हेर्नुहोस्:
+              </p>
+            </div>
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              ७७ जिल्ला उपलब्ध
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+            {DISTRICT_SLUGS.map((d) => {
+              const hasRates = MALPOT_VALUATION_DATA.some(
+                (m) => normalizeDistrictNp(m.district) === normalizeDistrictNp(d.districtNp)
+              );
+              return (
+                <Link
+                  key={d.slug}
+                  href={`/tools/malpot-valuation-rates/${d.slug}`}
+                  className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 border border-slate-200 dark:border-slate-700/80 hover:border-emerald-400 transition-colors flex flex-col justify-between gap-1"
+                >
+                  <span className="text-xs font-extrabold text-slate-900 dark:text-white">{d.districtNp}</span>
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate">{d.districtEn}</span>
+                    {hasRates && (
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/70 text-emerald-800 dark:text-emerald-300 shrink-0">
+                        दररेट
+                      </span>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Static In-depth Guide Section */}
         <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm space-y-8">

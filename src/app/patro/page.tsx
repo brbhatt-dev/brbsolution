@@ -22,27 +22,29 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'बी.आर. पात्रो (BR Patro) - आधिकारिक नेपाली क्यालेन्डर, वैदिक पञ्चाङ्ग २०८१-२०८४ र साइत | BR Bhatta',
-  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.89) डाउनलोड गर्नुहोस्।',
+  title: 'बी.आर. पात्रो २०८३ (BR Patro) — आजको तिथि, पञ्चाङ्ग, BS⇄AD मिति रूपान्तरण र साइत | BR Bhatta',
+  description: 'वि.सं. २०८३/२०८४ को शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, आजको तिथि, नक्षत्र, राहुकाल, विवाह/व्रतबन्ध शुभ साइत, राशिफल र BS⇄AD मिति कन्भर्टर। अनलाइन पात्रो चलाउनुहोस् वा हल्का (१०.६ MB) आधिकारिक APK (v7.9.89) डाउनलोड गर्नुहोस्।',
   keywords: [
-    'नेपाली पात्रो',
+    'नेपाली पात्रो २०८३',
+    'आजको तिथि र पञ्चाङ्ग',
     'बी.आर. पात्रो',
     'BR Patro',
-    'Nepali Calendar 2081 2082',
+    'Nepali Calendar 2083 2084',
+    'BS to AD Date Converter Nepal',
     'वैदिक पञ्चाङ्ग',
-    'नेपाली क्यालेन्डर २०८१',
-    'विवाह साइत २०८१',
+    'विवाह ३६ गुण मिलान',
+    'विवाह साइत २०८३ २०८४',
     'व्रतबन्ध साइत',
     'राहुकाल',
-    'राशिफल',
+    'आजको राशिफल',
     'BR Bhatta Patro'
   ],
   alternates: {
     canonical: 'https://www.brbhatta.com/patro',
   },
   openGraph: {
-    title: 'बी.आर. पात्रो (BR Patro) - आधिकारिक नेपाली क्यालेन्डर तथा पञ्चाङ्ग २०८१-२०८४',
-    description: 'शुद्ध वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, दैनिक साइत र राशिफल। अनलाइन पात्रो चलाउनुहोस् वा APK डाउनलोड गर्नुहोस्।',
+    title: 'बी.आर. पात्रो २०८३ (BR Patro) — नेपाली क्यालेन्डर, पञ्चाङ्ग तथा BS⇄AD कन्भर्टर',
+    description: 'आजको तिथि, शुद्ध वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, शुभ साइत र दैनिक राशिफल। अनलाइन पात्रो चलाउनुहोस् वा हल्का APK डाउनलोड गर्नुहोस्।',
     url: 'https://www.brbhatta.com/patro',
     siteName: 'BR Bhatta Software Solutions',
     images: [
@@ -58,8 +60,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'बी.आर. पात्रो (BR Patro) - नेपाली क्यालेन्डर तथा पञ्चाङ्ग २०८१-२०८४',
-    description: 'शुद्ध वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, दैनिक साइत र राशिफल।',
+    title: 'बी.आर. पात्रो २०८३ (BR Patro) — नेपाली क्यालेन्डर, पञ्चाङ्ग र कुण्डली',
+    description: 'शुद्ध वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, दैनिक साइत र BS⇄AD मिति रूपान्तरण।',
     images: ['https://www.brbhatta.com/assets/br-patro-og.png'],
   },
 };
@@ -304,10 +306,83 @@ const WHATS_NEW_FEATURES = [
 export default function PatroDownloadPage() {
   const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.89/BR_Patro_v7.9.89.apk";
   const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.89";
+  const cleanVersion = WHATS_NEW_VERSION.replace(/^v/, "");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://www.brbhatta.com/patro#webapp",
+        name: "बी.आर. पात्रो (BR Patro) — अनलाइन नेपाली क्यालेन्डर र पञ्चाङ्ग",
+        url: "https://www.brbhatta.com/patro",
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "All",
+        inLanguage: "ne",
+        description: "वि.सं. २०८१-२०८४ नेपाली पात्रो, आजको तिथि, सूर्यसिद्धान्त पञ्चाङ्ग, राहुकाल, BS⇄AD मिति रूपान्तरण र शुभ साइत।"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.brbhatta.com/patro#android",
+        name: "BR Patro (बी.आर. पात्रो) Android App",
+        operatingSystem: "Android 7.0+",
+        applicationCategory: "LifestyleApplication",
+        softwareVersion: cleanVersion,
+        downloadUrl,
+        fileSize: "10.6 MB",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "NPR"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "गृहपृष्ठ (Home)", item: "https://www.brbhatta.com/" },
+          { "@type": "ListItem", position: 2, name: "बी.आर. पात्रो (BR Patro २०८३)", item: "https://www.brbhatta.com/patro" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "BR Patro अनलाइन र अफलाइन एपमा के के सुविधाहरू छन्?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "BR Patro मा २०८१-२०८४ को नेपाली क्यालेन्डर, दैनिक पञ्चाङ्ग (तिथि, वार, नक्षत्र, योग, करण, राहुकाल), वि.सं. बाट ई.सं. (BS to AD) मिति रूपान्तरण, ७५३ पालिकाको सूर्योदय-सूर्यास्त, विवाह ३६ गुण मिलान, कुण्डली निर्माण र शुभ साइतहरू पूर्ण निःशुल्क उपलब्ध छन्।"
+            }
+          },
+          {
+            "@type": "Question",
+            name: "वि.सं. (BS) बाट ई.सं. (AD) र ई.सं. बाट वि.सं. मिति कसरी रूपान्तरण गर्ने?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "यही /patro पृष्ठको माथि रहेको अनलाइन इन्टरएक्टिभ पात्रोमा रहेको Date Converter बाट सेकेन्डमै BS र AD मिति आपसमा बदल्न सकिन्छ।"
+            }
+          },
+          {
+            "@type": "Question",
+            name: "BR Patro Android APK सुरक्षित र विज्ञापन-रहित छ?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "हो। BR Patro १००% विज्ञापन-रहित (Zero Ads) छ र आधिकारिक GitHub Releases मार्फत डिजिटल रूपमा साइन गरिएको सफा APK डाउनलोड गर्न सकिन्छ।"
+            }
+          }
+        ]
+      }
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans">
       <Navbar />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <main className="flex-1 py-6 sm:py-10 px-3.5 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full space-y-8 sm:space-y-10">
         
@@ -570,6 +645,68 @@ export default function PatroDownloadPage() {
               <Download className="w-3.5 h-3.5" />
               <span>BR_Patro_v7.9.89.apk (१०.६ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
+          </div>
+        </section>
+
+        {/* 6. SEO TOPICAL GUIDE & FAQ (Panchanga, Date Converter & Saait) */}
+        <section className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+          <div className="space-y-2">
+            <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <Scroll className="w-5 h-5 text-red-600 dark:text-amber-400" />
+              <span>नेपाली पात्रो २०८३/२०८४, वैदिक पञ्चाङ्ग र मिति रूपान्तरण (FAQ र गाइड)</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong>बी.आर. पात्रो (BR Patro)</strong> ले सूर्यसिद्धान्त गणित र नेपाल पञ्चाङ्ग निर्णायक विकास समितिको मापदण्ड अनुसार काठमाडौँसहित ७५३ स्थानीय तहको सटीक सूर्योदय, तिथि, नक्षत्र, योग, करण, राहुकाल तथा <strong>BS ⇄ AD मिति रूपान्तरण</strong> अनलाइन र अफलाइन दुवै रूपमा प्रदान गर्दछ।
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+            <Link
+              href="/tools/real-estate-saait-calendar"
+              className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-red-400 transition-colors space-y-1"
+            >
+              <strong className="block text-slate-900 dark:text-white">🏠 घरजग्गा तथा गृहप्रवेश साइत</strong>
+              <span className="text-slate-600 dark:text-slate-400 block">
+                जग्गा पास, शिलान्यास र गृहप्रवेश शुभ मुहूर्त हेर्नुहोस्।
+              </span>
+            </Link>
+            <Link
+              href="/articles/nepali-patro-2081-2082-festivals-holidays-bibaha-saait-panchanga"
+              className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-red-400 transition-colors space-y-1"
+            >
+              <strong className="block text-slate-900 dark:text-white">📜 चाडपर्व, बिदा र विवाह साइत गाइड</strong>
+              <span className="text-slate-600 dark:text-slate-400 block">
+                विवाह, व्रतबन्ध, पास्नी र पञ्चाङ्ग विधि विस्तृतमा पढ्नुहोस्।
+              </span>
+            </Link>
+            <Link
+              href="/tools/malpot-calculator"
+              className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:border-red-400 transition-colors space-y-1"
+            >
+              <strong className="block text-slate-900 dark:text-white">🏛️ मालपोत तथा जग्गा पास क्यालकुलेटर</strong>
+              <span className="text-slate-600 dark:text-slate-400 block">
+                शुभ दिनमा जग्गा पास गर्न लाग्ने राजस्व र लाभकर हिसाब गर्नुहोस्।
+              </span>
+            </Link>
+          </div>
+
+          <div className="space-y-2.5 text-xs sm:text-sm pt-2 border-t border-slate-100 dark:border-slate-800">
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+              <strong className="block text-slate-900 dark:text-white mb-0.5">
+                प्रश्न: BR Patro मा आजको तिथि, राहुकाल र शुभ साइत कसरी हेर्ने?
+              </strong>
+              <span className="text-slate-600 dark:text-slate-300">
+                माथि रहेको अनलाइन पात्रोको आजको कार्ड वा कुनै पनि मितिमा ट्याप गर्नासाथ सो दिनको पूरा पञ्चाङ्ग (तिथि, वार, नक्षत्र, योग, करण, राहुकाल, दिशाशूल र शुभ साइत) खुल्छ।
+              </span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/80">
+              <strong className="block text-slate-900 dark:text-white mb-0.5">
+                प्रश्न: विवाह ३६ गुण मिलान र जन्म कुण्डली कहाँबाट हेर्न मिल्छ?
+              </strong>
+              <span className="text-slate-600 dark:text-slate-300">
+                निःशुल्क एन्ड्रोइड एप ({WHATS_NEW_VERSION}) इन्स्टल गरेपछि इन्टरनेट बिनै अष्टकूट ३६ गुण मिलान, उत्तर/दक्षिण भारतीय चक्र चार्ट, षोडशवर्ग र दशा/गोचर हेर्न सकिन्छ।
+              </span>
+            </div>
           </div>
         </section>
 

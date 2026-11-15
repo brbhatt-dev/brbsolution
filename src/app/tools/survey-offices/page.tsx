@@ -28,8 +28,8 @@ import {
 import { SURVEY_OFFICES } from '@/data/surveyOffices';
 
 export const metadata: Metadata = {
-  title: 'नापी विभाग (dos.gov.np) तथा ७७ जिल्लाका नापी र मालपोत कार्यालय सम्पर्क निर्देशिका [Survey & Malpot Offices Nepal] | BR Bhatta',
-  description: 'Department of Survey Nepal (dos.gov.np), मेरोकित्ता (merokitta.dos.gov.np) र मालपोत (dolrm.gov.np): ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयहरूको फोन नम्बर, ठेगाना, इमेल, क्षेत्राधिकार र नागरिक बडापत्र।',
+  title: 'Department of Survey Nepal (dos.gov.np) — नापी र मालपोत कार्यालय फोन नम्बर [७७ जिल्ला] | BR Bhatta',
+  description: 'नापी विभाग (dos.gov.np), मेरोकित्ता नक्सा (merokitta) र मालपोत (dolrm.gov.np): ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयहरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल र वडा कार्यक्षेत्र तुरुन्त खोज्नुहोस्।',
   keywords: [
     'dos.gov.np',
     'dos gov np',
@@ -64,8 +64,8 @@ export const metadata: Metadata = {
     canonical: 'https://www.brbhatta.com/tools/survey-offices',
   },
   openGraph: {
-    title: 'नेपालका नापी तथा मालपोत कार्यालयहरूको आधिकारिक सम्पर्क निर्देशिका | BR Bhatta',
-    description: 'नेपालभरिका नापी विभाग, नापी कार्यालय र भूमिसुधार तथा मालपोत कार्यालयहरूको आधिकारिक सम्पर्क नम्बर, ठेगाना, कार्यक्षेत्र र नागरिक बडापत्र।',
+    title: 'Department of Survey Nepal (dos.gov.np) — ७७ जिल्ला नापी र मालपोत फोन नम्बर | BR Bhatta',
+    description: 'नापी विभाग (dos.gov.np), मेरोकित्ता नक्सा र ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयको आधिकारिक फोन, ठेगाना, इमेल र कार्यक्षेत्र।',
     url: 'https://www.brbhatta.com/tools/survey-offices',
     siteName: 'Land Solution & BR Bhatta',
     locale: 'ne_NP',
