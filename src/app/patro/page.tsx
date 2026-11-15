@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import HomeFooter from '@/components/HomeFooter';
 import InteractiveOnlinePatro from '@/components/InteractiveOnlinePatro';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   Download, 
   ShieldCheck, 
@@ -39,9 +41,7 @@ export const metadata: Metadata = {
     'आजको राशिफल',
     'BR Bhatta Patro'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/patro',
-  },
+  alternates: getBilingualAlternates('/patro', '/en/patro', 'ne'),
   openGraph: {
     title: 'बी.आर. पात्रो २०८३ (BR Patro) — नेपाली क्यालेन्डर, पञ्चाङ्ग तथा BS⇄AD कन्भर्टर',
     description: 'आजको तिथि, शुद्ध वैदिक पञ्चाङ्ग, विवाह ३६ गुण मिलान, शुभ साइत र दैनिक राशिफल। अनलाइन पात्रो चलाउनुहोस् वा हल्का APK डाउनलोड गर्नुहोस्।',
@@ -414,6 +414,7 @@ export default function PatroDownloadPage() {
         </div>
 
         {/* Semantic Page H1 Header */}
+        <BilingualSwitchBanner mode="to-en" href="/en/patro" />
         <header className="space-y-1.5 px-1">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-snug">
             बी.आर. पात्रो २०८३/२०८४ — नेपाली क्यालेन्डर, आजको तिथि, पञ्चाङ्ग र BS⇄AD मिति कन्भर्टर

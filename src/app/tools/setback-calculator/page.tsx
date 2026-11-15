@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import SetbackCalculator from '@/components/SetbackCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   ArrowLeft, 
   BookOpen, 
@@ -34,9 +36,7 @@ export const metadata: Metadata = {
     'Kathmandu Naksa Pas Rules',
     'Setback Distance 5 Feet Nepal'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/tools/setback-calculator',
-  },
+  alternates: getBilingualAlternates('/tools/setback-calculator', '/en/tools/setback-calculator', 'ne'),
   openGraph: {
     title: 'घर नक्सा पास तथा बाटो छोड्ने मापदण्ड क्याल्कुलेटर | BR Bhatta',
     description: 'नेपाल सरकारको आधारभूत भवन निर्माण तथा सडक मापदण्ड २०७२ (संशोधन २०८१) अनुसार घरको चारैतिर छोड्नुपर्ने न्यूनतम दुरी र नक्सा पास प्रक्रिया।',
@@ -129,6 +129,8 @@ export default function SetbackCalculatorPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">घर नक्सा पास तथा सेतब्याक क्याल्कुलेटर</span>
         </div>
+
+        <BilingualSwitchBanner mode="to-en" href="/en/tools/setback-calculator" />
 
         {/* Embedded Interactive Setback Calculator */}
         <SetbackCalculator />

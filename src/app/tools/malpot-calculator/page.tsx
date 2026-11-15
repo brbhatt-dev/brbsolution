@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import MalpotCalculator from '@/components/MalpotCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { Receipt, ArrowLeft, BookOpen, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -24,9 +26,7 @@ export const metadata: Metadata = {
     'मालपोत कर २०८३/२०८४',
     'BR Bhatta Malpot Calculator'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/tools/malpot-calculator',
-  },
+  alternates: getBilingualAlternates('/tools/malpot-calculator', '/en/tools/malpot-calculator', 'ne'),
   openGraph: {
     title: 'जग्गा पास गर्दा लाग्ने शुल्क र मालपोत रजिस्ट्रेसन दस्तुर क्यालकुलेटर | BR Bhatta',
     description: 'आर्थिक ऐन तथा मालपोत नियमावली अनुसार घरजग्गा पास गर्दा लाग्ने सरकारी राजस्व तथा पुँजीगत लाभकरको तुरुन्त हिसाब।',
@@ -68,6 +68,8 @@ export default function MalpotCalculatorPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">मालपोत तथा लाभकर क्यालकुलेटर</span>
         </div>
+
+        <BilingualSwitchBanner mode="to-en" href="/en/tools/malpot-calculator" />
 
         {/* Embedded Malpot Calculator */}
         <MalpotCalculator />

@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import KittaKatChecker from '@/components/KittaKatChecker';
 import SocialShareBar from '@/components/SocialShareBar';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { ArrowLeft, BookOpen, ShieldCheck, Info, Scale } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -19,9 +21,7 @@ export const metadata: Metadata = {
     'कित्ताकाट नियम २०८३',
     'भूउपयोग नियमावली २०७९ संशोधन २०८१'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/tools/kitta-kat-checker',
-  },
+  alternates: getBilingualAlternates('/tools/kitta-kat-checker', '/en/tools/kitta-kat-checker', 'ne'),
 };
 
 export default function StandaloneKittaKatCheckerPage() {
@@ -55,6 +55,8 @@ export default function StandaloneKittaKatCheckerPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">कित्ताकाट परीक्षक</span>
         </div>
+
+        <BilingualSwitchBanner mode="to-en" href="/en/tools/kitta-kat-checker" />
 
         {/* Embedded Kitta Kat Checker Component */}
         <KittaKatChecker />

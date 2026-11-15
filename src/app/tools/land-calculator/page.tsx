@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LandCalculator from '@/components/LandCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   Calculator, 
   ArrowLeft, 
@@ -35,9 +37,7 @@ export const metadata: Metadata = {
     'रोपनी आना पैसा दाम',
     'बिघा कट्ठा धुर'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/tools/land-calculator',
-  },
+  alternates: getBilingualAlternates('/tools/land-calculator', '/en/tools/land-calculator', 'ne'),
   openGraph: {
     title: 'नेपाल अनलाइन जग्गा क्यालकुलेटर (रोपनी ⇄ बिघा ⇄ वर्गफिट) | BR Bhatta',
     description: 'नेपालमा जग्गा नापजाँच, रोपनी-आना र बिघा-कट्ठा रूपान्तरण, प्रति आना/धुर मूल्य निर्धारण र प्रत्यक्ष कन्भर्सन म्याट्रिक्स।',
@@ -138,6 +138,8 @@ export default function StandaloneLandCalculatorPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">जग्गा क्यालकुलेटर</span>
         </div>
+
+        <BilingualSwitchBanner mode="to-en" href="/en/tools/land-calculator" />
 
         {/* Embedded Full Land Calculator */}
         <LandCalculator />

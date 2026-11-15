@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import MalpotValuationFinder from '@/components/MalpotValuationFinder';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   ArrowLeft, 
   Landmark, 
@@ -32,9 +34,7 @@ export const metadata: Metadata = {
     'Land Valuation Rate Nepal',
     'जग्गाको थैली रकम'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/tools/malpot-valuation-rates',
-  },
+  alternates: getBilingualAlternates('/tools/malpot-valuation-rates', '/en/tools/malpot-valuation-rates', 'ne'),
   openGraph: {
     title: 'जिल्ला मालपोत न्यूनतम सरकारी मूल्याङ्कन सर्च इन्जिन | BR Bhatta',
     description: 'काठमाडौँ उपत्यका तथा प्रमुख सहरहरूको सडक वर्गीकरण अनुसार सरकारी न्यूनतम प्रतिआना/प्रतिकट्ठा दर र बैंक भ्यालुएसन दर।',
@@ -110,6 +110,8 @@ export default function MalpotValuationRatesPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">मालपोत सरकारी मूल्याङ्कन सर्च इन्जिन</span>
         </div>
+
+        <BilingualSwitchBanner mode="to-en" href="/en/tools/malpot-valuation-rates" />
 
         {/* Interactive Finder Component */}
         <MalpotValuationFinder />

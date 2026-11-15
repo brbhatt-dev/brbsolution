@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import SurveyOfficesDirectory from '@/components/SurveyOfficesDirectory';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { DISTRICT_SLUGS } from '@/lib/districtSlugs';
 import { 
   Building2, 
@@ -60,9 +62,7 @@ export const metadata: Metadata = {
     'जग्गा पास गर्दा चाहिने कागजात',
     'कित्ताकाट प्रक्रिया'
   ],
-  alternates: {
-    canonical: 'https://www.brbhatta.com/tools/survey-offices',
-  },
+  alternates: getBilingualAlternates('/tools/survey-offices', '/en/tools/survey-offices', 'ne'),
   openGraph: {
     title: 'Department of Survey Nepal (dos.gov.np) — ७७ जिल्ला नापी र मालपोत फोन नम्बर | BR Bhatta',
     description: 'नापी विभाग (dos.gov.np), मेरोकित्ता नक्सा र ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयको आधिकारिक फोन, ठेगाना, इमेल र कार्यक्षेत्र।',
@@ -194,6 +194,8 @@ export default function SurveyOfficesPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">नापी तथा मालपोत कार्यालय निर्देशिका</span>
         </div>
+
+        <BilingualSwitchBanner mode="to-en" href="/en/tools/survey-offices" />
 
         {/* Page Hero */}
         <div className="text-center max-w-3xl mx-auto space-y-3">

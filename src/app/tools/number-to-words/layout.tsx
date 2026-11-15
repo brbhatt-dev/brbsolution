@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
   title: "Number to Nepali Rupees in Words (10 Million = 1 Crore, Lakh, Arab) | अंकबाट नेपाली अक्षरमा | BR Bhatta",
@@ -13,9 +14,7 @@ export const metadata: Metadata = {
     "Rakam Aksharama Nepal",
     "BR Bhatta"
   ],
-  alternates: {
-    canonical: "https://www.brbhatta.com/tools/number-to-words",
-  },
+  alternates: getBilingualAlternates('/tools/number-to-words', '/en/tools/number-to-words', 'ne'),
   openGraph: {
     title: "Number to Nepali Words Converter (अंकबाट नेपाली अक्षरमा रूपान्तरण) | BR Bhatta",
     description: "चेक, भौचर, बैनाबट्टा र तमसुक लेख्नका लागि कुनै पनि रकमलाई शुद्ध नेपाली अक्षर (शब्दहरू) मा रूपान्तरण गर्नुहोस्।",

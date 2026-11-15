@@ -6,13 +6,13 @@ import DosNoticesWidget from '@/components/DosNoticesWidget';
 import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import Contact from '@/components/Contact';
 import HomeFooter from '@/components/HomeFooter';
+import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { getBilingualAlternates } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
   title: 'BR Bhatta | Land Solution, Hamro Kosh & Tech Innovations Nepal',
   description: 'Official portal of BR Bhatta. Creator of Land Solution (नेपाल जग्गा नापजाँच तथा कित्ताकाट एप), Hamro Kosh (बचत कोष एप), and free AutoCAD LSP automation scripts for engineers and surveyors in Nepal.',
-  alternates: {
-    canonical: 'https://www.brbhatta.com',
-  },
+  alternates: getBilingualAlternates('/', '/en', 'ne'),
   openGraph: {
     title: 'BR Bhatta | Land Solution & Tech Innovations Nepal',
     description: 'Land Solution (नापजाँच तथा कित्ताकाट एप), Hamro Kosh, and AutoCAD LSP scripts for Nepal land surveying.',
@@ -29,6 +29,7 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-8 sm:space-y-10 w-full">
+        <BilingualSwitchBanner mode="to-en" href="/en" />
         {/* Full Demo 2: Citizen Utility Hub Core (Greeting, Quick Tiles, Precision Calculator, Directory, Mobile Apps) */}
         <StyleCitizenPortal />
 

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Globe } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { getAlternatePath, normalizePathname } from '@/lib/i18nRoutes';
 
 interface LanguageToggleProps {
   variant?: 'pill' | 'compact' | 'full';
@@ -15,7 +17,6 @@ declare global {
   }
 }
 
-// Helpers for robust cross-domain cookie management
 const getCookie = (name: string): string | null => {
   if (typeof document === 'undefined') return null;
   const match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
@@ -56,41 +57,53 @@ export default function LanguageToggle({
   variant = 'pill',
   className = '',
 }: LanguageToggleProps) {
-  const [currentLang, setCurrentLang] = useState<'ne' | 'en'>('ne');
+  const pathname = usePathname() || '/';
+  const router = useRouter();
+  const normPath = normalizePathname(pathname);
+  const isNativeEnRoute = normPath === '/en' || normPath.startsWith('/en/');
+
+  const [currentLang, setCurrentLang] = useState<'ne' | 'en'>(isNativeEnRoute ? 'en' : 'ne');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
 
-    // Read stored or cookie language
+    if (isNativeEnRoute) {
+      setCurrentLang('en');
+      // Never Google-Translate a native English route
+      const cookieVal = getCookie('googtrans');
+      if (cookieVal && cookieVal.includes('/en')) {
+        clearTransCookie();
+      }
+      return;
+    }
+
     const cookieVal = getCookie('googtrans');
     const stored = typeof window !== 'undefined' ? localStorage.getItem('brb_lang') : null;
-    const isEn = (cookieVal && cookieVal.includes('/en')) || stored === 'en';
+    const isMappedNe = Boolean(getAlternatePath(normPath, 'en'));
+    const isEn = !isMappedNe && ((cookieVal && cookieVal.includes('/en')) || stored === 'en');
 
     if (isEn) {
       setCurrentLang('en');
-      // Ensure cookie is in sync so translation kicks in
       if (!cookieVal || !cookieVal.includes('/en')) {
         setTransCookie('/ne/en');
       }
     } else {
       setCurrentLang('ne');
-      // If user wants Nepali, ensure no old translation cookie lingers
-      if (cookieVal && cookieVal.includes('/en') && stored === 'ne') {
+      if (cookieVal && cookieVal.includes('/en')) {
         clearTransCookie();
       }
     }
 
-    // Cross-component sync listener (keeps Header, Drawer & Footer in sync)
     const handleSync = (e: any) => {
-      if (e.detail) {
+      if (e.detail === 'ne' || e.detail === 'en') {
         setCurrentLang(e.detail);
       }
     };
     window.addEventListener('brb-lang-change', handleSync);
 
-    // Initialize Google Translate Script
-    if (typeof window !== 'undefined') {
+    // Load Google Translate only for unmapped Nepali pages when needed
+    if (typeof window !== 'undefined' && !isMappedNe) {
       if (!document.getElementById('google_translate_element')) {
         const div = document.createElement('div');
         div.id = 'google_translate_element';
@@ -127,10 +140,24 @@ export default function LanguageToggle({
     return () => {
       window.removeEventListener('brb-lang-change', handleSync);
     };
-  }, []);
+  }, [isNativeEnRoute, normPath]);
 
   const switchLanguage = (lang: 'ne' | 'en') => {
     if (lang === currentLang) return;
+
+    const nativeTarget = getAlternatePath(normPath, lang);
+    if (nativeTarget && nativeTarget !== normPath) {
+      clearTransCookie();
+      localStorage.setItem('brb_lang', lang);
+      setCurrentLang(lang);
+      window.dispatchEvent(new CustomEvent('brb-lang-change', { detail: lang }));
+      if (document.documentElement.classList.contains('translated-ltr')) {
+        window.location.href = nativeTarget;
+      } else {
+        router.push(nativeTarget);
+      }
+      return;
+    }
 
     if (lang === 'en') {
       setTransCookie('/ne/en');
@@ -138,12 +165,10 @@ export default function LanguageToggle({
       setCurrentLang('en');
       window.dispatchEvent(new CustomEvent('brb-lang-change', { detail: 'en' }));
 
-      // Attempt live combo change first, fallback to reload
       const combo = document.querySelector('.goog-te-combo') as HTMLSelectElement | null;
       if (combo) {
         combo.value = 'en';
         combo.dispatchEvent(new Event('change'));
-        // If not translated within 350ms, reload to force translation cleanly
         setTimeout(() => {
           if (!document.documentElement.classList.contains('translated-ltr')) {
             window.location.reload();
@@ -153,30 +178,28 @@ export default function LanguageToggle({
         window.location.reload();
       }
     } else {
-      // Revert cleanly to pure original Nepali
       clearTransCookie();
       localStorage.setItem('brb_lang', 'ne');
       setCurrentLang('ne');
       window.dispatchEvent(new CustomEvent('brb-lang-change', { detail: 'ne' }));
-
-      // Complete reset to clean original Nepali DOM
       window.location.reload();
     }
   };
 
-  // SSR / Pre-hydration fallback
   if (!mounted) {
     if (variant === 'compact') {
       return (
         <div className={`h-9 px-2.5 rounded-xl flex items-center gap-1.5 border bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 ${className}`}>
-          <span className="text-xs">🇳🇵</span>
-          <span className="text-xs font-bold">NEP</span>
+          <span className="text-xs">{isNativeEnRoute ? '🇬🇧' : '🇳🇵'}</span>
+          <span className="text-xs font-bold">{isNativeEnRoute ? 'ENG' : 'NEP'}</span>
         </div>
       );
     }
     return (
-      <div translate="no"
-      className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs notranslate shrink-0 ${className}`}>
+      <div
+        translate="no"
+        className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs notranslate shrink-0 ${className}`}
+      >
         <div className="px-2 xl:px-2.5 py-1 rounded-lg flex items-center gap-1 xl:gap-1.5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-xs font-black">
           <span className="text-xs leading-none">🇳🇵</span>
           <span className="hidden xl:inline">नेपाली</span>
@@ -191,7 +214,6 @@ export default function LanguageToggle({
     );
   }
 
-  // Full-width variant for Mobile Drawer
   if (variant === 'full') {
     return (
       <div className={`p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 ${className}`}>
@@ -236,7 +258,6 @@ export default function LanguageToggle({
     );
   }
 
-  // Compact variant (For Mobile Header)
   if (variant === 'compact') {
     return (
       <button
@@ -257,10 +278,10 @@ export default function LanguageToggle({
     );
   }
 
-  // Default Segmented Pill (For Desktop Header & Footer)
   return (
     <div
-      className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs ${className}`}
+      translate="no"
+      className={`inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold shadow-2xs notranslate ${className}`}
     >
       <button
         type="button"
@@ -284,7 +305,7 @@ export default function LanguageToggle({
             ? 'bg-emerald-600 text-white shadow-xs font-black'
             : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
         }`}
-        title="Switch whole website to English"
+        title="Switch to native English page"
       >
         <span className="text-xs leading-none">🇬🇧</span>
         <span className="text-xs font-bold">English</span>
