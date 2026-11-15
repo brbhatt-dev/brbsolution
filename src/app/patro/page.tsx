@@ -244,6 +244,35 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   }
 ];
 
+const WHATS_NEW_VERSION = "v7.9.86";
+
+const WHATS_NEW_FEATURES = [
+  {
+    title: "कुण्डली षोडशवर्ग (D1–D60) र विशेष लग्न सुधार",
+    description: "षोडशवर्ग (D1–D60) र विशेष लग्न (AL/UL/KL) ट्याब खाली देखिने समस्या समाधान, लाइट मोड सक्रिय बटन कन्ट्रास्ट तथा डार्क र सेपिया थिम पूर्ण अनुकूल बनाइएको।",
+    iconBoxClass: "bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400",
+    Icon: Sparkles,
+  },
+  {
+    title: "उत्तर भारतीय चक्र चार्ट र PDF लेआउट",
+    description: "डायमण्ड कुण्डलीको भाव ३, ५, ९ र ११ का साँघुरा कोठामा बहुग्रह नाम खप्टिने/काटिने समस्या हटाई सफा ठाडो स्ट्याकिङ र स्पष्ट PDF जन्मपत्रिका लेआउट सुधार।",
+    iconBoxClass: "bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400",
+    Icon: Compass,
+  },
+  {
+    title: "७५३ पालिका सुक्ष्म अक्षांश र पञ्चाङ्ग डेटा",
+    description: "७५३ वटै स्थानीय तहको सुक्ष्म अक्षांश/देशान्तर अनुसार लग्न र इष्टकाल गणना, साथै वि.सं. २०८३/८४ नक्षत्र–योग नाम मिलान र सटीक ट्रान्जिट शुद्धीकरण।",
+    iconBoxClass: "bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400",
+    Icon: Calendar,
+  },
+  {
+    title: "ताजिक वर्षफल, D4 सूत्र र सुरक्षित सिङ्क",
+    description: "वर्षफल ताजिक योग, D4 चतुर्थांश सूत्र र वास्तविक समय गोचर अलर्ट परिष्कृत गरिनुका साथै Zero-PII सक्रिय एनालिटिक्स र बाह्य ब्राउजर राउटिङ सुधार।",
+    iconBoxClass: "bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400",
+    Icon: ShieldCheck,
+  },
+];
+
 export default function PatroDownloadPage() {
   const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.86/BR_Patro_v7.9.86.apk";
   const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.86";
@@ -361,57 +390,26 @@ export default function PatroDownloadPage() {
         <section className="space-y-4">
           <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-500" />
-            <span>नयाँ भर्सन (v7.9.86) का प्रमुख विशेषताहरू</span>
+            <span>नयाँ भर्सन ({WHATS_NEW_VERSION}) का प्रमुख विशेषताहरू</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-                <Sparkles className="w-5 h-5" />
+            {WHATS_NEW_FEATURES.map(({ title, description, iconBoxClass, Icon }) => (
+              <div
+                key={title}
+                className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4"
+              >
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${iconBoxClass}`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">{title}</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                    {description}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">कस्टम हेडर र कन्ट्रास्ट शुद्धिकरण (८ भ्यु)</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  मन्दिर, स्वप्नफल, चाडपर्व, संकल्प, कर्मकाण्ड र सेभ गरिएका कुण्डली भ्युका शीर्ष हेडरको रङ्ग र फन्ट कन्ट्रास्ट एकरूप र सुस्पष्ट बनाइएको।
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0">
-                <Calendar className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">पितृ सङ्कल्प सेक्सन र २०८४ शुद्ध साइत</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  होम ग्रिड र साइड मेनुमा "पितृ सङ्कल्प" सिधा एक्सेस थपिएको, तथा शुभ साइत पेजको वि.सं. २०८४ विवाह, व्रतबन्ध, पास्नी र गृहप्रवेश हेडिङ सच्याइएको।
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
-                <Compass className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">रिडर, थिम ग्यालरी र सुरक्षित नेभिगेसन</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  पुरानो पात्रो रिडर फुटर र थिम पिकर ग्यालरीमा Bottom Safe-Area प्याडिङ थप, रेडियो काउन्ट ६ वटा सुधार र संकल्प पञ्चाङ्ग नदोहोरिने बनाइएको।
-                </p>
-              </div>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">स्थानीय AM/PM घडी र सटिक अपडेट सिङ्क</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                  नोटीफिकेसन तालिकामा प्रयोगकर्ताको डिभाइस टाइमजोन अनुसार AM/PM सिङ्क, साथै गोत्र र स्थान खोज बक्सका अतिरिक्त चिह्न हटाइएको।
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
