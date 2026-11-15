@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'बी.आर. पात्रो (BR Patro) - आधिकारिक नेपाली क्यालेन्डर, वैदिक पञ्चाङ्ग २०८१-२०८४ र साइत | BR Bhatta',
-  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.86) डाउनलोड गर्नुहोस्।',
+  description: 'शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, चाडपर्व, सरकारी बिदा, विवाह/व्रतबन्ध शुभ साइत, राशिफल र क्यालेन्डर २०८१-२०८४। अनलाइन इन्टरएक्टिभ पात्रो चलाउनुहोस् वा आधिकारिक APK (v7.9.87) डाउनलोड गर्नुहोस्।',
   keywords: [
     'नेपाली पात्रो',
     'बी.आर. पात्रो',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Calendar & APK v7.9.86',
+        alt: 'BR Patro Official Calendar & APK v7.9.87',
       },
     ],
     locale: 'ne_NP',
@@ -75,11 +75,21 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
+    version: "v7.9.87",
+    build: "Build 187",
+    date: "२०८३ कार्तिक २९ (१५ नोभेम्बर २०२६)",
+    tag: "पछिल्लो ताजा रिलिज (Latest)",
+    isLatest: true,
+    fixes: [
+      "नेभिगेसन तथा नेटिभ इन्टेन्ट सुधार: Android 15/16 मा हार्डवेयर Back बटनबाट मोडल र सब-भ्यू सजिलै बन्द हुने, साथै सेटिङबाट फोन (tel:) र ईमेल (mailto:) सिधै डायलर र मेल एपमा खुल्ने।",
+      "फुलस्क्रिन सुरक्षित लेआउट: ८ ओभरले सब-भ्यू, PDF रिडर तल्लो बार र मोडल पानाहरू फोनको ३-बटन नेभिगेसन बारबाट नढाकिने गरी सफा सुरक्षित प्याडिङ, साथै ट्याब स्क्रोल रिसेट र डार्क मोड कन्ट्रास्ट सुधार।",
+      "पितृ सङ्कल्प, हरिगढ तथा पञ्चाङ्ग शुद्धीकरण: तीन पुस्ता पितृ सङ्कल्पमा नक्षत्र, योग, करण र संवत्सर स्वतः भरिने, हरिगढ शास्त्रीय ज्ञान सफा HTML बोल्डमा देखिने र योग तथा चौघडिया समयमा स्पष्ट AM/PM देखिने।"
+    ]
+  },
+  {
     version: "v7.9.86",
     build: "Build 186",
     date: "२०८३ कार्तिक २८ (१४ नोभेम्बर २०२६)",
-    tag: "पछिल्लो ताजा रिलिज (Latest)",
-    isLatest: true,
     fixes: [
       "कुण्डली UI र डार्क मोड पूर्ण सुधार: षोडशवर्ग (D1-D60) र विशेष लग्न (AL/UL/KL) ट्याब खाली देखिने समस्या समाधान, लाइट मोड सक्रिय बटन रङ्ग सुधार र सबै ट्याब डार्क/सेपिया थिम अनुकूल।",
       "उत्तर भारतीय चक्र चार्ट र PDF लेआउट सुधार: भाव ३, ५, ९ र ११ का साँघुरा कोठामा बहुग्रह नाम खप्टिने/काटिने समस्या हटाई सफा ठाडो स्ट्याकिङ।",
@@ -244,38 +254,38 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   }
 ];
 
-const WHATS_NEW_VERSION = "v7.9.86";
+const WHATS_NEW_VERSION = "v7.9.87";
 
 const WHATS_NEW_FEATURES = [
   {
-    title: "कुण्डली षोडशवर्ग (D1–D60) र विशेष लग्न सुधार",
-    description: "षोडशवर्ग (D1–D60) र विशेष लग्न (AL/UL/KL) ट्याब खाली देखिने समस्या समाधान, लाइट मोड सक्रिय बटन कन्ट्रास्ट तथा डार्क र सेपिया थिम पूर्ण अनुकूल बनाइएको।",
+    title: "Android 15/16 ब्याक बटन र फोन/ईमेल इन्टेन्ट",
+    description: "एन्ड्रोइड हार्डवेयर Back बटनबाट सूचना मोडल र सब-भ्यू सिधै बन्द हुने, साथै सेटिङको कल र ईमेल बटन बिना त्रुटि फोनको डायलर र ईमेल एपमा खुल्ने पूर्ण नेटिभ वेबभ्यू सुधार।",
     iconBoxClass: "bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400",
     Icon: Sparkles,
   },
   {
-    title: "उत्तर भारतीय चक्र चार्ट र PDF लेआउट",
-    description: "डायमण्ड कुण्डलीको भाव ३, ५, ९ र ११ का साँघुरा कोठामा बहुग्रह नाम खप्टिने/काटिने समस्या हटाई सफा ठाडो स्ट्याकिङ र स्पष्ट PDF जन्मपत्रिका लेआउट सुधार।",
+    title: "PDF रिडर, मोडल र ८ सब-भ्यू सेफ-एरिया लेआउट",
+    description: "फुलस्क्रिन सब-भ्यू, ई-पुस्तकालय PDF तल्लो बार र मोडल पानाहरू फोनको नेभिगेसन बारमा नखप्टिने सफा तल्लो स्पेसिङ, साथै डार्क मोड सेटिङ कन्ट्रास्ट सुधार।",
     iconBoxClass: "bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400",
     Icon: Compass,
   },
   {
-    title: "७५३ पालिका सुक्ष्म अक्षांश र पञ्चाङ्ग डेटा",
-    description: "७५३ वटै स्थानीय तहको सुक्ष्म अक्षांश/देशान्तर अनुसार लग्न र इष्टकाल गणना, साथै वि.सं. २०८३/८४ नक्षत्र–योग नाम मिलान र सटीक ट्रान्जिट शुद्धीकरण।",
+    title: "पितृ सङ्कल्प ४-अङ्ग र हरिगढ शुद्धीकरण",
+    description: "तीन पुस्ता पितृ सङ्कल्प र तर्पण पाठमा नक्षत्र, योग, करण तथा संवत्सर स्वतः भरिने, साथै हरिगढ गौरा निर्णय र शास्त्रीय ज्ञान सफा HTML बोल्डमा प्रदर्शन।",
     iconBoxClass: "bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400",
     Icon: Calendar,
   },
   {
-    title: "ताजिक वर्षफल, D4 सूत्र र सुरक्षित सिङ्क",
-    description: "वर्षफल ताजिक योग, D4 चतुर्थांश सूत्र र वास्तविक समय गोचर अलर्ट परिष्कृत गरिनुका साथै Zero-PII सक्रिय एनालिटिक्स र बाह्य ब्राउजर राउटिङ सुधार।",
+    title: "चौघडिया/योग AM-PM र ट्याब स्क्रोल रिसेट",
+    description: "दैनिक पञ्चाङ्ग योग तथा चौघडिया तालिकामा स्पष्ट AM/PM समय, होम ग्रिड परिहार टेक्स्ट र्यापिङ र मुख्य ट्याब फेर्दा स्वतः माथिबाट खुल्ने सहज अनुभव।",
     iconBoxClass: "bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400",
     Icon: ShieldCheck,
   },
 ];
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.86/BR_Patro_v7.9.86.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.86";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.87/BR_Patro_v7.9.87.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.87";
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col font-sans">
@@ -305,7 +315,7 @@ export default function PatroDownloadPage() {
           <InteractiveOnlinePatro />
         </section>
 
-        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.86) */}
+        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.87) */}
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -323,10 +333,10 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left space-y-3">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.86
+                  Version 7.9.87
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 186
+                  Build 187
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                   📦 १६.२ MB (लाइटवेट)
@@ -492,7 +502,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.86.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.87.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">३</span>
@@ -540,7 +550,7 @@ export default function PatroDownloadPage() {
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>BR_Patro_v7.9.86.apk (१६.२ MB) सिधै डाउनलोड गर्नुहोस्</span>
+              <span>BR_Patro_v7.9.87.apk (१६.२ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
           </div>
         </section>
