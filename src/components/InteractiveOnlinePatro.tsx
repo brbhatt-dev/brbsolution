@@ -218,9 +218,9 @@ export default function InteractiveOnlinePatro() {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <h1 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight">
+              <div className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight">
                 BR PATRO
-              </h1>
+              </div>
               <span className="px-1.5 py-0.5 rounded text-3xs font-black uppercase bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300">
                 PRO
               </span>

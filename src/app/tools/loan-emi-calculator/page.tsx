@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'Home Loan EMI Calculator Nepal',
     'जग्गा धितो बैंक लोन क्याल्कुलेटर',
     'Land Mortgage EMI Calculator',
-    'NRB LTV Ratio Nepal 2081 2082',
+    'NRB LTV Ratio Nepal',
     'Bank Loan Interest Calculator Nepal',
     'Nepal Rastra Bank Housing Loan Limit',
     'बैंक मूल्याङ्कन र कर्जा प्रक्रिया'

@@ -8,16 +8,16 @@ import SocialShareBar from '@/components/SocialShareBar';
 import { ArrowLeft, BookOpen, ShieldCheck, Info, Scale } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'कित्ताकाट योग्यता तथा सडक मापदण्ड परीक्षक (Kitta-Kat Eligibility Checker) | BR Bhatta',
-  description: 'नेपालमा आफ्नो जग्गा कित्ताकाट गर्न मिल्छ कि मिल्दैन? भू-उपयोग नियमावली २०७९ (संशोधन २०८१) अनुसार न्यूनतम १३० वर्गमिटर, सडक चौडाइ र पालिका मापदण्ड तुरुन्त जाँच्नुहोस्।',
+  title: 'कित्ताकाट खुला/रोक्का नियम २०८३: तपाईंको जग्गा कित्ताकाट हुन्छ कि हुँदैन? तुरुन्त चेक गर्नुहोस् | BR Bhatta',
+  description: 'भू-उपयोग नियमावली २०७९ (संशोधन २०८१) तथा २०८३ को अद्यावधिक मापदण्ड अनुसार आवासीय/कृषि क्षेत्र, न्यूनतम १३० वर्गमिटर (४ आना) र बाटोको चौडाइ आधारमा कित्ताकाट योग्यता १० सेकेन्डमा जाँच्नुहोस्।',
   keywords: [
     'Kitta Kat Checker Nepal',
-    'Kitta Kat Rules Nepal 2081',
+    'Kitta Kat Rules Nepal 2083',
     'Land Partition Eligibility Nepal',
     'Bhumisudhar Kitta Kat',
     'Land Use Regulations 2079',
-    'कित्ताकाट नियम नेपाल',
-    'भूउपयोग नियमावली २०८१'
+    'कित्ताकाट नियम २०८३',
+    'भूउपयोग नियमावली २०७९ संशोधन २०८१'
   ],
   alternates: {
     canonical: 'https://www.brbhatta.com/tools/kitta-kat-checker',
@@ -61,7 +61,7 @@ export default function StandaloneKittaKatCheckerPage() {
 
         {/* Social Share Bar */}
         <SocialShareBar 
-          title="कित्ताकाट योग्यता तथा सडक मापदण्ड परीक्षक (भू-उपयोग नियमावली २०८१)" 
+          title="कित्ताकाट योग्यता तथा सडक मापदण्ड परीक्षक २०८३ (भू-उपयोग नियमावली २०७९)" 
           url="/tools/kitta-kat-checker" 
         />
 

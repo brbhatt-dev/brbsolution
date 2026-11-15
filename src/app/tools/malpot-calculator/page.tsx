@@ -9,8 +9,8 @@ import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { Receipt, ArrowLeft, BookOpen, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'जग्गा पास गर्दा लाग्ने शुल्क र मालपोत रजिस्ट्रेसन दस्तुर क्यालकुलेटर (Nepal Land Tax Calculator) | BR Bhatta',
-  description: 'नेपालमा घरजग्गा पास (खरिदबिक्री) गर्दा लाग्ने मालपोत रजिस्ट्रेसन दस्तुर, पुँजीगत लाभकर (CGT ५% र ७.५%), महिला छुट (२५%-५०%) र सेवा शुल्कको आधिकारिक अनलाइन हिसाब।',
+  title: 'जग्गा पास गर्दा लाग्ने शुल्क २०८३/८४: मालपोत रजिस्ट्रेसन दस्तुर र लाभकर क्यालकुलेटर | BR Bhatta',
+  description: 'आ.व. २०८३/२०८४ अनुसार नेपालमा घरजग्गा पास (खरिदबिक्री) गर्दा लाग्ने मालपोत रजिस्ट्रेसन दस्तुर, पुँजीगत लाभकर (CGT ५% र ७.५%), महिला छुट (२५%-५०%) र सेवा शुल्कको आधिकारिक अनलाइन हिसाब।',
   keywords: [
     'जग्गा पास गर्दा लाग्ने शुल्क',
     'jagga calculator nepal',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'घरजग्गा रजिस्ट्रेसन दस्तुर',
     'पुँजीगत लाभकर हिसाब',
     'महिला जग्गा रजिस्ट्रेसन छुट',
-    'मालपोत कर २०८१/२०८२',
+    'मालपोत कर २०८३/२०८४',
     'BR Bhatta Malpot Calculator'
   ],
   alternates: {

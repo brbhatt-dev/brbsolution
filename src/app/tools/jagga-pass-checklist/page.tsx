@@ -170,7 +170,7 @@ export default function JaggaPassChecklistPage() {
             सबै टूल्सहरूमा फर्कनुहोस्
           </Link>
           <span className="text-xs text-slate-400">
-            अपडेट: वि.सं. २०८१ / आर्थिक वर्ष २०८१/८२
+            अपडेट: वि.सं. २०८३ / आर्थिक वर्ष २०८३/८४
           </span>
         </div>
 

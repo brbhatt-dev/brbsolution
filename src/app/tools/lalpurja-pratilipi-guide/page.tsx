@@ -161,7 +161,7 @@ export default function LalpurjaPratilipiGuidePage() {
             सबै टूल्सहरूमा फर्कनुहोस्
           </Link>
           <span className="text-xs text-slate-400">
-            अपडेट: वि.सं. २०८१ / मालपोत नियमावली अनुकूल
+            अपडेट: वि.सं. २०८३ / मालपोत नियमावली अनुकूल
           </span>
         </div>
 

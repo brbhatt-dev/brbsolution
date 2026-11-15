@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     'पोखरा महानगरपालिका सेतब्याक मापदण्ड',
     'ललितपुर घर निर्माण मापदण्ड',
     'भरतपुर घरबाटो सिफारिस दस्तुर',
-    'बुटवल नक्सा पास नियम २०८१',
+    'बुटवल नक्सा पास नियम २०८३',
     'Building Setback Criteria Nepal',
     'E-BPS Online Naksa Pass Portal'
   ],

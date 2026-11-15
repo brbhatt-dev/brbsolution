@@ -18,23 +18,23 @@ import {
 import { VASTU_RULES_GUIDE } from '@/data/shubhSaait';
 
 export const metadata: Metadata = {
-  title: 'घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत २०८१/२०८२ | BR Bhatta',
-  description: 'नेपाल पञ्चाङ्ग निर्णायक विकास समिति तथा वैदिक वास्तुशास्त्र अनुसार जग्गा रजिष्ट्रेसन पास, घरको जग पूजा (शिलान्यास), छत ढलान र नयाँ घर गृहप्रवेशका आधिकारिक शुभ मुहूर्त तथा साइत तालिका।',
+  title: 'घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत तथा वास्तु निर्देशिका | BR Bhatta',
+  description: 'नेपाल पञ्चाङ्ग निर्णायक विकास समिति तथा वैदिक वास्तुशास्त्र अनुसार जग्गा रजिष्ट्रेसन पास, घरको जग पूजा (शिलान्यास), छत ढलान र नयाँ घर गृहप्रवेशका शुभ मुहूर्त नियम। ताजा २०८३/२०८४ साइतका लागि BR Patro हेर्नुहोस्।',
   keywords: [
-    'Griha Prabesh Saait 2081 2082',
-    'घरजग्गा पास शुभ साइत २०८१',
+    'Griha Prabesh Saait Nepal',
+    'घरजग्गा पास शुभ साइत',
     'Jag Puja Shubh Muhurat Nepal',
     'Real Estate Auspicious Dates Nepal',
-    'छत ढलान गर्ने साइत २०८१',
-    'गृहप्रवेश शुभ साइत २०८२',
+    'छत ढलान गर्ने साइत',
+    'गृहप्रवेश शुभ साइत २०८३ २०८४',
     'वास्तु शास्त्र र घरजग्गा नियम'
   ],
   alternates: {
     canonical: 'https://www.brbhatta.com/tools/real-estate-saait-calendar',
   },
   openGraph: {
-    title: 'घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत २०८१/२०८२ | BR Bhatta',
-    description: 'नेपालमा जग्गा पास, जग पूजा, छाना ढलान र गृहप्रवेशका महिना अनुसारका आधिकारिक शुभ साइत तथा वास्तु निर्देशिका।',
+    title: 'घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत तथा वास्तु निर्देशिका | BR Bhatta',
+    description: 'नेपालमा जग्गा पास, जग पूजा, छाना ढलान र गृहप्रवेशका शुभ साइत नियम तथा वैदिक वास्तु निर्देशिका।',
     url: 'https://www.brbhatta.com/tools/real-estate-saait-calendar',
     siteName: 'Land Solution & BR Bhatta',
     locale: 'ne_NP',
@@ -121,7 +121,7 @@ export default function ShubhSaaitCalendarPage() {
 
         {/* Social Share Bar */}
         <SocialShareBar 
-          title="घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत २०८१/२०८२" 
+          title="घरजग्गा खरिदबिक्री, जग पूजा र गृहप्रवेश शुभ साइत तथा वास्तु निर्देशिका" 
           url="/tools/real-estate-saait-calendar" 
         />
 

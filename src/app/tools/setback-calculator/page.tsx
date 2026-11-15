@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'हाइटेन्सन लाइन मापदण्ड नेपाल',
     'Right of Way Nepal Road',
     'Bato Chhodne Mapdanda',
-    'Building Bye Laws Nepal 2081',
+    'Building Bye Laws Nepal 2083 2084',
     'Kathmandu Naksa Pas Rules',
     'Setback Distance 5 Feet Nepal'
   ],

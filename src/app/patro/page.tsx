@@ -403,6 +403,16 @@ export default function PatroDownloadPage() {
           </div>
         </div>
 
+        {/* Semantic Page H1 Header */}
+        <header className="space-y-1.5 px-1">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-snug">
+            बी.आर. पात्रो २०८३/२०८४ — नेपाली क्यालेन्डर, आजको तिथि, पञ्चाङ्ग र BS⇄AD मिति कन्भर्टर
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            दैनिक वैदिक पञ्चाङ्ग, राशिफल, ७५३ स्थानीय तहको सूर्योदय-सूर्यास्त, विवाह/व्रतबन्ध शुभ साइत र आधिकारिक BR Patro Android एप डाउनलोड।
+          </p>
+        </header>
+
         {/* 1. PRIMARY FLAGSHIP EXPERIENCE: IN-BROWSER INTERACTIVE BR PATRO CALENDAR & PANCHANGA */}
         <section className="w-full">
           <InteractiveOnlinePatro />

@@ -175,10 +175,10 @@ export default function StyleCitizenPortal() {
               <span>{greeting.badge}</span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight drop-shadow-xs">
-              {greeting.title}
+              नेपाल जग्गा नापी, मालपोत क्यालकुलेटर र बी.आर. पात्रो पोर्टल
             </h1>
             <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed font-normal">
-              {greeting.sub}
+              <span className="font-bold text-white">{greeting.title}</span> — {greeting.sub}
             </p>
           </div>
 

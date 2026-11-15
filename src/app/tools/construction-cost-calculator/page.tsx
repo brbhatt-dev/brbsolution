@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   keywords: [
     'Construction Cost Calculator Nepal',
     'घर निर्माण लागत क्याल्कुलेटर',
-    'House Construction Rate Nepal 2081 2082',
+    'House Construction Rate Nepal 2083 2084',
     'Cement Steel Sand Brick Estimator Nepal',
     'Building Material Calculator Nepal',
     'RCC Frame House Cost per Sq Ft',
@@ -63,7 +63,7 @@ export default function ConstructionCostCalculatorPage() {
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'नेपालमा हाल (२०८१/२०८२) घर निर्माण गर्दा प्रति वर्गफिट कति खर्च लाग्छ?',
+            name: 'नेपालमा घर निर्माण गर्दा प्रति वर्गफिट कति खर्च लाग्छ?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'नेपालका मुख्य सहरी क्षेत्रमा आरसीसी फ्रेम (RCC Frame) संरचनाको सामान्य आवासीय घर निर्माण गर्दा प्रति वर्गफिट करिब रु. २,४०० देखि २,६०० (बजेट प्याकेज), मध्यम तथा आधुनिक फिनिसिङका लागि रु. ३,००० देखि ३,५०० (स्ट्यान्डर्ड प्याकेज) र उत्कृष्ट लक्जरी भिल्लाका लागि रु. ३,८०० देखि ४,५०० प्रति वर्गफिट खर्च लाग्दछ।'

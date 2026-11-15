@@ -164,7 +164,7 @@ export default function JaggaNamsariGuidePage() {
             सबै टूल्सहरूमा फर्कनुहोस्
           </Link>
           <span className="text-xs text-slate-400">
-            अपडेट: वि.सं. २०८१ / मुलुकी देवानी संहिता अनुकूल
+            अपडेट: वि.सं. २०८३ / मुलुकी देवानी संहिता अनुकूल
           </span>
         </div>
 

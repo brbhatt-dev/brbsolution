@@ -9,13 +9,13 @@ import AdSenseSlot from '@/components/AdSenseSlot';
 import { Building2, ArrowLeft, ShieldCheck, FileText, Bell } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'नापी विभाग: प्रत्यक्ष सूचना तथा परिपत्र बोर्ड | Department of Survey Nepal Live Notices | BR Bhatta',
-  description: 'नेपाल सरकार नापी विभाग (dos.gov.np) द्वारा जारी गरिएका सम्पूर्ण आधिकारिक सूचना, परिपत्र, निर्देशिका, सरुवा तथा तालिम विवरणहरूको प्रत्यक्ष अपडेट (Live Sync)।',
+  title: 'नापी विभाग ताजा सूचना २०८३: परिपत्र, सरुवा, अमिन तालिम र निर्देशिका PDF (DOS Live Notices) | BR Bhatta',
+  description: 'नेपाल सरकार नापी विभाग (dos.gov.np) द्वारा २०८३ मा जारी गरिएका ताजा आधिकारिक सूचना, जग्गा नापजाँच परिपत्र, सरुवा सूची, नतिजा र निर्देशिका PDF प्रत्यक्ष हेर्नुहोस्।',
   keywords: [
-    'नापी विभाग सूचना',
+    'नापी विभाग सूचना २०८३',
     'Department of Survey notices nepal',
     'dos.gov.np notice',
-    'नापी परिपत्र',
+    'नापी परिपत्र २०८३',
     'अमिन तालिम सूचना',
     'सरकारी जग्गा संरक्षण निर्देशिका',
     'BR Bhatta Notices'
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     canonical: 'https://www.brbhatta.com/notices',
   },
   openGraph: {
-    title: 'नापी विभाग: ताजा सूचना तथा परिपत्र बोर्ड (Live Survey Notices)',
-    description: 'नेपाल सरकार नापी विभाग (dos.gov.np) का आधिकारिक सूचनाहरू अब प्रत्यक्ष हेर्नुहोस्।',
+    title: 'नापी विभाग ताजा सूचना २०८३: परिपत्र, सरुवा र निर्देशिका PDF | BR Bhatta',
+    description: 'नेपाल सरकार नापी विभाग (dos.gov.np) का ताजा आधिकारिक सूचना, परिपत्र तथा निर्देशिका PDF अब प्रत्यक्ष हेर्नुहोस्।',
     url: 'https://www.brbhatta.com/notices',
     siteName: 'BR Bhatta',
     locale: 'ne_NP',
@@ -53,6 +53,16 @@ export default function NoticesPage() {
             <span>आधिकारिक प्रत्यक्ष सिङ्क (Live Sync)</span>
           </div>
         </div>
+
+        {/* Semantic Page H1 Header */}
+        <header className="space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            नापी विभाग (DOS) ताजा सूचना, परिपत्र तथा निर्देशिका २०८३
+          </h1>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            नेपाल सरकार नापी विभाग (dos.gov.np) बाट प्रकाशित आधिकारिक परिपत्र, सरुवा, अमिन तालिम, परीक्षा नतिजा र जग्गा नापजाँच निर्देशिका PDF को प्रत्यक्ष बोर्ड।
+          </p>
+        </header>
 
         {/* AdSense Top Slot */}
         <AdSenseSlot userFacingLabel="प्रायोजित सूचना (Sponsored Notice Hub)" />
