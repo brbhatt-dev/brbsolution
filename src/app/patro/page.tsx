@@ -25,7 +25,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'बी.आर. पात्रो २०८३ (BR Patro) — आजको तिथि, पञ्चाङ्ग, BS⇄AD मिति रूपान्तरण र साइत | BR Bhatta',
-  description: 'वि.सं. २०८३/२०८४ को शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, आजको तिथि, नक्षत्र, राहुकाल, विवाह/व्रतबन्ध शुभ साइत, राशिफल र BS⇄AD मिति कन्भर्टर। अनलाइन पात्रो चलाउनुहोस् वा हल्का (१०.६ MB) आधिकारिक APK (v7.9.96) डाउनलोड गर्नुहोस्।',
+  description: 'वि.सं. २०८३/२०८४ को शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, आजको तिथि, नक्षत्र, राहुकाल, विवाह/व्रतबन्ध शुभ साइत, राशिफल र BS⇄AD मिति कन्भर्टर। अनलाइन पात्रो चलाउनुहोस् वा हल्का (१०.६ MB) आधिकारिक APK (v7.9.97) डाउनलोड गर्नुहोस्।',
   keywords: [
     'नेपाली पात्रो २०८३',
     'आजको तिथि र पञ्चाङ्ग',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Calendar & APK v7.9.96',
+        alt: 'BR Patro Official Calendar & APK v7.9.97',
       },
     ],
     locale: 'ne_NP',
@@ -77,11 +77,21 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
-    version: "v7.9.96",
-    build: "Build 196",
+    version: "v7.9.97",
+    build: "Build 197",
     date: "२०८३ मंसिर १ (१७ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
+    fixes: [
+      "💎 प्रिमियम OneUI फ्रस्टेड ग्लास रिफाइनमेन्ट: ४×१ स्लिम र २×२ विजेटमा अब साँच्चिकै १-लाइन सफा तिथि ('शुक्ल अष्टमी (०१:२७ AM सम्म)') र नकाटिने मुख्य पर्व ('✨ मार्गसंक्रान्ति (+७)') देखिने।",
+      "🌗 स्वचालित लाइट/डार्क पर्ल र सफायर फ्रस्टेड ग्लास थिम, २६dp सफ्ट कर्नर र ग्लोसी ५६dp कोरल मिति ब्याज।",
+      "🔄 मध्यरात/बिहानी तिथि सिङ्क तथा पञ्चाङ्ग, राशिफल र पात्रोमा सिधा ट्याप सर्टकट।"
+    ]
+  },
+  {
+    version: "v7.9.96",
+    build: "Build 196",
+    date: "२०८३ मंसिर १ (१७ नोभेम्बर २०२६)",
     fixes: [
       "💎 प्रिमियम OneUI फ्रस्टेड ग्लास रिफाइनमेन्ट: चम्किलो पर्ल-ह्वाइट लाइट ग्लास र गहिरो सफायर डार्क ग्लास कार्ड, २६dp सफ्ट कर्नर र हाई-कन्ट्रास्ट अक्षर।",
       "✨ ४×१ स्लिम र २×२ विजेटमा सफा स्मार्ट फर्म्याट: अनावश्यक लामो दोहोरिने पाठ र काटिएको '...' हटाई स्पष्ट ३-लाइन लेआउट र ग्लोसी ५६dp कोरल मिति ब्याज।",
@@ -344,7 +354,7 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   }
 ];
 
-const WHATS_NEW_VERSION = "v7.9.96";
+const WHATS_NEW_VERSION = "v7.9.97";
 
 const WHATS_NEW_FEATURES = [
   {
@@ -374,8 +384,8 @@ const WHATS_NEW_FEATURES = [
 ];
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.96/BR_Patro_v7.9.96.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.96";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.97/BR_Patro_v7.9.97.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.97";
   const cleanVersion = WHATS_NEW_VERSION.replace(/^v/, "");
 
   const jsonLd = {
@@ -489,7 +499,7 @@ export default function PatroDownloadPage() {
           <InteractiveOnlinePatro />
         </section>
 
-        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.96) */}
+        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.97) */}
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -507,10 +517,10 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left space-y-3">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.96
+                  Version 7.9.97
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 196
+                  Build 197
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                   📦 १०.७ MB (लाइटवेट)
@@ -676,7 +686,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.96.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.97.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">३</span>
@@ -724,7 +734,7 @@ export default function PatroDownloadPage() {
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>BR_Patro_v7.9.96.apk (१०.७ MB) सिधै डाउनलोड गर्नुहोस्</span>
+              <span>BR_Patro_v7.9.97.apk (१०.७ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
           </div>
         </section>
