@@ -67,7 +67,7 @@ export default function EnglishPatroHub() {
             <span>Open Full Nepali Calendar</span>
           </Link>
           <a
-            href="https://github.com/imtechboss/imtechboss/releases/download/v7.9.90/BR_Patro_v7.9.90.apk"
+            href="https://github.com/imtechboss/imtechboss/releases/latest"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white text-xs sm:text-sm font-bold border border-white/20 transition-colors"

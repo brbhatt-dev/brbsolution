@@ -8,7 +8,7 @@
     <link>https://www.brbhatta.com</link>
     <description>नेपालमा जग्गा नापजाँच, कित्ताकाट कानुन, मालपोत दस्तुर, अंशबन्डा, र AutoCAD LSP सम्बन्धी आधिकारिक तथा विस्तृत गाइडहरू।</description>
     <language>ne</language>
-    <lastBuildDate>Mon, 16 Nov 2026 15:38:17 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 02:26:35 GMT</lastBuildDate>
     <atom:link href="https://www.brbhatta.com/feed.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://www.brbhatta.com/logo.png</url>
@@ -91,12 +91,12 @@
       <author>brbhatta@brbhatta.com (BR Bhatta)</author>
     </item>
     <item>
-      <title><![CDATA[घरबाटो सिफारिस २०८३: आवश्यक ५ कागजात, वडा दस्तुर (रु. ३००–२,०००) र रेडिमेड निवेदन ढाँचा (Ghar Bato Sifaris Nepal)]]></title>
+      <title><![CDATA[घरबाटो सिफारिस २०८३ — आवश्यक ५ कागजात, वडा दस्तुर र रेडिमेड निवेदन ढाँचा]]></title>
       <link>https://www.brbhatta.com/articles/ghar-bato-sifaris-process-documents-fee-nepal</link>
       <guid isPermaLink="true">https://www.brbhatta.com/articles/ghar-bato-sifaris-process-documents-fee-nepal</guid>
       <pubDate>Mon, 02 Nov 2026 05:00:00 GMT</pubDate>
       <category><![CDATA[मालपोत तथा वडा सिफारिस]]></category>
-      <description><![CDATA[वडा कार्यालयबाट घरबाटो प्रमाणित सिफारिस १ दिनमै कसरी लिने? जग्गा पास, बैंक लोन र घर नक्सा पासका लागि आवश्यक ५ कागजात, पालिका अनुसार दस्तुर, बाटो वर्गीकरण नियम र तुरुन्त प्रिन्ट गर्न मिल्ने निवेदन ढाँचा (/tools/ghar-bato-sifaris जेनेरेटर सहित)।]]></description>
+      <description><![CDATA[वडाबाट १ दिनमै घरबाटो प्रमाणित सिफारिस (Ghar Bato Sifaris) लिने तरिका, ५ अनिवार्य कागजात, रु. ३००–२,००० दस्तुर र तुरुन्त प्रिन्ट हुने रेडिमेड निवेदन जेनेरेटर।]]></description>
       <author>brbhatta@brbhatta.com (BR Bhatta)</author>
     </item>
     <item>
@@ -127,12 +127,30 @@
       <author>brbhatta@brbhatta.com (BR Bhatta)</author>
     </item>
     <item>
-      <title><![CDATA[जग्गा धितो राखेर बैंक लोन लिने नयाँ नियम र मूल्याङ्कन (Valuation) मापदण्ड: कुन जग्गामा बैंकले ऋण दिँदैन?]]></title>
+      <title><![CDATA[बैंक जग्गा धितो लोन २०८३: मूल्याङ्कन सूत्र (FMV), नियम र ५ अस्वीकार कारण]]></title>
       <link>https://www.brbhatta.com/articles/bank-land-loan-valuation-rules-process-nepal</link>
       <guid isPermaLink="true">https://www.brbhatta.com/articles/bank-land-loan-valuation-rules-process-nepal</guid>
       <pubDate>Thu, 29 Oct 2026 12:00:00 GMT</pubDate>
       <category><![CDATA[बैंकिङ तथा कर्जा]]></category>
-      <description><![CDATA[नेपालमा घरजग्गा धितो राखेर बैंकबाट कर्जा (Home Loan, Business Loan, Overdraft) लिने नेपाल राष्ट्र बैंकको पछिल्लो नीति, इन्जिनियरले गर्ने फेयर मार्केट भ्यालु (FMV) र सरकारी मूल्याङ्कनको हिसाब तथा बैंकले अस्वीकार गर्ने जग्गाका ५ मुख्य कारणहरूको विस्तृत मार्गदर्शन।]]></description>
+      <description><![CDATA[कुन जग्गामा बैंकले ऋण दिँदैन? नेपाल राष्ट्र बैंकको LTV सीमा, ७०% बजार + ३०% मालपोत मूल्याङ्कन सूत्र (FMV & Distress Value) र आवश्यक कागजातको स्पष्ट गाइड।]]></description>
+      <author>brbhatta@brbhatta.com (BR Bhatta)</author>
+    </item>
+    <item>
+      <title><![CDATA[रोपनी, आना, बिघा र कट्ठाको पूरा हिसाब: नेपाल जग्गा नापजाँच तालिका २०८३]]></title>
+      <link>https://www.brbhatta.com/articles/nepal-land-measurement-units-ropani-bigha-converter</link>
+      <guid isPermaLink="true">https://www.brbhatta.com/articles/nepal-land-measurement-units-ropani-bigha-converter</guid>
+      <pubDate>Sat, 17 Oct 2026 18:15:00 GMT</pubDate>
+      <category><![CDATA[जग्गा नापजाँच]]></category>
+      <description><![CDATA[१ रोपनी (५४७६ वर्गफिट), १ आना (३४२.२५ वर्गफिट), १ बिघा (२० कट्ठा) र १ धुरको सटीक तालिका, पहाडी ⇄ तराई रूपान्तरण सूत्र र अनलाइन क्यालकुलेटर।]]></description>
+      <author>brbhatta@brbhatta.com (BR Bhatta)</author>
+    </item>
+    <item>
+      <title><![CDATA[सक्कली लालपुर्जा, नक्सा र रोक्का कसरी चेक गर्ने? जग्गा जाँच गाइड २०८३]]></title>
+      <link>https://www.brbhatta.com/articles/how-to-verify-land-ownership-lalpurja-nepal</link>
+      <guid isPermaLink="true">https://www.brbhatta.com/articles/how-to-verify-land-ownership-lalpurja-nepal</guid>
+      <pubDate>Sat, 17 Oct 2026 18:15:00 GMT</pubDate>
+      <category><![CDATA[सम्पत्ति सुरक्षा]]></category>
+      <description><![CDATA[नक्कली लालपुर्जा र रोक्का जग्गाबाट कसरी जोगिने? मालपोत श्रेस्ता, मेरोकित्ता नक्सा ट्रेस, फिल्डबुक र बाटो निकास चेक गर्ने ७ अनिवार्य तरिका।]]></description>
       <author>brbhatta@brbhatta.com (BR Bhatta)</author>
     </item>
     <item>
@@ -208,15 +226,6 @@
       <author>brbhatta@brbhatta.com (BR Bhatta)</author>
     </item>
     <item>
-      <title><![CDATA[नेपालमा जग्गा नापजाँचका दुई प्रणाली (पहाडी र तराई) को पूर्ण हिसाब र आधिकारिक सूत्रहरू]]></title>
-      <link>https://www.brbhatta.com/articles/nepal-land-measurement-units-ropani-bigha-converter</link>
-      <guid isPermaLink="true">https://www.brbhatta.com/articles/nepal-land-measurement-units-ropani-bigha-converter</guid>
-      <pubDate>Wed, 23 Sep 2026 18:15:00 GMT</pubDate>
-      <category><![CDATA[जग्गा नापजाँच]]></category>
-      <description><![CDATA[रोपनी-आना-पैसा-दाम र बिघा-कट्ठा-धुर प्रणालीबीच कसरी रूपान्तरण गर्ने? वर्गफिट र वर्गमिटरको आधिकारिक नाप, सूत्र र तुलनात्मक तालिका।]]></description>
-      <author>brbhatta@brbhatta.com (BR Bhatta)</author>
-    </item>
-    <item>
       <title><![CDATA[नेपालमा जग्गा कित्ताकाट कसरी गर्ने? नयाँ भू-उपयोग नियमावली, मापदण्ड र नापी प्रक्रिया]]></title>
       <link>https://www.brbhatta.com/articles/kitta-kat-process-rules-nepal-land-reform</link>
       <guid isPermaLink="true">https://www.brbhatta.com/articles/kitta-kat-process-rules-nepal-land-reform</guid>
@@ -232,15 +241,6 @@
       <pubDate>Wed, 23 Sep 2026 18:15:00 GMT</pubDate>
       <category><![CDATA[क्याड अटोमेसन]]></category>
       <description><![CDATA[AutoCAD मा AutoLISP (.lsp) स्क्रिप्टहरू कसरी लोड गर्ने? कित्ताको क्षेत्रफल रोपनी र बिघामा अटोमेटिक लेख्ने, कोअर्डिनेट निकाल्ने कमाण्डहरू।]]></description>
-      <author>brbhatta@brbhatta.com (BR Bhatta)</author>
-    </item>
-    <item>
-      <title><![CDATA[जग्गा किन्दै हुनुहुन्छ? लालपुर्जा, नक्सा, फिल्डबुक र रोक्का जाँच्ने ७ अनिवार्य चरणहरू]]></title>
-      <link>https://www.brbhatta.com/articles/how-to-verify-land-ownership-lalpurja-nepal</link>
-      <guid isPermaLink="true">https://www.brbhatta.com/articles/how-to-verify-land-ownership-lalpurja-nepal</guid>
-      <pubDate>Wed, 23 Sep 2026 18:15:00 GMT</pubDate>
-      <category><![CDATA[सम्पत्ति सुरक्षा]]></category>
-      <description><![CDATA[जग्गा किन्दा ठगीबाट कसरी जोगिने? लालपुर्जाको सक्कल-नक्कल, नापी नक्सा ट्रेस, फिल्डबुक, बाटोको अवस्था र मालपोत रोक्का रुजु गर्ने प्राविधिक तरिका।]]></description>
       <author>brbhatta@brbhatta.com (BR Bhatta)</author>
     </item>
     <item>
