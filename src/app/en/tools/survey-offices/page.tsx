@@ -1,20 +1,25 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import EnglishPageShell from '@/components/en/EnglishPageShell';
 import EnglishSurveyOfficesDirectory from '@/components/en/EnglishSurveyOfficesDirectory';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
+import { DISTRICT_SLUGS } from '@/lib/districtSlugs';
 
 export const metadata: Metadata = {
-  title: 'Nepal Survey (Napi) & Land Revenue (Malpot) Offices Directory | BR Bhatta',
+  title: 'Malpot & Survey Office Nepal Phone Number, Address [77 Districts] | Department of Survey (dos.gov.np)',
   description:
-    'Search phone numbers, official email addresses, and locations for Nepal Survey Offices (Napi Karyalaya) and Land Revenue Offices (Malpot Office) across Kathmandu Valley, Pokhara, Chitwan, Butwal, and all 77 districts.',
+    'Official phone numbers, addresses, emails & ward jurisdictions for all 185 Malpot Karyalaya (dolrm.gov.np) & Survey Offices / Napi Karyalaya (dos.gov.np) in Kathmandu, Lagankhel, Pokhara, Mahendranagar, Janakpur, Damak & 77 districts.',
   keywords: [
-    'Malpot Office Nepal',
-    'Survey Department Nepal Offices',
+    'Malpot Office Nepal Phone Number',
+    'Survey Department Nepal dos.gov.np',
+    'www.dos.gov.np nepal',
+    'Malpot Office Lagankhel Phone Number',
+    'Malpot Office Mahendranagar',
+    'Malpot Karyalaya Pokhara',
+    'Malpot Office Janakpur',
     'Napi Karyalaya Contact Directory',
-    'Malpot Office Kathmandu Contact Number',
-    'Land Revenue Office Nepal',
-    'Nepal 77 Districts Land Offices',
+    'Land Revenue Office Nepal 77 Districts',
   ],
   alternates: getBilingualAlternates('/tools/survey-offices', '/en/tools/survey-offices', 'en'),
   openGraph: {
@@ -83,6 +88,23 @@ export default function EnglishSurveyOfficesPage() {
       </header>
 
       <EnglishSurveyOfficesDirectory />
+
+      <section className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+        <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+          Browse Malpot &amp; Survey (Napi) Offices by District (All 77 Districts)
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {DISTRICT_SLUGS.map((d) => (
+            <Link
+              key={d.slug}
+              href={`/tools/survey-offices/${d.slug}`}
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-700 transition-colors"
+            >
+              {d.districtEn} ({d.districtNp})
+            </Link>
+          ))}
+        </div>
+      </section>
     </EnglishPageShell>
   );
 }

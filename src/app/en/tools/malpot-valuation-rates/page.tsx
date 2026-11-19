@@ -1,19 +1,22 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import EnglishPageShell from '@/components/en/EnglishPageShell';
 import EnglishMalpotValuationFinder from '@/components/en/EnglishMalpotValuationFinder';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
+import { DISTRICT_SLUGS } from '@/lib/districtSlugs';
 
 export const metadata: Metadata = {
-  title: 'Land Valuation in Nepal — District Malpot Minimum Rate Finder | BR Bhatta',
+  title: 'Government Rate of Land in Nepal (Sarkari Mulyankan 2083/84) — 77 Districts Malpot Valuation',
   description:
-    'Search official government minimum Malpot land valuation rates (per Aana & per Kattha) and real estate market benchmark prices across districts in Nepal for bank loans, tax calculation, and deed registration.',
+    'Check official Government Rate of Land in Nepal (Sarkari Mulyankan 2083/84) per Aana & per Kattha across all 77 districts for Malpot deed registration, Thaili valuation, and bank home loans.',
   keywords: [
+    'Government Rate of Land in Nepal',
+    'Gov Rate of Land Nepal',
+    'Sarkari Mulyankan of Land Nepal 2083 2084',
     'Land Valuation in Nepal',
     'Malpot Valuation Rate Nepal',
     'Government Land Rate per Aana Kathmandu',
-    'Sarkari Mulyankan Rate Nepal',
-    'Property Valuation Guide Nepal',
     'Land Rate per Kattha Nepal',
   ],
   alternates: getBilingualAlternates('/tools/malpot-valuation-rates', '/en/tools/malpot-valuation-rates', 'en'),
@@ -83,6 +86,23 @@ export default function EnglishMalpotValuationRatesPage() {
       </header>
 
       <EnglishMalpotValuationFinder />
+
+      <section className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+        <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+          District-Wise Government Land Valuation (Sarkari Mulyankan 2083/84) — All 77 Districts
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {DISTRICT_SLUGS.map((d) => (
+            <Link
+              key={d.slug}
+              href={`/tools/malpot-valuation-rates/${d.slug}`}
+              className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-emerald-700 transition-colors"
+            >
+              {d.districtEn} ({d.districtNp})
+            </Link>
+          ))}
+        </div>
+      </section>
     </EnglishPageShell>
   );
 }
