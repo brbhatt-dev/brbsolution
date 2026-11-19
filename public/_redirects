@@ -29,6 +29,10 @@ http://www.bhattbr.com.np/* https://www.brbhatta.com/:splat 301!
 /privacy /privacy-policy 301
 /legal /terms 301
 
+# Legacy Tool Path Aliases
+/tools/road-setback /tools/setback-calculator 301
+/tools/cadastral-map-symbols-legend /tools/cadastral-map-symbols 301
+
 # Redirect Legacy Web Demo & Test Routes to Official App / Home
 /land-solution-demo/* https://play.google.com/store/apps/details?id=com.brbhatta.landsolution 301!
 /land-solution-demo https://play.google.com/store/apps/details?id=com.brbhatta.landsolution 301!

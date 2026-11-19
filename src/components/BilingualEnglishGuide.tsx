@@ -65,7 +65,7 @@ export function HomeEnglishDocumentation() {
             </li>
           </ul>
           <p>
-            Verify plot eligibility instantly using our <Link href="/tools/kitta-kat-checker" className="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline">Kitta-Kat Eligibility Checker</Link> and <Link href="/tools/road-setback" className="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline">Road Right-of-Way &amp; Setback Calculator</Link>.
+            Verify plot eligibility instantly using our <Link href="/tools/kitta-kat-checker" className="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline">Kitta-Kat Eligibility Checker</Link> and <Link href="/tools/setback-calculator" className="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline">Road Right-of-Way &amp; Setback Calculator</Link>.
           </p>
         </div>
 

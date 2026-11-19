@@ -321,7 +321,7 @@ export default function LandPrecedentsHub() {
             <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
           </Link>
           <Link
-            href="/tools/cadastral-map-symbols-legend"
+            href="/tools/cadastral-map-symbols"
             className="p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-xs font-bold transition-all flex items-center justify-between"
           >
             <span>🗺️ नापी नक्सा संकेत तथा लेजेन्ड गाइड</span>
