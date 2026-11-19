@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import LandCalculator from '@/components/LandCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   Calculator, 
@@ -20,8 +21,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'नेपाल अनलाइन जग्गा क्यालकुलेटर (Ropani to Bigha Converter) | BR Bhatta',
-  description: 'नेपालको आधिकारिक जग्गा नापजाँच क्यालकुलेटर। रोपनी, आना, पैसा, दाम र बिघा, कट्ठा, धुरबीच १००% सटीक रूपान्तरण, वर्गफिट, वर्गमिटर र जग्गाको मूल्य निर्धारण। गुगल फिचर्ड स्निपेट्स क्विक आन्सर सहित।',
+  title: 'जग्गा नापजाँच क्यालकुलेटर: रोपनी-आना-पैसा-दाम ⇄ बिघा-कट्ठा-धुर ⇄ वर्गफिट | Ropani Aana & Bigha Calculator Nepal',
+  description: 'नेपालको आधिकारिक जग्गा नापजाँच क्यालकुलेटर (२०८३/८४)। रोपनी, आना, पैसा, दाम र बिघा, कट्ठा, धुरलाई वर्गफिट र वर्गमिटरमा १००% सटीक रूपान्तरण तथा जग्गाको प्रति आना/धुर मूल्य हिसाब गर्नुहोस्।',
   keywords: [
     'Nepal Land Calculator',
     'Ropani to Bigha Converter',
@@ -322,6 +323,8 @@ export default function StandaloneLandCalculatorPage() {
             </span>
           </div>
         </div>
+
+        <PatroAppPromoBanner variant="inline" />
 
       </main>
 

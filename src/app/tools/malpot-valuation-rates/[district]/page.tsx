@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import DistrictQuickTaxEstimator from '@/components/DistrictQuickTaxEstimator';
 import {
   ArrowLeft,
   Building2,
@@ -58,8 +59,8 @@ export async function generateMetadata({ params }: DistrictValuationPageProps): 
   const cityTextEn = info.cityAliasesEn ? ` (${info.cityAliasesEn})` : '';
   const canonicalUrl = `https://www.brbhatta.com/tools/malpot-valuation-rates/${info.slug}`;
 
-  const title = `${info.districtNp}${cityTextNp} जग्गाको सरकारी न्यूनतम मूल्याङ्कन र मालपोत कार्यालय | ${info.districtEn}${cityTextEn} Malpot Rate Nepal | BR Bhatta`;
-  const description = `${info.districtNp} (${info.districtEn}) का ${malpotOffices.length} मालपोत कार्यालयहरूको आधिकारिक फोन नम्बर, सडक वर्गीकरण अनुसार सरकारी न्यूनतम जग्गा मूल्याङ्कन, रजिष्ट्रेसन दस्तुर, लाभकर (CGT) र बैंक भ्यालुएसन गाइड।`;
+  const title = `${info.districtNp}${cityTextNp} जग्गाको सरकारी न्यूनतम मूल्याङ्कन दर २०८३/८४ र मालपोत कार्यालय | ${info.districtEn}${cityTextEn} Malpot Valuation Rate 2083/84`;
+  const description = `${info.districtNp} (${info.districtEn}) जिल्लाको आ.व. २०८३/८४ को सडक वर्गीकरण अनुसार सरकारी न्यूनतम जग्गा मूल्याङ्कन दररेट, थैली रकम, रजिष्ट्रेसन दस्तुर क्यालकुलेटर र ${malpotOffices.length} मालपोत कार्यालयको आधिकारिक फोन नम्बर।`;
 
   return {
     title,
@@ -357,6 +358,15 @@ export default async function DistrictMalpotValuationPage({ params }: DistrictVa
           </section>
         )}
 
+        {/* Interactive In-Page District Registration Fee & Tax Estimator */}
+        <DistrictQuickTaxEstimator
+          districtNp={info.districtNp}
+          districtEn={info.districtEn}
+          districtSlug={info.slug}
+          sampleRate={valuationEntries[0]?.rates[0]?.govRate || 1000000}
+          sampleUnit={valuationEntries[0]?.unit || 'प्रति आना / कट्ठा'}
+        />
+
         {/* Official Malpot Offices in This District */}
         <section className="space-y-4">
           <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -387,7 +397,12 @@ export default async function DistrictMalpotValuationPage({ params }: DistrictVa
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                    <span className="font-bold">{office.phone}</span>
+                    <a
+                      href={`tel:${office.phone.split(',')[0].replace(/[^0-9+]/g, '')}`}
+                      className="font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      {office.phone}
+                    </a>
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="w-3.5 h-3.5 text-amber-600 shrink-0" />

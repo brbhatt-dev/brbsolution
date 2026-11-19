@@ -1,13 +1,17 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import StyleCitizenPortal from '@/components/demos/StyleCitizenPortal';
-import DosNoticesWidget from '@/components/DosNoticesWidget';
-import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
-import Contact from '@/components/Contact';
 import HomeFooter from '@/components/HomeFooter';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
+
+const DosNoticesWidget = dynamic(() => import('@/components/DosNoticesWidget'));
+const HomeEnglishDocumentation = dynamic(() =>
+  import('@/components/BilingualEnglishGuide').then((mod) => mod.HomeEnglishDocumentation)
+);
+const Contact = dynamic(() => import('@/components/Contact'));
 
 export const metadata: Metadata = {
   title: 'BR Bhatta | Land Solution, Hamro Kosh & Tech Innovations Nepal',

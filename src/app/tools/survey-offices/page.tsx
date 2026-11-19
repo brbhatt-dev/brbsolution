@@ -30,8 +30,8 @@ import {
 import { SURVEY_OFFICES } from '@/data/surveyOffices';
 
 export const metadata: Metadata = {
-  title: 'Department of Survey Nepal (dos.gov.np) — नापी र मालपोत कार्यालय फोन नम्बर [७७ जिल्ला] | BR Bhatta',
-  description: 'नापी विभाग (dos.gov.np), मेरोकित्ता नक्सा (merokitta) र मालपोत (dolrm.gov.np): ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयहरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल र वडा कार्यक्षेत्र तुरुन्त खोज्नुहोस्।',
+  title: 'मालपोत र नापी कार्यालय फोन नम्बर, ठेगाना [७७ जिल्ला] | Malpot & Survey Office Nepal (dos.gov.np)',
+  description: 'नेपालका ७७ जिल्लाका १८५ मालपोत (dolrm.gov.np) र नापी कार्यालय (dos.gov.np) को आधिकारिक फोन नम्बर, ठेगाना, इमेल, वडा कार्यक्षेत्र र मेरोकित्ता (MeroKitta) अनलाइन नक्सा सेवा एकै ठाउँमा (२०८३/८४)।',
   keywords: [
     'dos.gov.np',
     'dos gov np',

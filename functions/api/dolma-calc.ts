@@ -35,6 +35,23 @@ export async function onRequestPost(context: any) {
     });
 
     const html = await response.text();
+    if (!response.ok || html.trim().startsWith('error code:')) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Upstream government portal (dolma.gov.np) is temporarily unavailable.',
+          upstreamStatus: response.status,
+        }),
+        {
+          status: 502,
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+          },
+        }
+      );
+    }
     return new Response(html, {
       status: 200,
       headers: {

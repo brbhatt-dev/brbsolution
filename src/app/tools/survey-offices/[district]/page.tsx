@@ -52,8 +52,8 @@ export async function generateMetadata({ params }: DistrictPageProps): Promise<M
   const cityTextEn = info.cityAliasesEn ? ` (${info.cityAliasesEn})` : '';
   const canonicalUrl = `https://www.brbhatta.com/tools/survey-offices/${info.slug}`;
 
-  const title = `${info.districtNp}${cityTextNp} नापी र मालपोत कार्यालय सम्पर्क नम्बर | ${info.districtEn}${cityTextEn} Malpot & Survey Office Nepal | BR Bhatta`;
-  const description = `${info.districtNp} जिल्लाका ${offices.length} वटा नापी (dos.gov.np) र मालपोत (dolrm.gov.np) कार्यालयहरूको आधिकारिक फोन नम्बर, ठेगाना, इमेल, कार्यक्षेत्र (वडा/पालिका), सरकारी मूल्याङ्कन र मेरोकित्ता अनलाइन नक्सा सेवा।`;
+  const title = `${info.districtNp}${cityTextNp} मालपोत र नापी कार्यालय फोन नम्बर, ठेगाना (२०८३/८४) | ${info.districtEn}${cityTextEn} Malpot & Survey Office Phone`;
+  const description = `${info.districtNp} (${info.districtEn}) जिल्लाका ${offices.length} वटा मालपोत (dolrm.gov.np) र नापी कार्यालय (dos.gov.np) को आधिकारिक फोन नम्बर, ठेगाना, इमेल, वडा कार्यक्षेत्र, जग्गाको सरकारी मूल्याङ्कन दर २०८३/८४ र मेरोकित्ता अनलाइन नक्सा सेवा।`;
 
   return {
     title,
@@ -295,7 +295,12 @@ export default async function DistrictSurveyOfficePage({ params }: DistrictPageP
                     <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>
                       <strong>फोन:</strong>{' '}
-                      <span className="font-mono font-bold text-slate-900 dark:text-white">{office.phone}</span>
+                      <a
+                        href={`tel:${office.phone.split(',')[0].replace(/[^0-9+]/g, '')}`}
+                        className="font-mono font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
+                      >
+                        {office.phone}
+                      </a>
                     </span>
                   </div>
 
@@ -365,7 +370,20 @@ export default async function DistrictSurveyOfficePage({ params }: DistrictPageP
         )}
 
         {/* Essential Calculators & Checklist CTA */}
-        <section className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <Link
+            href={`/tools/malpot-valuation-rates/${info.slug}`}
+            className="p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 hover:border-emerald-500 transition-all space-y-1 shadow-sm"
+          >
+            <div className="flex items-center gap-2 font-black text-sm text-emerald-800 dark:text-emerald-300">
+              <Receipt className="w-4 h-4" />
+              <span>{info.districtNp} जग्गा मूल्याङ्कन दर २०८३/८४</span>
+            </div>
+            <p className="text-xs text-slate-600 dark:text-slate-400">
+              {info.districtNp} जिल्लाको सरकारी न्यूनतम जग्गा दररेट, थैली रकम र बैंक भ्यालुएसन हेर्नुहोस्।
+            </p>
+          </Link>
+
           <Link
             href="/tools/malpot-calculator"
             className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-400 transition-all space-y-1 shadow-sm"

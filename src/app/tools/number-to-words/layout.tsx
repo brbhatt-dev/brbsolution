@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
 
 export const metadata: Metadata = {
-  title: "Number to Nepali Rupees in Words (10 Million = 1 Crore, Lakh, Arab) | अंकबाट नेपाली अक्षरमा | BR Bhatta",
-  description: "Convert 1 Million, 10 Million in Nepali Rupees in Words (१० मिलियन = १ करोड), Lakh & Crore to English & Nepali words for cheques, Malpot deeds & Bayana. शुद्ध नेपाली र अंग्रेजी अक्षरमा रूपान्तरण।",
+  title: "अंकबाट नेपाली अक्षरमा रूपान्तरण (Cheque Format) | Number to Nepali Rupees in Words (1 & 10 Million, Lakh, Crore)",
+  description: "चेक, बैनापट्टा र मालपोत लिखतका लागि कुनै पनि रकमलाई शुद्ध नेपाली र अंग्रेजी अक्षरमा बदल्नुहोस्। 1 Million = १० लाख, 10 Million = १ करोड (Nepali Rupees in Words Converter)।",
   keywords: [
     "10 million in nepali rupees in words",
     "1 million in nepali rupees",
