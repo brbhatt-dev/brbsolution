@@ -25,7 +25,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'बी.आर. पात्रो २०८३ (BR Patro) — आजको तिथि, पञ्चाङ्ग, BS⇄AD मिति रूपान्तरण र साइत | BR Bhatta',
-  description: 'वि.सं. २०८३/२०८४ को शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, आजको तिथि, नक्षत्र, राहुकाल, विवाह/व्रतबन्ध शुभ साइत, राशिफल र BS⇄AD मिति कन्भर्टर। अनलाइन पात्रो चलाउनुहोस् वा हल्का (१०.६ MB) आधिकारिक APK (v7.9.98) डाउनलोड गर्नुहोस्।',
+  description: 'वि.सं. २०८३/२०८४ को शुद्ध सूर्यसिद्धान्त वैदिक पञ्चाङ्ग, आजको तिथि, नक्षत्र, राहुकाल, विवाह/व्रतबन्ध शुभ साइत, राशिफल र BS⇄AD मिति कन्भर्टर। अनलाइन पात्रो चलाउनुहोस् वा हल्का (१०.६ MB) आधिकारिक APK (v7.9.99) डाउनलोड गर्नुहोस्।',
   keywords: [
     'नेपाली पात्रो २०८३',
     'आजको तिथि र पञ्चाङ्ग',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://www.brbhatta.com/assets/br-patro-og.png',
         width: 1200,
         height: 630,
-        alt: 'BR Patro Official Calendar & APK v7.9.98',
+        alt: 'BR Patro Official Calendar & APK v7.9.99',
       },
     ],
     locale: 'en_US',
@@ -77,11 +77,21 @@ interface ReleaseLogItem {
 
 const RELEASE_LOGS: ReleaseLogItem[] = [
   {
-    version: "v7.9.98",
-    build: "Build 198",
+    version: "v7.9.99",
+    build: "Build 199",
     date: "२०८३ मंसिर ३ (१९ नोभेम्बर २०२६)",
     tag: "पछिल्लो ताजा रिलिज (Latest)",
     isLatest: true,
+    fixes: [
+      "🪐 कुण्डलीमा वि.सं. (BS) वा ई.सं. (AD) मिति रोज्ने सुविधा: अब जन्म कुण्डली बनाउँदा वि.सं. वा ई.सं. जुनसुकै मिति छानेर लाइभ रूपान्तरणसहित कुण्डली तयार पार्न सकिने।",
+      "🔔 दैनिक नोटिफिकेसन सुधार: '२०८३ मंसिर ३ गते' र 'बिहीबार • शुक्ल दशमी (०२:३४ सम्म)' एकरूप र नकाटिने स्पष्ट फर्म्याटमा देखिने।",
+      "🕉️ 'Sanskrit' देवनागरी फन्ट, चालिसा दोहा-चौपाई लेआउट र मात्रा नकाटिने सुधार सहित १५४ प्रामाणिक ग्रन्थ ई-पुस्तकालय।"
+    ]
+  },
+  {
+    version: "v7.9.98",
+    build: "Build 198",
+    date: "२०८३ मंसिर ३ (१९ नोभेम्बर २०२६)",
     fixes: [
       "🕉️ नयाँ 'Sanskrit' देवनागरी फन्ट, चालिसामा दोहा-चौपाई अलग कार्ड र मात्रा नकाटिने (Zero Matra Clipping) सफा लेआउट सुधार।",
       "📜 १००% प्रमाणिक वैदिक मन्त्र र सोह्र संस्कार पूर्णता: पूजा अर्चना, कर्मकाण्ड, तर्पण-एकोद्दिष्ट तथा व्रतबन्ध-सीमन्तोन्नयनका मन्त्रहरू मूल शास्त्रसँग रुजु गरी शुद्ध पारिएको।",
@@ -365,24 +375,24 @@ const RELEASE_LOGS: ReleaseLogItem[] = [
   }
 ];
 
-const WHATS_NEW_VERSION = "v7.9.98";
+const WHATS_NEW_VERSION = "v7.9.99";
 
 const WHATS_NEW_FEATURES = [
   {
-    title: "🕉️ नयाँ 'Sanskrit' फन्ट र चालिसा दोहा-चौपाई लेआउट",
-    description: "पूरे एपमा विशुद्ध पठनमैत्री 'Sanskrit' देवनागरी फन्ट, सबै २० चालिसामा दोहा र चौपाई अलग-अलग कार्डमा सफा स्पेसिङ तथा मात्रा नकाटिने (Zero Clipping) सुधार।",
+    title: "🪐 कुण्डलीमा वि.सं. (BS) वा ई.सं. (AD) मिति सुविधा",
+    description: "अब वैदिक जन्म कुण्डली बनाउँदा वि.सं. (BS) वा ई.सं. (AD) दुवै मिति प्रणालीबाट जन्म मिति राख्न सकिने र साथसाथै लाइभ मिति रूपान्तरण देखिने।",
     iconBoxClass: "bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400",
     Icon: Sparkles,
   },
   {
-    title: "📜 १००% प्रमाणिक वैदिक मन्त्र र सोह्र संस्कार",
-    description: "अर्चना, कर्मकाण्ड, पञ्चगव्य, अर्घ्य, तर्पण, एकोद्दिष्ट तथा व्रतबन्ध र सीमन्तोन्नयन लगायत सोह्र संस्कारका सम्पूर्ण मन्त्र र विधिहरू मूल वेद-शास्त्र अनुसार परिमार्जित।",
+    title: "🔔 स्पष्ट दैनिक नोटिफिकेसन र एकरूप नेपाली महिना",
+    description: "स्टाटस बार नोटिफिकेसनमा अब एकरूप नेपाली महिना ('२०८३ मंसिर ३ गते') र नकाटिने संक्षिप्त तिथि समय ('बिहीबार • शुक्ल दशमी (०२:३४ सम्म)') स्पष्ट देखिने।",
     iconBoxClass: "bg-red-100 dark:bg-red-950/70 text-red-600 dark:text-red-400",
     Icon: Compass,
   },
   {
-    title: "👨‍👩‍👧 तीन पुस्ता मातृ-पितृ सङ्कल्प र स्मार्ट UI",
-    description: "श्राद्ध/तर्पण भोल्टमा पिता र माता पक्षका तीन-तीन पुस्ता, स्थान अनुसार सटिक कुतप-रौहिण काल, चिटिक्क एक-लाइने जिल्ला पिल र स्वाइप-रहित बहु-लाइन ग्रिड।",
+    title: "🕉️ नयाँ 'Sanskrit' फन्ट र १००% प्रमाणिक वैदिक मन्त्र",
+    description: "विशुद्ध पठनमैत्री 'Sanskrit' देवनागरी फन्ट, चालिसा दोहा-चौपाई अलग कार्ड, मात्रा नकाटिने UI र सोह्र संस्कार सहित १००% शास्त्र-सम्मत मन्त्र संग्रह।",
     iconBoxClass: "bg-indigo-100 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400",
     Icon: Calendar,
   },
@@ -395,8 +405,8 @@ const WHATS_NEW_FEATURES = [
 ];
 
 export default function PatroDownloadPage() {
-  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.98/BR_Patro_v7.9.98.apk";
-  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.98";
+  const downloadUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.99/BR_Patro_v7.9.99.apk";
+  const releasePageUrl = "https://github.com/imtechboss/imtechboss/releases/tag/v7.9.99";
   const cleanVersion = WHATS_NEW_VERSION.replace(/^v/, "");
 
   const jsonLd = {
@@ -510,7 +520,7 @@ export default function PatroDownloadPage() {
           <InteractiveOnlinePatro />
         </section>
 
-        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.98) */}
+        {/* 2. OFFICIAL ANDROID APK DOWNLOAD SECTION (v7.9.99) */}
         <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -528,13 +538,13 @@ export default function PatroDownloadPage() {
             <div className="flex-1 text-center sm:text-left space-y-3">
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 border border-red-300 dark:border-red-800">
-                  Version 7.9.98
+                  Version 7.9.99
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                  Build 198
+                  Build 199
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
-                  📦 ११.६ MB (लाइटवेट)
+                  📦 ११.७ MB (लाइटवेट)
                 </span>
               </div>
 
@@ -697,7 +707,7 @@ export default function PatroDownloadPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">२</span>
-              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.98.apk</code> खोल्नुहोस्।</span>
+              <span>डाउनलोड सकिएपछि मोबाइलको <strong>Notifications</strong> वा <strong>My Files &gt; Downloads</strong> फोल्डरमा गएर <code>BR_Patro_v7.9.99.apk</code> खोल्नुहोस्।</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">३</span>
@@ -745,7 +755,7 @@ export default function PatroDownloadPage() {
               className="inline-flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>BR_Patro_v7.9.98.apk (११.६ MB) सिधै डाउनलोड गर्नुहोस्</span>
+              <span>BR_Patro_v7.9.99.apk (११.७ MB) सिधै डाउनलोड गर्नुहोस्</span>
             </a>
           </div>
         </section>
