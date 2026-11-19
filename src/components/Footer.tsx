@@ -2,8 +2,10 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
+import { HomeEnglishDocumentation } from './BilingualEnglishGuide';
 import { 
   ArrowUp, 
   Mail, 
@@ -38,12 +40,35 @@ const NepalFlag = () => (
 );
 
 export default function Footer() {
+  const pathname = usePathname() || '';
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Render English Technical Documentation on pages that do not already render it inline
+  const alreadyHasEnglishDoc =
+    pathname === '/' ||
+    pathname === '/articles' ||
+    pathname.startsWith('/articles/') ||
+    pathname.startsWith('/en') ||
+    pathname === '/tools/land-calculator' ||
+    pathname.startsWith('/tools/survey-offices') ||
+    pathname.startsWith('/tools/malpot-valuation-rates') ||
+    pathname === '/about' ||
+    pathname === '/privacy-policy' ||
+    pathname === '/terms' ||
+    pathname === '/disclaimer' ||
+    pathname === '/contact' ||
+    pathname.startsWith('/admin');
+
   return (
-    <footer className="relative bg-[#070e17] text-slate-300 border-t border-emerald-900/40 overflow-hidden">
+    <>
+      {!alreadyHasEnglishDoc && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+          <HomeEnglishDocumentation />
+        </div>
+      )}
+      <footer className="relative bg-[#070e17] text-slate-300 border-t border-emerald-900/40 overflow-hidden">
       {/* Top Emerald Accent Gradient Line */}
       <div className="h-0.5 w-full bg-gradient-to-r from-emerald-600 via-teal-400 to-emerald-600" />
 
@@ -165,34 +190,38 @@ export default function Footer() {
           
           {/* Navigation & Compliance Links with whitespace-nowrap */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3.5 gap-y-1.5">
+            <Link href="/en" className="text-amber-400 hover:text-amber-300 font-semibold whitespace-nowrap transition-colors">
+              English Portal (/en)
+            </Link>
+            <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/blog" className="text-emerald-400 hover:text-emerald-300 font-semibold whitespace-nowrap transition-colors">
-              ब्लग तथा लेखहरू
+              Articles &amp; Guides (लेखहरू)
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/about" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              हाम्रो बारेमा
+              About Us (हाम्रो बारेमा)
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/contact" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              सम्पर्क
+              Contact Us (सम्पर्क)
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/privacy-policy" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              गोपनीयता नीति (Privacy)
+              Privacy Policy
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/terms" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              सर्तहरू (Terms)
+              Terms of Service
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/disclaimer" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              अस्वीकरण (Disclaimer)
+              Disclaimer
             </Link>
           </div>
 
           {/* Copyright & Creator Credit */}
           <div className="text-[11px] text-slate-400 whitespace-nowrap shrink-0">
-            परिकल्पना तथा निर्माण: <strong className="text-white font-semibold">BR Bhatta</strong> &bull; &copy; २०२६
+            Designed &amp; Engineered by <strong className="text-white font-semibold">BR Bhatta</strong> &bull; &copy; 2026
           </div>
 
         </div>
@@ -200,5 +229,6 @@ export default function Footer() {
       </div>
 
     </footer>
+    </>
   );
 }

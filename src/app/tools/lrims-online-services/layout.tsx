@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "मालपोत अनलाइन टोकन प्रणाली, जग्गा रोक्का/फुकुवा स्टाटस, ७७ जिल्ला न्यूनतम दररेट भल्ट र लेखापढी सेवा शुल्क निर्देशिका।",
     url: "https://www.brbhatta.com/tools/lrims-online-services",
     siteName: 'BR Bhatta | Land & Citizen Services',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

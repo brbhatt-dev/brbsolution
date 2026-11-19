@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         alt: 'BR Patro Official Calendar & APK v7.9.97',
       },
     ],
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
@@ -398,7 +398,7 @@ export default function PatroDownloadPage() {
         url: "https://www.brbhatta.com/patro",
         applicationCategory: "UtilitiesApplication",
         operatingSystem: "All",
-        inLanguage: "ne",
+        inLanguage: 'en-US',
         description: "वि.सं. २०८१-२०८४ नेपाली पात्रो, आजको तिथि, सूर्यसिद्धान्त पञ्चाङ्ग, राहुकाल, BS⇄AD मिति रूपान्तरण र शुभ साइत।"
       },
       {

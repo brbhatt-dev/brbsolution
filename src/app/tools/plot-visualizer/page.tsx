@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'चारै भुजा र विकर्ण हालेर जग्गाको प्रत्यक्ष नक्सा हेर्नुहोस् र रोपनी-आना / बिघा-कट्ठामा क्षेत्रफल गणना गर्नुहोस्।',
     url: 'https://www.brbhatta.com/tools/plot-visualizer',
     siteName: 'BR Bhatta & Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

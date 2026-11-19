@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description: 'नेपाल सरकारको आधारभूत भवन निर्माण तथा सडक मापदण्ड २०७२ (संशोधन २०८१) अनुसार घरको चारैतिर छोड्नुपर्ने न्यूनतम दुरी र नक्सा पास प्रक्रिया।',
     url: 'https://www.brbhatta.com/tools/setback-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

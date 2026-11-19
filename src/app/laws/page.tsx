@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: 'नेपाल सरकार नापी विभाग (dos.gov.np) द्वारा जारी ऐन, नियमावली, कार्यविधि तथा निर्देशिकाहरूको पूर्ण संकलन।',
     url: 'https://www.brbhatta.com/laws',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

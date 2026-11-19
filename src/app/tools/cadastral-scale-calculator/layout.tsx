@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "नापी नक्साको १:५००, १:१२५०, १:२५०० स्केलबाट वास्तविक जमिनको लम्बाइ र क्षेत्रफल निकाल्ने इन्जिनियरिङ टुल।",
     url: "https://www.brbhatta.com/tools/cadastral-scale-calculator",
     siteName: 'BR Bhatta | Land & Citizen Services',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

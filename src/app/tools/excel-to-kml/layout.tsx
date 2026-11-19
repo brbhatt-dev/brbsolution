@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "एक्सेल फाइलमा भएका कोअर्डिनेट (Latitude/Longitude वा UTM) लाई Google Earth KML फाइलमा एकै क्लिकमा बदल्नुहोस्। नापी तथा जीआईएस फिल्ड वर्कको लागि उपयोगी।",
     url: "https://www.brbhatta.com/tools/excel-to-kml",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

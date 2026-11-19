@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: 'वास्तविक नापी फित्ताले जग्गा नाप्नुहोस्, हेरन सूत्र लगाउनुहोस् र डिजिटल अमिन प्रमाणपत्र जित्नुहोस्!',
     url: 'https://www.brbhatta.com/tools/virtual-amin-game',
     siteName: 'BR Bhatta & Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
     images: [{ url: '/logo.png', width: 512, height: 512, alt: 'Virtual Amin Game' }],
   },

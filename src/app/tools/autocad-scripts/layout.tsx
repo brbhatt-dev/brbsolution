@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "नेपालको नापी नक्सा तथा क्याड अटोमेसनका लागि निःशुल्क AutoCAD AutoLISP (.lsp) स्क्रिप्टहरू। पोलिलाइन क्षेत्रफललाई एकै क्लिकमा रोपनी-आना र बिघा-कट्ठामा बदल्नुहोस्।",
     url: "https://www.brbhatta.com/tools/autocad-scripts",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

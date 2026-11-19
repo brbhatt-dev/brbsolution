@@ -7,6 +7,7 @@ import SurveyOfficesDirectory from '@/components/SurveyOfficesDirectory';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { DISTRICT_SLUGS } from '@/lib/districtSlugs';
 import { 
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
     description: 'नापी विभाग (dos.gov.np), मेरोकित्ता नक्सा र ७७ जिल्लाका १८५ नापी तथा मालपोत कार्यालयको आधिकारिक फोन, ठेगाना, इमेल र कार्यक्षेत्र।',
     url: 'https://www.brbhatta.com/tools/survey-offices',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };
@@ -664,6 +665,9 @@ export default function SurveyOfficesPage() {
             ))}
           </div>
         </section>
+
+        {/* Official English Documentation for International & AdSense Compliance */}
+        <HomeEnglishDocumentation />
 
         {/* BR Patro Conversion Banner */}
         <PatroAppPromoBanner variant="inline" />

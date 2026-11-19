@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "सरकारी अनलाइन फारम, लोकसेवा आयोग, र मालपोत सिस्टमका लागि फोटो तथा हस्ताक्षरको साइज तुरुन्त २०० KB मुनि घटाउनुहोस्।",
     url: "https://www.brbhatta.com/tools/image-compressor",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

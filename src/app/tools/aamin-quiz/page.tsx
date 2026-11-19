@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: 'लोक सेवा आयोगको नापी अमिन तथा सर्भेक्षक परीक्षाको लागि आधिकारिक पाठ्यक्रममा आधारित निःशुल्क अनलाइन वस्तुगत प्रश्न अभ्यास।',
     url: 'https://www.brbhatta.com/tools/aamin-quiz',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "लालपुर्जा, नक्सा ट्रेस र सरकारी कागजातका पीडीएफ फाइलहरूलाई सुरक्षित रूपमा जोड्नुहोस् (Merge), टुक्राउनुहोस् (Split) वा साइज घटाउनुहोस्।",
     url: "https://www.brbhatta.com/tools/pdf-tools",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

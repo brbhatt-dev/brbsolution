@@ -95,8 +95,7 @@ export function getBilingualAlternates(
   return {
     canonical: `${SITE_URL}${canonicalPath === '/' ? '' : canonicalPath}`,
     languages: {
-      'ne-NP': `${SITE_URL}${nePath === '/' ? '' : nePath}`,
-      en: `${SITE_URL}${enPath}`,
+      'en-US': `${SITE_URL}${enPath}`,
       'x-default': `${SITE_URL}${nePath === '/' ? '' : nePath}`,
     },
   };

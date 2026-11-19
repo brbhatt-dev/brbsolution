@@ -7,6 +7,7 @@ import LandCalculator from '@/components/LandCalculator';
 import SocialShareBar from '@/components/SocialShareBar';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   Calculator, 
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     description: 'नेपालमा जग्गा नापजाँच, रोपनी-आना र बिघा-कट्ठा रूपान्तरण, प्रति आना/धुर मूल्य निर्धारण र प्रत्यक्ष कन्भर्सन म्याट्रिक्स।',
     url: 'https://www.brbhatta.com/tools/land-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };
@@ -323,6 +324,8 @@ export default function StandaloneLandCalculatorPage() {
             </span>
           </div>
         </div>
+
+        <HomeEnglishDocumentation />
 
         <PatroAppPromoBanner variant="inline" />
 

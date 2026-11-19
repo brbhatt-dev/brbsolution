@@ -5,12 +5,10 @@ import Navbar from '@/components/Navbar';
 import StyleCitizenPortal from '@/components/demos/StyleCitizenPortal';
 import HomeFooter from '@/components/HomeFooter';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
 
 const DosNoticesWidget = dynamic(() => import('@/components/DosNoticesWidget'));
-const HomeEnglishDocumentation = dynamic(() =>
-  import('@/components/BilingualEnglishGuide').then((mod) => mod.HomeEnglishDocumentation)
-);
 const Contact = dynamic(() => import('@/components/Contact'));
 
 export const metadata: Metadata = {
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Land Solution (नापजाँच तथा कित्ताकाट एप), Hamro Kosh, and AutoCAD LSP scripts for Nepal land surveying.',
     url: 'https://www.brbhatta.com',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

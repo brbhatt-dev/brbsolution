@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: 'नेपालमा जग्गा पास (राजीनामा, नामसारी, बकसपत्र) गर्दा वडा, नापी र मालपोतमा चाहिने आधिकारिक कागजातहरूको अनुकूलित चेकलिस्ट र चरणबद्ध गाइड।',
     url: 'https://www.brbhatta.com/tools/jagga-pass-checklist',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

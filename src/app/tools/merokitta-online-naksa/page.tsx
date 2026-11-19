@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: 'नापी विभागको मेरोकित्ता पोर्टलबाट ३ मिनेटमा नक्सा ट्रेस, फिल्डबुक र प्लट रजिष्टर PDF डाउनलोड गर्ने आधिकारिक गाइड।',
     url: 'https://www.brbhatta.com/tools/merokitta-online-naksa',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

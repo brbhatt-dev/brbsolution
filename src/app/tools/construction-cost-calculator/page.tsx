@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: 'नेपालमा घर बनाउँदा लाग्ने प्रति वर्गफिट दर, कुल बजेट र सिमेन्ट, डण्डी, बालुवा, गिट्टीको परिमाण तुरुन्त जाँच्ने आधिकारिक टूल।',
     url: 'https://www.brbhatta.com/tools/construction-cost-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

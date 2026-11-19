@@ -7,6 +7,7 @@ import MalpotValuationFinder from '@/components/MalpotValuationFinder';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import { getBilingualAlternates } from '@/lib/i18nRoutes';
 import { 
   ArrowLeft, 
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     description: 'काठमाडौँ उपत्यका तथा प्रमुख सहरहरूको सडक वर्गीकरण अनुसार सरकारी न्यूनतम प्रतिआना/प्रतिकट्ठा दर र बैंक भ्यालुएसन दर।',
     url: 'https://www.brbhatta.com/tools/malpot-valuation-rates',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };
@@ -230,6 +231,9 @@ export default function MalpotValuationRatesPage() {
             </div>
           </div>
         </section>
+
+        {/* Official English Documentation for International & AdSense Compliance */}
+        <HomeEnglishDocumentation />
 
         {/* BR Patro Conversion Banner */}
         <PatroAppPromoBanner variant="inline" />

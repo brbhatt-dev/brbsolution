@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: 'नेपाल राष्ट्र बैंकको मापदण्ड अनुसार घरजग्गा मूल्याङ्कनको कति प्रतिशतसम्म ऋण पाइन्छ र मासिक EMI कति तिर्नुपर्छ, तुरुन्त निकाल्नुहोस्।',
     url: 'https://www.brbhatta.com/tools/loan-emi-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

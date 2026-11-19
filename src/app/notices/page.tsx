@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: 'नेपाल सरकार नापी विभाग (dos.gov.np) का ताजा आधिकारिक सूचना, परिपत्र तथा निर्देशिका PDF अब प्रत्यक्ष हेर्नुहोस्।',
     url: 'https://www.brbhatta.com/notices',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

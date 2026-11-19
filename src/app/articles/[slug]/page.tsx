@@ -151,7 +151,7 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
       '@type': 'WebPage',
       '@id': `https://www.brbhatta.com/articles/${article.slug}`,
     },
-    inLanguage: ['en', 'ne'],
+    inLanguage: 'en-US',
   };
 
   // 2. BreadcrumbList JSON-LD Structured Data
@@ -439,6 +439,8 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             category={article.category}
             categoryNepali={article.categoryNepali}
             publishedDate={article.publishedDate}
+            summary={article.summary}
+            sections={article.sections}
           />
 
           {/* Bottom AdSense Slot */}

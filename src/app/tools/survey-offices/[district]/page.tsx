@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SocialShareBar from '@/components/SocialShareBar';
 import PatroAppPromoBanner from '@/components/PatroAppPromoBanner';
+import DistrictEnglishDocumentation from '@/components/DistrictEnglishDocumentation';
 import {
   ArrowLeft,
   Building2,
@@ -77,7 +78,7 @@ export async function generateMetadata({ params }: DistrictPageProps): Promise<M
       description,
       url: canonicalUrl,
       siteName: 'Land Solution & BR Bhatta',
-      locale: 'ne_NP',
+      locale: 'en_US',
       type: 'website',
     },
   };
@@ -469,6 +470,18 @@ export default async function DistrictSurveyOfficePage({ params }: DistrictPageP
             </div>
           </section>
         )}
+
+        {/* Official English District Cadastral & Valuation Report for AdSense & International Readers */}
+        <DistrictEnglishDocumentation
+          districtEn={info.districtEn}
+          districtNp={info.districtNp}
+          slug={info.slug}
+          provinceName={provinceName}
+          cityAliasesEn={info.cityAliasesEn}
+          offices={offices}
+          valuationEntries={valuationEntries}
+          mode="survey-office"
+        />
 
         {/* BR Patro Conversion Banner */}
         <PatroAppPromoBanner variant="inline" />

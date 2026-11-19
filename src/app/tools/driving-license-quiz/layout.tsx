@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "यातायात व्यवस्था विभाग (DOTM) को ५०० आधिकारिक प्रश्नोत्तरबाट अनलाइन लिखित परीक्षा क्विज (वर्ग क र ख), ७० अंकको नयाँ ट्रायल नियम, स्मार्ट लाइसेन्स प्रिन्ट चेक र ब्लुबुक कर क्यालकुलेटर।",
     url: "https://www.brbhatta.com/tools/driving-license-quiz",
     siteName: 'BR Bhatta | Land & Citizen Services',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

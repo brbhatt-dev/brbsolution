@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description: 'बाबु/आमा वा पति/पत्नी बितेपछि उहाँको नामको जग्गा हकवालाको नाममा नामसारी गर्ने वडा, नापी र मालपोतको सम्पूर्ण प्रक्रिया र डाउनलोड गर्न मिल्ने निवेदन ढाँचाहरू।',
     url: 'https://www.brbhatta.com/tools/jagga-namsari-guide',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

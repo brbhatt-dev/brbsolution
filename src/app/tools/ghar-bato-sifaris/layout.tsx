@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "वडा कार्यालयबाट घरबाटो सिफारिस र चारकिल्ला प्रमाणित लिन आधिकारिक नेपाली निवेदन ढाँचा, दस्तुर दररेट र आवश्यक कागजात चेकलिस्ट।",
     url: "https://www.brbhatta.com/tools/ghar-bato-sifaris",
     siteName: 'BR Bhatta | Land & Citizen Services',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

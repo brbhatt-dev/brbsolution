@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: 'काठमाडौँ, पोखरा, ललितपुर, भरतपुर, बुटवल लगायत प्रमुख सहरहरूको नक्सा पास सेतब्याक, बाटोको अधिकार र घरबाटो दस्तुर।',
     url: 'https://www.brbhatta.com/tools/municipal-bye-laws',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

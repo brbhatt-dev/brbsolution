@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: "घरजग्गा खरिदबिक्रीको आधिकारिक बैनापट्टा तयार गर्ने र A4 साइजमा १-क्लिकमा प्रिन्ट/PDF सेभ गर्ने नेपालको पहिलो डिजिटल टुल।",
     url: "https://www.brbhatta.com/tools/bayana-agreement-generator",
     siteName: 'BR Bhatta | Land & Citizen Services',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

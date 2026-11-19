@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "जग्गा बैनापट्टा कागज, घरबाटो सिफारिस, नामसारी निवेदन, रोक्का-फुकुवा तथा बहाल सम्झौताका आधिकारिक ढाँचाहरू A4 मा प्रिन्ट तथा PDF डाउनलोड (Word .docx) गर्नुहोस्।",
     url: "https://www.brbhatta.com/tools/legal-templates",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

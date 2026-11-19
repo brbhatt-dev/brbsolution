@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: "चेक, भौचर, बैनाबट्टा र तमसुक लेख्नका लागि कुनै पनि रकमलाई शुद्ध नेपाली अक्षर (शब्दहरू) मा रूपान्तरण गर्नुहोस्।",
     url: "https://www.brbhatta.com/tools/number-to-words",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

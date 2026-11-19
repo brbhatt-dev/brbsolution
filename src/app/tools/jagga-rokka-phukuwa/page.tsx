@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description: 'बैंकको ऋण चुक्ता गरेपछि मालपोतबाट लालपुर्जा फुकुवा गर्ने चरणबद्ध तरिका, बैंकको फुकुवा पत्र र मालपोतमा दिने आधिकारिक निवेदन ढाँचा।',
     url: 'https://www.brbhatta.com/tools/jagga-rokka-phukuwa',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

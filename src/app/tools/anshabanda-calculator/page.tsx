@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: 'नेपालको मुलुकी देवानी संहिता २०७४ र भू-उपयोग नियमावली २०८१ अनुसार अंशियारहरू बीच जग्गाको बराबर भाग र कित्ताकाट योग्यता जाँच्ने आधिकारिक टूल।',
     url: 'https://www.brbhatta.com/tools/anshabanda-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

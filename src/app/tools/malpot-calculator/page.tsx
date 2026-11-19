@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: 'आर्थिक ऐन तथा मालपोत नियमावली अनुसार घरजग्गा पास गर्दा लाग्ने सरकारी राजस्व तथा पुँजीगत लाभकरको तुरुन्त हिसाब।',
     url: 'https://www.brbhatta.com/tools/malpot-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

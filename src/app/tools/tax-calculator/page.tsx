@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: 'नेपालको आधिकारिक मालपोत लिखत, रजिस्ट्रेसन दस्तुर, रोक्का र पुँजीगत लाभकर (CGT) को पूर्ण नेपाली क्यालकुलेटर।',
     url: 'https://www.brbhatta.com/tools/tax-calculator',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

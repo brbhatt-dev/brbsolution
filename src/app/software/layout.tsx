@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: 'Land Solution Nepal, Hamro Kosh तथा AutoCAD LISP स्क्रिप्टहरूको आधिकारिक डाउनलोड तथा प्रयोग केन्द्र।',
     url: 'https://www.brbhatta.com/software',
     siteName: 'BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
     images: [
       {

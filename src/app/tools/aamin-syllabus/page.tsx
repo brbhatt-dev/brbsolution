@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: 'लोक सेवा आयोग इन्जिनियरिङ सेवा सर्भे समूह अमिन तथा सर्भेक्षक पदको विस्तृत पाठ्यक्रम र अध्ययन रणनीति।',
     url: 'https://www.brbhatta.com/tools/aamin-syllabus',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "बाटो थुनेको (सुखाधिकार), नापी नक्सा र फिल्ड फरक, साँध-सीमाना, मोही हक, अंशबन्डा र बैना विवादमा सर्वोच्च अदालतका आधिकारिक नजीरहरूको पूर्ण निर्देशिका।",
     url: "https://www.brbhatta.com/tools/land-dispute-precedents",
     siteName: 'BR Bhatta | Land & Citizen Services',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

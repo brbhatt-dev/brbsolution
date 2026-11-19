@@ -165,38 +165,42 @@ export default function HomeFooter() {
           
           {/* Navigation & Compliance Links with whitespace-nowrap */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3.5 gap-y-1.5">
+            <Link href="/en" className="text-amber-400 hover:text-amber-300 font-semibold whitespace-nowrap transition-colors">
+              English Portal (/en)
+            </Link>
+            <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/patro" className="text-amber-400 hover:text-amber-300 font-semibold whitespace-nowrap transition-colors flex items-center gap-1">
-              <span>बी.आर. पात्रो (२०८१–८४)</span>
+              <span>BR Patro (Calendar)</span>
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/blog" className="text-emerald-400 hover:text-emerald-300 font-semibold whitespace-nowrap transition-colors">
-              ब्लग तथा लेखहरू
+              Articles &amp; Guides (लेखहरू)
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/about" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              हाम्रो बारेमा
+              About Us (हाम्रो बारेमा)
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/contact" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              सम्पर्क
+              Contact Us (सम्पर्क)
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/privacy-policy" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              गोपनीयता नीति (Privacy)
+              Privacy Policy
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/terms" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              सर्तहरू (Terms)
+              Terms of Service
             </Link>
             <span className="text-slate-700 hidden sm:inline">&bull;</span>
             <Link href="/disclaimer" className="hover:text-emerald-400 whitespace-nowrap transition-colors">
-              अस्वीकरण (Disclaimer)
+              Disclaimer
             </Link>
           </div>
 
           {/* Copyright & Creator Credit */}
           <div className="text-[11px] text-slate-400 whitespace-nowrap shrink-0">
-            परिकल्पना तथा निर्माण: <strong className="text-white font-semibold">BR Bhatta</strong> &bull; &copy; २०२६
+            Designed &amp; Engineered by <strong className="text-white font-semibold">BR Bhatta</strong> &bull; &copy; 2026
           </div>
 
         </div>

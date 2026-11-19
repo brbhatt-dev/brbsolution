@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description: 'नेपालमा जग्गा पास, जग पूजा, छाना ढलान र गृहप्रवेशका शुभ साइत नियम तथा वैदिक वास्तु निर्देशिका।',
     url: 'https://www.brbhatta.com/tools/real-estate-saait-calendar',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "परम्परागत प्रीति वा कान्तिपुर फन्टलाई शुद्ध नेपाली युनिकोडमा तत्काल बदल्नुहोस्। सरकारी कामकाज, निवेदन तथा फारम भर्न १००% शुद्ध कन्भर्टर।",
     url: "https://www.brbhatta.com/tools/preeti-to-unicode",
     siteName: 'BR Bhatta | Land Solution',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {

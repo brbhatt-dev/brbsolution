@@ -159,7 +159,7 @@ export default function RootLayout({
     alternateName: ['bhattbr.com.np', 'Bhatt BR', 'brbhatta.com', 'brbhatta', 'Land Solution Nepal', 'BR Bhatta Nepal', 'Land Solution'],
     name: 'BR Bhatta',
     url: 'https://www.brbhatta.com',
-    inLanguage: ['en', 'ne'],
+    inLanguage: 'en-US',
   };
 
   return (

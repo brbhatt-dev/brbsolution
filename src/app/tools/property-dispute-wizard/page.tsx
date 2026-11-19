@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: 'साँध-सिमाना, बाटो निकास, मोही र अंशबन्डा विवादमा तत्काल चाल्नुपर्ने कानुनी कदम, हदम्याद र आवश्यक कागजात चेकलिस्ट।',
     url: 'https://www.brbhatta.com/tools/property-dispute-wizard',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

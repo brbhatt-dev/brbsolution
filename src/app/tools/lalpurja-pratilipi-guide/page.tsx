@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description: 'लालपुर्जा हराएमा नआत्तिनुहोस्! प्रहरी सिफारिस, वडा मुचुल्का, दैनिक पत्रिकामा १५ दिने हकदाबी सूचना र मालपोतबाट नयाँ लालपुर्जा लिने सम्पूर्ण प्रक्रिया र ढाँचाहरू।',
     url: 'https://www.brbhatta.com/tools/lalpurja-pratilipi-guide',
     siteName: 'Land Solution & BR Bhatta',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
 };

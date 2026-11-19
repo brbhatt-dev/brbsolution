@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: "नापी विभागको आधिकारिक कित्ता नक्सा संकेतहरू, सिमाना पिल्लर, बाटो, कुलो, घर, हाइ-टेन्सन रेखा, र १:५०० देखि १:५००० नक्सा स्केल क्याल्कुलेटर।",
     url: "https://www.brbhatta.com/tools/cadastral-map-symbols",
     siteName: 'BR Bhatta | Land & Cadastral Hub',
-    locale: 'ne_NP',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
