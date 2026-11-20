@@ -80,7 +80,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-3.5 min-w-0 overflow-hidden">
+          <nav className="hidden lg:flex flex-1 justify-center items-center gap-2 xl:gap-2.5 2xl:gap-4 min-w-0 overflow-hidden">
             
             {/* All Tools Hub Dropdown */}
             <div 
@@ -304,14 +304,14 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             {/* Live Survey Notices Button */}
             <Link
               href="/notices"
-              className="relative inline-flex items-center gap-1.5 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap py-1 px-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="relative inline-flex items-center gap-1.5 text-[13px] 2xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap py-1 px-1.5 2xl:px-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span className="hidden xl:inline" translate="no">नापी </span><span>सूचना</span>
-              <span className="text-[9px] font-black tracking-normal px-1.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">
+              <span className="hidden 2xl:inline-block text-[9px] font-black tracking-normal px-1.5 py-0.5 rounded-full bg-emerald-600 text-white animate-pulse">
                 LIVE
               </span>
             </Link>
@@ -401,22 +401,22 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
             {/* पात्रो (Patro) Direct Link */}
             <Link
               href="/patro"
-              className="relative inline-flex items-center gap-1 text-[13px] xl:text-sm font-bold text-slate-700 hover:text-red-600 dark:text-slate-300 dark:hover:text-amber-400 transition-colors uppercase tracking-wider whitespace-nowrap py-1 px-1.5 xl:px-2.5 rounded-full hover:bg-red-50 dark:hover:bg-red-950/40"
+              className="relative inline-flex items-center gap-1 text-[13px] 2xl:text-sm font-bold text-slate-700 hover:text-red-600 dark:text-slate-300 dark:hover:text-amber-400 transition-colors uppercase tracking-wider whitespace-nowrap py-1 px-1.5 2xl:px-2.5 rounded-full hover:bg-red-50 dark:hover:bg-red-950/40"
             >
               <Calendar className="w-3.5 h-3.5 text-red-600 dark:text-amber-400" />
               <span>पात्रो</span>
-              <span className="hidden xl:inline-block text-[9px] font-black tracking-normal px-1.5 py-0.2 rounded-full bg-red-600 text-white dark:bg-amber-500 dark:text-slate-950 shadow-2xs">
+              <span className="hidden 2xl:inline-block text-[9px] font-black tracking-normal px-1.5 py-0.2 rounded-full bg-red-600 text-white dark:bg-amber-500 dark:text-slate-950 shadow-2xs">
                 २०८१-८४
               </span>
             </Link>
 
             <Link
               href="/blog"
-              className="text-[13px] xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
+              className="text-[13px] 2xl:text-sm font-bold text-slate-700 hover:text-emerald-600 dark:text-slate-300 dark:hover:text-emerald-400 transition-colors uppercase tracking-wider whitespace-nowrap"
             >
               <span className="inline-flex items-center gap-1">
                 <span>लेखहरू</span>
-                <span className="hidden xl:inline-block text-[10px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                <span className="hidden 2xl:inline-block text-[10px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
                   ३६+
                 </span>
               </span>
