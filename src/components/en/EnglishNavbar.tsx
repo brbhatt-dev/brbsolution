@@ -15,34 +15,34 @@ export default function EnglishNavbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 shadow-2xs transition-colors duration-200">
-      <div className="max-w-[1440px] mx-auto px-3 sm:px-5 lg:px-6">
-        <div className="flex items-center justify-between h-16 gap-3">
+      <div className="max-w-[1440px] mx-auto px-2.5 sm:px-5 lg:px-6">
+        <div className="flex items-center justify-between h-16 gap-1.5 sm:gap-3">
           {/* Brand Logo */}
-          <Link href="/en" className="flex items-center gap-2.5 group py-1 shrink-0">
-            <div className="w-10 h-10 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-0.5 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-emerald-500 transition-colors">
+          <Link href="/en" className="flex items-center gap-2 group py-1 shrink-0 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-0.5 flex items-center justify-center shrink-0 shadow-2xs group-hover:border-emerald-500 transition-colors">
               <img src="/logo.png" alt="Land Solution Logo" className="w-full h-full object-contain" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight">
+            <div className="flex flex-col min-w-0">
+              <span className="text-sm sm:text-lg font-black tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-tight truncate">
                 Land Solution
               </span>
-              <span className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold">
-                BR Bhatta • English Portal
+              <span className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-semibold truncate">
+                <span className="hidden sm:inline">BR Bhatta • </span>English
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-5 text-[13px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+          <nav className="hidden lg:flex flex-1 justify-center items-center gap-3 xl:gap-5 min-w-0 overflow-hidden text-xs xl:text-[13px] font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
             <div
-              className="relative py-2 group"
+              className="relative py-2 group shrink-0"
               onMouseEnter={() => setToolsOpen(true)}
               onMouseLeave={() => setToolsOpen(false)}
             >
-              <Link href="/en" className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-                <Calculator className="w-3.5 h-3.5 text-emerald-600" />
-                <span>English Tools</span>
-                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+              <Link href="/en" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                <Calculator className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Tools</span>
+                <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180 shrink-0" />
               </Link>
 
               <div
@@ -64,42 +64,42 @@ export default function EnglishNavbar() {
               </div>
             </div>
 
-            <Link href="/en/tools/malpot-valuation-rates" className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-              <Landmark className="w-3.5 h-3.5 text-teal-600" />
-              <span>Land Valuation</span>
+            <Link href="/en/tools/malpot-valuation-rates" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shrink-0">
+              <Landmark className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+              <span>Valuation</span>
             </Link>
 
-            <Link href="/en/tools/survey-offices" className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-              <Compass className="w-3.5 h-3.5 text-rose-500" />
-              <span>77-District Offices</span>
+            <Link href="/en/tools/survey-offices" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shrink-0">
+              <Compass className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+              <span><span className="hidden xl:inline">77-District </span>Offices</span>
             </Link>
 
-            <Link href="/en/patro" className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-              <Calendar className="w-3.5 h-3.5 text-amber-500" />
-              <span>Nepali Patro</span>
+            <Link href="/en/patro" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shrink-0">
+              <Calendar className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+              <span><span className="hidden xl:inline">Nepali </span>Patro</span>
             </Link>
 
-            <Link href="/about" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            <Link href="/about" className="whitespace-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shrink-0">
               About
             </Link>
 
-            <Link href="/contact" className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-              <FileText className="w-3.5 h-3.5 text-sky-500" />
+            <Link href="/contact" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shrink-0">
+              <FileText className="w-3.5 h-3.5 text-sky-500 shrink-0" />
               <span>Contact</span>
             </Link>
           </nav>
 
           {/* Right Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             <LanguageToggle variant="pill" />
             <ThemeToggle variant="icon" />
             <button
               type="button"
               onClick={() => setMobileMenuOpen((v) => !v)}
-              className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200"
+              className="lg:hidden p-1.5 sm:p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200"
               aria-label="Toggle Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4.5 h-4.5 sm:w-5 sm:h-5" /> : <Menu className="w-4.5 h-4.5 sm:w-5 sm:h-5" />}
             </button>
           </div>
         </div>

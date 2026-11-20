@@ -51,7 +51,7 @@ export default function HomeFooter() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 pb-24 lg:pb-6 space-y-4">
         
         {/* Tier 1: Brand & Slogan on Left, Social Icons & Scroll-to-Top on Right */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           
           {/* Brand Identity & Mission Matching the Land Solution App Logo */}
           <Link href="/" className="flex items-center gap-3 text-center md:text-left group cursor-pointer">
