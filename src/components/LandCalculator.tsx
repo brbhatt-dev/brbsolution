@@ -14,14 +14,27 @@ import {
   Building2,
   Percent,
   Printer,
-  Mic
+  Mic,
+  Plus,
+  Minus,
+  Trash2
 } from 'lucide-react';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import PrintSlipModal from '@/components/PrintSlipModal';
 import VoiceLandModal, { ParsedLandResult } from '@/components/VoiceLandModal';
 import { copyToClipboard } from '@/lib/clipboard';
 
-type Mode = 'pahadi' | 'terai' | 'sqft' | 'tax';
+type Mode = 'pahadi' | 'terai' | 'sqft' | 'tax' | 'addsub';
+
+interface AreaRow {
+  id: number;
+  op: '+' | '-';
+  system: 'pahadi' | 'terai' | 'sqft';
+  v1: number; // ropani / bigha / sqft
+  v2: number; // aana / katha
+  v3: number; // paisa / dhur
+  v4: number; // daam / kanwa
+}
 
 interface LandCalculatorProps {
   compact?: boolean;
@@ -59,6 +72,27 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
   const [cgtType, setCgtType] = useState<'none' | 'over5' | 'under5'>('none');
   const [gainAmount, setGainAmount] = useState<number>(500000);
 
+  // Add / Subtract Area Rows
+  const [areaRows, setAreaRows] = useState<AreaRow[]>([
+    { id: 1, op: '+', system: 'pahadi', v1: 1, v2: 4, v3: 0, v4: 0 },
+    { id: 2, op: '-', system: 'pahadi', v1: 0, v2: 2, v3: 2, v4: 0 },
+  ]);
+
+  const updateRow = (id: number, patch: Partial<AreaRow>) => {
+    setAreaRows((prev) => prev.map((r) => (r.id === id ? { ...r, ...patch } : r)));
+  };
+
+  const addAreaRow = (op: '+' | '-') => {
+    setAreaRows((prev) => [
+      ...prev,
+      { id: Date.now(), op, system: prev[0]?.system || 'pahadi', v1: 0, v2: 0, v3: 0, v4: 0 },
+    ]);
+  };
+
+  const removeAreaRow = (id: number) => {
+    setAreaRows((prev) => (prev.length > 2 ? prev.filter((r) => r.id !== id) : prev));
+  };
+
   // Constants
   const SQFT_PER_ROPANI = 5476;
   const SQFT_PER_AANA = 342.25;
@@ -74,6 +108,7 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
 
   // Calculate master sqft based on mode
   let totalSqft = 0;
+  let isNegativeAddSub = false;
 
   if (mode === 'pahadi') {
     totalSqft = (ropani * SQFT_PER_ROPANI) + (aana * SQFT_PER_AANA) + (paisa * SQFT_PER_PAISA) + (daam * SQFT_PER_DAAM);
@@ -81,6 +116,25 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
     totalSqft = (bigha * SQFT_PER_BIGHA) + (katha * SQFT_PER_KATHA) + (dhur * SQFT_PER_DHUR) + (kanwa * SQFT_PER_KANWA);
   } else if (mode === 'sqft') {
     totalSqft = unitType === 'sqft' ? sqftInput : (sqftInput * SQFT_TO_SQM);
+  } else if (mode === 'addsub') {
+    let signedSqft = 0;
+    for (const r of areaRows) {
+      let rowSqft = 0;
+      if (r.system === 'pahadi') {
+        rowSqft = (r.v1 * SQFT_PER_ROPANI) + (r.v2 * SQFT_PER_AANA) + (r.v3 * SQFT_PER_PAISA) + (r.v4 * SQFT_PER_DAAM);
+      } else if (r.system === 'terai') {
+        rowSqft = (r.v1 * SQFT_PER_BIGHA) + (r.v2 * SQFT_PER_KATHA) + (r.v3 * SQFT_PER_DHUR) + (r.v4 * SQFT_PER_KANWA);
+      } else {
+        rowSqft = r.v1;
+      }
+      signedSqft += r.op === '+' ? rowSqft : -rowSqft;
+    }
+    if (signedSqft < 0) {
+      isNegativeAddSub = true;
+      totalSqft = 0;
+    } else {
+      totalSqft = signedSqft;
+    }
   }
 
   // Conversions from master sqft
@@ -211,8 +265,8 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
         </span>
       </div>
 
-      {/* Mode Switcher Tabs (4 Modes) */}
-      <div className={`grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-xl ${compact ? 'mb-4' : 'mb-6'}`}>
+      {/* Mode Switcher Tabs (5 Modes) */}
+      <div className={`grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:gap-2 p-1 bg-slate-200/80 dark:bg-slate-800/80 rounded-xl ${compact ? 'mb-4' : 'mb-6'}`}>
             <button
               onClick={() => setMode('pahadi')}
               className={`py-2 sm:py-2.5 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all ${
@@ -244,14 +298,24 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
               ३. वर्ग फिट / मिटर
             </button>
             <button
-              onClick={() => setMode('tax')}
+              onClick={() => setMode('addsub')}
               className={`py-2 sm:py-2.5 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all ${
+                mode === 'addsub'
+                  ? 'bg-rose-600 text-white shadow-sm'
+                  : 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+              }`}
+            >
+              ४. जोड्ने / घटाउने (±)
+            </button>
+            <button
+              onClick={() => setMode('tax')}
+              className={`col-span-2 sm:col-span-1 py-2 sm:py-2.5 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all ${
                 mode === 'tax'
                   ? 'bg-amber-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              ४. मालपोत कर (Tax)
+              ५. मालपोत कर (Tax)
             </button>
           </div>
 
@@ -396,6 +460,163 @@ export default function LandCalculator({ compact = false }: LandCalculatorProps)
                     </button>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {mode === 'addsub' && (
+              <div className="space-y-3 p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-rose-200 dark:border-rose-900/50">
+                <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100 dark:border-slate-700/70">
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white">
+                      जग्गा क्षेत्रफल जोड्ने / घटाउने (Area Addition &amp; Subtraction)
+                    </h3>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                      रोपनी-आना-पैसा-दाम, बिघा-कट्ठा-धुर वा वर्गफिट आपसमा जोड्नुहोस् र घटाउनुहोस्।
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => addAreaRow('+')}
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-colors cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>जोड्ने (+ थप्नुहोस्)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => addAreaRow('-')}
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold transition-colors cursor-pointer"
+                    >
+                      <Minus className="w-3.5 h-3.5" />
+                      <span>घटाउने (− थप्नुहोस्)</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5">
+                  {areaRows.map((row, idx) => (
+                    <div
+                      key={row.id}
+                      className="flex flex-col lg:flex-row lg:items-center gap-2 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-700"
+                    >
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-[11px] font-black text-slate-400 w-5">#{idx + 1}</span>
+                        {idx === 0 ? (
+                          <span className="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-black">
+                            सुरुको (+)
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => updateRow(row.id, { op: row.op === '+' ? '-' : '+' })}
+                            className={`px-2.5 py-1 rounded-lg text-xs font-black transition-colors cursor-pointer ${
+                              row.op === '+'
+                                ? 'bg-emerald-600 text-white'
+                                : 'bg-rose-600 text-white'
+                            }`}
+                            title="जोड्ने वा घटाउने बदल्नुहोस्"
+                          >
+                            {row.op === '+' ? '+ जोड्ने' : '− घटाउने'}
+                          </button>
+                        )}
+
+                        <select
+                          value={row.system}
+                          onChange={(e) => updateRow(row.id, { system: e.target.value as AreaRow['system'] })}
+                          className="px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-800 dark:text-slate-200"
+                        >
+                          <option value="pahadi">रोपनी-आना</option>
+                          <option value="terai">बिघा-कट्ठा</option>
+                          <option value="sqft">वर्गफिट (Sq.Ft)</option>
+                        </select>
+                      </div>
+
+                      {row.system === 'sqft' ? (
+                        <div className="flex-1">
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={row.v1}
+                            onChange={(e) => updateRow(row.id, { v1: Math.max(0, Number(e.target.value)) })}
+                            placeholder="वर्गफिट (Sq.Ft)"
+                            className="w-full px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-sm"
+                          />
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-4 gap-2 flex-1">
+                          <div>
+                            <span className="block text-[10px] font-bold text-slate-500">
+                              {row.system === 'pahadi' ? 'रोपनी' : 'बिघा'}
+                            </span>
+                            <input
+                              type="number"
+                              min="0"
+                              value={row.v1}
+                              onChange={(e) => updateRow(row.id, { v1: Math.max(0, Number(e.target.value)) })}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-sm"
+                            />
+                          </div>
+                          <div>
+                            <span className="block text-[10px] font-bold text-slate-500">
+                              {row.system === 'pahadi' ? 'आना' : 'कट्ठा'}
+                            </span>
+                            <input
+                              type="number"
+                              min="0"
+                              value={row.v2}
+                              onChange={(e) => updateRow(row.id, { v2: Math.max(0, Number(e.target.value)) })}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-sm"
+                            />
+                          </div>
+                          <div>
+                            <span className="block text-[10px] font-bold text-slate-500">
+                              {row.system === 'pahadi' ? 'पैसा' : 'धुर'}
+                            </span>
+                            <input
+                              type="number"
+                              min="0"
+                              value={row.v3}
+                              onChange={(e) => updateRow(row.id, { v3: Math.max(0, Number(e.target.value)) })}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-sm"
+                            />
+                          </div>
+                          <div>
+                            <span className="block text-[10px] font-bold text-slate-500">
+                              {row.system === 'pahadi' ? 'दाम' : 'कन्वा'}
+                            </span>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={row.v4}
+                              onChange={(e) => updateRow(row.id, { v4: Math.max(0, Number(e.target.value)) })}
+                              className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 font-mono font-bold text-sm"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {areaRows.length > 2 && (
+                        <button
+                          type="button"
+                          onClick={() => removeAreaRow(row.id)}
+                          className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 self-end lg:self-center cursor-pointer"
+                          title="हटाउनुहोस्"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {isNegativeAddSub && (
+                  <div className="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-xs font-bold text-rose-700 dark:text-rose-300">
+                    ⚠️ घटाउने क्षेत्रफल सुरुको क्षेत्रफलभन्दा बढी भयो (कुल क्षेत्रफल ० भन्दा कम हुँदैन)।
+                  </div>
+                )}
               </div>
             )}
 
