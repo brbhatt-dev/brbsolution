@@ -589,11 +589,105 @@ export function getEventsForMonth(year: number, month: number) {
 export function getSaitForMonth(year: number, category: string, month: number): number[] {
   const yStr = String(year);
   const mStr = String(month);
-  const data = (saitAll as any)?.[yStr]?.[category]?.[mStr];
-  if (Array.isArray(data)) {
-    return data.map((d: string) => parseInt(d, 10));
+  const yearObj = (saitAll as any)?.[yStr];
+  if (!yearObj) return [];
+  const aliases: Record<string, string[]> = {
+    Bibaha: ['Bibaha', 'Bivaha'],
+    Bivaha: ['Bivaha', 'Bibaha'],
+    Pasni: ['Pasni', 'Annaprasan'],
+    Annaprasan: ['Annaprasan', 'Pasni'],
+  };
+  const candidates = aliases[category] || [category];
+  for (const key of candidates) {
+    const data = yearObj?.[key]?.[mStr];
+    if (Array.isArray(data)) {
+      return data.map((d: string) => parseInt(d, 10));
+    }
   }
   return [];
+}
+
+export interface ChoghadiyaSlot {
+  name: string;
+  quality: 'good' | 'neutral' | 'bad';
+  meaning: string;
+  start: string;
+  end: string;
+}
+
+const CHOGHADIYA_META: Record<string, { quality: 'good' | 'neutral' | 'bad'; meaning: string }> = {
+  'उद्वेग': { quality: 'bad', meaning: 'अशुभ (सरकारी काम बाहेक वर्जित)' },
+  'चर': { quality: 'neutral', meaning: 'सामान्य (यात्रा तथा चलायमान कार्य)' },
+  'लाभ': { quality: 'good', meaning: 'अति उत्तम (व्यापार, शिक्षा, लाभ)' },
+  'अमृत': { quality: 'good', meaning: 'सर्वोत्तम (सबै शुभ कार्य सिद्धि)' },
+  'काल': { quality: 'bad', meaning: 'अशुभ (नयाँ कार्य वर्जित)' },
+  'शुभ': { quality: 'good', meaning: 'उत्तम (विवाह, धार्मिक, माङ्गलिक)' },
+  'रोग': { quality: 'bad', meaning: 'अशुभ (स्वास्थ्य/विवाद जोखिम)' },
+};
+
+// Day order starts at Sun=उद्वेग, Mon=अमृत, Tue=रोग, Wed=लाभ, Thu=शुभ, Fri=चर, Sat=काल
+const CHOGHADIYA_CYCLE = ['उद्वेग', 'चर', 'लाभ', 'अमृत', 'काल', 'शुभ', 'रोग'];
+const DAY_START_IDX = [0, 3, 6, 2, 5, 1, 4]; // Sun..Sat
+const NIGHT_START_IDX = [5, 1, 4, 0, 3, 6, 2]; // Sun..Sat
+
+function parseTimeToMins(t: string): number {
+  const clean = t.replace(/[०-९]/g, (d) => String(nepaliDigits.indexOf(d)));
+  const m = clean.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+  if (!m) return 6 * 60 + 30;
+  let hh = parseInt(m[1], 10);
+  const mm = parseInt(m[2], 10);
+  const ap = (m[3] || '').toUpperCase();
+  if (ap === 'PM' && hh < 12) hh += 12;
+  if (ap === 'AM' && hh === 12) hh = 0;
+  return hh * 60 + mm;
+}
+
+function fmtMinsNep(totalMins: number): string {
+  const mNorm = ((Math.round(totalMins) % 1440) + 1440) % 1440;
+  const h24 = Math.floor(mNorm / 60);
+  const mm = mNorm % 60;
+  const ap = h24 >= 12 ? 'PM' : 'AM';
+  const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+  return `${toNepaliDigits(String(h12).padStart(2, '0'))}:${toNepaliDigits(String(mm).padStart(2, '0'))} ${ap}`;
+}
+
+export function computeChoghadiya(sunriseStr: string, sunsetStr: string, warIndex: number): {
+  day: ChoghadiyaSlot[];
+  night: ChoghadiyaSlot[];
+} {
+  const sr = parseTimeToMins(sunriseStr);
+  const ss = parseTimeToMins(sunsetStr);
+  const dayStep = (ss - sr) / 8;
+  const nightStep = (sr + 1440 - ss) / 8;
+
+  const dStart = DAY_START_IDX[warIndex] ?? 0;
+  const nStart = NIGHT_START_IDX[warIndex] ?? 0;
+
+  const day: ChoghadiyaSlot[] = Array.from({ length: 8 }, (_, i) => {
+    const name = CHOGHADIYA_CYCLE[(dStart + i) % 7];
+    const meta = CHOGHADIYA_META[name];
+    return {
+      name,
+      quality: meta.quality,
+      meaning: meta.meaning,
+      start: fmtMinsNep(sr + i * dayStep),
+      end: fmtMinsNep(sr + (i + 1) * dayStep),
+    };
+  });
+
+  const night: ChoghadiyaSlot[] = Array.from({ length: 8 }, (_, i) => {
+    const name = CHOGHADIYA_CYCLE[(nStart + i) % 7];
+    const meta = CHOGHADIYA_META[name];
+    return {
+      name,
+      quality: meta.quality,
+      meaning: meta.meaning,
+      start: fmtMinsNep(ss + i * nightStep),
+      end: fmtMinsNep(ss + (i + 1) * nightStep),
+    };
+  });
+
+  return { day, night };
 }
 
 export function getAllFestivalLores() {

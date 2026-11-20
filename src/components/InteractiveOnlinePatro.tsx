@@ -14,7 +14,8 @@ import {
   FullPanchangaDetails,
   getEventsForMonth,
   getSaitForMonth,
-  getAllFestivalLores
+  getAllFestivalLores,
+  computeChoghadiya
 } from '@/lib/brPatroEngine';
 import rashifalDataRaw from '@/data/panchanga/rashifal_data.json';
 import { 
@@ -64,12 +65,6 @@ export default function InteractiveOnlinePatro() {
   // Real-time ticking clock (defer live clock & greeting until mounted to prevent SSR hydration mismatches)
   const [mounted, setMounted] = useState(false);
   const [now, setNow] = useState<Date>(() => new Date(2026, 10, 14, 12, 0, 0));
-  useEffect(() => {
-    setMounted(true);
-    setNow(new Date());
-    const timer = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   // Today's real BS Date
   const todayBs = useMemo(() => ad2bsExact(now), [now]);
@@ -78,6 +73,7 @@ export default function InteractiveOnlinePatro() {
   const [viewYear, setViewYear] = useState<number>(todayBs.year);
   const [viewMonth, setViewMonth] = useState<number>(todayBs.month); // 1-12
   const [selectedDay, setSelectedDay] = useState<number>(todayBs.day);
+  const [showAllEvents, setShowAllEvents] = useState<boolean>(false);
 
   // Modal Dialogs
   const [activeModal, setActiveModal] = useState<'panchang' | 'sait' | 'rashifal' | 'choghadiya' | 'converter' | 'lore' | null>(null);
@@ -89,6 +85,30 @@ export default function InteractiveOnlinePatro() {
   const [cBsYear, setCBsYear] = useState<number>(todayBs.year);
   const [cBsMonth, setCBsMonth] = useState<number>(todayBs.month);
   const [cBsDay, setCBsDay] = useState<number>(todayBs.day);
+
+  useEffect(() => {
+    const liveNow = new Date();
+    const liveBs = ad2bsExact(liveNow);
+    setMounted(true);
+    setNow(liveNow);
+    setViewYear(liveBs.year);
+    setViewMonth(liveBs.month);
+    setSelectedDay(liveBs.day);
+    setCBsYear(liveBs.year);
+    setCBsMonth(liveBs.month);
+    setCBsDay(liveBs.day);
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveModal(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [activeModal]);
   const [convertedAdResult, setConvertedAdResult] = useState<string>('');
   const [cAdDateStr, setCAdDateStr] = useState<string>(() => new Date().toISOString().split('T')[0]);
   const [convertedBsResult, setConvertedBsResult] = useState<string>('');
@@ -308,9 +328,9 @@ export default function InteractiveOnlinePatro() {
             </div>
             
             {todayPanchang.eventTitles.length > 0 ? (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-400/20 text-amber-200 border border-amber-300/30 text-2xs font-bold truncate max-w-full">
-                <Sparkles className="w-3 h-3 text-amber-300 shrink-0" />
-                <span className="truncate">{todayPanchang.eventTitles[0]}</span>
+              <span className="inline-flex items-start gap-1.5 px-2.5 py-1 rounded-lg bg-amber-400/20 text-amber-200 border border-amber-300/30 text-2xs font-bold whitespace-normal leading-snug">
+                <Sparkles className="w-3 h-3 text-amber-300 shrink-0 mt-0.5" />
+                <span>{todayPanchang.eventTitles[0]}</span>
               </span>
             ) : (
               <span className="text-2xs text-rose-300">
@@ -437,7 +457,7 @@ export default function InteractiveOnlinePatro() {
             <div className="w-11 h-11 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900/60 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
               🔄
             </div>
-            <span className="text-2xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-blue-600">मिति बदल्नुहोस्</span>
+            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 whitespace-nowrap">मिति रूपान्तरण</span>
           </button>
 
           {/* 5. Choghadiya */}
@@ -448,7 +468,7 @@ export default function InteractiveOnlinePatro() {
             <div className="w-11 h-11 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-900/60 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
               ⏳
             </div>
-            <span className="text-2xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-emerald-600">चोघडिया</span>
+            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 group-hover:text-emerald-600 whitespace-nowrap">चोघडिया</span>
           </button>
 
           {/* 6. Folklore / Lore */}
@@ -459,7 +479,7 @@ export default function InteractiveOnlinePatro() {
             <div className="w-11 h-11 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900/60 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
               🌺
             </div>
-            <span className="text-2xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-rose-600">चाडपर्व कथा</span>
+            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 group-hover:text-rose-600 whitespace-nowrap">चाडपर्व कथा</span>
           </button>
 
           {/* 7. Karmakanda & Pooja */}
@@ -472,7 +492,7 @@ export default function InteractiveOnlinePatro() {
             <div className="w-11 h-11 rounded-2xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-900/60 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
               📜
             </div>
-            <span className="text-2xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-teal-600">कर्मकाण्ड</span>
+            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300 group-hover:text-teal-600 whitespace-nowrap">कर्मकाण्ड</span>
           </a>
 
           {/* 8. Download APK */}
@@ -483,7 +503,7 @@ export default function InteractiveOnlinePatro() {
             <div className="w-11 h-11 rounded-2xl bg-red-600 text-white flex items-center justify-center text-xl group-hover:scale-105 transition-transform shadow-md shadow-red-500/30">
               <Download className="w-5 h-5" />
             </div>
-            <span className="text-2xs font-black text-red-600 dark:text-red-400">BR Patro एप</span>
+            <span className="text-[11px] font-black text-red-600 dark:text-red-400 whitespace-nowrap">BR Patro</span>
           </a>
         </div>
       </div>
@@ -588,7 +608,10 @@ export default function InteractiveOnlinePatro() {
 
             const adDate = bs2adExact(viewYear, viewMonth, dayNum);
             const adDayNum = adDate.getDate();
-            const tithiPart = dayPanchang.tithiDisplay.split(' ')[0] || '';
+            const tithiPart = dayPanchang.tithiDisplay
+              .split('(')[0]
+              .replace(/^(शुक्ल|कृष्ण)\s+/, '')
+              .trim();
 
             return (
               <button
@@ -597,7 +620,7 @@ export default function InteractiveOnlinePatro() {
                   setSelectedDay(dayNum);
                   setActiveModal('panchang');
                 }}
-                className={`h-16 sm:h-20 p-1 sm:p-2 rounded-xl flex flex-col justify-between text-left transition-all border relative overflow-hidden ${
+                className={`min-h-[68px] sm:min-h-[84px] p-1 sm:p-2 rounded-xl flex flex-col justify-between text-left transition-all border relative overflow-hidden ${
                   isToday
                     ? 'border-amber-500 bg-amber-50/60 dark:bg-amber-950/30 ring-2 ring-amber-400/50 shadow-sm'
                     : isSelected
@@ -629,14 +652,12 @@ export default function InteractiveOnlinePatro() {
                 {/* Bottom: Event / Holiday Pill */}
                 <div className="flex items-center justify-between w-full text-[9px] truncate">
                   {hasEvents ? (
-                    <span className="inline-block px-1 py-0.2 rounded text-3xs font-bold bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 truncate max-w-full">
+                    <span className="inline-block px-1 py-0.2 rounded text-[9px] font-bold bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 truncate max-w-full">
                       {dayPanchang.eventTitles[0].split(',')[0]}
                     </span>
                   ) : isSaturday ? (
-                    <span className="text-red-500 font-bold">शनिबार</span>
-                  ) : (
-                    <span className="text-3xs text-slate-400">{dayPanchang.warName.slice(0, 3)}</span>
-                  )}
+                    <span className="text-red-500 font-bold text-[9px]">शनिबार</span>
+                  ) : null}
                 </div>
               </button>
             );
@@ -655,7 +676,7 @@ export default function InteractiveOnlinePatro() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              {monthEvents.slice(0, 6).map((ev, idx) => (
+              {(showAllEvents ? monthEvents : monthEvents.slice(0, 6)).map((ev, idx) => (
                 <div 
                   key={idx}
                   onClick={() => {
@@ -667,12 +688,25 @@ export default function InteractiveOnlinePatro() {
                   <span className="px-1.5 py-0.5 rounded font-black bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 shrink-0">
                     {toNepaliDigits(ev.day)} गते
                   </span>
-                  <span className="text-slate-700 dark:text-slate-200 line-clamp-1">
+                  <span className="text-slate-700 dark:text-slate-200 leading-snug">
                     {ev.title}
                   </span>
                 </div>
               ))}
             </div>
+            {monthEvents.length > 6 && (
+              <div className="pt-1 text-center">
+                <button
+                  type="button"
+                  onClick={() => setShowAllEvents((v) => !v)}
+                  className="inline-flex items-center gap-1 px-4 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/40 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-red-600 transition-colors cursor-pointer"
+                >
+                  {showAllEvents
+                    ? 'थोरै देखाउनुहोस् ↑'
+                    : `सबै ${toNepaliDigits(monthEvents.length)} वटा पर्व/दिवस हेर्नुहोस् ↓`}
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -956,46 +990,68 @@ export default function InteractiveOnlinePatro() {
       {/* ======================================================== */}
       {/* MODAL 4: CHOGHADIYA (वारवेला / चोघडिया)                  */}
       {/* ======================================================== */}
-      {activeModal === 'choghadiya' && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-5">
-            <button
-              onClick={() => setActiveModal(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white"
-            >
-              <X className="w-5 h-5" />
-            </button>
+      {activeModal === 'choghadiya' && (() => {
+        const warIdx = bs2adExact(viewYear, viewMonth, Math.min(selectedDay, monthInfo.totalDays)).getDay();
+        const chog = computeChoghadiya(selectedPanchang.sunrise, selectedPanchang.sunset, warIdx);
+        const badgeCls = (q: 'good' | 'neutral' | 'bad') =>
+          q === 'good'
+            ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200'
+            : q === 'neutral'
+            ? 'bg-amber-50 dark:bg-amber-950/40 border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200'
+            : 'bg-red-50 dark:bg-red-950/40 border-red-300 dark:border-red-800 text-red-900 dark:text-red-200';
+        const dot = (q: 'good' | 'neutral' | 'bad') => (q === 'good' ? '🟢' : q === 'neutral' ? '🟡' : '🔴');
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+            <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-5">
+              <button
+                type="button"
+                aria-label="बन्द गर्नुहोस्"
+                onClick={() => setActiveModal(null)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-xs font-black">
-                <span>⏳ दैनिक चोघडिया मुहूर्त</span>
+              <div className="pr-10">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-xs font-black">
+                  <span>⏳ दैनिक चोघडिया मुहूर्त</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">
+                  वारवेला चक्र ({selectedPanchang.warName} · {toNepaliDigits(viewYear)} {nepaliMonths[viewMonth - 1]} {toNepaliDigits(selectedDay)})
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  सूर्योदय: {selectedPanchang.sunrise} · सूर्यास्त: {selectedPanchang.sunset}
+                </p>
               </div>
-              <h3 className="text-2xl font-black text-slate-900 dark:text-white mt-1">
-                वारवेला चक्र ({todayPanchang.warName})
-              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="space-y-1.5">
+                  <h4 className="font-black text-slate-900 dark:text-white text-xs uppercase tracking-wider">☀️ दिनको चोघडिया (Daytime)</h4>
+                  {chog.day.map((slot, i) => (
+                    <div key={i} className={`p-2.5 rounded-xl border flex items-center justify-between gap-2 ${badgeCls(slot.quality)}`}>
+                      <span className="font-black">{dot(slot.quality)} {slot.name}</span>
+                      <span className="font-mono font-bold text-[11px]">{slot.start} – {slot.end}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="space-y-1.5">
+                  <h4 className="font-black text-slate-900 dark:text-white text-xs uppercase tracking-wider">🌙 रातको चोघडिया (Nighttime)</h4>
+                  {chog.night.map((slot, i) => (
+                    <div key={i} className={`p-2.5 rounded-xl border flex items-center justify-between gap-2 ${badgeCls(slot.quality)}`}>
+                      <span className="font-black">{dot(slot.quality)} {slot.name}</span>
+                      <span className="font-mono font-bold text-[11px]">{slot.start} – {slot.end}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <p className="text-2xs text-slate-400">
+                🟢 अमृत / शुभ / लाभ = अति उत्तम · 🟡 चर = सामान्य/यात्रा · 🔴 काल / रोग / उद्वेग = अशुभ
+              </p>
             </div>
-
-            <div className="space-y-2 text-xs">
-              <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 text-emerald-900 dark:text-emerald-200 font-bold flex justify-between">
-                <span>🟢 अमृत / शुभ / लाभ</span>
-                <span>अति उत्तम (नयाँ कार्य सुरु गर्न)</span>
-              </div>
-              <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 text-amber-900 dark:text-amber-200 font-bold flex justify-between">
-                <span>🟡 चर</span>
-                <span>सामान्य (यात्रा तथा चलायमान काम)</span>
-              </div>
-              <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-300 text-red-900 dark:text-red-200 font-bold flex justify-between">
-                <span>🔴 काल / रोग / उद्वेग</span>
-                <span>अशुभ (वर्जित समय)</span>
-              </div>
-            </div>
-
-            <p className="text-2xs text-slate-400">
-              प्रत्येक दिन सूर्योदयदेखि सूर्यास्तसम्मको दिनमानलाई ८ भागमा विभाजन गरी चोघडिया निर्धारण गरिन्छ।
-            </p>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* ======================================================== */}
       {/* MODAL 5: EXACT DATE CONVERTER                           */}
@@ -1004,14 +1060,16 @@ export default function InteractiveOnlinePatro() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
           <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6">
             <button
+              type="button"
+              aria-label="बन्द गर्नुहोस्"
               onClick={() => setActiveModal(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white"
+              className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="text-center space-y-1">
-              <h3 className="text-xl font-black text-slate-900 dark:text-white">
+            <div className="text-center space-y-1 px-8">
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
                 सटीक मिति रूपान्तरण (BS ⇄ AD)
               </h3>
               <p className="text-xs text-slate-400">
