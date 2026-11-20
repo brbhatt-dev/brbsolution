@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
+import EnglishNavbar from '@/components/en/EnglishNavbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
@@ -141,7 +142,7 @@ export default function NumberToWordsClient({ lang = 'ne' }: NumberToWordsClient
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
-      <Navbar />
+      {isEn ? <EnglishNavbar /> : <Navbar />}
 
       <script
         type="application/ld+json"

@@ -408,7 +408,8 @@ const SEARCH_DATABASE: SearchItem[] = [
 ];
 
 export default function MobileBottomNav() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '/';
+  const isEn = pathname === '/en' || pathname.startsWith('/en/');
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -502,7 +503,7 @@ export default function MobileBottomNav() {
           
           {/* 1. गृहपृष्ठ (Home) */}
           <Link
-            href="/"
+            href={isEn ? '/en' : '/'}
             className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-2xl transition-all duration-200 active:scale-95 min-w-[58px] ${
               isHomeActive
                 ? 'text-emerald-600 dark:text-emerald-400 font-extrabold'
@@ -512,12 +513,12 @@ export default function MobileBottomNav() {
             <div className={`p-1 rounded-xl transition-all ${isHomeActive ? 'bg-emerald-500/15' : ''}`}>
               <Home className="w-5 h-5" />
             </div>
-            <span className="text-[10px] mt-0.5 leading-tight">गृहपृष्ठ</span>
+            <span className="text-[10px] mt-0.5 leading-tight">{isEn ? 'Home' : 'गृहपृष्ठ'}</span>
           </Link>
 
           {/* 2. क्यालकुलेटर (Calc) */}
           <Link
-            href={pathname === '/' ? '#land-calc-section' : '/tools/land-calculator'}
+            href={isEn ? '/en/tools/land-calculator' : pathname === '/' ? '#land-calc-section' : '/tools/land-calculator'}
             onClick={handleCalculatorClick}
             className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-2xl transition-all duration-200 active:scale-95 min-w-[58px] ${
               isCalcActive
@@ -528,7 +529,7 @@ export default function MobileBottomNav() {
             <div className={`p-1 rounded-xl transition-all ${isCalcActive ? 'bg-emerald-500/15' : ''}`}>
               <Calculator className="w-5 h-5" />
             </div>
-            <span className="text-[10px] mt-0.5 leading-tight">क्याल्कुलेटर</span>
+            <span className="text-[10px] mt-0.5 leading-tight">{isEn ? 'Calculator' : 'क्याल्कुलेटर'}</span>
           </Link>
 
           {/* 3. खोज्नुहोस् (Search Button - Center Action) */}
@@ -536,19 +537,19 @@ export default function MobileBottomNav() {
             type="button"
             onClick={() => setSearchOpen(true)}
             className="flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl transition-all duration-200 active:scale-95 min-w-[62px] text-slate-700 dark:text-slate-300 group cursor-pointer"
-            aria-label="खोज्नुहोस्"
+            aria-label={isEn ? 'Search' : 'खोज्नुहोस्'}
           >
             <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-md shadow-emerald-600/30 group-hover:scale-105 transition-transform">
               <Search className="w-4.5 h-4.5" />
             </div>
             <span className="text-[10px] mt-0.5 font-bold text-slate-800 dark:text-slate-200 leading-tight">
-              खोज
+              {isEn ? 'Search' : 'खोज'}
             </span>
           </button>
 
           {/* 4. उपकरणहरू (Tools) */}
           <Link
-            href="/tools"
+            href={isEn ? '/en' : '/tools'}
             className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-2xl transition-all duration-200 active:scale-95 min-w-[58px] relative ${
               isToolsActive
                 ? 'text-emerald-600 dark:text-emerald-400 font-extrabold'
@@ -559,9 +560,9 @@ export default function MobileBottomNav() {
               <Layers className="w-5 h-5" />
             </div>
             <span className="text-[10px] mt-0.5 leading-tight flex items-center gap-0.5">
-              <span>टूल्स</span>
+              <span>{isEn ? 'Tools' : 'टूल्स'}</span>
               <span className="text-[8px] font-black px-1 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                ३८+
+                {isEn ? '8+' : '३८+'}
               </span>
             </span>
           </Link>
@@ -571,7 +572,7 @@ export default function MobileBottomNav() {
             type="button"
             onClick={handleOpenAi}
             className="flex flex-col items-center justify-center py-1.5 px-2 rounded-2xl transition-all duration-200 active:scale-95 min-w-[58px] text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium cursor-pointer relative"
-            aria-label="AI सहायक खोल्नुहोस्"
+            aria-label={isEn ? 'Open AI Assistant' : 'AI सहायक खोल्नुहोस्'}
           >
             <div className="p-1 rounded-xl relative">
               <Bot className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
@@ -579,7 +580,7 @@ export default function MobileBottomNav() {
               <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -top-0.5 -right-0.5" />
             </div>
             <span className="text-[10px] mt-0.5 leading-tight font-bold text-emerald-600 dark:text-emerald-400">
-              AI सहायक
+              {isEn ? 'AI Help' : 'AI सहायक'}
             </span>
           </button>
 
