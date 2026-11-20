@@ -23,7 +23,7 @@ import { sortArticlesDescending } from '@/lib/articlesSort';
 
 // Category Definitions with localized labels and icons
 const CATEGORIES = [
-  { id: 'all', labelNp: 'सबै (All 25+)', labelEn: 'All' },
+  { id: 'all', labelNp: 'सबै (All 36)', labelEn: 'All' },
   { id: 'Legal & Cadastre', labelNp: '📜 कित्ताकाट तथा कानुन', labelEn: 'Land Laws' },
   { id: 'Financial Management', labelNp: '💰 मालपोत तथा कर छुट', labelEn: 'Taxes & Malpot' },
   { id: 'Land Measurement', labelNp: '📐 जग्गा नापजाँच', labelEn: 'Measurement' },
@@ -122,7 +122,7 @@ export default function MagazineArticlesSection() {
             जग्गा, कानुन तथा नापजाँचका ताजा र चर्चित गाइडहरू
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
-            नेपाल सरकारको पछिल्लो कित्ताकाट नियम, मालपोत कर छुट, नापजाँच र घर निर्माण मापदण्ड सम्बन्धी २२+ आधिकारिक निर्देशिकाहरू।
+            नेपाल सरकारको पछिल्लो कित्ताकाट नियम, मालपोत कर छुट, नापजाँच र घर निर्माण मापदण्ड सम्बन्धी ३६+ आधिकारिक निर्देशिकाहरू।
           </p>
         </div>
 
@@ -133,7 +133,7 @@ export default function MagazineArticlesSection() {
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all active:scale-95 group"
           >
             <Newspaper className="w-4 h-4" />
-            <span>सबै २२+ लेखहरू (Blog Hub)</span>
+            <span>सबै ३६+ लेखहरू (Blog Hub)</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

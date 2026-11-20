@@ -396,11 +396,11 @@ const SEARCH_DATABASE: SearchItem[] = [
   },
   {
     id: 'guide-blog-all',
-    titleNp: 'आधिकारिक ब्लग तथा ज्ञान केन्द्र (२२+ गाइडहरू)',
-    titleEn: 'All 22+ Land & Survey Articles & Blog',
+    titleNp: 'आधिकारिक ब्लग तथा ज्ञान केन्द्र (३६+ गाइडहरू)',
+    titleEn: 'All 36+ Land & Survey Articles & Blog',
     category: 'article',
     categoryLabel: 'ज्ञान केन्द्र',
-    badge: '२२+ लेख',
+    badge: '३६+ लेख',
     href: '/blog',
     keywords: ['ब्लग', 'लेख', 'गाइड', 'blog', 'articles', 'ज्ञान केन्द्र', 'निर्देशिका'],
     icon: FileText
@@ -561,7 +561,7 @@ export default function MobileBottomNav() {
             <span className="text-[10px] mt-0.5 leading-tight flex items-center gap-0.5">
               <span>टूल्स</span>
               <span className="text-[8px] font-black px-1 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                १८+
+                ३८+
               </span>
             </span>
           </Link>

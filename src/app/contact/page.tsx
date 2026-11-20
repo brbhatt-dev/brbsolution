@@ -63,7 +63,7 @@ export default function ContactPage() {
                 <MapPin className="w-4 h-4 text-blue-600" />
                 <span>Headquarters</span>
               </div>
-              <p className="text-xs">Kathmandu, Bagmati Province, Nepal</p>
+              <p className="text-xs">Kathmandu, Bagmati Province (Operating Office) &bull; Dogadakedar-3, Baitadi, Nepal</p>
             </div>
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 space-y-1">
               <div className="flex items-center gap-1.5 font-bold text-slate-900 dark:text-white text-xs">

@@ -245,7 +245,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                     onClick={() => setToolsDropdownOpen(false)}
                     className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs font-bold transition-colors"
                   >
-                    <span>सम्पूर्ण २८+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
+                    <span>सम्पूर्ण ३८+ डिजिटल उपकरणहरू हेर्नुहोस्</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -417,7 +417,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
               <span className="inline-flex items-center gap-1.5">
                 <span className="hidden 2xl:inline">ब्लग तथा </span><span>लेखहरू</span>
                 <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
-                  २२+
+                  ३६+
                 </span>
               </span>
             </Link>
@@ -583,7 +583,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
           >
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
-              <span>सम्पूर्ण १८+ डिजिटल उपकरण हब (Open Tools Hub)</span>
+              <span>सम्पूर्ण ३८+ डिजिटल उपकरण हब (Open Tools Hub)</span>
             </div>
             <ArrowRight className="w-4 h-4" />
           </Link>
@@ -750,7 +750,7 @@ export default function Navbar({ hideTicker = false }: { hideTicker?: boolean } 
                 <FileText className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
                 <span className="truncate">ब्लग तथा लेखहरू</span>
                 <span className="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 shrink-0">
-                  २२+
+                  ३६+
                 </span>
               </Link>
             </div>

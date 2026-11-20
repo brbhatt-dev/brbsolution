@@ -99,7 +99,11 @@ export default function Footer() {
               </div>
               <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
                 <NepalFlag />
-                <span>डिजिटल नापी सफ्टवेयर — नेपाली माटो, आफ्नै प्रविधि</span>
+                <span>
+                  {pathname.startsWith('/en')
+                    ? 'Digital Land Surveying & Engineering Portal — Built in Nepal'
+                    : 'डिजिटल नापी सफ्टवेयर — नेपाली माटो, आफ्नै प्रविधि'}
+                </span>
               </p>
             </div>
           </Link>

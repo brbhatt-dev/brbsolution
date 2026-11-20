@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+import EnglishNavbar from '@/components/en/EnglishNavbar';
 import Footer from '@/components/Footer';
 import SocialShareBar from '@/components/SocialShareBar';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
@@ -32,7 +32,7 @@ export default function EnglishPageShell({
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-[#070b14] text-slate-900 dark:text-slate-100 transition-colors duration-200">
-      <Navbar />
+      <EnglishNavbar />
 
       {jsonLd && (
         <script

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+import EnglishNavbar from '@/components/en/EnglishNavbar';
 import Footer from '@/components/Footer';
 import BilingualSwitchBanner from '@/components/BilingualSwitchBanner';
 import { getBilingualAlternates, BILINGUAL_ROUTE_PAIRS } from '@/lib/i18nRoutes';
@@ -50,7 +50,7 @@ export default function EnglishHomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 dark:bg-[#070b14] text-slate-900 dark:text-slate-100">
-      <Navbar />
+      <EnglishNavbar />
 
       <main className="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 sm:py-12 space-y-8">
         <BilingualSwitchBanner mode="to-ne" href="/" />
