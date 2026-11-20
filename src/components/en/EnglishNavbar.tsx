@@ -90,8 +90,13 @@ export default function EnglishNavbar() {
           </nav>
 
           {/* Right Controls */}
-          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-            <LanguageToggle variant="pill" />
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="sm:hidden">
+              <LanguageToggle variant="compact" />
+            </div>
+            <div className="hidden sm:block">
+              <LanguageToggle variant="pill" />
+            </div>
             <ThemeToggle variant="icon" />
             <button
               type="button"
