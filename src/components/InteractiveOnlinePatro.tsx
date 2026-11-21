@@ -223,7 +223,7 @@ export default function InteractiveOnlinePatro() {
     setSelectedDay(todayBs.day);
   };
 
-  const downloadApkUrl = "https://github.com/imtechboss/imtechboss/releases/download/v7.9.99/BR_Patro_v7.9.99.apk";
+  const downloadApkUrl = "https://github.com/imtechboss/imtechboss/releases/download/v8.0.0/BR_Patro_v8.0.0.apk";
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6 font-sans">
