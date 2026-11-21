@@ -1,0 +1,25 @@
+# BR Bhatta — Land Solution Nepal, Cadastral & Legal Utilities
+
+> Official portal of BR Bhatta (https://www.brbhatta.com), providing Nepal land area converters (Ropani-Aana-Paisa-Daam, Bigha-Kattha-Dhur, Sq.Ft, Sq.M), Malpot registration fee & Capital Gains Tax (CGT) calculators, Land Use Regulation 2079 Kitta Kat eligibility rules, NEA high-tension & building setback standards, 77-district Malpot valuation & Survey (Napi) office directories, Bikram Sambat (BS-AD) Patro calendar, and Nepali legal guides.
+
+## English Tools Hub (International & Expat Friendly)
+- [English Tools Hub](https://www.brbhatta.com/en): Overview of all English-language Nepal land, cadastral, tax, and calendar utilities.
+- [Nepal Land Area Converter (EN)](https://www.brbhatta.com/en/tools/land-calculator): Official Survey Department standards (1 Ropani = 5,476 sq.ft / 508.74 sq.m; 1 Bigha = 72,900 sq.ft / 6,772.63 sq.m; 1 Aana = 342.25 sq.ft; 1 Kattha = 3,645 sq.ft).
+- [Nepal Malpot Tax & CGT Calculator (EN)](https://www.brbhatta.com/en/tools/malpot-calculator): Deed registration fee estimator, 25%–50% female ownership rebates, and 5% / 7.5% Capital Gains Tax (Income Tax Act 2058).
+- [Kitta Kat Eligibility Checker (EN)](https://www.brbhatta.com/en/tools/kitta-kat-checker): Minimum parcel size and road access rules under Nepal Land Use Regulation 2079 (130 sq.m Valley/Hills residential, 169.3 sq.m Terai residential, 200 sq.m commercial, 500/675/1000 sq.m agricultural).
+- [High Tension & Building Setback Calculator (EN)](https://www.brbhatta.com/en/tools/setback-calculator): Municipal road ROW, 1.5m (5 ft) neighbor window setback, and NEA 11kV–400kV transmission corridor clearances.
+- [77-District Malpot Valuation Rates (EN)](https://www.brbhatta.com/en/tools/malpot-valuation-rates): Official Sarkari Mulyankan 2083/84 minimum land rates per Aana / Kattha across all 77 districts.
+- [77-District Survey & Malpot Offices (EN)](https://www.brbhatta.com/en/tools/survey-offices): Official phone numbers, emails, and jurisdictions for 185 Malpot & Survey (Napi) offices in Nepal.
+- [Number to Nepali Rupees in Words (EN)](https://www.brbhatta.com/en/tools/number-to-words): Convert Million/Billion to Lakh/Crore and Nepali Rupees in words for bank cheques & deeds.
+- [BR Patro BS-AD Date Converter (EN)](https://www.brbhatta.com/en/patro): Bikram Sambat (2081–2084 BS) to Gregorian AD converter.
+
+## Core Nepali Portal & Tools
+- [Homepage (Nepali)](https://www.brbhatta.com/): Main Land Solution Nepal portal, today's Nepali Patro, and featured calculators.
+- [Full Nepali Patro Calendar](https://www.brbhatta.com/patro): Monthly Bikram Sambat calendar, Tithi, Panchanga, and public holidays.
+- [All Land & Survey Tools](https://www.brbhatta.com/tools): Complete suite including Anshabanda, Multi-Kitta, Plot Visualizer, AutoCAD LISP scripts, Ghar Bato Sifaris, and Aamin exam prep.
+- [Knowledge Base & Articles](https://www.brbhatta.com/articles): 30+ in-depth guides on Nepal land law, Guthi/Raikar, Namsari, Rokka/Phukuwa, and surveying.
+- [Nepal Land Laws Directory](https://www.brbhatta.com/laws): Reference summaries of Nepal land, survey, and property laws.
+
+## Sitemaps & Feeds
+- [XML Sitemap (251 URLs)](https://www.brbhatta.com/sitemap.xml)
+- [RSS / Atom Feed](https://www.brbhatta.com/feed.xml)
