@@ -28,6 +28,13 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Land Valuation in Nepal — Malpot Official Rate & Benchmark Finder' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Land Valuation in Nepal — Malpot Official Rate & Benchmark Finder | BR Bhatta',
+    description: 'Compare district-wise government Malpot minimum rates (per Aana / per Kattha) with market price benchmarks across Nepal.',
+    images: ['/og-image.png'],
   },
 };
 

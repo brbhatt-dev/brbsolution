@@ -25,6 +25,13 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Nepal Malpot Registration Fee & CGT Calculator' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nepal Malpot Registration Fee & CGT Calculator | BR Bhatta',
+    description: 'Instant calculator for Nepal Land Revenue Office (Malpot) deed registration fees, female exemption discounts, and Capital Gains Tax.',
+    images: ['/og-image.png'],
   },
 };
 

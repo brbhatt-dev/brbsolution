@@ -25,6 +25,13 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Nepal Kitta Kat Eligibility Checker — Land Use Regulation 2079' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nepal Kitta Kat Eligibility Checker — Land Use Regulation 2079 | BR Bhatta',
+    description: 'Instant check for residential, commercial, and agricultural land fragmentation rules across Kathmandu Valley, Terai, and Hilly Nepal.',
+    images: ['/og-image.png'],
   },
 };
 

@@ -17,7 +17,10 @@ export default function SocialShareBar({ title, url, compact = false }: SocialSh
     ? url 
     : (typeof window !== 'undefined' ? `${window.location.origin}${url}` : `https://www.brbhatta.com${url}`);
   
-  const shareText = `नेपाल जग्गा, नापी तथा कानुन गाइड: "${title}" - पूरा जानकारी यहाँ हेर्नुहोस्:`;
+  const isEn = url.startsWith('/en') || url.includes('brbhatta.com/en');
+  const shareText = isEn
+    ? `Nepal Land, Survey & Legal Guide: "${title}" — View full details:`
+    : `नेपाल जग्गा, नापी तथा कानुन गाइड: "${title}" - पूरा जानकारी यहाँ हेर्नुहोस्:`;
   const encodedUrl = encodeURIComponent(fullUrl);
   const encodedText = encodeURIComponent(shareText);
   const encodedFullShare = encodeURIComponent(`${shareText} ${fullUrl}`);
@@ -55,7 +58,7 @@ export default function SocialShareBar({ title, url, compact = false }: SocialSh
           <div className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
             <Share2 className="w-3.5 h-3.5" />
           </div>
-          <span>यो उपयोगी जानकारी साथीभाइसँग सेयर गर्नुहोस्:</span>
+          <span>{isEn ? 'Share this helpful guide:' : 'यो उपयोगी जानकारी साथीभाइसँग सेयर गर्नुहोस्:'}</span>
         </div>
         
         {/* Native Mobile Web Share API Trigger (if supported) */}
@@ -140,17 +143,17 @@ export default function SocialShareBar({ title, url, compact = false }: SocialSh
           type="button"
           onClick={handleCopy}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-bold transition-all shadow-2xs active:scale-95 cursor-pointer ml-auto"
-          title="लिङ्क कपी गर्नुहोस्"
+          title={isEn ? 'Copy link' : 'लिङ्क कपी गर्नुहोस्'}
         >
           {copied ? (
             <>
               <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span className="text-emerald-600 dark:text-emerald-400 font-black">कपी भयो!</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-black">{isEn ? 'Copied!' : 'कपी भयो!'}</span>
             </>
           ) : (
             <>
               <Copy className="w-3.5 h-3.5 text-slate-500" />
-              <span>कपी लिङ्क</span>
+              <span>{isEn ? 'Copy Link' : 'कपी लिङ्क'}</span>
             </>
           )}
         </button>

@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Nepal Land Area Converter — Ropani, Aana, Bigha, Kattha & Sq.Ft' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nepal Land Area Converter — Ropani, Aana, Bigha, Kattha & Sq.Ft | BR Bhatta',
+    description: 'Precision bidirectional Nepal land measurement converter with per-Aana valuation calculator and reference chart.',
+    images: ['/og-image.png'],
   },
 };
 

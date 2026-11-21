@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Nepal Survey (Napi) & Malpot Offices Directory' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nepal Survey (Napi) & Malpot Offices Directory | BR Bhatta',
+    description: 'Find official landline numbers, emails, and district links for Survey and Land Revenue (Malpot) Offices across Nepal.',
+    images: ['/og-image.png'],
   },
 };
 

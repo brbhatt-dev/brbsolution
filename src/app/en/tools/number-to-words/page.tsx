@@ -25,48 +25,16 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: '10 Million in Nepali Rupees in Words (= 1 Crore) | Number to Words Converter' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '10 Million in Nepali Rupees in Words (= 1 Crore) | Number to Words Converter',
+    description: 'Instant Million/Billion to Lakh/Crore and Nepali Rupees in Words converter for Nepal bank cheques and land deeds.',
+    images: ['/og-image.png'],
   },
 };
 
 export default function EnglishNumberToWordsPage() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is 10 million in Nepali Rupees in words?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '10 Million in Nepali Rupees is equal to 1 Crore (Rs. 1,00,00,000) or 100 Lakhs. In Nepali words (for cheques and deeds), it is written as "एक करोड रूपैयाँ मात्र" (One Crore Rupees Only).',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is 1 million in Nepali Rupees in words?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '1 Million in Nepali Rupees is equal to 10 Lakhs (Rs. 10,00,000). In Nepali words, it is written as "दश लाख रूपैयाँ मात्र" (Ten Lakh Rupees Only).',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is 100 million and 1 billion in Nepali Rupees?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '100 Million equals 10 Crore (दश करोड रूपैयाँ / Rs. 10,00,00,000), and 1 Billion equals 1 Arab or 100 Crore (एक अर्ब रूपैयाँ / Rs. 1,00,00,00,000) in the Nepali numbering system.',
-        },
-      },
-    ],
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <NumberToWordsClient lang="en" />
-    </>
-  );
+  return <NumberToWordsClient lang="en" />;
 }
