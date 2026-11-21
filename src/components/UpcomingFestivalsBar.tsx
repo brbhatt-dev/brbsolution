@@ -88,8 +88,8 @@ export default function UpcomingFestivalsBar({ variant = 'inline' }: UpcomingFes
             </span>
           </div>
 
-          {/* Horizontally scrollable festival cards */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar flex-1 min-w-0 sm:justify-start">
+          {/* Horizontally scrollable on mobile, clean wrap on desktop */}
+          <div className="flex items-center gap-2 overflow-x-auto sm:overflow-visible sm:flex-wrap pb-1 sm:pb-0 no-scrollbar flex-1 min-w-0 sm:justify-start">
             {upcomingEvents.slice(0, 4).map((event, idx) => {
               const isToday = event.daysRemaining === 0;
               const isFirst = idx === 0;
