@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -132,9 +133,9 @@ export default function ShubhSaaitCalendarPage() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>वैदिक वास्तुशास्त्र तथा पञ्चाङ्ग निर्देशिका</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               घरजग्गा कारोबार, निर्माण र बसोबासमा शुभ साइतको महत्व
-            </h2>
+            </h1>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               घर केवल इँटा र सिमेन्टको संरचना मात्र नभई सम्पूर्ण परिवारको सुख, शान्ति र प्रगतिको आधारशिला हो। सनातन परम्परामा भूमि पूजन (जग शिलान्यास), छत ढलान, जग्गा पास र गृहप्रवेश गर्दा समय, तिथि र नक्षत्रको विशेष संयोजन मिलाइन्छ।
             </p>

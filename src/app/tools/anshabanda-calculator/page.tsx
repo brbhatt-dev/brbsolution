@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -135,9 +136,9 @@ export default function AnshabandaCalculatorPage() {
               <Scale className="w-3.5 h-3.5 text-blue-600" />
               <span>नेपालको कानुन र अंशबन्डा सम्बन्धी आधिकारिक व्यवस्था</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
               मुलुकी देवानी संहिता २०७४ अनुसार जग्गा अंशबन्डाका मुख्य कानुनी नियमहरू
-            </h2>
+            </h1>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               नेपालमा पैतृक वा सगोलको सम्पत्ति अंशबन्डा गर्दा कानुनले स्पष्ट मापदण्डहरू तोकेको छ। परम्परागत रूपमा जग्गा भाग लगाउँदा आना, पैसा र दाम वा कट्ठा र धुरको सानो भिन्नताले परिवारमा विवाद आउने गर्दछ। हाम्रो क्याल्कुलेटरले गणितीय शुद्धताका साथ प्रत्येक अंशियारको ठ्याक्कै हिस्सा निकालिदिन्छ।
             </p>

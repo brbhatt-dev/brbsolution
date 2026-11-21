@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -131,9 +132,9 @@ export default function PropertyDisputeWizardPage() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>नेपालको भू-कानुन तथा अदालती अभ्यास</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               घरजग्गा विवाद समाधानका कानुनी आधारहरू: नापी, वडा, न्यायिक समिति र अदालत
-            </h2>
+            </h1>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               नेपालमा ८० प्रतिशतभन्दा बढी स्थानीय विवाद घरजग्गा र साँध-सिमानासँग सम्बन्धित हुन्छन्। सही कानुनी प्रक्रिया र क्षेत्राधिकार थाहा नहुँदा सामान्य जनता वर्षौंसम्म अदालत र कार्यालय धाइरहन बाध्य हुन्छन्।
             </p>

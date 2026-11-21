@@ -87,6 +87,7 @@ export async function generateMetadata({ params }: DistrictValuationPageProps): 
       siteName: 'Land Solution & BR Bhatta',
       locale: 'en_US',
       type: 'website',
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
     },
   };
 }

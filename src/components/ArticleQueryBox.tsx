@@ -107,7 +107,7 @@ export default function ArticleQueryBox({ articleTitle, articleCategory }: Artic
         <span className="text-[11px] font-bold text-slate-400 block">
           💡 धेरै सोधिने नमुना प्रश्नहरू (क्लिक गरी सोध्नुहोस्):
         </span>
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+        <div className="flex flex-wrap items-center gap-1.5 py-0.5">
           {SAMPLE_QUESTIONS.map((sample, idx) => (
             <button
               key={idx}
@@ -115,7 +115,7 @@ export default function ArticleQueryBox({ articleTitle, articleCategory }: Artic
               onClick={() => {
                 setQuery(sample);
               }}
-              className="px-2.5 py-1 rounded-xl bg-white/10 hover:bg-emerald-500/20 border border-white/10 hover:border-emerald-400/50 text-slate-200 text-[11px] whitespace-nowrap transition-all shrink-0 cursor-pointer text-left active:scale-95"
+              className="px-2.5 py-1 rounded-xl bg-white/10 hover:bg-emerald-500/20 border border-white/10 hover:border-emerald-400/50 text-slate-200 text-[11px] max-w-full transition-all cursor-pointer text-left active:scale-95"
             >
               {sample}
             </button>

@@ -163,9 +163,9 @@ export default function PrintSlipModal({ isOpen, onClose, data }: PrintSlipModal
                   className="w-14 h-14 object-contain rounded-xl border border-slate-200 p-0.5" 
                 />
                 <div>
-                  <h1 className="text-xl font-black text-emerald-900 tracking-tight">
+                  <p className="text-xl font-black text-emerald-900 tracking-tight">
                     LAND SOLUTION
-                  </h1>
+                  </p>
                   <p className="text-[11px] font-bold text-slate-600 uppercase tracking-wider">
                     नेपाल डिजिटल जग्गा व्यवस्थापन तथा नापजाँच प्रणाली
                   </p>

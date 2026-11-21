@@ -78,6 +78,7 @@ export default function LrimsOnlineServicesPage() {
           </nav>
 
           {/* Interactive Hub */}
+          <h1 className="sr-only">LRIMS अनलाइन जग्गा सेवा हब (Nepal Land Revenue Online Services Guide)</h1>
           <LrimsOnlineHub />
 
           {/* Related Tools Callout */}

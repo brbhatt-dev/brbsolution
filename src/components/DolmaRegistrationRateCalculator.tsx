@@ -445,9 +445,9 @@ export default function DolmaRegistrationRateCalculator() {
             </div>
             <div className="space-y-1">
               <p className="text-xs font-semibold text-emerald-400">BR Bhatta | Land Solution Nepal</p>
-              <h1 className="text-xl sm:text-2xl font-black text-white">
+              <h2 className="text-xl sm:text-2xl font-black text-white">
                 घरजग्गा कर तथा दस्तुर क्यालकुलेटर
-              </h1>
+              </h2>
               <p className="text-xs text-slate-300 font-medium">नेपालभरका मालपोत कार्यालयहरूको रजिष्ट्रेशन दस्तुर, सेवा शुल्क र रोक्का दस्तुर</p>
             </div>
           </div>

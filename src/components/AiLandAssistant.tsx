@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   Bot, 
   X, 
@@ -221,6 +222,8 @@ function FormattedBotMessage({ text }: { text: string }) {
 }
 
 export default function AiLandAssistant() {
+  const pathname = usePathname();
+  const isEn = pathname?.startsWith('/en') ?? false;
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -659,7 +662,7 @@ export default function AiLandAssistant() {
             <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center animate-pulse">
               <Bot className="w-4 h-4 text-emerald-100" />
             </div>
-            <span>नेपाल जग्गा AI सहायक</span>
+            <span>{isEn ? 'Ask Land AI' : 'नेपाल जग्गा AI सहायक'}</span>
             <span className="w-2 h-2 rounded-full bg-emerald-300 animate-ping"></span>
           </button>
         </div>

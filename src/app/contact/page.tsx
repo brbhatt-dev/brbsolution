@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     siteName: 'BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -40,6 +41,7 @@ export default function ContactPage() {
 
       {/* Main Content */}
       <main className="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-8">
+        <h1 className="sr-only">सम्पर्क गर्नुहोस् (Contact BR Bhatta &amp; Land Solution Support)</h1>
         <Contact />
 
         {/* Official English Support & Editorial Contact Information */}

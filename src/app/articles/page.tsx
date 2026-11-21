@@ -75,7 +75,7 @@ export default function ArticlesHubPage() {
       </section>
 
       {/* Main Content Area */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-10">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-24 lg:pb-14 space-y-10">
         
         {/* Top AdSense Slot */}
         <AdSenseSlot userFacingLabel="प्रायोजित स्थान (Sponsored Zone)" />

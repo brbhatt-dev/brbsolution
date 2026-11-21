@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -134,9 +135,9 @@ export default function ConstructionCostCalculatorPage() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>विस्तृत प्राविधिक तथा कानुनी निर्देशिका</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               नेपालमा घर निर्माण: लागत निर्धारण, सामग्री परिमाण र कानुनी प्रक्रिया
-            </h2>
+            </h1>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               आफ्नै घर बनाउनु जीवनको सबैभन्दा ठूलो लगानी हो। तर स्पष्ट प्राविधिक ज्ञान र सही लागत अनुमानको अभावमा धेरै घरधनीहरू बजेट अभाव, ठेकेदारको लापरबाही र कानुनी उल्झनमा पर्ने गर्दछन्। नेपाल भवन संहिता (Nepal National Building Code - NBC 105:2020) र सहरी विकास तथा भवन निर्माण विभाग (DUDBC) को मापदण्ड अनुसार घर निर्माण गर्दा ध्यान दिनुपर्ने महत्वपूर्ण पक्षहरू तल प्रस्तुत गरिएको छ।
             </p>

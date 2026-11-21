@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -125,9 +126,9 @@ export default function MunicipalByeLawsPage() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>सहरी विकास मन्त्रालय तथा स्थानीय सरकार सञ्चालन ऐन</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               नेपालमा भवन निर्माण बाइ-लज (Municipal Bye-Laws): नियम, सेतब्याक र प्रक्रिया
-            </h2>
+            </h1>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               सहरी क्षेत्रको तीव्र अव्यवस्थित विस्तार रोक्न र भूकम्पीय जोखिम न्यून गर्न प्रत्येक स्थानीय तहले बस्ती विकास तथा भवन निर्माण मापदण्ड कार्यान्वयन गरेका छन्।
             </p>

@@ -43,6 +43,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -127,10 +128,10 @@ export default function MalpotValuationRatesPage() {
         <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <h1 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
                 <Landmark className="w-5 h-5 text-emerald-600" />
                 <span>७७ वटै जिल्लाका मालपोत मूल्याङ्कन तथा कार्यालय निर्देशिका</span>
-              </h2>
+              </h1>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 आफ्नो जिल्ला छानी मालपोत कार्यालयको फोन नम्बर, ठेगाना, सरकारी मूल्याङ्कन आधार र रजिष्ट्रेसन दस्तुर हेर्नुहोस्:
               </p>

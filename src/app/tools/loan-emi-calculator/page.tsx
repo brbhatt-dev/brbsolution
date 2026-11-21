@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -133,9 +134,9 @@ export default function LoanEmiCalculatorPage() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>नेपाल राष्ट्र बैंक निर्देशिका तथा वित्तीय सल्लाह</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               जग्गा धितो कर्जा (Home & Land Mortgage Loan) सम्बन्धी पूर्ण जानकारी
-            </h2>
+            </h1>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               नेपालमा घरजग्गा खरिद, घर निर्माण वा व्यापार विस्तारका लागि बैंक तथा वित्तीय संस्थाबाट धितो कर्जा लिँदा राष्ट्र बैंकको नीति, बैंक भ्यालुएसनको तरिका र मासिक आम्दानीको अनुपात जान्नु अत्यन्त आवश्यक हुन्छ। सही जानकारी नहुँदा भ्यालुएसन दस्तुर तिरेर पनि कर्जा अस्वीकृत हुने सम्भावना रहन्छ।
             </p>

@@ -514,7 +514,7 @@ ${isKathmanduValley ? `४. वाग्मती सभ्यता कर (०
       >
         <div className="border-b-2 border-emerald-800 pb-4 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-black text-emerald-900">LAND SOLUTION</h1>
+            <p className="text-xl font-black text-emerald-900">LAND SOLUTION</p>
             <p className="text-xs text-slate-600">घरजग्गा रजिस्ट्रेसन दस्तुर तथा पुँजीगत लाभकर आधिकारिक स्लिप</p>
             <p className="text-[10px] text-slate-500">नेपाल डिजिटल घरजग्गा रजिस्ट्रेसन तथा मालपोत कर हिसाब प्रणाली</p>
           </div>

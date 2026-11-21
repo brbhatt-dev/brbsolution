@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -149,9 +150,9 @@ export default function SetbackCalculatorPage() {
               <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
               <span>नेपाल सरकार भवन निर्माण तथा सहरी विकास मापदण्ड</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
               घर बनाउँदा बाटो र सिमाना छोड्ने नियम (Building Bye-laws & Setback Rules)
-            </h2>
+            </h1>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               नेपालमा घर बनाउँदा सडक विस्तार, दमकल/एम्बुलेन्स आवागमन, विपद् व्यवस्थापन र छिमेकीको उज्यालो-हावाको अधिकार सुरक्षित गर्न सडक सीमा (Right of Way) र भवन निर्माण सीमा (Setback) सम्बन्धी कडा मापदण्ड तोकिएको छ। यी मापदण्डहरू पालना नगरी बनाइएका घरको नक्सा पास हुँदैन।
             </p>

@@ -47,6 +47,7 @@ export const metadata: Metadata = {
     siteName: 'Land Solution & BR Bhatta',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'BR Bhatta | Land Solution & Nepal Tools' }],
   },
 };
 
@@ -129,7 +130,7 @@ export default function StandaloneLandCalculatorPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8">
+      <main className="flex-grow w-full min-w-0 overflow-x-hidden max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8">
         
         {/* Breadcrumb Nav */}
         <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
@@ -140,6 +141,15 @@ export default function StandaloneLandCalculatorPage() {
           <span>/</span>
           <span className="text-slate-800 dark:text-slate-200">जग्गा क्यालकुलेटर</span>
         </div>
+
+        <header className="space-y-2">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            नेपाल जग्गा नापजाँच क्यालकुलेटर (रोपनी-आना ⇄ बिघा-कट्ठा ⇄ वर्गफिट)
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            नेपालको पहाडी (रोपनी-आना-पैसा-दाम) र तराई (बिघा-कट्ठा-धुर) जग्गा एकाइहरूलाई वर्गफिट र वर्गमिटरमा सटीक रूपान्तरण गर्नुहोस्।
+          </p>
+        </header>
 
         <BilingualSwitchBanner mode="to-en" href="/en/tools/land-calculator" />
 

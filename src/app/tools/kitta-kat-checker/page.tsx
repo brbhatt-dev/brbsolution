@@ -71,9 +71,9 @@ export default function StandaloneKittaKatCheckerPage() {
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
           <div className="flex items-center gap-2.5">
             <Scale className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-            <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+            <h1 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
               नेपाल सरकारको भू-उपयोग नियमावली २०७९ अनुसार न्यूनतम कित्ताकाट मापदण्ड
-            </h2>
+            </h1>
           </div>
 
           <div className="overflow-x-auto">

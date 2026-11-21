@@ -78,6 +78,7 @@ export default function CadastralMapSymbolsPage() {
           </nav>
 
           {/* Interactive Hub */}
+          <h1 className="sr-only">नापी नक्सा संकेत र स्केल क्यालकुलेटर (Nepal Cadastral Map Symbols &amp; Scale Calculator)</h1>
           <CadastralSymbolsHub />
 
           {/* Related Tools Callout */}
