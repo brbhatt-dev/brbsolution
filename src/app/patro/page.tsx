@@ -822,6 +822,50 @@ export default function PatroDownloadPage() {
           </div>
         </section>
 
+        {/* Official English Bikram Sambat & Vedic Panchanga Reference for AdSense & International Readers */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
+            <span className="inline-block px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-bold border border-amber-200 dark:border-amber-800 mb-2">
+              ENGLISH TECHNICAL REFERENCE — BIKRAM SAMBAT &amp; VEDIC PANCHANGA
+            </span>
+            <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+              BR Patro: Bikram Sambat (2081–2084 BS) Astronomical Calendar, Tithi &amp; Kundali Guide
+            </h2>
+          </div>
+
+          <p>
+            <strong>BR Patro (www.brbhatta.com/patro)</strong> is an astronomical Nepali Bikram Sambat (BS) calendar and Vedic Panchanga engine built by Nepalese developer and geomatics specialist <strong>BR Bhatta</strong>. Unlike fixed Gregorian (AD) month lengths, the official Bikram Sambat calendar of Nepal is governed by solar-sidereal transits (Sankranti) across the 12 zodiac constellations (Rashi), causing month durations to vary between 29 and 32 days while remaining approximately 56 years, 8 months, and 15 days ahead of the Gregorian calendar.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-2">
+              <h3 className="font-bold text-slate-900 dark:text-white">
+                1. Five Limbs of Vedic Panchanga &amp; Daily Muhurta
+              </h3>
+              <ul className="list-disc pl-5 space-y-1 text-xs">
+                <li><strong>Tithi (Lunar Day):</strong> Computed from every 12-degree angular separation between the Sun and the Moon across Shukla Paksha (waxing) and Krishna Paksha (waning), including Ekadashi, Purnima, and Amavasya observances.</li>
+                <li><strong>Nakshatra, Yoga &amp; Karana:</strong> Tracks all 27 lunar mansions (13°20′ arcs from Ashwini to Revati), 27 Nitya Yogas, and 11 Karanas with exact Kathmandu (UTC+05:45) transition timestamps.</li>
+                <li><strong>Choghadiya &amp; Rahu Kaal:</strong> Divides each daytime and nighttime span between sunrise and sunset into 8 intervals (Amrit, Shubh, Labh, Char, Kaal, Rog, Udveg) alongside Abhijit Muhurta and Disha Shoola travel guidance.</li>
+              </ul>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-2">
+              <h3 className="font-bold text-slate-900 dark:text-white">
+                2. BS–AD Date Converter, Auspicious Saait &amp; Ashtakoot Kundali
+              </h3>
+              <ul className="list-disc pl-5 space-y-1 text-xs">
+                <li><strong>Exact BS ⇄ AD Conversion:</strong> Converts Bikram Sambat dates (2081–2084 BS) to Gregorian AD dates and vice versa with zero drift for official deeds, citizenship records, and real estate contracts.</li>
+                <li><strong>Shubha Saait &amp; Festivals:</strong> Publishes verified auspicious dates for Bibaha (Marriage), Bratabandha, Annaprasan (Pasni), Griha Pravesh (Housewarming), and property foundation rituals.</li>
+                <li><strong>Offline Android Application ({WHATS_NEW_VERSION}):</strong> Provides 36-point Ashtakoot Guna Milan Kundali matching, North/South Indian Lagna charts, Shodashvarga, and daily home-screen Panchanga widgets completely offline.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-xs">
+            Looking for a pure-English calendar interface? Open our <Link href="/en/patro" className="text-emerald-600 dark:text-emerald-400 font-bold hover:underline">English Nepali Patro &amp; BS-AD Converter (/en/patro)</Link> or explore our <Link href="/en" className="text-emerald-600 dark:text-emerald-400 font-bold hover:underline">English Land &amp; Utility Portal</Link>.
+          </p>
+        </section>
+
       </main>
 
       <HomeFooter />

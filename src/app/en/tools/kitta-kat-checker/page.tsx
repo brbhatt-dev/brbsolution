@@ -119,6 +119,21 @@ export default function EnglishKittaKatCheckerPage() {
             </tbody>
           </table>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1.5">
+            <h3 className="font-bold text-slate-900 dark:text-white">1. Road Access &amp; Frontage Requirements</h3>
+            <p>
+              To obtain subdivision (Kitta-Kat) approval from a municipal ward office and Survey Office (Napi Karyalaya), every newly created residential parcel must have legal access to a minimum 6-meter (approx. 20 ft) wide motorable road for new plotting developments, or meet the specific municipal right-of-way (ROW) setback standard for existing ancestral partitions (Anshabanda).
+            </p>
+          </div>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 space-y-1.5">
+            <h3 className="font-bold text-slate-900 dark:text-white">2. Small Plot Relaxation &amp; Ancestral Partition</h3>
+            <p>
+              Under the First Amendment to Nepal&apos;s Land Use Regulation 2079, if a parent residential parcel is smaller than 500 sq. meters, local municipalities may permit subdivision down to 80 sq. meters (approx. 2.5 Aana) per plot. Agricultural land, however, cannot be fragmented below the regional threshold without formal municipal Land Use Council reclassification.
+            </p>
+          </div>
+        </div>
       </section>
     </EnglishPageShell>
   );

@@ -5,6 +5,7 @@ import { Scale, ArrowLeft, Building2, ShieldCheck, Sparkles, BookOpen, ExternalL
 import LawsDirectory from '@/components/LawsDirectory';
 import DosNoticesWidget from '@/components/DosNoticesWidget';
 import SocialShareBar from '@/components/SocialShareBar';
+import { HomeEnglishDocumentation } from '@/components/BilingualEnglishGuide';
 import AdSenseSlot from '@/components/AdSenseSlot';
 import { LAW_DOCUMENTS } from '@/data/laws';
 
@@ -182,6 +183,9 @@ export default function LawsPage() {
           
           <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
         </div>
+
+        {/* Official English Land Law & Cadastral Reference */}
+        <HomeEnglishDocumentation />
 
       </main>
 

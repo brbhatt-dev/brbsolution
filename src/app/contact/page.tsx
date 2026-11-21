@@ -73,6 +73,23 @@ export default function ContactPage() {
               <p className="text-xs">Within 24 Hours (Sun–Fri, NPT)</p>
             </div>
           </div>
+
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div className="space-y-1.5">
+              <h3 className="font-bold text-slate-900 dark:text-white">What You Can Contact Us For</h3>
+              <ul className="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-300">
+                <li>Reporting updates to District Malpot minimum land valuation rates or Survey/Malpot office phone numbers.</li>
+                <li>Technical support for AutoCAD AutoLISP (.LSP) area-plotting scripts, Land Solution, Hamro Kosh, or BR Patro Android APK.</li>
+                <li>Editorial corrections, legal citation feedback, or partnership inquiries for Nepal civil engineering and geomatics education.</li>
+              </ul>
+            </div>
+            <div className="space-y-1.5">
+              <h3 className="font-bold text-slate-900 dark:text-white">Independent Platform &amp; Transparency Notice</h3>
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong>www.brbhatta.com</strong> is an independent engineering and educational resource maintained by licensed surveyor <strong>Bhakta Raj Bhatt</strong>. We are not affiliated with the Government of Nepal. For official legal deeds, parcel subdivisions, and government revenue receipts, always verify directly with your local Ward Office, Survey Office (dos.gov.np), or Land Revenue Office (dolrm.gov.np).
+              </p>
+            </div>
+          </div>
         </section>
       </main>
 
